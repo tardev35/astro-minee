@@ -1,0 +1,18 @@
+# Cloudflare Pages / Workers static-assets header rules.
+#
+# Before this file existed there was no cache configuration anywhere in the
+# project — not here, not in wrangler.toml — so every hashed asset and every
+# preloaded font was revalidated on each repeat visit. That silently capped the
+# payoff of every other asset optimisation: moving CSS out of the HTML only
+# helps if the resulting .css file is actually allowed to stay cached.
+#
+# Both paths below are safe to freeze for a year because their filenames carry
+# a content hash (/_astro/*) or their bytes never change (/fonts/*). A rebrand
+# that swaps the artwork produces new hashes, so visitors are never served a
+# stale asset — they are served a different URL.
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

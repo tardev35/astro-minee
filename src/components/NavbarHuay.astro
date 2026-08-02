@@ -1,0 +1,121 @@
+---
+import { isActivePath } from "../lib/nav";
+import { Picture } from "astro:assets";
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.*", { eager: true });
+const imagePaths = Object.keys(images);
+const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
+
+const currentPath = Astro.url.pathname;
+const isActive = (path: string) => isActivePath(currentPath, path);
+
+const menu = [
+  { name: "หน้าแรก", path: "/" },
+  { name: "ทางเข้า", path: "/ทางเข้า" },
+  { name: "โปรโมชั่น", path: "/promotion" },
+  { name: "ติดต่อเรา", path: "/contact-us" },
+];
+---
+
+<header class="sticky top-0 z-[100] w-full font-sans">
+  <nav class="relative mx-auto flex h-[85px] w-full items-center justify-between border-b border-amber-500/35 bg-[#5f0914]/95 px-4 shadow-[0_5px_20px_rgba(0,0,0,0.55)] backdrop-blur-xl xl:px-8">
+    <a href="/" class="z-[110] flex-shrink-0 rounded-xl border border-amber-300/25 bg-amber-100/10 px-4 py-2 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
+      {
+        mainLogo ? (
+          <Picture src={mainLogo} alt="MAHORANLOTTO Logo" loading="eager" class="h-[45px] w-auto drop-shadow-md xl:h-[55px]" formats={["avif", "webp"]} fallbackFormat="webp" />
+        ) : (
+          <p class="text-2xl font-black tracking-widest text-white italic drop-shadow-md">
+            <span class="rounded-md bg-gradient-to-r from-amber-200 to-amber-500 px-2 text-[#5f0914]">MAHORAN</span>LOTTO
+          </p>
+        )
+      }
+    </a>
+
+    <div class="hidden h-full flex-1 items-center justify-center gap-6 lg:flex xl:gap-8">
+      {
+        menu.map((item) => (
+          <a
+            href={item.path}
+            class={`group relative flex h-full items-center px-2 text-sm font-bold tracking-widest uppercase transition-colors ${isActive(item.path) ? "text-amber-300" : "text-amber-50/80 hover:text-white"}`}>
+            <span>{item.name}</span>
+            <div
+              class={`absolute bottom-0 left-0 h-[4px] w-full rounded-t-full bg-gradient-to-r from-amber-200 to-amber-500 shadow-[0_-2px_10px_rgba(251,191,36,0.8)] transition-transform duration-300 ${isActive(item.path) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+            />
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="z-[110] flex items-center gap-4">
+      <a
+        href="/login"
+        class="hidden rounded-full border-2 border-amber-300/30 bg-black/25 px-6 py-2.5 text-sm font-bold text-white backdrop-blur-md transition-all hover:border-amber-300/60 hover:bg-amber-100/10 lg:flex">
+        เข้าสู่ระบบ
+      </a>
+      <a
+        href="/register"
+        class="hidden rounded-full bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 px-6 py-2.5 text-sm font-black text-[#5f0914] shadow-[0_4px_15px_rgba(251,191,36,0.45)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(251,191,36,0.65)] lg:flex">
+        สมัครสมาชิก
+      </a>
+
+      <button id="hamburger-btn" class="relative flex h-[45px] w-[45px] flex-col items-center justify-center gap-[6px] rounded-full border border-amber-400/35 bg-[#2a0408]/70 lg:hidden" aria-label="Menu">
+        <span class="line-1 h-[2px] w-5 origin-center rounded-full bg-amber-200 transition-all duration-300"></span>
+        <span class="line-2 h-[2px] w-5 origin-center rounded-full bg-amber-200 transition-all duration-300"></span>
+        <span class="line-3 h-[2px] w-5 origin-center rounded-full bg-amber-200 transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div
+    id="mobile-menu"
+    class="pointer-events-none absolute top-[85px] left-0 w-full origin-top -translate-y-4 scale-y-95 flex-col rounded-b-3xl border-b border-amber-500/50 bg-[#5f0914]/98 px-6 pt-4 pb-8 opacity-0 shadow-2xl backdrop-blur-2xl transition-all duration-300 lg:hidden">
+    <div class="flex flex-col gap-2">
+      {
+        menu.map((item) => (
+          <a
+            href={item.path}
+            class={`flex items-center rounded-xl px-4 py-3.5 text-lg font-bold tracking-widest uppercase transition-colors ${isActive(item.path) ? "border-l-4 border-amber-400 bg-amber-100/10 text-amber-300" : "text-amber-50/80 hover:bg-amber-100/5 hover:text-white"}`}>
+            {item.name}
+          </a>
+        ))
+      }
+    </div>
+    <div class="mt-6 flex flex-col gap-4">
+      <a
+        href="/register"
+        class="flex w-full justify-center rounded-full bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 py-3.5 text-lg font-black text-[#5f0914] shadow-[0_5px_15px_rgba(251,191,36,0.45)]">
+        สมัครสมาชิก
+      </a>
+      <a href="/login" class="flex w-full justify-center rounded-full border-2 border-amber-300/30 bg-black/25 py-3.5 text-lg font-bold text-white">เข้าสู่ระบบ</a>
+    </div>
+  </div>
+</header>
+
+<style is:global>
+  nav,
+  header {
+    font-family: var(--font-sans) !important;
+  }
+  #hamburger-btn.active .line-1 {
+    transform: translateY(8px) rotate(45deg);
+  }
+  #hamburger-btn.active .line-2 {
+    opacity: 0;
+  }
+  #hamburger-btn.active .line-3 {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  #mobile-menu.show {
+    opacity: 1;
+    transform: translateY(0) scaleY(100%);
+    pointer-events: auto;
+  }
+</style>
+
+<script>
+  const hamburgerBtn = document.getElementById("hamburger-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  hamburgerBtn?.addEventListener("click", () => {
+    hamburgerBtn.classList.toggle("active");
+    mobileMenu?.classList.toggle("show");
+  });
+</script>

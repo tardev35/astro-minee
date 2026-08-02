@@ -1,0 +1,83 @@
+---
+import kbankLogo from "../assets/banks/kbank.png";
+import scbLogo from "../assets/banks/scb.png";
+import krungsriLogo from "../assets/banks/krungsri.png";
+import ktbLogo from "../assets/banks/ktb.png";
+import { brandPick } from "../lib/brandProfile";
+
+const bankPool = [
+  { name: "KBank", color: "bg-[#1155cc]", icon: kbankLogo.src },
+  { name: "SCB", color: "bg-[#4e1c80]", icon: scbLogo.src },
+  { name: "Krungsri", color: "bg-[#fcd34d]", icon: krungsriLogo.src },
+  { name: "KTB", color: "bg-[#0ea5e9]", icon: ktbLogo.src },
+];
+
+// Ported off `<script define:vars={{ bankPool }}>` — see src/lib/winnersFeed.ts.
+// This is the only variant that does not insert strictly at the front: new
+// pills land at a random spot near the head so the cloud reads as a crowd
+// rather than a queue. `data-insert="scatter"` on the feed asks for that.
+//
+// Values come from the domain hash, never Math.random() — frontmatter runs at
+// build time, and the gate fails the build on a random call there.
+const LETTERS = "abcdefghijklmnopqrstuvwxyz";
+const pick = (salt: string, n: number) => brandPick(Astro.site, salt, n);
+
+const initialRows = Array.from({ length: 8 }, (_, i) => ({
+  bank: bankPool[pick(`pill-bank-${i}`, bankPool.length)],
+  user: `${LETTERS.charAt(pick(`pill-a-${i}`, 26))}${LETTERS.charAt(pick(`pill-b-${i}`, 26))}***`,
+  amount: (15000 + pick(`pill-amount-${i}`, 80001)).toLocaleString("en-US"),
+}));
+---
+
+<div class="mx-auto w-full max-w-[1000px] p-4 font-sans">
+  <section
+    aria-label="รายการถอนเงินล่าสุดของสมาชิก"
+    class="relative overflow-hidden rounded-[30px] border-2 border-amber-400/30 bg-[#0b1330]/90 px-4 py-8 shadow-[0_15px_40px_rgba(226,192,95,0.18)] backdrop-blur-md">
+    <div class="mb-6 text-center">
+      <p class="bg-gradient-to-b from-[#f7e3a4] to-[#c39a34] bg-clip-text text-xl font-black text-transparent md:text-2xl"><span aria-hidden="true">⚡</span> PRODED888 ถอนเงินแบบเรียลไทม์</p>
+    </div>
+
+    <div
+      data-winners-feed
+      data-interval="3000"
+      data-max-rows="12"
+      data-user-digits="0"
+      data-insert="scatter"
+      class="relative z-10 flex flex-wrap justify-center gap-3">
+      {
+        initialRows.map((row) => (
+          <div data-winner-row class="winner-pill transition-all duration-500 ease-out">
+            <div class="flex items-center gap-3 rounded-full border border-amber-400/25 bg-[#070c1c] py-1.5 pr-4 pl-1.5 shadow-[0_0_10px_rgba(226,192,95,0.18)] hover:border-amber-400/60">
+              <div data-winner-bank class={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${row.bank.color}`}>
+                <img data-winner-icon src={row.bank.icon} alt="" width="16" height="16" loading="lazy" decoding="async" class="h-4 w-4 object-contain" />
+              </div>
+              <div data-winner-user class="text-sm font-bold text-white/90">{row.user}</div>
+              <div class="text-sm font-black text-[#f7e3a4] drop-shadow-sm">+<span data-winner-amount>{row.amount}</span> ฿</div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <script type="application/json" data-winners-banks set:html={JSON.stringify(bankPool)} />
+  </section>
+</div>
+
+<script>
+  import { startWinnersFeed } from "../lib/winnersFeed";
+
+  startWinnersFeed();
+</script>
+
+<style>
+  .winner-pill.is-entering {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .winner-pill {
+      transition: none;
+    }
+  }
+</style>

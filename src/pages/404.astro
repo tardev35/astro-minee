@@ -1,0 +1,39 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+// wrangler.toml declares `not_found_handling = "404-page"`, which makes
+// Cloudflare serve dist/404.html for any unmatched path. That file did not
+// exist, so every mistyped URL fell through to Cloudflare's own bare 404.
+//
+// This page is deliberately BRAND-NEUTRAL: no brand name, no brand hex, no
+// per-brand copy. It is one of the few files a rebrand has no reason to
+// rewrite, and the moment it hardcodes a name it silently rots into the
+// PREVIOUS brand's 404 page. Everything brand-specific a visitor sees here —
+// fonts, palette, navbar, footer, background — arrives through MainLayout, so
+// it retheme itself for free on every launch.
+//
+// noindex, follow: a 404 must never be indexed, but its links should still be
+// crawled so the crawler finds its way back to the real pages.
+---
+
+<MainLayout
+  title="ไม่พบหน้าที่ต้องการ (404)"
+  description="ไม่พบหน้าที่คุณกำลังมองหา ลิงก์อาจหมดอายุ ถูกย้าย หรือพิมพ์ที่อยู่คลาดเคลื่อน กลับไปหน้าแรกเพื่อเข้าใช้งานเมนูทั้งหมดได้ตามปกติ"
+  robots="noindex, follow">
+  <section class="mx-auto flex w-full max-w-3xl flex-col items-center px-4 py-20 text-center font-sans">
+    <p class="text-6xl font-black tracking-widest opacity-40 md:text-8xl" aria-hidden="true">404</p>
+
+    <h1 class="mt-4 text-2xl font-black tracking-wide md:text-3xl">ไม่พบหน้าที่ต้องการ</h1>
+
+    <p class="mt-4 max-w-xl text-base leading-relaxed opacity-80">
+      ลิงก์ที่เปิดมาอาจหมดอายุ ถูกย้ายไปที่อื่น หรือพิมพ์ที่อยู่คลาดเคลื่อนไปเพียงตัวอักษรเดียว
+      เมนูทั้งหมดยังใช้งานได้ตามปกติจากด้านบนและด้านล่างของหน้านี้
+    </p>
+
+    <a
+      href="/"
+      class="mt-8 inline-flex items-center justify-center rounded-full border px-8 py-3 font-bold transition-transform hover:scale-105">
+      กลับไปหน้าแรก
+    </a>
+  </section>
+</MainLayout>

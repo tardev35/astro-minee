@@ -1,0 +1,174 @@
+---
+import { isActivePath } from "../lib/nav";
+import { Picture } from "astro:assets";
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
+
+const imagePaths = Object.keys(images);
+const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (path: string) => isActivePath(currentPath, path);
+---
+
+<!-- No filter (drop-shadow/blur) on this header: a filtered ancestor becomes the
+     containing block for its position:fixed descendants, which would clamp the
+     fullscreen mobile menu below to the header's own 70px box instead of the
+     viewport. The nav pill carries its own box-shadow, so nothing is lost. -->
+<header class="sticky top-4 z-50 w-full px-4 font-sans">
+  <nav
+    class="mx-auto flex h-[70px] w-full max-w-7xl items-center justify-between rounded-full border border-amber-600/25 bg-[#fdfaf1]/95 px-6 shadow-[0_8px_24px_rgba(168,132,44,0.18)] backdrop-blur-md xl:px-8">
+    <a href="/" class="z-50 flex-shrink-0 transition-transform hover:scale-105">
+      <Picture
+        src={mainLogo!}
+        alt="WINUP888 คาสิโนบนมือถือ"
+        loading="eager"
+        fetchpriority="high"
+        class="h-[35px] w-auto drop-shadow-[0_2px_6px_rgba(168,132,44,0.35)] xl:h-[40px]"
+        formats={["avif", "webp"]}
+        fallbackFormat="webp"
+      />
+    </a>
+
+    <div class="hidden h-full items-center gap-6 lg:flex xl:gap-10">
+      {
+        [
+          { name: "หน้าแรก", path: "/" },
+          { name: "โปรโมชั่น", path: "/promotion" },
+          { name: "ทดลองเล่น", path: "/ทดลองเล่น" },
+          { name: "ทางเข้า", path: "/ทางเข้า" },
+          { name: "ติดต่อเรา", path: "/contact-us" },
+        ].map((item) => (
+          <a
+            href={item.path}
+            class={`group relative flex h-full items-center text-sm font-bold transition-colors xl:text-base ${isActive(item.path) ? "text-[#8a6410]" : "text-[#5c4b2a] hover:text-[#8a6410]"}`}>
+            <span>{item.name}</span>
+            <div
+              class={`absolute bottom-[15px] left-0 h-[3px] w-full origin-left rounded-full bg-gradient-to-r from-[#e8cf8b] to-[#a97f2a] transition-transform duration-300 ${isActive(item.path) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+            />
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="z-50 flex items-center gap-3">
+      <a
+        href="/login"
+        class="hidden items-center justify-center rounded-full border border-[#c9a227]/60 bg-[#fffdf7] px-5 py-2 text-sm font-bold text-[#8a6410] transition-all hover:bg-[#faf4e6] lg:flex">
+        เข้าสู่ระบบ
+      </a>
+      <a
+        href="/register"
+        class="hidden items-center justify-center rounded-full bg-gradient-to-r from-[#f4dfa3] via-[#d9b45c] to-[#a97f2a] px-6 py-2 text-sm font-extrabold text-[#231a06] shadow-[0_4px_14px_rgba(168,132,44,0.35)] transition-all hover:scale-105 lg:flex">
+        สมัครสมาชิก
+      </a>
+
+      <button id="hamburger-btn" class="relative flex h-[40px] w-[40px] flex-col items-end justify-center gap-[6px] p-2 lg:hidden" aria-label="Menu">
+        <span class="line-1 h-[2px] w-6 origin-center rounded-full bg-[#a97f2a] shadow-sm transition-all duration-300"></span>
+        <span class="line-2 h-[2px] w-4 origin-center rounded-full bg-[#a97f2a] shadow-sm transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="fullscreen-menu" class="pointer-events-none fixed inset-0 z-[60] flex flex-col items-center justify-center bg-[#fbf6e9]/98 opacity-0 backdrop-blur-2xl transition-opacity duration-500">
+    <div class="flex w-full flex-col items-center space-y-6 px-6">
+      {
+        [
+          { name: "หน้าแรก", path: "/" },
+          { name: "โปรโมชั่น", path: "/promotion" },
+          { name: "ทดลองเล่น", path: "/ทดลองเล่น" },
+          { name: "ทางเข้า", path: "/ทางเข้า" },
+          { name: "ติดต่อเรา", path: "/contact-us" },
+        ].map((item) => (
+          <a
+            href={item.path}
+            class={`fs-item text-3xl font-black tracking-widest uppercase transition-all duration-300 ${isActive(item.path) ? "text-[#8a6410]" : "text-[#3a2e18] hover:text-[#8a6410]"}`}>
+            {item.name}
+          </a>
+        ))
+      }
+
+      <div class="fs-item mt-4 flex w-full max-w-[250px] flex-col gap-4 pt-8">
+        <a
+          href="/register"
+          class="flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#f4dfa3] via-[#d9b45c] to-[#a97f2a] py-3.5 text-lg font-extrabold text-[#231a06] shadow-[0_6px_20px_rgba(168,132,44,0.35)]">
+          สมัครสมาชิก
+        </a>
+        <a
+          href="/login"
+          class="flex w-full items-center justify-center rounded-full border-2 border-[#c9a227]/60 bg-[#fffdf7] py-3.5 text-lg font-bold text-[#8a6410] transition-colors hover:bg-[#f4ecd8]">
+          เข้าสู่ระบบ
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style is:global>
+  nav,
+  header {
+    font-family: var(--font-sans);
+  }
+  #hamburger-btn.active .line-1 {
+    transform: translateY(4px) rotate(45deg);
+  }
+  #hamburger-btn.active .line-2 {
+    width: 24px;
+    transform: translateY(-4px) rotate(-45deg);
+  }
+
+  .fs-item {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .fs-item.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  .fs-item:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .fs-item:nth-child(2) {
+    transition-delay: 0.15s;
+  }
+  .fs-item:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+  .fs-item:nth-child(4) {
+    transition-delay: 0.25s;
+  }
+  .fs-item:nth-child(5) {
+    transition-delay: 0.3s;
+  }
+  .fs-item:nth-child(6) {
+    transition-delay: 0.4s;
+  }
+</style>
+
+<script>
+  const hamburgerBtn = document.getElementById("hamburger-btn");
+  const fsMenu = document.getElementById("fullscreen-menu");
+  const fsItems = document.querySelectorAll(".fs-item");
+
+  const toggleFsMenu = () => {
+    hamburgerBtn?.classList.toggle("active");
+    fsMenu?.classList.toggle("opacity-0");
+    fsMenu?.classList.toggle("pointer-events-none");
+
+    if (!fsMenu?.classList.contains("opacity-0")) {
+      document.body.style.overflow = "hidden";
+      fsItems.forEach((item) => item.classList.add("show"));
+    } else {
+      document.body.style.overflow = "";
+      fsItems.forEach((item) => item.classList.remove("show"));
+    }
+  };
+
+  hamburgerBtn?.addEventListener("click", toggleFsMenu);
+  fsItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      if (!fsMenu?.classList.contains("opacity-0")) toggleFsMenu();
+    });
+  });
+</script>

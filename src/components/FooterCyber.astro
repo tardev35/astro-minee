@@ -1,0 +1,81 @@
+---
+import { Picture } from "astro:assets";
+import BankStrip from "./BankStrip.astro";
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
+const imagePaths = Object.keys(images);
+const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
+---
+
+<footer
+  class="relative mt-10 w-full overflow-hidden border-t border-amber-600/30 bg-[#f7f0de] pt-16 pb-8 font-sans text-[#3a2e18]"
+  style="clip-path: polygon(0 30px, 50vw 0, 100% 30px, 100% 100%, 0 100%);">
+  <div aria-hidden="true"
+    class="pointer-events-none absolute inset-0 opacity-[0.10]"
+    style="background-image: linear-gradient(#a97f2a 1px, transparent 1px), linear-gradient(90deg, #c6c8cb 1px, transparent 1px); background-size: 30px 30px;">
+  </div>
+
+  <div class="relative z-10 mx-auto w-full max-w-[1200px] px-6">
+    <div class="mb-12 grid grid-cols-1 gap-10 md:grid-cols-12">
+      <div class="flex flex-col gap-5 md:col-span-5">
+        <a href="/" class="inline-block transition-transform hover:scale-105">
+          {
+            mainLogo ? (
+              <Picture src={mainLogo} alt="WINUP888 คาสิโนบนมือถือ" class="h-[60px] w-auto drop-shadow-[0_4px_12px_rgba(168,132,44,0.35)]" formats={["avif", "webp"]} fallbackFormat="webp" />
+            ) : (
+              <h2 class="text-3xl font-black tracking-widest text-[#8a6410]">WINUP888</h2>
+            )
+          }
+        </a>
+        <p class="border-l-2 border-[#c9a227] pl-4 text-sm leading-relaxed text-[#6b5836]">
+          WINUP888 คาสิโนบนมือถือผ่านระบบ HTML5 รวมสล็อตหลายค่าย บาคาร่า รูเล็ต แบล็คแจ็ค และเกม Live สดไว้ในหน้าเดียว รองรับ Android iOS และ Windows เปิดผ่านเบราว์เซอร์ได้ตลอด 24 ชม.
+        </p>
+        <div class="mt-4 flex gap-3">
+          <span class="border border-[#c9a227]/40 bg-[#fffdf7] px-3 py-1 font-mono text-xs text-[#8a6410]">HTML5_MOBILE</span>
+          <span class="border border-[#cfd0d2] bg-[#fffdf7] px-3 py-1 font-mono text-xs text-[#6b5836]">LIVE_24H</span>
+        </div>
+      </div>
+
+      <nav class="flex flex-col gap-4 md:col-span-3 lg:pl-8">
+        <p class="text-lg font-black tracking-widest text-[#8a6410] uppercase">/// DIRECTORY</p>
+        <ul class="flex flex-col gap-3 font-mono text-sm text-[#6b5836]">
+          <li><a href="/" class="transition-colors hover:text-[#8a6410]">> หน้าแรก</a></li>
+          <li><a href="/promotion" class="transition-colors hover:text-[#8a6410]">> โปรโมชั่น</a></li>
+          <li><a href="/register" class="transition-colors hover:text-[#8a6410]">> สมัครสมาชิก</a></li>
+          <li><a href="/login" class="transition-colors hover:text-[#8a6410]">> เข้าสู่ระบบ</a></li>
+        </ul>
+      </nav>
+
+      <div class="flex flex-col gap-5 md:col-span-4">
+        <p class="text-lg font-black tracking-widest text-[#8a6410] uppercase">/// SUPPORT_LINK</p>
+
+        <a
+          href="/line"
+          class="flex w-full items-center justify-center gap-2 bg-[#00B900] py-3 font-bold text-white transition-all hover:bg-[#009900]"
+          style="clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);">
+          LINE CONNECT
+        </a>
+
+        <div class="mt-2 font-mono text-xs text-[#8a7550]">ACCEPTED_PAYMENTS</div>
+        <BankStrip size={28} />
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center justify-between border-t border-amber-600/25 pt-6 font-mono text-xs text-[#8a7550] md:flex-row">
+      <p>SYSTEM_COPYRIGHT &copy; {new Date().getFullYear()} WINUP888</p>
+      <div class="mt-4 flex gap-4 md:mt-0">
+        <a href="/terms/" class="hover:text-[#8a6410]">TERMS_OF_SERVICE</a>
+        <a href="/privacy/" class="hover:text-[#8a6410]">PRIVACY_POLICY</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer a {
+    text-decoration: none;
+    font-family: var(--font-sans);
+  }
+  .font-mono {
+    font-family: monospace;
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+import { Picture } from "astro:assets";
+import img1 from "../assets/providers/game1.avif";
+import img2 from "../assets/providers/game2.avif";
+import img3 from "../assets/providers/game3.avif";
+import img4 from "../assets/providers/game4.avif";
+import img5 from "../assets/providers/game5.avif";
+import img6 from "../assets/providers/game6.avif";
+
+// bento: game 1 = hero (2x2), game 4/5/6 = แถวกว้าง, game 2/3 = ช่องเล็ก
+const games = [
+  { name: "PG Soft", desc: "ค่ายสล็อตภาพสวย ฟีเจอร์แน่น", img: img1, span: "sm:col-span-2 sm:row-span-2", hero: true },
+  { name: "Joker Gaming", desc: "สล็อตคลาสสิก", img: img2, span: "", hero: false },
+  { name: "JILI Games", desc: "อาร์เคด & สล็อต", img: img3, span: "", hero: false },
+  { name: "Evolution", desc: "คาสิโนสดครบวงจร", img: img4, span: "sm:col-span-2", hero: false },
+  { name: "SA Gaming", desc: "บาคาร่าสดยอดนิยม", img: img5, span: "col-span-2 sm:col-span-2", hero: false },
+  { name: "Sexy Baccarat", desc: "คาสิโนสดสไตล์พรีเมียม", img: img6, span: "col-span-2 sm:col-span-2", hero: false },
+];
+---
+
+<section class="mx-auto w-full max-w-[1300px] px-4 py-8 font-sans">
+  <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
+    <span aria-hidden="true" class="text-2xl drop-shadow-[0_0_10px_rgba(37,99,235,0.7)]">🎮</span>
+    <h2 class="bg-gradient-to-r from-blue-300 via-white to-blue-300 bg-clip-text text-2xl font-black tracking-widest text-transparent uppercase drop-shadow-sm md:text-3xl">
+      เกมแนะนำประจำสัปดาห์
+    </h2>
+    <div class="mt-2 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
+  </div>
+
+  <div class="grid auto-rows-[130px] grid-cols-2 gap-3 sm:grid-cols-4 sm:auto-rows-[150px]">
+    {
+      games.map((g) => (
+        <article
+          class={`group relative overflow-hidden rounded-2xl border border-blue-500/30 bg-[#050d16] shadow-[0_8px_25px_rgba(0,0,0,0.45)] transition-all duration-300 hover:border-yellow-400/50 hover:shadow-[0_12px_35px_rgba(37,99,235,0.25)] ${g.span}`}>
+          <Picture
+            src={g.img}
+            alt={g.name}
+            formats={["avif", "webp"]}
+            fallbackFormat="webp"
+            loading="lazy"
+            fetchpriority="low"
+            widths={[200, 400, 600]}
+            decoding="async"
+            class="h-full w-full object-cover opacity-90 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100"
+          />
+
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent" />
+          <div class="pointer-events-none absolute inset-0 rounded-2xl border-2 border-transparent transition-colors duration-500 group-hover:border-yellow-400/30" />
+
+          {g.hero && (
+            <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 rounded-full border border-yellow-400/50 bg-gradient-to-r from-yellow-400 to-yellow-600 px-3 py-1 text-[10px] font-black tracking-wider text-[#0b1633] shadow-md">
+              <span aria-hidden="true">⭐</span> แนะนำสูงสุด
+            </div>
+          )}
+
+          <div class="absolute inset-x-0 bottom-0 z-10 p-3">
+            <h3 class={`font-black text-white drop-shadow-md ${g.hero ? "text-xl sm:text-2xl" : "text-sm"}`}>{g.name}</h3>
+            <p class={`text-blue-100/60 ${g.hero ? "text-xs sm:text-sm" : "hidden sm:block text-[10px]"}`}>{g.desc}</p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+

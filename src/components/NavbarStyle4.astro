@@ -1,0 +1,179 @@
+---
+import { isActivePath } from "../lib/nav";
+import { Picture } from "astro:assets";
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
+
+const imagePaths = Object.keys(images);
+const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (path: string) => isActivePath(currentPath, path);
+---
+
+<!-- ปรับพื้นหลังเป็น Midnight Navy และขอบม่วงนีออนจางๆ -->
+<nav class="sticky top-0 z-50 w-full border-b border-purple-500/30 bg-[#020617] font-sans shadow-[0_4px_20px_rgba(168,85,247,0.15)] backdrop-blur-md">
+  <div class="flex h-[75px] w-full items-center justify-between px-4 xl:px-8">
+    <!-- Logo Section -->
+    <div class="z-50 flex items-center">
+      <a href="/" class="group relative flex items-center">
+        <div class="absolute inset-0 scale-0 rounded-full bg-purple-500/20 blur-xl transition-transform duration-500 group-hover:scale-150"></div>
+        <Picture
+          src={mainLogo!}
+          alt="CEO66 Logo"
+          loading="eager"
+          fetchpriority="high"
+          class="relative h-[40px] w-auto drop-shadow-[0_0_12px_rgba(168,85,247,0.4)] transition-transform group-hover:scale-105 xl:h-[45px]"
+          formats={["avif", "webp"]}
+          fallbackFormat="webp"
+        />
+      </a>
+    </div>
+
+    <!-- Desktop Menu: ปรับสี Hover และ Active เป็นโทนม่วง-ชมพู -->
+    <div class="z-10 hidden items-center gap-2 lg:gap-3 xl:flex">
+      {
+        [
+          { name: "หน้าแรก", path: "/", icon: "🏠" },
+          { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
+          { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
+          { name: "ทางเข้า", path: "/ทางเข้า", icon: "🌐" },
+          { name: "ติดต่อเรา", path: "/contact-us", icon: "📞" },
+        ].map((item) => (
+          <a
+            href={item.path}
+            class={`group relative skew-x-[-15deg] overflow-hidden border px-5 py-2 transition-all duration-300 ${isActive(item.path) ? "border-[#d946ef] bg-purple-600/20 shadow-[0_0_15px_rgba(217,70,239,0.3)]" : "border-white/10 bg-white/5 hover:border-purple-500/50"}`}>
+            <div
+              class={`absolute inset-0 translate-y-full bg-gradient-to-r from-[#7e22ce] to-[#d946ef] transition-transform duration-300 ${isActive(item.path) ? "translate-y-0 opacity-20" : "opacity-40 group-hover:translate-y-0"}`}></div>
+            <span
+              class={`relative z-10 block skew-x-[15deg] text-sm font-bold tracking-wide transition-colors ${isActive(item.path) ? "text-[#f5d0fe] drop-shadow-[0_0_5px_rgba(217,70,239,0.5)]" : "text-gray-300 group-hover:text-white"}`}>
+              <span class="mr-1">{item.icon}</span> {item.name}
+            </span>
+          </a>
+        ))
+      }
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="z-50 flex items-center gap-2">
+      <button
+        id="hamburger-btn"
+        class="relative flex h-[45px] w-[45px] flex-col items-center justify-center space-y-1.5 rounded-lg border border-purple-500/30 bg-purple-900/20 p-2 shadow-[0_0_10px_rgba(168,85,247,0.2)] transition-all hover:bg-purple-900/40 xl:hidden"
+        aria-label="Toggle menu">
+        <span class="hamburger-line h-[2px] w-6 origin-center bg-purple-300 transition-all duration-300"></span>
+        <span class="hamburger-line h-[2px] w-6 bg-purple-300 transition-all duration-300"></span>
+        <span class="hamburger-line h-[2px] w-6 origin-center bg-purple-300 transition-all duration-300"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Overlay -->
+  <div id="mobile-overlay" class="pointer-events-none fixed inset-0 z-30 bg-black/80 opacity-0 backdrop-blur-sm transition-opacity duration-300 xl:hidden"></div>
+
+  <!-- Mobile Sidebar: ปรับพื้นหลังและเงาสีม่วง -->
+  <div
+    id="mobile-sidebar"
+    class="fixed top-0 right-0 z-40 h-screen w-[280px] translate-x-full transform overflow-y-auto border-l border-purple-600/50 bg-[#020617] shadow-[-10px_0_30px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out xl:hidden">
+    <div class="flex flex-col space-y-3 px-6 pt-24 pb-10">
+      {
+        [
+          { name: "หน้าแรก", path: "/", icon: "🏠" },
+          { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
+          { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
+          { name: "ทางเข้า", path: "/ทางเข้า", icon: "🌐" },
+          { name: "ติดต่อเรา", path: "/contact-us", icon: "📞" },
+        ].map((item) => (
+          <a
+            href={item.path}
+            class={`sidebar-item flex items-center rounded-xl border px-4 py-3.5 transition-all ${isActive(item.path) ? "border-purple-500 bg-purple-600/20 text-[#f5d0fe] shadow-[inset_4px_0_0_#a855f7]" : "border-transparent bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"}`}>
+            <span class="mr-3 text-xl">{item.icon}</span>
+            <span class="text-sm font-bold">{item.name}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</nav>
+
+<style is:global>
+  a {
+    font-family: var(--font-sans) !important;
+  }
+
+  /* Hamburger Animation */
+  #hamburger-btn.active .hamburger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background-color: #d946ef;
+  }
+  #hamburger-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  #hamburger-btn.active .hamburger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background-color: #d946ef;
+  }
+
+  /* Sidebar Items Cascade Animation */
+  .sidebar-item {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .sidebar-item.item-show {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .sidebar-item:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .sidebar-item:nth-child(2) {
+    transition-delay: 0.15s;
+  }
+  .sidebar-item:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+  .sidebar-item:nth-child(4) {
+    transition-delay: 0.25s;
+  }
+  .sidebar-item:nth-child(5) {
+    transition-delay: 0.3s;
+  }
+</style>
+
+<script>
+  const hamburgerBtn = document.getElementById("hamburger-btn");
+  const overlay = document.getElementById("mobile-overlay");
+  const sidebar = document.getElementById("mobile-sidebar");
+  const sidebarItems = document.querySelectorAll(".sidebar-item");
+
+  const toggleMenu = () => {
+    hamburgerBtn?.classList.toggle("active");
+    sidebar?.classList.toggle("translate-x-full");
+    sidebar?.classList.toggle("translate-x-0");
+    overlay?.classList.toggle("opacity-0");
+    overlay?.classList.toggle("opacity-100");
+    overlay?.classList.toggle("pointer-events-none");
+    overlay?.classList.toggle("pointer-events-auto");
+
+    if (sidebar?.classList.contains("translate-x-0")) {
+      document.body.style.overflow = "hidden";
+      sidebarItems.forEach((item) => item.classList.add("item-show"));
+    } else {
+      document.body.style.overflow = "";
+      sidebarItems.forEach((item) => item.classList.remove("item-show"));
+    }
+  };
+
+  hamburgerBtn?.addEventListener("click", toggleMenu);
+  overlay?.addEventListener("click", toggleMenu);
+
+  sidebarItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      if (sidebar?.classList.contains("translate-x-0")) {
+        toggleMenu();
+      }
+    });
+  });
+</script>

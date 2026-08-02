@@ -1,0 +1,91 @@
+---
+import { Picture } from "astro:assets";
+import img1 from "../assets/providers/game1.avif";
+import img2 from "../assets/providers/game2.avif";
+import img3 from "../assets/providers/game3.avif";
+import img4 from "../assets/providers/game4.avif";
+import img5 from "../assets/providers/game5.avif";
+import img6 from "../assets/providers/game6.avif";
+
+const games = [
+  { name: "PG Soft", tag: "มาแรง", img: img1 },
+  { name: "Joker Gaming", tag: "ยอดนิยม", img: img2 },
+  { name: "JILI Games", tag: "แนะนำ", img: img3 },
+  { name: "Evolution", tag: "คาสิโนสด", img: img4 },
+  { name: "SA Gaming", tag: "ยอดนิยม", img: img5 },
+  { name: "Sexy Baccarat", tag: "มาแรง", img: img6 },
+];
+---
+
+<section class="mx-auto w-full max-w-[1300px] px-4 py-8 font-sans">
+  <div class="mb-6 flex flex-wrap items-end justify-between gap-3">
+    <div class="flex flex-col gap-1">
+      <span class="text-xs font-black tracking-[0.3em] text-blue-400/80 uppercase">HENGJUD365 GAMES</span>
+      <h2 class="bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-2xl font-black tracking-wide text-transparent md:text-3xl">
+        เกมยอดนิยม เล่นได้เลยทันที
+      </h2>
+    </div>
+    <div class="flex items-center gap-2 text-[11px] font-bold text-blue-100/50">
+      <span class="hidden sm:inline">เลื่อนเพื่อดูเพิ่มเติม</span>
+      <span class="text-blue-400">→</span>
+    </div>
+  </div>
+
+  <div class="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4">
+    {
+      games.map((g) => (
+        <article class="group/card relative aspect-[3/4] w-[46%] shrink-0 snap-start overflow-hidden rounded-2xl border border-blue-500/30 bg-[#050d16] shadow-[0_8px_25px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-yellow-400/50 sm:w-[30%] lg:w-[19%]">
+          <Picture
+            src={g.img}
+            alt={g.name}
+            formats={["avif", "webp"]}
+            fallbackFormat="webp"
+            loading="lazy"
+            fetchpriority="low"
+            widths={[200, 400]}
+            decoding="async"
+            class="h-full w-full object-cover transition-transform duration-700 group-hover/card:scale-110"
+          />
+
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/30 to-transparent" />
+
+          <div class="absolute top-2.5 left-2.5 z-10 rounded-full border border-yellow-400/40 bg-[#020617]/70 px-2.5 py-1 text-[9px] font-black tracking-wider text-yellow-300 backdrop-blur-sm">
+            🔥 {g.tag}
+          </div>
+
+          <div class="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-0.5 p-3">
+            <h3 class="truncate text-sm font-black text-white drop-shadow-md">{g.name}</h3>
+            <span class="flex items-center gap-1.5 text-[10px] text-blue-100/60">
+              <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-green-400 shadow-[0_0_6px_rgba(74,222,128,0.7)]" />
+              พร้อมให้บริการ
+            </span>
+          </div>
+
+          <a
+            href="/register"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`เล่น ${g.name}`}
+            class="absolute inset-0 z-20 flex items-center justify-center bg-[#020617]/60 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover/card:opacity-100">
+            <span class="rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 px-6 py-2 text-sm font-black text-[#0b1633] shadow-[0_5px_20px_rgba(234,179,8,0.5)] transition-transform duration-300 group-hover/card:scale-110">
+              เล่นเลย
+            </span>
+          </a>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>

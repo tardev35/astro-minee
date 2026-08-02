@@ -1,0 +1,209 @@
+---
+import { isActivePath } from "../lib/nav";
+import { Picture } from "astro:assets";
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
+
+const imagePaths = Object.keys(images);
+const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (path: string) => isActivePath(currentPath, path);
+
+const links = [
+  { name: "หน้าแรก", path: "/", icon: "🏠" },
+  { name: "โปรโมชั่น", path: "/promotion", icon: "⭐" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎮" },
+  { name: "ทางเข้า", path: "/ทางเข้า", icon: "🌐" },
+  { name: "ติดต่อเรา", path: "/contact-us", icon: "💬" },
+];
+---
+
+<nav class="sticky top-0 z-50 w-full border-b border-[#ff3d9a]/25 bg-[#1c0614] shadow-2xl">
+  <div class="relative flex h-[70px] w-full items-center justify-between px-4 xl:px-12">
+    <div class="z-10 flex items-center gap-2">
+      <button id="hamburger-btn" class="flex flex-col items-center justify-center space-y-1.5 p-2 xl:hidden" aria-label="Toggle menu">
+        <span class="hamburger-line h-0.5 w-6 bg-[#fdeaf4] transition-all duration-300"></span>
+        <span class="hamburger-line h-0.5 w-6 bg-[#fdeaf4] transition-all duration-300"></span>
+        <span class="hamburger-line h-0.5 w-6 bg-[#fdeaf4] transition-all duration-300"></span>
+      </button>
+
+      <div class="no-scrollbar hidden items-center gap-2 whitespace-nowrap xl:flex">
+        {
+          links.map((link) => (
+            <a
+              href={link.path}
+              class={`group relative flex items-center gap-2 px-5 h-[44px] rounded-xl text-sm lg:text-base font-bold transition-all duration-300 ${isActive(link.path) ? "bg-gradient-to-r from-[#ff3d9a] to-[#ff8ec4] text-[#12040c] shadow-md shadow-[#ff3d9a]/50" : "bg-[#2a0a1d] border border-[#ff3d9a]/20 text-[#fdeaf4] hover:bg-[#3a1229] hover:border-[#ff3d9a]/45"}`}>
+              <span aria-hidden="true" class="text-base">
+                {link.icon}
+              </span>
+              <span>{link.name}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+      <a href="/" aria-label="TUNGMA168 หน้าแรก" class="block transition-transform hover:scale-105">
+        <Picture
+          src={mainLogo!}
+          alt="โลโก้ ตังค์มา168 TUNGMA168 ตัวอักษรไทยสีฟ้าเทอร์ควอยซ์บนขอบส้ม พร้อมชื่อ Tungma168 สีชมพู"
+          loading="eager"
+          fetchpriority="high"
+          class="h-[40px] w-auto drop-shadow-xl"
+          widths={[120, 150]}
+          sizes="150px"
+          decoding="async"
+          formats={["avif", "webp"]}
+          fallbackFormat="webp"
+        />
+      </a>
+    </div>
+
+    <div class="z-10 flex items-center gap-2.5">
+      <div class="hidden items-center gap-2.5 xl:flex">
+        <a
+          href="/register"
+          class="flex h-[44px] items-center gap-1.5 rounded-xl border border-[#ff8ec4]/30 bg-gradient-to-r from-[#ff3d9a] to-[#c21a70] px-6 text-base font-bold text-[#fdeaf4] shadow-md shadow-[#ff3d9a]/35 transition-all hover:brightness-110">
+          <span aria-hidden="true">👤</span> สมัครสมาชิก
+        </a>
+        <a
+          href="/login"
+          class="flex h-[44px] items-center gap-1.5 rounded-xl border border-[#22d3ee]/40 bg-gradient-to-b from-[#230a19] to-[#12040c] px-6 text-base font-bold text-[#8fe8f2] shadow-md transition-all hover:border-[#22d3ee]/70 hover:bg-[#3a1229]">
+          <span aria-hidden="true">🔒</span> เข้าสู่ระบบ
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="mobile-menu max-h-0 overflow-hidden border-b border-[#ff3d9a]/10 bg-[#12040c]/95 shadow-2xl backdrop-blur-md transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] xl:hidden">
+    <div class="space-y-1.5 px-4 py-6">
+      {
+        links.map((link) => (
+          <a
+            href={link.path}
+            class={`menu-item group flex items-center px-4 py-3.5 text-sm font-medium transition-all duration-300 rounded-xl ${isActive(link.path) ? "bg-[#ff3d9a]/10 text-[#ff8ec4] border border-[#ff3d9a]/25" : "text-[#d9a7c4] hover:text-[#fdeaf4] hover:bg-[#ff3d9a]/5"}`}>
+            <span
+              aria-hidden="true"
+              class={`mr-3 text-lg transition-transform duration-300 group-hover:scale-110 ${isActive(link.path) ? "drop-shadow-[0_0_8px_rgba(255,61,154,0.55)]" : ""}`}>
+              {link.icon}
+            </span>
+            {link.name}
+          </a>
+        ))
+      }
+
+      <div class="mt-4 flex flex-col space-y-3 border-t border-[#ff3d9a]/15 pt-6">
+        <a
+          href="/register"
+          class="menu-item relative flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#ff3d9a] to-[#c21a70] px-4 py-3.5 text-sm font-bold text-[#fdeaf4] shadow-[0_4px_20px_-4px_rgba(255,61,154,0.5)] transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_6px_25px_-4px_rgba(255,61,154,0.6)]">
+          <span aria-hidden="true" class="mr-2">🎁</span> สมัครสมาชิก
+        </a>
+        <a
+          href="/login"
+          class="menu-item flex w-full items-center justify-center rounded-xl border border-[#22d3ee]/30 bg-[#22d3ee]/5 px-4 py-3.5 text-sm font-bold text-[#8fe8f2] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#22d3ee]/10 hover:text-[#fdeaf4]">
+          <span aria-hidden="true" class="mr-2">🔒</span> เข้าสู่ระบบ
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  #hamburger-btn.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+  }
+  #hamburger-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  #hamburger-btn.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+
+  .mobile-menu.open {
+    max-height: 500px;
+    opacity: 1;
+  }
+  .mobile-menu {
+    opacity: 0;
+  }
+
+  .menu-item {
+    animation: slideInLeft 0.3s ease-out forwards;
+  }
+  .menu-item:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  .menu-item:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .menu-item:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+  .menu-item:nth-child(4) {
+    animation-delay: 0.2s;
+  }
+  .menu-item:nth-child(5) {
+    animation-delay: 0.25s;
+  }
+  .menu-item:nth-child(6) {
+    animation-delay: 0.3s;
+  }
+  .menu-item:nth-child(7) {
+    animation-delay: 0.35s;
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-item {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const hamburgerBtn = document.getElementById("hamburger-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuItems = document.querySelectorAll(".menu-item");
+
+  hamburgerBtn?.addEventListener("click", () => {
+    hamburgerBtn.classList.toggle("active");
+    mobileMenu?.classList.toggle("open");
+  });
+
+  menuItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      hamburgerBtn?.classList.remove("active");
+      mobileMenu?.classList.remove("open");
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest("nav")) {
+      hamburgerBtn?.classList.remove("active");
+      mobileMenu?.classList.remove("open");
+    }
+  });
+</script>

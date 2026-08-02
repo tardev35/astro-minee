@@ -1,0 +1,189 @@
+---
+// 1. กำหนด Props ให้รับค่า message และ variant
+export interface Props {
+  message?: string;
+  variant?: "red" | "gold" | "pink" | "dark";
+}
+
+// 2. ตั้งค่าเริ่มต้น (ถ้าไม่ใส่ variant มา จะดึงสี red มาใช้เป็นค่าตั้งต้น)
+const { message = "⚡ LAPDEE88 สมัครด้วยเบอร์โทร ฝากขั้นต่ำ 1 บาท ระบบออโต้ รองรับธนาคารและ TrueMoney Wallet", variant = "gold" } = Astro.props;
+---
+
+<div class="gxt1-container mx-auto max-w-[900px]" data-variant={variant} role="region" aria-label="ประกาศ">
+  <div class="gxt1-label"><span aria-hidden="true">🔥</span> ประกาศ :</div>
+
+  <div class="gxt1-marquee">
+    <div class="gxt1-track">
+      <span class="gxt1-item">{message}</span>
+      <span class="gxt1-item" aria-hidden="true">{message}</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* 🌟 สไตล์ที่ 1: สีแดง (Red) - ค่าตั้งต้น */
+  .gxt1-container {
+    --speed: 20s;
+    --radius: 18px;
+    --bg1: #640613;
+    --bg2: #700000;
+    --border: #eeeeee;
+    --label-bg: rgba(0, 20, 3, 0.16);
+    --label-shadow: rgba(0, 24, 6, 0.4);
+    --text-color: #ffffff;
+  }
+
+  /* 🌟 สไตล์ที่ 2: สีทอง VIP (Gold) */
+  .gxt1-container[data-variant="gold"] {
+    --bg1: #0b0906;
+    --bg2: #241a09;
+    --border: #e0bd72;
+    --label-bg: rgba(212, 175, 90, 0.18);
+    --label-shadow: rgba(212, 175, 90, 0.45);
+    --text-color: #f6e4b4;
+  }
+
+  /* 🌟 สไตล์ที่ 3: สีชมพู ABM96 (Pink) */
+  .gxt1-container[data-variant="pink"] {
+    --bg1: #be185d;
+    --bg2: #f43f5e;
+    --border: #fecdd3;
+    --label-bg: rgba(0, 0, 0, 0.2);
+    --label-shadow: rgba(0, 0, 0, 0.2);
+    --text-color: #ffffff;
+  }
+
+  /* 🌟 สไตล์ที่ 4: ดาร์กโหมด (Dark) */
+  .gxt1-container[data-variant="dark"] {
+    --bg1: #030712;
+    --bg2: #1f2937;
+    --border: #4b5563;
+    --label-bg: rgba(255, 255, 255, 0.1);
+    --label-shadow: rgba(0, 0, 0, 0.8);
+    --text-color: #60a5fa; /* ตัวหนังสือสีฟ้าสปอร์ต */
+  }
+  /* 🌟 สไตล์ที่ 5: ไซเบอร์นีออน (Cyber Neon) */
+  .gxt1-container[data-variant="cyber-neon"] {
+    --bg1: #05050a;
+    --bg2: #0f111a;
+    --border: #00f3ff;
+    --label-bg: rgba(0, 243, 255, 0.15);
+    --label-shadow: rgba(0, 243, 255, 0.5);
+    --text-color: #e0ffff;
+    /* เพิ่มแสงเรืองรองที่ขอบกล่อง */
+    box-shadow:
+      0 0 15px rgba(0, 243, 255, 0.3),
+      0 0 0 1px var(--border) inset;
+  }
+
+  /* 🌟 สไตล์ที่ 6: สปอร์ตสไตรค์ (Sport Strike) */
+  .gxt1-container[data-variant="sport-strike"] {
+    --bg1: #000000;
+    --bg2: #111111;
+    --border: #eab308;
+    --label-bg: #eab308;
+    --label-shadow: rgba(234, 179, 8, 0.5);
+    --text-color: #ffffff;
+  }
+  /* สปอร์ตต้องดุดัน: ป้ายสีเหลือง ตัวอักษรดำ และเอียง */
+  .gxt1-container[data-variant="sport-strike"] .gxt1-label {
+    color: #000000;
+    font-style: italic;
+    text-transform: uppercase;
+  }
+
+  /* 🌟 สไตล์ที่ 7: กระจกคาสิโน (Casino Glass) */
+  .gxt1-container[data-variant="casino-glass"] {
+    --bg1: rgba(255, 255, 255, 0.02);
+    --bg2: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.15);
+    --label-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.02));
+    --label-shadow: rgba(0, 0, 0, 0.3);
+    --text-color: #ffffff;
+    /* เอฟเฟกต์เบลอพื้นหลังให้เป็นกระจกฝ้า */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      0 0 0 1px var(--border) inset;
+  }
+
+  /* ========================================= */
+  /* โครงสร้าง CSS หลัก (ใช้ร่วมกันทุกสไตล์) */
+  /* ========================================= */
+  .gxt1-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: var(--radius);
+    /* ดึงตัวแปรสีมาใช้ */
+    background: linear-gradient(180deg, var(--bg2), var(--bg1));
+    box-shadow:
+      0 6px 12px rgba(0, 0, 0, 0.2),
+      0 0 0 1px var(--border) inset;
+    overflow: hidden;
+    position: relative;
+    color: var(--text-color);
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .gxt1-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--label-bg);
+    border: 1px solid var(--border);
+    font-weight: 800;
+    box-shadow: 0 0 10px var(--label-shadow);
+    flex-shrink: 0;
+  }
+
+  .gxt1-marquee {
+    flex: 1;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  }
+
+  .gxt1-track {
+    display: flex;
+    gap: 32px;
+    width: max-content;
+    will-change: transform;
+    animation: gxt1-scroll var(--speed) linear infinite;
+  }
+
+  .gxt1-item {
+    white-space: nowrap;
+  }
+
+  @keyframes gxt1-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-50% - 16px));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .gxt1-container {
+      font-size: 11px;
+      padding: 4px 8px;
+    }
+    .gxt1-label {
+      padding: 3px 8px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gxt1-track {
+      animation: none;
+    }
+  }
+</style>

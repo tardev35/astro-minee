@@ -1,0 +1,86 @@
+---
+import { Picture } from "astro:assets";
+import BankStrip from "./BankStrip.astro";
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
+const imagePaths = Object.keys(images);
+const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
+---
+
+<footer class="relative mt-16 w-full overflow-hidden rounded-t-[3rem] border-t border-[#e8b43a]/40 bg-[#0b0906] pt-16 pb-8 font-sans text-white shadow-[0_-15px_40px_rgba(232,180,58,0.26)]">
+  <div class="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-[250px] w-full max-w-4xl rounded-full bg-[#a55a22]/20 blur-[100px]"></div>
+
+  <div class="relative z-10 mx-auto w-full max-w-[1200px] px-6">
+    <div class="mb-12 grid grid-cols-1 gap-12 md:grid-cols-12">
+      <div class="flex flex-col gap-5 md:col-span-5">
+        <a href="/" class="inline-block transition-transform duration-300 hover:scale-105">
+          {
+            mainLogo ? (
+              <Picture
+                src={mainLogo}
+                alt="โลโก้ MIRACLE55 ตัวอักษรทองเงาวาวบนพื้นดำ มีวงกลมลายไพ่และชิปคาสิโนคั่นกลาง"
+                widths={[130, 260, 390]}
+                sizes="130px"
+                class="h-[65px] w-auto drop-shadow-[0_5px_15px_rgba(232,180,58,0.35)]"
+                formats={["avif", "webp"]}
+                fallbackFormat="webp"
+              />
+            ) : (
+              <span class="bg-gradient-to-r from-[#f4e3c8] to-[#a9741c] bg-clip-text text-4xl font-black tracking-widest text-transparent">
+                MIRACLE<span class="bg-gradient-to-r from-[#f7d97a] to-[#e8b43a] bg-clip-text text-transparent">55</span>
+              </span>
+            )
+          }
+        </a>
+        <p class="border-l-2 border-[#e8b43a]/50 pl-4 text-sm leading-relaxed text-[#f4e3c8]/60">
+          MIRACLE55 รวมสล็อต PG คาสิโนสด และกีฬาไว้ในบัญชีเดียว ใช้ระบบกระเป๋าเดียวร่วมกันทุกหมวดเกม พร้อมระบบฝากถอนออโต้ที่รองรับทั้งบัญชีธนาคารและวอเลท เข้าเล่นผ่านมือถือได้โดยไม่ต้องดาวน์โหลด
+        </p>
+        <div class="mt-4 flex gap-3">
+          <span class="rounded-full border border-[#e8b43a]/30 bg-[#a55a22]/25 px-4 py-1 text-xs font-medium text-[#f7d97a] backdrop-blur-sm">ONE WALLET</span>
+          <span class="rounded-full border border-[#f7d97a]/30 bg-[#a55a22]/25 px-4 py-1 text-xs font-medium text-[#f4e3c8] backdrop-blur-sm">AUTO 24 HRS</span>
+        </div>
+      </div>
+
+      <nav class="flex flex-col gap-4 md:col-span-3 lg:pl-8">
+        <p class="text-lg font-black tracking-widest text-white uppercase drop-shadow-sm">QUICK LINKS</p>
+        <div class="h-[1px] w-12 bg-[#e8b43a]"></div>
+        <ul class="flex flex-col gap-3 text-sm font-medium text-[#f4e3c8]/60">
+          <li><a href="/" class="transition-colors hover:text-[#f7d97a]">หน้าหลัก (Home)</a></li>
+          <li><a href="/promotion" class="transition-colors hover:text-[#f7d97a]">โปรโมชั่น (Promotions)</a></li>
+          <li><a href="/ทางเข้า" class="transition-colors hover:text-[#f7d97a]">ทางเข้า (Access)</a></li>
+          <li><a href="/ทดลองเล่น" class="transition-colors hover:text-[#f7d97a]">ทดลองเล่น (Demo)</a></li>
+          <li><a href="/register" class="transition-colors hover:text-[#f7d97a]">สมัครสมาชิก (Join Us)</a></li>
+          <li><a href="/login" class="transition-colors hover:text-[#f7d97a]">เข้าสู่ระบบ (Login)</a></li>
+        </ul>
+      </nav>
+
+      <div class="flex flex-col gap-5 md:col-span-4">
+        <p class="text-lg font-black tracking-widest text-white uppercase drop-shadow-sm">CUSTOMER SUPPORT</p>
+        <div class="h-[1px] w-12 bg-[#e8b43a]"></div>
+
+        <a
+          href="/line"
+          class="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#00B900] to-[#009900] py-3.5 font-bold text-white shadow-[0_5px_15px_rgba(0,185,0,0.3)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,185,0,0.4)]">
+          ติดต่อแอดมิน LINE
+        </a>
+
+        <div class="mt-4 text-xs font-medium tracking-widest text-[#f7d97a]/50 uppercase">Supported Payments</div>
+        <BankStrip size={30} />
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center justify-between border-t border-[#a9741c]/40 pt-8 text-xs font-medium tracking-wide text-[#f4e3c8]/40 md:flex-row">
+      <p>COPYRIGHT &copy; {new Date().getFullYear()} MIRACLE55. ALL RIGHTS RESERVED.</p>
+      <div class="mt-4 flex gap-4 md:mt-0">
+        <a href="/terms/" class="transition-colors hover:text-[#f7d97a]">TERMS & CONDITIONS</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#f7d97a]">PRIVACY POLICY</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer a {
+    text-decoration: none;
+    font-family: var(--font-sans);
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+const { message = "⚽ UFAYES เว็บตรง UFABET ครบทุกเกม แทงบอล คาสิโนสด สล็อต หวยออนไลน์ ระบบฝากถอนออโต้ ทีมงานดูแลตลอด 24 ชั่วโมง ทางเข้าล่าสุด ufayes-brand.com" } = Astro.props;
+---
+
+<div class="relative mx-auto flex h-[42px] max-w-[900px] items-center overflow-hidden rounded-sm bg-[#140202] shadow-[0_4px_15px_rgba(0,0,0,0.5)]">
+  <div class="relative z-10 flex h-full items-center bg-gradient-to-r from-red-800 to-red-600 px-6 pl-4 [clip-path:polygon(0_0,100%_0,85%_100%,0_100%)] md:px-8">
+    <div class="flex items-center gap-2">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75"></span>
+        <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-white"></span>
+      </span>
+      <span class="font-black tracking-widest text-white italic drop-shadow-md">HOT</span>
+    </div>
+  </div>
+
+  <div class="relative flex-1 overflow-hidden">
+    <div class="absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-[#140202] to-transparent"></div>
+    <div class="absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-[#140202] to-transparent"></div>
+
+    <div class="flex w-max animate-[scroll_20s_linear_infinite] items-center gap-10 pl-4 text-sm font-bold whitespace-nowrap text-red-100/90 md:text-base">
+      <span>{message}</span>
+      <span>{message}</span>
+      <span>{message}</span>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-red-500 via-red-400 to-transparent"></div>
+</div>
+
+<style>
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-33.33% - 13px));
+    }
+  }
+</style>

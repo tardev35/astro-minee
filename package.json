@@ -1,0 +1,34 @@
+{
+  "name": "interstellar-ice",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "predev": "node tools/gen-tw-sources.mjs",
+    "dev": "astro dev --host 127.0.0.1 --port 8888",
+    "prebuild": "node tools/gen-tw-sources.mjs",
+    "build": "astro build",
+    "postbuild": "node tools/verify-build.mjs",
+    "verify": "node tools/verify-build.mjs",
+    "preview": "astro preview",
+    "astro": "astro",
+    "rebrand:upload": "node tools/rebrand-uploader/server.mjs",
+    "rebrand:upload:open": "start \"\" http://localhost:4444 & node tools/rebrand-uploader/server.mjs",
+    "domain:manager": "node --env-file=tools/domain-manager/.env tools/domain-manager/server.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "@tailwindcss/vite": "^4.2.1",
+    "astro": "^5.17.1",
+    "express": "^4.22.2",
+    "node-ssh": "^13.2.1",
+    "sharp": "^0.34.5",
+    "swiper": "^12.1.2",
+    "tailwindcss": "^4.2.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "wrangler": "^4.114.0"
+  }
+}

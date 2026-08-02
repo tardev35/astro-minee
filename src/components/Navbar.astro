@@ -1,0 +1,191 @@
+---
+import { isActivePath } from "../lib/nav";
+import { Picture } from "astro:assets";
+
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
+
+const imagePaths = Object.keys(images);
+const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (path: string) => isActivePath(currentPath, path);
+---
+
+<!-- 1. ปรับพื้นหลังเป็นสีน้ำเงินเข้มเกือบดำ และขอบทองจางๆ -->
+<nav class="sticky top-0 z-50 border-b border-amber-500/30 bg-[#020617]/95 px-4 py-2 shadow-2xl backdrop-blur-md">
+  <div class="mx-auto flex max-w-6xl items-center justify-between">
+    <div class="flex items-center">
+      <a href="/" aria-label="logo">
+        <Picture
+          src={mainLogo!}
+          alt="panama888 logo"
+          loading="eager"
+          fetchpriority="high"
+          class="mx-auto h-[45px] w-auto object-contain drop-shadow-[0_0_10px_rgba(251,191,36,0.4)] lg:h-[75px]"
+          widths={[95, 100, 150]}
+          sizes="(max-width: 150px) 120px, 300px"
+          decoding="async"
+          formats={["avif", "webp"]}
+          fallbackFormat="webp"
+        />
+      </a>
+    </div>
+
+    <!-- Desktop Menu: ใช้โครงสร้างเดิมของเธอ ปรับแค่สี Active เป็นทอง Luxury -->
+    <div class="no-scrollbar hidden items-center gap-2 overflow-x-auto px-2 whitespace-nowrap md:flex">
+      <a
+        href="/"
+        class={`nav-btn group relative px-5 py-2.5 text-sm lg:text-base font-bold rounded-xl transition-all duration-300 flex items-center gap-2 overflow-hidden border ${
+          isActive("/")
+            ? "bg-gradient-to-b from-amber-300 via-yellow-500 to-amber-600 text-slate-950 border-amber-200 shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+            : "bg-white/5 backdrop-blur-sm text-gray-300 hover:bg-white/10 border-white/10 hover:text-white"
+        }`}>
+        <span aria-hidden="true" class="text-lg">🏠</span>
+        <span>หน้าแรก</span>
+      </a>
+
+      <a
+        href="/promotion"
+        class={`nav-btn group relative px-5 py-2.5 text-sm lg:text-base font-bold rounded-xl transition-all duration-300 flex items-center gap-2 overflow-hidden border ${
+          isActive("/promotion")
+            ? "bg-gradient-to-b from-amber-300 via-yellow-500 to-amber-600 text-slate-950 border-amber-200 shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+            : "bg-white/5 backdrop-blur-sm text-gray-300 hover:bg-white/10 border-white/10 hover:text-white"
+        }`}>
+        <span aria-hidden="true" class="text-lg">⭐</span>
+        <span>โปรโมชั่น</span>
+      </a>
+
+      <a
+        href="/ทดลองเล่น"
+        class={`nav-btn group relative px-5 py-2.5 text-sm lg:text-base font-bold rounded-xl transition-all duration-300 flex items-center gap-2 overflow-hidden border ${
+          isActive("/ทดลองเล่น")
+            ? "bg-gradient-to-b from-amber-300 via-yellow-500 to-amber-600 text-slate-950 border-amber-200 shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+            : "bg-white/5 backdrop-blur-sm text-gray-300 hover:bg-white/10 border-white/10 hover:text-white"
+        }`}>
+        <span aria-hidden="true" class="text-lg">🎮</span>
+        <span>ทดลองเล่น</span>
+      </a>
+
+      <a
+        href="/ทางเข้า"
+        class={`nav-btn group relative px-5 py-2.5 text-sm lg:text-base font-bold rounded-xl transition-all duration-300 flex items-center gap-2 overflow-hidden border ${
+          isActive("/ทางเข้า")
+            ? "bg-gradient-to-b from-amber-300 via-yellow-500 to-amber-600 text-slate-950 border-amber-200 shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+            : "bg-white/5 backdrop-blur-sm text-gray-300 hover:bg-white/10 border-white/10 hover:text-white"
+        }`}>
+        <span aria-hidden="true" class="text-lg">🌐</span>
+        <span>ทางเข้า</span>
+      </a>
+
+      <a
+        href="/contact-us"
+        class={`nav-btn group relative px-5 py-2.5 text-sm lg:text-base font-bold rounded-xl transition-all duration-300 flex items-center gap-2 overflow-hidden border ${
+          isActive("/contact-us")
+            ? "bg-gradient-to-b from-amber-300 via-yellow-500 to-amber-600 text-slate-950 border-amber-200 shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+            : "bg-white/5 backdrop-blur-sm text-gray-300 hover:bg-white/10 border-white/10 hover:text-white"
+        }`}>
+        <span aria-hidden="true" class="text-lg">👤</span>
+        <span>ติดต่อ</span>
+      </a>
+    </div>
+
+    <!-- Mobile Hamburger: เปลี่ยนเป็นสีทอง -->
+    <button id="hamburger-btn" class="flex flex-col items-center justify-center space-y-1.5 p-2 md:hidden" aria-label="Toggle menu">
+      <span class="hamburger-line h-0.5 w-6 bg-amber-400 transition-all duration-300"></span>
+      <span class="hamburger-line h-0.5 w-6 bg-amber-400 transition-all duration-300"></span>
+      <span class="hamburger-line h-0.5 w-6 bg-amber-400 transition-all duration-300"></span>
+    </button>
+
+    <!-- ปุ่มสมัครสมาชิก ปรับเป็นแดงสดแบบในรูป banner2.jpg -->
+    <div class="hidden items-center space-x-2 lg:flex">
+      <a
+        href="/register"
+        class="rounded-lg border border-red-400 bg-gradient-to-b from-red-500 to-red-700 px-5 py-2 text-base font-black text-white shadow-[0_0_15px_rgba(220,38,38,0.4)] hover:brightness-110">
+        <span aria-hidden="true">👤</span> สมัครสมาชิก
+      </a>
+      <a href="/login" class="rounded-lg border border-gray-600 bg-gradient-to-b from-slate-700 to-black px-5 py-2 text-base font-bold text-white transition-all hover:bg-gray-900"><span aria-hidden="true">🔒</span> เข้าสู่ระบบ</a>
+    </div>
+  </div>
+
+  <!-- Mobile Menu: โครงสร้างเดิม ปรับแค่สีให้เข้ากับธีมใหม่ -->
+  <div id="mobile-menu" class="mobile-menu max-h-0 overflow-hidden border-b border-amber-500/20 bg-[#020617]/98 shadow-2xl backdrop-blur-md transition-all duration-500 md:hidden">
+    <div class="space-y-1.5 px-4 py-6">
+      <a
+        href="/"
+        class={`group flex items-center px-4 py-3.5 text-sm font-bold transition-all duration-300 rounded-xl border ${isActive("/") ? "bg-amber-500/10 text-amber-400 border-amber-500/30" : "text-gray-400 border-transparent hover:text-white hover:bg-white/5"}`}>
+        <span aria-hidden="true" class={`mr-3 text-lg ${isActive("/") ? "drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]" : ""}`}>🏠</span>
+        หน้าแรก
+      </a>
+
+      <a
+        href="/promotion"
+        class={`group flex items-center px-4 py-3.5 text-sm font-bold transition-all duration-300 rounded-xl border ${isActive("/promotion") ? "bg-amber-500/10 text-amber-400 border-amber-500/30" : "text-gray-400 border-transparent hover:text-white hover:bg-white/5"}`}>
+        <span aria-hidden="true" class={`mr-3 text-lg ${isActive("/promotion") ? "drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]" : ""}`}>⭐</span>
+        โปรโมชั่น
+      </a>
+
+      <a
+        href="/ทดลองเล่น"
+        class={`group flex items-center px-4 py-3.5 text-sm font-bold transition-all duration-300 rounded-xl border ${isActive("/ทดลองเล่น") ? "bg-amber-500/10 text-amber-400 border-amber-500/30" : "text-gray-400 border-transparent hover:text-white hover:bg-white/5"}`}>
+        <span aria-hidden="true" class={`mr-3 text-lg ${isActive("/ทดลองเล่น") ? "drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]" : ""}`}>🎮</span>
+        ทดลองเล่น
+      </a>
+
+      <a
+        href="/ทางเข้า"
+        class={`group flex items-center px-4 py-3.5 text-sm font-bold transition-all duration-300 rounded-xl border ${isActive("/ทางเข้า") ? "bg-amber-500/10 text-amber-400 border-amber-500/30" : "text-gray-400 border-transparent hover:text-white hover:bg-white/5"}`}>
+        <span aria-hidden="true" class={`mr-3 text-lg ${isActive("/ทางเข้า") ? "drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]" : ""}`}>🌐</span>
+        ทางเข้า
+      </a>
+
+      <a
+        href="/contact-us"
+        class={`group flex items-center px-4 py-3.5 text-sm font-bold transition-all duration-300 rounded-xl border ${isActive("/contact-us") ? "bg-amber-500/10 text-amber-400 border-amber-500/30" : "text-gray-400 border-transparent hover:text-white hover:bg-white/5"}`}>
+        <span aria-hidden="true" class={`mr-3 text-lg ${isActive("/contact-us") ? "drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]" : ""}`}>👤</span>
+        ติดต่อ
+      </a>
+
+      <div class="mt-4 flex flex-col space-y-3 border-t border-amber-500/10 pt-6">
+        <a href="/register" class="flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-red-600 to-red-500 py-4 text-base font-black text-white shadow-lg shadow-red-600/30">
+          <span aria-hidden="true">🔥</span> สมัครสมาชิก
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  #hamburger-btn.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+  }
+  #hamburger-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  #hamburger-btn.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+  .mobile-menu.open {
+    max-height: 600px;
+    opacity: 1;
+  }
+  .mobile-menu {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  const hamburgerBtn = document.getElementById("hamburger-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  hamburgerBtn?.addEventListener("click", () => {
+    hamburgerBtn.classList.toggle("active");
+    mobileMenu?.classList.toggle("open");
+  });
+</script>

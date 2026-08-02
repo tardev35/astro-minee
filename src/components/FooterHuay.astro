@@ -1,0 +1,69 @@
+---
+import { Picture } from "astro:assets";
+import BankStrip from "./BankStrip.astro";
+
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.*", { eager: true });
+const imagePaths = Object.keys(images);
+const targetPath = imagePaths.find((path) => path.endsWith(".png")) || imagePaths.find((path) => path.endsWith(".webp")) || (imagePaths.length > 0 ? imagePaths[0] : null);
+const mainLogo = targetPath ? images[targetPath].default : null;
+---
+
+<footer class="relative mt-12 w-full overflow-hidden rounded-t-[3rem] border-t border-amber-500/35 bg-[#2a0408] pt-16 pb-8 font-sans text-white shadow-[0_-10px_30px_rgba(0,0,0,0.55)]">
+  <div class="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-[200px] w-full max-w-4xl rounded-full bg-amber-500/10 blur-[80px]"></div>
+
+  <div class="relative z-10 mx-auto w-full max-w-[1400px] px-6">
+    <div class="mb-12 grid grid-cols-1 gap-12 md:grid-cols-12">
+      <div class="flex flex-col gap-4 md:col-span-5">
+        <a href="/" class="inline-block max-w-max rounded-xl border border-amber-300/15 bg-amber-100/5 p-2 transition-transform duration-300 hover:scale-105">
+          {
+            mainLogo ? (
+              <Picture src={mainLogo} alt="MAHORANLOTTO เว็บเล่นหวยออนไลน์" class="h-[50px] w-auto drop-shadow-md" formats={["avif", "webp"]} fallbackFormat="webp" />
+            ) : (
+              <p class="text-2xl font-black tracking-widest text-white italic">
+                <span class="rounded-md bg-gradient-to-r from-amber-200 to-amber-500 px-2 text-[#5f0914]">MAHORAN</span>LOTTO
+              </p>
+            )
+          }
+        </a>
+        <p class="mt-2 border-l-2 border-amber-500/50 pl-4 text-sm leading-relaxed text-amber-50/70">
+          MAHORANLOTTO เว็บเล่นหวยออนไลน์ ครบทุกตลาดในระบบเดียว รองรับหวยรัฐบาล หวยลาว หวยฮานอย หวยหุ้น และหวยต่างประเทศ ส่งโพยอัตโนมัติ ตรวจผลย้อนหลังได้ตลอด 24 ชม.
+        </p>
+        <div class="mt-2 flex gap-3">
+          <span class="rounded-full border border-amber-500/30 bg-[#5f0914] px-4 py-1 text-xs font-bold text-amber-100 shadow-sm">ส่งโพยอัตโนมัติ</span>
+          <span class="rounded-full border border-amber-400/30 bg-amber-400/15 px-4 py-1 text-xs font-bold text-amber-300 shadow-sm">100% SECURE</span>
+        </div>
+      </div>
+
+      <nav class="flex flex-col gap-4 md:col-span-3 lg:pl-12">
+        <p class="border-b border-amber-500/30 pb-2 text-lg font-black tracking-widest text-white uppercase">ทางลัดหน้าเว็บ</p>
+        <ul class="flex flex-col gap-3 text-sm font-medium text-amber-50/70">
+          <li><a href="/" class="transition-colors hover:text-amber-300">หน้าหลัก</a></li>
+          <li><a href="/ทางเข้า" class="transition-colors hover:text-amber-300">ทางเข้าเว็บไซต์</a></li>
+          <li><a href="/promotion" class="transition-colors hover:text-amber-300">โปรโมชั่น</a></li>
+          <li><a href="/contact-us" class="transition-colors hover:text-amber-300">ติดต่อเรา</a></li>
+        </ul>
+      </nav>
+
+      <div class="flex flex-col gap-4 md:col-span-4">
+        <p class="border-b border-amber-500/30 pb-2 text-lg font-black tracking-widest text-white uppercase">บริการลูกค้า</p>
+
+        <a
+          href="/line"
+          class="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#00B900] to-[#009900] py-3.5 font-bold text-white shadow-md transition-all hover:-translate-y-1 hover:shadow-lg">
+          ติดต่อทีมงาน LINE 24 ชม.
+        </a>
+
+        <div class="mt-2 text-xs font-medium text-amber-50/50">ระบบฝาก-ถอนอัตโนมัติ รองรับ:</div>
+        <BankStrip size={30} />
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center justify-between border-t border-amber-900/50 pt-8 text-xs font-medium text-amber-50/40 md:flex-row">
+      <p>COPYRIGHT &copy; {new Date().getFullYear()} MAHORANLOTTO ALL RIGHTS RESERVED.</p>
+      <div class="mt-4 flex gap-4 md:mt-0">
+        <a href="/terms/" class="transition-colors hover:text-white">เงื่อนไขและข้อตกลง</a>
+        <a href="/privacy/" class="transition-colors hover:text-white">นโยบายความเป็นส่วนตัว</a>
+      </div>
+    </div>
+  </div>
+</footer>

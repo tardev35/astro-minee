@@ -1,0 +1,122 @@
+---
+import kbankLogo from "../assets/banks/kbank.png";
+import scbLogo from "../assets/banks/scb.png";
+import krungsriLogo from "../assets/banks/krungsri.png";
+import ktbLogo from "../assets/banks/ktb.png";
+import ttbLogo from "../assets/banks/ttb.png";
+import { brandFlag, brandPick } from "../lib/brandProfile";
+
+const bankPool = [
+  { name: "KBank", color: "bg-[#1155cc]", icon: kbankLogo.src },
+  { name: "SCB", color: "bg-[#4e1c80]", icon: scbLogo.src },
+  { name: "Krungsri", color: "bg-[#fcd34d]", icon: krungsriLogo.src },
+  { name: "KTB", color: "bg-[#0ea5e9]", icon: ktbLogo.src },
+  { name: "TTB", color: "bg-[#1279be]", icon: ttbLogo.src },
+];
+
+// This component used to be a `<script define:vars={{ bankPool }}>` that built
+// five rows with innerHTML and then ran setInterval forever. define:vars forces
+// is:inline, which strips type/async/defer and leaves a parser-blocking script
+// three quarters of the way down the document — tools/verify-build.mjs fails the
+// build on it. The rows are server-rendered here, the bank list travels as inert
+// JSON below, and src/lib/winnersFeed.ts (shared with LatestWinnersCyber, and
+// selector-driven so it needs no changes) takes over the rotation with
+// on-screen, hidden-tab and reduced-motion guards.
+//
+// The values come from the brand's own domain hash, NOT Math.random(): a
+// Math.random() in frontmatter runs at BUILD time, so every deploy would churn
+// the live site's markup for nothing. brandPick()/brandFlag() make two builds of
+// the same domain byte-identical.
+const LETTERS = "abcdefghijklmnopqrstuvwxyz";
+const pickFrom = (chars: string, salt: string) => chars.charAt(brandPick(Astro.site, salt, chars.length));
+
+const initialRows = Array.from({ length: 5 }, (_, i) => ({
+  bank: bankPool[brandPick(Astro.site, `winner-bank-${i}`, bankPool.length)],
+  user: `${pickFrom(LETTERS, `winner-a-${i}`)}${pickFrom(LETTERS, `winner-b-${i}`)}***${[0, 1, 2, 3].map((d) => brandPick(Astro.site, `winner-d${i}-${d}`, 10)).join("")}`,
+  amount: (15000 + brandPick(Astro.site, `winner-amount-${i}`, 80001)).toLocaleString("en-US"),
+  pending: brandFlag(Astro.site, `winner-pending-${i}`),
+}));
+---
+
+<div class="mx-auto w-full max-w-[900px] p-4 font-sans">
+  <section
+    aria-label="ประวัติการถอนเงินล่าสุดของสมาชิก ตังค์มา168"
+    class="relative overflow-hidden rounded-[30px] border-2 border-[#ff3d9a]/40 bg-[#16050f]/90 px-4 py-8 shadow-[0_10px_30px_rgba(255,61,154,0.2)] backdrop-blur-md md:p-10">
+    <div class="pointer-events-none absolute -top-16 -right-10 h-40 w-40 rounded-full bg-[#ff3d9a]/25 blur-[60px]"></div>
+    <div class="pointer-events-none absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-[#22d3ee]/25 blur-[60px]"></div>
+
+    <div class="relative z-10 mb-8 text-center">
+      <p class="bg-gradient-to-b from-[#ffa6d2] to-[#c21a70] bg-clip-text text-xl font-black text-transparent md:text-3xl">ประวัติการถอนเงินของสมาชิก ตังค์มา168 แบบเรียลไทม์</p>
+      <p class="mt-2 text-base leading-relaxed text-[#d9a7c4]">ระบบออโต้เปิดทำรายการตลอด 24 ชั่วโมง ตัวเลขด้านล่างเป็นข้อมูลตัวอย่างสำหรับแสดงรูปแบบรายการเท่านั้น</p>
+    </div>
+
+    <div data-winners-feed class="relative z-10 ml-4 border-l-2 border-[#ff3d9a]/50 pl-6 md:ml-8 md:pl-8">
+      {
+        initialRows.map((row) => (
+          <div data-winner-row class="winner-row relative mb-6 transition-all duration-500 ease-out">
+            <div class="absolute top-2 -left-[35px] h-4 w-4 rounded-full border-2 border-[#16050f] bg-[#22d3ee] shadow-[0_0_10px_rgba(34,211,238,0.8)] md:-left-[43px]" />
+
+            <div class="flex items-center gap-4 rounded-[20px] bg-gradient-to-r from-[#7d0f46]/35 to-transparent p-4 transition-colors hover:from-[#7d0f46]/60">
+              <div data-winner-bank class={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${row.bank.color}`}>
+                <img data-winner-icon src={row.bank.icon} alt="" width="24" height="24" loading="lazy" decoding="async" class="h-6 w-6 object-contain" />
+              </div>
+
+              <div class="min-w-0 flex-1">
+                <div class="text-sm text-[#d9a7c4]">
+                  ยูสเซอร์: <span data-winner-user class="font-bold text-[#fdeaf4]">{row.user}</span>
+                </div>
+                <div class="text-xl font-black text-[#ff3d9a]">
+                  <span data-winner-amount>{row.amount}</span> THB
+                </div>
+              </div>
+
+              <div
+                data-winner-status
+                data-pending-text="[PROCESSING]"
+                data-done-text="[VERIFIED]"
+                class={`winner-status hidden shrink-0 rounded-full border px-3 py-1 text-[10px] tracking-widest md:block ${row.pending ? "is-pending" : "is-verified"}`}>
+                {row.pending ? "[PROCESSING]" : "[VERIFIED]"}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <script type="application/json" data-winners-banks set:html={JSON.stringify(bankPool)} />
+  </section>
+</div>
+
+<script>
+  // Not `define:vars` — that forces is:inline, which strips type/async/defer and
+  // leaves a parser-blocking script in the middle of the document. The bank list
+  // arrives as inert JSON above instead, and this module is bundled and deferred
+  // like any other.
+  import { startWinnersFeed } from "../lib/winnersFeed";
+
+  startWinnersFeed();
+</script>
+
+<style>
+  /* The two status colours are classes rather than inline strings so the JS in
+     src/lib/winnersFeed.ts never has to know what this brand's palette is. */
+  .winner-status.is-pending {
+    color: #d9a7c4;
+    border-color: #7d0f46;
+  }
+  .winner-status.is-verified {
+    color: oklch(79.2% 0.209 151.711);
+    border-color: color-mix(in oklab, oklch(72.3% 0.219 149.579) 50%, transparent);
+  }
+
+  .winner-row.is-entering {
+    transform: translateX(-1rem);
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .winner-row {
+      transition: none;
+    }
+  }
+</style>

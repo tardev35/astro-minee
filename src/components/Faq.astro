@@ -1,0 +1,82 @@
+---
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+export interface Props {
+  title?: string;
+  faqs?: FaqItem[];
+}
+
+const { title, faqs = [] } = Astro.props;
+---
+
+<div class="mx-auto max-w-[1000px] px-4 py-10 font-sans">
+  {
+    title && (
+      <h2 class="mb-8 bg-gradient-to-b from-[#f7e3a4] to-[#c39a34] bg-clip-text text-center text-2xl font-black tracking-tight text-transparent uppercase md:text-4xl">
+        {title}
+      </h2>
+    )
+  }
+
+  <div class="space-y-4">
+    {
+      faqs.map((faq) => (
+        // `name` makes this an exclusive accordion natively — opening one closes
+        // the rest, which is what the removed script did by hand.
+        <details name="faq-plain" class="faq-item group overflow-hidden rounded-xl border border-amber-400/25 bg-gradient-to-br from-[#111c45] to-[#0b1330] transition-all hover:border-amber-400/50">
+          <summary class="flex w-full cursor-pointer items-center justify-between p-5 text-left transition-all">
+            <span class="text-base font-bold text-[#e6e3d8] md:text-lg">{faq.q}</span>
+            <span
+              aria-hidden="true"
+              class="faq-icon ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-amber-400/40 text-lg leading-none font-black text-[#e2c05f] transition-transform duration-300">
+              +
+            </span>
+          </summary>
+          <div class="faq-answer border-t border-[#2b3a6f] p-5 pt-0 text-left text-base leading-relaxed text-white/75">{faq.a}</div>
+        </details>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  /* State comes from the [open] attribute now, not from an `active` class a
+     script toggles. Note the old rule was `.is-open { transform: rotate(45deg) }`
+     — a hand-written class whose name collides with nothing, but which sat one
+     grep away from Tailwind's rotate-45 utility. Keying off [open] removes the
+     ambiguity along with the script. */
+  .faq-item > summary {
+    list-style: none;
+  }
+  .faq-item > summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item[open] {
+    border-color: rgba(226, 192, 95, 0.6);
+    box-shadow: 0 0 20px rgba(30, 47, 116, 0.45);
+  }
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+    border-color: #e2c05f;
+    color: #f7e3a4;
+  }
+  .faq-item[open] .faq-answer {
+    animation: faq-reveal 0.25s ease-out;
+  }
+
+  @keyframes faq-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item[open] .faq-answer {
+      animation: none;
+    }
+  }
+</style>

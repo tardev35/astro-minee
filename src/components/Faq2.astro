@@ -1,0 +1,87 @@
+---
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+export interface Props {
+  title?: string;
+  faqs?: FaqItem[];
+}
+
+const { title, faqs = [] } = Astro.props;
+---
+
+<section class="mx-auto max-w-[950px] space-y-6 px-4 py-6 font-sans">
+  {
+    title && (
+      <header class="mb-8 text-center">
+        <h2 class="bg-gradient-to-r from-[#f7d97a] via-[#e8b43a] to-[#a9741c] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase drop-shadow-sm md:text-3xl">
+          {title}
+        </h2>
+        <div class="mx-auto mt-3 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#e8b43a] to-transparent" />
+      </header>
+    )
+  }
+
+  {
+    faqs.map((faq) => (
+      <div class="group relative bg-[#15110b] p-[1px] [clip-path:polygon(0_0,calc(100%-20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%-20px))]">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#e8b43a] via-[#a55a22] to-transparent opacity-40 transition-opacity group-hover:opacity-100" />
+
+        <details class="faq-item relative bg-[#0f0c07] p-4 [clip-path:polygon(0_0,calc(100%-19px)_0,100%_19px,100%_100%,19px_100%,0_calc(100%-19px))]">
+          <summary class="flex w-full cursor-pointer items-center gap-4 text-left">
+            <span
+              aria-hidden="true"
+              class="flex h-10 w-10 shrink-0 items-center justify-center bg-gradient-to-br from-[#f7d97a] to-[#a9741c] font-black text-[#1a1206] italic [clip-path:polygon(20%_0,100%_0,80%_100%,0_100%)]">
+              ?
+            </span>
+            <h3 class="flex-1 text-base leading-normal font-bold tracking-tight text-[#f4e3c8]">{faq.q}</h3>
+            <span aria-hidden="true" class="faq-arrow shrink-0 text-[#e8b43a] transition-transform duration-300">
+              ▼
+            </span>
+          </summary>
+
+          <p class="faq-answer mt-4 border-l-2 border-[#e8b43a]/70 pl-4 text-left text-base leading-relaxed text-[#f4e3c8]/85">{faq.a}</p>
+        </details>
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  /* <details> instead of a button + max-height script. The open/close state,
+     the keyboard handling and the expanded/collapsed announcement all come
+     from the element, so there is no JS to get wrong and nothing for a rebrand
+     to break by restyling.
+     What it fixed: the badge and the arrow were not aria-hidden, so the
+     accessible name of every question was "? <คำถาม> ▼". The panel was closed
+     with max-h-0, which leaves it in the accessibility tree and reachable by
+     keyboard while invisible. And aria-expanded was set without an
+     aria-controls to point at. */
+  .faq-item > summary {
+    list-style: none;
+  }
+  .faq-item > summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item[open] .faq-arrow {
+    transform: rotate(180deg);
+  }
+  .faq-item[open] .faq-answer {
+    animation: faq-reveal 0.25s ease-out;
+  }
+
+  @keyframes faq-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item[open] .faq-answer {
+      animation: none;
+    }
+  }
+</style>

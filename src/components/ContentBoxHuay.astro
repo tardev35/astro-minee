@@ -1,0 +1,25 @@
+---
+export interface Props {
+  title?: string;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+}
+const { title, as: HeadingTag = "h1" } = Astro.props;
+---
+
+<section class="relative z-10 my-8 flex w-full justify-center px-4 font-sans">
+  <div
+    class="group relative isolate w-full max-w-[1400px] overflow-hidden rounded-3xl border border-[#e2c05f]/30 bg-[#111c45]/95 p-8 text-left text-base leading-relaxed text-[#e6e3d8] shadow-[0_10px_30px_rgba(226,192,95,0.14)] backdrop-blur-xl transition-all duration-500 hover:border-[#e2c05f]/55 hover:shadow-[0_15px_40px_rgba(226,192,95,0.24)] md:p-10">
+    <div class="pointer-events-none absolute -top-20 -left-20 -z-10 h-40 w-40 rounded-full bg-[#e2c05f]/25 blur-[50px] transition-all duration-500 group-hover:bg-[#e2c05f]/35"></div>
+    <div class="pointer-events-none absolute -right-20 -bottom-20 -z-10 h-40 w-40 rounded-full bg-[#2a3f8f]/55 blur-[50px] transition-all duration-500 group-hover:bg-[#334a9f]/70"></div>
+
+    {
+      title && (
+        <header class="mb-6 flex items-center gap-4 border-b border-[#e2c05f]/30 pb-4">
+          <div class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#f7e3a4] to-[#c39a34] shadow-[0_0_10px_rgba(226,192,95,0.45)]" />
+          <HeadingTag class="bg-gradient-to-r from-[#f7e3a4] via-[#e2c05f] to-[#c39a34] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
+        </header>
+      )
+    }
+    <slot />
+  </div>
+</section>

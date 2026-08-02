@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+/* รายการ @source not ที่ generate ใหม่ทุกครั้งที่ build (ดู tools/gen-tw-sources.mjs)
+   บอก Tailwind ว่า component ตัวไหนใน src/components/ ที่แบรนด์นี้ไม่ได้ render
+   — สีที่ hardcode อยู่ในของสำรองสำหรับแบรนด์หน้าจะได้ไม่ติดมาใน stylesheet รอบนี้
+   ไฟล์นั้นถูก commit ไว้ด้วย ถ้า generator พังจะได้ไฟล์เปล่า = พฤติกรรมเดิม */
+@import "./_sources.generated.css";
+
+/* global.css */
+
+/* ทำให้ฟอนต์ของแบรนด์เป็นฟอนต์ global จริงๆ:
+   - override --font-sans ของ Tailwind เพื่อให้ utility `font-sans` ใช้ค่านี้
+     (ไม่งั้น class font-sans จะ reset กลับไปเป็น ui-sans-serif ทับค่าที่ inherit มาจาก body)
+   - ตั้ง font-family ที่ html/body เพื่อให้ทุก component ที่ไม่ประกาศเอง inherit ไปได้
+
+   ค่าตรงนี้เป็นเพียง fallback — ตัวจริงมาจาก BRAND_FONT ใน src/lib/brandProfile.ts
+   ซึ่ง MainLayout เอามาใส่เป็น inline style บน <html> จึงชนะค่านี้เสมอ
+   component ทุกตัวเรียก var(--font-sans) ไม่ hardcode ชื่อฟอนต์อีกแล้ว
+   สลับฟอนต์จึงแก้ที่เดียวใน brandProfile.ts */
+@theme {
+  --font-sans: "Kanit", ui-sans-serif, system-ui, sans-serif;
+
+  /* ── line-height สำหรับภาษาไทย ────────────────────────────────────────────
+     ค่า default ของ Tailwind ถูกจูนมาสำหรับอักษรละติน ซึ่งมีแค่ 2 ระดับ
+     (ตัวขึ้น/ตัวลง) แต่ไทยมี 4 ระดับ: วรรณยุกต์ ( ่ ้ ๊ ๋ ) ซ้อนบนสระบน
+     ( ิ ี ึ ื ั ) อีกชั้น แล้วยังมีสระล่าง ( ุ ู ) ห้อยใต้เส้นฐาน
+     คำอย่าง "ที่" จึงกินพื้นที่เหนือเส้นฐานเป็น 2 เท่าของตัวอักษรละติน
+
+     ที่ text-base เดิม line-height 1.5 = ช่องว่างระหว่างบรรทัด 8px ที่ 16px
+     ซึ่งพอดีเป๊ะกับที่สระล่างบรรทัดบนกับวรรณยุกต์บรรทัดล่างจะมาชนกัน —
+     นี่คือสาเหตุที่ข้อความอ่านแล้วรู้สึกอัดกัน ค่าที่ใช้กันสำหรับ body ไทย
+     คือ 1.7–1.9 ยิ่งตัวเล็กยิ่งต้องการมาก (ต่อขนาด font สัมพัทธ์)
+
+     ตั้งที่นี่ที่เดียวจบ: Tailwind ใส่ line-height มากับ utility `text-*`
+     อยู่แล้ว การไปตั้ง line-height ที่ body เฉยๆ จึงถูก text-* ทับเสมอ
+     ปรับตัวเลขตรงนี้ถ้าอยากได้แน่น/โปร่งกว่านี้ ไม่ต้องไล่แก้ component
+
+     ค่าลดหลั่นตามขนาด ไม่ใช่ค่าเดียวทั้งเว็บ: ช่องว่างที่ตาเห็นเป็นสัดส่วน
+     ของขนาดตัวอักษร ตัวยิ่งใหญ่ยิ่งได้ที่ว่างมาฟรีอยู่แล้ว หัวข้อ 30px ที่
+     1.8 จึงดูหลุดออกจากกันเป็นคนละก้อน ขณะที่เนื้อความ 16px ที่ 1.8
+     กำลังพอดี ตัวเล็กต้องการอัตราส่วนสูงสุด ตัวใหญ่ต่ำสุด */
+
+  /* เนื้อความ — ต้องการมากสุด */
+  --text-sm--line-height: 1.7; /* เดิม 1.4286 */
+  --text-base--line-height: 1.8; /* เดิม 1.5 */
+  --text-lg--line-height: 1.75; /* เดิม 1.5556 */
+
+  /* หัวข้อ — ยิ่งใหญ่ยิ่งลด */
+  --text-xl--line-height: 1.55; /* เดิม 1.4 */
+  --text-2xl--line-height: 1.4; /* เดิม 1.3333 */
+  --text-3xl--line-height: 1.35; /* เดิม 1.2 — แคบเกินสำหรับวรรณยุกต์ไทย */
+  --text-4xl--line-height: 1.3; /* เดิม 1.1111 */
+
+  /* utility ที่ component เรียกใช้ตรงๆ:
+     leading-relaxed = เนื้อความ (ContentBox* ครอบ <slot> ด้วยคลาสนี้)
+     leading-normal  = หัวข้อล้วน — ตรวจแล้วว่าใช้เฉพาะกับ HeadingTag ใน
+     ContentBox* ทุกไฟล์ ไม่มีเนื้อความไหนใช้ จึงลดได้โดยไม่กระทบการอ่าน */
+  --leading-normal: 1.4; /* เดิม 1.5 */
+  --leading-relaxed: 1.85; /* เดิม 1.625 */
+}
+
+html,
+body {
+  font-family: var(--font-sans);
+}
+
+/* ให้ลิงก์ที่ชี้ #top (ปุ่มกลับขึ้นบนใน footer) เลื่อนแบบนุ่ม โดยไม่ต้องมี JS
+   บล็อก prefers-reduced-motion ด้านล่างตั้ง scroll-behavior: auto !important
+   ทับให้อยู่แล้ว ซึ่งเป็นสิ่งที่ onclick="window.scrollTo({behavior:'smooth'})"
+   แบบเดิมทำไม่ได้ เพราะมันฮาร์ดโค้ด smooth ไว้ในโค้ด */
+html {
+  scroll-behavior: smooth;
+}
+
+/* kanit-regular - latin_thai */
+@font-face {
+  font-family: 'Kanit';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  /* ปรับตรงนี้: ใช้ / นำหน้า เพื่อชี้ไปที่ public/fonts/ โดยตรง */
+  src: url('/fonts/kanit-v17-latin_thai-regular.woff2') format('woff2'); 
+}
+
+/* kanit-500 - latin_thai */
+@font-face {
+  font-family: 'Kanit';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/kanit-v17-latin_thai-500.woff2') format('woff2');
+}
+
+/* kanit-600 - latin_thai */
+@font-face {
+  font-family: 'Kanit';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/kanit-v17-latin_thai-600.woff2') format('woff2');
+}
+
+/* kanit-700 - latin_thai */
+@font-face {
+  font-family: 'Kanit';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/kanit-v17-latin_thai-700.woff2') format('woff2');
+}
+
+/* ── กฎ 3 ข้อข้างล่างนี้อยู่ตรงนี้โดยตั้งใจ ───────────────────────────────────
+   ไฟล์นี้เป็นหนึ่งในไม่กี่ไฟล์ที่การรีแบรนด์ไม่เขียนทับ ส่วน component ใน
+   src/components/ ถูกสลับตัวและ retheme ใหม่ทุกรอบ (รอบละ ~19 จาก 82 ไฟล์
+   และเดาไม่ได้ว่าตัวไหน) กฎที่ต้องมีผลกับ "ทุก component ทุกแบรนด์ตลอดไป"
+   จึงต้องเขียนที่นี่ ไม่ใช่ไปไล่ใส่ทีละไฟล์ — ใส่ในไฟล์ที่ถูกทับแล้วมันหาย
+   ภายในไม่กี่ชั่วโมง */
+
+/* ── 1. เคารพ prefers-reduced-motion ──────────────────────────────────────
+   เว็บนี้มีอนิเมชันวนไม่รู้จบหลายจุดพร้อมกัน: ticker ประกาศเลื่อนแนวนอน,
+   สไลด์ที่เลื่อนตลอดเวลา, จุด live ที่ pulse, spinner ในหน้า forwarder —
+   ไม่มีจุดไหนหยุดได้เลย ซึ่งเป็นปัญหาจริงกับคนที่มีอาการเวียนศีรษะจากการ
+   เคลื่อนไหว (vestibular disorder) และผิด WCAG 2.2.2
+
+   ใช้ 0.01ms แทน `none` เพราะอนิเมชันบางตัวพึ่ง event animationend/transitionend
+   ในการทำงานต่อ ถ้าตัดทิ้งทั้งหมด event จะไม่ยิงและ UI ค้างได้ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── 2. focus ring ที่มองเห็นได้จริง ───────────────────────────────────────
+   ก่อนหน้านี้ทั้งโปรเจกต์ไม่มี :focus-visible สักที่เดียว คนที่ใช้คีย์บอร์ด
+   อย่างเดียวจึงไล่ Tab แล้วไม่รู้ว่าตัวเองอยู่ตรงไหน
+
+   ทำไมเป็นขาว + halo ดำ ไม่ใช่สีแบรนด์: สีหลักของแต่ละแบรนด์เปลี่ยนทุกรอบ
+   (ทอง/แดง/น้ำเงิน/ไอวอรี) วงแหวนสีแบรนด์จะกลืนกับปุ่มสีแบรนด์เอง คู่
+   ขาว-บน-ดำอ่านออกทั้งบนพื้นเข้มและบนปุ่มทองโดยไม่ต้องรู้ว่าแบรนด์นี้สีอะไร
+
+   ไม่ใช้ :where() เพราะต้องชนะ utility `outline-none` ที่ component เขียนไว้
+   (ตอนนี้มีที่ input ของฟอร์ม login) — :where() มี specificity 0 จะแพ้ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #ffffff !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.75);
+}
+
+/* ── 3. หัวข้อ gradient ต้องไม่หายไปเฉยๆ ──────────────────────────────────
+   หัวข้อแทบทุกตัวในเว็บใช้คู่ bg-clip-text + text-transparent (สีมาจากพื้นหลัง
+   ที่ถูก clip เป็นรูปตัวอักษร) เท่ากับตัวอักษรจริงๆ โปร่งใส 100%
+
+   ผลคือในโหมด High Contrast ของ Windows หรือตอนสั่งพิมพ์ ที่เบราว์เซอร์
+   ตัดภาพพื้นหลังออก ตัวอักษรจะไม่เหลืออะไรให้เห็นเลย — ทั้ง h1 และ h2 ทุกตัว
+   บนหน้าหายหมด ไม่ใช่แค่จางลง
+
+   กฎนี้ครอบทั้ง 82 component และทุกหัวข้อที่จะเขียนใหม่ในอนาคตด้วย */
+@media (forced-colors: active) {
+  .bg-clip-text,
+  .text-transparent {
+    background-image: none !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: CanvasText !important;
+  }
+}
+
+@media print {
+  .bg-clip-text,
+  .text-transparent {
+    background-image: none !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: #000 !important;
+  }
+}

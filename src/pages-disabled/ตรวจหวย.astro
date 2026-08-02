@@ -1,0 +1,138 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Announcement from "../components/AnnouncementHuay.astro";
+import ContentBoxHuay from "../components/ContentBoxHuay.astro";
+import Navfoot from "../components/Navfoot.astro";
+---
+
+<MainLayout
+  title="ตรวจหวย MAHORANLOTTO ผลรางวัลล่าสุด หวยรัฐบาล ลาว ฮานอย อัปเดตเรียลไทม์"
+  description="ตรวจหวยออนไลน์กับ MAHORANLOTTO ดูผลรางวัลล่าสุดของหวยรัฐบาล หวยฮานอย หวยลาว และหวยยี่กี ตรวจเลขที่ส่งโพยไว้ได้ทันทีหลังประกาศผล พร้อมสถานะการจ่ายรางวัล">
+  <Announcement />
+
+  <section class="mx-auto my-8 w-full max-w-5xl px-4 font-sans">
+    <div class="relative overflow-hidden rounded-3xl border border-amber-500/40 bg-[#1a0409]/90 p-8 shadow-[0_15px_40px_rgba(251,191,36,0.22)] backdrop-blur-xl md:p-12">
+      <div class="pointer-events-none absolute -top-20 -left-20 h-64 w-64 rounded-full bg-amber-500/15 blur-[60px]"></div>
+
+      <div class="relative z-10 flex flex-col items-center justify-center text-center">
+        <span class="mb-4 text-5xl drop-shadow-[0_0_15px_rgba(251,191,36,0.8)]">🏆</span>
+        <h1 class="mb-2 bg-gradient-to-r from-amber-200 via-amber-300 to-amber-600 bg-clip-text text-4xl font-black tracking-widest text-transparent uppercase">ตรวจหวย MAHORANLOTTO</h1>
+        <p class="mb-8 text-amber-100/70">เลือกตลาดหวยและกรอกตัวเลขที่ส่งโพยไว้ เพื่อตรวจผลรางวัลของคุณ</p>
+
+        <div class="flex w-full max-w-2xl flex-col gap-4 md:flex-row">
+          <select
+            class="h-14 w-full rounded-xl border border-amber-500/30 bg-[#5f0914] px-4 font-bold text-amber-300 transition-all outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-500/30 md:w-1/3">
+            <option>หวยรัฐบาลไทย</option>
+            <option>หวยฮานอย</option>
+            <option>หวยลาวพัฒนา</option>
+            <option>หวยยี่กี</option>
+          </select>
+
+          <input
+            type="text"
+            id="lotto-input"
+            placeholder="ระบุตัวเลขที่ต้องการตรวจ..."
+            maxlength="6"
+            class="h-14 w-full flex-1 rounded-xl border border-amber-500/30 bg-[#5f0914] px-6 text-center text-xl font-bold tracking-widest text-white transition-all outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-500/30 md:text-left"
+          />
+
+          <button
+            id="check-btn"
+            class="flex h-14 w-full items-center justify-center rounded-xl bg-gradient-to-r from-amber-500 via-amber-300 to-amber-500 px-8 font-black text-[#1a0409] shadow-[0_5px_15px_rgba(251,191,36,0.4)] transition-all hover:scale-105 hover:shadow-[0_8px_25px_rgba(251,191,36,0.6)] md:w-auto">
+            ตรวจหวย
+          </button>
+        </div>
+
+        <div
+          id="result-box"
+          class="mt-8 hidden w-full max-w-2xl transform flex-col items-center justify-center rounded-2xl border border-green-500/50 bg-green-900/20 p-6 opacity-0 transition-all duration-500">
+          <p class="text-2xl font-black text-green-400">🎉 ยินดีด้วย! คุณถูกรางวัล</p>
+          <p class="mt-2 text-lg text-white">หมายเลข <span id="show-number" class="font-bold tracking-widest text-amber-300"></span> ถูกรางวัลเลขท้าย 2 ตัว</p>
+          <p class="mt-1 text-sm text-green-200">ระบบจะแสดงสถานะโพยและเครดิตรางวัลในบัญชีของคุณ หลังการตรวจสอบผลเสร็จสิ้น</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContentBoxHuay title="ผลรางวัลล่าสุด (อัปเดตวันนี้)" as="h2">
+    <div class="overflow-x-auto rounded-xl border border-amber-500/20 bg-[#0f0206]">
+      <table class="w-full min-w-[600px] text-left text-sm">
+        <thead class="bg-gradient-to-r from-[#5f0914] to-[#2a0408]">
+          <tr class="text-amber-300">
+            <th class="p-4 font-bold">ประเภทหวย</th>
+            <th class="p-4 text-center font-bold">รางวัลที่ 1 / 3 ตัวบน</th>
+            <th class="p-4 text-center font-bold">2 ตัวบน</th>
+            <th class="p-4 text-center font-bold">2 ตัวล่าง</th>
+            <th class="p-4 text-right font-bold">สถานะ</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-amber-500/15 text-white">
+          <tr class="transition-colors hover:bg-[#5f0914]/40">
+            <td class="p-4 font-bold text-amber-100">🇹🇭 หวยรัฐบาล (16 พ.ค.)</td>
+            <td class="p-4 text-center text-xl font-black tracking-wider text-amber-300">205690</td>
+            <td class="p-4 text-center font-bold">90</td>
+            <td class="p-4 text-center font-bold">60</td>
+            <td class="p-4 text-right"><span class="rounded-full bg-green-900/50 px-3 py-1 text-[10px] font-bold text-green-400">จ่ายแล้ว</span></td>
+          </tr>
+          <tr class="transition-colors hover:bg-[#5f0914]/40">
+            <td class="p-4 font-bold text-amber-100">🇻🇳 หวยฮานอย (พิเศษ)</td>
+            <td class="p-4 text-center text-xl font-black tracking-wider text-amber-300">842</td>
+            <td class="p-4 text-center font-bold">42</td>
+            <td class="p-4 text-center font-bold">11</td>
+            <td class="p-4 text-right"><span class="rounded-full bg-green-900/50 px-3 py-1 text-[10px] font-bold text-green-400">จ่ายแล้ว</span></td>
+          </tr>
+          <tr class="transition-colors hover:bg-[#5f0914]/40">
+            <td class="p-4 font-bold text-amber-100">🇱🇦 หวยลาวพัฒนา</td>
+            <td class="p-4 text-center text-xl font-black tracking-wider text-amber-300">4781</td>
+            <td class="p-4 text-center font-bold">81</td>
+            <td class="p-4 text-center font-bold">03</td>
+            <td class="p-4 text-right"><span class="rounded-full bg-green-900/50 px-3 py-1 text-[10px] font-bold text-green-400">จ่ายแล้ว</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="mt-10 mb-4 text-2xl font-bold text-amber-300">ตรวจผลรางวัลกับ MAHORANLOTTO ต้องดูอะไรบ้าง</h2>
+
+    <p class="text-left text-base leading-relaxed text-amber-50/85">
+      หลังประกาศผลของแต่ละตลาด ควรเทียบเลขที่ส่งโพยไว้กับผลรางวัลตามประเภทที่แทง ทั้งรางวัลที่ 1 สามตัวบน สองตัวบน และสองตัวล่าง เพราะแต่ละตลาดหวยประกาศผลคนละรอบและมีเวลาปิดรับไม่เท่ากัน สมาชิก
+      MAHORANLOTTO สามารถตรวจสถานะโพยของตัวเองย้อนหลังได้จากบัญชีผู้ใช้งาน พร้อมดูอัตราจ่ายที่ใช้จริงในรอบนั้น หากพบรายการที่สถานะยังไม่อัปเดตหลังประกาศผล ให้แจ้งทีมงานพร้อมเลขที่โพยเพื่อให้ตรวจสอบได้เร็วขึ้น
+    </p>
+  </ContentBoxHuay>
+
+  <Navfoot />
+</MainLayout>
+
+<script>
+  const checkBtn = document.getElementById("check-btn");
+  const input = document.getElementById("lotto-input") as HTMLInputElement;
+  const resultBox = document.getElementById("result-box");
+  const showNumber = document.getElementById("show-number");
+
+  checkBtn?.addEventListener("click", () => {
+    if (!input.value || input.value.length < 2) {
+      alert("กรุณากรอกตัวเลขอย่างน้อย 2 หลักครับ");
+      return;
+    }
+
+    checkBtn.innerHTML = "กำลังตรวจสอบ...";
+
+    setTimeout(() => {
+      checkBtn.innerHTML = "ตรวจหวย";
+      if (showNumber) showNumber.innerText = input.value;
+      if (resultBox) {
+        resultBox.classList.remove("hidden");
+
+        setTimeout(() => {
+          resultBox.classList.remove("opacity-0", "translate-y-4");
+          resultBox.classList.add("opacity-100", "translate-y-0");
+        }, 50);
+      }
+    }, 800);
+  });
+</script>
+<style>
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+</style>

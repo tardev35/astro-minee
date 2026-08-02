@@ -1,0 +1,63 @@
+---
+import { Picture } from "astro:assets";
+import img1 from "../assets/providers/game1.avif";
+import img2 from "../assets/providers/game2.avif";
+import img3 from "../assets/providers/game3.avif";
+import img4 from "../assets/providers/game4.avif";
+import img5 from "../assets/providers/game5.avif";
+import img6 from "../assets/providers/game6.avif";
+
+const providers = [
+  { alt: "PG Soft", users: "4,592", isHot: true, img: img1 },
+  { alt: "Joker Gaming", users: "2,184", isHot: true, img: img2 },
+  { alt: "JILI", users: "3,845", isHot: true, img: img3 },
+  { alt: "Evolution", users: "2,901", isHot: true, img: img4 },
+  { alt: "SA Gaming", users: "1,754", isHot: false, img: img5 },
+  { alt: "Sexy Baccarat", users: "3,245", isHot: true, img: img6 },
+];
+---
+
+<div class="mx-auto w-full max-w-[1300px] px-4 py-8 font-sans sm:px-6 lg:px-8">
+  <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
+    <span aria-hidden="true" class="text-2xl drop-shadow-[0_0_10px_rgba(234,179,8,0.8)]">🎰</span>
+    <h2 class="bg-gradient-to-r from-yellow-300 to-yellow-600 bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase drop-shadow-sm">PREMIUM PARTNERS</h2>
+    <div class="mt-2 h-[2px] w-24 rounded-full bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6 lg:gap-6">
+    {
+      providers.map((p) => (
+        <div class="group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl bg-[#1b0638] shadow-[0_5px_15px_rgba(0,0,0,0.4)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_35px_rgba(147,51,234,0.3)]">
+          <div class="pointer-events-none absolute inset-0 z-20 rounded-2xl border border-purple-700/50 transition-all duration-500 group-hover:border-yellow-500/50 group-hover:shadow-[inset_0_0_20px_rgba(234,179,8,0.15)]" />
+
+          <div class="absolute top-0 left-0 z-10 flex items-center gap-1.5 rounded-br-xl border-r border-b border-purple-700/50 bg-[#120322]/80 px-3 py-1.5 text-[10px] font-medium text-purple-200 backdrop-blur-md transition-colors group-hover:text-yellow-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+            </svg>
+            {p.users}
+          </div>
+
+          {p.isHot && (
+            <div class="absolute top-0 right-0 z-10 flex items-center gap-1 rounded-bl-xl border-b border-l border-red-400/50 bg-gradient-to-r from-red-600 to-orange-500 px-3 py-1.5 text-[10px] font-black tracking-wide text-white shadow-md">
+              <span aria-hidden="true" class="animate-pulse">🔥</span> HOT
+            </div>
+          )}
+
+          <Picture
+            src={p.img}
+            alt={p.alt}
+            formats={["avif", "webp"]}
+            fallbackFormat="webp"
+            loading="lazy"
+            fetchpriority="low"
+            widths={[200, 400]}
+            decoding="async"
+            class="block aspect-square w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-100"
+          />
+
+          <div aria-hidden="true" class="pointer-events-none absolute -bottom-10 left-0 h-20 w-full bg-gradient-to-t from-purple-600/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        </div>
+      ))
+    }
+  </div>
+</div>

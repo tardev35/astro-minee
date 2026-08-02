@@ -1,0 +1,73 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Announcement from "../components/AnnouncementHuay.astro";
+import Navfoot from "../components/Navfoot.astro";
+
+const tips = [
+  { title: "แนวทางหวยรัฐบาล งวดล่าสุด", desc: "รวมเลขเด่น เลขรอง พร้อมรอบปิดรับของงวดนี้ ตรวจเลขอั้นก่อนส่งโพยได้เลย", type: "หวยรัฐบาล", date: "วันนี้", hot: true },
+  { title: "เจาะเลขฮานอยพิเศษ", desc: "วิเคราะห์สถิติฮานอยย้อนหลัง เข้ามาแล้ว 3 งวดติด รีบส่งโพยก่อนเลขเต็ม", type: "หวยฮานอย", date: "วันนี้", hot: true },
+  { title: "แนวทางหวยลาว แม่น้ำหนึ่ง", desc: "สรุปเลขธูปและเลขดังของงวดนี้ จดไว้ก่อนรอบปิดรับหวยลาว", type: "หวยลาว", date: "เมื่อวาน", hot: false },
+  { title: "รวมเลขเด็ด สำนักดัง", desc: "สรุปเลขเด็ดจาก 5 สำนักดังทั่วไทย มัดรวมไว้ให้ที่นี่ที่เดียว", type: "ข่าวสาร", date: "เมื่อวาน", hot: false },
+  { title: "เทคนิคเดินเงินหวยยี่กี", desc: "สอนวางแผนเดินเงินรายรอบ ทุนน้อยก็บริหารโพยได้ครบทั้ง 88 รอบ", type: "เทคนิค", date: "2 วันที่แล้ว", hot: false },
+  { title: "แนวทางหุ้นนิเคอิ เช้า-บ่าย", desc: "วิเคราะห์กราฟหวยหุ้นต่างประเทศ พร้อมเลขเด่นรูด 19 ประตู", type: "หวยหุ้น", date: "2 วันที่แล้ว", hot: false },
+];
+---
+
+<MainLayout
+  title="แนวทางหวย MAHORANLOTTO เลขเด็ด เลขดัง ทุกตลาด อัปเดตทุกวัน"
+  description="รวมแนวทางหวยและเลขเด็ดจากสำนักดังบน MAHORANLOTTO ครบทั้งหวยรัฐบาล หวยลาว หวยฮานอย หวยหุ้น และยี่กี พร้อมรอบปิดรับและข้อมูลเลขอั้นก่อนส่งโพย">
+  <Announcement />
+
+  <section class="mx-auto my-8 w-full max-w-7xl px-4 font-sans">
+    <div class="mb-10 flex flex-col items-center text-center">
+      <span class="mb-2 text-4xl drop-shadow-[0_0_10px_rgba(251,191,36,0.8)]">🔮</span>
+      <h1 class="bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-4xl font-black tracking-widest text-transparent uppercase">แนวทางหวย MAHORANLOTTO</h1>
+      <p class="mt-3 max-w-2xl text-left text-base leading-relaxed text-amber-100/75">
+        รวบรวมเลขเด็ด เลขดัง จากทุกสำนักทั่วประเทศ พร้อมสถิติของหวยรัฐบาล หวยลาว หวยฮานอย หวยหุ้น และยี่กี ให้สมาชิก MAHORANLOTTO วางแผนโพยได้ก่อนรอบปิดรับของแต่ละตลาด
+      </p>
+    </div>
+
+    <h2 class="mb-6 text-center text-2xl font-black tracking-widest text-amber-300 uppercase">รวมแนวทางหวยล่าสุด ครบทุกตลาดที่เปิดรับ</h2>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        tips.map((tip) => (
+          <div class="group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-amber-500/25 bg-[#1a0409]/85 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-amber-400/50 hover:shadow-[0_15px_30px_rgba(251,191,36,0.22)]">
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#7f1d1d]/25 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+            <div class="relative z-10 mb-4 flex items-center justify-between">
+              <span class="rounded-full border border-amber-500/40 bg-[#5f0914] px-3 py-1 text-xs font-bold text-amber-300">{tip.type}</span>
+              {tip.hot && <span class="flex animate-pulse items-center gap-1 text-xs font-black text-amber-300">🔥 มาแรง</span>}
+              {!tip.hot && <span class="text-xs font-medium text-amber-100/50">{tip.date}</span>}
+            </div>
+
+            <span class="relative z-10 mb-2 line-clamp-1 block text-xl font-bold text-white transition-colors group-hover:text-amber-300">{tip.title}</span>
+
+            <p class="relative z-10 mb-6 line-clamp-2 text-left text-base leading-relaxed text-amber-50/75">{tip.desc}</p>
+
+            <div class="relative z-10 mt-auto flex items-center gap-2 text-sm font-bold text-amber-400 transition-transform group-hover:translate-x-2">
+              อ่านเพิ่มเติม
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-12 flex justify-center">
+      <button
+        class="rounded-full border border-amber-500/50 bg-[#2a0408] px-8 py-3 font-bold text-amber-300 shadow-[0_0_15px_rgba(251,191,36,0.12)] transition-all hover:bg-amber-500/10 hover:shadow-[0_0_20px_rgba(251,191,36,0.3)]">
+        โหลดบทความเพิ่มเติม
+      </button>
+    </div>
+  </section>
+
+  <Navfoot />
+</MainLayout>
+<style>
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+</style>

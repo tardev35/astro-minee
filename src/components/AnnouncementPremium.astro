@@ -1,0 +1,46 @@
+---
+const {
+  message = "MIRACLE55 รวมสล็อต PG คาสิโนสด และกีฬาไว้ในบัญชีเดียว • ระบบกระเป๋าเดียวใช้เครดิตร่วมกันได้ทุกหมวดเกม • ฝากถอนออโต้ตลอด 24 ชั่วโมง ฝากราว 5–30 วินาที ถอนราว 1–5 นาที • เข้าเล่นผ่านมือถือได้โดยไม่ต้องดาวน์โหลด • ตรวจขั้นต่ำ จำนวนเทิร์น และเพดานถอนก่อนกดรับโปรทุกครั้ง",
+} = Astro.props;
+---
+
+<div class="mx-auto w-full max-w-7xl px-4 py-4 font-sans">
+  <div
+    class="relative flex overflow-hidden rounded-full border border-[#e8b43a]/35 bg-[#15110b]/92 shadow-[0_8px_20px_rgba(232,180,58,0.18)] backdrop-blur-lg transition-shadow duration-300 hover:shadow-[0_8px_25px_rgba(232,180,58,0.30)]">
+    <div
+      class="relative z-10 flex shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#f7d97a] via-[#e8b43a] to-[#a9741c] px-8 py-2.5 font-black text-[#1a1206] shadow-[4px_0_15px_rgba(232,180,58,0.25)]">
+      <span aria-hidden="true" class="mr-2 text-lg">💎</span> ประกาศ
+    </div>
+
+    <div class="marquee-container relative flex-1 overflow-hidden py-2.5 pr-6">
+      <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-12 bg-gradient-to-r from-[#15110b] to-transparent"></div>
+
+      <div class="marquee-content inline-block pl-4 text-sm font-medium tracking-wide whitespace-nowrap text-[#f4e3c8]">
+        <span class="mr-10 inline-flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-[#e8b43a] shadow-[0_0_8px_rgba(232,180,58,0.6)]"></span>{message}</span>
+        <span class="mr-10 inline-flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-[#e8b43a] shadow-[0_0_8px_rgba(232,180,58,0.6)]"></span>{message}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .marquee-content {
+    animation: marquee 25s linear infinite;
+  }
+  .marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-content {
+      animation: none;
+    }
+  }
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

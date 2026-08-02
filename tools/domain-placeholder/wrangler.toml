@@ -1,0 +1,22 @@
+# Config for the parked-domain placeholder. Deploy with:
+#   npx wrangler deploy --name <brand-token> --config tools/domain-placeholder/wrangler.toml
+#
+# `name` is deliberately absent: it is the future brand's Worker name and must
+# be supplied per domain on the command line. Hardcoding one here would park
+# every domain onto the same Worker, and the second deploy would silently take
+# the first domain's placeholder offline.
+
+compatibility_date = "2026-07-29"
+
+# Without this, Cloudflare also serves the placeholder at <name>.<sub>.workers.dev.
+# The default is true and `wrangler deploy` re-enables it whenever the key is
+# missing from the config, so it has to be written down, not just toggled in the
+# dashboard.
+workers_dev = false
+
+# No `main` and no `run_worker_first`: either one turns every request into a
+# billed Worker invocation instead of a free static-asset read, and once the
+# daily limit is hit the response is a 429 rather than a fallback to the file.
+[assets]
+directory = "site"
+not_found_handling = "404-page"

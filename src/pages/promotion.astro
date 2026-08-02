@@ -1,0 +1,125 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import ContentBox from "../components/ContentBoxPremium.astro";
+import Navfoot from "../components/Navfoot.astro";
+import Announcement from "../components/AnnouncementPremium.astro";
+
+import { Picture } from "astro:assets";
+
+import pro1 from "../assets/slide1.png";
+import pro2 from "../assets/slide2.png";
+import pro3 from "../assets/slide3.png";
+import pro4 from "../assets/slide4.png";
+import { pageGraph } from "../lib/schema";
+
+const pageDescription =
+  "โปรโมชั่น MIRACLE55 เว็บตรงรวมสล็อต PG คาสิโนสด พร้อม 5 เงื่อนไขที่ต้องอ่านก่อนกดรับ ทั้งยอดฝากขั้นต่ำ โบนัสที่ได้รับ จำนวนเทิร์น เกมที่ร่วมรายการ และเพดานถอน";
+
+const graph = pageGraph(Astro, {
+  name: "โปรโมชั่น MIRACLE55 เงื่อนไขที่ต้องอ่านก่อนกดรับสิทธิ์",
+  description: pageDescription,
+  breadcrumb: [
+    { name: "หน้าแรก", path: "/" },
+    { name: "โปรโมชั่น", path: "/promotion" },
+  ],
+  primaryImagePath: pro1.src,
+});
+---
+
+<MainLayout title="โปรโมชั่น MIRACLE55 โบนัสต้อนรับ คืนยอดเสีย และฝากแรกของวัน" description={pageDescription}>
+  <script type="application/ld+json" set:html={graph} />
+
+  <Announcement />
+
+  <ContentBox title="โปรโมชั่น MIRACLE55" as="h1">
+    <div>
+      <h2 class="mb-4 text-2xl leading-normal font-bold text-[#e8b43a]">โปรโมชั่น MIRACLE55 ต้องอ่าน 5 เงื่อนไขตรงไหนก่อนกดรับ</h2>
+
+      <p class="mb-5 text-left text-base leading-relaxed text-[#f4e3c8]">
+        <strong class="text-[#f7d97a]">MIRACLE55</strong> วางแกนหลักไว้ที่สล็อต PG คาสิโนสด และกีฬาในบัญชีเดียว สิทธิ์ที่หน้าเว็บเปิดให้กดรับจึงผูกอยู่กับยอดฝากและเกมที่ร่วมรายการ ไม่ได้ลอยอยู่เดี่ยว ๆ ในหน้าโปร โบนัสตัวใหญ่บนแบนเนอร์อย่างโบนัสต้อนรับ 10,000 บอกได้แค่ว่ามีอะไรให้ ส่วนบรรทัดเล็กใต้ตัวเลขคือคนที่ตัดสินว่าเราได้จริงเท่าไร ก่อนกดรับจึงควรไล่ให้ครบทั้ง 5 ข้อ คือยอดฝากขั้นต่ำ โบนัสที่ได้รับจริง จำนวนเทิร์น เกมที่ร่วมรายการ และเพดานถอน เพราะโปรแต่ละแบบอาจกำหนดเกมและเงื่อนไขถอนไม่เหมือนกัน การเลือกจากเปอร์เซ็นต์สูงที่สุดเพียงอย่างเดียวจึงไม่ใช่วิธีที่ปลอดภัยที่สุด
+      </p>
+
+      <p class="mb-5 text-left text-base leading-relaxed text-[#f4e3c8]">
+        รายการที่เห็นบนหน้าโปรมีทั้งแบบรับครั้งเดียวและแบบรับตามรอบ เช่น สมัครวันนี้รับโบนัสสูงสุด 10% ฝากแรกของวันรับเพิ่ม 10% ที่ระบุว่ารับได้วันละ 1 ครั้ง คืนยอดเสีย 10% และค่าคอม 0.75% ที่แบนเนอร์ระบุว่าไม่มีเทิร์นและไม่จำกัด ตัวเลขเหล่านี้ควรใช้เป็นข้อมูลร่างแล้วตรวจจากหน้าโปรจริงอีกครั้งก่อนกด เพราะช่วงเวลาของสิทธิ์ ค่ายเกมที่ยกเว้น และการรับซ้อนกับรายการอื่นเป็นรายละเอียดที่เปลี่ยนได้ตามรอบ ถ้าแผนของเราคือหมุนตามงบแล้วปิดจบ การไม่รับสิทธิ์เลยก็เป็นทางเลือกที่สมเหตุสมผล เพราะโบนัสที่ติดเทิร์นไม่ได้แปลว่าเงินอยู่ในมือแล้ว
+      </p>
+
+      <h2 class="mt-10 mb-4 text-2xl leading-normal font-bold text-[#e8b43a]">รับโบนัสแล้วต้องตรวจเทิร์นและยอดถอนอย่างไร</h2>
+
+      <p class="mb-5 text-left text-base leading-relaxed text-[#f4e3c8]">
+        หลังกดรับสิทธิ์ควรเปิดหน้าประวัติรายการดูว่ายอดโบนัสเข้าครบ เทิร์นเดินถูกเกม และยอดคงเหลือตรงกับที่ระบบแสดง เพราะโปรบางรายการนับยอดเฉพาะสล็อตบางค่าย และอาจไม่นับยอดจากโต๊ะคาสิโนสดหรือบิลกีฬาเลย อีกจุดที่คนอ่านข้ามบ่อยคือคำว่าเริ่มต้น 1 บาท ซึ่งเป็นเดิมพันของเกมที่รองรับ ไม่ใช่ขั้นต่ำของการฝากหรือการถอน ทั้งสามส่วนอาจใช้ตัวเลขคนละชุด จึงควรดูยอดบนหน้าฝากและหน้าเกมแยกกัน เกมหนึ่งเริ่มน้อยได้ แต่อีกเกมอาจกำหนดยอดสูงกว่า
+      </p>
+
+      <p class="mb-8 text-left text-base leading-relaxed text-[#f4e3c8]">
+        ด้านการเงิน ระบบกระเป๋าเดียวของ MIRACLE55 ทำให้เครดิตจากบัญชีสมาชิกถูกใช้ร่วมกับหลายหมวดเกมได้โดยไม่ต้องโยกยอดไปมา ส่วนระบบฝากถอนออโต้เปิดทำรายการผ่านหน้าเว็บได้ตลอด 24 ชั่วโมงตามสถานะระบบในช่วงนั้น เวลาร่างอยู่ที่ราว 5–30 วินาทีสำหรับฝาก และ 1–5 นาทีสำหรับถอน ก่อนทำรายการควรตรวจชื่อบัญชี ยอดเงิน และประวัติรายการให้ครบ หากยอดยังไม่เปลี่ยนไม่ควรกดซ้ำทันที เพราะนิ้วที่กดสองรอบไม่ได้ทำให้ธนาคารขยันขึ้น และควรกรอกข้อมูลเฉพาะบนโดเมนที่ตรวจแล้วและเชื่อมต่อแบบ HTTPS เท่านั้น ไม่ใช่ลิงก์ที่ส่งต่อกันมาในแชตพร้อมคำโฆษณา
+      </p>
+
+      <div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-6 px-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <Picture
+          src={pro1}
+          alt="แบนเนอร์โปรสมาชิกใหม่ของ MIRACLE55 โบนัสต้อนรับ 10,000 พร้อมข้อความ ฝากถอนออโต้ เกมครบ เล่นง่าย"
+          loading="lazy"
+          fetchpriority="low"
+          widths={[200, 400, 600, 800]}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          class="mx-auto h-auto w-full rounded-xl border border-[#e8b43a]/25 object-contain shadow-[0_10px_30px_rgba(232,180,58,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#e8b43a]/50 hover:shadow-[0_15px_40px_rgba(232,180,58,0.30)]"
+          decoding="async"
+          formats={["avif", "webp"]}
+          fallbackFormat="webp"
+          quality={80}
+        />
+
+        <Picture
+          src={pro2}
+          alt="แบนเนอร์ MIRACLE55 เล่นครบ สล็อต PG คาสิโนสด กีฬา พร้อมรายการระบบกระเป๋าเดียว ฝากถอนออโต้ 24 ชม. รวดเร็ว 5–30 วินาที เล่นผ่านมือถือได้ทันทีไม่ต้องดาวน์โหลด เว็บตรงมั่นคงปลอดภัย และข้อความสมัครวันนี้รับโบนัสสูงสุด 10%"
+          loading="lazy"
+          fetchpriority="low"
+          widths={[200, 400, 600, 800]}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          class="mx-auto h-auto w-full rounded-xl border border-[#e8b43a]/25 object-contain shadow-[0_10px_30px_rgba(232,180,58,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#e8b43a]/50 hover:shadow-[0_15px_40px_rgba(232,180,58,0.30)]"
+          decoding="async"
+          formats={["avif", "webp"]}
+          fallbackFormat="webp"
+          quality={80}
+        />
+
+        <Picture
+          src={pro3}
+          alt="แบนเนอร์ MIRACLE55 คืนยอดเสีย 10% และค่าคอม 0.75% ระบุว่าไม่มีเทิร์น ไม่จำกัด พร้อมข้อความรีวิวเว็บตรงมาตรฐานสากล ระบบโปรชัด เล่นง่าย ถอนออโต้"
+          loading="lazy"
+          fetchpriority="low"
+          widths={[200, 400, 600, 800]}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          class="mx-auto h-auto w-full rounded-xl border border-[#e8b43a]/25 object-contain shadow-[0_10px_30px_rgba(232,180,58,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#e8b43a]/50 hover:shadow-[0_15px_40px_rgba(232,180,58,0.30)]"
+          decoding="async"
+          formats={["avif", "webp"]}
+          fallbackFormat="webp"
+          quality={80}
+        />
+
+        <Picture
+          src={pro4}
+          alt="แบนเนอร์ MIRACLE55 ฝากแรกของวัน รับเพิ่ม 10% พร้อมข้อความระบบออโต้ 24 ชม. เล่นง่ายผ่านมือถือ และรับได้วันละ 1 ครั้ง"
+          loading="lazy"
+          fetchpriority="low"
+          widths={[200, 400, 600, 800]}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          class="mx-auto h-auto w-full rounded-xl border border-[#e8b43a]/25 object-contain shadow-[0_10px_30px_rgba(232,180,58,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#e8b43a]/50 hover:shadow-[0_15px_40px_rgba(232,180,58,0.30)]"
+          decoding="async"
+          formats={["avif", "webp"]}
+          fallbackFormat="webp"
+          quality={80}
+        />
+      </div>
+
+      <div class="mt-12 flex justify-center pb-4">
+        <a
+          href="/register"
+          class="flex items-center justify-center rounded-lg border border-[#e8b43a]/60 bg-gradient-to-r from-[#f7d97a] via-[#e8b43a] to-[#a9741c] px-10 py-3.5 text-lg font-black text-[#1a1206] shadow-[0_10px_30px_rgba(232,180,58,0.18)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(232,180,58,0.30)]">
+          สมัครสมาชิก MIRACLE55
+        </a>
+      </div>
+    </div>
+  </ContentBox>
+
+  <Navfoot />
+</MainLayout>

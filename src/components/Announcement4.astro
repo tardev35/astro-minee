@@ -1,0 +1,30 @@
+---
+const { message = "🎁 PAY69 โลกเกมครบทุกสาย สล็อต กีฬา เกมไลฟ์สด และเดิมพันด้านการเงิน พร้อมกิจกรรมเปิดกล่อง เปิดดวง ล่า Hidden อ่านเงื่อนไขก่อนกดรับสิทธิ์ทุกครั้ง pay69-brand.com" } = Astro.props;
+---
+
+<div class="mx-auto mt-6 max-w-[900px] px-2 md:px-0">
+  <div class="relative flex h-[40px] items-center rounded-sm border-b-2 border-violet-500 bg-[#0a0714] shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+    <div class="absolute -top-3 left-4 flex items-center gap-1.5 rounded-sm bg-gradient-to-r from-[#b8823a] to-[#f2dbb4] px-3 py-0.5 shadow-[0_4px_10px_rgba(212,162,74,0.5)]">
+      <div class="h-2 w-2 animate-pulse rounded-full bg-[#1a1130]"></div>
+      <span class="text-[10px] font-black tracking-widest text-[#1a1130] md:text-xs">LIVE UPDATE</span>
+    </div>
+
+    <div class="ml-32 flex-1 overflow-hidden md:ml-40">
+      <div class="flex w-max animate-[scroll_22s_linear_infinite] gap-12 text-sm font-medium whitespace-nowrap text-amber-50/90">
+        <span>{message}</span>
+        <span>{message}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-50% - 24px));
+    }
+  }
+</style>

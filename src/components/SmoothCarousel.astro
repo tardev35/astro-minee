@@ -1,0 +1,151 @@
+---
+import { Picture } from "astro:assets";
+
+import slide1 from "../assets/slide1.png";
+import slide2 from "../assets/slide2.png";
+import slide3 from "../assets/slide3.png";
+import slide4 from "../assets/slide4.png";
+
+// This used to be Swiper: 158,890 bytes of JavaScript (86,801 of it modules the
+// config never touched) to slide four pictures sideways forever. It is a CSS
+// animation now — the same technique the announcement ticker already uses — and
+// the component ships no JavaScript at all.
+//
+// Three things improved along with the byte count:
+//   * it can be paused. Swiper ran with `delay: 0` and
+//     `disableOnInteraction: false`, so nothing a visitor did stopped it.
+//   * it respects prefers-reduced-motion, which Swiper's JS-driven transform
+//     could not.
+//   * the slides are plain markup, so a crawler and a screen reader see all of
+//     them instead of whatever Swiper's cloned-slide DOM happened to expose.
+// Each banner is described by what it actually says, not by its position in the
+// list. "…ภาพที่ 1", "…ภาพที่ 2" told a screen-reader user nothing except that
+// there were more pictures; these are promo banners whose whole content IS the
+// text printed on them, so that text is the alt.
+const images = [
+  {
+    src: slide1,
+    alt: "แบนเนอร์โปรสมาชิกใหม่ของ MIRACLE55 โบนัสต้อนรับ 10,000 พร้อมข้อความ ฝากถอนออโต้ เกมครบ เล่นง่าย",
+  },
+  {
+    src: slide2,
+    alt: "แบนเนอร์ MIRACLE55 เล่นครบ สล็อต PG คาสิโนสด กีฬา พร้อมรายการ ระบบกระเป๋าเดียว ฝากถอนออโต้ 24 ชม. รวดเร็ว 5–30 วินาที เล่นผ่านมือถือได้ทันทีไม่ต้องดาวน์โหลด เว็บตรงมั่นคงปลอดภัย และข้อความสมัครวันนี้รับโบนัสสูงสุด 10%",
+  },
+  {
+    src: slide3,
+    alt: "แบนเนอร์ MIRACLE55 คืนยอดเสีย 10% และค่าคอมมิชชั่น 0.75% ระบุว่าไม่มีเทิร์นและไม่จำกัดยอด",
+  },
+  {
+    src: slide4,
+    alt: "แบนเนอร์ MIRACLE55 ฝากแรกของวัน รับเพิ่ม 10% พร้อมเงื่อนไขรับได้วันละ 1 ครั้ง",
+  },
+];
+
+// Three copies: one on screen, one scrolling in, one covering the reset. The
+// animation shifts by exactly one copy, so the loop has no visible seam.
+const COPIES = 3;
+const slides = Array.from({ length: COPIES }, () => images).flat();
+
+// The pause control below costs nothing visually: the checkbox is reachable by
+// keyboard and announced by screen readers, and its label only becomes visible
+// once it has focus. Mouse users get the :hover pause in the stylesheet.
+// (The note lives in frontmatter because an HTML comment in the template is
+// shipped verbatim to every built page.)
+---
+
+<div class="marquee mx-auto w-full max-w-[1301px] overflow-hidden px-4 py-5">
+  <input id="carousel-pause" type="checkbox" class="peer sr-only" />
+  <label
+    for="carousel-pause"
+    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#e8b43a]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#f7d97a]">
+    หยุด / เล่นสไลด์ภาพ
+  </label>
+
+  <div class="marquee-track flex">
+    {
+      slides.map((slide, index) => {
+        // The last two copies are the same four pictures again — decorative
+        // repeats that exist only so the loop has no seam. alt="" plus
+        // aria-hidden on the wrapper keeps them out of the accessibility tree;
+        // without it the same sentence is announced twelve times.
+        const isDuplicate = index >= images.length;
+        return (
+          <div class="marquee-slide" aria-hidden={isDuplicate ? "true" : undefined}>
+            <Picture
+              src={slide.src}
+              alt={isDuplicate ? "" : slide.alt}
+              class="block w-full rounded-xl border border-[#e8b43a]/25 object-cover shadow-[0_10px_30px_rgba(232,180,58,0.18)]"
+              width={slide.src.width}
+              height={slide.src.height}
+              loading={index < 2 ? "eager" : "lazy"}
+              fetchpriority={index === 0 ? "high" : "auto"}
+              decoding="async"
+              widths={[200, 400, 600]}
+              sizes="(max-width: 768px) 50vw, 33vw"
+              formats={["avif", "webp"]}
+              fallbackFormat="webp"
+              quality={60}
+            />
+          </div>
+        );
+      })
+    }
+  </div>
+</div>
+
+<style>
+  /* --shift is one full copy of the image set: four slides plus the four gaps
+     between them, measured against the track's width (which is the container's
+     width — the slides overflow it, which is the point). Getting this wrong by
+     a pixel is what makes a marquee visibly jump on every loop. */
+  .marquee {
+    --gap: 12px;
+    --per-view: 2;
+    --shift: calc(-200% - 24px);
+  }
+
+  @media (min-width: 768px) {
+    .marquee {
+      --gap: 16px;
+      --per-view: 3;
+      --shift: calc(-133.3333% - 21.3333px);
+    }
+  }
+
+  .marquee-track {
+    gap: var(--gap);
+    width: 100%;
+    animation: carousel-scroll 32s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-slide {
+    flex: 0 0 calc((100% - (var(--per-view) - 1) * var(--gap)) / var(--per-view));
+  }
+
+  @keyframes carousel-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(var(--shift));
+    }
+  }
+
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track,
+  .marquee > input:checked ~ .marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* `animation: none` rather than a paused state, and not just the global
+     reduced-motion rule in global.css: that rule collapses the duration to
+     0.01ms, which would snap the strip to its END position instead of leaving
+     it where it started. Killing the animation outright is the correct
+     behaviour here. */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+</style>

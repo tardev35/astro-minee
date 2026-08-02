@@ -1,0 +1,243 @@
+---
+import { isActivePath } from "../lib/nav";
+import { Picture } from "astro:assets";
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
+
+const imagePaths = Object.keys(images);
+const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (path: string) => isActivePath(currentPath, path);
+---
+
+<header class="sticky top-0 z-50 w-full font-sans">
+  <nav class="relative z-50 w-full border-b border-amber-400/30 bg-gradient-to-r from-[#0b0906] via-[#171209] to-[#0b0906] shadow-[0_4px_25px_rgba(0,0,0,0.75)]">
+    <div class="mx-auto flex h-[70px] w-full max-w-[1600px] items-center justify-between px-4 lg:h-[85px] lg:px-8">
+      <div class="flex items-center">
+        <a href="/" class="relative flex-shrink-0 transition-transform hover:scale-105">
+          <div class="absolute inset-0 rounded-full bg-amber-400/20 blur-xl"></div>
+          <Picture
+            src={mainLogo!}
+            alt="LAPDEE88 Logo"
+            loading="eager"
+            fetchpriority="high"
+            class="relative h-[40px] w-auto drop-shadow-[0_0_8px_rgba(212,175,90,0.35)] lg:h-[50px]"
+            formats={["avif", "webp"]}
+            fallbackFormat="webp"
+          />
+        </a>
+      </div>
+
+      <div class="hidden h-full items-center justify-center gap-2 lg:flex xl:gap-4">
+        <a
+          href="/"
+          class={`group relative flex items-center h-full px-4 xl:px-6 text-sm xl:text-base font-bold transition-all duration-300 ${isActive("/") ? "text-amber-300" : "text-amber-100/80 hover:text-amber-200"}`}>
+          <div aria-hidden="true" class={`absolute inset-0 bg-gradient-to-b from-transparent to-amber-400/10 transition-opacity duration-300 ${isActive("/") ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
+          </div>
+          <span class="relative z-10">หน้าแรก</span>
+          <div class={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-amber-400 transition-all duration-300 ${isActive("/") ? "w-full" : "w-0 group-hover:w-full"}`}></div>
+        </a>
+
+        <a
+          href="/promotion"
+          class={`group relative flex items-center h-full px-4 xl:px-6 text-sm xl:text-base font-bold transition-all duration-300 ${isActive("/promotion") ? "text-amber-300" : "text-amber-100/80 hover:text-amber-200"}`}>
+          <div aria-hidden="true"
+            class={`absolute inset-0 bg-gradient-to-b from-transparent to-amber-400/10 transition-opacity duration-300 ${isActive("/promotion") ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
+          </div>
+          <span class="relative z-10">โปรโมชั่น</span>
+          <div class={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-amber-400 transition-all duration-300 ${isActive("/promotion") ? "w-full" : "w-0 group-hover:w-full"}`}></div>
+        </a>
+
+        <a
+          href="/ทดลองเล่น"
+          class={`group relative flex items-center h-full px-4 xl:px-6 text-sm xl:text-base font-bold transition-all duration-300 ${isActive("/ทดลองเล่น") ? "text-amber-300" : "text-amber-100/80 hover:text-amber-200"}`}>
+          <div aria-hidden="true"
+            class={`absolute inset-0 bg-gradient-to-b from-transparent to-amber-400/10 transition-opacity duration-300 ${isActive("/ทดลองเล่น") ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
+          </div>
+          <span class="relative z-10">ทดลองเล่น</span>
+          <div class={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-amber-400 transition-all duration-300 ${isActive("/ทดลองเล่น") ? "w-full" : "w-0 group-hover:w-full"}`}></div>
+        </a>
+
+        <a
+          href="/ทางเข้า"
+          class={`group relative flex items-center h-full px-4 xl:px-6 text-sm xl:text-base font-bold transition-all duration-300 ${isActive("/ทางเข้า") ? "text-amber-300" : "text-amber-100/80 hover:text-amber-200"}`}>
+          <div aria-hidden="true"
+            class={`absolute inset-0 bg-gradient-to-b from-transparent to-amber-400/10 transition-opacity duration-300 ${isActive("/ทางเข้า") ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
+          </div>
+          <span class="relative z-10">ทางเข้า</span>
+          <div class={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-amber-400 transition-all duration-300 ${isActive("/ทางเข้า") ? "w-full" : "w-0 group-hover:w-full"}`}></div>
+        </a>
+
+        <a
+          href="/contact-us"
+          class={`group relative flex items-center h-full px-4 xl:px-6 text-sm xl:text-base font-bold transition-all duration-300 ${isActive("/contact-us") ? "text-amber-300" : "text-amber-100/80 hover:text-amber-200"}`}>
+          <div aria-hidden="true"
+            class={`absolute inset-0 bg-gradient-to-b from-transparent to-amber-400/10 transition-opacity duration-300 ${isActive("/contact-us") ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
+          </div>
+          <span class="relative z-10">ติดต่อเรา</span>
+          <div class={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-amber-400 transition-all duration-300 ${isActive("/contact-us") ? "w-full" : "w-0 group-hover:w-full"}`}></div>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3 md:gap-4">
+        <a
+          href="/login"
+          class="hidden items-center justify-center rounded-full border border-amber-400/70 px-6 py-2.5 text-sm font-bold text-amber-300 shadow-[0_0_10px_rgba(212,175,90,0.2)] transition-all hover:bg-amber-400 hover:text-[#140f05] lg:flex">
+          เข้าสู่ระบบ
+        </a>
+        <a
+          href="/register"
+          class="hidden items-center justify-center rounded-full bg-gradient-to-r from-[#f6e4b4] via-[#e0bd72] to-[#b1873a] px-6 py-2.5 text-sm font-extrabold text-[#140f05] shadow-[0_0_20px_rgba(212,175,90,0.4)] transition-all hover:scale-105 hover:brightness-110 lg:flex">
+          สมัครสมาชิก
+        </a>
+
+        <button
+          id="hamburger-btn"
+          class="relative z-[60] flex h-10 w-10 flex-col items-center justify-center overflow-hidden rounded-full border-2 border-amber-900/70 bg-gradient-to-tr from-[#b1873a] to-[#f6e4b4] shadow-[0_0_15px_rgba(212,175,90,0.5)] lg:hidden"
+          aria-label="Menu">
+          <span class="hamburger-line absolute h-[2px] w-5 -translate-y-1.5 transform rounded-full bg-[#140f05] transition-all duration-300"></span>
+          <span class="hamburger-line absolute h-[2px] w-5 rounded-full bg-[#140f05] transition-all duration-300"></span>
+          <span class="hamburger-line absolute h-[2px] w-5 translate-y-1.5 transform rounded-full bg-[#140f05] transition-all duration-300"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobile-circular-menu" class="pointer-events-none fixed inset-0 z-40 flex flex-col items-center justify-center bg-[#0b0906]/98 backdrop-blur-2xl lg:hidden">
+    <div class="flex w-full flex-col items-center space-y-6 px-6">
+      <Picture src={mainLogo!} alt="LAPDEE88 Logo" class="menu-item mb-6 h-[50px] w-auto opacity-0 drop-shadow-[0_0_15px_rgba(212,175,90,0.45)]" formats={["avif", "webp"]} fallbackFormat="webp" />
+
+      <a
+        href="/"
+        class={`menu-item opacity-0 text-3xl font-black uppercase tracking-wider transition-all duration-300 ${isActive("/") ? "text-amber-300 drop-shadow-[0_0_8px_rgba(212,175,90,0.8)]" : "text-amber-100/80 hover:text-white"}`}>
+        หน้าแรก
+      </a>
+      <a
+        href="/promotion"
+        class={`menu-item opacity-0 text-3xl font-black uppercase tracking-wider transition-all duration-300 ${isActive("/promotion") ? "text-amber-300 drop-shadow-[0_0_8px_rgba(212,175,90,0.8)]" : "text-amber-100/80 hover:text-white"}`}>
+        โปรโมชั่น
+      </a>
+      <a
+        href="/ทดลองเล่น"
+        class={`menu-item opacity-0 text-3xl font-black uppercase tracking-wider transition-all duration-300 ${isActive("/ทดลองเล่น") ? "text-amber-300 drop-shadow-[0_0_8px_rgba(212,175,90,0.8)]" : "text-amber-100/80 hover:text-white"}`}>
+        ทดลองเล่น
+      </a>
+      <a
+        href="/ทางเข้า"
+        class={`menu-item opacity-0 text-3xl font-black uppercase tracking-wider transition-all duration-300 ${isActive("/ทางเข้า") ? "text-amber-300 drop-shadow-[0_0_8px_rgba(212,175,90,0.8)]" : "text-amber-100/80 hover:text-white"}`}>
+        ทางเข้า
+      </a>
+      <a
+        href="/contact-us"
+        class={`menu-item opacity-0 text-3xl font-black uppercase tracking-wider transition-all duration-300 ${isActive("/contact-us") ? "text-amber-300 drop-shadow-[0_0_8px_rgba(212,175,90,0.8)]" : "text-amber-100/80 hover:text-white"}`}>
+        ติดต่อเรา
+      </a>
+
+      <div class="menu-item mt-4 flex w-full max-w-[280px] flex-col gap-4 border-t border-amber-800/50 pt-8 opacity-0">
+        <a
+          href="/register"
+          class="flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#f6e4b4] via-[#e0bd72] to-[#b1873a] py-3.5 text-lg font-extrabold text-[#140f05] shadow-[0_0_20px_rgba(212,175,90,0.4)]">
+          <span aria-hidden="true">🔥</span> สมัครสมาชิก
+        </a>
+        <a href="/login" class="flex w-full items-center justify-center rounded-full border border-amber-400/50 py-3.5 text-lg font-bold text-amber-300 hover:bg-amber-400/10">เข้าสู่ระบบ</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style is:global>
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+  /* อนิเมชั่น Hamburger กลายเป็น X (ตัวเส้นเป็น absolute เลยต้องกำหนดองศาใหม่) */
+  #hamburger-btn.active .hamburger-line:nth-child(1) {
+    transform: translateY(0) rotate(45deg);
+  }
+  #hamburger-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  #hamburger-btn.active .hamburger-line:nth-child(3) {
+    transform: translateY(0) rotate(-45deg);
+  }
+
+  /* 🌟 หัวใจสำคัญ: อนิเมชั่น Circular Reveal ด้วย clip-path */
+  /* วงกลมเริ่มต้นอยู่ที่มุมขวาบน (ซ่อนไว้ขนาด 0%) */
+  #mobile-circular-menu {
+    clip-path: circle(0% at calc(100% - 35px) 35px);
+    transition: clip-path 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* เมื่อใส่คลาส open วงกลมจะขยายตัวเป็น 150% กินพื้นที่เต็มจอ */
+  #mobile-circular-menu.menu-open {
+    clip-path: circle(150% at calc(100% - 35px) 35px);
+    pointer-events: auto; /* อนุญาตให้คลิกได้ตอนเปิด */
+  }
+
+  /* อนิเมชั่นเด้งไล่ระดับของเมนู (ลอยขึ้นมาจากข้างล่าง) */
+  .menu-item {
+    transform: translateY(30px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .menu-item.item-show {
+    opacity: 1 !important; /* บังคับทับ opacity-0 ของ Tailwind */
+    transform: translateY(0);
+  }
+
+  /* หน่วงเวลาให้ข้อความเด้งขึ้นมาทีละอัน */
+  .menu-item:nth-child(1) {
+    transition-delay: 0.2s;
+  } /* โลโก้ */
+  .menu-item:nth-child(2) {
+    transition-delay: 0.25s;
+  }
+  .menu-item:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  .menu-item:nth-child(4) {
+    transition-delay: 0.35s;
+  }
+  .menu-item:nth-child(5) {
+    transition-delay: 0.4s;
+  }
+  .menu-item:nth-child(6) {
+    transition-delay: 0.45s;
+  }
+  .menu-item:nth-child(7) {
+    transition-delay: 0.5s;
+  } /* กล่องปุ่ม */
+</style>
+
+<script>
+  const hamburgerBtn = document.getElementById("hamburger-btn");
+  const circularMenu = document.getElementById("mobile-circular-menu");
+  const menuItems = document.querySelectorAll(".menu-item");
+
+  const toggleCircularMenu = () => {
+    // 1. สลับหน้าตาปุ่ม Hamburger
+    hamburgerBtn?.classList.toggle("active");
+
+    // 2. ขยายวงกลม (Circular Reveal)
+    circularMenu?.classList.toggle("menu-open");
+
+    // 3. ล็อกหน้าจอ & ใส่คลาสให้ตัวหนังสือเด้ง
+    if (circularMenu?.classList.contains("menu-open")) {
+      document.body.style.overflow = "hidden";
+      menuItems.forEach((item) => item.classList.add("item-show"));
+    } else {
+      document.body.style.overflow = "";
+      menuItems.forEach((item) => item.classList.remove("item-show"));
+    }
+  };
+
+  hamburgerBtn?.addEventListener("click", toggleCircularMenu);
+
+  // ปิดเมนูเวลากดเลือกลิงก์
+  menuItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      if (circularMenu?.classList.contains("menu-open")) {
+        toggleCircularMenu();
+      }
+    });
+  });
+</script>

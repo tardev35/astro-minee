@@ -1,0 +1,124 @@
+---
+import { Picture } from "astro:assets";
+import BankStrip from "./BankStrip.astro";
+
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
+const imagePaths = Object.keys(images);
+const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
+---
+
+<footer class="relative w-full overflow-hidden border-t-[3px] border-[#e2c05f] bg-[#050912] pt-16 pb-8 font-sans text-white shadow-[0_-10px_30px_rgba(226,192,95,0.18)]">
+  <div class="pointer-events-none absolute top-0 right-0 h-96 w-96 rounded-full bg-[#e2c05f]/10 blur-[100px]"></div>
+  <div class="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full bg-[#1e2f74]/40 blur-[100px]"></div>
+
+  <div class="relative z-10 mx-auto w-full max-w-[1200px] px-6">
+    <div class="mb-12 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      <div class="flex flex-col gap-5">
+        <a href="/" class="inline-block origin-left transition-transform hover:scale-105">
+          {
+            mainLogo ? (
+              <Picture src={mainLogo} alt="PRODED888 เว็บตรงสล็อต โลโก้" class="h-[50px] w-auto drop-shadow-[0_0_15px_rgba(226,192,95,0.45)]" formats={["avif", "webp"]} fallbackFormat="webp" />
+            ) : (
+              <span class="bg-gradient-to-b from-[#f7e3a4] to-[#c39a34] bg-clip-text text-4xl font-black text-transparent drop-shadow-[0_0_10px_rgba(226,192,95,0.4)]">PRODED888</span>
+            )
+          }
+        </a>
+        <p class="text-base leading-relaxed text-[#c9cbe0]">
+          PRODED888 เว็บตรงสล็อต รวมสล็อต คาสิโนสด กีฬา หวย ไก่ชน และโป๊กเกอร์ไว้ในบัญชีเดียว พร้อมระบบฝากถอนออโต้ที่รองรับ PromptPay TrueMoney Wallet และธนาคารไทยหลายแห่ง ตลอด 24 ชั่วโมง
+        </p>
+        <div class="mt-2 flex items-center gap-3">
+          <div class="flex items-center gap-1.5 rounded border border-[#e2c05f]/50 bg-[#e2c05f]/10 px-3 py-1.5 text-xs font-bold text-[#f0d68c] shadow-[0_0_10px_rgba(226,192,95,0.22)]">
+            <span aria-hidden="true" class="text-base">🛡️</span> SSL/TLS 256-BIT
+          </div>
+          <div class="flex items-center gap-1.5 rounded border border-[#4a5fae]/60 bg-[#1e2f74]/40 px-3 py-1.5 text-xs font-bold text-[#c9cbe0]">
+            <span aria-hidden="true" class="text-base">⚡</span> AUTO 24H
+          </div>
+        </div>
+      </div>
+
+      <nav aria-label="Quick Links" class="flex flex-col gap-4 lg:pl-8">
+        <p class="flex items-center gap-2 text-lg font-extrabold text-[#f7e3a4]">
+          <span class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#f7e3a4] to-[#c39a34]"></span> เมนูหลัก
+        </p>
+        <ul class="flex flex-col gap-3 text-sm">
+          {
+            [
+              { name: "หน้าแรก", path: "/" },
+              { name: "โปรโมชั่น", path: "/promotion" },
+              { name: "ทางเข้า", path: "/ทางเข้า" },
+              { name: "ทดลองเล่น", path: "/ทดลองเล่น" },
+              { name: "ติดต่อเรา", path: "/contact-us" },
+            ].map((link) => (
+              <li>
+                <a href={link.path} class="group flex items-center text-[#c9cbe0] transition-all hover:text-[#f7e3a4]">
+                  <span class="mr-2 -ml-4 text-[#e2c05f] opacity-0 transition-all group-hover:ml-0 group-hover:opacity-100">➤</span>
+                  {link.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-label="Game Categories" class="flex flex-col gap-4">
+        <p class="flex items-center gap-2 text-lg font-extrabold text-[#f7e3a4]">
+          <span class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#f7e3a4] to-[#c39a34]"></span> หมวดหมู่เกม
+        </p>
+        <ul class="flex flex-col gap-3 text-sm">
+          {
+            ["สล็อตออนไลน์ (Slot)", "คาสิโนสด (Live Casino)", "เดิมพันกีฬา (Sportsbook)", "หวยออนไลน์ (Lottery)", "ไก่ชนออนไลน์ (Cockfight)"].map((game) => (
+              <li>
+                <a href="/register" class="group flex items-center text-[#c9cbe0] transition-all hover:text-[#f7e3a4]">
+                  <span class="mr-3 h-1.5 w-1.5 rounded-full bg-[#4a5fae] transition-colors group-hover:bg-[#e2c05f] group-hover:shadow-[0_0_8px_rgba(226,192,95,0.8)]" />
+                  {game}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="flex flex-col gap-5">
+        <p class="flex items-center gap-2 text-lg font-extrabold text-[#f7e3a4]">
+          <span class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#f7e3a4] to-[#c39a34]"></span> บริการลูกค้า
+        </p>
+
+        <a
+          href="/line"
+          class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#00B900] py-3 font-bold text-white shadow-[0_0_15px_rgba(0,185,0,0.3)] transition-transform hover:scale-105">
+          <span class="text-xl font-black">LINE</span> @PRODED888
+        </a>
+
+        <div class="mt-2">
+          <p class="mb-3 text-xs font-bold tracking-wider text-[#e2c05f]/90 uppercase">รองรับทุกธนาคาร & True Wallet</p>
+          <BankStrip size={26} limit={12} />
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-6 flex flex-wrap justify-center gap-4 border-y border-[#e2c05f]/25 py-6 opacity-60 grayscale transition-all duration-500 hover:opacity-100 hover:grayscale-0 md:gap-8">
+      <span class="text-lg font-black text-gray-300 italic md:text-2xl">PG<span class="text-[#e2c05f]">SOFT</span></span>
+      <span class="text-lg font-black text-gray-300 italic md:text-2xl">PRAGMATIC<span class="text-[#e2c05f]">PLAY</span></span>
+      <span class="text-lg font-black text-gray-300 italic md:text-2xl">EVO<span class="text-[#e2c05f]">LUTION</span></span>
+      <span class="text-lg font-black text-gray-300 italic md:text-2xl">JILI<span class="text-[#e2c05f]">GAMES</span></span>
+      <span class="text-lg font-black text-gray-300 italic md:text-2xl">MICRO<span class="text-[#e2c05f]">GAMING</span></span>
+    </div>
+
+    <div class="flex flex-col items-center justify-between gap-4 text-xs text-[#9ba0bd] md:flex-row">
+      <p>&copy; {new Date().getFullYear()} <span class="font-bold text-[#f0d68c]">PRODED888</span>. All rights reserved. เว็บตรงสล็อต คืนยอดเสีย ฝากถอนออโต้</p>
+      <div class="flex gap-4">
+        <a href="/terms/" class="transition-colors hover:text-[#f7e3a4]">เงื่อนไขการให้บริการ</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#f7e3a4]">นโยบายความเป็นส่วนตัว</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer a {
+    text-decoration: none;
+  }
+  footer {
+    font-family: var(--font-sans);
+  }
+</style>

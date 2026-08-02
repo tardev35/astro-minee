@@ -1,0 +1,47 @@
+---
+export interface Props {
+  title?: string;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+}
+const { title, as: HeadingTag = "h2" } = Astro.props;
+---
+
+<section class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
+  <div
+    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#e8b43a]/25 bg-[#0f0c07]/92 p-6 text-[#f4e3c8] shadow-[0_10px_30px_rgba(232,180,58,0.16)] backdrop-blur-xl transition-all duration-500 hover:border-[#e8b43a]/50 md:p-10">
+    <div aria-hidden="true"
+      class="pointer-events-none absolute top-0 left-1/2 -z-10 h-[2px] w-1/2 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#e8b43a] to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100">
+    </div>
+
+    {
+      title && (
+        <header class="mb-8 flex items-center gap-4 border-b border-[#e8b43a]/25 pb-4">
+          <div class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#f7d97a] to-[#a9741c] shadow-[0_0_10px_rgba(232,180,58,0.45)]" />
+          <HeadingTag class="bg-gradient-to-r from-[#f7d97a] via-[#e8b43a] to-[#a9741c] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">
+            {title}
+          </HeadingTag>
+        </header>
+      )
+    }
+
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-10">
+      <article
+        class="relative flex gap-4 rounded-2xl border border-[#e8b43a]/20 bg-[#15110b]/95 p-6 text-left text-base leading-relaxed text-[#f4e3c8] transition-all duration-300 hover:-translate-y-2 hover:border-[#e8b43a]/50 hover:bg-[#1e1710]/90 hover:shadow-[0_15px_40px_rgba(232,180,58,0.28)]">
+        <div aria-hidden="true"
+          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#e8b43a]/30 bg-gradient-to-br from-[#f7d97a] via-[#e8b43a] to-[#a9741c] text-2xl shadow-[0_5px_15px_rgba(232,180,58,0.28)]">
+          ⚽
+        </div>
+        <slot name="left" />
+      </article>
+
+      <article
+        class="relative flex gap-4 rounded-2xl border border-[#e8b43a]/20 bg-[#15110b]/95 p-6 text-left text-base leading-relaxed text-[#f4e3c8] transition-all duration-300 hover:-translate-y-2 hover:border-[#e8b43a]/50 hover:bg-[#1e1710]/90 hover:shadow-[0_15px_40px_rgba(232,180,58,0.28)]">
+        <div aria-hidden="true"
+          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#a55a22]/50 bg-gradient-to-br from-[#e0b98a] via-[#a55a22] to-[#8a5a28] text-2xl shadow-[0_5px_15px_rgba(165,90,34,0.35)]">
+          🧾
+        </div>
+        <slot name="right" />
+      </article>
+    </div>
+  </div>
+</section>

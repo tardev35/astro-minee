@@ -1,0 +1,152 @@
+---
+import { Picture } from "astro:assets";
+import BankStrip from "./BankStrip.astro";
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
+
+const imagePaths = Object.keys(images);
+const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
+---
+
+<footer
+  class="relative mt-32 w-full border-t border-[#dcb96b]/30 bg-[#0a0a09] pt-64 pb-6 font-sans text-[#efeade] shadow-[0_-10px_30px_rgba(220,185,107,0.15)] md:pt-40">
+  <div
+    class="absolute -top-14 left-1/2 z-20 flex w-[92%] max-w-5xl -translate-x-1/2 flex-col items-center justify-between rounded-2xl border border-[#dcb96b]/35 bg-gradient-to-r from-[#15171c] via-[#22262e] to-[#191712] p-6 shadow-[0_15px_40px_rgba(185,188,196,0.28)] md:-top-16 md:flex-row md:p-8">
+    <div class="mb-5 flex flex-col text-center md:mb-0 md:text-left">
+      <p class="text-xl font-black tracking-wide text-[#f2dca4] uppercase italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] md:text-3xl"><span aria-hidden="true">⚽</span> พร้อมลงสนามกับ UFAG8 แล้วหรือยัง?</p>
+      <p class="mt-2 text-sm font-medium text-[#d7dae1]/90 md:text-base">
+        สมัคร UFAG8 ด้วยเบอร์โทรภายในประมาณ 5 นาที แล้วเลือกตลาดบอลก่อนแข่ง บอลสด บิลเดี่ยว และบิลสเต็ปได้ในบัญชีเดียว ตรวจราคาและเงื่อนไขทุกครั้งก่อนยืนยันบิล
+      </p>
+    </div>
+
+    <a
+      href="/register"
+      class="group relative flex items-center justify-center overflow-hidden rounded-full border border-[#f2dca4] bg-gradient-to-b from-[#f2dca4] to-[#ac893a] px-8 py-3.5 text-sm font-extrabold whitespace-nowrap text-[#141210] shadow-[0_0_15px_rgba(220,185,107,0.4)] transition-all hover:scale-105 md:text-base">
+      <span class="relative z-10">สมัครสมาชิกเลย <span aria-hidden="true">🚀</span></span>
+      <div class="absolute inset-0 translate-y-full bg-[#e5c375] transition-transform duration-300 group-hover:translate-y-0"></div>
+    </a>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-[1200px] px-6">
+    <div class="mb-10 grid grid-cols-1 gap-10 md:grid-cols-12 lg:gap-12">
+      <div class="flex flex-col gap-6 md:col-span-12 lg:col-span-4">
+        <a href="/" class="inline-block origin-left transition-transform hover:scale-105">
+          {
+            mainLogo ? (
+              <Picture
+                src={mainLogo}
+                alt="UFAG8"
+                widths={[100, 200, 300]}
+                sizes="100px"
+                height={45}
+                loading="lazy"
+                decoding="async"
+                class="h-[45px] w-auto drop-shadow-[0_0_12px_rgba(220,185,107,0.6)]"
+                formats={["avif", "webp"]}
+                fallbackFormat="webp"
+              />
+            ) : (
+              <p class="bg-gradient-to-b from-[#f2dca4] to-[#ac893a] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(220,185,107,0.5)]">UFAG8</p>
+            )
+          }
+        </a>
+        <p class="text-sm leading-relaxed text-[#bcb6a6]">
+          UFAG8 วางแกนหลักไว้ที่ฟุตบอลและการเดิมพันกีฬา แบ่งรายการตามลีก คู่แข่งขัน และช่วงเวลา รองรับตลาดแฮนดิแคป สูง–ต่ำ และ 1X2 ทั้งบอลก่อนแข่งและบอลสด พร้อมระบบสมาชิกที่ใช้เบอร์โทรศัพท์เข้าสู่ระบบ
+        </p>
+
+        <div class="mt-2 flex flex-wrap gap-3">
+          <a
+            href="/line"
+            class="flex items-center gap-2 rounded-full border border-[#00B900]/30 bg-[#00B900]/10 px-4 py-2 text-xs font-bold text-[#00B900] shadow-[0_0_10px_rgba(0,185,0,0.1)] transition-colors hover:bg-[#00B900] hover:text-white">
+            <span aria-hidden="true" class="text-base">💬</span> LINE OFFICIAL
+          </a>
+          {/* A YOUTUBE button pointing at href="#" used to sit here. There is
+              no YouTube channel to point it at, and a link that goes nowhere
+              costs a visitor a tap to find that out. If a brand ever has one,
+              add the button back with its real URL. */}
+        </div>
+      </div>
+
+      <div class="md:col-span-6 lg:col-span-5">
+        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#efeade] uppercase">
+          ลิงก์ด่วน (Quick Links)
+          <span class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#ac893a] to-[#f2dca4] shadow-[0_0_8px_rgba(220,185,107,0.6)]"></span>
+        </p>
+
+        <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
+          <a href="/" class="group flex items-center text-[#bcb6a6] transition-colors hover:text-[#f2dca4]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#dcb96b] transition-transform group-hover:rotate-45"></span> หน้าแรก
+          </a>
+          <a href="/ทดลองเล่น" class="group flex items-center text-[#bcb6a6] transition-colors hover:text-[#f2dca4]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#dcb96b] transition-transform group-hover:rotate-45"></span> ทดลองเล่นเกมฟรี
+          </a>
+          <a href="/promotion" class="group flex items-center text-[#bcb6a6] transition-colors hover:text-[#f2dca4]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#dcb96b] transition-transform group-hover:rotate-45"></span> โปรโมชั่นสมาชิกใหม่
+          </a>
+          <a href="/ทางเข้า" class="group flex items-center text-[#bcb6a6] transition-colors hover:text-[#f2dca4]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#dcb96b] transition-transform group-hover:rotate-45"></span> ทางเข้าล่าสุด
+          </a>
+          <a href="/register" class="group flex items-center text-[#bcb6a6] transition-colors hover:text-[#f2dca4]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#dcb96b] transition-transform group-hover:rotate-45"></span> สมัครสมาชิก
+          </a>
+          <a href="/contact-us" class="group flex items-center text-[#bcb6a6] transition-colors hover:text-[#f2dca4]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#dcb96b] transition-transform group-hover:rotate-45"></span> ติดต่อแอดมิน
+          </a>
+        </div>
+      </div>
+
+      <div class="md:col-span-6 lg:col-span-3">
+        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#efeade] uppercase">
+          ระบบการเงิน
+          <span class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#ac893a] to-[#f2dca4] shadow-[0_0_8px_rgba(220,185,107,0.6)]"></span>
+        </p>
+
+        <p class="mb-4 text-xs text-[#bcb6a6]">รองรับการฝาก-ถอนผ่านแอปธนาคารชั้นนำและ TrueMoney Wallet โดยควรใช้บัญชีชื่อเดียวกับข้อมูลที่สมัครไว้</p>
+
+        <BankStrip size={30} />
+
+        <div class="mt-3 flex h-10 items-center justify-center rounded border border-white/5 bg-[#15171c] transition-colors hover:border-[#dcb96b]/50" title="ตรวจบิลย้อนหลัง">
+          <span class="flex items-center gap-1 text-xs font-bold text-[#d7dae1]"><span aria-hidden="true" class="text-lg text-[#dcb96b]">🧾</span> เก็บเลขรายการไว้ตรวจสอบได้</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="mb-6 border-[#dcb96b]/25" />
+
+    <div class="mb-6 hidden text-justify text-[10px] leading-relaxed text-[#8b8578] md:block">
+      แทงบอลออนไลน์ ราคาบอล ตลาดแฮนดิแคป สูง–ต่ำ 1X2 บอลก่อนแข่ง บอลสด บิลเดี่ยว บิลสเต็ป ตรวจบิลเดิมพัน เดิมพันกีฬาตามลีก คู่แข่งขันและช่วงเวลา สมัครด้วยเบอร์โทรภายใน 5 นาที เข้าสู่ระบบด้วยเบอร์โทรศัพท์
+      ทางเข้าเว็บตรงล่าสุด คาสิโนสด สล็อตออนไลน์ สมัครสมาชิกใหม่ UFAG8
+    </div>
+
+    <div class="flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-[#8b8578] md:flex-row">
+      <p>&copy; {new Date().getFullYear()} <span class="font-bold tracking-wider text-[#f2dca4] uppercase">UFAG8</span>. All Rights Reserved.</p>
+
+      <div class="flex items-center gap-6">
+        <a href="/terms/" class="transition-colors hover:text-[#efeade]">เงื่อนไขและข้อตกลง</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#efeade]">นโยบายความเป็นส่วนตัว</a>
+
+        {/* An anchor, not a button with onclick. Smooth scrolling comes from
+            `scroll-behavior` in global.css, which the reduced-motion block
+            there already overrides — the inline handler hardcoded
+            behavior:'smooth' and ignored that preference. The label is Thai
+            because the rest of this footer is. */}
+        <a
+          href="#top"
+          class="flex h-8 w-8 items-center justify-center rounded border border-white/10 bg-white/5 text-[#efeade] transition-all hover:border-[#f2dca4] hover:bg-[#22262e] hover:shadow-[0_0_15px_rgba(220,185,107,0.5)]"
+          aria-label="กลับขึ้นด้านบนสุดของหน้า">
+          <span aria-hidden="true">↑</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+  }
+  footer {
+    font-family: var(--font-sans);
+  }
+</style>

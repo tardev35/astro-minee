@@ -1,0 +1,249 @@
+---
+import { Image, getImage } from "astro:assets";
+import Bg from "../assets/bg.png";
+import bgConfig from "../assets/bg.json";
+import ogImage from "../assets/slide1.png";
+import "../styles/global.css";
+import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
+import { canonicalFor } from "../lib/schema";
+import Navbar from "../components/NavbarPremium.astro";
+import Footer from "../components/FooterPremium.astro";
+
+// Only banner1 is ever rendered, so only banner1 is imported.
+//
+// This used to glob `banner*.{png,webp,jpg,jpeg}` eagerly, and an imported
+// image is an EMITTED image whether or not anything renders it. Every stale
+// banner in src/assets was therefore copied into dist/_astro on every build and
+// uploaded on every deploy — banner.png (2.2 MB), banner2.png and banner3.png,
+// 3.1 MB of previous brands' artwork that no page has ever linked. It cost a
+// visitor nothing, which is exactly why it survived so long.
+//
+// The wide glob carried a fallback chain (banner1 → first .webp → first of
+// anything) whose entire purpose was to avoid silently picking a stale file.
+// Naming one file removes that failure mode instead of mitigating it: there is
+// nothing else in scope to pick. A missing banner1 now stops the build with a
+// message rather than rendering the previous brand's hero.
+//
+// Keep the extension list. The uploader writes banner1.png today, but brands
+// launched before that have banner1.webp and must keep building.
+const bannerImages = import.meta.glob<{ default: ImageMetadata }>("../assets/banner1.{png,webp,jpg,jpeg}", { eager: true });
+const bannerPaths = Object.keys(bannerImages);
+if (bannerPaths.length === 0) {
+  throw new Error("MainLayout: no src/assets/banner1.{png,webp,jpg,jpeg} — the hero image is missing. The uploader writes banner1.png; upload it before building.");
+}
+const mainBannerPath = bannerPaths.find((path) => path.endsWith(".webp")) ?? bannerPaths[0];
+const mainBanner = bannerImages[mainBannerPath].default;
+
+const {
+  title = "MIRACLE55 รีวิวเว็บตรง สล็อต PG คาสิโนสด ฝากถอนออโต้",
+  description = "รีวิว MIRACLE55 เว็บตรงรวมสล็อต PG คาสิโนสด และกีฬาไว้ในบัญชีเดียว เช็กเกม ระบบกระเป๋าเดียว ฝากถอนออโต้ โปรโมชั่น เล่นผ่านมือถือ และทางเข้าก่อนสมัครใช้งาน",
+  robots = "index, follow",
+} = Astro.props;
+
+// og:image. Two problems with what used to be here (`ImageOg = ogImage.src`):
+//
+//   * `.src` on an imported asset is the ORIGINAL file. Astro copied slide1.png
+//     into the build untouched — 190 KB of PNG — purely to be linked from a
+//     meta tag. getImage() below runs it through the same pipeline every other
+//     image uses.
+//   * every page declares twitter:card = summary_large_image, which wants a
+//     1.91:1 image around 1200x630. slide1 is a 600x600 square, so the card was
+//     rendering a small square crop of a promo banner.
+//
+// The uploader now writes src/assets/og.png at 1200x630 when slide1 is
+// uploaded. Prefer it when it exists; fall back to slide1 for a brand launched
+// before that, so this never breaks a build.
+const ogCandidates = import.meta.glob<{ default: ImageMetadata }>("../assets/og.{png,webp,jpg,jpeg}", { eager: true });
+const ogCandidatePaths = Object.keys(ogCandidates);
+const ogSource = ogCandidatePaths.length > 0 ? ogCandidates[ogCandidatePaths[0]].default : ogImage;
+
+// Width only — passing height as well would make the image service crop to that
+// exact box, which turns the square fallback into a slice of itself.
+const ogRendered = await getImage({ src: ogSource, format: "jpeg", quality: 80, width: Math.min(1200, ogSource.width) });
+const ImageOg = ogRendered.src;
+
+// The wallpaper <Image> below is decorative and deliberately lazy/async. It used
+// to be loading="eager" decoding="sync", which had the browser fetch and decode
+// a full-viewport image at the same priority as the hero banner — the actual LCP
+// element — on the one request where that competition costs most. A background
+// arriving a beat later is not something a visitor notices; a slow hero is.
+//
+// (The note lives here rather than above the tag: that tag is one branch of a
+// ternary, and a {/* comment */} beside it makes the branch two expressions,
+// which fails the build with "Expected ) but found $$render".)
+const bgMode = (bgConfig as { mode?: string }).mode ?? "image";
+const bgCss = bgMode === "color" ? `background-color:${(bgConfig as { color?: string }).color};` : bgMode === "gradient" ? `background-image:${(bgConfig as { css?: string }).css};` : null;
+
+// canonicalFor() is the same function every JSON-LD URL goes through, so the
+// canonical and the structured data cannot drift apart (see src/lib/schema.ts).
+// Do not replace it with new URL(Astro.url.pathname, Astro.site) — that is what
+// used to be here, and it disagreed with the JSON-LD about the trailing slash
+// on every page.
+const canonicalURL = canonicalFor(Astro);
+const ogImageURL = new URL(ImageOg, Astro.site);
+const ogSiteName = BRAND_NAME;
+
+const profile = brandProfile(Astro.site);
+
+// <html> มี id="top" เป็นเป้าของปุ่ม "กลับขึ้นบน" ใน footer แทน onclick เดิมที่
+// ฮาร์ดโค้ด behavior:'smooth' ไว้ จึงไม่ฟัง prefers-reduced-motion — ตอนนี้การ
+// เลื่อนมาจาก scroll-behavior ใน global.css ซึ่งบล็อก reduced-motion ทับให้แล้ว
+//
+// ห้ามวาง expression `{/* ... */}` ไว้ "ก่อน" <html> ในไฟล์นี้ — Astro จะเลิก
+// มองว่า <html> เป็น root ของเอกสารแล้วตัดทั้งแท็กทิ้ง (ทดสอบแล้วเมื่อ
+// 2026-07-31: ผลลัพธ์คือทุกหน้าไม่มี <html lang="th"> เลย) คอมเมนต์ที่อธิบาย
+// โครงหน้าเลยต้องอยู่ใน frontmatter แบบนี้เท่านั้น
+//
+// color บน <html> คือสีตัวอักษร "พื้น" ของทั้งเว็บ มาจาก BRAND_TEXT — ห้ามลบ
+// ตอนรีแบรนด์ ไม่มีที่อื่นตั้งค่านี้เลย (global.css ก็ไม่ตั้ง) ถ้าหายไป element
+// ไหนที่ไม่ได้ใส่คลาสสีเองจะกลายเป็นสีดำของเบราว์เซอร์บนพื้นเกือบดำ = หายไปเลย
+// หน้า terms/privacy/404 เป็นไฟล์ถาวรที่ไม่ใส่สีของแบรนด์ไว้ข้างในโดยตั้งใจ
+// จึงพึ่งบรรทัดนี้ทั้งหมด — verify-build.mjs ตรวจข้อนี้ให้แล้ว build จะแดงถ้าลืม
+//
+// --font-sans ตั้งเป็น inline style บน <html> ไม่ใช่ใน CSS เพราะ @theme ของ
+// Tailwind ประกาศตัวแปรนี้ที่ :root — inline style ชนะเสมอโดยไม่ต้องพึ่ง
+// ลำดับของ stylesheet หรือ !important (คอมเมนต์อยู่ใน frontmatter เพราะ
+// คอมเมนต์แบบ HTML จะถูกส่งออกไปที่ไฟล์ผลลัพธ์จริง)
+---
+
+<html lang="th" id="top" style={`--font-sans: ${fontStack}; color: ${BRAND_TEXT};`}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content={robots} />
+    <meta name="googlebot" content={robots} />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    {
+      usesGoogleFonts && (
+        <Fragment>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+            rel="stylesheet"
+          />
+        </Fragment>
+      )
+    }
+    {profile.fontPreloads.map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin={profile.crossorigin} />)}
+    <link rel="canonical" href={canonicalURL} />
+
+    {
+      profile.headOrder.map((block) => (
+        <Fragment>
+          {block === "icons" && (
+            <Fragment>
+              <link rel="icon" type="image/png" href={`/favicon-96x96.png?v=${iconVersion}`} sizes="96x96" />
+              <link rel="icon" type="image/svg+xml" href={`/favicon.svg?v=${iconVersion}`} />
+              {profile.showShortcutIcon && <link rel="shortcut icon" href={`/favicon.ico?v=${iconVersion}`} />}
+              <link rel="apple-touch-icon" sizes="180x180" href={`/apple-touch-icon.png?v=${iconVersion}`} />
+            </Fragment>
+          )}
+
+          {block === "appmeta" && (
+            <Fragment>
+              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="miracle55" />}
+              <link rel="manifest" href="/site.webmanifest" />
+            </Fragment>
+          )}
+
+          {block === "og" && (
+            <Fragment>
+              <meta property="og:type" content="website" />
+              <meta property="og:url" content={canonicalURL} />
+              <meta property="og:title" content={title} />
+              <meta property="og:description" content={description} />
+              <meta property="og:image" content={ogImageURL} />
+              <meta property="og:site_name" content={ogSiteName} />
+              {profile.showOgLocale && <meta property="og:locale" content="th_TH" />}
+            </Fragment>
+          )}
+
+          {block === "twitter" && (
+            <Fragment>
+              <meta name="twitter:card" content="summary_large_image" />
+              {profile.showTwitterUrl && <meta name="twitter:url" content={canonicalURL} />}
+              <meta name="twitter:title" content={title} />
+              <meta name="twitter:description" content={description} />
+              <meta name="twitter:image" content={ogImageURL} />
+            </Fragment>
+          )}
+        </Fragment>
+      ))
+    }
+
+    <style is:global>
+      html,
+      body {
+        overflow-x: hidden;
+        max-width: 100%;
+      }
+      body {
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        margin: 0;
+        background-color: #0a0806;
+        font-weight: 400;
+        font-family: var(--font-sans) !important;
+      }
+    </style>
+  </head>
+
+  <body class="relative flex min-h-screen w-full flex-col">
+    {
+      bgCss ? (
+        <div class="fixed inset-0 -z-50 h-full w-full bg-cover bg-center" style={bgCss} />
+      ) : (
+        <Image
+          src={Bg}
+          alt=""
+          loading="lazy"
+          fetchpriority="low"
+          widths={[412, 768, 1024, 1900]}
+          sizes="100vw"
+          format="avif"
+          class="fixed inset-0 -z-50 h-full w-full object-cover"
+          quality="low"
+          decoding="async"
+        />
+      )
+    }
+
+    <Navbar />
+
+    <div class="mb-2.5 flex w-full items-center justify-center">
+      {/* The LCP element. sizes must describe how wide it is DRAWN, and it is
+          drawn full-bleed at every breakpoint — the old "(max-width: 768px)
+          412px" claimed 412 px on mobile, so a DPR-2 phone needed 824 and the
+          browser jumped straight past the 768 candidate to the 1900 one. That
+          is a 3x over-fetch on exactly the image that decides LCP, not a
+          blurry-image problem. More candidates below 1900 so there is
+          something sensible to land on.
+
+          decoding="sync" is gone: it blocks the main thread on decode for no
+          benefit here, since the image is already fetchpriority="high". */}
+      <Image
+        src={mainBanner}
+        alt="แบนเนอร์ MIRACLE55 รีวิวเว็บตรงเกมครบ สล็อต คาสิโนสด โปรโมชั่น และระบบฝากถอนออโต้ เล่นง่าย ฝากไว ถอนได้จริง ใช้งานได้ทั้งมือถือและหน้าเว็บ"
+        loading="eager"
+        fetchpriority="high"
+        widths={[412, 640, 828, 1024, 1280, 1600, 1900]}
+        sizes="100vw"
+        class="mx-auto h-auto w-full max-w-full object-contain shadow-xl"
+        format="avif"
+        quality={60}
+      />
+    </div>
+
+    <main class="w-full flex-1">
+      <article>
+        <slot />
+      </article>
+    </main>
+
+    <Footer />
+  </body>
+</html>

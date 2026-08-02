@@ -1,0 +1,81 @@
+---
+import { Picture } from "astro:assets";
+import BankStrip from "./BankStrip.astro";
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
+const imagePaths = Object.keys(images);
+const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
+---
+
+<footer class="relative mt-16 w-full overflow-hidden rounded-t-[3rem] border-t border-[#f5c53d]/60 bg-[#080503] pt-16 pb-8 font-sans text-[#ece2cc] shadow-[0_-15px_40px_rgba(245,197,61,0.25)]">
+  <div class="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-[250px] w-full max-w-4xl rounded-full bg-[#f5c53d]/20 blur-[100px]"></div>
+  <div class="pointer-events-none absolute inset-x-0 -bottom-24 mx-auto h-[220px] w-full max-w-2xl rounded-full bg-[#c8121f]/20 blur-[100px]"></div>
+
+  <div class="relative z-10 mx-auto w-full max-w-[1200px] px-6">
+    <div class="mb-12 grid grid-cols-1 gap-12 md:grid-cols-12">
+      <div class="flex flex-col gap-5 md:col-span-5">
+        <a href="/" class="inline-block max-w-max rounded-xl border border-[#f5c53d]/30 bg-[#1e1409] px-4 py-2 transition-transform duration-300 hover:scale-105">
+          {
+            mainLogo ? (
+              <Picture src={mainLogo} alt="SUDYOD888 Logo" class="h-[50px] w-auto object-contain" formats={["avif", "webp"]} fallbackFormat="webp" />
+            ) : (
+              <span class="text-3xl font-black tracking-widest text-[#ece2cc]">
+                SUDYOD<span class="text-[#f5c53d]">888</span>
+              </span>
+            )
+          }
+        </a>
+        <p class="border-l-2 border-[#f5c53d]/50 pl-4 text-sm leading-relaxed text-[#b8ab92]">
+          SUDYOD888 เว็บไซต์รีวิวเกมสล็อตและคาสิโนออนไลน์ รวมสล็อต เกมยิงปลา และคาสิโนสดมากกว่า 200 รายการไว้ในบัญชีเดียว พร้อมข้อมูลระบบฝากถอนออโต้ คืนยอดเสียรายสัปดาห์ และเงื่อนไขโบนัสที่ควรอ่านก่อนกดรับ
+        </p>
+        <div class="mt-4 flex gap-3">
+          <span class="rounded-full border border-[#f5c53d]/30 bg-[#1e1409] px-4 py-1 text-xs font-medium text-[#f5c53d] backdrop-blur-sm">โบนัสสูงสุด 400%</span>
+          <span class="rounded-full border border-[#c8121f]/40 bg-[#240709] px-4 py-1 text-xs font-medium text-[#f0a0a4] backdrop-blur-sm">คืนยอดเสียรายสัปดาห์</span>
+        </div>
+      </div>
+
+      <nav class="flex flex-col gap-4 md:col-span-3 lg:pl-8">
+        <p class="text-lg font-black tracking-widest text-[#ece2cc] uppercase drop-shadow-sm">ทางลัด</p>
+        <div class="h-[1px] w-12 bg-[#f5c53d]"></div>
+        <ul class="flex flex-col gap-3 text-sm font-medium text-[#b8ab92]">
+          <li><a href="/" class="transition-colors hover:text-[#f5c53d]">หน้าหลัก</a></li>
+          <li><a href="/promotion" class="transition-colors hover:text-[#f5c53d]">โปรโมชั่น</a></li>
+          <li><a href="/ทดลองเล่น" class="transition-colors hover:text-[#f5c53d]">ทดลองเล่น</a></li>
+          <li><a href="/ทางเข้า" class="transition-colors hover:text-[#f5c53d]">ทางเข้า</a></li>
+          <li><a href="/contact-us" class="transition-colors hover:text-[#f5c53d]">ติดต่อเรา</a></li>
+        </ul>
+      </nav>
+
+      <div class="flex flex-col gap-5 md:col-span-4">
+        <p class="text-lg font-black tracking-widest text-[#ece2cc] uppercase drop-shadow-sm">บริการลูกค้า 24 ชม.</p>
+        <div class="h-[1px] w-12 bg-[#f5c53d]"></div>
+
+        <a
+          href="/line"
+          class="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#00B900] to-[#009900] py-3.5 font-bold text-white shadow-[0_5px_15px_rgba(0,185,0,0.3)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,185,0,0.4)]">
+          ติดต่อแอดมิน LINE
+        </a>
+
+        <div class="mt-4 text-xs font-medium tracking-widest text-[#b8ab92] uppercase">Supported Payments</div>
+        <BankStrip size={30} />
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center justify-between border-t border-[#8a5f14]/50 pt-8 text-xs font-medium tracking-wide text-[#b8ab92] md:flex-row">
+      <p>COPYRIGHT &copy; {new Date().getFullYear()} SUDYOD888-BRAND.COM. ALL RIGHTS RESERVED.</p>
+      <div class="mt-4 flex gap-4 md:mt-0">
+        <a href="/terms/" class="transition-colors hover:text-[#f5c53d]">เงื่อนไขข้อตกลง</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#f5c53d]">นโยบายความเป็นส่วนตัว</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer a {
+    text-decoration: none;
+    font-family: var(--font-sans);
+  }
+  footer {
+    font-family: var(--font-sans);
+  }
+</style>

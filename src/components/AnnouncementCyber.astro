@@ -1,0 +1,48 @@
+---
+const {
+  message = "TUNGMA168 หรือ ตังค์มา168 รวมสล็อตหลายค่ายและคาสิโนไว้ในบัญชีเดียว • โบนัสบิลแรกสูงสุด 200% • เครดิตฟรีสมาชิกใหม่ • ระบบฝากถอนออโต้ 24 ชั่วโมง • ตรวจยอดฝาก เทิร์น และเพดานถอนก่อนรับโปรทุกครั้ง",
+} = Astro.props;
+---
+
+<div class="mx-auto w-full max-w-7xl px-4 py-3 font-sans">
+  <div
+    class="relative flex overflow-hidden border border-[#ff3d9a]/50 bg-[#12040c]/90 shadow-[0_0_15px_rgba(255,61,154,0.3)] backdrop-blur-md"
+    style="clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);">
+    <div
+      class="relative z-10 flex shrink-0 items-center justify-center bg-gradient-to-r from-[#c21a70] to-[#ff3d9a] px-6 py-2.5 font-black text-[#1c0614]"
+      style="clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);">
+      ประกาศ
+    </div>
+
+    <div class="marquee-container relative flex-1 overflow-hidden py-2.5 pr-6">
+      <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#12040c] to-transparent"></div>
+
+      <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-widest whitespace-nowrap text-[#ffd7ea]">
+        <span class="mr-8 inline-flex items-center gap-2"><span class="h-2 w-2 bg-[#22d3ee] shadow-[0_0_8px_rgba(34,211,238,1)]"></span>{message}</span>
+        <span class="mr-8 inline-flex items-center gap-2"><span class="h-2 w-2 bg-[#22d3ee] shadow-[0_0_8px_rgba(34,211,238,1)]"></span>{message}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .marquee-content {
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-content {
+      animation: none;
+    }
+  }
+</style>

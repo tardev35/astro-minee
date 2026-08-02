@@ -1,0 +1,149 @@
+---
+import { isActivePath } from "../lib/nav";
+import { Picture } from "astro:assets";
+
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.*", { eager: true });
+const imagePaths = Object.keys(images);
+const targetPath = imagePaths.find((path) => path.endsWith(".webp")) || imagePaths.find((path) => path.endsWith(".png")) || (imagePaths.length > 0 ? imagePaths[0] : null);
+const mainLogo = targetPath ? images[targetPath].default : null;
+
+// The logo <Picture> below carries widths + sizes on purpose. Without them
+// Astro has no reason to resize and ships the source file — 1024x481, 73,938
+// bytes on this brand — into a box drawn about 110x50. Three candidates cover
+// 1x/2x/3x. (The note is here because the tag sits in a ternary branch, where a
+// {/* comment */} beside it makes the branch two expressions and fails the
+// build with "Expected ) but found $$render".)
+const currentPath = Astro.url.pathname;
+const isActive = (path: string) => isActivePath(currentPath, path);
+---
+
+<header class="sticky top-0 z-[100] w-full font-sans">
+  <nav
+    class="relative mx-auto flex h-[80px] w-full items-center justify-between border-b border-[#dcb96b]/40 bg-[#0a0a09]/95 px-4 shadow-[0_5px_20px_rgba(0,0,0,0.8)] backdrop-blur-lg xl:px-6">
+    <a href="/" class="z-[110] flex-shrink-0 transition-transform duration-300 hover:scale-105">
+      {
+        mainLogo ? (
+          <Picture
+            src={mainLogo}
+            alt="UFAG8"
+            loading="eager"
+            fetchpriority="high"
+            widths={[110, 220, 330]}
+            sizes="110px"
+            height={50}
+            class="h-[40px] w-auto object-contain drop-shadow-[0_0_12px_rgba(220,185,107,0.55)] xl:h-[50px]"
+            formats={["avif", "webp"]}
+            fallbackFormat="webp"
+          />
+        ) : (
+          <p class="text-3xl font-black tracking-widest text-[#f2dca4]">
+            UFA<span class="text-[#b9bcc4]">G8</span>
+          </p>
+        )
+      }
+    </a>
+
+    <div class="hidden h-full flex-1 items-center justify-center gap-6 lg:flex">
+      {
+        [
+          { name: "หน้าแรก", path: "/" },
+          { name: "โปรโมชั่น", path: "/promotion" },
+          { name: "ทดลองเล่น", path: "/ทดลองเล่น" },
+          { name: "ทางเข้า", path: "/ทางเข้า" },
+          { name: "ติดต่อเรา", path: "/contact-us" },
+        ].map((item) => (
+          <a
+            href={item.path}
+            class={`group relative flex h-full items-center px-2 text-sm font-bold tracking-widest transition-colors ${isActive(item.path) ? "text-[#f2dca4]" : "text-[#efeade]/85 hover:text-[#efeade]"}`}>
+            <span>{item.name}</span>
+            <div
+              class={`absolute bottom-0 left-0 h-[4px] w-full rounded-t-md bg-gradient-to-r from-[#ac893a] via-[#dcb96b] to-[#f2dca4] shadow-[0_-2px_10px_rgba(220,185,107,0.8)] transition-transform duration-300 ${isActive(item.path) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+            />
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="z-[110] flex items-center gap-3">
+      <a
+        href="/login"
+        class="hidden rounded-full border border-[#b9bcc4]/45 bg-[#15171c]/70 px-6 py-2.5 text-sm font-bold text-[#d7dae1] shadow-inner transition-all hover:border-[#d7dae1] hover:bg-[#22262e]/80 lg:flex">
+        เข้าสู่ระบบ
+      </a>
+      <a
+        href="/register"
+        class="hidden rounded-full border border-[#f2dca4]/50 bg-gradient-to-r from-[#dcb96b] to-[#ac893a] px-6 py-2.5 text-sm font-black text-[#141210] shadow-[0_4px_15px_rgba(220,185,107,0.4)] transition-all hover:scale-105 hover:shadow-[0_6px_20px_rgba(220,185,107,0.6)] lg:flex">
+        สมัครสมาชิก
+      </a>
+
+      <button
+        id="hamburger-btn"
+        class="relative flex h-[45px] w-[45px] flex-col items-center justify-center gap-[6px] rounded-full border border-[#dcb96b]/50 bg-[#100f0c] lg:hidden"
+        aria-label="Menu">
+        <span class="line-1 h-[2px] w-5 origin-center rounded-full bg-[#f2dca4] transition-all duration-300"></span>
+        <span class="line-2 h-[2px] w-5 origin-center rounded-full bg-[#f2dca4] transition-all duration-300"></span>
+        <span class="line-3 h-[2px] w-5 origin-center rounded-full bg-[#f2dca4] transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div
+    id="mobile-menu"
+    class="pointer-events-none absolute top-[80px] left-0 w-full origin-top -translate-y-4 scale-y-95 flex-col border-b-2 border-[#dcb96b] bg-[#0a0a09]/98 px-6 pt-4 pb-8 opacity-0 shadow-2xl backdrop-blur-2xl transition-all duration-300 lg:hidden">
+    <div class="flex flex-col gap-2">
+      {
+        [
+          { name: "หน้าแรก", path: "/" },
+          { name: "โปรโมชั่น", path: "/promotion" },
+          { name: "ทดลองเล่น", path: "/ทดลองเล่น" },
+          { name: "ทางเข้า", path: "/ทางเข้า" },
+          { name: "ติดต่อเรา", path: "/contact-us" },
+        ].map((item) => (
+          <a
+            href={item.path}
+            class={`flex items-center rounded-xl px-4 py-3 text-base font-bold transition-colors ${isActive(item.path) ? "border-l-4 border-[#dcb96b] bg-[#191712] text-[#f2dca4]" : "text-[#efeade]/80 hover:bg-white/5 hover:text-[#efeade]"}`}>
+            {item.name}
+          </a>
+        ))
+      }
+    </div>
+    <div class="mt-6 flex flex-col gap-3">
+      <a
+        href="/register"
+        class="flex w-full justify-center rounded-full border border-[#f2dca4]/50 bg-gradient-to-r from-[#dcb96b] to-[#ac893a] py-3.5 text-lg font-black text-[#141210] shadow-md">
+        สมัครสมาชิก
+      </a>
+      <a href="/login" class="flex w-full justify-center rounded-full border border-[#b9bcc4]/45 bg-[#15171c]/70 py-3.5 text-lg font-bold text-[#d7dae1]">เข้าสู่ระบบ</a>
+    </div>
+  </div>
+</header>
+
+<style is:global>
+  nav,
+  header {
+    font-family: var(--font-sans) !important;
+  }
+  #hamburger-btn.active .line-1 {
+    transform: translateY(8px) rotate(45deg);
+  }
+  #hamburger-btn.active .line-2 {
+    opacity: 0;
+  }
+  #hamburger-btn.active .line-3 {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  #mobile-menu.show {
+    opacity: 1;
+    transform: translateY(0) scaleY(100%);
+    pointer-events: auto;
+  }
+</style>
+
+<script>
+  const hamburgerBtn = document.getElementById("hamburger-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  hamburgerBtn?.addEventListener("click", () => {
+    hamburgerBtn.classList.toggle("active");
+    mobileMenu?.classList.toggle("show");
+  });
+</script>

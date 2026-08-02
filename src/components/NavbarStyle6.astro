@@ -1,0 +1,227 @@
+---
+import { isActivePath } from "../lib/nav";
+import { Picture } from "astro:assets";
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
+
+const imagePaths = Object.keys(images);
+const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (path: string) => isActivePath(currentPath, path);
+---
+
+<header class="sticky top-0 z-50 w-full font-sans shadow-lg">
+  <div class="pointer-events-none absolute top-0 left-0 z-50 hidden h-0 w-full items-start justify-center lg:flex">
+    <div
+      class="pointer-events-auto flex h-[65px] w-[120px] items-center justify-center rounded-b-3xl border-x border-b border-[#e2c05f] bg-gradient-to-b from-[#1e2f74] to-[#050912] shadow-[0_5px_15px_rgba(226,192,95,0.35)]">
+      <a href="/" class="drop-shadow-[0_0_8px_rgba(247,227,164,0.35)] transition-transform hover:scale-110">
+        <Picture src={mainLogo!} alt="PRODED888 เว็บตรงสล็อต โลโก้" loading="eager" fetchpriority="high" class="h-[35px] w-auto" formats={["avif", "webp"]} fallbackFormat="webp" />
+      </a>
+    </div>
+  </div>
+
+  <aside
+    class="fixed top-1/2 left-3 z-40 hidden h-[450px] w-[90px] -translate-y-1/2 flex-col items-center justify-center rounded-2xl border border-[#2b3a6f]/70 bg-[#070c1c]/95 p-2 shadow-[5px_0_20px_rgba(0,0,0,0.6)] backdrop-blur-md lg:flex">
+    <div class="relative flex h-full w-full flex-col gap-2 overflow-hidden rounded-xl">
+      <a href="/" class={`group relative w-full h-full flex flex-col items-center justify-center rounded-lg transition-all ${isActive("/") ? "bg-[#1e2f74]" : "hover:bg-[#1e2f74]/70"}`}>
+        <span aria-hidden="true" class="mb-1 text-3xl drop-shadow-md transition-transform group-hover:scale-110">🏠</span>
+        <span class={`text-xs font-bold transition-colors ${isActive("/") ? "text-[#f7e3a4]" : "text-[#c9cbe0] group-hover:text-[#f7e3a4]"}`}>หน้าแรก</span>
+        <div class={`absolute left-0 top-0 h-full w-[3px] bg-[#e2c05f] transition-transform duration-300 origin-top ${isActive("/") ? "scale-y-100" : "scale-y-0 group-hover:scale-y-100"}`}></div>
+      </a>
+
+      <a
+        href="/promotion"
+        class={`group relative w-full h-full flex flex-col items-center justify-center rounded-lg transition-all ${isActive("/promotion") ? "bg-[#1e2f74]" : "hover:bg-[#1e2f74]/70"}`}>
+        <span aria-hidden="true" class="mb-1 text-3xl drop-shadow-md transition-transform group-hover:scale-110">🎁</span>
+        <span class={`text-xs font-bold transition-colors ${isActive("/promotion") ? "text-[#f7e3a4]" : "text-[#c9cbe0] group-hover:text-[#f7e3a4]"}`}>โปรโมชั่น</span>
+        <div aria-hidden="true" class={`absolute left-0 top-0 h-full w-[3px] bg-[#e2c05f] transition-transform duration-300 origin-top ${isActive("/promotion") ? "scale-y-100" : "scale-y-0 group-hover:scale-y-100"}`}>
+        </div>
+      </a>
+
+      <a
+        href="/ทดลองเล่น"
+        class={`group relative w-full h-full flex flex-col items-center justify-center rounded-lg transition-all ${isActive("/ทดลองเล่น") ? "bg-[#1e2f74]" : "hover:bg-[#1e2f74]/70"}`}>
+        <span aria-hidden="true" class="mb-1 text-3xl drop-shadow-md transition-transform group-hover:scale-110">🎰</span>
+        <span class={`text-xs font-bold transition-colors ${isActive("/ทดลองเล่น") ? "text-[#f7e3a4]" : "text-[#c9cbe0] group-hover:text-[#f7e3a4]"}`}>ทดลองเล่น</span>
+        <div aria-hidden="true" class={`absolute left-0 top-0 h-full w-[3px] bg-[#e2c05f] transition-transform duration-300 origin-top ${isActive("/ทดลองเล่น") ? "scale-y-100" : "scale-y-0 group-hover:scale-y-100"}`}>
+        </div>
+      </a>
+
+      <a href="/ทางเข้า" class={`group relative w-full h-full flex flex-col items-center justify-center rounded-lg transition-all ${isActive("/ทางเข้า") ? "bg-[#1e2f74]" : "hover:bg-[#1e2f74]/70"}`}>
+        <span aria-hidden="true" class="mb-1 text-3xl drop-shadow-md transition-transform group-hover:scale-110">🌐</span>
+        <span class={`text-xs font-bold transition-colors ${isActive("/ทางเข้า") ? "text-[#f7e3a4]" : "text-[#c9cbe0] group-hover:text-[#f7e3a4]"}`}>ทางเข้า</span>
+        <div class={`absolute left-0 top-0 h-full w-[3px] bg-[#e2c05f] transition-transform duration-300 origin-top ${isActive("/ทางเข้า") ? "scale-y-100" : "scale-y-0 group-hover:scale-y-100"}`}></div>
+      </a>
+
+      <a
+        href="/contact-us"
+        class={`group relative w-full h-full flex flex-col items-center justify-center rounded-lg transition-all ${isActive("/contact-us") ? "bg-[#1e2f74]" : "hover:bg-[#1e2f74]/70"}`}>
+        <span aria-hidden="true" class="mb-1 text-3xl drop-shadow-md transition-transform group-hover:scale-110">📞</span>
+        <span class={`text-xs font-bold transition-colors ${isActive("/contact-us") ? "text-[#f7e3a4]" : "text-[#c9cbe0] group-hover:text-[#f7e3a4]"}`}>ติดต่อเรา</span>
+        <div aria-hidden="true" class={`absolute left-0 top-0 h-full w-[3px] bg-[#e2c05f] transition-transform duration-300 origin-top ${isActive("/contact-us") ? "scale-y-100" : "scale-y-0 group-hover:scale-y-100"}`}>
+        </div>
+      </a>
+    </div>
+  </aside>
+
+  <nav class="relative z-40 flex h-[60px] items-center justify-between border-b border-[#e2c05f]/35 bg-[#070c1c] px-3 shadow-xl lg:hidden">
+    <button id="hamburger-btn" class="flex flex-col items-center justify-center space-y-1.5 p-2" aria-label="Menu">
+      <span class="hamburger-line h-0.5 w-6 origin-center bg-[#f7e3a4] transition-all duration-300"></span>
+      <span class="hamburger-line h-0.5 w-6 bg-[#f7e3a4] transition-all duration-300"></span>
+      <span class="hamburger-line h-0.5 w-6 origin-center bg-[#f7e3a4] transition-all duration-300"></span>
+    </button>
+
+    <a href="/" class="flex-shrink-0 transition-transform hover:scale-105">
+      <Picture src={mainLogo!} alt="PRODED888 โลโก้สำหรับมือถือ" loading="eager" fetchpriority="high" class="h-[30px] w-auto drop-shadow-md" formats={["avif", "webp"]} fallbackFormat="webp" />
+    </a>
+
+    <a
+      href="/login"
+      class="flex h-[32px] items-center justify-center rounded border border-[#e2c05f]/60 bg-gradient-to-r from-[#f7e3a4] to-[#c39a34] px-4 text-xs font-bold text-[#0a1024] shadow-[0_0_12px_rgba(226,192,95,0.3)] transition-transform active:scale-95">
+      เข้าสู่ระบบ
+    </a>
+  </nav>
+
+  <div id="mobile-overlay" class="pointer-events-none fixed inset-0 z-30 bg-black/80 opacity-0 backdrop-blur-sm transition-opacity duration-300 lg:hidden"></div>
+
+  <div
+    id="mobile-sidebar"
+    class="fixed top-0 left-0 z-50 h-screen w-[260px] -translate-x-full transform overflow-y-auto border-r border-[#e2c05f]/30 bg-[#070c1c] shadow-[10px_0_30px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out lg:hidden">
+    <div class="flex flex-col space-y-2.5 px-4 pt-16 pb-8">
+      <a
+        href="/"
+        class={`sidebar-item flex items-center px-4 py-3 rounded-lg border transition-all ${isActive("/") ? "bg-[#1e2f74] border-[#e2c05f] text-[#f7e3a4] shadow-inner" : "bg-white/5 border-transparent text-[#c9cbe0] hover:bg-white/10 hover:text-[#f7e3a4]"}`}>
+        <span aria-hidden="true" class="mr-3 text-xl">🏠</span>
+        <span class="text-sm font-bold">หน้าแรก</span>
+      </a>
+      <a
+        href="/promotion"
+        class={`sidebar-item flex items-center px-4 py-3 rounded-lg border transition-all ${isActive("/promotion") ? "bg-[#1e2f74] border-[#e2c05f] text-[#f7e3a4] shadow-inner" : "bg-white/5 border-transparent text-[#c9cbe0] hover:bg-white/10 hover:text-[#f7e3a4]"}`}>
+        <span aria-hidden="true" class="mr-3 text-xl">🎁</span>
+        <span class="text-sm font-bold">โปรโมชั่น</span>
+      </a>
+      <a
+        href="/ทดลองเล่น"
+        class={`sidebar-item flex items-center px-4 py-3 rounded-lg border transition-all ${isActive("/ทดลองเล่น") ? "bg-[#1e2f74] border-[#e2c05f] text-[#f7e3a4] shadow-inner" : "bg-white/5 border-transparent text-[#c9cbe0] hover:bg-white/10 hover:text-[#f7e3a4]"}`}>
+        <span aria-hidden="true" class="mr-3 text-xl">🎰</span>
+        <span class="text-sm font-bold">ทดลองเล่น</span>
+      </a>
+      <a
+        href="/ทางเข้า"
+        class={`sidebar-item flex items-center px-4 py-3 rounded-lg border transition-all ${isActive("/ทางเข้า") ? "bg-[#1e2f74] border-[#e2c05f] text-[#f7e3a4] shadow-inner" : "bg-white/5 border-transparent text-[#c9cbe0] hover:bg-white/10 hover:text-[#f7e3a4]"}`}>
+        <span aria-hidden="true" class="mr-3 text-xl">🌐</span>
+        <span class="text-sm font-bold">ทางเข้า</span>
+      </a>
+      <a
+        href="/contact-us"
+        class={`sidebar-item flex items-center px-4 py-3 rounded-lg border transition-all ${isActive("/contact-us") ? "bg-[#1e2f74] border-[#e2c05f] text-[#f7e3a4] shadow-inner" : "bg-white/5 border-transparent text-[#c9cbe0] hover:bg-white/10 hover:text-[#f7e3a4]"}`}>
+        <span aria-hidden="true" class="mr-3 text-xl">📞</span>
+        <span class="text-sm font-bold">ติดต่อเรา</span>
+      </a>
+
+      <div class="mt-5 flex flex-col gap-2 border-t border-[#2b3a6f]/70 pt-5">
+        <a
+          href="/register"
+          class="sidebar-item flex justify-center rounded border border-[#e2c05f]/60 bg-gradient-to-r from-[#f7e3a4] via-[#e2c05f] to-[#c39a34] py-3 text-sm font-bold text-[#0a1024] shadow-md transition-transform active:scale-95">
+          <span aria-hidden="true">🔥</span> สมัครสมาชิกใหม่
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed top-4 right-6 z-50 hidden items-center gap-3 lg:flex">
+    <a
+      href="/login"
+      class="group flex items-center gap-1.5 rounded border border-[#e2c05f]/60 bg-[#0b1330]/90 px-6 py-2 text-sm font-bold text-[#f7e3a4] shadow-md backdrop-blur-sm transition-all hover:border-[#e2c05f] hover:bg-[#152351]/90">
+      <span aria-hidden="true">🔒</span> เข้าสู่ระบบ
+    </a>
+    <a
+      href="/register"
+      class="group flex items-center gap-1.5 rounded border border-[#e2c05f]/60 bg-gradient-to-r from-[#f7e3a4] via-[#e2c05f] to-[#c39a34] px-6 py-2 text-sm font-bold text-[#0a1024] shadow-[0_0_15px_rgba(226,192,95,0.3)] transition-all hover:scale-105">
+      <span aria-hidden="true">👤</span> สมัครสมาชิก
+    </a>
+  </div>
+</header>
+
+<div class="hidden h-[15px] w-full lg:block"></div>
+
+<style is:global>
+  /* Hamburger กลายเป็น X */
+  #hamburger-btn.active .hamburger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  #hamburger-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  #hamburger-btn.active .hamburger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* อนิเมชั่นเด้งไล่ระดับของเมนูใน Sidebar */
+  .sidebar-item {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .sidebar-item.item-show {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .sidebar-item:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .sidebar-item:nth-child(2) {
+    transition-delay: 0.15s;
+  }
+  .sidebar-item:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+  .sidebar-item:nth-child(4) {
+    transition-delay: 0.25s;
+  }
+  .sidebar-item:nth-child(5) {
+    transition-delay: 0.3s;
+  }
+  .sidebar-item:nth-child(6) {
+    transition-delay: 0.35s;
+  }
+</style>
+
+<script>
+  const hamburgerBtn = document.getElementById("hamburger-btn");
+  const overlay = document.getElementById("mobile-overlay");
+  const sidebar = document.getElementById("mobile-sidebar");
+  const sidebarItems = document.querySelectorAll(".sidebar-item");
+
+  const toggleSidebar = () => {
+    hamburgerBtn?.classList.toggle("active");
+    sidebar?.classList.toggle("-translate-x-full");
+    sidebar?.classList.toggle("translate-x-0");
+    overlay?.classList.toggle("opacity-0");
+    overlay?.classList.toggle("opacity-100");
+    overlay?.classList.toggle("pointer-events-none");
+    overlay?.classList.toggle("pointer-events-auto");
+
+    if (sidebar?.classList.contains("translate-x-0")) {
+      document.body.style.overflow = "hidden";
+      sidebarItems.forEach((item) => item.classList.add("item-show"));
+    } else {
+      document.body.style.overflow = "";
+      sidebarItems.forEach((item) => item.classList.remove("item-show"));
+    }
+  };
+
+  hamburgerBtn?.addEventListener("click", toggleSidebar);
+  overlay?.addEventListener("click", toggleSidebar);
+
+  sidebarItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      if (sidebar?.classList.contains("translate-x-0")) {
+        toggleSidebar();
+      }
+    });
+  });
+</script>

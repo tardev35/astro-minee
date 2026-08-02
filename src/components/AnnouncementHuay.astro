@@ -1,0 +1,41 @@
+---
+const { message = "🔥 MAHORANLOTTO เว็บเล่นหวยออนไลน์ ครบทุกตลาด หวยรัฐบาล หวยลาว หวยฮานอย ซื้อหวยง่าย จ่ายไว" } = Astro.props;
+---
+
+<div class="relative z-10 mx-auto w-full max-w-[1400px] px-4 py-3 font-sans">
+  <div class="relative flex overflow-hidden rounded-full border border-amber-500/35 bg-[#2a0408]/85 shadow-[0_5px_15px_rgba(0,0,0,0.5)] backdrop-blur-md">
+    <div
+      class="relative z-10 flex shrink-0 items-center justify-center bg-gradient-to-r from-amber-500 via-amber-200 to-amber-500 px-6 py-2.5 font-black text-[#5f0914] shadow-[4px_0_15px_rgba(0,0,0,0.5)]">
+      <span aria-hidden="true" class="mr-2 animate-pulse text-lg">📢</span> ประกาศ
+    </div>
+
+    <div class="marquee-container relative flex-1 overflow-hidden py-2.5 pr-6">
+      <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#2a0408] to-transparent"></div>
+
+      <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-widest whitespace-nowrap text-amber-50/90">
+        <span class="mr-8 inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></span>{message}</span>
+        <span class="mr-8 inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></span>{message}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+  .marquee-content {
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

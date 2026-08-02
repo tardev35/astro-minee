@@ -1,0 +1,62 @@
+---
+export interface Props {
+  title?: string;
+  titleleft?: string;
+  titleright?: string;
+  label?: string;
+}
+const { title, titleleft, titleright, label } = Astro.props;
+const intro = Astro.slots.has("default") ? (await Astro.slots.render("default")).trim() : "";
+
+// The three titles render as <p>, not <h2>. The docx this template is filled
+// from is a flat H1 + ten H2s and the rendered heading inventory is diffed
+// against it on every rebrand — a widget quietly adding two more <h2> is the
+// thing that makes that diff disagree. A <p> heading needs the section to carry
+// its own accessible name instead, which is what `label` is for.
+const sectionLabel = label ?? title ?? titleleft ?? titleright ?? "ข้อมูลประกอบ";
+---
+
+<section aria-label={sectionLabel} class="mx-auto mb-6 w-full max-w-7xl px-4 font-sans">
+  <div
+    class="relative isolate w-full border border-[#ff3d9a]/25 bg-[#16050f]/92 p-8 text-[#fdeaf4] shadow-[0_10px_30px_rgba(255,61,154,0.16)] backdrop-blur-md transition-all duration-300 hover:border-[#ff3d9a]/50 hover:shadow-[0_15px_40px_rgba(255,61,154,0.26)]"
+    style="clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);">
+    <div class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#ff3d9a] to-transparent"></div>
+    <div class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#22d3ee] to-transparent"></div>
+    <div class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#ff3d9a] to-transparent"></div>
+    <div class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#22d3ee] to-transparent"></div>
+
+    {
+      title && (
+        <p class="mb-4 bg-gradient-to-r from-[#ffa6d2] via-[#ff3d9a] to-[#c21a70] bg-clip-text text-center text-2xl leading-normal font-black text-transparent uppercase">
+          {title}
+        </p>
+      )
+    }
+
+    {intro && <div class="mb-8 text-left text-base leading-relaxed text-[#fdeaf4]" set:html={intro} />}
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <article class="relative flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdeaf4]">
+        {
+          titleleft && (
+            <p class="flex items-center gap-2 border-b border-[#ff3d9a]/25 pb-2 text-xl leading-normal font-black text-[#ff3d9a] uppercase">
+              <span aria-hidden="true" class="inline-block h-2 w-2 shrink-0 bg-[#ff3d9a] shadow-[0_0_5px_rgba(255,61,154,0.7)]" /> {titleleft}
+            </p>
+          )
+        }
+        <slot name="left" />
+      </article>
+
+      <article class="relative flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdeaf4] md:border-l md:border-[#ff3d9a]/25 md:pl-8">
+        {
+          titleright && (
+            <p class="flex items-center gap-2 border-b border-[#ff3d9a]/25 pb-2 text-xl leading-normal font-black text-[#ff3d9a] uppercase">
+              <span aria-hidden="true" class="inline-block h-2 w-2 shrink-0 bg-[#22d3ee] shadow-[0_0_5px_rgba(34,211,238,0.8)]" /> {titleright}
+            </p>
+          )
+        }
+        <slot name="right" />
+      </article>
+    </div>
+  </div>
+</section>

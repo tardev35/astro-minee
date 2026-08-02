@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08090c" />
+    <title>ไม่พบหน้าที่ต้องการ</title>
+    <!-- Same shell as index.html, minus the progress bar — there is no progress
+         to report on a wrong URL. The two files duplicate their CSS on purpose:
+         this folder ships as-is with no build step, and a shared stylesheet
+         would be a second request for a page that fits in one. -->
+    <style>
+      :root {
+        --h: 38;
+        --accent: hsl(var(--h) 82% 62%);
+        --accent-soft: hsl(var(--h) 82% 62% / 0.14);
+        --ink: #f2f3f5;
+        --muted: #8b909b;
+        --bg: #08090c;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 2rem 1.5rem;
+        background: radial-gradient(105% 85% at 50% 32%, #12141a, var(--bg) 68%);
+        color: var(--ink);
+        font-family:
+          "IBM Plex Sans Thai",
+          "Noto Sans Thai",
+          "Sarabun",
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        inset: -30%;
+        z-index: 0;
+        pointer-events: none;
+        background: radial-gradient(34% 34% at 32% 26%, hsl(var(--h) 85% 56% / 0.2), transparent 68%);
+        animation: drift 24s ease-in-out infinite;
+      }
+
+      body::after {
+        background: radial-gradient(30% 30% at 70% 76%, hsl(calc(var(--h) + 175) 65% 58% / 0.13), transparent 68%);
+        animation-duration: 31s;
+        animation-direction: reverse;
+      }
+
+      @keyframes drift {
+        0%,
+        100% {
+          transform: translate3d(-12%, -8%, 0) scale(1);
+        }
+        50% {
+          transform: translate3d(12%, 10%, 0) scale(1.18);
+        }
+      }
+
+      main {
+        position: relative;
+        z-index: 1;
+        width: min(34rem, 100%);
+        text-align: center;
+        animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+      }
+
+      .mark {
+        width: 76px;
+        height: 76px;
+        margin: 0 auto 2.25rem;
+        display: grid;
+        place-items: center;
+      }
+
+      .mark svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+
+      .mark .ring {
+        fill: none;
+        stroke: hsl(var(--h) 30% 70% / 0.18);
+        stroke-width: 1;
+      }
+
+      .mark .arc {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        transform-origin: 50% 50%;
+        animation: spin 3.6s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      }
+
+      .mark .core {
+        fill: var(--accent);
+        transform-origin: 50% 50%;
+        animation: pulse 3.6s ease-in-out infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.45;
+          transform: scale(0.82);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .eyebrow {
+        margin: 0 0 1.15rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.4rem 0.9rem;
+        border: 1px solid hsl(var(--h) 40% 60% / 0.22);
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.66rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(1.65rem, 5.5vw, 2.5rem);
+        font-weight: 600;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        text-wrap: balance;
+        background: linear-gradient(180deg, #fff, hsl(var(--h) 25% 78%));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      p.lede {
+        margin: 0 auto 2rem;
+        max-width: 27rem;
+        color: var(--muted);
+        font-size: clamp(0.9rem, 2.6vw, 1rem);
+        line-height: 1.85;
+        text-wrap: pretty;
+      }
+
+      .note {
+        margin: 0;
+        color: hsl(var(--h) 10% 55% / 0.75);
+        font-size: 0.78rem;
+        letter-spacing: 0.05em;
+      }
+
+      /* See index.html: browsers segment Thai by dictionary and will split a
+         short phrase mid-word, so the phrase gets pinned rather than the space. */
+      .nb {
+        white-space: nowrap;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48">
+          <circle class="ring" cx="24" cy="24" r="22" />
+          <circle class="ring" cx="24" cy="24" r="15" />
+          <path class="arc" d="M24 2a22 22 0 0 1 19.05 11" />
+          <path class="arc" d="M24 46a22 22 0 0 1-19.05-11" />
+          <circle class="core" cx="24" cy="24" r="4.5" />
+        </svg>
+      </div>
+
+      <p class="eyebrow">404</p>
+
+      <h1>ไม่พบหน้าที่ต้องการ</h1>
+
+      <p class="lede">เว็บไซต์นี้ยังอยู่ระหว่างการเตรียมความพร้อม จึงยังไม่มีหน้านี้ให้เข้าชม</p>
+
+      <p class="note"><span class="nb">แล้วพบกันเร็วๆ นี้</span></p>
+    </main>
+
+    <script>
+      // Kept in sync with index.html so a 404 does not flip to a different
+      // colour on the same domain. See the note there for why the hues are a
+      // fixed list instead of a raw hash.
+      (function () {
+        var hues = [38, 168, 205, 262, 340, 14];
+        var host = location.hostname || "";
+        var n = 7;
+        for (var i = 0; i < host.length; i++) {
+          n = (n * 31 + host.charCodeAt(i)) >>> 0;
+        }
+        document.documentElement.style.setProperty("--h", hues[n % hues.length]);
+      })();
+    </script>
+  </body>
+</html>
