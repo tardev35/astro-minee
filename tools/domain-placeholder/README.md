@@ -43,9 +43,11 @@ CSS/JS ฝังในไฟล์ทั้งหมด **ไม่มีรู�
 # 1. สลับบัญชี Cloudflare ให้ตรงกับบัญชีที่โดเมนอยู่ (ปุ่ม 🔑 ในการ์ด 7 ของ uploader)
 npx wrangler whoami
 
-# 2. ยิง placeholder ขึ้นไป
-npx wrangler deploy --name <brand-token> --config tools/domain-placeholder/wrangler.toml
+# 2. ยิง placeholder ขึ้นไป — ใช้ brand token ไม่ใช่ชื่อโดเมนเต็ม
+npx wrangler deploy --name yok789 --config tools/domain-placeholder/wrangler.toml
 ```
+
+> ชื่อ Worker ห้ามมีจุด ถ้าใส่ `okg777-brand.com` จะได้ `Invalid Worker name … [code: 10016]`
 
 > ถ้า wrangler ฟ้องว่าบัญชีมีหลายอัน ให้ระบุก่อน: `$env:CLOUDFLARE_ACCOUNT_ID = "<account id>"`
 

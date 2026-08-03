@@ -8,36 +8,36 @@ const { titleleft, titleright } = Astro.props;
 
 <section class="mx-auto mb-6 w-full max-w-7xl px-4 font-sans">
   <div
-    class="relative isolate w-full border border-[#ff3d9a]/25 bg-[#16050f]/92 p-8 text-[#fdeaf4] shadow-[0_10px_30px_rgba(255,61,154,0.16)] backdrop-blur-md transition-all duration-300 hover:border-[#ff3d9a]/50 hover:shadow-[0_15px_40px_rgba(255,61,154,0.26)]"
+    class="relative isolate w-full border border-[#d4a017]/25 bg-[#0b1408]/92 p-8 text-[#dfeacf] shadow-[0_10px_30px_rgba(212,160,23,0.16)] backdrop-blur-md transition-all duration-300 hover:border-[#d4a017]/50 hover:shadow-[0_15px_40px_rgba(212,160,23,0.26)]"
     style="clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);">
-    <div class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#ff3d9a] to-transparent"></div>
-    <div class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#22d3ee] to-transparent"></div>
-    <div class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#ff3d9a] to-transparent"></div>
-    <div class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#22d3ee] to-transparent"></div>
+    <div class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#d4a017] to-transparent"></div>
+    <div class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#a3e635] to-transparent"></div>
+    <div class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#d4a017] to-transparent"></div>
+    <div class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#a3e635] to-transparent"></div>
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdeaf4]">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#dfeacf]">
         {
           titleleft && (
-            <div class="flex items-baseline gap-2 border-b border-[#ff3d9a]/25 pb-2">
-              <span aria-hidden="true" class="font-mono text-[#22d3ee]">
+            <div class="flex items-baseline gap-2 border-b border-[#d4a017]/25 pb-2">
+              <span aria-hidden="true" class="font-mono text-[#a3e635]">
                 &gt;_
               </span>
-              <h2 class="text-xl leading-normal font-black text-[#ff3d9a] uppercase">{titleleft}</h2>
+              <h2 class="text-xl leading-normal font-black text-[#f5cf4d] uppercase">{titleleft}</h2>
             </div>
           )
         }
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdeaf4] md:border-l md:border-[#ff3d9a]/25 md:pl-8">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#dfeacf] md:border-l md:border-[#d4a017]/25 md:pl-8">
         {
           titleright && (
-            <div class="flex items-baseline gap-2 border-b border-[#ff3d9a]/25 pb-2">
-              <span aria-hidden="true" class="font-mono text-[#22d3ee]">
+            <div class="flex items-baseline gap-2 border-b border-[#d4a017]/25 pb-2">
+              <span aria-hidden="true" class="font-mono text-[#a3e635]">
                 &gt;_
               </span>
-              <h2 class="text-xl leading-normal font-black text-[#ff3d9a] uppercase">{titleright}</h2>
+              <h2 class="text-xl leading-normal font-black text-[#f5cf4d] uppercase">{titleright}</h2>
             </div>
           )
         }

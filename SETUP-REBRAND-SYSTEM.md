@@ -18,7 +18,8 @@
 
 | ของ | ค่า |
 |---|---|
-| โค้ดต้นทาง | `gitlab.com/tardev-group/astro-full-schema` branch `rebrand-ufayes-cf` |
+| ต้นแบบฉบับเบา (ที่ทุกคนโคลน) | `gitlab.com/tardev-group/astro-mean` branch `main` — **1 commit ~5 MB** |
+| ต้นแบบฉบับเต็ม (เจ้าของเท่านั้น) | `gitlab.com/tardev-group/astro-full-schema` branch `optimize-seo` |
 | repo ที่คุณทำงาน | `gitlab.com/tardev-group/astro-<ชื่อคุณ>` (คนละอันต่อคน) |
 | branch ที่ทำงาน | `main` |
 | หน้าเว็บ dev | http://localhost:8888 |
@@ -53,7 +54,11 @@
 ## โครงที่ใช้อยู่
 
 ```
-astro-full-schema / rebrand-ufayes-cf     ← ต้นแบบ มีคนเดียวที่แตะ
+astro-full-schema / optimize-seo          ← ต้นแบบฉบับเต็ม มีคนเดียวที่แตะ
+        │                                    (176 commit / 575 MB — ไม่ให้ใครโคลน)
+        │  ยุบเหลือ commit เดียว
+        ▼
+astro-mean / main                         ← ต้นแบบฉบับเบา 5 MB ที่ทุกคนโคลน
         │
         ├──> astro-bas    (บาส)
         ├──> astro-tud    (ตุ๊ด)
@@ -63,11 +68,95 @@ astro-full-schema / rebrand-ufayes-cf     ← ต้นแบบ มีคนเ
 **หนึ่งคน หนึ่ง repo** ทุก repo ปลายทางมี `main` เป็นสำเนาของต้นแบบ แล้วเจ้าตัวแตก branch
 ของตัวเองทำงานบนนั้น
 
-**เพื่อนไม่ต้องมีสิทธิ์เข้าถึง `astro-full-schema` เลยแม้แต่ครั้งเดียว** เขาเห็นแค่ repo
-ของตัวเอง — ขั้นตอนที่พลาดง่ายทั้งหมดอยู่ฝั่งคุณ ทำครั้งเดียวต่อคน
-
 > **ทำไมยังต้องมีต้นแบบ ในเมื่อทุกคนมี repo ของตัวเอง** — เพราะมันเป็นที่เดียวที่รวมงาน
 > จากทุกคนแล้วส่งกลับให้ทุกคนได้ ถ้าไม่มีจุดรวม สิ่งที่ตุ๊ดแก้จะไม่มีทางไปถึงอ้อยเลย
+
+> **ทำไมมีต้นแบบสองชั้น** — ทุกครั้งที่รีแบรนด์ รูป banner/slide ชุดใหม่ ~3 MB ถูกคอมมิตลง
+> ประวัติและอยู่ที่นั่นตลอดไป ผ่านมา ~30 แบรนด์ ประวัติจึงหนัก **575 MB เพื่อไฟล์จริง 6 MB**
+> มีคนโคลนแล้วรอ **30 นาที** `astro-mean` คือ tree เดียวกันเป๊ะแต่ตัดประวัติทิ้ง เหลือ 5 MB
+> โคลนเสร็จในไม่กี่วินาที
+
+---
+
+## เลือกทางก่อน — เพื่อนได้โค้ดไปยังไง มี 2 แบบ
+
+|  | **ทาง 1 — เพื่อนโคลนเอง** | **ทาง 2 — คุณยกให้** |
+|---|---|---|
+| เหมาะกับ | สาย dev / คนที่ใช้ git เป็น | สายคอนเทนต์ ที่ไม่อยากยุ่งกับ git |
+| เพื่อนต้องทำ | โคลน `astro-mean` แล้วตั้ง remote เอง 4 คำสั่ง | โคลน repo ตัวเองบรรทัดเดียว |
+| คุณต้องทำต่อคน | ไม่ต้องทำอะไรเลย | สร้าง repo + push ให้ 2 คำสั่ง |
+| เพื่อนต้องเข้าถึง `astro-mean` | ต้องได้ | ไม่ต้อง |
+| จุดที่พลาดง่าย | อยู่ฝั่งเพื่อน (ตั้ง remote ผิด → push ทับต้นแบบ) | อยู่ฝั่งคุณ |
+| อ่านต่อที่ | **A2ก** | **A1 → A2ข** |
+
+**ทั้งสองทางได้ไฟล์ชุดเดียวกันเป๊ะ** ต่างกันแค่ใครเป็นคนกดและใครรับความเสี่ยงที่จะพิมพ์ผิด
+เลือกทางไหนแล้วให้ใช้ทางนั้นกับ repo นั้นตลอด **อย่าสลับไปมา** — ทางที่ 2 ต้องการให้
+`main` ปลายทางเป็นกระจกเงาของต้นแบบ ถ้าเพื่อนเคยตั้ง remote เองมาก่อนแล้วคุณมายิงทับ
+คำสั่งจะถูกปฏิเสธ
+
+---
+
+## A2ก. ทาง 1 — ส่งให้เพื่อนโคลนเอง
+
+คุณทำแค่ **เชิญเขาเข้ากลุ่ม `tardev-group`** แล้วส่งบล็อกนี้ให้ (บอกให้เปลี่ยน `astro-tuch`
+เป็นชื่อตัวเอง):
+
+```bash
+# 1) สร้าง project เปล่าใน GitLab ชื่อ astro-tuch ก่อน
+#    ⚠️ ห้ามติ๊ก "Initialize repository with a README"
+
+# 2) โคลนต้นแบบ (~5 MB เสร็จในไม่กี่วินาที)
+git clone git@gitlab.com:tardev-group/astro-mean.git astro-tuch
+cd astro-tuch
+
+# 3) สลับ remote — ต้นแบบเป็น upstream, repo ตัวเองเป็น origin
+git remote rename origin upstream
+git remote add origin git@gitlab.com:tardev-group/astro-tuch.git
+git remote set-url --push upstream DISABLED
+
+# 4) ส่งขึ้น repo ตัวเอง
+git push -u origin main
+```
+
+เช็กว่าถูก:
+
+```bash
+git remote -v
+```
+
+```
+origin    git@gitlab.com:tardev-group/astro-tuch.git (fetch)
+origin    git@gitlab.com:tardev-group/astro-tuch.git (push)
+upstream  git@gitlab.com:tardev-group/astro-mean.git (fetch)
+upstream  DISABLED (push)
+```
+
+> 🚨 **บรรทัด `set-url --push upstream DISABLED` ห้ามข้าม** ทุกคนในกลุ่มมีสิทธิ์เขียน
+> `astro-mean` การเผลอพิมพ์ `git push upstream` ครั้งเดียวจะพาแบรนด์ของคนนั้นขึ้นไปเป็น
+> ต้นแบบให้คนที่โคลนทีหลังได้ไปทั้งกลุ่ม บรรทัดนี้ทำให้กลายเป็น error เฉยๆ
+> ส่วน `git fetch upstream` ยังใช้ได้ปกติ
+
+**เวลาต้นแบบมีของใหม่** — หยิบเฉพาะส่วนเครื่องมือ ไม่ merge ทั้งก้อน:
+
+```bash
+git fetch upstream
+git checkout upstream/main -- tools/ .claude/
+git commit -m "ดึงเครื่องมือจากต้นแบบ"
+```
+
+> **ทำไมไม่ `git merge upstream/main`** — เขารีแบรนด์ทับ `wrangler.toml` `astro.config.mjs`
+> `src/pages/` `src/assets/` ไปหมดแล้ว merge ทั้งก้อนจะชนทุกไฟล์ตรงนั้น คำสั่งข้างบนหยิบมา
+> เฉพาะโฟลเดอร์ที่ไม่มีใครแก้เอง ไม่มี conflict
+
+---
+
+# ทาง 2 — คุณยกให้ (A1 → A2ข)
+
+ส่วนที่เหลือของภาค A ทั้งหมดตั้งแต่ตรงนี้ลงไปคือ**ทางที่ 2** ถ้าใช้ทางที่ 1 ข้ามไป
+[ภาค B](#ภาค-b--ตั้งเครื่อง-dev-ทำทุกเครื่อง) ได้เลย
+
+**เพื่อนไม่ต้องมีสิทธิ์เข้าถึงต้นแบบเลยแม้แต่ครั้งเดียว** เขาเห็นแค่ repo ของตัวเอง —
+ขั้นตอนที่พลาดง่ายทั้งหมดอยู่ฝั่งคุณ ทำครั้งเดียวต่อคน
 
 ---
 
@@ -85,7 +174,7 @@ GitLab → **New project** → **Create blank project**
 จากนั้น **Manage → Members → Invite members** เชิญเจ้าตัวเข้ามา ให้สิทธิ์ **Developer**
 (push branch ตัวเองได้ แต่แตะ `main` ที่ถูก protect ไม่ได้ — ซึ่งเป็นสิ่งที่เราต้องการพอดี)
 
-## A2. ยกโค้ดขึ้น repo นั้น — 2 คำสั่ง
+## A2ข. ยกโค้ดขึ้น repo นั้น — 2 คำสั่ง
 
 ทำจาก**โฟลเดอร์ต้นแบบ** คือโฟลเดอร์ `astro-full-schema` ในเครื่องคุณ
 
@@ -96,7 +185,7 @@ GitLab → **New project** → **Create blank project**
 cd $HOME\Desktop        # แค่บอกว่าจะให้โฟลเดอร์ไปโผล่ที่ไหน
 git clone git@gitlab.com:tardev-group/astro-full-schema.git
 cd astro-full-schema
-git switch rebrand-ufayes-cf
+git switch optimize-seo
 ```
 
 > `clone` กับ `pull` ไม่ใช่ตัวเดียวกัน — `clone` ใช้ตอน**ยังไม่มีโค้ดในเครื่องเลย**
@@ -108,7 +197,7 @@ git switch rebrand-ufayes-cf
 
 ```powershell
 cd path\ไปยัง\astro-full-schema
-git switch rebrand-ufayes-cf
+git switch optimize-seo
 git pull
 ```
 
@@ -119,10 +208,18 @@ git pull
 git remote add tud git@gitlab.com:tardev-group/astro-tud.git
 
 # 2) ส่งขึ้นไปโดยใช้ชื่อ main บนนั้น
-git push tud rebrand-ufayes-cf:main
+git push tud mean-template:main
 ```
 
 จบ — เพื่อน clone ได้เลย
+
+> 🪶 **ส่ง `mean-template` ไม่ใช่ `optimize-seo`** ทั้งที่ไฟล์ชุดเดียวกัน — `mean-template`
+> คือ commit เดียวที่ไม่มีพ่อแม่ ยกไป **~6 MB** ส่วน `optimize-seo` ลากประวัติ 176 commit
+> ไปด้วย **575 MB** ปลายทางได้ไฟล์เหมือนกันเป๊ะทั้งคู่ ต่างกันแค่เวลารอ
+>
+> **`mean-template` คือ branch เดียวกับที่ push ขึ้น `astro-mean`** เวลาอัปเดตต้นแบบให้ทีม
+> ให้คอมมิตทับบน branch นี้แล้ว `git push mean mean-template:main` — **ห้าม force**
+> ไม่งั้นทุกคนที่โคลนไปแล้วต้อง `git reset --hard` ตามทั้งหมด
 
 > **`tud` เป็นชื่อเล่นที่คุณตั้งเอง** อยู่แค่ในไฟล์ `.git/config` ของโฟลเดอร์นี้
 > GitLab ไม่รู้จักชื่อนี้ ส่วนที่เป็นของจริงคือ URL ตั้งชื่อให้รู้ว่าใครเป็นใคร
@@ -131,7 +228,7 @@ git push tud rebrand-ufayes-cf:main
 > 🚨 **`:main` ท้ายคำสั่งคือหัวใจ ห้ามตกหล่น** แปลว่า "เอา branch ในเครื่องชื่อนี้
 > ขึ้นไปใช้ชื่อ `main` บน remote" — ชื่อสองฝั่งไม่จำเป็นต้องตรงกัน
 >
-> **ถ้าลืมใส่** branch จะไปโผล่ชื่อ `rebrand-ufayes-cf` และเพราะเป็น branch แรกของ repo
+> **ถ้าลืมใส่** branch จะไปโผล่ชื่อ `mean-template` และเพราะเป็น branch แรกของ repo
 > เปล่า มันจะกลายเป็น default branch อัตโนมัติ + ถูก GitLab ป้องกันทันที การจะแก้ทีหลัง
 > ต้องไล่เปลี่ยน default → ปลด protection → ลบ branch เก่า สามขั้นในหน้าเว็บ
 > **เคยพลาดมาแล้วกับ `astro-bas`**
@@ -140,8 +237,8 @@ git push tud rebrand-ufayes-cf:main
 > ทั้งที่โฟลเดอร์นี้ผูกหลาย repo — สั่งชื่อ remote ตรงๆ ทุกครั้งปลอดภัยกว่า
 
 > **ทำไมเปลี่ยนชื่อเป็น `main`** — ใน repo ของเขา โค้ดชุดนี้*คือ*ตัวหลัก ไม่ใช่ branch ทดลอง
-> การคง `rebrand-ufayes-cf` ไว้เป็นแกนจะทำให้เขาเข้าใจผิดว่านี่คืองานของแบรนด์ UFAYES
-> — ทั้งที่มันคือระบบกลาง
+> การคงชื่อ `mean-template` ไว้เป็นแกนจะทำให้เขาเข้าใจผิดว่าเป็น branch ชั่วคราวที่ห้ามแตะ
+> — ทั้งที่มันคือฐานที่เขาจะทำงานทับ
 
 ## A3. ส่งอะไรให้เพื่อน
 
@@ -153,29 +250,33 @@ git clone git@gitlab.com:tardev-group/astro-tud.git
 > แล้วอ่าน `SETUP-REBRAND-SYSTEM.md` ในโฟลเดอร์ เริ่มที่ **ภาค B** (ข้ามภาค A)
 
 เขาจะได้ `main` เป็น default, `git push` เฉยๆ ใช้ได้ทันที ไม่ต้อง `switch` ไม่ต้องรู้จัก
-คำว่า `rebrand-ufayes-cf` ด้วยซ้ำ
+คำว่า `mean-template` ด้วยซ้ำ
 
-**⚠️ อย่าส่งคำสั่งของภาค A ให้เพื่อนรัน** — คำสั่งอย่าง `git push tud rebrand-ufayes-cf:main`
+**⚠️ อย่าส่งคำสั่งของภาค A ให้เพื่อนรัน** — คำสั่งอย่าง `git push tud mean-template:main`
 ใช้ได้เฉพาะโฟลเดอร์ต้นแบบ เพราะเครื่องเขาไม่มีทั้ง remote ชื่อ `tud` และ branch ชื่อ
-`rebrand-ufayes-cf` จะขึ้น `src refspec ... does not match any` **เคยพลาดมาแล้ว**
+`mean-template` จะขึ้น `src refspec ... does not match any` **เคยพลาดมาแล้ว**
 
 | | โฟลเดอร์ต้นแบบ (คุณ) | เครื่องเพื่อน |
 |---|---|---|
-| remote | `origin` = astro-full-schema, `tud`/`aoy`/`bas` = ของแต่ละคน | `origin` = repo ตัวเองอันเดียว |
-| branch | `rebrand-ufayes-cf` | `main` |
+| remote | `origin` = astro-full-schema, `mean` = astro-mean, `tud`/`aoy`/`bas` = ของแต่ละคน | `origin` = repo ตัวเองอันเดียว |
+| branch | `optimize-seo` (ที่ทำงาน) + `mean-template` (ที่ส่งออก) | `main` |
 | ทิศทาง | ส่งออก | รับเข้า + push branch ตัวเอง |
 
 ## A4. เวลาต้นแบบมีของใหม่ → กระจายออก
 
 ```powershell
-git push bas rebrand-ufayes-cf:main
-git push dev rebrand-ufayes-cf:main
-git push tud rebrand-ufayes-cf:main
-git push aoy rebrand-ufayes-cf:main
+git push mean mean-template:main     # ต้นแบบฉบับเบา (คนที่โคลนเองดึงจากที่นี่)
+git push bas  mean-template:main
+git push dev  mean-template:main
+git push tud  mean-template:main
+git push aoy  mean-template:main
 ```
 
 `git remote add` ทำครั้งเดียวตอนเปิด repo ครั้งต่อๆ ไปเหลือแค่บรรทัด `push`
 เพื่อนแต่ละคนแค่ `git switch main` แล้ว `git pull`
+
+> **ก่อนกระจาย ต้องอัปเดต `mean-template` ให้ตรงกับงานล่าสุดก่อน** มันไม่ขยับตาม
+> `optimize-seo` ให้เอง — เป็นคนละสายประวัติกันโดยตั้งใจ วิธีอัปเดตอยู่ใน **A6**
 
 > ⚠️ **`astro-dev` ยังใช้บรรทัดข้างบนไม่ได้ (สถานะ ณ 28 ก.ค.)** มันแตกเป็นคนละสายไปตั้งแต่
 > **25 ก.ค.** (`d12ac16`) แล้วเดินต่อด้วยรีแบรนด์ของตัวเองซ้อนกันหลายชั้นบน `main`
@@ -219,7 +320,7 @@ branch ของ dev  →  [A5] เข้าต้นแบบ  →  [A4] กร
 
 ```powershell
 git fetch tud
-git log --format="%h  %an  %ar%n    %s" rebrand-ufayes-cf..tud/main
+git log --format="%h  %an  %ar%n    %s" mean-template..tud/main
 ```
 
 แล้วดึงกลับเข้าต้นแบบตาม **A5** — เสร็จแล้วคำสั่งกระจายจะผ่านเอง
@@ -273,12 +374,13 @@ git branch -D tmp-ยกของ
 ```powershell
 # ในโฟลเดอร์ต้นแบบ
 git fetch tud
-git switch rebrand-ufayes-cf
+git switch optimize-seo
 git merge tud/ชื่อ-branch-ของเขา     # แก้ conflict ถ้ามี
-git push origin rebrand-ufayes-cf     # เข้าต้นแบบก่อน
+git push origin optimize-seo          # เข้าต้นแบบฉบับเต็มก่อน
 ```
 
-แล้วค่อยกระจายออกทุกคนตาม **A4** — จากนั้นลบ branch ของเขาทิ้งได้
+แล้ว **A6** เพื่อยกลง `mean-template` จากนั้นค่อยกระจายออกทุกคนตาม **A4** —
+เสร็จแล้วลบ branch ของเขาทิ้งได้
 
 ```powershell
 git push tud --delete ชื่อ-branch-ของเขา
@@ -288,6 +390,45 @@ git push tud --delete ชื่อ-branch-ของเขา
 > เครื่องตัวเอง เช่นเปลี่ยนพอร์ตเพราะพอร์ตเดิมชนกับโปรแกรมอื่น — แบบนั้นให้เก็บไว้ใน
 > repo ของเขาเอง อย่าลากทุกคนไปด้วย
 
+## A6. อัปเดต `mean-template` ให้ตรงกับต้นแบบ (ทำก่อน A4 ทุกครั้ง)
+
+`mean-template` เป็น**คนละสายประวัติ**กับ `optimize-seo` โดยตั้งใจ (มันเริ่มจาก commit
+ที่ไม่มีพ่อแม่) มันจึงไม่ขยับตามให้เอง ต้องยกเนื้อไฟล์ข้ามมาเอง
+
+รันจากโฟลเดอร์ต้นแบบ **ไม่ต้องสลับ branch ไม่แตะไฟล์ในโฟลเดอร์เลย** — ทำงานผ่าน index
+ชั่วคราว จึงรันได้แม้กำลังแก้อะไรค้างอยู่:
+
+```powershell
+$env:GIT_INDEX_FILE = "$env:TEMP\tpl-index"
+git read-tree optimize-seo
+git rm --cached -q src/assets/banner.png src/assets/banner2.png src/assets/banner3.png
+$tree = (git write-tree).Trim()
+Remove-Item Env:\GIT_INDEX_FILE
+Remove-Item "$env:TEMP\tpl-index"
+
+$commit = (git commit-tree $tree -p (git rev-parse mean-template) -m "Sync template with optimize-seo").Trim()
+git branch -f mean-template $commit
+```
+
+เช็กก่อน push ว่าได้ของถูก:
+
+```powershell
+git diff-tree -r --name-status optimize-seo mean-template   # ต้องเห็นแค่ banner 3 ไฟล์
+git status --short                                          # ต้องไม่มีอะไรงอกจากคำสั่งข้างบน
+```
+
+แล้วค่อยกระจายตาม **A4**
+
+> **บรรทัด `git rm --cached` คือส่วนที่ต้องอ่าน** — `banner.png` `banner2.png` `banner3.png`
+> เป็นอาร์ตเวิร์กของแบรนด์เก่าที่ไม่มีโค้ดไหน import แล้ว ตั้งแต่ `MainLayout` แคบ glob
+> เหลือ `banner1.*` รวม **3 MB** ที่ต้นแบบไม่ควรแจกต่อ ถ้ามีไฟล์ตายเพิ่มในอนาคตให้เติม
+> ชื่อในบรรทัดนี้
+>
+> **`-p (git rev-parse mean-template)` คือสิ่งที่ทำให้ push แบบไม่ต้อง force** commit ใหม่
+> ต่อท้ายของเดิมเป็นสายเดียวกัน ทุกคนที่โคลนไปแล้วจึง `git pull` ได้ตามปกติ
+> **ถ้าตัดตัวนี้ออกจะกลายเป็นสายใหม่ทั้งเส้น** แล้วทุกคนต้อง `git reset --hard` ตามกันหมด
+
+---
 
 # ภาค B — ตั้งเครื่อง dev (ทำทุกเครื่อง)
 
@@ -320,6 +461,55 @@ curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd
 claude --version
 ```
 
+ขึ้นเลขเวอร์ชัน = ผ่าน ข้ามไปหัวข้อถัดไปได้เลย
+
+<details>
+<summary><b>ขึ้น <code>claude ... is not recognized</code> ทั้งที่ลงไปแล้ว — กดอ่านตรงนี้</b></summary>
+
+ไฟล์ลงแล้วแต่ Windows หาไม่เจอ บางเครื่องตัวติดตั้งบอกตรงๆ ว่า
+`Native installation exists but C:\Users\<ชื่อ>\.local\bin is not in your PATH`
+
+**① เช็กก่อนว่าไฟล์อยู่จริงไหม** (แทน `<ชื่อ>` ด้วยชื่อผู้ใช้ Windows ของเครื่องนั้น):
+
+```powershell
+Test-Path C:\Users\<ชื่อ>\.local\bin\claude.exe
+```
+
+- `False` → ยังไม่ได้ติดตั้งจริง ย้อนขึ้นไปรันคำสั่งติดตั้งใน **cmd.exe**
+- `True` → PATH ไม่ติด ทำข้อ ②
+
+**② แก้ PATH ถาวร** — วางทั้ง 4 บรรทัดใน PowerShell:
+
+```powershell
+$new = 'C:\Users\<ชื่อ>\.local\bin'
+$p = [Environment]::GetEnvironmentVariable('Path','User')
+if (-not $p) { $p = '' }
+if ($p -notlike "*$new*") { [Environment]::SetEnvironmentVariable('Path', ($p.TrimEnd(';') + ';' + $new), 'User') }
+```
+
+> ⚠️ **อย่าใช้ `setx PATH "%PATH%;..."`** ที่หาเจอตามเน็ต — `%PATH%` รวม PATH ของระบบมาด้วย
+> แล้วไปก๊อปยัดใน PATH ส่วนตัว และ `setx` ตัดทิ้งทุกอย่างที่เกิน 1024 ตัวอักษร PATH ที่ยาว
+> อยู่แล้วจะหายไปเงียบๆ กู้คืนยาก คำสั่งข้างบนแตะแค่ PATH ส่วนตัวและไม่มีลิมิตนั้น
+
+**③ ปิดหน้าต่างทุกบานแล้วเปิดใหม่** — จุดที่คนติดกันมากที่สุด หน้าต่างที่เปิดค้างอยู่อ่าน
+PATH ไปตั้งแต่ตอนเปิดแล้ว แก้ทีหลังเท่าไหร่มันก็ไม่เห็น **รวมหน้าต่างที่รัน uploader ค้างไว้ด้วย**
+
+อยากใช้ในหน้าต่างเดิมเลยโดยไม่ปิด:
+
+```powershell
+$env:Path += ';C:\Users\<ชื่อ>\.local\bin'
+```
+
+**ทางลัดถ้า PATH ยังดื้อ** — บอกพาธให้ uploader ตรงๆ แล้วเปิด uploader **จากหน้าต่างเดียวกันนั้น**
+(ตัวแปรมีผลเฉพาะหน้าต่างนั้น ดับเบิลคลิก `start-uploader.cmd` จะไม่ได้ค่านี้):
+
+```powershell
+$env:CLAUDE_BIN = 'C:\Users\<ชื่อ>\.local\bin\claude.exe'
+npm run rebrand:upload
+```
+
+</details>
+
 ### login ให้เรียบร้อย — ข้อที่คนลืมบ่อยที่สุด
 
 ```powershell
@@ -349,7 +539,8 @@ ssh -T git@gitlab.com
 
 ## B4. โคลนโค้ด
 
-ใช้ URL ของ **repo ตัวเอง** ที่ได้รับมา (เช่น `astro-tud`) — ไม่ใช่ `astro-full-schema`
+**ถ้าหัวหน้ายกโค้ดขึ้น repo ให้แล้ว (ทาง 2)** — ใช้ URL ของ **repo ตัวเอง** ที่ได้รับมา
+(เช่น `astro-tud`) ไม่ใช่ `astro-full-schema` และไม่ใช่ `astro-mean`
 
 ```powershell
 cd $HOME\Desktop
@@ -357,11 +548,21 @@ git clone git@gitlab.com:tardev-group/astro-<ชื่อคุณ>.git
 cd astro-<ชื่อคุณ>
 ```
 
+**ถ้าให้โคลนต้นแบบเอง (ทาง 1)** — ทำตาม [A2ก](#a2ก-ทาง-1--ส่งให้เพื่อนโคลนเอง) แทน
+มี 4 คำสั่งตั้ง remote ต่อท้ายด้วย **อย่าหยุดแค่ `git clone`** ไม่งั้น `git push` จะวิ่งไป
+ทับต้นแบบของทั้งกลุ่ม
+
 `clone` สร้างโฟลเดอร์ให้เอง ไม่ต้องสร้างรอไว้ก่อน
+
+โหลด ~5 MB เสร็จในไม่กี่วินาที **ถ้าขึ้นเป็นร้อย MB แล้วรอเป็นสิบนาที แปลว่าโคลนผิด repo**
+กด Ctrl+C ทิ้งแล้วดูชื่อให้ดี
 
 > **ไม่ต้อง `git switch` อะไรทั้งนั้น** — repo ของคุณมี `main` เป็น branch หลักอยู่แล้ว
 > และ `git push` เฉยๆ ใช้ได้ตั้งแต่วินาทีแรก ถ้าเห็นคู่มือเก่าบอกให้สลับไป
 > `rebrand-ufayes-cf` แปลว่าอ่านผิดไฟล์
+
+> **`git log --oneline` ขึ้น commit เดียว = ปกติ ไม่ใช่ของหาย** ต้นแบบถูกยุบประวัติทิ้ง
+> โดยตั้งใจ เพราะประวัติเก่าคือรูปของแบรนด์ที่เลิกใช้แล้วรวม 575 MB
 
 ## B5. ติดตั้ง dependencies
 
@@ -511,6 +712,11 @@ $env:PORT=5555; npm run rebrand:upload
 | อาการ | สาเหตุ | แก้ |
 |---|---|---|
 | `claude` ไม่รู้จักคำสั่ง | ยังไม่เปิดหน้าต่างใหม่หลังติดตั้ง | ปิด PowerShell แล้วเปิดใหม่ |
+| ปิด-เปิดหน้าต่างแล้วยัง `claude` ไม่รู้จัก | ไฟล์ลงแล้วแต่ไม่อยู่ใน PATH | กล่องพับใน **B2** — เช็ก `Test-Path` แล้วเติม PATH ถาวร |
+| `ไม่พบคำสั่ง claude` ขึ้นในหน้า uploader ทั้งที่ `claude --version` ในหน้าต่างอื่นได้ | uploader จำ PATH ตอนที่มันถูกเปิด | `Ctrl+C` ปิด uploader แล้ว `npm run rebrand:upload` ใหม่ |
+| กดสลับบัญชี CF แล้วไม่เด้งหน้า login | **ไม่ใช่บั๊ก** ระบบตั้งใจไม่เปิดเบราว์เซอร์ให้ | รอสถานะขึ้น "รออนุญาตในเบราว์เซอร์..." แล้ว**กดลิงก์ในการ์ด** หรือทำ `npx wrangler login` เองในหน้าต่างแยก |
+| กดสลับบัญชี CF ระหว่าง rebrand รันอยู่ | ระบบบล็อกไว้ — ขั้นเลือกบัญชีเขียนทับ `wrangler.toml` ที่ rebrand กำลังแก้ | รอ rebrand จบก่อน · ระหว่างรอ `npx wrangler login` ในหน้าต่างแยกได้ (ไม่แตะไฟล์ใน repo) |
+| clone นาน 30 นาที / โหลดเป็นร้อย MB | โคลนผิด repo ไปโดน `astro-full-schema` | ต้นแบบคือ `astro-mean` ~5 MB (**B4**) |
 | กด "เริ่ม Rebrand" แล้วค้างเงียบ | ยังไม่ได้ `claude` login | ทำ B2 ให้จบ แล้วกด 🧪 ทดสอบท่อ |
 | `npm install` ล้มที่ `sharp` | Node เก่าเกินไป | ลง Node LTS ใหม่ |
 | อัปโหลดรูปแล้วขึ้น error เขียนไฟล์ไม่ได้ | `npm run dev` เปิดค้างอยู่ จับไฟล์ไว้ | `Ctrl+C` ปิด dev server ก่อนอัปโหลด |
@@ -539,10 +745,20 @@ git config --global user.name "ชื่อจริง"
 git config --global user.email "อีเมล GitLab"
 ssh -T git@gitlab.com
 
-# --- ตั้ง repo ---
+# --- ตั้ง repo: ทาง 2 (หัวหน้ายกให้แล้ว) ---
 cd $HOME\Desktop
 git clone git@gitlab.com:tardev-group/astro-<ชื่อคุณ>.git
 cd astro-<ชื่อคุณ>
+
+# --- หรือ ทาง 1 (โคลนต้นแบบเอง) — สร้าง project เปล่าใน GitLab ก่อน ---
+# cd $HOME\Desktop
+# git clone git@gitlab.com:tardev-group/astro-mean.git astro-<ชื่อคุณ>
+# cd astro-<ชื่อคุณ>
+# git remote rename origin upstream
+# git remote add origin git@gitlab.com:tardev-group/astro-<ชื่อคุณ>.git
+# git remote set-url --push upstream DISABLED
+# git push -u origin main
+
 npm install
 npx wrangler login       # ข้ามได้ถ้าไม่ deploy จากเครื่องนี้
 npx wrangler whoami

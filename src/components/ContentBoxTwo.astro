@@ -6,20 +6,16 @@ export interface Props {
 }
 const { titleleft, titleright, label } = Astro.props;
 
-// Both column titles are deliberately <p>, not headings: they label UI panels
-// (a login form, a reference table), not docx sections, so promoting them would
-// add heading levels the brief never asked for. The section carries its own
-// accessible name instead, which is what `label` is for.
 const sectionLabel = label ?? titleleft ?? titleright ?? "ข้อมูลประกอบ";
 ---
 
 <section aria-label={sectionLabel} class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
-    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f4e3c8]">
+    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#dfeacf]">
       {
         titleleft && (
-          <p class="flex items-center gap-3 border-b border-[#e8b43a]/25 pb-3 text-xl leading-normal font-black tracking-widest text-[#e8b43a] uppercase">
-            <span aria-hidden="true" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#e8b43a]/40 bg-gradient-to-br from-[#f7d97a] via-[#e8b43a] to-[#a9741c] text-sm text-[#1a1206] shadow-[0_5px_15px_rgba(232,180,58,0.3)]">
+          <p class="flex items-center gap-3 border-b border-[#d4a017]/25 pb-3 text-xl leading-normal font-black tracking-widest text-[#d4a017] uppercase">
+            <span aria-hidden="true" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#d4a017]/40 bg-gradient-to-br from-[#f5cf4d] via-[#d4a017] to-[#9a7112] text-sm text-[#0f1a06] shadow-[0_5px_15px_rgba(212,160,23,0.3)]">
               🔐
             </span>
             {titleleft}
@@ -29,11 +25,11 @@ const sectionLabel = label ?? titleleft ?? titleright ?? "ข้อมูลป�
       <slot name="left" />
     </article>
 
-    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f4e3c8]">
+    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#dfeacf]">
       {
         titleright && (
-          <p class="flex items-center gap-3 border-b border-[#e8b43a]/25 pb-3 text-xl leading-normal font-black tracking-widest text-[#e8b43a] uppercase">
-            <span aria-hidden="true" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#a55a22]/50 bg-gradient-to-br from-[#e0b98a] via-[#a55a22] to-[#8a5a28] text-sm text-[#1a1206] shadow-[0_5px_15px_rgba(165,90,34,0.4)]">
+          <p class="flex items-center gap-3 border-b border-[#d4a017]/25 pb-3 text-xl leading-normal font-black tracking-widest text-[#d4a017] uppercase">
+            <span aria-hidden="true" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#4d7c0f]/50 bg-gradient-to-br from-[#a3e635] via-[#4d7c0f] to-[#3f6212] text-sm text-[#0f1a06] shadow-[0_5px_15px_rgba(163,230,53,0.35)]">
               🎰
             </span>
             {titleright}

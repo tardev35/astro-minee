@@ -3247,3 +3247,132 @@ grep ทั้ง src/ แล้วเจอแค่ในตัวไฟล์
   ใน public/) ไม่ได้ลบ ตามธรรมเนียมของรีโปนี้ — หมายเหตุว่า glob ของ banner ยัง
   process ไฟล์เก่าเหล่านี้เข้า dist อยู่ ซึ่งเป็นเรื่องค้างเดิม ไม่ได้แก้รอบนี้
 - prettier ในรีโปมี drift อยู่ก่อนแล้วทั้งไฟล์ที่แตะและไม่ได้แตะ ไม่ได้ไล่จัดใหม่
+
+## 2026-08-03 — รีแบรนด์ MIRACLE55 → WINSIAM88 (สล็อต/คาสิโนสด/กีฬา, เขียวมรกต + ทองไทย บนดำอมเขียว)
+
+### เป้าหมาย
+
+รีแบรนด์และรีธีมทั้งเว็บจาก MIRACLE55 เป็น **WINSIAM88** พร้อมโดเมนจริง
+`https://winsiam88-homepage.com` สั่งงานมาแบบ "ทำแบบขนานตาม playbook —
+หยุดที่ build + verify เท่านั้น ห้าม deploy และห้าม git push" จึงรันเป็น
+3-agent ขนานตาม SKILL แล้วจบที่ Phase 6
+
+### อินพุตของแบรนด์
+
+- `src/assets/content.txt` (uploader แตกจาก docx ให้แล้ว) — H1 x1, H2 x11, **ไม่มี H3**
+- `palette.json`: logo vivid = ทองโอลีฟ #8b742a, banner1 vivid = เขียวชาร์ทรูส
+  #4b5b03 / #637503 / #748b04, slide1 dominant = เขียวเข้มเกือบดำ + เหลือง #feff04
+- อาร์ตเวิร์กจริง: โลโก้ตัวอักษรทองสลักลายไทย + มาสคอตยักษ์เขียว, แบนเนอร์พื้นดำ
+  มีสายพลังงานเขียวนีออน → สรุปเป็น **ทองเป็นสีหลัก เขียวมะนาว/มรกตเป็นสีรอง ไม่มีแดง
+  ไม่มีชมพู ไม่มีคอปเปอร์**
+
+### พาเลตต์ (เก่า → ใหม่)
+
+เนื้อความ #f4e3c8 → #dfeacf | ทองสว่าง #f7d97a → #f5cf4d | ทอง #e8b43a → #d4a017 |
+ทองเข้ม #a9741c → #9a7112 | คอปเปอร์ #a55a22 → เขียวเข้ม #4d7c0f |
+แทน #e0b98a → เขียวมะนาวเรือง #a3e635 | พื้นการ์ด #15110b → #0b1408 |
+hover #241a10 → #122010 | ตัวอักษรบนปุ่มทอง #1a1206 → #0f1a06 |
+พื้นหน้า #0a0806 → #0a1207 | glow rgba(232,180,58) → rgba(212,160,23) |
+accent glow rgba(165,90,34) → rgba(163,230,53)
+
+### การหมุน variant (ต้องต่างจากแบรนด์ก่อนหน้า)
+
+- **Navbar: NavbarPremium → NavbarCyber**
+- **Footer: FooterPremium → FooterCyber**
+- **Announcement: AnnouncementPremium → Announcement2**
+- **LatestWinners: LatestWinnersCyber → LatestWinners4**
+- **Faq: Faq2 → Faq3**
+- **ContentBox mix: Premium+Neumorphism+Special+plain → CyberCut+FloatingBadge+plain+Special**
+  (SevenThree: Premium+Neumorphism → CyberCut+FloatingBadge)
+- **BRAND_FONT: kanit → google-sans**
+- **BRAND_TEXT: #f4e3c8 → #dfeacf**
+
+ไม่มีตระกูลไหนที่ต้องใช้ variant ซ้ำกับ MIRACLE55 — หมุนครบทุกตระกูล
+ContentBoxPremium / ContentBoxNeumorphism กลับไปเป็น inventory
+
+### โครงงานขนาน
+
+- **P0/P1 (orchestrator)** — อ่าน docx + palette + รูป, เลือก variant, เขียน
+  brand spec ไว้นอกรีโป (`C:\Users\ASUS\Desktop\winsiam88-brand-spec.md` — วางนอก
+  รีโปเพราะ Tailwind สแกนไฟล์ .md ที่ root แล้วจะปั้นคลาสตายขึ้นมา) แล้วรีธีม
+  shared chrome เองก่อน fan-out: brandProfile.ts, astro.config.mjs, wrangler.toml,
+  public/site.webmanifest, MainLayout, NavbarCyber, FooterCyber, Navfoot,
+  ContentBox, ContentBoxCyberCut, Announcement2
+- **Agent A** — index.astro + component เฉพาะหน้าแรก 12 ตัว
+- **Agent B** — promotion, contact-us, ทางเข้า
+- **Agent C** — ทดลองเล่น, login, register, 404, terms, privacy
+
+ไม่มีไฟล์ไหนถูกแตะโดยสองเอเจนต์ ยืนยันจากรายงานทั้งสามที่ไม่ทับกันเลย
+
+### บั๊ก/กับดักที่เจอรอบนี้
+
+1. **description จาก docx ยาว 142 อักขระ — ต่ำกว่าพื้น 150 ของ verify-build.mjs
+   ซึ่งเป็น ERROR ไม่ใช่ warning** ถ้าปล่อยไปคือ build แดง ต่อท้ายเป็น 157 อักขระ
+   แล้วส่งข้อความแก้ให้ Agent A กลางทาง (MIRACLE55 ก็เจอเคสเดียวกันที่ 131)
+2. **NavbarCyber มี `<h1>` อยู่ในกิ่ง fallback ตอนไม่มีโลโก้** (ค้างจาก PABLO666)
+   navbar render ทุกหน้า ถ้ากิ่งนั้นทำงานคือ h1 ซ้อนกับ h1 ของเนื้อหา = build แดง
+   เปลี่ยนเป็น span ตามที่ NavbarPremium ทำอยู่แล้ว
+3. **NavbarCyber ประกาศเมนูซ้ำสองชุด (desktop + mobile) และไม่มีไอคอนเลย** ยุบเป็น
+   `links` const ตัวเดียวแล้วใส่ไอคอนตามกฎที่ตั้งไว้ 1 ส.ค. — ไอคอนเป็น span
+   `aria-hidden` แยกจาก label เสมอ ไม่เชื่อมเข้าไปในข้อความ
+4. **FooterCyber เป็นฟุตเตอร์พื้นไอวอรีสว่างของ WINUP888** ต้องเขียนใหม่เป็นเขียวเข้ม
+   ทั้งใบ ไม่ใช่แค่สลับเฉด และเติมลิงก์ ทดลองเล่น/ทางเข้า/ติดต่อเรา ที่ขาดไป
+5. **`public/slide3.webp` กับ `public/pro3.webp` เป็นอาร์ตเวิร์กของ "แบรนด์อื่น"
+   ที่ค้างอยู่บน path สาธารณะตายตัวมาตั้งแต่ commit 88f7db4** — slide3 เป็นภาพ
+   SUMOHENG ที่มีข้อความ SUMOHENG.COM พิมพ์อยู่บนรูป ส่วน pro3 เป็นภาพ VAR99
+   ไม่มีโค้ดไหนอ้างถึงทั้งคู่ แต่ทุก deploy มันขึ้นไปด้วย รวม 211 kB **ลบออกรอบนี้**
+   (entry ของ MIRACLE55 บันทึกไว้ว่ารู้แล้วแต่ยังไม่ได้ลบ — รอบนี้เคลียร์)
+6. `contact-line.webp` (8 เม.ย.) เป็นภาพพรีเซนเตอร์ชุดเลื่อม **ชมพู/มาเจนต้า** ที่
+   render อยู่กลางหน้า contact-us ซึ่งตอนนี้เป็นธีมเขียว-ทอง — ตัวไฟล์ไม่มีชื่อแบรนด์
+   ไหนอยู่และเป็น asset ถาวรของ template (ลงวันเดียวกับชุด gamedemo) uploader
+   ไม่เคยเขียนทับให้ จึงปล่อยไว้ ไม่มีอาร์ตเวิร์กใหม่มาแทน — ดูหัวข้อ out of scope
+
+### การ verify ที่ทำจริง
+
+- npm run build รอบเดียว — 10 หน้า build ผ่าน, verify-build.mjs **0 error 0 warning**
+- heading inventory หน้าแรก: **h1 x1, h2 x12, h3 x5** (11 หัวข้อจาก docx + หัวข้อ
+  ของ Faq3 = 12 ส่วน h3 คือคำถาม FAQ 5 ข้อ ตามข้อยกเว้นที่ SKILL อนุญาต) ไล่เทียบ
+  กับ checklist ทีละบรรทัด ตรงทั้งข้อความและลำดับ ครบทั้ง 12 หัวข้อ
+- route ที่ build ออกมาตรงกับชนิดแบรนด์: **ไม่มี /ตรวจหวย และ /แนวทาง** (แบรนด์สล็อต
+  ทั้งสองไฟล์ยังอยู่ใน src/pages-disabled/) และ grep dist ทั้งโฟลเดอร์หาลิงก์สองตัวนี้ = 0
+- grep dist/ หาชื่อแบรนด์เก่าทั้งหมด (MIRACLE55 / PRODED888 / TUNGMA168 / UFAG8 /
+  SUMOHENG / WINUP888 / PABLO666 / BRAZIL999 / VAR99) = **0**
+- grep dist/ หาเฉดทอง-คอปเปอร์เดิม (f4e3c8 f7d97a e8b43a a9741c a55a22 e0b98a
+  15110b 241a10) = **0**
+- HTML comment ในทุกหน้า dist = **0** (เช็กครบทั้ง 11 ไฟล์ ไม่ใช่แค่ index)
+- ไม่มี undefined / [object Object] หลุด — NaN ที่เจอเป็น `Number.isFinite` guard
+  ในบันเดิลของ winnersFeed.ts ไม่ใช่ prop ที่พัง
+- hero ชี้ `_astro/banner1.*` ไม่มี banner2/banner3/banner.png ถูก emit เข้า dist เลย
+- og:image = `https://winsiam88-homepage.com/_astro/og.*.jpeg` (ไม่ใช่ path ใน public/)
+- canonical ทุกหน้าอยู่บนโดเมนใหม่, robots.txt generate จาก site: ถูก, sitemap ชี้ถูก
+- **wrangler.toml name = winsiam88** (ไม่ซ้ำกับแบรนด์ไหน) — account_id ไม่แตะ
+- FAQ render ครบ 5 ข้อ เป็น details/summary ไม่มี script
+- LatestWinners4 server-render แถวแรกมาแล้ว 9 แถว, ไม่มี script ไร้ attribute ใน
+  หน้า indexable, ไม่มี define:vars ไม่มี Math.random ใน frontmatter
+- ความยาว description ทุกหน้า indexable อยู่ในช่วง 150–160 (157/154/158/156/157/
+  156/153/157) เหลือ 404 ที่ 127 ซึ่ง noindex จึงถูกยกเว้น
+- navbar: ไอคอนครบทั้ง 5 เมนู x 2 ชุด (desktop + mobile) = 10 คู่ ทุกคู่ไอคอนอยู่ใน
+  span `aria-hidden` แยกจาก label
+- FloatingBadge: badge มี width cap + จัดข้อความกึ่งกลาง ไม่มีคลาสห้ามตัดบรรทัด และการ์ด
+  จองที่บนไว้ 128px ส่วนขอบล่างของ badge ที่พันสามบรรทัดอยู่ราว 81px จากขอบบน — เหลือช่อง
+- _sources.generated.css กลับด้านถูกต้องตามการหมุน variant รอบนี้
+
+### ไม่ได้แตะ (out of scope)
+
+- **ไม่ได้ deploy ไม่ได้ commit ไม่ได้ push** ตามที่ผู้สั่งงานระบุชัดเจน
+  งานทั้งหมดยังเป็น working tree อยู่บน branch optimize-seo
+- component variant ที่ไม่ได้ import (Navbar/Footer/Announcement/Faq/LatestWinners/
+  ContentBox ตัวอื่น รวมถึง ContentBoxPremium กับ ContentBoxNeumorphism ที่เพิ่งถอด
+  ออกรอบนี้) ยังเป็นสีและชื่อแบรนด์เก่า — เป็น inventory สำหรับแบรนด์ถัดไป
+- `src/assets/banner.png banner2.png banner3.png` ยังอยู่ในโฟลเดอร์ แต่**ไม่ถูก
+  import แล้ว** ตั้งแต่ commit d1f3cf7 จึงไม่ขึ้น dist — ปล่อยไว้ตามธรรมเนียมรีโป
+- `slide2.png` / `slide3.png` ไม่ได้ใช้บนหน้าแรก (ไม่มี section ใน docx ที่ตรง และ
+  SevenThree จำกัด 2 บล็อก) แต่ยังขึ้นผ่าน SmoothCarousel และหน้า promotion
+- `contact-line.webp` ยังเป็นภาพโทนชมพูของ template — ชนกับพาเลตต์เขียว-ทอง
+  แต่ไม่มีชื่อแบรนด์อื่นติดมา และไม่มีอาร์ตเวิร์กใหม่มาแทน จึงไม่แตะ
+- `404.astro` ไม่แก้ ชื่อแบรนด์ 6 จุดในหน้านั้นมาจาก MainLayout/BRAND_NAME เองอยู่แล้ว
+  ส่วน max-w บนย่อหน้าเป็น measure cap ของหน้าที่จัดกึ่งกลาง ไม่ใช่เคสที่กฎ house style พูดถึง
+- `terms.astro` / `privacy.astro` แก้ 0 บรรทัด — ทุกคำที่เป็นชื่อแบรนด์มาจาก BRAND_NAME
+  บรรทัดเดียว และ privacy ยังตรงกับความจริงของ build (static ไม่มี analytics ไม่มี pixel)
+- `account_id` ใน wrangler.toml ไม่แตะตามกฎ
+- prettier drift ที่มีอยู่ก่อนแล้วไม่ได้ไล่จัดใหม่
