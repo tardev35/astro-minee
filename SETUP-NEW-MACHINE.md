@@ -24,7 +24,7 @@
 | repo ที่ทีม push ขึ้น | `gitlab.com/tardev-group/astro-bas` (remote ชื่อ `origin`) |
 | branch ที่ทำงาน | `uploader-phase2-fire-rebrand` |
 | หน้าเว็บ dev | http://localhost:8888 |
-| หน้า uploader | http://localhost:4444 |
+| หน้า uploader | http://localhost:5555 |
 
 ---
 
@@ -194,7 +194,7 @@ npm run dev
 
 ### 8.2 uploader + Claude ต่อกันได้ไหม
 ดับเบิลคลิกไฟล์ **`tools\rebrand-uploader\start-uploader.cmd`**
-(หรือพิมพ์ `npm run rebrand:upload` ก็ได้) → เบราว์เซอร์จะเปิด http://localhost:4444
+(หรือพิมพ์ `npm run rebrand:upload` ก็ได้) → เบราว์เซอร์จะเปิด http://localhost:5555
 
 เลื่อนลงไป **ส่วนที่ 6** แล้วกดปุ่ม **🧪 ทดสอบท่อ**
 
@@ -296,7 +296,7 @@ git merge upstream/uploader-phase2-fire-rebrand
 | clone แล้วขึ้น 404 / `repository not found` | ยังไม่ถูกเชิญเข้ากลุ่ม `tardev-group` → แจ้งแอดมิน |
 | clone แล้วขึ้น `Permission denied (publickey)` | ยังไม่ได้ใส่ SSH key ใน GitLab (ข้อ 3) |
 | `npm install` ล้ม ตอน build `sharp` | ลง Node.js เวอร์ชัน **LTS** (ไม่ใช่ตัว Current) แล้วลบโฟลเดอร์ `node_modules` ทิ้งแล้วรันใหม่ |
-| เปิด localhost:4444 ไม่ขึ้น | หน้าต่างดำถูกปิดไปแล้ว → ดับเบิลคลิก `start-uploader.cmd` ใหม่ |
+| เปิด localhost:5555 ไม่ขึ้น | หน้าต่างดำถูกปิดไปแล้ว → ดับเบิลคลิก `start-uploader.cmd` ใหม่ |
 
 ---
 
@@ -329,7 +329,7 @@ git push -u origin uploader-phase2-fire-rebrand
 
 # --- ทดสอบว่าพร้อม ---
 npm run dev                                 # localhost:8888 แล้ว Ctrl+C
-npm run rebrand:upload                      # localhost:4444 → ส่วนที่ 6 → กด 🧪 ทดสอบท่อ
+npm run rebrand:upload                      # localhost:5555 → ส่วนที่ 6 → กด 🧪 ทดสอบท่อ
 ```
 
 ---

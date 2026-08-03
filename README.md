@@ -179,7 +179,7 @@ npm run dev
 npm run rebrand:upload
 ```
 
-เปิดเบราว์เซอร์ไปที่ **http://localhost:4444** แล้วลากรูปเข้าไปตามช่อง
+เปิดเบราว์เซอร์ไปที่ **http://localhost:5555** แล้วลากรูปเข้าไปตามช่อง
 (เครื่องมือนี้จะตั้งชื่อไฟล์/นามสกุลให้ถูกอัตโนมัติ — **ควรใช้เสมอ** แทนการก๊อปไฟล์เข้า `src/assets` เอง)
 
 > ⚠️ **ปิดหน้าเว็บ localhost:8888 ก่อนอัปโหลด** — ถ้าเคยเปิดหน้าเว็บดูใน dev server
@@ -502,7 +502,7 @@ git remote -v                   # ต้องขึ้นชื่อ repo ข�
 # ทำงานประจำวัน
 npm install                     # ติดตั้ง (ครั้งแรกครั้งเดียว)
 npm run dev                     # เปิดดูเว็บที่ localhost:8888
-npm run rebrand:upload          # อัปโหลดรูปแบรนด์ที่ localhost:4444
+npm run rebrand:upload          # อัปโหลดรูปแบรนด์ที่ localhost:5555
 npm run build                   # build ตรวจว่าโค้ดสมบูรณ์
 git add . ; git commit -m "..." ; git push   # บันทึกขึ้น GitLab
 .\deploy.ps1 -Domain <โดเมน>    # เอาเว็บขึ้นจริง
