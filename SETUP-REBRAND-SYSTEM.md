@@ -3,16 +3,19 @@
 คู่มือนี้พาตั้งค่า **เครื่อง dev 1 เครื่อง** ตั้งแต่ยังไม่มีอะไรเลย จนถึงกดรีแบรนด์
 และกดขึ้นเว็บจริงบน Cloudflare ได้จากหน้าเว็บเดียว
 
-> 📌 **มี 3 คู่มือในโปรเจกต์นี้ อย่าสลับกัน**
+> 📌 **ลำดับการอ่านทั้งหมดอยู่ที่ [`README.md`](README.md) หัวข้อ 🚦** ถ้ายังไม่ได้อ่านตรงนั้น
+> ให้ไปอ่านก่อน จะได้รู้ว่าไฟล์นี้อยู่ตรงไหนของภาพรวม
 >
 > | ไฟล์ | ใช้เมื่อ |
 > |---|---|
-> | [`README.md`](README.md) | ทำงานรีแบรนด์รายแบรนด์ (1 repo ต่อ 1 แบรนด์) + คู่มือ Git |
+> | [`README.md`](README.md) | **จุดเริ่มต้นของทุกคน** — ลำดับการอ่าน + วิธีรีแบรนด์ + กฎเหล็ก |
+> | **ไฟล์นี้** | **ตั้งเครื่องใหม่จากศูนย์** (ภาค B) + เปิด repo ให้คนใหม่ (ภาค A) |
 > | [`DEPLOY-CLOUDFLARE.md`](DEPLOY-CLOUDFLARE.md) | เอาเว็บขึ้น Cloudflare + สลับบัญชี + แก้ปัญหา DNS |
-> | **ไฟล์นี้** | **ตั้งเครื่อง dev ใหม่ให้ใช้ระบบทั้งชุดได้** |
+> | [`CLAUDE.md`](CLAUDE.md) | สถาปัตยกรรมโปรเจกต์ (สาย dev) |
+> | [`.claude/skills/rebrand-site/SKILL.md`](.claude/skills/rebrand-site/SKILL.md) | ขั้นตอนที่ Claude ทำตามตอนรีแบรนด์ (สาย dev) |
 >
-> [`SETUP-NEW-MACHINE.md`](SETUP-NEW-MACHINE.md) เป็นรุ่นก่อนหน้าของไฟล์นี้
-> ชี้ไป branch เก่าที่ยังไม่มีส่วน Cloudflare — **ใช้ไฟล์นี้แทน**
+> ⛔ [`SETUP-NEW-MACHINE.md`](SETUP-NEW-MACHINE.md) เป็นรุ่นก่อนหน้าของไฟล์นี้
+> ชี้ไป repo กับ branch ที่เลิกใช้แล้ว — **อย่าใช้**
 
 **ปลายทางที่จะได้:**
 
@@ -98,43 +101,20 @@ astro-prototype / main                         ← ต้นแบบฉบั�
 
 ## A2ก. ทาง 1 — ส่งให้เพื่อนโคลนเอง
 
-คุณทำแค่ **เชิญเขาเข้ากลุ่ม `tardev-group`** แล้วส่งบล็อกนี้ให้ (บอกให้เปลี่ยน `astro-tuch`
-เป็นชื่อตัวเอง):
+**สิ่งที่คุณทำ ทำครั้งเดียวต่อคน:**
 
-```bash
-# 1) สร้าง project เปล่าใน GitLab ชื่อ astro-tuch ก่อน
-#    ⚠️ ห้ามติ๊ก "Initialize repository with a README"
+1. สร้าง project เปล่า `astro-<ชื่อคน>` ตาม [A1](#a1-สร้าง-project-เปล่าใน-gitlab) — **ห้ามติ๊ก Initialize with README**
+2. เชิญเจ้าตัวเข้ากลุ่ม `tardev-group` สิทธิ์ **Developer**
+3. บอกชื่อ repo ให้เขา แล้วให้ไปทำ **[ภาค B](#ภาค-b--ตั้งเครื่อง-dev-ทำทุกเครื่อง) ตั้งแต่ B1**
 
-# 2) โคลนต้นแบบ (~5 MB เสร็จในไม่กี่วินาที)
-git clone git@gitlab.com:tardev-group/astro-prototype.git astro-tuch
-cd astro-tuch
+จบ — ที่เหลือเขาทำเองทั้งหมด คุณไม่ต้อง push อะไรให้
 
-# 3) สลับ remote — ต้นแบบเป็น upstream, repo ตัวเองเป็น origin
-git remote rename origin upstream
-git remote add origin git@gitlab.com:tardev-group/astro-tuch.git
-git remote set-url --push upstream DISABLED
+> **คำสั่งโคลน + ตั้ง remote อยู่ที่ B4** ไม่เขียนซ้ำตรงนี้ เพราะเคยมีปัญหาว่าคนก็อป
+> จากภาค A ไปรัน แล้วข้าม B1–B3 ที่เป็นการลงโปรแกรมกับตั้ง SSH key
 
-# 4) ส่งขึ้น repo ตัวเอง
-git push -u origin main
-```
-
-เช็กว่าถูก:
-
-```bash
-git remote -v
-```
-
-```
-origin    git@gitlab.com:tardev-group/astro-tuch.git (fetch)
-origin    git@gitlab.com:tardev-group/astro-tuch.git (push)
-upstream  git@gitlab.com:tardev-group/astro-prototype.git (fetch)
-upstream  DISABLED (push)
-```
-
-> 🚨 **บรรทัด `set-url --push upstream DISABLED` ห้ามข้าม** ทุกคนในกลุ่มมีสิทธิ์เขียน
-> `astro-prototype` การเผลอพิมพ์ `git push upstream` ครั้งเดียวจะพาแบรนด์ของคนนั้นขึ้นไปเป็น
-> ต้นแบบให้คนที่โคลนทีหลังได้ไปทั้งกลุ่ม บรรทัดนี้ทำให้กลายเป็น error เฉยๆ
-> ส่วน `git fetch upstream` ยังใช้ได้ปกติ
+> 🚨 **สิ่งที่ต้องย้ำกับเขาให้ได้เรื่องเดียว: `git remote set-url --push upstream DISABLED`**
+> ทุกคนในกลุ่มมีสิทธิ์เขียน `astro-prototype` การเผลอพิมพ์ `git push upstream` ครั้งเดียว
+> จะพาแบรนด์ของคนนั้นขึ้นไปเป็นต้นแบบให้คนที่โคลนทีหลังได้ไปทั้งกลุ่ม
 
 > ⚠️ **ใครที่ตั้ง `upstream` ไว้เป็น `astro-mean` ตอนต้นเดือน ส.ค. ต้องเปลี่ยน** — repo นั้น
 > ถูกคืนให้เป็นที่ทำงานของแบรนด์ ไม่ใช่ต้นแบบแล้ว ถ้าไม่เปลี่ยน คำสั่งดึงเครื่องมือข้างล่าง
@@ -441,20 +421,35 @@ git status --short                                          # ต้องไม
 
 # ภาค B — ตั้งเครื่อง dev (ทำทุกเครื่อง)
 
-## B1. ติดตั้ง Node.js + Git
+> ทำไล่จาก **B1 ถึง B7 ตามลำดับ ห้ามข้าม** จบ B7 แล้วเครื่องพร้อมรีแบรนด์จริง
+> ถ้าติดตรงไหนดู [ภาค E](#ภาค-e--ปัญหาบ่อย) ก่อนถาม
 
-1. **Node.js** — https://nodejs.org เลือก **LTS** กด Next รวด
-2. **Git** — https://git-scm.com/download/win กด Next รวดตาม default
+## B1. ติดตั้งโปรแกรม 3 ตัว
+
+โหลดจากเว็บ กด Next รวดตาม default ได้ทั้งหมด
+
+| # | โปรแกรม | ลิงก์ | ใช้ทำอะไร |
+|---|---|---|---|
+| 1 | **Node.js** เลือกตัว **LTS** | https://nodejs.org | ตัวเว็บ + uploader (`sharp` ที่ย่อรูปต้องใช้ LTS ตัว Current พัง) |
+| 2 | **Git** | https://git-scm.com/download/win | เก็บงาน + รับของใหม่จากต้นแบบ |
+| 3 | **Python 3** ติ๊ก **Add python.exe to PATH** ในหน้าแรกของตัวติดตั้ง | https://www.python.org/downloads/ | ตัวสำรองตอนอ่าน `.docx` |
+
+> **Python จำเป็นแค่ไหน** — งานปกติไม่ใช้ เพราะ uploader แตกไฟล์ `.docx` เป็น `content.txt`
+> ให้แล้ว แต่ถ้าได้ `.docx` มาตรงๆ โดยไม่ผ่าน uploader Claude จะ unzip แล้วอ่านด้วย Python
+> ไม่มีก็ทำงานได้ **แต่จะติดตรงนั้นแบบงงๆ** ลงไว้ก่อนดีกว่า
 
 เช็ก (เปิด **PowerShell ใหม่** หลังติดตั้ง):
 
 ```powershell
-node --version    # ต้องได้ v20 ขึ้นไป (เครื่องที่พัฒนาใช้ v22)
+node --version      # ต้องได้ v20 ขึ้นไป (เครื่องที่พัฒนาใช้ v22)
 npm --version
 git --version
+python --version    # ต้องได้ 3.x
 ```
 
 > ⚠️ **ต้องเปิดหน้าต่างใหม่** โปรแกรมที่เพิ่งลงจะยังไม่อยู่ใน PATH ของหน้าต่างเก่า
+> ถ้า `python` ยังไม่รู้จักทั้งที่ลงแล้ว = ลืมติ๊ก **Add python.exe to PATH**
+> ให้รันตัวติดตั้งซ้ำ เลือก **Modify** แล้วติ๊กช่องนั้น
 
 ## B2. ติดตั้ง Claude Code CLI ⭐
 
@@ -533,44 +528,88 @@ claude
 
 ## B3. ตั้งชื่อ-อีเมล Git + SSH key
 
+**① บอก git ว่าคุณเป็นใคร** (ชื่อนี้จะติดไปกับทุก commit):
+
 ```powershell
 git config --global user.name "ชื่อจริง"
 git config --global user.email "อีเมลที่ใช้สมัคร GitLab"
+git config --global push.autoSetupRemote true
 ```
 
-ถ้ายังไม่เคยตั้ง SSH key ให้ทำตาม [README หัวข้อ 2](README.md) แล้วกลับมาต่อ
+**② สร้าง SSH key** — ยังไม่มีบัญชี GitLab ให้สมัครที่ https://gitlab.com ก่อน แล้วบอกหัวหน้า
+ให้เชิญเข้ากลุ่ม `tardev-group`
 
-เช็กว่า key ใช้ได้:
+```powershell
+ssh-keygen -t ed25519 -C "อีเมล GitLab"
+```
+
+กด **Enter รวด 3 ครั้ง** (ที่เก็บ default, ไม่ใส่รหัสผ่าน)
+
+**③ เอา key ไปใส่ใน GitLab**
+
+```powershell
+Get-Content $HOME\.ssh\id_ed25519.pub
+```
+
+คัดลอกทั้งบรรทัดที่ขึ้นมา → GitLab → คลิกรูปโปรไฟล์มุมขวาบน → **Edit profile** →
+**SSH Keys** (เมนูซ้าย) → **Add new key** → วาง → Add key
+
+**④ เช็กว่าใช้ได้จริง**
 
 ```powershell
 ssh -T git@gitlab.com
 ```
 
+ต้องขึ้น `Welcome to GitLab, @ชื่อคุณ!` — ถ้าขึ้น `Permission denied (publickey)` แปลว่า
+key ยังไม่เข้า ย้อนไปข้อ ③
+
+> ครั้งแรกจะถามว่า `Are you sure you want to continue connecting?` ให้พิมพ์ **yes**
+
 ## B4. โคลนโค้ด
 
-**ถ้าหัวหน้ายกโค้ดขึ้น repo ให้แล้ว (ทาง 2)** — ใช้ URL ของ **repo ตัวเอง** ที่ได้รับมา
-(เช่น `astro-tud`) ไม่ใช่ `astro-full-schema` และไม่ใช่ `astro-prototype`
+**หัวหน้าสร้าง repo ให้คุณแล้ว** ชื่อ `tardev-group/astro-<ชื่อคุณ>` — ถ้ายังไม่มี ทักขอก่อน
+อย่าไปสร้างเอง
+
+โคลน **ต้นแบบ** ลงมาแล้วเปลี่ยนปลายทางเป็น repo ของคุณ (แทน `astro-tuch` ด้วยชื่อตัวเอง
+ทั้ง 3 จุด):
 
 ```powershell
 cd $HOME\Desktop
-git clone git@gitlab.com:tardev-group/astro-<ชื่อคุณ>.git
-cd astro-<ชื่อคุณ>
+
+# ① โคลนต้นแบบ ~5 MB เสร็จในไม่กี่วินาที
+git clone git@gitlab.com:tardev-group/astro-prototype.git astro-tuch
+cd astro-tuch
+
+# ② ต้นแบบกลายเป็น upstream (ดึงอย่างเดียว) — repo ของคุณเป็น origin
+git remote rename origin upstream
+git remote add origin git@gitlab.com:tardev-group/astro-tuch.git
+git remote set-url --push upstream DISABLED
+
+# ③ ส่งขึ้น repo ตัวเอง
+git push -u origin main
 ```
 
-**ถ้าให้โคลนต้นแบบเอง (ทาง 1)** — ทำตาม [A2ก](#a2ก-ทาง-1--ส่งให้เพื่อนโคลนเอง) แทน
-มี 4 คำสั่งตั้ง remote ต่อท้ายด้วย **อย่าหยุดแค่ `git clone`** ไม่งั้น `git push` จะวิ่งไป
-ทับต้นแบบของทั้งกลุ่ม
+**เช็กก่อนไปต่อ — ข้อนี้พลาดแล้วเดือดร้อนทั้งกลุ่ม:**
 
-`clone` สร้างโฟลเดอร์ให้เอง ไม่ต้องสร้างรอไว้ก่อน
+```powershell
+git remote -v
+```
 
-โหลด ~5 MB เสร็จในไม่กี่วินาที **ถ้าขึ้นเป็นร้อย MB แล้วรอเป็นสิบนาที แปลว่าโคลนผิด repo**
-กด Ctrl+C ทิ้งแล้วดูชื่อให้ดี
+```
+origin    git@gitlab.com:tardev-group/astro-tuch.git (fetch)
+origin    git@gitlab.com:tardev-group/astro-tuch.git (push)      ← ของคุณ
+upstream  git@gitlab.com:tardev-group/astro-prototype.git (fetch)
+upstream  DISABLED (push)                                        ← ต้องเป็น DISABLED
+```
 
-> **ไม่ต้อง `git switch` อะไรทั้งนั้น** — repo ของคุณมี `main` เป็น branch หลักอยู่แล้ว
-> และ `git push` เฉยๆ ใช้ได้ตั้งแต่วินาทีแรก ถ้าเห็นคู่มือเก่าบอกให้สลับไป
-> `rebrand-ufayes-cf` แปลว่าอ่านผิดไฟล์
+> 🚨 **อย่าหยุดแค่ `git clone`** ถ้าไม่ทำข้อ ② ต่อ `git push` จะวิ่งไปทับ **ต้นแบบของทั้งกลุ่ม**
+> บรรทัด `set-url --push upstream DISABLED` ทำให้พิมพ์ผิดแล้วขึ้น error เฉยๆ แทนที่จะทับจริง
+> ส่วน `git fetch upstream` ยังใช้ได้ปกติ
 
-> **`git log --oneline` ขึ้น commit เดียว = ปกติ ไม่ใช่ของหาย** ต้นแบบถูกยุบประวัติทิ้ง
+> โหลดแล้วขึ้นเป็นร้อย MB รอเป็นสิบนาที = **โคลนผิด repo** กด Ctrl+C ทิ้งแล้วดูชื่อให้ดี
+> ต้นแบบคือ `astro-prototype` ไม่ใช่ `astro-full-schema`
+
+> **`git log --oneline` ขึ้นไม่กี่ commit = ปกติ ไม่ใช่ของหาย** ต้นแบบถูกยุบประวัติทิ้ง
 > โดยตั้งใจ เพราะประวัติเก่าคือรูปของแบรนด์ที่เลิกใช้แล้วรวม 575 MB
 
 ## B5. ติดตั้ง dependencies
@@ -738,41 +777,53 @@ $env:PORT=5555; npm run rebrand:upload
 | ทำงานอยู่ดีๆ แล้ว conflict เต็มไปหมด | ไม่ได้ `git pull` มานาน ห่างจากต้นแบบไปไกล | ภาค D — `git switch main && git pull` ก่อนเริ่มงานทุกครั้ง |
 | แก้บั๊กแล้วแต่ repo อื่นยังพังอยู่ | หยุดที่ repo ตัวเอง ไม่ได้ส่งกลับต้นแบบ | **A5** ดึงเข้าต้นแบบ แล้ว **A4** กระจายออกทุก repo |
 | ตอนรีแบรนด์ขึ้น `cp874 codec can't encode` | Python พิมพ์อักษรนอกโค้ดเพจไทยของ Windows | **ไม่ใช่งานพัง** เป็นแค่คำสั่งพิมพ์ผลตรวจ Claude ทำงานต่อเอง |
+| `python` ไม่รู้จักคำสั่ง | ลืมติ๊ก **Add python.exe to PATH** ตอนติดตั้ง | รันตัวติดตั้งซ้ำ → **Modify** → ติ๊กช่องนั้น (B1) |
+| `ssh -T git@gitlab.com` ขึ้น `Permission denied (publickey)` | ยังไม่ได้เอา SSH key ใส่ GitLab | **B3 ข้อ ③** |
+| `git push` ครั้งแรกขึ้น `rejected` ทั้งที่ repo เพิ่งสร้าง | ตอนสร้าง repo ติ๊ก "Initialize with README" | ลบ repo แล้วสร้างใหม่แบบ **ว่างเปล่า** (A1) |
+| `git remote -v` ขึ้น `origin` เป็น `astro-prototype` | ข้ามข้อ ② ของ B4 — **push ตอนนี้จะทับต้นแบบทั้งกลุ่ม** | ทำ B4 ข้อ ② ให้ครบก่อน push |
 
 ---
 
 # สรุปคำสั่งทั้งหมด (เครื่องใหม่ ไล่จากบนลงล่าง)
 
+แทน `astro-tuch` ด้วยชื่อ repo ที่หัวหน้าสร้างให้ (มี 3 จุด)
+
 ```powershell
-# --- ครั้งเดียวต่อเครื่อง ---
-# 1) ลง Node.js LTS + Git จากเว็บ (B1)
-# 2) ลง Claude CLI ใน cmd.exe:
+# ═══ B1 ═══ ลงจากเว็บ กด Next รวด: Node.js LTS · Git · Python 3 (ติ๊ก Add to PATH)
+node --version ; git --version ; python --version     # ต้องขึ้นเลขครบ 3 ตัว
+
+# ═══ B2 ═══ Claude CLI — รันบรรทัดนี้ใน cmd.exe เท่านั้น ไม่ใช่ PowerShell:
 #    curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd
-# 3) เปิดหน้าต่างใหม่ แล้ว login:
-claude          # login ให้เสร็จ แล้วพิมพ์ /exit
+#    แล้วปิดหน้าต่างทิ้ง เปิดใหม่
+claude --version
+claude                   # login ให้เสร็จ แล้วพิมพ์ /exit
+
+# ═══ B3 ═══ git config + SSH key
 git config --global user.name "ชื่อจริง"
 git config --global user.email "อีเมล GitLab"
-ssh -T git@gitlab.com
+git config --global push.autoSetupRemote true
+ssh-keygen -t ed25519 -C "อีเมล GitLab"               # Enter รวด 3 ครั้ง
+Get-Content $HOME\.ssh\id_ed25519.pub                 # ก๊อปไปใส่ GitLab → Edit profile → SSH Keys
+ssh -T git@gitlab.com                                 # ต้องขึ้น Welcome to GitLab
 
-# --- ตั้ง repo: ทาง 2 (หัวหน้ายกให้แล้ว) ---
+# ═══ B4 ═══ โคลนต้นแบบ แล้วเปลี่ยนปลายทางเป็น repo ของตัวเอง
 cd $HOME\Desktop
-git clone git@gitlab.com:tardev-group/astro-<ชื่อคุณ>.git
-cd astro-<ชื่อคุณ>
+git clone git@gitlab.com:tardev-group/astro-prototype.git astro-tuch
+cd astro-tuch
+git remote rename origin upstream
+git remote add origin git@gitlab.com:tardev-group/astro-tuch.git
+git remote set-url --push upstream DISABLED
+git push -u origin main
+git remote -v            # origin ต้องเป็น astro-tuch · upstream push ต้องเป็น DISABLED
 
-# --- หรือ ทาง 1 (โคลนต้นแบบเอง) — สร้าง project เปล่าใน GitLab ก่อน ---
-# cd $HOME\Desktop
-# git clone git@gitlab.com:tardev-group/astro-prototype.git astro-<ชื่อคุณ>
-# cd astro-<ชื่อคุณ>
-# git remote rename origin upstream
-# git remote add origin git@gitlab.com:tardev-group/astro-<ชื่อคุณ>.git
-# git remote set-url --push upstream DISABLED
-# git push -u origin main
-
+# ═══ B5 ═══
 npm install
+
+# ═══ B6 ═══
 npx wrangler login       # ข้ามได้ถ้าไม่ deploy จากเครื่องนี้
 npx wrangler whoami
 
-# --- ทดสอบว่าพร้อม (ครบ 4 ข้อ) ---
+# ═══ B7 ═══ ทดสอบว่าพร้อม ต้องผ่านครบ 4 ข้อ
 npm run dev              # 1) เปิด localhost:8888 → Ctrl+C
 npm run rebrand:upload   # 2) เปิด localhost:4444
                          # 3) การ์ด 6 → กด 🧪 ทดสอบท่อ → ต้องเขียว
