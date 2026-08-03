@@ -18,7 +18,7 @@
 
 | ของ | ค่า |
 |---|---|
-| ต้นแบบฉบับเบา (ที่ทุกคนโคลน) | `gitlab.com/tardev-group/astro-mean` branch `main` — **1 commit ~5 MB** |
+| ต้นแบบฉบับเบา (ที่ทุกคนโคลน) | `gitlab.com/tardev-group/astro-prototype` branch `main` — **1 commit ~5 MB** |
 | ต้นแบบฉบับเต็ม (เจ้าของเท่านั้น) | `gitlab.com/tardev-group/astro-full-schema` branch `optimize-seo` |
 | repo ที่คุณทำงาน | `gitlab.com/tardev-group/astro-<ชื่อคุณ>` (คนละอันต่อคน) |
 | branch ที่ทำงาน | `main` |
@@ -58,7 +58,7 @@ astro-full-schema / optimize-seo          ← ต้นแบบฉบับเ�
         │                                    (176 commit / 575 MB — ไม่ให้ใครโคลน)
         │  ยุบเหลือ commit เดียว
         ▼
-astro-mean / main                         ← ต้นแบบฉบับเบา 5 MB ที่ทุกคนโคลน
+astro-prototype / main                         ← ต้นแบบฉบับเบา 5 MB ที่ทุกคนโคลน
         │
         ├──> astro-bas    (บาส)
         ├──> astro-tud    (ตุ๊ด)
@@ -73,7 +73,7 @@ astro-mean / main                         ← ต้นแบบฉบับเ�
 
 > **ทำไมมีต้นแบบสองชั้น** — ทุกครั้งที่รีแบรนด์ รูป banner/slide ชุดใหม่ ~3 MB ถูกคอมมิตลง
 > ประวัติและอยู่ที่นั่นตลอดไป ผ่านมา ~30 แบรนด์ ประวัติจึงหนัก **575 MB เพื่อไฟล์จริง 6 MB**
-> มีคนโคลนแล้วรอ **30 นาที** `astro-mean` คือ tree เดียวกันเป๊ะแต่ตัดประวัติทิ้ง เหลือ 5 MB
+> มีคนโคลนแล้วรอ **30 นาที** `astro-prototype` คือ tree เดียวกันเป๊ะแต่ตัดประวัติทิ้ง เหลือ 5 MB
 > โคลนเสร็จในไม่กี่วินาที
 
 ---
@@ -83,9 +83,9 @@ astro-mean / main                         ← ต้นแบบฉบับเ�
 |  | **ทาง 1 — เพื่อนโคลนเอง** | **ทาง 2 — คุณยกให้** |
 |---|---|---|
 | เหมาะกับ | สาย dev / คนที่ใช้ git เป็น | สายคอนเทนต์ ที่ไม่อยากยุ่งกับ git |
-| เพื่อนต้องทำ | โคลน `astro-mean` แล้วตั้ง remote เอง 4 คำสั่ง | โคลน repo ตัวเองบรรทัดเดียว |
+| เพื่อนต้องทำ | โคลน `astro-prototype` แล้วตั้ง remote เอง 4 คำสั่ง | โคลน repo ตัวเองบรรทัดเดียว |
 | คุณต้องทำต่อคน | ไม่ต้องทำอะไรเลย | สร้าง repo + push ให้ 2 คำสั่ง |
-| เพื่อนต้องเข้าถึง `astro-mean` | ต้องได้ | ไม่ต้อง |
+| เพื่อนต้องเข้าถึง `astro-prototype` | ต้องได้ | ไม่ต้อง |
 | จุดที่พลาดง่าย | อยู่ฝั่งเพื่อน (ตั้ง remote ผิด → push ทับต้นแบบ) | อยู่ฝั่งคุณ |
 | อ่านต่อที่ | **A2ก** | **A1 → A2ข** |
 
@@ -106,7 +106,7 @@ astro-mean / main                         ← ต้นแบบฉบับเ�
 #    ⚠️ ห้ามติ๊ก "Initialize repository with a README"
 
 # 2) โคลนต้นแบบ (~5 MB เสร็จในไม่กี่วินาที)
-git clone git@gitlab.com:tardev-group/astro-mean.git astro-tuch
+git clone git@gitlab.com:tardev-group/astro-prototype.git astro-tuch
 cd astro-tuch
 
 # 3) สลับ remote — ต้นแบบเป็น upstream, repo ตัวเองเป็น origin
@@ -127,14 +127,23 @@ git remote -v
 ```
 origin    git@gitlab.com:tardev-group/astro-tuch.git (fetch)
 origin    git@gitlab.com:tardev-group/astro-tuch.git (push)
-upstream  git@gitlab.com:tardev-group/astro-mean.git (fetch)
+upstream  git@gitlab.com:tardev-group/astro-prototype.git (fetch)
 upstream  DISABLED (push)
 ```
 
 > 🚨 **บรรทัด `set-url --push upstream DISABLED` ห้ามข้าม** ทุกคนในกลุ่มมีสิทธิ์เขียน
-> `astro-mean` การเผลอพิมพ์ `git push upstream` ครั้งเดียวจะพาแบรนด์ของคนนั้นขึ้นไปเป็น
+> `astro-prototype` การเผลอพิมพ์ `git push upstream` ครั้งเดียวจะพาแบรนด์ของคนนั้นขึ้นไปเป็น
 > ต้นแบบให้คนที่โคลนทีหลังได้ไปทั้งกลุ่ม บรรทัดนี้ทำให้กลายเป็น error เฉยๆ
 > ส่วน `git fetch upstream` ยังใช้ได้ปกติ
+
+> ⚠️ **ใครที่ตั้ง `upstream` ไว้เป็น `astro-mean` ตอนต้นเดือน ส.ค. ต้องเปลี่ยน** — repo นั้น
+> ถูกคืนให้เป็นที่ทำงานของแบรนด์ ไม่ใช่ต้นแบบแล้ว ถ้าไม่เปลี่ยน คำสั่งดึงเครื่องมือข้างล่าง
+> จะลากไฟล์ของแบรนด์นั้นมาแทน:
+>
+> ```bash
+> git remote set-url upstream git@gitlab.com:tardev-group/astro-prototype.git
+> git remote set-url --push upstream DISABLED
+> ```
 
 **เวลาต้นแบบมีของใหม่** — หยิบเฉพาะส่วนเครื่องมือ ไม่ merge ทั้งก้อน:
 
@@ -208,17 +217,17 @@ git pull
 git remote add tud git@gitlab.com:tardev-group/astro-tud.git
 
 # 2) ส่งขึ้นไปโดยใช้ชื่อ main บนนั้น
-git push tud mean-template:main
+git push tud prototype:main
 ```
 
 จบ — เพื่อน clone ได้เลย
 
-> 🪶 **ส่ง `mean-template` ไม่ใช่ `optimize-seo`** ทั้งที่ไฟล์ชุดเดียวกัน — `mean-template`
+> 🪶 **ส่ง `prototype` ไม่ใช่ `optimize-seo`** ทั้งที่ไฟล์ชุดเดียวกัน — `prototype`
 > คือ commit เดียวที่ไม่มีพ่อแม่ ยกไป **~6 MB** ส่วน `optimize-seo` ลากประวัติ 176 commit
 > ไปด้วย **575 MB** ปลายทางได้ไฟล์เหมือนกันเป๊ะทั้งคู่ ต่างกันแค่เวลารอ
 >
-> **`mean-template` คือ branch เดียวกับที่ push ขึ้น `astro-mean`** เวลาอัปเดตต้นแบบให้ทีม
-> ให้คอมมิตทับบน branch นี้แล้ว `git push mean mean-template:main` — **ห้าม force**
+> **`prototype` คือ branch เดียวกับที่ push ขึ้น `astro-prototype`** เวลาอัปเดตต้นแบบให้ทีม
+> ให้คอมมิตทับบน branch นี้แล้ว `git push proto prototype:main` — **ห้าม force**
 > ไม่งั้นทุกคนที่โคลนไปแล้วต้อง `git reset --hard` ตามทั้งหมด
 
 > **`tud` เป็นชื่อเล่นที่คุณตั้งเอง** อยู่แค่ในไฟล์ `.git/config` ของโฟลเดอร์นี้
@@ -228,7 +237,7 @@ git push tud mean-template:main
 > 🚨 **`:main` ท้ายคำสั่งคือหัวใจ ห้ามตกหล่น** แปลว่า "เอา branch ในเครื่องชื่อนี้
 > ขึ้นไปใช้ชื่อ `main` บน remote" — ชื่อสองฝั่งไม่จำเป็นต้องตรงกัน
 >
-> **ถ้าลืมใส่** branch จะไปโผล่ชื่อ `mean-template` และเพราะเป็น branch แรกของ repo
+> **ถ้าลืมใส่** branch จะไปโผล่ชื่อ `prototype` และเพราะเป็น branch แรกของ repo
 > เปล่า มันจะกลายเป็น default branch อัตโนมัติ + ถูก GitLab ป้องกันทันที การจะแก้ทีหลัง
 > ต้องไล่เปลี่ยน default → ปลด protection → ลบ branch เก่า สามขั้นในหน้าเว็บ
 > **เคยพลาดมาแล้วกับ `astro-bas`**
@@ -237,7 +246,7 @@ git push tud mean-template:main
 > ทั้งที่โฟลเดอร์นี้ผูกหลาย repo — สั่งชื่อ remote ตรงๆ ทุกครั้งปลอดภัยกว่า
 
 > **ทำไมเปลี่ยนชื่อเป็น `main`** — ใน repo ของเขา โค้ดชุดนี้*คือ*ตัวหลัก ไม่ใช่ branch ทดลอง
-> การคงชื่อ `mean-template` ไว้เป็นแกนจะทำให้เขาเข้าใจผิดว่าเป็น branch ชั่วคราวที่ห้ามแตะ
+> การคงชื่อ `prototype` ไว้เป็นแกนจะทำให้เขาเข้าใจผิดว่าเป็น branch ชั่วคราวที่ห้ามแตะ
 > — ทั้งที่มันคือฐานที่เขาจะทำงานทับ
 
 ## A3. ส่งอะไรให้เพื่อน
@@ -250,32 +259,32 @@ git clone git@gitlab.com:tardev-group/astro-tud.git
 > แล้วอ่าน `SETUP-REBRAND-SYSTEM.md` ในโฟลเดอร์ เริ่มที่ **ภาค B** (ข้ามภาค A)
 
 เขาจะได้ `main` เป็น default, `git push` เฉยๆ ใช้ได้ทันที ไม่ต้อง `switch` ไม่ต้องรู้จัก
-คำว่า `mean-template` ด้วยซ้ำ
+คำว่า `prototype` ด้วยซ้ำ
 
-**⚠️ อย่าส่งคำสั่งของภาค A ให้เพื่อนรัน** — คำสั่งอย่าง `git push tud mean-template:main`
+**⚠️ อย่าส่งคำสั่งของภาค A ให้เพื่อนรัน** — คำสั่งอย่าง `git push tud prototype:main`
 ใช้ได้เฉพาะโฟลเดอร์ต้นแบบ เพราะเครื่องเขาไม่มีทั้ง remote ชื่อ `tud` และ branch ชื่อ
-`mean-template` จะขึ้น `src refspec ... does not match any` **เคยพลาดมาแล้ว**
+`prototype` จะขึ้น `src refspec ... does not match any` **เคยพลาดมาแล้ว**
 
 | | โฟลเดอร์ต้นแบบ (คุณ) | เครื่องเพื่อน |
 |---|---|---|
-| remote | `origin` = astro-full-schema, `mean` = astro-mean, `tud`/`aoy`/`bas` = ของแต่ละคน | `origin` = repo ตัวเองอันเดียว |
-| branch | `optimize-seo` (ที่ทำงาน) + `mean-template` (ที่ส่งออก) | `main` |
+| remote | `origin` = astro-full-schema, `proto` = astro-prototype, `tud`/`aoy`/`bas` = ของแต่ละคน | `origin` = repo ตัวเองอันเดียว |
+| branch | `optimize-seo` (ที่ทำงาน) + `prototype` (ที่ส่งออก) | `main` |
 | ทิศทาง | ส่งออก | รับเข้า + push branch ตัวเอง |
 
 ## A4. เวลาต้นแบบมีของใหม่ → กระจายออก
 
 ```powershell
-git push mean mean-template:main     # ต้นแบบฉบับเบา (คนที่โคลนเองดึงจากที่นี่)
-git push bas  mean-template:main
-git push dev  mean-template:main
-git push tud  mean-template:main
-git push aoy  mean-template:main
+git push proto prototype:main     # ต้นแบบฉบับเบา (คนที่โคลนเองดึงจากที่นี่)
+git push bas  prototype:main
+git push dev  prototype:main
+git push tud  prototype:main
+git push aoy  prototype:main
 ```
 
 `git remote add` ทำครั้งเดียวตอนเปิด repo ครั้งต่อๆ ไปเหลือแค่บรรทัด `push`
 เพื่อนแต่ละคนแค่ `git switch main` แล้ว `git pull`
 
-> **ก่อนกระจาย ต้องอัปเดต `mean-template` ให้ตรงกับงานล่าสุดก่อน** มันไม่ขยับตาม
+> **ก่อนกระจาย ต้องอัปเดต `prototype` ให้ตรงกับงานล่าสุดก่อน** มันไม่ขยับตาม
 > `optimize-seo` ให้เอง — เป็นคนละสายประวัติกันโดยตั้งใจ วิธีอัปเดตอยู่ใน **A6**
 
 > ⚠️ **`astro-dev` ยังใช้บรรทัดข้างบนไม่ได้ (สถานะ ณ 28 ก.ค.)** มันแตกเป็นคนละสายไปตั้งแต่
@@ -320,7 +329,7 @@ branch ของ dev  →  [A5] เข้าต้นแบบ  →  [A4] กร
 
 ```powershell
 git fetch tud
-git log --format="%h  %an  %ar%n    %s" mean-template..tud/main
+git log --format="%h  %an  %ar%n    %s" prototype..tud/main
 ```
 
 แล้วดึงกลับเข้าต้นแบบตาม **A5** — เสร็จแล้วคำสั่งกระจายจะผ่านเอง
@@ -379,7 +388,7 @@ git merge tud/ชื่อ-branch-ของเขา     # แก้ conflict �
 git push origin optimize-seo          # เข้าต้นแบบฉบับเต็มก่อน
 ```
 
-แล้ว **A6** เพื่อยกลง `mean-template` จากนั้นค่อยกระจายออกทุกคนตาม **A4** —
+แล้ว **A6** เพื่อยกลง `prototype` จากนั้นค่อยกระจายออกทุกคนตาม **A4** —
 เสร็จแล้วลบ branch ของเขาทิ้งได้
 
 ```powershell
@@ -390,9 +399,9 @@ git push tud --delete ชื่อ-branch-ของเขา
 > เครื่องตัวเอง เช่นเปลี่ยนพอร์ตเพราะพอร์ตเดิมชนกับโปรแกรมอื่น — แบบนั้นให้เก็บไว้ใน
 > repo ของเขาเอง อย่าลากทุกคนไปด้วย
 
-## A6. อัปเดต `mean-template` ให้ตรงกับต้นแบบ (ทำก่อน A4 ทุกครั้ง)
+## A6. อัปเดต `prototype` ให้ตรงกับต้นแบบ (ทำก่อน A4 ทุกครั้ง)
 
-`mean-template` เป็น**คนละสายประวัติ**กับ `optimize-seo` โดยตั้งใจ (มันเริ่มจาก commit
+`prototype` เป็น**คนละสายประวัติ**กับ `optimize-seo` โดยตั้งใจ (มันเริ่มจาก commit
 ที่ไม่มีพ่อแม่) มันจึงไม่ขยับตามให้เอง ต้องยกเนื้อไฟล์ข้ามมาเอง
 
 รันจากโฟลเดอร์ต้นแบบ **ไม่ต้องสลับ branch ไม่แตะไฟล์ในโฟลเดอร์เลย** — ทำงานผ่าน index
@@ -406,14 +415,14 @@ $tree = (git write-tree).Trim()
 Remove-Item Env:\GIT_INDEX_FILE
 Remove-Item "$env:TEMP\tpl-index"
 
-$commit = (git commit-tree $tree -p (git rev-parse mean-template) -m "Sync template with optimize-seo").Trim()
-git branch -f mean-template $commit
+$commit = (git commit-tree $tree -p (git rev-parse prototype) -m "Sync template with optimize-seo").Trim()
+git branch -f prototype $commit
 ```
 
 เช็กก่อน push ว่าได้ของถูก:
 
 ```powershell
-git diff-tree -r --name-status optimize-seo mean-template   # ต้องเห็นแค่ banner 3 ไฟล์
+git diff-tree -r --name-status optimize-seo prototype   # ต้องเห็นแค่ banner 3 ไฟล์
 git status --short                                          # ต้องไม่มีอะไรงอกจากคำสั่งข้างบน
 ```
 
@@ -424,7 +433,7 @@ git status --short                                          # ต้องไม
 > เหลือ `banner1.*` รวม **3 MB** ที่ต้นแบบไม่ควรแจกต่อ ถ้ามีไฟล์ตายเพิ่มในอนาคตให้เติม
 > ชื่อในบรรทัดนี้
 >
-> **`-p (git rev-parse mean-template)` คือสิ่งที่ทำให้ push แบบไม่ต้อง force** commit ใหม่
+> **`-p (git rev-parse prototype)` คือสิ่งที่ทำให้ push แบบไม่ต้อง force** commit ใหม่
 > ต่อท้ายของเดิมเป็นสายเดียวกัน ทุกคนที่โคลนไปแล้วจึง `git pull` ได้ตามปกติ
 > **ถ้าตัดตัวนี้ออกจะกลายเป็นสายใหม่ทั้งเส้น** แล้วทุกคนต้อง `git reset --hard` ตามกันหมด
 
@@ -540,7 +549,7 @@ ssh -T git@gitlab.com
 ## B4. โคลนโค้ด
 
 **ถ้าหัวหน้ายกโค้ดขึ้น repo ให้แล้ว (ทาง 2)** — ใช้ URL ของ **repo ตัวเอง** ที่ได้รับมา
-(เช่น `astro-tud`) ไม่ใช่ `astro-full-schema` และไม่ใช่ `astro-mean`
+(เช่น `astro-tud`) ไม่ใช่ `astro-full-schema` และไม่ใช่ `astro-prototype`
 
 ```powershell
 cd $HOME\Desktop
@@ -716,7 +725,7 @@ $env:PORT=5555; npm run rebrand:upload
 | `ไม่พบคำสั่ง claude` ขึ้นในหน้า uploader ทั้งที่ `claude --version` ในหน้าต่างอื่นได้ | uploader จำ PATH ตอนที่มันถูกเปิด | `Ctrl+C` ปิด uploader แล้ว `npm run rebrand:upload` ใหม่ |
 | กดสลับบัญชี CF แล้วไม่เด้งหน้า login | **ไม่ใช่บั๊ก** ระบบตั้งใจไม่เปิดเบราว์เซอร์ให้ | รอสถานะขึ้น "รออนุญาตในเบราว์เซอร์..." แล้ว**กดลิงก์ในการ์ด** หรือทำ `npx wrangler login` เองในหน้าต่างแยก |
 | กดสลับบัญชี CF ระหว่าง rebrand รันอยู่ | ระบบบล็อกไว้ — ขั้นเลือกบัญชีเขียนทับ `wrangler.toml` ที่ rebrand กำลังแก้ | รอ rebrand จบก่อน · ระหว่างรอ `npx wrangler login` ในหน้าต่างแยกได้ (ไม่แตะไฟล์ใน repo) |
-| clone นาน 30 นาที / โหลดเป็นร้อย MB | โคลนผิด repo ไปโดน `astro-full-schema` | ต้นแบบคือ `astro-mean` ~5 MB (**B4**) |
+| clone นาน 30 นาที / โหลดเป็นร้อย MB | โคลนผิด repo ไปโดน `astro-full-schema` | ต้นแบบคือ `astro-prototype` ~5 MB (**B4**) |
 | กด "เริ่ม Rebrand" แล้วค้างเงียบ | ยังไม่ได้ `claude` login | ทำ B2 ให้จบ แล้วกด 🧪 ทดสอบท่อ |
 | `npm install` ล้มที่ `sharp` | Node เก่าเกินไป | ลง Node LTS ใหม่ |
 | อัปโหลดรูปแล้วขึ้น error เขียนไฟล์ไม่ได้ | `npm run dev` เปิดค้างอยู่ จับไฟล์ไว้ | `Ctrl+C` ปิด dev server ก่อนอัปโหลด |
@@ -752,7 +761,7 @@ cd astro-<ชื่อคุณ>
 
 # --- หรือ ทาง 1 (โคลนต้นแบบเอง) — สร้าง project เปล่าใน GitLab ก่อน ---
 # cd $HOME\Desktop
-# git clone git@gitlab.com:tardev-group/astro-mean.git astro-<ชื่อคุณ>
+# git clone git@gitlab.com:tardev-group/astro-prototype.git astro-<ชื่อคุณ>
 # cd astro-<ชื่อคุณ>
 # git remote rename origin upstream
 # git remote add origin git@gitlab.com:tardev-group/astro-<ชื่อคุณ>.git
