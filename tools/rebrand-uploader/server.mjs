@@ -487,6 +487,51 @@ function parseDocxBuffer(buf) {
   return parseSubPages(docxToLines(xml));
 }
 
+// A .docx is a ZIP, so its first four bytes are the local-file-header magic.
+// Sniffing the bytes rather than trusting the extension means a brief saved as
+// "content.docx" that is really plain text still reads, and vice versa.
+function looksLikeDocx(buf) {
+  return buf.length >= 4 && buf[0] === 0x50 && buf[1] === 0x4b && buf[2] === 0x03 && buf[3] === 0x04;
+}
+
+// Decode a plain-text brief. This is the whole difficulty of accepting .txt:
+// Notepad's "ANSI" on a Thai Windows is windows-874, not UTF-8, and decoding
+// those bytes as UTF-8 yields text that is wrong in a way nothing downstream
+// can detect — the rebrand would simply write mojibake into every page. So:
+// honour a BOM if there is one, then try UTF-8 in FATAL mode, and only fall
+// back to windows-874 when that throws. Strict mode is what makes the fallback
+// safe; non-fatal UTF-8 would "succeed" on cp874 bytes and hand back U+FFFD.
+function decodeTextBrief(buf) {
+  if (buf.length >= 3 && buf[0] === 0xef && buf[1] === 0xbb && buf[2] === 0xbf) {
+    return buf.subarray(3).toString("utf8");
+  }
+  if (buf.length >= 2 && buf[0] === 0xff && buf[1] === 0xfe) {
+    return new TextDecoder("utf-16le").decode(buf.subarray(2));
+  }
+  if (buf.length >= 2 && buf[0] === 0xfe && buf[1] === 0xff) {
+    return new TextDecoder("utf-16be").decode(buf.subarray(2));
+  }
+  try {
+    return new TextDecoder("utf-8", { fatal: true }).decode(buf);
+  } catch {
+    return new TextDecoder("windows-874").decode(buf);
+  }
+}
+
+function briefTextToLines(text) {
+  return text
+    .replace(/\r\n?/g, "\n")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+}
+
+// One entry point for "whatever the operator handed us as the brief".
+function parseBriefBuffer(buf) {
+  if (looksLikeDocx(buf)) return parseDocxBuffer(buf);
+  return parseSubPages(briefTextToLines(decodeTextBrief(buf)));
+}
+
 // ── Pre-chew the brief and the artwork for the rebrand agent ────────────────
 // Both of these exist purely to delete work from the *serial* head of a rebrand
 // (SKILL Phase 1 / step P0). Nothing else can start until the brief is read and
@@ -588,13 +633,18 @@ async function writePalette() {
 }
 
 async function readDocxSubPages() {
-  let buf;
+  // content.docx first: when both exist, content.txt was derived FROM it, and
+  // the docx is what the operator actually handed over.
   try {
-    buf = await readFile(join(ASSETS, "content.docx"));
+    return parseDocxBuffer(await readFile(join(ASSETS, "content.docx")));
   } catch {
-    return { pages: {}, warnings: ["ยังไม่มี content.docx — อัพโหลด Content brief ในส่วนที่ 1 ก่อน"] };
+    /* no docx, or unreadable — try the text brief */
   }
-  return parseDocxBuffer(buf);
+  try {
+    return parseSubPages(briefTextToLines(await readFile(join(ASSETS, "content.txt"), "utf8")));
+  } catch {
+    return { pages: {}, warnings: ["ยังไม่มี content.docx หรือ content.txt — อัพโหลด Content brief ในส่วนที่ 1 ก่อน"] };
+  }
 }
 
 // Read the title/description currently on each page's <MainLayout> tag so the UI
@@ -895,11 +945,30 @@ async function handleUpload(slot, index, ext, buf) {
       if (palette) written.push(palette);
       return written;
     }
+    // Accepts both a .docx and a plain-text brief. The slot keeps its name so
+    // no client or prompt has to learn a second one.
     case "docx": {
-      await writeFile(join(ASSETS, "content.docx"), buf);
-      const written = ["content.docx"];
-      const text = await writeContentText(buf);
-      if (text) written.push(text);
+      if (looksLikeDocx(buf)) {
+        await writeFile(join(ASSETS, "content.docx"), buf);
+        const written = ["content.docx"];
+        const text = await writeContentText(buf);
+        if (text) written.push(text);
+        return written;
+      }
+      const lines = briefTextToLines(decodeTextBrief(buf));
+      if (!lines.length) throw new Error("ไฟล์ Content brief ว่างเปล่า หรืออ่านไม่ออก");
+      await writeFile(join(ASSETS, "content.txt"), lines.join("\n") + "\n", "utf8");
+      const written = ["content.txt"];
+      // A content.docx from the previous brand would still win in
+      // readDocxSubPages() and in whatever the rebrand agent opens first, so a
+      // text brief has to take the docx with it. Same failure shape as a stale
+      // banner: the new brief is present, and the old one is what gets read.
+      try {
+        await unlink(join(ASSETS, "content.docx"));
+        written.push("content.docx (ลบของแบรนด์ก่อนหน้า)");
+      } catch {
+        /* nothing to clear */
+      }
       return written;
     }
     case "banner": {
@@ -1479,12 +1548,17 @@ function runSnapshot() {
 // Shown in the confirm dialog so an operator sees whether today's brief is
 // actually staged before firing a 40-minute run.
 async function stagedDocxInfo() {
-  try {
-    const s = await stat(join(ASSETS, "content.docx"));
-    return { exists: true, mtime: s.mtimeMs, size: s.size };
-  } catch {
-    return { exists: false, mtime: null, size: 0 };
+  // Either form counts as "the brief is staged" — gating the Rebrand button on
+  // content.docx alone would lock out every operator who uploaded a .txt.
+  for (const name of ["content.docx", "content.txt"]) {
+    try {
+      const s = await stat(join(ASSETS, name));
+      return { exists: true, mtime: s.mtimeMs, size: s.size, name };
+    } catch {
+      /* try the next form */
+    }
   }
+  return { exists: false, mtime: null, size: 0, name: "" };
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -2640,8 +2714,8 @@ const PAGE = /* html */ `<!doctype html>
       <span class="status">อัพครั้งเดียว เซฟลงทั้ง src/assets และ public ให้อัตโนมัติ</span>
     </div>
     <div class="field">
-      <div class="row"><label>Content brief</label><span class="target">content.docx</span></div>
-      <div class="row"><input type="file" accept=".docx" data-slot="docx" /></div>
+      <div class="row"><label>Content brief</label><span class="target">content.docx / content.txt</span></div>
+      <div class="row"><input type="file" accept=".docx,.txt" data-slot="docx" /></div>
       <span class="status"></span>
     </div>
     <div class="field" id="bgField" data-img>
@@ -2750,8 +2824,8 @@ const PAGE = /* html */ `<!doctype html>
     <section class="card two-up" id="card4">
       <h2 data-n="4">SEO · Title / Meta หน้าย่อย</h2>
       <div class="pull-row">
-        <button type="button" id="pullDocx" class="ghost">📄 ดึงจาก content.docx</button>
-        <span class="pull-hint">อัพ Content brief (docx) ในส่วนที่ 1 ก่อน แล้วค่อยกดปุ่มนี้</span>
+        <button type="button" id="pullDocx" class="ghost">📄 ดึงจาก Content brief</button>
+        <span class="pull-hint">อัพ Content brief (.docx หรือ .txt) ในส่วนที่ 1 ก่อน แล้วค่อยกดปุ่มนี้</span>
       </div>
       <div class="fieldset">
 <div class="field" data-page="promotion">
@@ -3462,7 +3536,7 @@ const PAGE = /* html */ `<!doctype html>
     const hint = document.getElementById('rbFireHint');
     if (busy) hint.innerHTML = 'กำลังรัน — <strong>ห้ามปิดหน้าต่างดำ (cmd)</strong> (ปิดแท็บเบราว์เซอร์ได้ ไม่กระทบ)';
     else if (pending) hint.innerHTML = '⬆ <strong>ยังมีไฟล์ที่เลือกไว้แต่ยังไม่ได้อัพโหลด</strong> — กด "อัพโหลดทั้งหมด" ก่อน ปุ่ม Rebrand ถึงจะกดได้';
-    else if (!briefStaged) hint.innerHTML = '⚠ <strong>ยังไม่มี content.docx ใน src/assets</strong> — อัพโหลด Content brief ในส่วนที่ 1 ก่อน';
+    else if (!briefStaged) hint.innerHTML = '⚠ <strong>ยังไม่มี Content brief ใน src/assets</strong> — อัพโหลด .docx หรือ .txt ในส่วนที่ 1 ก่อน';
     else if (!promptOk) hint.innerHTML = 'กรอกชื่อแบรนด์ให้ถูกต้องก่อน ปุ่ม Rebrand ถึงจะกดได้';
     else hint.innerHTML = 'พร้อมยิงแล้ว · งานจริงกินเวลาหลายสิบนาที · <strong>ห้ามปิดหน้าต่างดำ (cmd)</strong> ระหว่างรัน (ปิดแท็บเบราว์เซอร์ได้)';
   }
@@ -4357,8 +4431,8 @@ const server = http.createServer(async (req, res) => {
       let result;
       if (req.method === "POST") {
         const buf = await readBody(req);
-        if (!buf.length) throw new Error("ไม่พบไฟล์ docx ที่ส่งมา");
-        result = parseDocxBuffer(buf);
+        if (!buf.length) throw new Error("ไม่พบไฟล์ Content brief ที่ส่งมา");
+        result = parseBriefBuffer(buf);
       } else {
         result = await readDocxSubPages();
       }

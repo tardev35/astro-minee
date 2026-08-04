@@ -152,6 +152,13 @@ progress in the normal way — there is no separate channel to write to.
    brief is read, so don't spend three tool calls re-deriving a file that
    already exists.
 
+   The brief may have arrived as a `.docx` **or as a plain `.txt`** — the
+   uploader takes either and normalises both to `content.txt`, so this
+   step does not change. A text brief leaves **no** `content.docx` at
+   all (the uploader deletes any previous brand's), which is expected,
+   not a missing file: `content.txt` is the source in that case, not a
+   derived copy. Do not go looking for a `.docx` to "verify" it against.
+
    Fall back to the manual extraction below **only** when `content.txt`
    is missing — a brief that predates the uploader, or a `.docx` dropped
    into `src/assets`/`src/components` by hand (past runs named it
