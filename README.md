@@ -4,23 +4,39 @@
 "เปิดตัวแบรนด์ใหม่" = เอาโครงหน้าเดิมมาเปลี่ยนชื่อ สี และเนื้อหาใหม่
 โดยสั่งงานผ่าน **Claude Code** เป็นหลัก และเก็บโค้ดไว้บน **GitLab**
 
-> 📌 เอกสารนี้คือจุดเริ่มต้นสำหรับ **คนใหม่ทุกคน** อ่านให้จบก่อนเริ่มงานจริง
-> ทำหัวข้อ 1–3 ให้ครบก่อน (ตั้งค่าครั้งเดียวจบ) แล้วค่อยเริ่มงานจริงที่หัวข้อ 4 เป็นต้นไป
+---
 
-> 🖥️ **กำลังตั้งเครื่องใหม่จากศูนย์ หรือจะใช้ปุ่ม "เริ่ม Rebrand" ในหน้า uploader?**
-> ไปที่ [`SETUP-NEW-MACHINE.md`](SETUP-NEW-MACHINE.md) แทน — มีวิธีลง **Claude CLI**
-> (ซึ่งไฟล์นี้ไม่ได้ครอบคลุม) และวิธีตั้ง remote ไปที่ repo ของทีม `astro-bas`
+# 🚦 เครื่องเปล่า เริ่มตรงไหน — อ่านตามลำดับนี้
+
+มีคู่มือหลายไฟล์ **อย่าเปิดมั่ว** ไล่ตามนี้ทีละข้อ ข้ามไม่ได้
+
+| ลำดับ | ทำอะไร | อ่านที่ไหน | เสร็จเมื่อ |
+|---|---|---|---|
+| **0** | เข้าใจภาพรวม 2 นาที | หน้านี้ ย่อหน้าถัดไป + **ข้อ 9 กฎเหล็ก** | รู้ว่าห้ามทำอะไร |
+| **1** | ลงโปรแกรม 4 ตัว · ตั้ง git config + SSH key · โคลน · ตั้ง remote | [`SETUP-REBRAND-SYSTEM.md`](SETUP-REBRAND-SYSTEM.md) **ภาค B ทั้งภาค** | `npm run dev` ขึ้นเว็บ + ปุ่ม 🧪 ทดสอบท่อ เขียว |
+| **2** | รู้ว่าค่าไหนต้องถูกก่อนขึ้นเว็บจริง | [`SETUP-REBRAND-SYSTEM.md`](SETUP-REBRAND-SYSTEM.md) **ภาค C** | อ่านจบ ยังไม่ต้องทำอะไร |
+| **3** | ลงมือรีแบรนด์จริง | หน้านี้ **ข้อ 5** | ได้เว็บแบรนด์ใหม่ในเครื่อง |
+| **4** | เอาเว็บขึ้นจริง | [`DEPLOY-CLOUDFLARE.md`](DEPLOY-CLOUDFLARE.md) | เปิดโดเมนแล้วเห็นเว็บ |
+| **5** | งานประจำวัน + git ที่ต้องใช้จริง | [`SETUP-REBRAND-SYSTEM.md`](SETUP-REBRAND-SYSTEM.md) **ภาค D** + หน้านี้ **ข้อ 6.2** | — |
+
+**สาย dev อ่านเพิ่ม:** [`CLAUDE.md`](CLAUDE.md) (สถาปัตยกรรมโปรเจกต์) และ
+[`.claude/skills/rebrand-site/SKILL.md`](.claude/skills/rebrand-site/SKILL.md) (ขั้นตอนรีแบรนด์ที่ Claude ทำตาม)
+
+> ⛔ [`SETUP-NEW-MACHINE.md`](SETUP-NEW-MACHINE.md) เป็นรุ่นเก่า **อย่าใช้** ชี้ repo กับ branch ที่เลิกใช้แล้ว
 
 ---
 
-## อ่านส่วนไหน?
+## repo ของคุณอยู่ที่ไหน
 
-| คุณคือ | อ่านหัวข้อ |
-|---|---|
-| **สายคอนเทนต์ / การตลาด** | 1 ติดตั้ง → 2 สมัคร GitLab → 3 **Fork + โคลน** → 4 เปิดดูเว็บ → 5 รีแบรนด์ → 6 บันทึกงาน → 7 deploy → 8 ปัญหาบ่อย → 9 กฎเหล็ก |
-| **สาย Dev** | อ่านทั้งหมด + ไฟล์ `CLAUDE.md` และ `.claude/skills/rebrand-site/SKILL.md` |
+ทุกคนอยู่กลุ่ม GitLab เดียวกันคือ **`tardev-group`** แต่ **แยก repo คนละอัน**
 
-ทุกคนต้องมี **บัญชี GitLab เป็นของตัวเอง** ไว้บันทึก/แก้ไขหน้าเว็บ (มีสอนในหัวข้อ 2)
+```
+tardev-group/astro-prototype   ← ต้นแบบ ทุกคนโคลนจากที่นี่  (ดึงอย่างเดียว ห้าม push)
+tardev-group/astro-<ชื่อคุณ>    ← ของคุณคนเดียว งานทุกอย่าง push ที่นี่
+```
+
+**repo ของคุณหัวหน้าสร้างให้แล้ว** ไม่ต้องไปสร้างเอง — ถ้ายังไม่มี ทักขอก่อนเริ่มข้อ 1
+สิ่งที่ต้องเตรียมเองมีอย่างเดียวคือ **บัญชี GitLab + SSH key** (อยู่ในภาค B)
 
 ---
 
@@ -100,55 +116,32 @@ ssh -T git@gitlab.com
 
 ---
 
-## 3. สร้าง repo ของตัวเอง (Fork) แล้วดึงลงเครื่อง
+## 3. เอาโค้ดลงเครื่อง
 
-> 🚨 **repo `astro-full-schema` คือ "ต้นแบบกลาง" ของแอดมิน — ห้าม push งานแบรนด์ของคุณเข้าไป**
-> ทุกคนต้องมี **repo ของตัวเอง แยก 1 อันต่อ 1 แบรนด์** วิธีที่ง่ายที่สุดคือกดปุ่ม **Fork**
-> (กดปุ่มเดียวจบ ไม่ต้องพิมพ์คำสั่ง git อะไรเลย)
+> 📖 **ขั้นตอนเต็มอยู่ที่ [`SETUP-REBRAND-SYSTEM.md`](SETUP-REBRAND-SYSTEM.md) ภาค B**
+> ทำ **B1 → B7 ตามลำดับ** แล้วกลับมาต่อข้อ 4 ของหน้านี้ · ตรงนี้สรุปให้เห็นภาพเฉยๆ
 
-### 3.1 กด Fork (ทำบนเว็บ GitLab — ครั้งเดียวต่อ 1 แบรนด์)
+**repo ของคุณหัวหน้าสร้างให้แล้ว** ชื่อ `tardev-group/astro-<ชื่อคุณ>` — ไม่ต้อง Fork
+ไม่ต้องสร้างเอง ถ้ายังไม่มีให้ทักขอก่อน
 
-1. **login GitLab** แล้วเข้า **https://gitlab.com/tardev-group/astro-full-schema**
-   (ต้องถูกเชิญเข้ากลุ่มก่อนตามข้อ 2.2 ไม่งั้นจะขึ้น **404**)
-2. กดปุ่ม **Fork** (มุมขวาบน)
-3. **Project name** = ชื่อแบรนด์ที่กำลังทำ เช่น `chokdee1688`
-4. **Project URL** → เลือก namespace เป็น **`tardev-group`** ⚠️ **สำคัญที่สุด**
-5. **Visibility level** = **Private**
-6. กด **Fork project**
-
-รอสักครู่ GitLab จะก๊อปโค้ด + **ประวัติ commit ทั้งหมด** มาเป็น repo ใหม่ที่คุณเป็นเจ้าของที่
-`gitlab.com/tardev-group/ชื่อแบรนด์`
-
-> ⚠️ **ต้องเลือก namespace เป็น `tardev-group` ไม่ใช่ชื่อตัวเอง**
-> เพื่อให้บริษัทเห็นงานทุกแบรนด์ในที่เดียว และงานไม่หายไปถ้าเปลี่ยนคนดูแล
-> ถ้าไม่มีตัวเลือก `tardev-group` ให้เลือก → แจ้งแอดมินขอสิทธิ์ **Developer** ในกลุ่ม
-
-### 3.2 clone fork ของคุณลงเครื่อง
-
-เปิด Git Bash หรือ PowerShell:
+สิ่งที่เกิดขึ้นใน B4 คือโคลน **ต้นแบบ** ลงมา แล้วเปลี่ยนปลายทางให้เป็น repo ของคุณ:
 
 ```bash
-git clone git@gitlab.com:tardev-group/ชื่อแบรนด์.git
-cd ชื่อแบรนด์
+git clone git@gitlab.com:tardev-group/astro-prototype.git astro-tuch
+cd astro-tuch
+git remote rename origin upstream          # ต้นแบบ = ดึงอย่างเดียว
+git remote add origin git@gitlab.com:tardev-group/astro-tuch.git
+git remote set-url --push upstream DISABLED
+git push -u origin main
 npm install
 ```
 
-⚠️ สังเกต URL ต้องเป็น **ชื่อแบรนด์ของคุณ** ไม่ใช่ `astro-full-schema`
+> 🚨 **สามบรรทัดกลางห้ามข้าม** ถ้าโคลนแล้วหยุดเลย `git push` จะวิ่งไปทับ **ต้นแบบของทั้งกลุ่ม**
+> เช็กด้วย `git remote -v` — `origin` ต้องเป็นชื่อ repo ของคุณ และ `upstream` ฝั่ง push
+> ต้องเป็น `DISABLED`
 
-เช็กให้ชัวร์ว่าชี้ถูก repo:
-```bash
-git remote -v
-```
-ต้องขึ้นชื่อ repo **ของคุณ** — ถ้าขึ้น `astro-full-schema` แปลว่า clone ผิดตัว ให้ลบโฟลเดอร์แล้ว clone ใหม่
-
-`npm install` รันครั้งเดียวพอ (นาน 1–2 นาที รอจนขึ้นบรรทัดว่างกลับมา)
-
-> ✅ พอ fork แล้ว `git push` จะเข้า repo ของคุณเองอัตโนมัติ **ไม่มีทางไปทับของแอดมิน**
-> และไม่ต้องตั้งค่า remote อะไรเพิ่มเลย
-
-> โปรเจกต์อื่น ๆ ของทีม (ที่ไม่ใช่ template) โคลนตรงได้เลยไม่ต้อง fork เช่น
-> `git clone git@gitlab.com:tardev-group/yoalink-frontend.git`
-> ดูรายชื่อ repo ทั้งหมดได้ที่ **https://gitlab.com/tardev-group**
+> ⛔ **วิธี Fork ที่เคยเขียนไว้ตรงนี้ เลิกใช้แล้ว** — Fork ลากประวัติเก่า 575 MB มาด้วย
+> โคลนต้นแบบใช้ 5 MB ได้ไฟล์ชุดเดียวกันเป๊ะ
 
 ---
 
@@ -214,7 +207,7 @@ Claude จะทำตามขั้นตอนมาตรฐานในไ�
 
 ## 6. บันทึกงานขึ้น GitLab (Git)
 
-> ✅ ถ้าทำข้อ 3 (Fork) มาแล้ว **ไม่ต้องตั้งค่าอะไรเพิ่ม** — `git push` เข้า repo ของคุณเองเลย
+> ✅ ถ้าทำ **B4** มาครบแล้ว **ไม่ต้องตั้งค่าอะไรเพิ่ม** — `git push` เข้า repo ของคุณเองเลย
 
 ทำ **หลังรีแบรนด์เสร็จ** หรือทุกครั้งที่แก้งานเสร็จ
 พิมพ์ทีละบรรทัด (บรรทัดที่ 2 เปลี่ยนข้อความในเครื่องหมายคำพูดเป็นสิ่งที่ทำ):
@@ -239,17 +232,19 @@ git push
 > 💡 **ถ้าขึ้น error `rejected` / `non-fast-forward`**
 > มีคนอื่น (หรือตัวคุณจากอีกเครื่อง) push ก่อน — สั่ง `git pull` แล้วค่อย `git push` ใหม่
 
-### 6.1 ถ้าเผลอ clone repo ต้นแบบมาแทนที่จะ Fork (วิธีแก้)
+### 6.1 ถ้า `origin` ยังชี้ต้นแบบอยู่ (วิธีแก้)
 
-เช็กก่อนว่าพลาดจริงไหม:
+เกิดจากโคลนแล้วข้ามข้อ ② ของ B4 เช็กก่อนว่าพลาดจริงไหม:
 ```powershell
 git remote -v
 ```
-ถ้าขึ้น `astro-full-schema` = ยังชี้ไปที่ต้นแบบของแอดมิน **อย่าเพิ่ง push**
+ถ้าบรรทัด `origin` ขึ้น `astro-prototype` หรือ `astro-full-schema` = **อย่าเพิ่ง push**
 
-แก้โดยไป Fork ตามข้อ 3.1 ก่อน แล้วเปลี่ยนปลายทางให้ชี้ repo ของคุณ:
+เปลี่ยนปลายทางให้ชี้ repo ของคุณ:
 ```powershell
-git remote set-url origin git@gitlab.com:tardev-group/ชื่อแบรนด์ของคุณ.git
+git remote rename origin upstream
+git remote add origin git@gitlab.com:tardev-group/astro-<ชื่อคุณ>.git
+git remote set-url --push upstream DISABLED
 git remote -v
 git push -u origin main
 ```
@@ -476,9 +471,9 @@ git remote -v
    `ContentBox*`, `Footer*` เวอร์ชันที่ดูเหมือนไม่ได้ใช้ คือ "คลัง" ไว้ทำแบรนด์
    หน้า ไม่ใช่ขยะ
 2. **ห้ามเดา URL/โดเมนเอง** — ใส่เฉพาะ URL จริงที่ได้รับมาเท่านั้น
-3. **ห้าม push งานแบรนด์ตัวเองเข้า repo ต้นแบบ `astro-full-schema`** — ทุกคน
-   ต้อง **Fork** เป็น repo ของตัวเองก่อนเสมอ (ข้อ 3.1) เช็กด้วย `git remote -v`
-   ว่าชี้ถูกก่อน push ครั้งแรกทุกครั้ง
+3. **ห้าม push งานแบรนด์ตัวเองเข้าต้นแบบ** (`astro-prototype` / `astro-full-schema`) —
+   ทุกคนมี repo ของตัวเองที่หัวหน้าสร้างให้ เช็ก `git remote -v` ก่อน push ครั้งแรกทุกครั้ง
+   ว่า `origin` เป็นชื่อ repo คุณ และ `upstream` ฝั่ง push เป็น `DISABLED`
 4. **ยืนยันงานเสร็จ = build ผ่าน + เปิดดูหน้าเว็บจริงด้วยตา** เสมอ ไม่ใช่แค่
    Claude บอกว่าเสร็จ
 
@@ -487,17 +482,19 @@ git remote -v
 ## คำสั่งที่ใช้บ่อย (สรุป)
 
 ```powershell
-# ตั้งค่าครั้งเดียวต่อเครื่อง (ข้อ 2)
+# ตั้งค่าครั้งเดียวต่อเครื่อง — ขั้นตอนเต็มอยู่ที่ SETUP-REBRAND-SYSTEM.md ภาค B
 git config --global user.name "ชื่อ"
 git config --global user.email "อีเมล"
 ssh-keygen -t ed25519 -C "อีเมล"     # สร้าง SSH key แล้วเพิ่มใน GitLab
 
-# เริ่มแบรนด์ใหม่ (ครั้งแรกของแต่ละแบรนด์)
-# 1) กด Fork บนเว็บ GitLab ก่อน (ข้อ 3.1) — เลือก namespace = tardev-group
-# 2) แล้วค่อย clone fork ของตัวเองลงเครื่อง:
-git clone git@gitlab.com:tardev-group/ชื่อแบรนด์.git
-cd ชื่อแบรนด์
-git remote -v                   # ต้องขึ้นชื่อ repo ของคุณ ไม่ใช่ astro-full-schema
+# เอาโค้ดลงเครื่อง (แทน astro-tuch ด้วยชื่อ repo ที่หัวหน้าสร้างให้)
+git clone git@gitlab.com:tardev-group/astro-prototype.git astro-tuch
+cd astro-tuch
+git remote rename origin upstream
+git remote add origin git@gitlab.com:tardev-group/astro-tuch.git
+git remote set-url --push upstream DISABLED
+git push -u origin main
+git remote -v                   # origin = ของคุณ · upstream push = DISABLED
 
 # ทำงานประจำวัน
 npm install                     # ติดตั้ง (ครั้งแรกครั้งเดียว)
