@@ -1,3 +1,4 @@
 {
-  "mode": "image"
+  "mode": "color",
+  "color": "#080520"
 }

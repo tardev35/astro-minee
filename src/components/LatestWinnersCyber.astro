@@ -38,28 +38,37 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
 
 <div class="mx-auto w-full max-w-[1300px] p-4">
   <section
-    aria-label="รายการฝาก-ถอนล่าสุดผ่านระบบออโต้ของ MIRACLE55"
-    class="relative border-r-4 border-l-4 border-[#e8b43a] bg-[#0f0c07]/85 px-4 py-8 shadow-[0_0_30px_rgba(232,180,58,0.2)] md:p-10"
+    aria-label="รายการฝาก-ถอนล่าสุดผ่านระบบออโต้ของ XFINITYPLAY"
+    class="relative border-r-4 border-l-4 border-[#22d3ee] bg-[#080520]/85 px-4 py-8 shadow-[0_0_30px_rgba(34,211,238,0.22)] md:p-10"
     style="clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px), 0 20px);">
-    <div class="absolute top-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-[#e8b43a] to-transparent"></div>
-    <div class="absolute bottom-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-[#a55a22] to-transparent"></div>
+    <div class="absolute top-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-[#22d3ee] to-transparent"></div>
+    <div class="absolute bottom-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-[#a855f7] to-transparent"></div>
 
-    <div class="relative z-10 mb-8 flex items-center justify-between border-b border-[#e8b43a]/30 pb-4">
-      <p class="text-xl font-black tracking-[0.2em] text-[#e8b43a] drop-shadow-[0_0_8px_rgba(232,180,58,0.8)]">/// MIRACLE55_LIVE_TRANSACTIONS</p>
-      <span class="animate-pulse border border-[#a55a22]/60 px-2 py-1 text-xs font-bold tracking-widest text-[#e0b98a]">ONLINE</span>
+    <div class="relative z-10 mb-8 flex items-center justify-between border-b border-[#22d3ee]/30 pb-4">
+      <p class="text-xl font-black tracking-[0.2em] text-[#22d3ee] drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">/// XFINITYPLAY_LIVE_TRANSACTIONS</p>
+      <span class="animate-pulse border border-[#a855f7]/60 px-2 py-1 text-xs font-bold tracking-widest text-[#e879f9]">ONLINE</span>
     </div>
 
-    <div data-winners-feed class="relative z-10 flex flex-col gap-3">
+    <div
+      data-winners-feed
+      data-interval="4000"
+      data-max-rows="5"
+      data-amount-min="15000"
+      data-amount-max="95000"
+      data-pending-chance="0.4"
+      data-user-style="letters"
+      data-user-digits="4"
+      class="relative z-10 flex flex-col gap-3">
       {
         initialRows.map((row) => (
           <div data-winner-row class="winner-row origin-left transform transition-all duration-500 ease-out">
-            <div class="flex items-center justify-between border-l-2 border-[#a55a22] bg-gradient-to-r from-[#a9741c]/25 to-transparent p-3 backdrop-blur-sm transition-colors hover:bg-[#a9741c]/40">
+            <div class="flex items-center justify-between border-l-2 border-[#a855f7] bg-gradient-to-r from-[#6d28d9]/30 to-transparent p-3 backdrop-blur-sm transition-colors hover:bg-[#6d28d9]/45">
               <div class="flex items-center gap-4">
                 <div data-winner-bank class={`flex h-8 w-8 items-center justify-center border border-white/10 bg-black/50 mix-blend-screen ${row.bank.color}`}>
                   <img data-winner-icon src={row.bank.icon} alt="" width="20" height="20" loading="lazy" decoding="async" class="h-5 w-5 object-contain grayscale" />
                 </div>
-                <div class="font-mono text-sm text-[#f4e3c8]">
-                  USR_ID: <span data-winner-user class="font-bold text-[#f7d97a]">{row.user}</span>
+                <div class="font-mono text-sm text-[#cfe3f5]">
+                  USR_ID: <span data-winner-user class="font-bold text-[#a5f3fc]">{row.user}</span>
                 </div>
               </div>
               <div class="flex items-center gap-6">
@@ -70,8 +79,8 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
                   class={`winner-status font-mono text-[10px] tracking-widest ${row.pending ? "is-pending" : "is-verified"}`}>
                   {row.pending ? "[PROCESSING]" : "[VERIFIED]"}
                 </div>
-                <div class="font-mono text-xl font-black text-[#e8b43a] drop-shadow-[0_0_8px_rgba(232,180,58,0.5)]">
-                  <span data-winner-amount>{row.amount}</span> <span class="text-xs text-[#a9741c]">THB</span>
+                <div class="font-mono text-xl font-black text-[#22d3ee] drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]">
+                  <span data-winner-amount>{row.amount}</span> <span class="text-xs text-[#a855f7]">THB</span>
                 </div>
               </div>
             </div>
@@ -102,8 +111,8 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
   /* The two status colours are classes rather than inline strings so the JS
      never has to know what this brand's palette is. */
   .winner-status.is-pending {
-    color: #e0b98a;
-    border-color: #8a5a28;
+    color: #e879f9;
+    border-color: #6d28d9;
   }
   .winner-status.is-verified {
     color: oklch(79.2% 0.209 151.711);

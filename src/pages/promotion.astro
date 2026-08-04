@@ -1,8 +1,8 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import ContentBox from "../components/ContentBoxCyberCut.astro";
+import ContentBox from "../components/ContentBoxPremium.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement2.astro";
+import Announcement from "../components/Announcement5.astro";
 
 import { Picture } from "astro:assets";
 
@@ -13,10 +13,10 @@ import pro4 from "../assets/slide4.png";
 import { pageGraph } from "../lib/schema";
 
 const pageDescription =
-  "โปรโมชั่น WINSIAM88 เว็บหลักรวมสล็อต คาสิโน กีฬา พร้อม 5 จุดที่ต้องตรวจก่อนกดรับ ทั้งยอดฝากขั้นต่ำ เปอร์เซ็นต์โบนัส จำนวนเทิร์น เกมที่ร่วมรายการ และเพดานถอน";
+  "รวมโปรโมชั่น XFINITYPLAY ทั้งโบนัสต้อนรับ คืนยอดเสียรายวัน และเครดิตชวนเพื่อน พร้อมเงื่อนไขยอดฝาก จำนวนเทิร์น เกมที่ร่วมรายการ และเพดานถอนที่ควรอ่านก่อนกดรับ";
 
 const graph = pageGraph(Astro, {
-  name: "โปรโมชั่น WINSIAM88 เงื่อนไขที่ต้องอ่านก่อนกดรับสิทธิ์",
+  name: "โปรโมชั่น XFINITYPLAY โบนัสต้อนรับ คืนยอดเสีย และเครดิตชวนเพื่อน",
   description: pageDescription,
   breadcrumb: [
     { name: "หน้าแรก", path: "/" },
@@ -26,42 +26,51 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="โปรโมชั่น WINSIAM88 คืนยอดเดิมพัน 1% โปรวงล้อ และเงื่อนไขที่ต้องอ่านก่อนกดรับ" description={pageDescription}>
+<MainLayout title="โปรโมชั่น XFINITYPLAY โบนัสต้อนรับ คืนยอดเสียรายวัน และเครดิตชวนเพื่อน" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
-  <ContentBox title="โปรโมชั่น WINSIAM88" as="h1">
+  <ContentBox title="โปรโมชั่น XFINITYPLAY โบนัสต้อนรับ คืนยอดเสีย และเครดิตชวนเพื่อน" as="h1">
     <div>
-      <h2 class="mb-4 text-2xl leading-normal font-bold text-[#d4a017]">โปรโมชั่น WINSIAM88 ต้องดู 5 จุดไหนก่อนกดรับสิทธิ์</h2>
+      <h2 class="mb-4 text-2xl leading-normal font-bold text-[#22d3ee]">โปรโมชั่น XFINITYPLAY มีรายการอะไรบ้าง และควรอ่านเงื่อนไขจุดไหนก่อนกดรับ</h2>
 
-      <p class="mb-5 text-left text-base leading-relaxed text-[#dfeacf]">
-        <strong class="text-[#f5cf4d]">WINSIAM88</strong> วางแกนหลักไว้ที่สล็อต คาสิโนมากกว่า 13 ค่าย และกีฬาในบัญชีเดียว สิทธิ์ที่หน้าเว็บเปิดให้กดรับจึงผูกอยู่กับยอดฝากและเกมที่ร่วมรายการ ไม่ได้ลอยอยู่เดี่ยว ๆ ในหน้าโปร ตัวเลขใหญ่บนแบนเนอร์บอกได้แค่ว่ามีอะไรให้ ส่วนบรรทัดเล็กใต้ตัวเลขคือคนที่ตัดสินว่าเราได้จริงเท่าไร ก่อนกดรับจึงควรไล่ให้ครบทั้ง 5 จุด คือยอดฝากขั้นต่ำ เปอร์เซ็นต์โบนัส จำนวนเทิร์น เกมที่ร่วมรายการ และยอดถอนสูงสุด เพราะโปรแต่ละแบบกำหนดเกมและเงื่อนไขถอนไม่เหมือนกัน การเลือกจากเปอร์เซ็นต์สูงที่สุดเพียงอย่างเดียวจึงไม่ใช่วิธีที่ปลอดภัยที่สุด
+      <p class="mb-5 text-left text-base leading-relaxed text-[#cfe3f5]">
+        <strong class="text-[#a5f3fc]">XFINITYPLAY</strong> เป็นเว็บที่รวบรวมเกมสล็อตยอดนิยมจากหลายค่ายไว้ในระบบเดียว สิทธิ์ที่หน้านี้เปิดให้กดรับจึงผูกอยู่กับยอดฝากและเกมที่ร่วมรายการ
+        ไม่ได้ลอยอยู่เดี่ยว ๆ บนแบนเนอร์ ตัวเลขใหญ่บนภาพบอกได้แค่ว่ามีอะไรให้ ส่วนบรรทัดเล็กใต้ตัวเลขคือคนที่ตัดสินว่าได้จริงเท่าไร ก่อนกดรับจึงควรไล่ให้ครบทั้ง 5 จุด
+        คือยอดฝากขั้นต่ำของรายการนั้น เปอร์เซ็นต์โบนัสที่ได้รับ จำนวนเทิร์นที่ต้องทำ เกมและค่ายที่ร่วมรายการ และเพดานถอนสูงสุด เพราะโปรแต่ละแบบกำหนดเกมและเงื่อนไขถอนไม่เหมือนกัน
+        การเลือกจากเปอร์เซ็นต์ที่สูงที่สุดเพียงอย่างเดียวจึงไม่ใช่วิธีที่ปลอดภัยที่สุด
       </p>
 
-      <p class="mb-5 text-left text-base leading-relaxed text-[#dfeacf]">
-        รายการที่เห็นบนหน้าโปรมีทั้งแบบรับครั้งเดียวและแบบรับตามรอบ เช่น คืนยอดเดิมพันทุกวันแบบ Rolling 1% โปรวงล้อที่ให้ลุ้นของรางวัลเมื่อฝากถึงยอดที่กำหนด และส่วนแบ่ง 2% จากยอดเดิมพันของเพื่อนที่สมัครผ่านลิงก์แนะนำ ตัวเลขเหล่านี้ควรใช้เป็นข้อมูลร่างแล้วตรวจจากหน้าโปรจริงอีกครั้งก่อนกด เพราะช่วงเวลาของสิทธิ์ ค่ายเกมที่ยกเว้น และการรับซ้อนกับรายการอื่นเป็นรายละเอียดที่เปลี่ยนได้ตามรอบ ถ้าแผนของเราคือหมุนตามงบแล้วปิดจบ การไม่รับสิทธิ์เลยก็เป็นทางเลือกที่สมเหตุสมผล เพราะโบนัสที่ติดเทิร์นไม่ได้แปลว่าเงินอยู่ในมือแล้ว
+      <p class="mb-5 text-left text-base leading-relaxed text-[#cfe3f5]">
+        รายการที่เห็นบนหน้านี้มีทั้งแบบรับครั้งเดียวและแบบรับตามรอบ เช่น โบนัสต้อนรับสำหรับการฝากครั้งแรก โบนัสสำหรับสมาชิกใหม่ คืนยอดเสียรายวัน และเครดิตจากการชวนเพื่อน
+        ตัวเลขบนภาพควรใช้เป็นข้อมูลตั้งต้นแล้วตรวจจากหน้าโปรโมชั่นจริงในระบบอีกครั้งก่อนกด เพราะช่วงเวลาของสิทธิ์ ค่ายเกมที่ยกเว้น และการรับซ้อนกับรายการอื่นเป็นรายละเอียดที่เปลี่ยนได้ตามรอบ
+        ถ้าแผนของคุณคือหมุนตามงบที่ตั้งไว้แล้วปิดจบ การไม่รับสิทธิ์เลยก็เป็นทางเลือกที่สมเหตุสมผล เพราะโบนัสที่ยังติดเทิร์นไม่ได้แปลว่าเงินอยู่ในมือแล้ว
       </p>
 
-      <h2 class="mt-10 mb-4 text-2xl leading-normal font-bold text-[#d4a017]">คืนยอดเดิมพัน 1% คิดจากฐานไหน และตรวจเทิร์นอย่างไร</h2>
+      <h2 class="mt-10 mb-4 text-2xl leading-normal font-bold text-[#22d3ee]">ฝากถอนไม่มีขั้นต่ำกับยอดขั้นต่ำของโปรโมชั่นเป็นคนละชุดตัวเลข</h2>
 
-      <p class="mb-5 text-left text-base leading-relaxed text-[#dfeacf]">
-        คำว่าคืนยอดเดิมพัน 1% ต้องแยกให้ชัดก่อนว่าคำนวณจากยอดเดิมพันรวม ยอดเสียสุทธิ หรือเฉพาะเกมที่ร่วมรายการ เพราะฐานคำนวณต่างกันแล้วผลลัพธ์ก็ไม่เท่ากัน แม้เปอร์เซ็นต์จะเขียนเหมือนเดิมทุกตัวอักษร หลังกดรับสิทธิ์ควรเปิดหน้าประวัติรายการดูว่ายอดเข้าครบ เทิร์นเดินถูกเกม และยอดคงเหลือตรงกับที่ระบบแสดง เพราะบางรายการนับยอดเฉพาะสล็อตบางค่าย และอาจไม่นับยอดจากโต๊ะคาสิโนสดหรือบิลกีฬาเลย อีกจุดที่คนอ่านข้ามบ่อยคือเดิมพันเริ่มต้นราว 1–10 บาทต่อรอบ ซึ่งเป็นยอดของเกมที่รองรับ ไม่ใช่ขั้นต่ำของการฝากหรือการถอน ทั้งสามส่วนใช้ตัวเลขคนละชุด จึงควรดูยอดบนหน้าฝากและหน้าเกมแยกกัน
+      <p class="mb-5 text-left text-base leading-relaxed text-[#cfe3f5]">
+        เงื่อนไขฝากถอนไม่มีขั้นต่ำของ XFINITYPLAY ช่วยให้กำหนดยอดทำรายการได้ยืดหยุ่นขึ้นตามช่องทางที่เว็บไซต์กำหนด แต่เป็นคนละชุดตัวเลขกับยอดฝากขั้นต่ำที่โปรโมชั่นแต่ละรายการเขียนไว้
+        รายการแบบฝากครั้งแรกรับเพิ่มมักมีเพดานโบนัสและยอดเริ่มต้นของตัวเอง ส่วนรายการคืนยอดเสียรายวันต้องดูว่าคำนวณจากยอดเสียสุทธิของช่วงเวลาไหน นับเฉพาะเกมที่ร่วมรายการหรือไม่ และปิดยอดกี่โมง
+        ก่อนยืนยันจึงควรตรวจช่องทางที่รองรับ สถานะบัญชี และข้อกำหนดของโปรโมชั่นให้ตรงกัน เพื่อช่วยลดปัญหารายการล่าช้าหรือข้อมูลไม่ตรงกันภายหลัง
       </p>
 
-      <p class="mb-8 text-left text-base leading-relaxed text-[#dfeacf]">
-        ด้านการเงิน ระบบกระเป๋าเดียวของ WINSIAM88 ทำให้เครดิตในบัญชีถูกใช้ร่วมกับหลายหมวดเกมได้โดยไม่ต้องโยกยอดไปมา ส่วนระบบฝากถอนออโต้เปิดทำรายการผ่านหน้าเว็บได้ตลอด 24 ชั่วโมงตามสถานะระบบในช่วงนั้น เวลาร่างอยู่ที่ราว 10–30 วินาทีสำหรับฝาก และ 1–3 นาทีสำหรับถอน ก่อนทำรายการควรตรวจชื่อบัญชี ยอดเงิน และประวัติรายการให้ครบ หากยอดยังไม่เปลี่ยนไม่ควรกดซ้ำทันที เพราะนิ้วที่กดสองรอบไม่ได้ทำให้ธนาคารขยันขึ้น และควรกรอกข้อมูลเฉพาะบนโดเมนที่ตรวจแล้วและเชื่อมต่อแบบ HTTPS เท่านั้น ไม่ใช่ลิงก์ที่ส่งต่อกันมาในแชตพร้อมคำโฆษณา
+      <p class="mb-8 text-left text-base leading-relaxed text-[#cfe3f5]">
+        หลังกดรับสิทธิ์ ควรเปิดหน้าประวัติรายการดูว่ายอดโบนัสเข้าครบ เทิร์นเดินถูกเกม และยอดคงเหลือตรงกับที่ระบบแสดง เพราะบางรายการนับยอดเฉพาะสล็อตบางค่ายเท่านั้น
+        ระบบเว็บตรงทำให้สมัคร เข้าสู่ระบบ เลือกเกม และตรวจสอบรายการได้จากหน้าเว็บไซต์เดียว จึงย้อนดูรายการได้เร็วโดยไม่ต้องสลับหลายหน้า หากยอดยังไม่ขยับไม่ควรกดซ้ำทันที เพราะระบบอาจกำลังประมวลผลอยู่
+        และหากติดปัญหาเรื่องสถานะฝากถอนหรือเงื่อนไขโปรโมชั่น ทีมงานดูแลสมาชิกเปิดรับเรื่องตลอด 24 ชั่วโมงผ่านช่องทางที่เว็บไซต์ระบุ โดยไม่ต้องส่งรหัสผ่านหรือรหัสยืนยันให้ใครทั้งสิ้น
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์ WINSIAM88 คืนยอดเดิมพันทุกวัน Rolling 1% พร้อมข้อความ เล่นมาก รับคืนมาก รองรับสล็อต คาสิโนสด และกีฬา ฝากถอนออโต้ 24 ชม. และตรวจสอบสิทธิ์รับคืนได้เองผ่านระบบ"
+          alt="แบนเนอร์โปรโมชั่น XFINITYPLAY ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม พร้อมแถบด้านล่างระบุ มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝาก-ถอน ออโต้ และรองรับมือถือ 100%"
           loading="lazy"
           fetchpriority="low"
-          widths={[200, 400, 600, 800]}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          class="mx-auto h-auto w-full rounded-xl border border-[#d4a017]/25 object-contain shadow-[0_10px_30px_rgba(212,160,23,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#a3e635]/50 hover:shadow-[0_15px_40px_rgba(212,160,23,0.30)]"
+          widths={[300, 450, 600]}
+          sizes="(max-width: 639px) 85vw, (max-width: 1520px) 45vw, 650px"
+          class="mx-auto h-auto w-full rounded-xl border border-[#22d3ee]/25 object-contain shadow-[0_10px_30px_rgba(34,211,238,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#a855f7]/50 hover:shadow-[0_15px_40px_rgba(168,85,247,0.30)]"
           decoding="async"
           formats={["avif", "webp"]}
           fallbackFormat="webp"
@@ -70,12 +79,12 @@ const graph = pageGraph(Astro, {
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์ WINSIAM88 ชวนเพื่อนมาเล่น รับ 2% ระบุว่าแนะนำเพื่อนสมัครผ่านลิงก์รับค่าคอมทันที ทุกยอดเดิมพันของเพื่อนมีสิทธิ์รับส่วนแบ่ง 2% พร้อมข้อความ ยิ่งชวนมาก ยิ่งรับมาก และระบบออโต้ 24 ชม."
+          alt="แบนเนอร์โปรโมชั่น XFINITYPLAY ข้อความ คืนยอดเสียทุกวัน 10% สูงสุด 5,000 บาท พร้อมแถบด้านล่างระบุ มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝาก-ถอน ออโต้ และรองรับมือถือ 100%"
           loading="lazy"
           fetchpriority="low"
-          widths={[200, 400, 600, 800]}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          class="mx-auto h-auto w-full rounded-xl border border-[#d4a017]/25 object-contain shadow-[0_10px_30px_rgba(212,160,23,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#a3e635]/50 hover:shadow-[0_15px_40px_rgba(212,160,23,0.30)]"
+          widths={[300, 450, 600]}
+          sizes="(max-width: 639px) 85vw, (max-width: 1520px) 45vw, 650px"
+          class="mx-auto h-auto w-full rounded-xl border border-[#22d3ee]/25 object-contain shadow-[0_10px_30px_rgba(34,211,238,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#a855f7]/50 hover:shadow-[0_15px_40px_rgba(168,85,247,0.30)]"
           decoding="async"
           formats={["avif", "webp"]}
           fallbackFormat="webp"
@@ -84,12 +93,12 @@ const graph = pageGraph(Astro, {
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์ WINSIAM88 เว็บพนันระดับพรีเมียม ฝากถอนออโต้ รวดเร็ว เล่นง่าย รวมสล็อต คาสิโนสด กีฬา และเกมยอดนิยม พร้อมป้ายระบบเสถียร 24 ชม. รองรับมือถือ สมัครง่าย และปุ่มเริ่มเล่นได้ทันที"
+          alt="แบนเนอร์โปรโมชั่น XFINITYPLAY ข้อความ ชวนเพื่อน รับเครดิตฟรี 300 บาท ชวนมาก ได้มาก พร้อมแถบด้านล่างระบุ มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝาก-ถอน ออโต้ และรองรับมือถือ 100%"
           loading="lazy"
           fetchpriority="low"
-          widths={[200, 400, 600, 800]}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          class="mx-auto h-auto w-full rounded-xl border border-[#d4a017]/25 object-contain shadow-[0_10px_30px_rgba(212,160,23,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#a3e635]/50 hover:shadow-[0_15px_40px_rgba(212,160,23,0.30)]"
+          widths={[300, 450, 600]}
+          sizes="(max-width: 639px) 85vw, (max-width: 1520px) 45vw, 650px"
+          class="mx-auto h-auto w-full rounded-xl border border-[#22d3ee]/25 object-contain shadow-[0_10px_30px_rgba(34,211,238,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#a855f7]/50 hover:shadow-[0_15px_40px_rgba(168,85,247,0.30)]"
           decoding="async"
           formats={["avif", "webp"]}
           fallbackFormat="webp"
@@ -98,12 +107,12 @@ const graph = pageGraph(Astro, {
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์ WINSIAM88 โปรวงล้อ ลุ้นของรางวัลทุกวัน มีวงล้อรางวัลเครดิต 500 ถึง 5,000 พร้อมเงื่อนไข ฝาก 100 ลุ้นของรางวัลพิเศษ และ ฝาก 1,000 รับสิทธิ์เพิ่ม รวมเกมสล็อต คาสิโน และกีฬา"
+          alt="แบนเนอร์โปรโมชั่น XFINITYPLAY ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมแถบด้านล่างระบุ มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝาก-ถอน ออโต้ และรองรับมือถือ 100%"
           loading="lazy"
           fetchpriority="low"
-          widths={[200, 400, 600, 800]}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          class="mx-auto h-auto w-full rounded-xl border border-[#d4a017]/25 object-contain shadow-[0_10px_30px_rgba(212,160,23,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#a3e635]/50 hover:shadow-[0_15px_40px_rgba(212,160,23,0.30)]"
+          widths={[300, 450, 600]}
+          sizes="(max-width: 639px) 85vw, (max-width: 1520px) 45vw, 650px"
+          class="mx-auto h-auto w-full rounded-xl border border-[#22d3ee]/25 object-contain shadow-[0_10px_30px_rgba(34,211,238,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#a855f7]/50 hover:shadow-[0_15px_40px_rgba(168,85,247,0.30)]"
           decoding="async"
           formats={["avif", "webp"]}
           fallbackFormat="webp"
@@ -114,8 +123,8 @@ const graph = pageGraph(Astro, {
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#d4a017]/60 bg-gradient-to-r from-[#f5cf4d] via-[#d4a017] to-[#9a7112] px-10 py-3.5 text-lg font-black text-[#0f1a06] shadow-[0_10px_30px_rgba(212,160,23,0.18)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(163,230,53,0.30)]">
-          สมัครสมาชิก WINSIAM88
+          class="flex items-center justify-center rounded-lg border border-[#22d3ee]/60 bg-gradient-to-r from-[#a5f3fc] via-[#22d3ee] to-[#a855f7] px-10 py-3.5 text-lg font-black text-[#080520] shadow-[0_10px_30px_rgba(34,211,238,0.18)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(168,85,247,0.30)]">
+          สมัครสมาชิก XFINITYPLAY
         </a>
       </div>
     </div>

@@ -1,50 +1,46 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/Announcement2.astro";
+import Announcement from "../components/Announcement5.astro";
 import ContentBox from "../components/ContentBox.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
+import ContentBoxPremium from "../components/ContentBoxPremium.astro";
+import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
 import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
-import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
-import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
+import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
+import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinners4.astro";
+import LatestWinners from "../components/LatestWinnersCyber.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq3.astro";
+import Faq from "../components/Faq4.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
 import { pageGraph } from "../lib/schema";
-import imgRolling from "../assets/slide1.png";
-import imgWheel from "../assets/slide4.png";
+// slide4 illustrates the เว็บตรง section, slide1 the ฝากถอนไม่มีขั้นต่ำ section.
+// Slides may only live inside a ContentBoxSevenThree* block; SmoothCarousel
+// keeps rendering all four as the pre-existing promotion carousel.
+import imgWebDirect from "../assets/slide4.png";
+import imgNoMinimum from "../assets/slide1.png";
 
-const pageTitle = "WINSIAM88 รีวิวเว็บหลัก คาสิโน 13 ค่าย มาตราฐานสากล ฝากถอนออโต้";
+const pageTitle = "XFINITYPLAY เว็บรวมเกมส์ยอดนิยม แตกง่ายมั่นคง ฝากถอนไม่มีขั้นต่ำ";
 
-const pageDescription = "รีวิว WINSIAM88 เว็บหลักรวมสล็อต คาสิโน กีฬา และเกมกว่า 13 ค่าย ใช้กระเป๋าเดียว ฝากถอนออโต้ พร้อมตรวจโปรโมชั่น ระบบสมาชิก และทางเข้าก่อนใช้งาน ครบจากจุดเดียว";
+const pageDescription =
+  "XFINITYPLAY เว็บรวมเกมส์ยอดนิยมจากหลายค่ายไว้ในระบบเดียว แตกง่ายมั่นคง ฝากถอนไม่มีขั้นต่ำ รองรับมือถือ พร้อมระบบออโต้ใช้งานสะดวกและบริการสมาชิกตลอด 24 ชั่วโมง";
 
 const faqs = [
   {
-    q: "คืนยอดเดิมพัน 1% ของ WINSIAM88 คิดจากฐานไหน",
-    a: "ก่อนนับเครดิตในใจ ควรแยกให้ชัดว่า 1% คำนวณจากยอดเดิมพันรวม ยอดเสียสุทธิ หรือเฉพาะเกมที่ร่วมรายการ เพราะฐานคำนวณต่างกันทำให้ยอดที่ได้รับไม่เท่ากัน แม้ตัวเลขเปอร์เซ็นต์จะเขียนเหมือนเดิมทุกครั้ง จุดที่ต้องดูเพิ่มคือรอบคำนวณ วันรับสิทธิ์ จำนวนเทิร์น และเพดานถอน ตัวเลข 1% อ่านจบภายในวินาทีเดียว ส่วนสูตรด้านหลังมักยาวกว่าความอดทนของคนอ่านอยู่พอสมควร",
+    q: "XFINITYPLAY มีเกมสล็อตประเภทใดบ้าง?",
+    a: "ภายในระบบมีทั้งสล็อตคลาสสิก วิดีโอสล็อต เกมโบนัส และเกมจากหลายค่าย สมาชิกสามารถค้นหาเกมตามธีม ฟีเจอร์ หรือระดับความผันผวนที่ต้องการได้",
   },
   {
-    q: "คาสิโนมากกว่า 13 ค่ายใน WINSIAM88 ควรเริ่มเลือกจากอะไร",
-    a: "ค่ายเยอะช่วยเพิ่มตัวเลือกเรื่องโต๊ะ ภาษา วงเงิน และรูปแบบเกม แต่ไม่ใช่เหตุผลที่ต้องกดลองให้ครบภายในวันเดียว ควรเริ่มจากเกมที่เข้าใจกติกาและวงเงินที่รับได้ก่อน แล้วค่อยเทียบประสบการณ์ระหว่างผู้ให้บริการทีละราย บาคาร่า รูเล็ต และเกมสดแต่ละแบบใช้จังหวะไม่เหมือนกัน บางโต๊ะรอบเร็ว บางโต๊ะวงเงินสูง ค่ายเยอะจึงเป็นข้อดีด้านทางเลือก ไม่ใช่ภารกิจสะสมตราประทับให้ครบก่อนกลับบ้าน",
+    q: "XFINITYPLAY ฝากถอนไม่มีขั้นต่ำจริงหรือไม่?",
+    a: "ระบบรองรับเงื่อนไขไม่มีขั้นต่ำในช่องทางที่เว็บไซต์กำหนด แต่สมาชิกควรตรวจสอบรายละเอียดล่าสุด เพราะข้อกำหนดอาจแตกต่างตามช่องทางและโปรโมชั่น",
   },
   {
-    q: "ระบบกระเป๋าเดียวของ WINSIAM88 ลดขั้นตอนตรงไหนบ้าง",
-    a: "เครดิตในบัญชีถูกใช้ร่วมกับเกมหลายหมวดได้ ผู้ใช้จึงไม่ต้องโอนยอดจากสล็อตไปคาสิโนหรือย้ายเงินกลับทุกครั้งที่เปลี่ยนเกม การตรวจยอดคงเหลือและประวัติรายการก็รวมอยู่ในจุดเดียว ความสะดวกนี้ควรใช้คู่กับการแบ่งงบ เช่น สล็อต 40% คาสิโน 30% กีฬา 20% และเผื่อสำรอง 10% เพราะระบบรวมเงินเก่งมาก แต่ยังไม่มีฟังก์ชันเดินมาเตือนว่าวันนี้ใช้เกินแผนไปแล้ว",
-  },
-  {
-    q: "ฝากถอนออโต้ 24 ชั่วโมงของ WINSIAM88 ใช้เวลาจริงเท่าไร",
-    a: "ระบบออโต้ให้สมาชิกทำรายการผ่านหน้าเว็บได้ตลอดเวลา โดยไม่ต้องรอเจ้าหน้าที่ตอบทีละเคส ตัวเลขร่างอยู่ที่ประมาณ 10–30 วินาทีสำหรับฝาก และ 1–3 นาทีสำหรับถอน ขึ้นอยู่กับธนาคารและสถานะระบบในช่วงนั้น หากยอดยังไม่เปลี่ยนควรเปิดประวัติรายการดูก่อนกดซ้ำ เพราะรายการแรกอาจอยู่ระหว่างประมวลผล การกดอีกครั้งไม่ได้ทำให้ธนาคารตื่นตัวขึ้น แต่ช่วยสร้างงานให้ตัวเองเพิ่มอีกหนึ่งรายการได้จริง",
-  },
-  {
-    q: "ทางเข้า WINSIAM88 ต้องตรวจอะไรก่อนล็อกอิน",
-    a: "ชื่อ WINSIAM88 ปรากฏอยู่ในหลายโดเมนและช่องทางโซเชียล ก่อนกรอกข้อมูลจึงควรตรวจชื่อเว็บไซต์ การเชื่อมต่อ HTTPS โลโก้ และปลายทางของปุ่มเข้าสู่ระบบให้ตรงกัน โดยเฉพาะลิงก์ที่ส่งมาจากข้อความส่วนตัว หากมีคนขอ PIN, OTP หรือข้อมูลธนาคารผ่านแชต ควรหยุดทันทีไม่ว่าฝ่ายนั้นจะอ้างตำแหน่งอะไร การเช็กทางเข้าใช้เวลาไม่กี่วินาที แต่การเข้าเว็บผิดอาจใช้เวลาแก้ยาวพอให้จำชื่อโดเมนได้แม่นไปตลอดชีวิต",
+    q: "เกมแตกง่ายของ XFINITYPLAY รับประกันผลลัพธ์หรือไม่?",
+    a: "ไม่สามารถรับประกันผลลัพธ์ของเกมสล็อตได้ เนื่องจากแต่ละเกมมีระบบและความผันผวนแตกต่างกัน ควรอ่านกติกา ทดลองเล่น และกำหนดงบประมาณก่อนเริ่ม",
   },
 ];
 
@@ -59,197 +55,132 @@ const graph = pageGraph(Astro, {
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement
-    message="WINSIAM88 รวมสล็อต คาสิโน กีฬา และเกมกว่า 13 ค่ายไว้ในบัญชีเดียว • กระเป๋าเดียวใช้เครดิตร่วมกันทุกหมวด ไม่ต้องโยกยอดไปมา • ฝากถอนออโต้ตลอด 24 ชั่วโมง ฝากราว 10–30 วินาที ถอนราว 1–3 นาที • คืนยอดเดิมพัน 1% ตรวจรอบคำนวณ จำนวนเทิร์น และเพดานถอนก่อนกดรับทุกครั้ง"
+    message="XFINITYPLAY รวมเกมสล็อตยอดนิยมหลายค่ายไว้ในระบบเดียว ทั้งสล็อตคลาสสิก วิดีโอสล็อต และเกมโบนัส • ระบบเว็บตรง สมัคร เข้าสู่ระบบ และเลือกเกมได้จากหน้าเว็บไซต์เดียว • ฝากถอนไม่มีขั้นต่ำตามช่องทางที่เว็บไซต์กำหนด • ทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง ควรตรวจกติกา อัตราจ่าย และระดับความผันผวนก่อนเลือกเกมทุกครั้ง"
   />
 
-  <ContentBoxCyberCut as="h1" title="WINSIAM88 รีวิวเว็บหลัก เกมครบ กระเป๋าเดียว และฝากถอนออโต้">
-    <p class="text-left text-base leading-relaxed text-[#dfeacf]">
-      <strong class="text-[#f5cf4d]">WINSIAM88</strong> วางระบบให้สล็อต คาสิโน กีฬา และเกมหลายรูปแบบอยู่ในบัญชีเดียว จุดเด่นจึงไม่ได้หยุดแค่คำว่าเกมเยอะ
-      แต่คือการสลับหมวดได้โดยไม่ต้องสมัครใหม่หรือโยกเครดิตไปมาจนยอดเงินเดินทางมากกว่าเจ้าของบัญชี
+  <ContentBoxPremium as="h1" title="XFINITYPLAY เว็บรวมเกมส์ยอดนิยม แตกง่ายมั่นคง ฝากถอนไม่มีขั้นต่ำ">
+    <p class="text-left text-base leading-relaxed text-[#cfe3f5]">
+      <strong class="text-[#a5f3fc]">XFINITYPLAY</strong> เป็นแพลตฟอร์มที่รวบรวมเกมสล็อตยอดนิยมจากหลายค่ายไว้ในระบบเดียว รองรับการใช้งานผ่านมือถือ
+      พร้อมระบบฝากถอนออโต้และเงื่อนไขไม่มีขั้นต่ำตามช่องทางที่กำหนด
     </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#dfeacf]">
-      อีกส่วนที่ควรดูคือคาสิโนมากกว่า 13 ค่าย ระบบฝากถอนอัตโนมัติ พื้นที่สมาชิก และสิทธิ์คืนยอดเดิมพัน 1% ตัวเลขช่วยให้เห็นภาพเร็ว แต่ก่อนใช้งานจริงต้องดูเงื่อนไขให้ครบ
-      เพราะป้ายใหญ่มีไว้สะดุดตา ส่วนข้อกำหนดมีไว้สะดุดการถอน
+    <p class="mt-3 text-left text-base leading-relaxed text-[#cfe3f5]">
+      สมาชิกสามารถเลือกเกม ตรวจสอบโปรโมชั่น และจัดการบัญชีได้สะดวก ควรอ่านกติกาและเงื่อนไขก่อนเริ่มใช้งานทุกครั้ง
     </p>
-  </ContentBoxCyberCut>
+  </ContentBoxPremium>
 
-  <ContentBoxFloatingBadge as="h2" title="รีวิว WINSIAM88 หลังไล่ดูระบบ จุดไหนเด่นกว่าคำว่าเกมเยอะ">
-    <p class="text-left text-base leading-relaxed text-[#dfeacf]">
-      ภาพรวมของ WINSIAM88 เด่นที่การจัดหมวดเกมและระบบสมาชิกให้อยู่ในเส้นทางเดียว ตั้งแต่เลือกเกม ตรวจเครดิต ฝาก ถอน ไปจนถึงดูสิทธิ์ต่าง ๆ
-      ผู้ใช้จึงไม่ต้องเปิดหลายหน้าจนเริ่มสงสัยว่ากำลังเล่นเกมหรือทำงานเอกสาร
+  <ContentBox as="h2" title="XFINITYPLAY รวมเกมสล็อตยอดนิยมหลายค่ายไว้">
+    <p class="text-left text-base leading-relaxed text-[#cfe3f5]">
+      ภายใน XFINITYPLAY มีทั้งสล็อตคลาสสิก วิดีโอสล็อต เกมโบนัส และเกมที่มาพร้อมฟีเจอร์พิเศษ ผู้เล่นสามารถค้นหาเกมตามค่าย ธีม
+      หรือรูปแบบที่ชื่นชอบได้ง่าย
     </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#dfeacf]">
-      สิ่งที่ควรให้คะแนนจริงคือความชัดของเมนู ความเร็วในการเปลี่ยนหมวด และการตรวจประวัติรายการ หากหน้าเว็บสวยแต่หาปุ่มถอนไม่เจอ
-      ความสวยนั้นก็เหมือนพนักงานแต่งตัวดีแต่ตอบไม่ได้ว่าสินค้าอยู่ชั้นไหน
-    </p>
-  </ContentBoxFloatingBadge>
-
-  <ContentBox as="h2" title="คาสิโนมากกว่า 13 ค่าย เลือกอย่างไรไม่ให้ตาลายก่อนเล่น">
-    <p class="text-left text-base leading-relaxed text-[#dfeacf]">
-      การมีคาสิโนมากกว่า 13 ค่ายช่วยเพิ่มตัวเลือกเรื่องโต๊ะ ภาษา วงเงิน และรูปแบบเกม แต่ไม่จำเป็นต้องลองทุกค่ายในวันเดียว
-      ผู้ใช้ควรเริ่มจากเกมที่เข้าใจกติกาและวงเงินที่รับได้ก่อน แล้วค่อยเปรียบเทียบประสบการณ์ระหว่างผู้ให้บริการ
-    </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#dfeacf]">
-      บาคาร่า รูเล็ต และเกมสดแต่ละแบบใช้จังหวะไม่เหมือนกัน บางโต๊ะรอบเร็ว บางโต๊ะมีวงเงินสูง ค่ายเยอะจึงเป็นข้อดีด้านทางเลือก
-      ไม่ใช่ภารกิจสะสมตราประทับให้ครบก่อนกลับบ้าน
+    <p class="mt-3 text-left text-base leading-relaxed text-[#cfe3f5]">
+      ควรตรวจสอบกติกา อัตราจ่าย และระดับความผันผวน เพื่อเลือกเกมให้เหมาะกับงบประมาณของตนเอง
     </p>
   </ContentBox>
 
   <ProviderGrid />
 
-  <ContentBoxCyberCut as="h2" title="กระเป๋าเดียวของ WINSIAM88 ช่วยลดขั้นตอนอะไรบ้าง">
-    <p class="text-left text-base leading-relaxed text-[#dfeacf]">
-      ระบบกระเป๋าเดียวทำให้เครดิตในบัญชีถูกใช้ร่วมกับเกมหลายหมวดได้ ผู้ใช้จึงไม่ต้องโอนยอดจากสล็อตไปคาสิโนหรือย้ายเงินกลับทุกครั้งที่เปลี่ยนเกม
-      การตรวจยอดคงเหลือและประวัติรายการก็รวมอยู่ในจุดเดียว
-    </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#dfeacf]">
-      ความสะดวกนี้ควรใช้คู่กับการแบ่งงบ เช่น สล็อต 40% คาสิโน 30% กีฬา 20% และเผื่อสำรอง 10% เพราะระบบรวมเงินเก่ง
-      แต่ยังไม่มีฟังก์ชันเดินมาบอกว่า “พอเถอะ วันนี้ใช้เกินแผนแล้ว”
-    </p>
-  </ContentBoxCyberCut>
-
-  <ContentBoxSpecial as="h2" title="สล็อต กีฬา และเกมหลายประเภทควรเลือกจากอะไร">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#dfeacf]">
-      สล็อตควรดูเดิมพันเริ่มต้น ความผันผวน และฟีเจอร์โบนัส ส่วนกีฬาต้องตรวจคู่แข่งขัน ตลาด และราคาก่อนส่งบิล เกมแต่ละหมวดจึงต้องใช้วิธีเลือกต่างกัน
-      ไม่ควรใช้คำว่าแตกง่ายเป็นเข็มทิศเดียวสำหรับทุกอย่าง
-    </p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#dfeacf]">
-      มือใหม่อาจเริ่มจากเดิมพันประมาณ 1–10 บาทต่อรอบในเกมที่รองรับ แล้วค่อยปรับตามงบจริง เกมดังช่วยให้หาข้อมูลได้ง่าย
-      แต่ชื่อเสียงของเกมไม่ได้ส่งข้อความมารับรองว่ารอบต่อไปจะใจดีกับเรา
-    </p>
-  </ContentBoxSpecial>
-
-  <GameRankingBoard />
-
-  <ContentBoxFloatingBadge as="h2" title="สมัครและเข้าสู่ระบบ WINSIAM88 ต้องเตรียมอะไร">
-    <p class="text-left text-base leading-relaxed text-[#dfeacf]">
-      การสมัครควรใช้เบอร์โทรศัพท์ที่ติดต่อได้จริง ชื่อบัญชีธนาคารที่ตรงกับผู้สมัคร และรหัส PIN 4 หลักสำหรับเข้าสู่ระบบ
-      ข้อมูลเหล่านี้เกี่ยวข้องกับทั้งการยืนยันตัวตนและการทำรายการภายในบัญชี
-    </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#dfeacf]">
-      PIN ควรหลีกเลี่ยงเลขวันเกิด เลขเรียง หรือเลขซ้ำทั้งชุด เพราะจำง่ายสำหรับเจ้าของก็จริง แต่บางครั้งคนอื่นก็จำได้โดยไม่ต้องพยายามมาก
-      ระบบให้พื้นที่เพียง 4 ตัว จึงควรใช้แต่ละตัวให้คุ้มหน่อย
-    </p>
-  </ContentBoxFloatingBadge>
+  <ContentBoxSevenThreePremium title="ระบบเว็บตรงช่วยลดขั้นตอนและทำให้ใช้งานง่าย">
+    <Picture
+      slot="left"
+      src={imgWebDirect}
+      loading="lazy"
+      fetchpriority="low"
+      widths={[300, 450, 600]}
+      sizes="(max-width: 768px) calc(100vw - 4rem), 350px"
+      decoding="async"
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      quality={80}
+      alt="แบนเนอร์โปรโมชั่น XFINITYPLAY ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมแถบด้านล่าง มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝาก-ถอน ออโต้ ระบบเร็ว ทันใจ ภายในวินาที และ รองรับมือถือ 100% เล่นได้ทุกที่ ทุกเวลา 24 ชม."
+      class="mx-auto h-auto w-full rounded-2xl border border-[#22d3ee]/30 shadow-[0_10px_30px_rgba(34,211,238,0.2)]"
+    />
+    <div slot="right">
+      <p class="text-left text-base leading-relaxed text-[#cfe3f5]">
+        การใช้งานผ่านระบบเว็บตรงช่วยให้สมาชิกสมัคร เข้าสู่ระบบ เลือกเกม และตรวจสอบรายการได้จากหน้าเว็บไซต์เดียว
+      </p>
+      <p class="mt-3 text-left text-base leading-relaxed text-[#cfe3f5]">
+        ควรตรวจสอบช่องทางเข้าให้ถูกต้องก่อนกรอกข้อมูล ตั้งรหัสผ่านที่คาดเดายาก และไม่เปิดเผยรหัสยืนยันแก่ผู้อื่น เพื่อเพิ่มความปลอดภัยของบัญชี
+      </p>
+    </div>
+  </ContentBoxSevenThreePremium>
 
   <LoginRtpSection />
 
-  <ContentBox as="h2" title="ฝากถอนออโต้ 24 ชั่วโมง เร็วแค่ไหนในสถานการณ์จริง">
-    <p class="text-left text-base leading-relaxed text-[#dfeacf]">
-      ระบบออโต้ช่วยให้สมาชิกทำรายการผ่านหน้าเว็บได้ตลอด 24 ชั่วโมง โดยไม่ต้องรอเจ้าหน้าที่ตอบทีละเคส ตัวเลขร่างอาจอยู่ที่ประมาณ 10–30 วินาทีสำหรับฝาก
-      และ 1–3 นาทีสำหรับถอน ขึ้นอยู่กับธนาคารและสถานะระบบ
+  <ContentBoxNeumorphism as="h2" title="เกมแตกง่ายบน XFINITYPLAY ควรเลือกจากข้อมูลประกอบ">
+    <p class="text-left text-base leading-relaxed text-[#cfe3f5]">
+      คำว่าเกมแตกง่ายบน XFINITYPLAY ใช้สื่อถึงเกมที่มีฟีเจอร์และจังหวะลุ้นรางวัลน่าสนใจ แต่ไม่สามารถรับประกันผลลัพธ์ได้
     </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#dfeacf]">
-      หากยอดยังไม่เปลี่ยน ควรตรวจประวัติรายการก่อนกดซ้ำ เพราะรายการแรกอาจอยู่ระหว่างประมวลผล การกดอีกครั้งไม่ได้ช่วยให้ธนาคารตื่นตัวขึ้น
-      แต่อาจช่วยสร้างงานให้ตัวเองเพิ่มอีกหนึ่งรายการ
+    <p class="mt-3 text-left text-base leading-relaxed text-[#cfe3f5]">
+      ผู้เล่นควรศึกษาความผันผวน อัตราจ่าย และรูปแบบโบนัส พร้อมกำหนดวงเงินและเวลาเล่นให้ชัดเจนก่อนเริ่ม
     </p>
-  </ContentBox>
+  </ContentBoxNeumorphism>
+
+  <GameRankingBoard />
+
+  <ContentBoxSevenThreeNeumorphism title="ฝากถอนไม่มีขั้นต่ำผ่านระบบของ XFINITYPLAY">
+    <Picture
+      slot="left"
+      src={imgNoMinimum}
+      loading="lazy"
+      fetchpriority="low"
+      widths={[300, 450, 600]}
+      sizes="(max-width: 768px) calc(100vw - 4rem), 390px"
+      decoding="async"
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      quality={80}
+      alt="แบนเนอร์โปรโมชั่น XFINITYPLAY ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม พร้อมแถบด้านล่าง มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝาก-ถอน ออโต้ ระบบเร็ว ทันใจ ภายในวินาที และ รองรับมือถือ 100% เล่นได้ทุกที่ ทุกเวลา 24 ชม."
+      class="mx-auto h-auto w-full rounded-2xl border border-[#a855f7]/30 shadow-[0_10px_30px_rgba(168,85,247,0.22)]"
+    />
+    <div slot="right">
+      <p class="text-left text-base leading-relaxed text-[#cfe3f5]">
+        เงื่อนไขฝากถอนไม่มีขั้นต่ำของ XFINITYPLAY ช่วยให้สมาชิกกำหนดยอดทำรายการได้ยืดหยุ่นมากขึ้น
+      </p>
+      <p class="mt-3 text-left text-base leading-relaxed text-[#cfe3f5]">
+        อย่างไรก็ตาม ควรตรวจสอบช่องทางที่รองรับ สถานะบัญชี และข้อกำหนดของโปรโมชั่นก่อนยืนยัน เพื่อช่วยลดปัญหารายการล่าช้าหรือข้อมูลไม่ตรงกัน
+      </p>
+    </div>
+  </ContentBoxSevenThreeNeumorphism>
 
   <LatestWinners />
 
-  <ContentBoxSevenThreeCyberCut titleright="คืนยอดเดิมพัน 1% ของ WINSIAM88 คิดจากอะไร">
-    <Picture
-      slot="left"
-      src={imgRolling}
-      loading="lazy"
-      fetchpriority="low"
-      widths={[200, 400, 600]}
-      sizes="(max-width: 768px) 100vw, 30vw"
-      decoding="async"
-      formats={["avif", "webp"]}
-      fallbackFormat="webp"
-      quality={80}
-      alt="แบนเนอร์ WINSIAM88 คืนยอดเดิมพันทุกวัน Rolling 1% พร้อมข้อความ เล่นมาก รับคืนมาก รองรับสล็อต คาสิโนสด และกีฬา ฝากถอนออโต้ 24 ชม. ตรวจสอบสิทธิ์รับคืนได้เองผ่านระบบ และแถบท้าย WINSIAM88 คืนจริง เล่นต่อได้ลื่น พร้อมสัญลักษณ์ SLOTS, LIVE CASINO และ SPORTS"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#d4a017]/25 shadow-[0_10px_30px_rgba(212,160,23,0.18)]"
-    />
-    <div slot="right">
-      <p class="text-left text-base leading-relaxed text-[#dfeacf]">
-        คำว่าคืนยอดเดิมพัน 1% ต้องแยกให้ชัดว่าคำนวณจากยอดเดิมพันรวม ยอดเสียสุทธิ หรือเฉพาะเกมที่ร่วมรายการ เพราะฐานคำนวณต่างกัน
-        ผลลัพธ์ที่ได้รับก็ไม่เท่ากัน แม้ตัวเลขเปอร์เซ็นต์จะเขียนเหมือนเดิม
-      </p>
-      <p class="mt-3 text-left text-base leading-relaxed text-[#dfeacf]">
-        ก่อนกดรับควรดูรอบคำนวณ วันรับสิทธิ์ จำนวนเทิร์น และเพดานถอนให้ครบ 1% อ่านจบเร็ว แต่สูตรด้านหลังอาจยาวกว่าความอดทนของคนอ่านเล็กน้อย
-        จึงต้องดูให้จบก่อนนับเครดิตในใจ
-      </p>
-    </div>
-  </ContentBoxSevenThreeCyberCut>
+  <ContentBoxSpecial as="h2" title="เล่นผ่านมือถือได้สะดวกทุกอุปกรณ์">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#cfe3f5]">
+      เว็บไซต์รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ ผู้ใช้งานจึงสามารถเข้าสู่ระบบ ค้นหาเกม ตรวจสอบโปรโมชั่น และทำรายการผ่านเบราว์เซอร์ได้
+    </p>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#cfe3f5]">
+      ควรใช้อินเทอร์เน็ตที่เสถียร อัปเดตเบราว์เซอร์ และหลีกเลี่ยงเครือข่ายสาธารณะเมื่อต้องทำธุรกรรม
+    </p>
+  </ContentBoxSpecial>
 
-  <ContentBoxSevenThreeFloatingBadge title="โปรโมชั่น WINSIAM88 ควรดูอะไรนอกจากตัวเลขโบนัส">
-    <Picture
-      slot="left"
-      src={imgWheel}
-      loading="lazy"
-      fetchpriority="low"
-      widths={[200, 400, 600]}
-      sizes="(max-width: 768px) 100vw, 30vw"
-      decoding="async"
-      formats={["avif", "webp"]}
-      fallbackFormat="webp"
-      quality={80}
-      alt="แบนเนอร์ WINSIAM88 โปรวงล้อ ลุ้นของรางวัลทุกวัน แสดงวงล้อรางวัลเครดิต 500 ถึง 5,000 พร้อมข้อความ ฝาก 100 ลุ้นของรางวัลพิเศษ ฝาก 1,000 รับสิทธิ์เพิ่ม เล่นง่าย ฝากไว ถอนสะดวก เว็บพนันระดับพรีเมียม ฝากออโต้ทันสมัย รวมเกมครบในที่เดียว ดูแลตลอด 24 ชม. และเกมหลากหลายทั้งสล็อต คาสิโน และกีฬา"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#d4a017]/25 shadow-[0_10px_30px_rgba(212,160,23,0.18)]"
-    />
-    <div slot="right">
-      <p class="text-left text-base leading-relaxed text-[#dfeacf]">
-        โปรโมชั่นที่ดูคุ้มควรตรวจอย่างน้อย 5 จุด ได้แก่ ยอดฝากขั้นต่ำ เปอร์เซ็นต์โบนัส จำนวนเทิร์น เกมที่ร่วมรายการ และยอดถอนสูงสุด
-        เพราะโบนัสสูงไม่ได้แปลว่าเหมาะกับทุกงบหรือทุกสไตล์การเล่น
-      </p>
-      <p class="mt-3 text-left text-base leading-relaxed text-[#dfeacf]">
-        โปรที่ดีไม่จำเป็นต้องให้เครดิตมากที่สุด แต่ควรมีเงื่อนไขที่ทำได้จริงตามแผนของผู้ใช้ รับน้อยแต่จบเงื่อนไขได้
-        ยังดีกว่ารับเยอะแล้วเครดิตนั่งพักถาวรอยู่ในระบบ
-      </p>
-    </div>
-  </ContentBoxSevenThreeFloatingBadge>
-
-  <ContentBoxCyberCut as="h2" title="ใช้งาน WINSIAM88 ผ่านมือถือสะดวกแค่ไหน">
-    <p class="text-left text-base leading-relaxed text-[#dfeacf]">
-      การเข้าเล่นผ่านเบราว์เซอร์ช่วยให้ใช้บัญชีเดียวได้ทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์ ผู้ใช้จึงสลับอุปกรณ์ตามสถานการณ์ได้โดยไม่ต้องสร้างบัญชีใหม่หรือย้ายข้อมูลหลายรอบ
+  <ContentBoxPremium as="h2" title="ช่องทางดูแลสมาชิกจากทีมงาน XFINITYPLAY">
+    <p class="text-left text-base leading-relaxed text-[#cfe3f5]">
+      เมื่อพบปัญหาเกี่ยวกับบัญชี ทางเข้าเล่น โปรโมชั่น หรือสถานะฝากถอน สมาชิกสามารถติดต่อทีมงาน <strong class="text-[#a5f3fc]">XFINITYPLAY</strong>
+      ผ่านช่องทางที่เว็บไซต์ระบุ
     </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#dfeacf]">
-      ก่อนเข้าเกมสดควรใช้เบราว์เซอร์เวอร์ชันใหม่และอินเทอร์เน็ตที่เสถียร หากหน้าจอค้างให้ตรวจสถานะบิลก่อนรีเฟรช การกดหน้าจอแรงขึ้นไม่ช่วยเพิ่มสัญญาณ
-      มีแต่ช่วยทดสอบความแข็งแรงของฟิล์ม
+    <p class="mt-3 text-left text-base leading-relaxed text-[#cfe3f5]">
+      ควรเตรียมชื่อผู้ใช้ เวลา และรายละเอียดรายการให้ครบถ้วน โดยไม่ส่งรหัสผ่านหรือรหัสยืนยันแก่บุคคลอื่น
     </p>
-  </ContentBoxCyberCut>
-
-  <ContentBoxFloatingBadge as="h2" title="ทางเข้า WINSIAM88 ต้องตรวจอะไรให้ตรงเว็บหลัก">
-    <p class="text-left text-base leading-relaxed text-[#dfeacf]">
-      ชื่อ WINSIAM88 ปรากฏอยู่ในหลายโดเมนและช่องทางโซเชียล ก่อนล็อกอินควรตรวจชื่อเว็บไซต์ การเชื่อมต่อ HTTPS โลโก้ และปลายทางของปุ่มเข้าสู่ระบบให้ตรงกัน
-      โดยเฉพาะลิงก์ที่ถูกส่งมาจากข้อความส่วนตัว
-    </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#dfeacf]">
-      หากมีคนขอ PIN, OTP หรือข้อมูลธนาคารผ่านแชต ควรหยุดทันที ทางเข้าใช้เวลาเช็กไม่กี่วินาที แต่หากเข้าเว็บผิด
-      เวลาแก้ปัญหาอาจยาวพอให้จำชื่อโดเมนได้แม่นไปตลอดชีวิต
-    </p>
-  </ContentBoxFloatingBadge>
-
-  <ContentBoxCyberCut as="h2" title="สรุป WINSIAM88 เหมาะกับผู้ใช้งานแบบไหน">
-    <p class="text-left text-base leading-relaxed text-[#dfeacf]">
-      <strong class="text-[#f5cf4d]">WINSIAM88</strong> เหมาะกับคนที่ต้องการรวมสล็อต คาสิโน กีฬา และเกมหลายค่ายไว้ในบัญชีเดียว พร้อมระบบกระเป๋ากลาง ฝากถอนออโต้
-      และพื้นที่สมาชิกที่ใช้ตรวจรายการได้จากจุดเดียว
-    </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#dfeacf]">
-      ก่อนเริ่มควรเลือกหมวดเกมให้ตรงงบ ตรวจโปรโมชั่นจากเงื่อนไขจริง และบันทึกทางเข้าที่ถูกต้องไว้ ความครบของระบบช่วยลดขั้นตอนได้
-      ส่วนการควบคุมงบยังต้องทำเอง เพราะปุ่มหยุดไม่เคยเดินมาหาเจ้าของบัญชีก่อน
-    </p>
-  </ContentBoxCyberCut>
+  </ContentBoxPremium>
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#f5cf4d] via-[#d4a017] to-[#9a7112] px-4 py-3 text-sm font-black whitespace-nowrap text-[#0f1a06] shadow-[0_10px_30px_rgba(212,160,23,0.26)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(212,160,23,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#a5f3fc] via-[#22d3ee] to-[#a855f7] px-4 py-3 text-sm font-black whitespace-nowrap text-[#080520] shadow-[0_10px_30px_rgba(34,211,238,0.28)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(34,211,238,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#4d7c0f]/70 bg-[#0b1408]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#a3e635] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#d4a017] hover:bg-[#122010]/85 hover:shadow-[0_15px_40px_rgba(163,230,53,0.35)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#a855f7]/70 bg-[#0d0a2b]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#a5f3fc] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#22d3ee] hover:bg-[#130d3a]/85 hover:shadow-[0_15px_40px_rgba(168,85,247,0.38)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>
 
   <SmoothCarousel />
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ WINSIAM88" faqs={faqs} />
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ XFINITYPLAY" faqs={faqs} />
 
   <ReviewCardSumo2 />
 

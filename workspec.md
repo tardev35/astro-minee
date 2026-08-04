@@ -3376,3 +3376,169 @@ ContentBoxPremium / ContentBoxNeumorphism กลับไปเป็น invento
   บรรทัดเดียว และ privacy ยังตรงกับความจริงของ build (static ไม่มี analytics ไม่มี pixel)
 - `account_id` ใน wrangler.toml ไม่แตะตามกฎ
 - prettier drift ที่มีอยู่ก่อนแล้วไม่ได้ไล่จัดใหม่
+
+## 2026-08-04 — รีแบรนด์ WINSIAM88 → XFINITYPLAY (สล็อต/รวมเกมยอดนิยม, ไซแอนนีออน + ม่วง/มาเจนต้า บนน้ำเงินอินดิโกเข้ม)
+
+### เป้าหมาย
+
+รีแบรนด์และรีธีมทั้งเว็บจาก WINSIAM88 เป็น **XFINITYPLAY** พร้อมโดเมนจริง
+`https://xfinityplay-auto.com` สั่งมาแบบ "ทำแบบขนานตาม playbook — หยุดที่
+build + verify เท่านั้น ห้าม deploy และห้าม git push" จึงรัน 3-agent ขนาน
+ตาม SKILL (P0 spec → P1 shared chrome → P2 fan-out A/B/C → P3 merge+verify)
+แล้วจบที่ Phase 6 **ไม่ deploy ไม่ commit ไม่ push**
+
+### อินพุตของแบรนด์
+
+- `src/assets/content.txt` (uploader แตกจาก docx ให้แล้ว) — **H1 ×1 + H2 ×6 + Q&A ×3, ไม่มี H3**
+- `palette.json`: logo vivid = ไซแอน `#0acbfb` + ม่วงเข้ม `#4b12c4` + ฟ้าอ่อน `#bbffff`;
+  banner1/slide1 dominant = น้ำเงินเกือบดำ `#010114` / `#02032b`
+- อาร์ตเวิร์กจริง: โลโก้ตัวอักษรโครมไล่ไซแอน→ม่วง→มาเจนต้า มีวงแหวนวงโคจรเรืองแสง,
+  แบนเนอร์พื้นน้ำเงินเข้ม + นีออนม่วง/ฟ้า → สรุปเป็น **ไซแอนเป็นสีหลัก ม่วง/มาเจนต้า
+  เป็นสีรอง บนพื้นอินดิโกเข้ม ไม่มีทอง ไม่มีเขียว**
+- **ไม่มี `banner2/3/4`** ในดรอปนี้ → ไม่มีภาพประกอบ inline ใน single-column ContentBox
+- `banner1-mobile.png` mtime เดียวกับ `banner1.png` (08-04 08:50) = ของแบรนด์นี้จริง ไม่ใช่ของค้าง
+
+### พาเลตต์ (เก่า → ใหม่)
+
+เนื้อความ `#dfeacf` → `#cfe3f5` | ทองสว่าง `#f5cf4d` → ไซแอนอ่อน `#a5f3fc` |
+ทอง `#d4a017` → ไซแอน `#22d3ee` | ทองเข้ม `#9a7112` → ไซแอนเข้ม `#0891b2` |
+เขียวมะนาว `#a3e635` → ม่วง `#a855f7` | เขียวเข้ม `#4d7c0f` → ม่วงเข้ม `#6d28d9` |
+มาเจนต้า accent ใหม่ `#e879f9` | พื้นการ์ด `#0b1408` → `#0d0a2b` |
+hover `#122010` → `#130d3a` | ตัวอักษรบนปุ่ม `#0f1a06` → `#080520` |
+พื้นหน้า `#0a1207` → `#080520` | glow `rgba(212,160,23)` → `rgba(34,211,238)` |
+accent glow `rgba(163,230,53)` → `rgba(168,85,247)`
+
+### การหมุน variant (ต้องต่างจากแบรนด์ก่อนหน้า)
+
+- **Navbar: NavbarCyber → NavbarStyle8**
+- **Footer: FooterCyber → FooterStyle3**
+- **Announcement: Announcement2 → Announcement5**
+- **LatestWinners: LatestWinners4 → LatestWinnersCyber**
+- **Faq: Faq3 → Faq4** (Faq3 มี h3, Faq4 มีแต่ h2 — docx รอบนี้แบนไม่มี H3 จึงตรงกว่า)
+- **ContentBox mix: CyberCut+FloatingBadge+plain+Special → Premium+plain+Neumorphism+Special**
+  (SevenThree: CyberCut+FloatingBadge → **SevenThreePremium + SevenThreeNeumorphism**)
+- **BRAND_FONT: google-sans → kanit**
+- **BRAND_TEXT: `#dfeacf` → `#cfe3f5`**
+
+**หมายเหตุเรื่องความลึกของ pool:** ตระกูล ContentBox/SevenThree มีให้เลือกจริงแค่
+plain / Premium / CyberCut / FloatingBadge / Neumorphism (Huay สงวนไว้ให้เว็บหวย)
+พอตัด 2 ตัวที่ WINSIAM88 เพิ่งใช้ออก เหลือ plain / Premium / Neumorphism พอดี —
+ชุดนี้จึงบังคับตัวเอง และไปตรงกับของ MIRACLE55 (2 แบรนด์ก่อน) โดยปริยาย
+กฎคือห้ามซ้ำ "แบรนด์ที่แล้ว" ซึ่งผ่าน แต่บันทึกไว้ให้รอบหน้ารู้ว่า pool ตื้นแค่นี้
+เช่นเดียวกับ `LatestWinnersCyber` ที่ MIRACLE55 เคยใช้ — เลือกเพราะเป็นตัวเดียวที่
+ผูกกับ `winnersFeed.ts` เต็มรูปแบบ และธีมนีออนของแบรนด์นี้เข้ากับมันพอดี
+
+### โครงงานขนาน
+
+- **P0/P1 (orchestrator)** — อ่าน content.txt + palette.json + รูปทั้งหมด, เลือก variant,
+  เขียน brand spec ไว้ที่ `.rebrand-spec.md` (root) **แล้วลบทิ้งก่อน build** เพราะ
+  Tailwind สแกนไฟล์ .md ที่ root แล้วจะปั้นคลาสตายจาก hex ที่เขียนอยู่ในนั้น
+  (บทเรียนจากรอบ WINSIAM88 ที่ต้องวางไฟล์นอกรีโป — รอบนี้ใช้วิธี "วางในรีโปแล้วลบก่อน build"
+  ซึ่งได้ผลเหมือนกันและ agent อ่าน path ได้ง่ายกว่า)
+  รีธีม shared chrome เองก่อน fan-out: `brandProfile.ts`, `astro.config.mjs`,
+  `wrangler.toml`, `public/site.webmanifest`, `src/assets/bg.json`, `MainLayout`,
+  `NavbarStyle8`, `FooterStyle3`, `Navfoot`, `Announcement5`, `ContentBox`,
+  `ContentBoxPremium` (`BankStrip` ตรวจแล้วไม่ต้องแก้ — เป็นสีของธนาคาร)
+- **Agent A** — `index.astro` + component เฉพาะของ index 12 ตัว
+- **Agent B** — `promotion.astro`, `ทางเข้า.astro`, `ทดลองเล่น.astro`
+- **Agent C** — `about-us.astro`, `contact-us.astro`, `login.astro`, `register.astro`,
+  `404.astro` + ตรวจ `terms.astro`/`privacy.astro`
+- ไฟล์ไม่ชนกันเลย: component ทุกตัวที่หน้าย่อยใช้อยู่ใน P1 หมดแล้ว B/C จึงถือแต่ไฟล์หน้า
+
+### แมปเนื้อหา docx → slot (ครบ 8 หัวข้อ ตามลำดับเอกสาร)
+
+| # | หัวข้อ | component | ต่อท้ายด้วย |
+|---|---|---|---|
+| 1 | H1 | `ContentBoxPremium as="h1"` | |
+| 2 | รวมเกมสล็อตยอดนิยมหลายค่าย | `ContentBox` | `ProviderGrid` |
+| 3 | ระบบเว็บตรง | `ContentBoxSevenThreePremium` (**slide4**) | `LoginRtpSection` |
+| 4 | เกมแตกง่ายควรเลือกจากข้อมูล | `ContentBoxNeumorphism` | `GameRankingBoard` |
+| 5 | ฝากถอนไม่มีขั้นต่ำ | `ContentBoxSevenThreeNeumorphism` (**slide1**) | `LatestWinnersCyber` |
+| 6 | เล่นผ่านมือถือ | `ContentBoxSpecial` (แบ่งย่อหน้าเดียวลง left/right ไม่ตัดคำ) | |
+| 7 | ช่องทางดูแลสมาชิก | `ContentBoxPremium` | ปุ่ม CTA + `SmoothCarousel` |
+| 8 | Q&A | `Faq4` (3 ข้อ) | `ReviewCardSumo2` + `Navfoot` |
+
+**slide ที่ใช้: slide4 + slide1** (SevenThree เต็มโควตา 2 บล็อกพอดี)
+**slide2/slide3 ไม่ได้ใช้เป็นภาพ section** — ยังโผล่ใน `SmoothCarousel` ตามหน้าที่เดิม
+
+### บั๊กที่เจอและวิธีแก้
+
+1. **`bg.png` ของแบรนด์เก่าติดขึ้น build 632 kB — build แดง (ERROR จริง ไม่ใช่ warning)**
+   uploader รอบนี้เลือกพื้นหลังเป็น **สีทึบ** (`bg.json` = `{"mode":"color"}`, ของเดิม
+   commit ไว้เป็น `{"mode":"image"}`) แต่ `MainLayout` `import Bg from "../assets/bg.png"`
+   แบบ static ไว้ตลอด → **imported = emitted** แม้ `<Image>` จะไม่ถูก render เลย
+   ซ้ำร้าย uploader **ไม่ได้เขียนทับ `bg.png`** ตอนเลือกสีทึบ (mtime 08-02 ≠ ดรอปนี้ 08-04)
+   ไบต์ที่จะขึ้น Cloudflare จึงเป็น **วอลเปเปอร์ของแบรนด์ก่อนหน้า**
+   → เป็นบั๊กคลาสเดียวกับ glob `banner*` เป๊ะ แค่คนละไฟล์
+   **สิ่งที่ลองแล้วไม่ได้ผล:** เปลี่ยนเป็น lazy `import.meta.glob` (ไม่ eager) —
+   **Vite ยัง emit ทุกไฟล์ที่ glob แมตช์ ต่อให้ไม่เคยเรียก loader เลย** (วัดจาก build จริง
+   ไฟล์ยังขึ้น `dist/_astro/bg.DOPGiTet.png` และไม่มีหน้าไหนอ้างถึง)
+   **วิธีแก้จริง:** ย้ายไฟล์ออกนอกระยะ glob → `git mv src/assets/bg.png src/assets/bg.unused.png`
+   (คงไฟล์ไว้ ไม่ลบ ตามธรรมเนียมที่ `src/assets` เก็บ art ที่ตายแล้ว เช่น banner2/banner3)
+   คง lazy glob ไว้เพราะได้ผลพลอยได้ที่ถูกต้อง: **วอลเปเปอร์กลายเป็น optional จริง** —
+   `Bg` เป็น null ได้ ตัว render มี branch `: null` รองรับ ไม่ต้อง build แดงเพราะไฟล์หาย
+   (ของเดิม static import = ไม่มี `bg.png` เมื่อไหร่ build พังทันที)
+   เขียนคอมเมนต์กำกับไว้ใน `MainLayout` ครบว่า lazy glob **ไม่ได้** กันการ emit
+2. **meta description ของ docx สั้นเกินเกท** — บรรทัด Meta Description ใน `content.txt`
+   ยาว **133 ตัวอักษร** แต่ `verify-build.mjs` บังคับ 150–160 เป็น **ERROR**
+   (SKILL เขียนว่า "docx เขียนมาได้ความยาวพอดีอยู่แล้ว ใช้ verbatim ได้" — รอบนี้ไม่จริง)
+   → ต่อวลี `จากหลายค่ายไว้ในระบบเดียว` ซึ่ง**ยกมาจากย่อหน้าเปิดของ docx เอง**
+   ได้ 158 ตัวอักษร ไม่ได้แต่งข้อความอ้างสิทธิ์ใหม่ แล้วแจ้ง Agent A ระหว่างทาง
+3. **navbar ประกาศเมนูซ้ำสองชุด** — `NavbarStyle8` เขียนลิงก์จอใหญ่ (ไม่มีไอคอน) กับ
+   sidebar มือถือ (มีไอคอน) แยกกันคนละชุด → hoist เป็น `links` ก้อนเดียว แล้ว render
+   ทั้งสองที่จากตัวเดียว พร้อมใส่ไอคอนครบทุกเมนูเป็น `<span aria-hidden="true">` แยก
+   จาก label (ห้ามต่อกับข้อความ ไม่งั้น screen reader อ่าน "house หน้าแรก")
+4. **ลิงก์ `/about-us` หายไปกับการหมุน variant** — `FooterCyber` (ตัวเก่า) มีลิงก์นี้อยู่
+   แต่ `FooterStyle3` และ `NavbarStyle8` ไม่มี → orchestrator เติมเองทั้งสองที่ใน P3
+   (Agent C เจอแล้วรายงานขึ้นมาโดยไม่แก้ shared chrome เอง = ถูกตามกติกา)
+5. **`about-us.astro` สร้าง `graph` แต่ไม่เคย render** — scaffold ของ uploader ไม่มี
+   `<script type="application/ld+json" set:html={graph} />` ในบอดี้ หน้าจึงจะออกไปแบบ
+   ไม่มี structured data เลย + `pageGraph` ยัง clone ค่า `name`/breadcrumb ของ `ทางเข้า`
+   มาทั้งดุ้น → Agent C แก้ครบทั้งสองจุด
+6. **CSS var ตั้งชื่อหลอกใน `login`/`register`** — `:root` ประกาศ `--brand-gold`,
+   `--brand-lime` (ตามแบรนด์เก่า) การ grep หา class `amber-*` จับไม่เจอ
+   → เปลี่ยนชื่อพร้อมค่าเป็น `--brand-cyan` / `--brand-violet` และไล่ raw hex/rgba ครบ
+
+### การ verify ที่ทำจริง
+
+- `npm run build` **สะอาด 11 หน้า + `verify-build.mjs` ✓ no errors (0 warnings)**
+  (build 3 ครั้ง: ครั้งแรกเจอ bg.png, ครั้งที่สองพิสูจน์ว่า lazy glob ไม่ช่วย, ครั้งที่สามเขียว)
+- **heading diff อัตโนมัติเทียบ `dist/index.html` กับ `content.txt`** → **ตรงเป๊ะ 8/8
+  ทั้งระดับแท็ก ข้อความ และลำดับ** (h1×1 + h2×7) และ **h3 = 0 ทุกหน้าทั้งเว็บ**
+- ชื่อแบรนด์เก่าใน `dist/` ทั้งหมด (WINSIAM88/MIRACLE55/PAY69/UFAG8/SUDYOD888/TUNGMA168) = **0**
+- hex พาเลตต์เก่าทั้ง 19 ตัวใน HTML ที่ render แล้ว = **0**
+- `og:image` → `/_astro/og.ye5lycwZ_mlIuq.jpeg` (มาจาก `og.png` 1200×630 ของดรอปนี้) ไม่ใช่ path ใน `public/`
+- `<!--` ใน `dist/index.html` = **0**
+- hero `<picture>` มี `<source media="(max-width: 767px)" type="image/avif">` ชี้ `banner1-mobile.*` จริง
+- FAQ: `<details>`×3 / `<summary>`×3 ตรงกับ Q&A 3 ข้อ
+- `/about-us` ปรากฏใน `dist/index.html` 3 จุด (เมนูจอใหญ่ + sidebar + footer)
+- canonical ทุกหน้า = `xfinityplay-auto.com` (ยกเว้นหน้า redirect `/line` ที่ชี้ tinyurl ตามตั้งใจ)
+- ที่อยู่ `/contact-us` = "ศูนย์ดูแลสมาชิก XFINITYPLAY / อำเภอเมืองพิษณุโลก จังหวัดพิษณุโลก 65000"
+  (มาจาก `BRAND_NAME` อัตโนมัติ ไม่ได้เขียนมือ ไม่ได้ใส่ลง JSON-LD)
+- route ที่ build ออกมาไม่มี `/ตรวจหวย` `/แนวทาง` — ถูกต้องสำหรับแบรนด์สล็อต
+  (ทั้งคู่อยู่ใน `src/pages-disabled/` อยู่แล้วตั้งแต่ต้น ไม่ต้องย้าย และ grep แล้วไม่มีไฟล์ live ไหนลิงก์ถึง)
+- `wrangler.toml` `name = "xfinityplay"` (เดิม `winsiam88` — ถ้าไม่เปลี่ยน deploy ครั้งหน้าจะทับเว็บแบรนด์นั้น)
+- stylesheet 80 kB, `_sources.generated.css` ตัด component ที่ไม่ถึง 65 ตัว, build รวม 11 MB
+- **ไม่ได้เปิด `npm run dev`** — grep บน `dist/` ซึ่งเป็นผลลัพธ์ production จริง
+  ครอบคลุมกว่าและไม่ต้องไปยุ่งกับการ kill process (บทเรียน SUDYOD888 2026-07-30)
+
+### Out of scope / ไม่แตะ
+
+- **ไม่ deploy ไม่ `git commit` ไม่ `git push`** ตามที่สั่ง — หยุดที่ build + verify
+- inventory variants ที่ไม่ได้ใช้ (`NavbarCyber`, `FooterCyber`, `Announcement2`,
+  `LatestWinners4`, `ContentBoxCyberCut`, `ContentBoxFloatingBadge`,
+  `ContentBoxSevenThreeCyberCut`, `ContentBoxSevenThreeFloatingBadge`, `Faq3`,
+  `NavbarStyle*`/`Footer*`/`*Huay`/`*Premium` อื่นๆ) = เก็บเป็น inventory แบรนด์หน้า
+  ยังมีชื่อ WINSIAM88 ค้างใน 4 ตัวแรก = expected drift ตาม SKILL
+- `NavbarCyber.astro` / `FooterCyber.astro` ขึ้น `M` ใน git status มาตั้งแต่ก่อนเริ่มงานนี้
+  (ค้างจากรอบ WINSIAM88 ที่ไม่ได้ commit) ไม่ได้แก้เพิ่มรอบนี้
+- `404.astro`, `terms.astro`, `privacy.astro` = **แก้ 0 บรรทัด** ทุกคำที่เป็นชื่อแบรนด์
+  มาจาก `BRAND_NAME` และ privacy ยังตรงกับความจริงของ build (static ไม่มี analytics ไม่มี pixel)
+- `account_id` ใน `wrangler.toml` ไม่แตะตามกฎ (ต้องเปลี่ยนผ่านปุ่มสลับบัญชีของ uploader เท่านั้น)
+- `src/assets/bg.unused.png` เก็บไว้ ไม่ลบ — ถ้าแบรนด์หน้าอัปวอลเปเปอร์จริง uploader จะเขียน
+  `bg.png` ใหม่แล้ว glob ก็เจอเอง
+- `content.docx` ยังอยู่คู่ `content.txt` = ปกติสำหรับ brief ที่มาจาก docx
+- `SmoothCarousel` สไลด์แรกยังเป็น `loading="eager" fetchpriority="high"` ทั้งที่อยู่ใต้ fold
+  และแย่ง priority กับ hero (Agent A รายงานขึ้นมา) = ของเดิมทุกแบรนด์ ไม่ใช่เรื่องธีม ไม่แก้รอบนี้
+- prettier drift ที่มีอยู่ก่อนแล้ว (ทั้ง 11 หน้าไม่ผ่าน `--check` รวมไฟล์ที่ไม่มีใครแตะ)
+  ไม่ได้ไล่จัดใหม่ เพราะจะกลบ diff ของงานรีแบรนด์

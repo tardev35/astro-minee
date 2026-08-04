@@ -1,13 +1,12 @@
 ---
 import { Image, getImage } from "astro:assets";
-import Bg from "../assets/bg.png";
 import bgConfig from "../assets/bg.json";
 import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarCyber.astro";
-import Footer from "../components/FooterCyber.astro";
+import Navbar from "../components/NavbarStyle8.astro";
+import Footer from "../components/FooterStyle3.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -56,8 +55,8 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "WINSIAM88 รีวิวเว็บหลัก คาสิโน 13 ค่าย มาตราฐานสากล ฝากถอนออโต้",
-  description = "รีวิว WINSIAM88 เว็บหลักรวมสล็อต คาสิโน กีฬา และเกมกว่า 13 ค่าย ใช้กระเป๋าเดียว ฝากถอนออโต้ พร้อมตรวจโปรโมชั่น ระบบสมาชิก และทางเข้าก่อนใช้งาน ครบจากจุดเดียว",
+  title = "XFINITYPLAY เว็บรวมเกมส์ยอดนิยม แตกง่ายมั่นคง ฝากถอนไม่มีขั้นต่ำ",
+  description = "XFINITYPLAY เว็บรวมเกมส์ยอดนิยมจากหลายค่ายไว้ในระบบเดียว แตกง่ายมั่นคง ฝากถอนไม่มีขั้นต่ำ รองรับมือถือ พร้อมระบบออโต้ใช้งานสะดวกและบริการสมาชิกตลอด 24 ชั่วโมง",
   robots = "index, follow",
 } = Astro.props;
 
@@ -94,6 +93,34 @@ const ImageOg = ogRendered.src;
 // which fails the build with "Expected ) but found $$render".)
 const bgMode = (bgConfig as { mode?: string }).mode ?? "image";
 const bgCss = bgMode === "color" ? `background-color:${(bgConfig as { color?: string }).color};` : bgMode === "gradient" ? `background-image:${(bgConfig as { css?: string }).css};` : null;
+
+// The wallpaper is OPTIONAL and only used when bg.json asks for image mode.
+//
+// This used to be a static `import Bg from "../assets/bg.png"`, which is the
+// same trap the banner glob had: an imported image is an EMITTED image whether
+// or not anything renders it. bg.json is written by the uploader per brand, and
+// when an operator picks a flat colour or a gradient the <Image> below never
+// renders — but the import still pushed 632 kB into dist/_astro and up to
+// Cloudflare on every deploy. Worse, the uploader does NOT overwrite bg.png
+// when it writes a colour, so those bytes were the PREVIOUS brand's wallpaper
+// riding along on the new domain. verify-build.mjs fails the build on an image
+// that ships unrendered, which is how this was caught (XFINITYPLAY, 2026-08-04).
+//
+// ── What this glob does and does NOT fix ────────────────────────────────────
+// Making it lazy does NOT stop the emission: Vite emits the asset for anything
+// a glob matches, invoked or not — measured, the file still shipped. The only
+// thing that keeps a wallpaper out of the build is it not matching this pattern.
+// So a brand that uses a flat colour must PARK the stale file out of glob range
+// (`bg.unused.png` — same folder, the way dead banner art is parked) rather than
+// leave `bg.png` sitting there.
+//
+// What the glob buys instead is that the wallpaper is genuinely optional: `Bg`
+// comes back null when no file matches, the render below falls through to null,
+// and the build stays green. The old static import made a missing bg.png a hard
+// build failure.
+const bgLoaders = import.meta.glob<{ default: ImageMetadata }>("../assets/bg.{png,webp,jpg,jpeg}");
+const bgLoaderPath = Object.keys(bgLoaders).find((path) => path.endsWith(".webp")) ?? Object.keys(bgLoaders)[0];
+const Bg = bgMode === "image" && bgLoaderPath ? (await bgLoaders[bgLoaderPath]()).default : null;
 
 // canonicalFor() is the same function every JSON-LD URL goes through, so the
 // canonical and the structured data cannot drift apart (see src/lib/schema.ts).
@@ -164,7 +191,7 @@ const profile = brandProfile(Astro.site);
 
           {block === "appmeta" && (
             <Fragment>
-              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="winsiam88" />}
+              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="xfinityplay" />}
               <link rel="manifest" href="/site.webmanifest" />
             </Fragment>
           )}
@@ -206,7 +233,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #0a1207;
+        background-color: #080520;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -217,7 +244,7 @@ const profile = brandProfile(Astro.site);
     {
       bgCss ? (
         <div class="fixed inset-0 -z-50 h-full w-full bg-cover bg-center" style={bgCss} />
-      ) : (
+      ) : Bg ? (
         <Image
           src={Bg}
           alt=""
@@ -230,7 +257,7 @@ const profile = brandProfile(Astro.site);
           quality="low"
           decoding="async"
         />
-      )
+      ) : null
     }
 
     <Navbar />
@@ -259,7 +286,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ WINSIAM88 เว็บพนันระดับพรีเมียม ฝากออโต้ด้วยระบบทันสมัย รวมสล็อต คาสิโนสด บาคาร่า และเกมยอดนิยมในเว็บเดียว สมัครง่าย ระบบเสถียร ฝากถอนอัตโนมัติ ดูแลตลอด 24 ชั่วโมง"
+          alt="แบนเนอร์ XFINITYPLAY สล็อต คาสิโน กีฬา ครบจบในเว็บเดียว ระบบออโต้ ฝากถอนรวดเร็ว รองรับมือถือ 24 ชม. พร้อมแถบมั่นคงปลอดภัยระบบมาตรฐานสากล ฝาก-ถอนออโต้ภายในวินาที และรองรับมือถือ 100% เข้าได้ทุกที่ทุกเวลา"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

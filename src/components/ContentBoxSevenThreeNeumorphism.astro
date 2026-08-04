@@ -10,15 +10,15 @@ const rightHeading = titleright ?? title;
 
 <section class="relative z-10 mx-auto mb-8 w-full max-w-[1400px] px-4 font-sans">
   <div
-    class="w-full rounded-[25px] border border-[#3a2e1c]/70 bg-[#15110b] p-8 shadow-[10px_10px_20px_#040302,-10px_-10px_20px_#241a10] transition-all duration-300 hover:shadow-[15px_15px_30px_#020201,-15px_-15px_30px_#2c2114]">
+    class="w-full rounded-[25px] border border-[#a855f7]/25 bg-[#0d0a2b] p-8 shadow-[10px_10px_20px_#03010f,-10px_-10px_20px_#161046] transition-all duration-300 hover:shadow-[15px_15px_30px_#02010a,-15px_-15px_30px_#1b1355]">
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f4e3c8]">
-        {titleleft && <h2 class="text-2xl leading-normal font-black text-[#e8b43a]">{titleleft}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#cfe3f5]">
+        {titleleft && <h2 class="text-2xl leading-normal font-black text-[#22d3ee]">{titleleft}</h2>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f4e3c8] md:border-l md:border-[#3a2e1c] md:pl-8">
-        {rightHeading && <h2 class="text-2xl leading-normal font-black text-[#e8b43a]">{rightHeading}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#cfe3f5] md:border-l md:border-[#a855f7]/30 md:pl-8">
+        {rightHeading && <h2 class="text-2xl leading-normal font-black text-[#22d3ee]">{rightHeading}</h2>}
         <slot name="right" />
       </article>
     </div>

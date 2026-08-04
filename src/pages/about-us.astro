@@ -1,0 +1,51 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import ContentBox from "../components/ContentBox.astro";
+import Navfoot from "../components/Navfoot.astro";
+import Announcement from "../components/Announcement5.astro";
+import { pageGraph } from "../lib/schema";
+
+// One string, three jobs: MainLayout's <meta name="description">, the WebPage
+// node's description, and nothing else. 150–160 CHARACTERS (Thai is 3 bytes per
+// character, so a byte count reads ~3x too long).
+const pageDescription =
+  "เกี่ยวกับ XFINITYPLAY เว็บรวมเกมสล็อตยอดนิยมหลายค่ายไว้ในระบบเดียว ใช้งานผ่านระบบเว็บตรง รองรับมือถือ ฝากถอนไม่มีขั้นต่ำ พร้อมทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง";
+
+const pageHeading = "เกี่ยวกับเรา XFINITYPLAY เว็บรวมเกมสล็อตหลายค่ายในระบบเดียว";
+
+const graph = pageGraph(Astro, {
+  name: pageHeading,
+  description: pageDescription,
+  breadcrumb: [
+    { name: "หน้าแรก", path: "/" },
+    { name: "เกี่ยวกับเรา", path: "/about-us" },
+  ],
+});
+---
+
+<MainLayout title="เกี่ยวกับเรา XFINITYPLAY | เว็บรวมเกมสล็อตหลายค่าย ฝากถอนไม่มีขั้นต่ำ" description={pageDescription}>
+  <script type="application/ld+json" set:html={graph} />
+
+  <Announcement />
+
+  <ContentBox title={pageHeading} as="h1">
+    <p class="text-left text-base leading-relaxed text-[#cfe3f5]">
+      <strong class="text-[#a5f3fc]">XFINITYPLAY</strong> เป็นแพลตฟอร์มที่รวบรวมเกมสล็อตยอดนิยมจากหลายค่ายไว้ในระบบเดียว ทั้งสล็อตคลาสสิก วิดีโอสล็อต เกมโบนัส
+      และเกมที่มาพร้อมฟีเจอร์พิเศษ สมาชิกค้นหาเกมตามค่าย ธีม หรือรูปแบบที่ชื่นชอบได้จากหน้าเดียว พร้อมตรวจสอบกติกา อัตราจ่าย และระดับความผันผวนของแต่ละเกม
+      เพื่อเลือกให้เหมาะกับงบประมาณของตนเองก่อนเริ่มเล่นทุกครั้ง
+    </p>
+
+    <p class="mt-5 text-left text-base leading-relaxed text-[#cfe3f5]">
+      การใช้งานผ่านระบบเว็บตรงช่วยลดขั้นตอนที่ไม่จำเป็น สมาชิกสมัคร เข้าสู่ระบบ เลือกเกม ตรวจสอบโปรโมชั่น และดูรายการย้อนหลังได้จากหน้าเว็บไซต์เดียว เว็บไซต์รองรับทั้งมือถือ
+      แท็บเล็ต และคอมพิวเตอร์ จึงเปิดใช้งานผ่านเบราว์เซอร์ได้โดยไม่ต้องติดตั้งโปรแกรมเพิ่ม ส่วนเงื่อนไขฝากถอนไม่มีขั้นต่ำผ่านระบบของ XFINITYPLAY
+      ช่วยให้กำหนดยอดทำรายการได้ยืดหยุ่นมากขึ้น โดยควรตรวจสอบช่องทางที่รองรับ สถานะบัญชี และข้อกำหนดของโปรโมชั่นก่อนกดยืนยันทุกครั้ง
+    </p>
+
+    <p class="mt-5 text-left text-base leading-relaxed text-[#cfe3f5]">
+      เมื่อพบปัญหาเกี่ยวกับบัญชี ทางเข้าเล่น โปรโมชั่น หรือสถานะฝากถอน สมาชิกติดต่อทีมงาน XFINITYPLAY ผ่านช่องทางที่เว็บไซต์ระบุได้ตลอด 24 ชั่วโมง ควรเตรียมชื่อผู้ใช้
+      เวลาที่ทำรายการ และรายละเอียดรายการให้ครบถ้วนตั้งแต่ข้อความแรก โดยไม่ส่งรหัสผ่านหรือรหัสยืนยันให้บุคคลอื่นไม่ว่ากรณีใด และควรอ่านกติกากับเงื่อนไขให้ครบก่อนเริ่มใช้งาน
+    </p>
+  </ContentBox>
+
+  <Navfoot />
+</MainLayout>

@@ -30,10 +30,10 @@ export default defineConfig({
   },
 
   redirects: {
-    "/line": "https://tinyurl.com/suhng",
+    "/line": "https://tinyurl.com/tog191",
   },
 
-  site: "https://winsiam88-homepage.com",
+  site: "https://xfinityplay-auto.com",
   integrations: [
     sitemap({
       // /login, /register and /line are forwarding pages that all ship

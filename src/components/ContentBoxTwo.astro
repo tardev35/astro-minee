@@ -6,16 +6,19 @@ export interface Props {
 }
 const { titleleft, titleright, label } = Astro.props;
 
+// The two column titles render as <p>, never <h2>: this is a UI widget, not
+// article content, and the page's heading inventory is diffed against the docx
+// on every rebrand. The accessible name for the region lives on aria-label.
 const sectionLabel = label ?? titleleft ?? titleright ?? "ข้อมูลประกอบ";
 ---
 
 <section aria-label={sectionLabel} class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
-    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#dfeacf]">
+    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#cfe3f5]">
       {
         titleleft && (
-          <p class="flex items-center gap-3 border-b border-[#d4a017]/25 pb-3 text-xl leading-normal font-black tracking-widest text-[#d4a017] uppercase">
-            <span aria-hidden="true" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#d4a017]/40 bg-gradient-to-br from-[#f5cf4d] via-[#d4a017] to-[#9a7112] text-sm text-[#0f1a06] shadow-[0_5px_15px_rgba(212,160,23,0.3)]">
+          <p class="flex items-center gap-3 border-b border-[#22d3ee]/25 pb-3 text-xl leading-normal font-black tracking-widest text-[#22d3ee] uppercase">
+            <span aria-hidden="true" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#22d3ee]/40 bg-gradient-to-br from-[#a5f3fc] via-[#22d3ee] to-[#0891b2] text-sm text-[#080520] shadow-[0_5px_15px_rgba(34,211,238,0.3)]">
               🔐
             </span>
             {titleleft}
@@ -25,11 +28,11 @@ const sectionLabel = label ?? titleleft ?? titleright ?? "ข้อมูลป�
       <slot name="left" />
     </article>
 
-    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#dfeacf]">
+    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#cfe3f5]">
       {
         titleright && (
-          <p class="flex items-center gap-3 border-b border-[#d4a017]/25 pb-3 text-xl leading-normal font-black tracking-widest text-[#d4a017] uppercase">
-            <span aria-hidden="true" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#4d7c0f]/50 bg-gradient-to-br from-[#a3e635] via-[#4d7c0f] to-[#3f6212] text-sm text-[#0f1a06] shadow-[0_5px_15px_rgba(163,230,53,0.35)]">
+          <p class="flex items-center gap-3 border-b border-[#a855f7]/25 pb-3 text-xl leading-normal font-black tracking-widest text-[#a855f7] uppercase">
+            <span aria-hidden="true" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#a855f7]/50 bg-gradient-to-br from-[#e879f9] via-[#a855f7] to-[#6d28d9] text-sm text-[#080520] shadow-[0_5px_15px_rgba(168,85,247,0.35)]">
               🎰
             </span>
             {titleright}

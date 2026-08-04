@@ -8,21 +8,23 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 ---
 
 <footer
-  class="relative mt-32 w-full border-t border-[#dcb96b]/30 bg-[#0a0a09] pt-64 pb-6 font-sans text-[#efeade] shadow-[0_-10px_30px_rgba(220,185,107,0.15)] md:pt-40">
+  class="relative mt-32 w-full border-t border-[#22d3ee]/30 bg-[#050318] pt-64 pb-6 font-sans text-[#cfe3f5] shadow-[0_-10px_30px_rgba(34,211,238,0.15)] md:pt-40">
   <div
-    class="absolute -top-14 left-1/2 z-20 flex w-[92%] max-w-5xl -translate-x-1/2 flex-col items-center justify-between rounded-2xl border border-[#dcb96b]/35 bg-gradient-to-r from-[#15171c] via-[#22262e] to-[#191712] p-6 shadow-[0_15px_40px_rgba(185,188,196,0.28)] md:-top-16 md:flex-row md:p-8">
+    class="absolute -top-14 left-1/2 z-20 flex w-[92%] max-w-5xl -translate-x-1/2 flex-col items-center justify-between rounded-2xl border border-[#22d3ee]/35 bg-gradient-to-r from-[#0d0a2b] via-[#130d3a] to-[#0d0a2b] p-6 shadow-[0_15px_40px_rgba(168,85,247,0.28)] md:-top-16 md:flex-row md:p-8">
     <div class="mb-5 flex flex-col text-center md:mb-0 md:text-left">
-      <p class="text-xl font-black tracking-wide text-[#f2dca4] uppercase italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] md:text-3xl"><span aria-hidden="true">⚽</span> พร้อมลงสนามกับ UFAG8 แล้วหรือยัง?</p>
-      <p class="mt-2 text-sm font-medium text-[#d7dae1]/90 md:text-base">
-        สมัคร UFAG8 ด้วยเบอร์โทรภายในประมาณ 5 นาที แล้วเลือกตลาดบอลก่อนแข่ง บอลสด บิลเดี่ยว และบิลสเต็ปได้ในบัญชีเดียว ตรวจราคาและเงื่อนไขทุกครั้งก่อนยืนยันบิล
+      <p class="text-xl font-black tracking-wide text-[#a5f3fc] uppercase italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] md:text-3xl">
+        <span aria-hidden="true">🎰</span> พร้อมเริ่มเล่นกับ XFINITYPLAY แล้วหรือยัง?
+      </p>
+      <p class="mt-2 text-sm font-medium text-[#9fb3cc] md:text-base">
+        สมัคร XFINITYPLAY ด้วยเบอร์โทรภายในไม่กี่นาที แล้วเลือกเกมสล็อตจากหลายค่ายได้ในบัญชีเดียว รองรับระบบฝากถอนออโต้ ควรอ่านกติกาและเงื่อนไขทุกครั้งก่อนเริ่มใช้งาน
       </p>
     </div>
 
     <a
       href="/register"
-      class="group relative flex items-center justify-center overflow-hidden rounded-full border border-[#f2dca4] bg-gradient-to-b from-[#f2dca4] to-[#ac893a] px-8 py-3.5 text-sm font-extrabold whitespace-nowrap text-[#141210] shadow-[0_0_15px_rgba(220,185,107,0.4)] transition-all hover:scale-105 md:text-base">
+      class="group relative flex items-center justify-center overflow-hidden rounded-full border border-[#22d3ee] bg-gradient-to-b from-[#a5f3fc] to-[#0891b2] px-8 py-3.5 text-sm font-extrabold whitespace-nowrap text-[#080520] shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all hover:scale-105 md:text-base">
       <span class="relative z-10">สมัครสมาชิกเลย <span aria-hidden="true">🚀</span></span>
-      <div class="absolute inset-0 translate-y-full bg-[#e5c375] transition-transform duration-300 group-hover:translate-y-0"></div>
+      <div class="absolute inset-0 translate-y-full bg-[#a855f7] transition-transform duration-300 group-hover:translate-y-0"></div>
     </a>
   </div>
 
@@ -34,23 +36,24 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
             mainLogo ? (
               <Picture
                 src={mainLogo}
-                alt="UFAG8"
+                alt="XFINITYPLAY"
                 widths={[100, 200, 300]}
                 sizes="100px"
                 height={45}
                 loading="lazy"
                 decoding="async"
-                class="h-[45px] w-auto drop-shadow-[0_0_12px_rgba(220,185,107,0.6)]"
+                class="h-[45px] w-auto drop-shadow-[0_0_12px_rgba(34,211,238,0.6)]"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
               />
             ) : (
-              <p class="bg-gradient-to-b from-[#f2dca4] to-[#ac893a] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(220,185,107,0.5)]">UFAG8</p>
+              <p class="bg-gradient-to-b from-[#a5f3fc] to-[#a855f7] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]">XFINITYPLAY</p>
             )
           }
         </a>
-        <p class="text-sm leading-relaxed text-[#bcb6a6]">
-          UFAG8 วางแกนหลักไว้ที่ฟุตบอลและการเดิมพันกีฬา แบ่งรายการตามลีก คู่แข่งขัน และช่วงเวลา รองรับตลาดแฮนดิแคป สูง–ต่ำ และ 1X2 ทั้งบอลก่อนแข่งและบอลสด พร้อมระบบสมาชิกที่ใช้เบอร์โทรศัพท์เข้าสู่ระบบ
+        <p class="text-sm leading-relaxed text-[#9fb3cc]">
+          XFINITYPLAY รวบรวมเกมสล็อตยอดนิยมจากหลายค่ายไว้ในระบบเดียว ทั้งสล็อตคลาสสิก วิดีโอสล็อต เกมโบนัส และเกมที่มาพร้อมฟีเจอร์พิเศษ ค้นหาเกมตามค่าย ธีม หรือรูปแบบที่ชอบได้ง่าย
+          รองรับการใช้งานผ่านมือถือ พร้อมระบบฝากถอนออโต้
         </p>
 
         <div class="mt-2 flex flex-wrap gap-3">
@@ -67,62 +70,65 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
       </div>
 
       <div class="md:col-span-6 lg:col-span-5">
-        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#efeade] uppercase">
+        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#cfe3f5] uppercase">
           ลิงก์ด่วน (Quick Links)
-          <span class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#ac893a] to-[#f2dca4] shadow-[0_0_8px_rgba(220,185,107,0.6)]"></span>
+          <span class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#a855f7] to-[#22d3ee] shadow-[0_0_8px_rgba(34,211,238,0.6)]"></span>
         </p>
 
         <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
-          <a href="/" class="group flex items-center text-[#bcb6a6] transition-colors hover:text-[#f2dca4]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#dcb96b] transition-transform group-hover:rotate-45"></span> หน้าแรก
+          <a href="/" class="group flex items-center text-[#9fb3cc] transition-colors hover:text-[#a5f3fc]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#22d3ee] transition-transform group-hover:rotate-45"></span> หน้าแรก
           </a>
-          <a href="/ทดลองเล่น" class="group flex items-center text-[#bcb6a6] transition-colors hover:text-[#f2dca4]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#dcb96b] transition-transform group-hover:rotate-45"></span> ทดลองเล่นเกมฟรี
+          <a href="/ทดลองเล่น" class="group flex items-center text-[#9fb3cc] transition-colors hover:text-[#a5f3fc]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#22d3ee] transition-transform group-hover:rotate-45"></span> ทดลองเล่นเกมฟรี
           </a>
-          <a href="/promotion" class="group flex items-center text-[#bcb6a6] transition-colors hover:text-[#f2dca4]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#dcb96b] transition-transform group-hover:rotate-45"></span> โปรโมชั่นสมาชิกใหม่
+          <a href="/promotion" class="group flex items-center text-[#9fb3cc] transition-colors hover:text-[#a5f3fc]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#22d3ee] transition-transform group-hover:rotate-45"></span> โปรโมชั่นสมาชิกใหม่
           </a>
-          <a href="/ทางเข้า" class="group flex items-center text-[#bcb6a6] transition-colors hover:text-[#f2dca4]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#dcb96b] transition-transform group-hover:rotate-45"></span> ทางเข้าล่าสุด
+          <a href="/ทางเข้า" class="group flex items-center text-[#9fb3cc] transition-colors hover:text-[#a5f3fc]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#22d3ee] transition-transform group-hover:rotate-45"></span> ทางเข้าล่าสุด
           </a>
-          <a href="/register" class="group flex items-center text-[#bcb6a6] transition-colors hover:text-[#f2dca4]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#dcb96b] transition-transform group-hover:rotate-45"></span> สมัครสมาชิก
+          <a href="/register" class="group flex items-center text-[#9fb3cc] transition-colors hover:text-[#a5f3fc]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#22d3ee] transition-transform group-hover:rotate-45"></span> สมัครสมาชิก
           </a>
-          <a href="/contact-us" class="group flex items-center text-[#bcb6a6] transition-colors hover:text-[#f2dca4]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#dcb96b] transition-transform group-hover:rotate-45"></span> ติดต่อแอดมิน
+          <a href="/about-us" class="group flex items-center text-[#9fb3cc] transition-colors hover:text-[#a5f3fc]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#22d3ee] transition-transform group-hover:rotate-45"></span> เกี่ยวกับเรา
+          </a>
+          <a href="/contact-us" class="group flex items-center text-[#9fb3cc] transition-colors hover:text-[#a5f3fc]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#22d3ee] transition-transform group-hover:rotate-45"></span> ติดต่อแอดมิน
           </a>
         </div>
       </div>
 
       <div class="md:col-span-6 lg:col-span-3">
-        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#efeade] uppercase">
+        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#cfe3f5] uppercase">
           ระบบการเงิน
-          <span class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#ac893a] to-[#f2dca4] shadow-[0_0_8px_rgba(220,185,107,0.6)]"></span>
+          <span class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#a855f7] to-[#22d3ee] shadow-[0_0_8px_rgba(34,211,238,0.6)]"></span>
         </p>
 
-        <p class="mb-4 text-xs text-[#bcb6a6]">รองรับการฝาก-ถอนผ่านแอปธนาคารชั้นนำและ TrueMoney Wallet โดยควรใช้บัญชีชื่อเดียวกับข้อมูลที่สมัครไว้</p>
+        <p class="mb-4 text-xs text-[#9fb3cc]">รองรับการฝาก-ถอนผ่านแอปธนาคารชั้นนำและ TrueMoney Wallet โดยควรใช้บัญชีชื่อเดียวกับข้อมูลที่สมัครไว้</p>
 
         <BankStrip size={30} />
 
-        <div class="mt-3 flex h-10 items-center justify-center rounded border border-white/5 bg-[#15171c] transition-colors hover:border-[#dcb96b]/50" title="ตรวจบิลย้อนหลัง">
-          <span class="flex items-center gap-1 text-xs font-bold text-[#d7dae1]"><span aria-hidden="true" class="text-lg text-[#dcb96b]">🧾</span> เก็บเลขรายการไว้ตรวจสอบได้</span>
+        <div class="mt-3 flex h-10 items-center justify-center rounded border border-white/5 bg-[#0d0a2b] transition-colors hover:border-[#22d3ee]/50" title="ตรวจรายการย้อนหลัง">
+          <span class="flex items-center gap-1 text-xs font-bold text-[#cfe3f5]"><span aria-hidden="true" class="text-lg text-[#22d3ee]">🧾</span> เก็บเลขรายการไว้ตรวจสอบได้</span>
         </div>
       </div>
     </div>
 
-    <hr class="mb-6 border-[#dcb96b]/25" />
+    <hr class="mb-6 border-[#22d3ee]/25" />
 
-    <div class="mb-6 hidden text-justify text-[10px] leading-relaxed text-[#8b8578] md:block">
-      แทงบอลออนไลน์ ราคาบอล ตลาดแฮนดิแคป สูง–ต่ำ 1X2 บอลก่อนแข่ง บอลสด บิลเดี่ยว บิลสเต็ป ตรวจบิลเดิมพัน เดิมพันกีฬาตามลีก คู่แข่งขันและช่วงเวลา สมัครด้วยเบอร์โทรภายใน 5 นาที เข้าสู่ระบบด้วยเบอร์โทรศัพท์
-      ทางเข้าเว็บตรงล่าสุด คาสิโนสด สล็อตออนไลน์ สมัครสมาชิกใหม่ UFAG8
+    <div class="mb-6 hidden text-justify text-[10px] leading-relaxed text-[#7f8fa6] md:block">
+      เกมสล็อตออนไลน์ สล็อตคลาสสิก วิดีโอสล็อต เกมโบนัส ฟีเจอร์พิเศษ ค้นหาเกมตามค่าย ธีม และระดับความผันผวน ตรวจอัตราจ่ายและกติกาก่อนเลือกเกม ระบบเว็บตรงสมัครและเข้าสู่ระบบจากหน้าเดียว
+      ฝากถอนไม่มีขั้นต่ำตามช่องทางที่กำหนด รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ ทางเข้าเว็บล่าสุด สมัครสมาชิกใหม่ XFINITYPLAY
     </div>
 
-    <div class="flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-[#8b8578] md:flex-row">
-      <p>&copy; {new Date().getFullYear()} <span class="font-bold tracking-wider text-[#f2dca4] uppercase">UFAG8</span>. All Rights Reserved.</p>
+    <div class="flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-[#7f8fa6] md:flex-row">
+      <p>&copy; {new Date().getFullYear()} <span class="font-bold tracking-wider text-[#a5f3fc] uppercase">XFINITYPLAY</span>. All Rights Reserved.</p>
 
       <div class="flex items-center gap-6">
-        <a href="/terms/" class="transition-colors hover:text-[#efeade]">เงื่อนไขและข้อตกลง</a>
-        <a href="/privacy/" class="transition-colors hover:text-[#efeade]">นโยบายความเป็นส่วนตัว</a>
+        <a href="/terms/" class="transition-colors hover:text-[#cfe3f5]">เงื่อนไขและข้อตกลง</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#cfe3f5]">นโยบายความเป็นส่วนตัว</a>
 
         {/* An anchor, not a button with onclick. Smooth scrolling comes from
             `scroll-behavior` in global.css, which the reduced-motion block
@@ -131,7 +137,7 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
             because the rest of this footer is. */}
         <a
           href="#top"
-          class="flex h-8 w-8 items-center justify-center rounded border border-white/10 bg-white/5 text-[#efeade] transition-all hover:border-[#f2dca4] hover:bg-[#22262e] hover:shadow-[0_0_15px_rgba(220,185,107,0.5)]"
+          class="flex h-8 w-8 items-center justify-center rounded border border-white/10 bg-white/5 text-[#cfe3f5] transition-all hover:border-[#22d3ee] hover:bg-[#130d3a] hover:shadow-[0_0_15px_rgba(34,211,238,0.5)]"
           aria-label="กลับขึ้นด้านบนสุดของหน้า">
           <span aria-hidden="true">↑</span>
         </a>
