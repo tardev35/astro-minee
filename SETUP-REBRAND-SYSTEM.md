@@ -473,10 +473,11 @@ claude --version
 ไฟล์ลงแล้วแต่ Windows หาไม่เจอ บางเครื่องตัวติดตั้งบอกตรงๆ ว่า
 `Native installation exists but C:\Users\<ชื่อ>\.local\bin is not in your PATH`
 
-**① เช็กก่อนว่าไฟล์อยู่จริงไหม** (แทน `<ชื่อ>` ด้วยชื่อผู้ใช้ Windows ของเครื่องนั้น):
+**① เช็กก่อนว่าไฟล์อยู่จริงไหม** — คัดลอกไปวางได้เลย ไม่ต้องแก้อะไร `$HOME` คือโฟลเดอร์
+ผู้ใช้ของเครื่องนั้นเอง (`C:\Users\<ชื่อคุณ>`) PowerShell เติมให้อัตโนมัติ:
 
 ```powershell
-Test-Path C:\Users\<ชื่อ>\.local\bin\claude.exe
+Test-Path $HOME\.local\bin\claude.exe
 ```
 
 - `False` → ยังไม่ได้ติดตั้งจริง ย้อนขึ้นไปรันคำสั่งติดตั้งใน **cmd.exe**
@@ -485,7 +486,7 @@ Test-Path C:\Users\<ชื่อ>\.local\bin\claude.exe
 **② แก้ PATH ถาวร** — วางทั้ง 4 บรรทัดใน PowerShell:
 
 ```powershell
-$new = 'C:\Users\<ชื่อ>\.local\bin'
+$new = "$HOME\.local\bin"
 $p = [Environment]::GetEnvironmentVariable('Path','User')
 if (-not $p) { $p = '' }
 if ($p -notlike "*$new*") { [Environment]::SetEnvironmentVariable('Path', ($p.TrimEnd(';') + ';' + $new), 'User') }
@@ -495,20 +496,24 @@ if ($p -notlike "*$new*") { [Environment]::SetEnvironmentVariable('Path', ($p.Tr
 > แล้วไปก๊อปยัดใน PATH ส่วนตัว และ `setx` ตัดทิ้งทุกอย่างที่เกิน 1024 ตัวอักษร PATH ที่ยาว
 > อยู่แล้วจะหายไปเงียบๆ กู้คืนยาก คำสั่งข้างบนแตะแค่ PATH ส่วนตัวและไม่มีลิมิตนั้น
 
+> ⚠️ **`$HOME` ต้องอยู่ในเครื่องหมายคำพูดคู่ `"` เท่านั้น** ถ้าเปลี่ยนเป็นคำพูดเดี่ยว `'`
+> PowerShell จะไม่แทนค่าให้ แล้วคุณจะได้โฟลเดอร์ชื่อ `$HOME` จริงๆ ตัวหนึ่งแทนพาธที่ต้องการ
+> — ไม่ขึ้น error ด้วย เพราะฉะนั้นคัดลอกไปทั้งบรรทัด อย่าพิมพ์ตามเอง
+
 **③ ปิดหน้าต่างทุกบานแล้วเปิดใหม่** — จุดที่คนติดกันมากที่สุด หน้าต่างที่เปิดค้างอยู่อ่าน
 PATH ไปตั้งแต่ตอนเปิดแล้ว แก้ทีหลังเท่าไหร่มันก็ไม่เห็น **รวมหน้าต่างที่รัน uploader ค้างไว้ด้วย**
 
 อยากใช้ในหน้าต่างเดิมเลยโดยไม่ปิด:
 
 ```powershell
-$env:Path += ';C:\Users\<ชื่อ>\.local\bin'
+$env:Path += ";$HOME\.local\bin"
 ```
 
 **ทางลัดถ้า PATH ยังดื้อ** — บอกพาธให้ uploader ตรงๆ แล้วเปิด uploader **จากหน้าต่างเดียวกันนั้น**
 (ตัวแปรมีผลเฉพาะหน้าต่างนั้น ดับเบิลคลิก `start-uploader.cmd` จะไม่ได้ค่านี้):
 
 ```powershell
-$env:CLAUDE_BIN = 'C:\Users\<ชื่อ>\.local\bin\claude.exe'
+$env:CLAUDE_BIN = "$HOME\.local\bin\claude.exe"
 npm run rebrand:upload
 ```
 

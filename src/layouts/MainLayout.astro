@@ -6,8 +6,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarCyber.astro";
-import Footer from "../components/FooterCyber.astro";
+import Navbar from "../components/NavbarStyle4Black.astro";
+import Footer from "../components/FooterStyle2.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -34,9 +34,30 @@ if (bannerPaths.length === 0) {
 const mainBannerPath = bannerPaths.find((path) => path.endsWith(".webp")) ?? bannerPaths[0];
 const mainBanner = bannerImages[mainBannerPath].default;
 
+// Optional portrait/square art for phones, written by the uploader as
+// banner1-mobile.*. Pinned by name for the same reason banner1 is.
+//
+// OPTIONAL, and that is the whole difficulty: banner1 is overwritten on every
+// rebrand because the uploader requires it, but a brand that ships no mobile
+// art would inherit the previous brand's if the file simply stayed on disk.
+// So the uploader DELETES banner1-mobile.* whenever banner1 is uploaded
+// without one — the mobile file's lifetime is tied to the desktop file's, and
+// there is no state here that can outlive the brand it belongs to.
+//
+// A <source> rather than CSS: only the matching candidate is ever fetched, so
+// a phone downloads the phone art and nothing else. Two <img> toggled by
+// `hidden` would download both, on the element that decides LCP.
+const mobileBannerImages = import.meta.glob<{ default: ImageMetadata }>("../assets/banner1-mobile.{png,webp,jpg,jpeg}", { eager: true });
+const mobileBannerPaths = Object.keys(mobileBannerImages);
+const mobileBannerPath = mobileBannerPaths.find((path) => path.endsWith(".webp")) ?? mobileBannerPaths[0];
+const mobileBanner = mobileBannerPath ? mobileBannerImages[mobileBannerPath].default : null;
+const mobileBannerImg = mobileBanner
+  ? await getImage({ src: mobileBanner, widths: [360, 480, 640, 828, 1080], format: "avif", quality: 60 })
+  : null;
+
 const {
-  title = "WINSIAM88 รีวิวเว็บหลัก คาสิโน 13 ค่าย มาตราฐานสากล ฝากถอนออโต้",
-  description = "รีวิว WINSIAM88 เว็บหลักรวมสล็อต คาสิโน กีฬา และเกมกว่า 13 ค่าย ใช้กระเป๋าเดียว ฝากถอนออโต้ พร้อมตรวจโปรโมชั่น ระบบสมาชิก และทางเข้าก่อนใช้งาน ครบจากจุดเดียว",
+  title = "YOK789 สล็อตเว็บตรง คาสิโน หวย กีฬา จ่ายจริง คืนยอดเสีย 8%",
+  description = "รีวิว YOK789 สล็อตเว็บตรง รวมคาสิโน หวย และกีฬาไว้ในบัญชีเดียว เช็กค่ายเกม ระบบฝากถอนออโต้ เงื่อนไขคืนยอดเสีย 8% โปรโมชั่น ทางเข้า และมือถือก่อนใช้งานจริงครบ",
   robots = "index, follow",
 } = Astro.props;
 
@@ -143,7 +164,7 @@ const profile = brandProfile(Astro.site);
 
           {block === "appmeta" && (
             <Fragment>
-              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="winsiam88" />}
+              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="yok789" />}
               <link rel="manifest" href="/site.webmanifest" />
             </Fragment>
           )}
@@ -185,7 +206,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #0a1207;
+        background-color: #050d07;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -225,17 +246,29 @@ const profile = brandProfile(Astro.site);
 
           decoding="sync" is gone: it blocks the main thread on decode for no
           benefit here, since the image is already fetchpriority="high". */}
-      <Image
-        src={mainBanner}
-        alt="แบนเนอร์ WINSIAM88 เว็บพนันระดับพรีเมียม ฝากออโต้ด้วยระบบทันสมัย รวมสล็อต คาสิโนสด บาคาร่า และเกมยอดนิยมในเว็บเดียว สมัครง่าย ระบบเสถียร ฝากถอนอัตโนมัติ ดูแลตลอด 24 ชั่วโมง"
-        loading="eager"
-        fetchpriority="high"
-        widths={[412, 640, 828, 1024, 1280, 1600, 1900]}
-        sizes="100vw"
-        class="mx-auto h-auto w-full max-w-full object-contain shadow-xl"
-        format="avif"
-        quality={60}
-      />
+      <picture class="block">
+        {
+          mobileBannerImg && (
+            <source
+              media="(max-width: 767px)"
+              type="image/avif"
+              srcset={mobileBannerImg.srcSet.attribute || mobileBannerImg.src}
+              sizes="100vw"
+            />
+          )
+        }
+        <Image
+          src={mainBanner}
+          alt="แบนเนอร์ YOK789 รีวิวสล็อตเว็บตรง คาสิโน หวย กีฬา จ่ายจริง พร้อมป้ายคืนยอดเสีย 8% แถบข้อมูล 40+ ค่ายเกม 4,000+ เกม ฝากถอนออโต้ และปุ่มสมัครสมาชิก บนพื้นหลังวงล้อรูเล็ต ลูกเต๋า และชิปคาสิโนโทนเขียวมรกต"
+          loading="eager"
+          fetchpriority="high"
+          widths={[412, 640, 828, 1024, 1280, 1600, 1900]}
+          sizes="100vw"
+          class="mx-auto h-auto w-full max-w-full object-contain shadow-xl"
+          format="avif"
+          quality={60}
+        />
+      </picture>
     </div>
 
     <main class="w-full flex-1">

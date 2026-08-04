@@ -9,86 +9,67 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 const currentPath = Astro.url.pathname;
 
 const isActive = (path: string) => isActivePath(currentPath, path);
+
+const links = [
+  { name: "หน้าแรก", path: "/", icon: "🏠" },
+  { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
+  { name: "ทางเข้า", path: "/ทางเข้า", icon: "🌐" },
+  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "💎" },
+  { name: "ติดต่อเรา", path: "/contact-us", icon: "📞" },
+];
 ---
 
-<nav class="sticky top-0 z-50 w-full border-b border-red-600/50 bg-[#050508] font-sans shadow-[0_0_20px_rgba(220,38,38,0.2)]">
+<nav class="sticky top-0 z-50 w-full border-b border-[#12b84f]/50 bg-[#040a06] shadow-[0_0_20px_rgba(18,184,79,0.25)]">
   <div class="flex h-[75px] w-full items-center justify-between px-4 xl:px-8">
     <div class="z-50 flex items-center">
       <a href="/" class="group relative flex items-center">
-        <div class="absolute inset-0 scale-0 rounded-full bg-red-600/20 blur-xl transition-transform duration-500 group-hover:scale-150"></div>
-        <Picture
-          src={mainLogo!}
-          alt="BESTCLUB88"
-          loading="eager"
-          fetchpriority="high"
-          class="relative h-[40px] w-auto drop-shadow-[0_0_10px_rgba(255,255,255,0.1)] transition-transform group-hover:scale-105 xl:h-[45px]"
-          formats={["avif", "webp"]}
-          fallbackFormat="webp"
-        />
+        <div aria-hidden="true" class="absolute inset-0 scale-0 rounded-full bg-[#12b84f]/25 blur-xl transition-transform duration-500 group-hover:scale-150"></div>
+        {
+          mainLogo ? (
+            <Picture
+              src={mainLogo}
+              alt="โลโก้ YOK789 สล็อตเว็บตรง คาสิโน หวย กีฬา"
+              loading="eager"
+              fetchpriority="high"
+              widths={[110, 220, 330]}
+              sizes="110px"
+              class="relative h-[40px] w-auto drop-shadow-[0_0_10px_rgba(92,255,155,0.35)] transition-transform group-hover:scale-105 xl:h-[45px]"
+              formats={["avif", "webp"]}
+              fallbackFormat="webp"
+            />
+          ) : (
+            <span class="relative bg-gradient-to-b from-[#5cff9b] to-[#0a6b2f] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_10px_rgba(18,184,79,0.45)]">YOK789</span>
+          )
+        }
       </a>
     </div>
 
-    <div class="z-10 hidden items-center gap-2 lg:gap-4 xl:flex">
-      <a
-        href="/"
-        class={`group relative px-6 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive("/") ? "bg-red-600/20 border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.4)]" : "bg-white/5 border-white/10 hover:border-red-500/50"}`}>
-        <div aria-hidden="true"
-          class={`absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 translate-y-full transition-transform duration-300 ${isActive("/") ? "translate-y-0 opacity-20" : "group-hover:translate-y-0 opacity-40"}`}>
-        </div>
-        <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive("/") ? "text-yellow-400" : "text-gray-300 group-hover:text-white"}`}>
-          <span aria-hidden="true" class="mr-1">🏠</span> หน้าแรก
-        </span>
-      </a>
-
-      <a
-        href="/promotion"
-        class={`group relative px-6 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive("/promotion") ? "bg-red-600/20 border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.4)]" : "bg-white/5 border-white/10 hover:border-red-500/50"}`}>
-        <div aria-hidden="true"
-          class={`absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 translate-y-full transition-transform duration-300 ${isActive("/promotion") ? "translate-y-0 opacity-20" : "group-hover:translate-y-0 opacity-40"}`}>
-        </div>
-        <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive("/promotion") ? "text-yellow-400" : "text-gray-300 group-hover:text-white"}`}>
-          <span aria-hidden="true" class="mr-1">🎁</span> โปรโมชั่น
-        </span>
-      </a>
-
-      <a
-        href="/ทดลองเล่น"
-        class={`group relative px-6 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive("/ทดลองเล่น") ? "bg-red-600/20 border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.4)]" : "bg-white/5 border-white/10 hover:border-red-500/50"}`}>
-        <div aria-hidden="true"
-          class={`absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 translate-y-full transition-transform duration-300 ${isActive("/ทดลองเล่น") ? "translate-y-0 opacity-20" : "group-hover:translate-y-0 opacity-40"}`}>
-        </div>
-        <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive("/ทดลองเล่น") ? "text-yellow-400" : "text-gray-300 group-hover:text-white"}`}>
-          <span aria-hidden="true" class="mr-1">🎰</span> ทดลองเล่น
-        </span>
-      </a>
-
-      <a
-        href="/ทางเข้า"
-        class={`group relative px-6 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive("/ทางเข้า") ? "bg-red-600/20 border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.4)]" : "bg-white/5 border-white/10 hover:border-red-500/50"}`}>
-        <div aria-hidden="true"
-          class={`absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 translate-y-full transition-transform duration-300 ${isActive("/ทางเข้า") ? "translate-y-0 opacity-20" : "group-hover:translate-y-0 opacity-40"}`}>
-        </div>
-        <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive("/ทางเข้า") ? "text-yellow-400" : "text-gray-300 group-hover:text-white"}`}>
-          <span aria-hidden="true" class="mr-1">🌐</span> ทางเข้า
-        </span>
-      </a>
-
-      <a
-        href="/contact-us"
-        class={`group relative px-6 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive("/contact-us") ? "bg-red-600/20 border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.4)]" : "bg-white/5 border-white/10 hover:border-red-500/50"}`}>
-        <div aria-hidden="true"
-          class={`absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 translate-y-full transition-transform duration-300 ${isActive("/contact-us") ? "translate-y-0 opacity-20" : "group-hover:translate-y-0 opacity-40"}`}>
-        </div>
-        <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive("/contact-us") ? "text-yellow-400" : "text-gray-300 group-hover:text-white"}`}>
-          <span aria-hidden="true" class="mr-1">📞</span> ติดต่อเรา
-        </span>
-      </a>
+    <div class="z-10 hidden items-center gap-2 lg:gap-3 xl:flex">
+      {
+        links.map((link) => (
+          <a
+            href={link.path}
+            class={`group relative px-5 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive(link.path) ? "bg-[#12b84f]/20 border-[#5cff9b] shadow-[0_0_15px_rgba(18,184,79,0.45)]" : "bg-white/5 border-white/10 hover:border-[#12b84f]/60"}`}>
+            <div
+              aria-hidden="true"
+              class={`absolute inset-0 bg-gradient-to-r from-[#0a6b2f] to-[#12b84f] translate-y-full transition-transform duration-300 ${isActive(link.path) ? "translate-y-0 opacity-25" : "group-hover:translate-y-0 opacity-40"}`}
+            />
+            <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive(link.path) ? "text-[#ffd94a]" : "text-[#c3d8c9] group-hover:text-white"}`}>
+              <span aria-hidden="true" class="mr-1">
+                {link.icon}
+              </span>
+              {link.name}
+            </span>
+          </a>
+        ))
+      }
     </div>
 
     <div class="z-50 flex items-center gap-2">
       <button
         id="hamburger-btn"
-        class="relative flex h-[45px] w-[45px] flex-col items-center justify-center space-y-1.5 rounded-md border border-red-500/30 bg-red-900/20 p-2 transition-all hover:bg-red-900/40 xl:hidden"
+        class="relative flex h-[45px] w-[45px] flex-col items-center justify-center space-y-1.5 rounded-md border border-[#12b84f]/40 bg-[#0a6b2f]/25 p-2 transition-all hover:bg-[#0a6b2f]/45 xl:hidden"
         aria-label="Toggle menu">
         <span class="hamburger-line h-[2px] w-6 origin-center bg-white transition-all duration-300"></span>
         <span class="hamburger-line h-[2px] w-6 bg-white transition-all duration-300"></span>
@@ -101,51 +82,28 @@ const isActive = (path: string) => isActivePath(currentPath, path);
 
   <div
     id="mobile-sidebar"
-    class="fixed top-0 right-0 z-40 h-screen w-[280px] translate-x-full transform overflow-y-auto border-l border-red-600/50 bg-[#050508] shadow-[-10px_0_30px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out xl:hidden">
+    class="fixed top-0 right-0 z-40 h-screen w-[280px] translate-x-full transform overflow-y-auto border-l border-[#12b84f]/50 bg-[#040a06] shadow-[-10px_0_30px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out xl:hidden">
     <div class="flex flex-col space-y-3 px-6 pt-24 pb-10">
-      <a
-        href="/"
-        class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive("/") ? "bg-red-600/20 border-red-500 text-yellow-400 shadow-[inset_4px_0_0_rgba(220,38,38,1)]" : "bg-white/5 border-transparent text-gray-300 hover:bg-white/10 hover:text-white"}`}>
-        <span aria-hidden="true" class="mr-3 text-xl">🏠</span>
-        <span class="text-sm font-bold">หน้าแรก</span>
-      </a>
-
-      <a
-        href="/promotion"
-        class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive("/promotion") ? "bg-red-600/20 border-red-500 text-yellow-400 shadow-[inset_4px_0_0_rgba(220,38,38,1)]" : "bg-white/5 border-transparent text-gray-300 hover:bg-white/10 hover:text-white"}`}>
-        <span aria-hidden="true" class="mr-3 text-xl">🎁</span>
-        <span class="text-sm font-bold">โปรโมชั่น</span>
-      </a>
-
-      <a
-        href="/ทดลองเล่น"
-        class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive("/ทดลองเล่น") ? "bg-red-600/20 border-red-500 text-yellow-400 shadow-[inset_4px_0_0_rgba(220,38,38,1)]" : "bg-white/5 border-transparent text-gray-300 hover:bg-white/10 hover:text-white"}`}>
-        <span aria-hidden="true" class="mr-3 text-xl">🎰</span>
-        <span class="text-sm font-bold">ทดลองเล่น</span>
-      </a>
-
-      <a
-        href="/ทางเข้า"
-        class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive("/ทางเข้า") ? "bg-red-600/20 border-red-500 text-yellow-400 shadow-[inset_4px_0_0_rgba(220,38,38,1)]" : "bg-white/5 border-transparent text-gray-300 hover:bg-white/10 hover:text-white"}`}>
-        <span aria-hidden="true" class="mr-3 text-xl">🌐</span>
-        <span class="text-sm font-bold">ทางเข้า</span>
-      </a>
-
-      <a
-        href="/contact-us"
-        class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive("/contact-us") ? "bg-red-600/20 border-red-500 text-yellow-400 shadow-[inset_4px_0_0_rgba(220,38,38,1)]" : "bg-white/5 border-transparent text-gray-300 hover:bg-white/10 hover:text-white"}`}>
-        <span aria-hidden="true" class="mr-3 text-xl">📞</span>
-        <span class="text-sm font-bold">ติดต่อเรา</span>
-      </a>
+      {
+        links.map((link) => (
+          <a
+            href={link.path}
+            class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive(link.path) ? "bg-[#12b84f]/20 border-[#5cff9b] text-[#ffd94a] shadow-[inset_4px_0_0_rgba(18,184,79,1)]" : "bg-white/5 border-transparent text-[#c3d8c9] hover:bg-white/10 hover:text-white"}`}>
+            <span aria-hidden="true" class="mr-3 text-xl">
+              {link.icon}
+            </span>
+            <span class="text-sm font-bold">{link.name}</span>
+          </a>
+        ))
+      }
     </div>
   </div>
 </nav>
 
-<style is:global>
-  a {
-    font-family: kanit, sans-serif !important;
+<style>
+  nav a {
+    font-family: var(--font-sans);
   }
-  /* อนิเมชันปุ่ม Hamburger กลายเป็น X */
   #hamburger-btn.active .hamburger-line:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
   }
@@ -157,19 +115,16 @@ const isActive = (path: string) => isActivePath(currentPath, path);
     transform: translateY(-8px) rotate(-45deg);
   }
 
-  /* อนิเมชันเด้งไล่ระดับของเมนูใน Sidebar */
   .sidebar-item {
     opacity: 0;
     transform: translateX(20px);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  /* คลาสนี้จะถูกยัดผ่าน JS เพื่อแสดงเมนู */
   .sidebar-item.item-show {
     opacity: 1;
     transform: translateX(0);
   }
 
-  /* หน่วงเวลาให้เมนูวิ่งเข้ามาทีละอัน */
   .sidebar-item:nth-child(1) {
     transition-delay: 0.1s;
   }
@@ -185,46 +140,48 @@ const isActive = (path: string) => isActivePath(currentPath, path);
   .sidebar-item:nth-child(5) {
     transition-delay: 0.3s;
   }
+  .sidebar-item:nth-child(6) {
+    transition-delay: 0.35s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sidebar-item {
+      transition: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
 </style>
 
 <script>
-  // 🌟 เขียน JS แบบบังคับสลับ Class Tailwind ตรงๆ ชัวร์สุดครับ
   const hamburgerBtn = document.getElementById("hamburger-btn");
   const overlay = document.getElementById("mobile-overlay");
   const sidebar = document.getElementById("mobile-sidebar");
   const sidebarItems = document.querySelectorAll(".sidebar-item");
 
   const toggleMenu = () => {
-    // 1. สลับหน้าตาปุ่ม Hamburger
     hamburgerBtn?.classList.toggle("active");
 
-    // 2. สไลด์ Sidebar (สลับ translate-x-full กับ translate-x-0)
     sidebar?.classList.toggle("translate-x-full");
     sidebar?.classList.toggle("translate-x-0");
 
-    // 3. เปิด/ปิด แผ่นฟิล์มดำ
     overlay?.classList.toggle("opacity-0");
     overlay?.classList.toggle("opacity-100");
     overlay?.classList.toggle("pointer-events-none");
     overlay?.classList.toggle("pointer-events-auto");
 
-    // 4. ล็อกหน้าจอหลังไม่ให้เลื่อนได้
     if (sidebar?.classList.contains("translate-x-0")) {
       document.body.style.overflow = "hidden";
-      // เติมคลาสโชว์เมนูให้เด้งทีละอัน
       sidebarItems.forEach((item) => item.classList.add("item-show"));
     } else {
       document.body.style.overflow = "";
-      // ซ่อนเมนูกลับไป
       sidebarItems.forEach((item) => item.classList.remove("item-show"));
     }
   };
 
-  // ดักการกดปุ่ม
   hamburgerBtn?.addEventListener("click", toggleMenu);
   overlay?.addEventListener("click", toggleMenu);
 
-  // ดักการกดลิงก์ข้างในให้ปิดเมนู
   sidebarItems.forEach((item) => {
     item.addEventListener("click", () => {
       if (sidebar?.classList.contains("translate-x-0")) {

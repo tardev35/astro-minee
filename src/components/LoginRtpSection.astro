@@ -2,69 +2,69 @@
 import ContentBoxTwo from "./ContentBoxTwo.astro";
 
 const menus = [
-  { icon: "🎴", name: "คาสิโนมากกว่า 13 ค่าย", detail: "บาคาร่า รูเล็ต และเกมสด ต่างกันที่โต๊ะ ภาษา วงเงิน และจังหวะรอบ", tag: "เริ่มจากเกมที่เข้าใจ" },
-  { icon: "🎰", name: "สล็อตหลายรูปแบบ", detail: "ดูเดิมพันเริ่มต้น ความผันผวน และฟีเจอร์โบนัสก่อนลงเครดิตจริง", tag: "ดูก่อนหมุน" },
-  { icon: "⚽", name: "กีฬาและบอลสด", detail: "ตรวจคู่แข่งขัน ตลาด และราคาให้ครบก่อนส่งบิลทุกครั้ง", tag: "เช็กราคาก่อนส่ง" },
-  { icon: "👛", name: "ระบบกระเป๋าเดียว", detail: "เครดิตใช้ร่วมกันทุกหมวด ไม่ต้องโยกยอดหรือสมัครบัญชีใหม่", tag: "ตรวจยอดจุดเดียว" },
-  { icon: "⏱️", name: "ฝากออโต้", detail: "ตัวเลขร่างประมาณ 10–30 วินาที ขึ้นกับธนาคารและสถานะระบบ", tag: "ยังไม่เข้าอย่าเพิ่งกดซ้ำ" },
-  { icon: "💸", name: "ถอนออโต้", detail: "ตัวเลขร่างประมาณ 1–3 นาที ทำรายการเองได้ตลอด 24 ชั่วโมง", tag: "ตรวจประวัติรายการ" },
-  { icon: "🔁", name: "คืนยอดเดิมพัน 1%", detail: "แยกให้ชัดว่าคิดจากยอดเดิมพันรวม ยอดเสียสุทธิ หรือเฉพาะเกมที่ร่วมรายการ", tag: "ดูรอบคำนวณ" },
+  { icon: "🎰", name: "สล็อตมากกว่า 40 ค่าย", detail: "เกมกว่า 4,000 รายการ ต่างกันที่เดิมพันขั้นต่ำ ความผันผวน ฟรีสปิน และตัวคูณ", tag: "เลือกจากงบจริง" },
+  { icon: "🎴", name: "คาสิโนสด", detail: "บาคาร่า รูเล็ต และเกมโต๊ะ ต่างกันที่วงเงิน ความเร็วรอบ และเวลาปิดรับ", tag: "ดูขั้นต่ำของโต๊ะ" },
+  { icon: "🎟️", name: "หวยหลายประเภท", detail: "ตรวจประเภทเลข งวด และเวลาปิดรับให้ตรงก่อนกดยืนยันทุกครั้ง", tag: "เช็กงวดก่อนยืนยัน" },
+  { icon: "⚽", name: "กีฬาและบอลสด", detail: "ดูคู่แข่งขัน ตลาดเดิมพัน ราคา และเวลาเริ่มแข่งให้ครบก่อนส่งบิล", tag: "อ่านรายการซ้ำ" },
+  { icon: "👛", name: "บัญชีเดียวทุกหมวด", detail: "สลับสล็อต คาสิโน หวย และกีฬาได้โดยไม่ต้องสมัครหลายเว็บหรือโยกเครดิต", tag: "ไม่ต้องย้ายเว็บ" },
+  { icon: "⏱️", name: "ฝากถอนออโต้ 1 วินาที", detail: "เป็นตัวเลขที่เว็บต้นแบบใช้สื่อความเร็ว ไม่ใช่เวลารับประกันของทุกยอด", tag: "ยังไม่เข้าอย่ากดซ้ำ" },
+  { icon: "🔁", name: "คืนยอดเสีย 8%", detail: "ตรวจว่าคิดจากยอดเสียสุทธิ ยอดเดิมพันรวม หรือเฉพาะเกมที่ร่วมรายการ", tag: "ดูฐานคำนวณ" },
 ];
 
-const chips = ["คาสิโน 13 ค่าย", "สล็อต", "กีฬา", "กระเป๋าเดียว", "ฝากออโต้", "ถอนออโต้", "มือถือ"];
+const chips = ["สล็อต 40+ ค่าย", "เกม 4,000+", "คาสิโนสด", "หวย", "กีฬา", "ออโต้ 1 วินาที", "คืนยอดเสีย 8%"];
 ---
 
 <ContentBoxTwo
-  titleleft="เข้าสู่ระบบ WINSIAM88"
-  titleright="หมวดเกมและระบบที่ใช้ได้ทั้งบนมือถือและคอมพิวเตอร์"
-  label="เข้าสู่ระบบ WINSIAM88 และหมวดเกมที่ใช้ได้ทุกอุปกรณ์">
+  titleleft="เข้าสู่ระบบ YOK789"
+  titleright="หมวดเกมและระบบที่ใช้ได้จากบัญชีเดียวทั้งมือถือและคอมพิวเตอร์"
+  label="เข้าสู่ระบบ YOK789 และหมวดเกมที่ใช้ได้จากบัญชีเดียว">
   <div slot="left" class="flex h-full flex-col gap-4">
-    <div class="relative overflow-hidden rounded-2xl border border-[#d4a017]/25 bg-[#071005]/92 p-6 shadow-[0_10px_30px_rgba(212,160,23,0.14)] backdrop-blur-md">
-      <div class="pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#a3e635]/20 blur-[50px]"></div>
+    <div class="relative overflow-hidden rounded-2xl border border-[#12b84f]/25 bg-[#050d07]/92 p-6 shadow-[0_10px_30px_rgba(18,184,79,0.14)] backdrop-blur-md">
+      <div aria-hidden="true" class="pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#ffd94a]/20 blur-[50px]"></div>
 
       <div class="relative z-10 mb-5 flex items-center gap-3">
-        <span aria-hidden="true" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#d4a017]/40 bg-gradient-to-br from-[#f5cf4d] via-[#d4a017] to-[#9a7112] text-xl shadow-inner">🎰</span>
+        <span aria-hidden="true" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#12b84f]/40 bg-gradient-to-br from-[#5cff9b] via-[#12b84f] to-[#0a6b2f] text-xl shadow-inner">🎰</span>
         <div class="flex flex-col">
-          <p class="text-base font-black text-[#d4a017]">ยินดีต้อนรับกลับ</p>
-          <span class="text-[11px] text-[#a3e635]">บัญชีเดียวใช้เลือกเกม รับสิทธิ์ และทำรายการฝากถอนของ WINSIAM88 ได้จากจุดเดียว</span>
+          <p class="text-base font-black text-[#12b84f]">ยินดีต้อนรับกลับ</p>
+          <span class="text-[11px] text-[#9dbfa8]">บัญชีเดียวใช้เลือกเกม รับสิทธิ์ และทำรายการฝากถอนของ YOK789 ได้ครบจากจุดเดียว</span>
         </div>
       </div>
 
       <div class="relative z-10 flex flex-col gap-3.5">
         <div class="relative">
-          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#9a7112]">👤</span>
+          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#0a6b2f]">👤</span>
           <input
             type="text"
             placeholder="เบอร์โทรศัพท์ / ยูสเซอร์เนม"
-            class="w-full rounded-xl border border-[#25381a] bg-[#0b1408]/95 py-3 pr-4 pl-12 text-[#dfeacf] transition-all outline-none placeholder:text-[#a3e635]/60 focus:border-[#d4a017] focus:ring-1 focus:ring-[#d4a017]/50"
+            class="w-full rounded-xl border border-[#153b26] bg-[#08150d]/95 py-3 pr-4 pl-12 text-[#d5f0dd] transition-all outline-none placeholder:text-[#9dbfa8]/70 focus:border-[#12b84f] focus:ring-1 focus:ring-[#12b84f]/50"
           />
         </div>
         <div class="relative">
-          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#9a7112]">🔑</span>
+          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#0a6b2f]">🔑</span>
           <input
             type="password"
             placeholder="รหัส PIN 4 หลัก"
-            class="w-full rounded-xl border border-[#25381a] bg-[#0b1408]/95 py-3 pr-4 pl-12 text-[#dfeacf] transition-all outline-none placeholder:text-[#a3e635]/60 focus:border-[#d4a017] focus:ring-1 focus:ring-[#d4a017]/50"
+            class="w-full rounded-xl border border-[#153b26] bg-[#08150d]/95 py-3 pr-4 pl-12 text-[#d5f0dd] transition-all outline-none placeholder:text-[#9dbfa8]/70 focus:border-[#12b84f] focus:ring-1 focus:ring-[#12b84f]/50"
           />
         </div>
 
         <div class="flex items-center justify-between px-1 text-xs">
-          <label class="flex items-center gap-2 text-[#a3e635]">
-            <input type="checkbox" class="h-3.5 w-3.5 rounded border-[#25381a] bg-[#0b1408] accent-[#d4a017]" />
+          <label class="flex items-center gap-2 text-[#9dbfa8]">
+            <input type="checkbox" class="h-3.5 w-3.5 rounded border-[#153b26] bg-[#08150d] accent-[#12b84f]" />
             จดจำฉันไว้
           </label>
-          <a href="/login" class="text-[#a3e635] transition-colors hover:text-[#f5cf4d]">ลืมรหัส PIN?</a>
+          <a href="/login" class="text-[#9dbfa8] transition-colors hover:text-[#5cff9b]">ลืมรหัส PIN?</a>
         </div>
 
         <button
-          class="mt-1 w-full rounded-xl border border-[#d4a017]/40 bg-gradient-to-r from-[#f5cf4d] via-[#d4a017] to-[#9a7112] p-3.5 font-black text-[#0f1a06] shadow-[0_10px_30px_rgba(212,160,23,0.26)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(212,160,23,0.36)]">
+          class="mt-1 w-full rounded-xl border border-[#12b84f]/40 bg-gradient-to-r from-[#5cff9b] via-[#12b84f] to-[#0a6b2f] p-3.5 font-black text-[#04140a] shadow-[0_10px_30px_rgba(18,184,79,0.26)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(18,184,79,0.36)]">
           เข้าสู่ระบบ
         </button>
 
-        <div class="flex items-center gap-3 py-1 text-[11px] text-[#a3e635]/70">
-          <span class="h-px flex-1 bg-[#25381a]"></span>
+        <div class="flex items-center gap-3 py-1 text-[11px] text-[#9dbfa8]/70">
+          <span class="h-px flex-1 bg-[#153b26]"></span>
           หรือ
-          <span class="h-px flex-1 bg-[#25381a]"></span>
+          <span class="h-px flex-1 bg-[#153b26]"></span>
         </div>
 
         <a
@@ -75,21 +75,21 @@ const chips = ["คาสิโน 13 ค่าย", "สล็อต", "กี�
 
         <div class="mt-1 flex items-center justify-between px-1">
           <div class="flex gap-2">
-            <span class="rounded-full border border-[#d4a017]/25 bg-[#0b1408] px-2.5 py-1 text-[10px] font-bold text-[#d4a017]"><span aria-hidden="true">🔒</span> HTTPS + SSL</span>
-            <span class="rounded-full border border-[#4d7c0f]/60 bg-[#0b1408]/80 px-2.5 py-1 text-[10px] font-bold text-[#a3e635]"><span aria-hidden="true">🕐</span> ระบบออโต้ 24 ชั่วโมง</span>
+            <span class="rounded-full border border-[#12b84f]/25 bg-[#08150d] px-2.5 py-1 text-[10px] font-bold text-[#12b84f]"><span aria-hidden="true">🔒</span> HTTPS + SSL</span>
+            <span class="rounded-full border border-[#8a6510]/60 bg-[#08150d]/80 px-2.5 py-1 text-[10px] font-bold text-[#ffd94a]"><span aria-hidden="true">🕐</span> ฝากถอนออโต้</span>
           </div>
-          <a href="/register" class="text-xs font-bold text-[#9a7112] transition-colors hover:text-[#f5cf4d]">สมัครสมาชิกใหม่</a>
+          <a href="/register" class="text-xs font-bold text-[#9dbfa8] transition-colors hover:text-[#5cff9b]">สมัครสมาชิกใหม่</a>
         </div>
       </div>
     </div>
   </div>
 
   <div slot="right" class="h-full">
-    <div class="flex h-full flex-col rounded-2xl border border-[#d4a017]/25 bg-[#071005]/92 p-5 shadow-[0_10px_30px_rgba(212,160,23,0.14)] backdrop-blur-md">
+    <div class="flex h-full flex-col rounded-2xl border border-[#12b84f]/25 bg-[#050d07]/92 p-5 shadow-[0_10px_30px_rgba(18,184,79,0.14)] backdrop-blur-md">
       <div class="mb-5 flex items-center justify-between gap-3">
         <div>
-          <span class="text-xs font-bold tracking-wide text-[#a3e635]">ตารางอ้างอิงหมวดเกมและเวลาทำรายการภายในบัญชีเดียว</span>
-          <div class="bg-gradient-to-r from-[#f5cf4d] via-[#d4a017] to-[#9a7112] bg-clip-text text-3xl font-black text-transparent sm:text-4xl">ฝาก 10–30 วิ • ถอน 1–3 นาที</div>
+          <span class="text-xs font-bold tracking-wide text-[#9dbfa8]">ตารางอ้างอิงหมวดเกมและจุดที่ต้องตรวจก่อนกดยืนยัน</span>
+          <div class="bg-gradient-to-r from-[#5cff9b] via-[#12b84f] to-[#0a6b2f] bg-clip-text text-3xl font-black text-transparent sm:text-4xl">40+ ค่าย • เกม 4,000+ รายการ</div>
         </div>
         <span class="flex items-center gap-1.5 self-start rounded-full border border-green-500/40 bg-green-900/40 px-2.5 py-1">
           <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.7)]"></span>
@@ -97,7 +97,7 @@ const chips = ["คาสิโน 13 ค่าย", "สล็อต", "กี�
         </span>
       </div>
 
-      <div class="mb-2 flex items-center justify-between text-[11px] font-bold tracking-widest text-[#a3e635]/70 uppercase">
+      <div class="mb-2 flex items-center justify-between text-[11px] font-bold tracking-widest text-[#9dbfa8]/70 uppercase">
         <span>หมวดเกม / บริการในระบบ</span>
         <span>จุดที่ต้องดู</span>
       </div>
@@ -105,25 +105,25 @@ const chips = ["คาสิโน 13 ค่าย", "สล็อต", "กี�
       <div class="flex flex-1 flex-col gap-2.5">
         {
           menus.map((m) => (
-            <div class="rounded-xl border border-[#25381a] bg-[#0b1408]/95 px-3.5 py-2.5 transition-colors hover:border-[#d4a017]/50 hover:bg-[#122010]">
+            <div class="rounded-xl border border-[#153b26] bg-[#08150d]/95 px-3.5 py-2.5 transition-colors hover:border-[#12b84f]/50 hover:bg-[#0e2216]">
               <div class="flex items-center justify-between gap-2 text-sm">
-                <span class="flex min-w-0 items-center gap-2 font-bold text-[#dfeacf]">
+                <span class="flex min-w-0 items-center gap-2 font-bold text-[#d5f0dd]">
                   <span aria-hidden="true" class="w-5 shrink-0 text-center">{m.icon}</span> <span class="truncate">{m.name}</span>
                 </span>
-                <span class="shrink-0 rounded-full border border-[#d4a017]/30 bg-[#071005] px-2.5 py-0.5 text-[10px] font-bold text-[#f5cf4d]">{m.tag}</span>
+                <span class="shrink-0 rounded-full border border-[#12b84f]/30 bg-[#050d07] px-2.5 py-0.5 text-[10px] font-bold text-[#5cff9b]">{m.tag}</span>
               </div>
-              <div class="mt-1.5 text-[11px] tracking-wide text-[#a3e635]">{m.detail}</div>
+              <div class="mt-1.5 text-[11px] tracking-wide text-[#9dbfa8]">{m.detail}</div>
             </div>
           ))
         }
       </div>
 
       <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
-        {chips.map((c) => <span class="rounded-full border border-[#d4a017]/25 bg-[#0b1408] px-3 py-1 text-[10px] font-bold text-[#d4a017]">{c}</span>)}
+        {chips.map((c) => <span class="rounded-full border border-[#12b84f]/25 bg-[#08150d] px-3 py-1 text-[10px] font-bold text-[#12b84f]">{c}</span>)}
       </div>
 
-      <div class="mt-3 text-center text-[10px] tracking-wide text-[#a3e635]/70">
-        ตัวเลขทั้งหมดเป็นข้อมูลร่างสำหรับอ้างอิง ควรตรวจยอดขั้นต่ำ จำนวนเทิร์น เกมที่ร่วมรายการ และเพดานถอนจากหน้าโปรโมชั่นจริงก่อนกดรับทุกครั้ง
+      <div class="mt-3 text-center text-[10px] tracking-wide text-[#9dbfa8]/70">
+        ตัวเลขทั้งหมดเป็นข้อมูลอ้างอิงจากหน้าเว็บต้นแบบ ควรตรวจยอดฝากขั้นต่ำ จำนวนเทิร์น เกมที่ร่วมรายการ และเพดานถอนจากหน้าโปรโมชั่นจริงก่อนกดรับทุกครั้ง
       </div>
     </div>
   </div>

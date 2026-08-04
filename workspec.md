@@ -3376,3 +3376,170 @@ ContentBoxPremium / ContentBoxNeumorphism กลับไปเป็น invento
   บรรทัดเดียว และ privacy ยังตรงกับความจริงของ build (static ไม่มี analytics ไม่มี pixel)
 - `account_id` ใน wrangler.toml ไม่แตะตามกฎ
 - prettier drift ที่มีอยู่ก่อนแล้วไม่ได้ไล่จัดใหม่
+
+## 2026-08-04 — รีแบรนด์ WINSIAM88 → YOK789 (สล็อตเว็บตรง/คาสิโน/หวย/กีฬา, เขียวหยกนีออน + ทอง บนดำอมเขียว)
+
+### เป้าหมาย
+
+รีแบรนด์และรีธีมทั้งเว็บจาก WINSIAM88 เป็น **YOK789** พร้อมโดเมนจริง
+`https://yok789-brand.com` สั่งงานมาแบบ "ทำแบบขนานตาม playbook — หยุดที่
+build + verify เท่านั้น ห้าม deploy และห้าม git push" จึงรันเป็น 3-agent ขนาน
+ตาม SKILL แล้วจบที่ Phase 6 ไม่ commit ไม่ push ไม่ deploy
+
+### อินพุตของแบรนด์
+
+- `src/assets/content.txt` (uploader แตกจาก docx ให้แล้ว) — **H1 x1, H2 x10,
+  ไม่มี H3** โครงแบนล้วน
+- `palette.json`: logo vivid = เขียวนีออนล้วน #02f20a (share สูงสุด), banner1
+  dominant = ดำอมเขียว #010101 / #010c03 / #02230c, banner1 vivid = เขียวเข้ม
+  #033c1a / #065c2c / #0b7b3b
+- อาร์ตเวิร์กจริง: โลโก้ตัวอักษรเขียวหยกไล่เฉด (YOK = หยก) แบนเนอร์พื้นดำมีวงล้อ
+  รูเล็ต ลูกเต๋า ชิป โทนเขียวมรกตเรืองแสง ป้าย "คืนยอดเสีย 8%" เป็นเขียว ส่วนสไลด์
+  ใช้ทองกับตัวเลข 8% → สรุปเป็น **เขียวหยกเป็นสีหลัก ทองเป็นสีรอง ไม่มีแดง
+  ไม่มีชมพู ไม่มีน้ำเงิน**
+
+จุดต่างจากแบรนด์ก่อน: WINSIAM88 ก็เขียว-ทองเหมือนกัน แต่เป็น **ทองนำ เขียวโอลีฟ/
+มะนาวรอง** รอบนี้กลับด้านเป็น **เขียวหยกนำ ทองรอง** และเขียวคนละเฉด (มรกตนีออน
+เทียบกับโอลีฟ) บวกกับหมุน variant ครบทุกตระกูล จึงไม่ออกมาเป็นเว็บเดิมทาสีใหม่
+
+### พาเลตต์ (เก่า → ใหม่) — สลับบทบาทสี ไม่ใช่แค่เลื่อนเฉด
+
+สว่างหลัก #f5cf4d → #5cff9b | หลัก #d4a017 → #12b84f | หลักเข้ม #9a7112 → #0a6b2f |
+accent สว่าง #a3e635 → ทอง #ffd94a | accent เข้ม #4d7c0f → #8a6510 |
+เนื้อความ #dfeacf → #d5f0dd | มิวต์ → #9dbfa8 | พื้นการ์ด #0b1408 → #08150d |
+พื้นหน้า #0a1207 → #050d07 | hover #122010 → #0e2216 |
+ตัวอักษรบนปุ่มสีหลัก #0f1a06 → #04140a |
+glow rgba(212,160,23) → rgba(18,184,79) | accent glow rgba(163,230,53) → rgba(255,217,74)
+
+### การหมุน variant (ต้องต่างจากแบรนด์ก่อนหน้า)
+
+- **Navbar: NavbarCyber → NavbarStyle4Black**
+- **Footer: FooterCyber → FooterStyle2**
+- **Announcement: Announcement2 → Announcement4**
+- **LatestWinners: LatestWinners4 → LatestWinners (ตัวธรรมดา)**
+- **Faq: Faq3 → Faq4**
+- **ContentBox mix: CyberCut+FloatingBadge+plain+Special → Premium+Neumorphism+plain+Special**
+  (SevenThree: CyberCut+FloatingBadge → Premium+Neumorphism)
+- **BRAND_FONT: google-sans → kanit**
+- **BRAND_TEXT: #dfeacf → #d5f0dd**
+
+ไม่มีตระกูลไหนที่ต้องใช้ variant ซ้ำกับ WINSIAM88 — หมุนครบทุกตระกูล
+NavbarCyber / FooterCyber / Announcement2 / LatestWinners4 / Faq3 /
+ContentBoxCyberCut / ContentBoxFloatingBadge / SevenThree ทั้งสองตัว กลับไปเป็น inventory
+
+### โครงงานขนาน
+
+- **P0/P1 (orchestrator)** — อ่าน content.txt + palette.json + รูปทุกใบ, เลือก
+  variant, เขียน brand spec ไว้ที่ `tools/rebrand-spec-yok789.md` แล้วรีธีม shared
+  chrome เองก่อน fan-out: brandProfile.ts, astro.config.mjs, wrangler.toml,
+  public/site.webmanifest, MainLayout, NavbarStyle4Black, FooterStyle2, Navfoot,
+  ContentBox, ContentBoxPremium, Announcement4 (ลบไฟล์ spec ทิ้งหลังจบงาน)
+- **Agent A** — index.astro + component เฉพาะหน้าแรก 12 ตัว
+- **Agent B** — promotion, ทางเข้า, contact-us
+- **Agent C** — ทดลองเล่น, about-us, login, register, 404, terms, privacy
+
+ไม่มีไฟล์ไหนถูกแตะโดยสองเอเจนต์ ยืนยันจากรายงานทั้งสามที่ไม่ทับกันเลย
+
+### บั๊ก/กับดักที่เจอรอบนี้
+
+1. **BankStrip + `limit` = รูปที่ import แล้วไม่ได้ render → build แดง 10 ERROR**
+   `FooterStyle2` เป็น footer ตัวเดียวใน 7 ตัวที่ส่ง `limit={12}` ส่วน BankStrip
+   ใช้ eager glob โหลดโลโก้ธนาคารครบ 22 ใบเสมอ **eager glob = import = emit**
+   ต่อให้ `.slice(0, limit)` ตัดออกจาก DOM ไปแล้ว ผลคือ cimb/citi/icbc/isbt/lnh/
+   mizuho/osk/peer2pay/scbt/tcr รวม ~513 kB ขึ้น dist โดยไม่มีหน้าไหนเรียก —
+   verify-build จับได้ทั้ง 10 ใบ นี่เป็นบั๊กแฝงที่จะโผล่เฉพาะรอบที่หยิบ FooterStyle2
+   มาใช้ (ครั้งก่อนคือ PRODED888 ซึ่งน่าจะก่อนมีเช็กตัวนี้) **แก้โดยตัด `limit={12}`
+   ออกให้เหมือน footer อีก 6 ตัวที่ไม่ส่ง limit เลย** — ไม่ได้แก้ที่ BankStrip เพราะ
+   พร็อพ limit ยังมีประโยชน์ ถ้าวันไหนจะใช้จริงต้องเปลี่ยน glob เป็น lazy ก่อน
+2. **description จาก docx ยาว 142 อักขระ — ต่ำกว่าพื้น 150 ของ verify-build.mjs
+   ซึ่งเป็น ERROR ไม่ใช่ warning** เป็นแบรนด์ที่ **3 ติดกัน** ที่ docx ส่งมาต่ำกว่าพื้น
+   (MIRACLE55 131, WINSIAM88 142, YOK789 142) ตอนเขียน brand spec ผมระบุผิดว่า
+   "already the right length" Agent A จับได้เองแล้วต่อเป็น 157 อักขระ
+   (แทรก "ไว้ในบัญชีเดียว") — orchestrator ต้องแก้ default ใน MainLayout ตามด้วย
+   **ข้อสรุป: อย่าเชื่อว่า description ใน docx ผ่านพื้น ให้นับอักขระก่อนเขียนลง spec**
+3. **`NavbarStyle4Black` มี `<style is:global> a { font-family: kanit !important }`**
+   คือ global leak ที่ยัดฟอนต์ให้ `<a>` ทุกตัวทั้งเว็บ ข้ามระบบ BRAND_FONT ไปเลย
+   (รอบนี้บังเอิญเป็น kanit เลยไม่เห็นผล แต่ถ้ารอบหน้าเป็น google-sans จะพัง)
+   เปลี่ยนเป็น scoped `nav a { font-family: var(--font-sans) }`
+4. `NavbarStyle4Black` เขียนเมนู hardcode ซ้ำสองชุด (desktop 5 บล็อก + mobile 5 บล็อก)
+   รวมเป็น `links` array เดียวพร้อมไอคอนตามกฎ 2026-08-01 และเติม `/about-us` เข้าไป
+   — ตอนเจอครั้งแรกมันไม่มี about-us ทั้งสองชุด
+5. `NavbarStyle4Black` ใช้ `mainLogo!` (non-null assertion) โดยไม่มี fallback
+   เติม fallback เป็น `<span>` (ไม่ใช่ h1 — กับดักเดิมของ NavbarCyber รอบ WINSIAM88)
+   และใส่ `widths`/`sizes` ให้โลโก้ทั้ง navbar และ footer
+6. `Announcement4` default message ยังเป็นของ PAY69 พร้อมโดเมน `pay69-brand.com`
+   ซึ่งจะเป็น off-domain URL error ทันทีที่หน้าย่อยเรียก `<Announcement />` เปล่า —
+   และรอบนี้หน้าย่อย 5 หน้าเรียกแบบเปล่าจริง เขียน default ใหม่เป็นของ YOK789
+7. `FooterStyle2` ยังเป็นชุดกรมท่า-ทองของ PRODED888 ทั้งไฟล์รวมชื่อแบรนด์ 4 จุด
+   และ `Announcement4` เป็นม่วงของ PAY69 — ทั้งคู่ต้อง retheme ก่อนต่อสาย ไม่ใช่หลัง
+
+### การ verify ที่รันจริง
+
+- `npm run build` รอบแรกแดง 10 ERROR (ข้อ 1) แก้แล้ว build รอบสอง
+  **`✓ no errors (0 scheduled warning(s))`**
+- route ที่ build ออกมา: ไม่มี `/ตรวจหวย` และ `/แนวทาง` ✓ ถูกต้องสำหรับแบรนด์สล็อต
+  (ทั้งสองไฟล์อยู่ใน `src/pages-disabled/` มาก่อนแล้ว และ grep ทั้ง `src/` ไม่เจอ
+  ลิงก์ค้างใน navbar/footer ที่ใช้งานอยู่เลย จึงไม่ต้องทำอะไร) และมี `/about-us` ✓
+- `grep -ril winsiam dist/` = **0 ไฟล์**
+- grep hex ของแบรนด์เก่าทุกตัว (d4a017 f5cf4d 9a7112 a3e635 4d7c0f dfeacf
+  e8b43a f4e3c8 e2c05f) + ชื่อแบรนด์เก่า (pay69 proded888 bestclub88 ufayes)
+  ใน HTML ที่ build ออกมา = **0**
+- `grep -c '<!--' dist/index.html` = **0**
+- og:image = `https://yok789-brand.com/_astro/og.D9MUrh7l_Z18wJw3.jpeg` ✓ ไม่ใช่ path ใน public/
+- canonical: 9 หน้าเป็น `https://yok789-brand.com` + 1 หน้าเป็น tinyurl
+  (`dist/line/index.html` = redirect ภายนอกที่ตั้งใจ) ✓
+- `<address>` บน contact-us = "ฝ่ายบริการลูกค้า YOK789 / อำเภอเมืองเลย จังหวัดเลย 42000"
+  มาจาก BRAND_ADDRESS ที่ derive จาก BRAND_NAME ✓ ไม่ได้เขียนมือ
+- heading inventory: index = **h1 x1, h2 x11, h3 x0** (10 หัวข้อ docx เรียงตรงตาม
+  ลำดับเอกสาร + หัวข้อ FAQ อีก 1) ทุกหน้ามี h1 หน้าละ 1 ตัว, h3 = 0 ทั้งเว็บ
+  ตรงกับ docx ที่เป็นโครงแบน — `Faq4` render คำถามเป็น `<span>` ใน `<summary>`
+  ไม่ใช่ heading จึงไม่ต้อง promote อะไร
+- description ทั้ง 10 หน้า นับเป็น**อักขระ**ด้วย node (ไม่ใช่ `wc -m` ใน git-bash
+  ที่ไม่ได้อยู่ locale UTF-8 แล้วนับเป็นไบต์ = ~3 เท่า) ได้ **153–159 อักขระ** ทุกหน้า
+- `undefined` / `[object Object]` = 0 ; `NaN` เจอ 1 จุดใน bundle ของ
+  `winnersFeed.ts` ซึ่งเป็น guard `Number.isFinite` ปกติ ไม่ใช่ prop พัง
+- `astro preview` พอร์ต 8899: 10 route ตอบ 200 ครบ (route ไทย curl แบบ
+  percent-encode ตามกับดักเดิม) navbar render เป็นเขียวหยกจริง `/about-us`
+  อยู่ทั้งใน navbar และ footer — ปิดเซิร์ฟเวอร์ด้วย `Get-NetTCPConnection -LocalPort 8899`
+  แล้ว `Stop-Process` ตาม PID **ไม่ใช้ taskkill /IM node.exe**
+- ไม่มี `*FloatingBadge` ตัวไหนถูก render รอบนี้ (หมุนออกไปเป็น inventory)
+  จึงไม่ต้องเช็กกับดัก badge ล้นจอ/ทับเนื้อหา
+
+### รูปที่ใช้ / ไม่ได้ใช้
+
+- `banner1.png` = hero ผ่าน glob เจาะชื่อไฟล์ใน MainLayout ✓
+- `slide3.png` → SevenThreePremium หัวข้อ "สล็อตกว่า 40 ค่าย" (อาร์ตเวิร์กเขียนว่า
+  40+ ค่ายเกม / 4,000+ เกม / ฝากถอนออโต้ 1 วินาที ตรงหัวข้อพอดี)
+- `slide4.png` → SevenThreeNeumorphism หัวข้อ "คืนยอดเสีย 8%" (อาร์ตเวิร์กเป็น
+  ลูกศรขึ้นกับเลข 8%)
+- ใช้ SevenThree รวม **2 บล็อก** พอดีเพดาน
+- `slide1.png` / `slide2.png` ไม่ได้เข้า SevenThree (เพดานเต็ม) แต่ยังขึ้นผ่าน
+  SmoothCarousel และหน้า promotion ; slide1 ยังเป็นต้นทางของ og.png ด้วย
+- **`banner2.png` (28 ก.ค.) และ `banner3.png` (23 ก.ค.) เป็นของแบรนด์เก่า** ลงวันที่
+  ก่อนชุดอาร์ตเวิร์กรอบนี้ (4 ส.ค.) จึงไม่ใช้เป็นภาพประกอบบทความเลย รอบนี้ไม่มี
+  ภาพประกอบแบบ single-column ContentBox
+
+### นอกสโคป / ไม่ได้แตะ
+
+- `src/assets/banner.png banner2.png banner3.png` ยังอยู่ในโฟลเดอร์แต่ไม่มีใคร
+  import แล้ว จึงไม่ขึ้น dist — ปล่อยไว้ตามธรรมเนียมรีโป
+- `promotion.astro` ยังวาง slide1–4 เป็นกริดในกล่อง ContentBox ธรรมดา ซึ่ง Agent B
+  ตั้งข้อสังเกตว่าขัด HARD RULE "slide ต้องอยู่ใน SevenThree เท่านั้น" — **ตัดสินใจ
+  คงไว้** เพราะกฎนั้นเป็นกฎการประกอบ*หน้าแรก* ส่วน SKILL Phase 4 พูดถึง
+  `promotion.astro` ที่ hardcode slide1-4 ในฐานะรูปทรงปกติของหน้านั้น การรื้อหน้า
+  แกลเลอรีโปรโมชั่นไปเป็น SevenThree อยู่นอกสโคปของงานรีแบรนด์
+- `404.astro` ไม่แก้ — ไม่มีชื่อแบรนด์และไม่มี hex ของแบรนด์เก่าในไฟล์เลย ส่วน
+  max-w บนย่อหน้าเป็น measure cap ของหน้าที่จัดกึ่งกลาง ไม่มี ContentBox
+  ในหน้านั้น จึงไม่ใช่เคสที่กฎ house style พูดถึง
+- `terms.astro` / `privacy.astro` แก้ 0 บรรทัด — ทุกคำที่เป็นชื่อแบรนด์มาจาก
+  BRAND_NAME บรรทัดเดียว ยังยิงผ่าน ContentBox.astro (ไม่ใช่ variant ที่หมุน)
+  ไม่มี class สีบนย่อหน้า และ privacy ยังตรงกับความจริงของ build
+- `contact-line.webp` ยังเป็นภาพโทนชมพูของ template ไม่มีชื่อแบรนด์อื่นติดมา
+  และไม่มีอาร์ตเวิร์กใหม่มาแทน จึงไม่แตะ
+- `account_id` ใน wrangler.toml ไม่แตะตามกฎ
+- `_sources.generated.css` เปลี่ยนเองตาม component ที่ reachable เปลี่ยนไป — ปกติ
+- **ไม่ commit ไม่ push ไม่ deploy ตามที่สั่ง**
+- ⚠️ `wrangler.toml` `name` ตั้งเป็น `yok789` แบบ derive จากชื่อแบรนด์ **ยังไม่ได้
+  ยืนยันกับ operator ว่าโดเมนนี้เคย park ด้วย domain-placeholder ไว้หรือยัง** ถ้าเคย
+  park ชื่อ Worker ต้องตรงกับตัวที่ park ไว้เป๊ะ ๆ ก่อน deploy ให้เช็ก
+  `npx wrangler deployments list --name yok789` ก่อน
