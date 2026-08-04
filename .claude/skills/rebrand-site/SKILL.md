@@ -230,6 +230,23 @@ progress in the normal way — there is no separate channel to write to.
      the whole front-page image split is: **`banner1` = hero, `banner2/3/4`
      = single-column `ContentBox` illustrations (if present), `slide*` =
      `ContentBoxSevenThree*` only.**
+   - **`banner1-mobile` is not a fifth banner — it is `banner1` again,
+     cropped for phones.** `MainLayout` pins it in its own glob and, when
+     present, renders it as a `<source media="(max-width: 767px)">` inside
+     the hero `<picture>`, so a phone fetches it *instead of* `banner1`,
+     never as well. It is optional; with no such file there is no `<source>`
+     and phones get `banner1`. **Never place it in a `ContentBox`, never
+     treat it as article art, and never point the hero at it directly** —
+     doing that ships phone-cropped art to desktop.
+
+     Being optional is the whole risk: a file left on disk would keep
+     serving the *previous* brand's hero on phones, the one viewport
+     nobody opens while reviewing. The uploader deletes `banner1-mobile.*`
+     whenever `banner1` is uploaded without a replacement, which ties its
+     lifetime to the desktop banner's. If you stage assets by hand instead
+     of through the uploader, **you own that deletion** — check
+     `src/assets/banner1-mobile.*` against this drop's mtime and remove it
+     if it is older, exactly as you would a stale `banner3`.
 3. Confirm the new brand name and check `astro.config.mjs` `site:` —
    it's often already been updated to the new domain before you're
    asked to do the content work.

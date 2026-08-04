@@ -57,6 +57,11 @@ const MAX_SOURCE_WIDTH = 2560;
 // never upscales a smaller upload.
 const SLIDE_BOX = 600;
 
+// Phone hero art. 1080 covers a 360 CSS-px viewport at DPR 3, which is the
+// widest real phone case — storing the 2560 the desktop banner allows would be
+// paying for pixels no phone can show.
+const MOBILE_BANNER_WIDTH = 1080;
+
 // A solid colour / gradient background is NOT rendered as an image — that would
 // ship a full-screen bitmap for something that is just a CSS declaration. The
 // uploader instead writes src/assets/bg.json, which MainLayout reads to decide:
@@ -930,7 +935,7 @@ async function readCurrentNewPages() {
   return out;
 }
 
-async function handleUpload(slot, index, ext, buf) {
+async function handleUpload(slot, index, ext, buf, params) {
   const n = Number(index);
   switch (slot) {
     case "logo": {
@@ -980,6 +985,27 @@ async function handleUpload(slot, index, ext, buf) {
         if (palette) written.push(palette);
       }
       return written;
+    }
+    // Portrait/square hero art for phones. Optional, which is exactly why the
+    // clear branch exists: left on disk, a previous brand's mobile banner would
+    // keep rendering on phones under a new brand's name, and nobody looks at a
+    // phone viewport during review. The client sends clear=1 whenever banner1
+    // is uploaded without one, so this file can never outlive its brand.
+    case "bannermobile": {
+      if (params.get("clear") === "1") {
+        const removed = [];
+        for (const ext of IMAGE_EXTS) {
+          try {
+            await unlink(join(ASSETS, `banner1-mobile.${ext}`));
+            removed.push(`banner1-mobile.${ext} (ลบแล้ว)`);
+          } catch {
+            /* not present — fine */
+          }
+        }
+        return removed;
+      }
+      if (!buf.length) throw new Error("ไม่พบไฟล์แบนเนอร์มือถือที่ส่งมา");
+      return [await toPng(buf, ASSETS, "banner1-mobile", { maxWidth: MOBILE_BANNER_WIDTH })];
     }
     case "slide": {
       if (!(n >= 1 && n <= 4)) throw new Error("slide index must be 1-4");
@@ -2762,6 +2788,11 @@ const PAGE = /* html */ `<!doctype html>
       <span class="status"></span>
     </div>
     <div class="field" data-img>
+      <div class="row"><label>Banner 1 มือถือ</label><span class="opt">optional</span><span class="target">banner1-mobile.png</span></div>
+      <div class="row"><input type="file" accept="image/*" data-slot="bannermobile" /><img class="thumb" /></div>
+      <span class="status">รูปแนวตั้ง/จัตุรัสสำหรับจอมือถือ · ไม่ใส่ = มือถือใช้ Banner 1 ตัวเดียวกับคอม · <b>ถ้าอัพ Banner 1 ใหม่โดยไม่ใส่ช่องนี้ ตัวมือถือของแบรนด์เก่าจะถูกลบทิ้งให้</b></span>
+    </div>
+    <div class="field" data-img>
       <div class="row"><label>Banner 2</label><span class="opt">optional</span><span class="target">banner2.png</span></div>
       <div class="row"><input type="file" accept="image/*" data-slot="banner" data-index="2" /><img class="thumb" /></div>
       <span class="status"></span>
@@ -4220,6 +4251,24 @@ const PAGE = /* html */ `<!doctype html>
       }
     }
 
+    // A new desktop banner with no phone banner beside it means this brand has
+    // no phone art — so the previous brand's has to go. Left alone it would
+    // keep rendering under the new name on exactly the viewport nobody opens
+    // during review. Runs before the loop so it cannot undo a fresh upload.
+    const b1Input = document.querySelector('input[data-slot="banner"][data-index="1"]');
+    const bmInput = document.querySelector('input[data-slot="bannermobile"]');
+    if (b1Input && b1Input.files.length && bmInput && !bmInput.files.length) {
+      try {
+        const res = await fetch('/upload?slot=bannermobile&clear=1', { method: 'POST' });
+        const j = await res.json();
+        if (res.ok && j.ok && j.written.length) {
+          addLog('ลบแบนเนอร์มือถือของแบรนด์ก่อนหน้า → ' + j.written.join(', '), true);
+        }
+      } catch (e) {
+        addLog('ลบแบนเนอร์มือถือเก่าไม่สำเร็จ: ' + e.message, false);
+      }
+    }
+
     for (const inp of inputs) {
       if (!inp.files.length) continue;
       any = true;
@@ -4498,8 +4547,11 @@ const server = http.createServer(async (req, res) => {
           };
         }
       } else {
-        if (!buf.length) throw new Error("empty upload");
-        written = await handleUpload(slot, index, ext, buf);
+        // bannermobile with clear=1 is a deletion, so it legitimately arrives
+        // with no body — every other slot here still must carry one.
+        const isClear = slot === "bannermobile" && url.searchParams.get("clear") === "1";
+        if (!buf.length && !isClear) throw new Error("empty upload");
+        written = await handleUpload(slot, index, ext, buf, url.searchParams);
       }
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ ok: true, written, ...extra }));
