@@ -248,6 +248,12 @@ by `src/pages/robots.txt.ts` from `site:`, so it follows the domain on
 its own. **Do not re-create `public/robots.txt`** — a static file there
 would silently win over the generated route.
 
+The **contact address** on `/contact-us` does **not** work this way and needs
+nothing from the prompt: it is derived from `BRAND_NAME` against the real
+77-province table in `src/lib/thaiProvinces.ts`, so setting the brand sets the
+address in the same edit. Leave it alone unless the operator hands you a real
+registered address — see the `BRAND_ADDRESS` bullet in Phase 2.
+
 ### 🚨 `wrangler.toml` `name` — the one that destroys another brand's site
 
 Sites deploy to Cloudflare Workers now (see
@@ -490,6 +496,42 @@ the same one:
   surface most brands use, that is invisible rather than merely wrong, and
   `terms`/`privacy`/`404` name no colours at all by design, so all three go
   blank at once. `verify-build.mjs` fails the build if it goes missing.
+- **Contact address** — **there is nothing to do here.** `BRAND_ADDRESS` in
+  `src/lib/brandProfile.ts` derives itself from `BRAND_NAME`: the brand name
+  hashes into `src/lib/thaiProvinces.ts` (the real 77 provinces, each with its
+  capital district and postal code) and into a short list of desk names, giving
+  a two-line block that `/contact-us` renders and no other page does. Setting
+  `BRAND_NAME` at the top of this phase has already set the address. Do not
+  hand-write one, and do not "fix" the derivation to keep a previous value.
+
+  That derivation **is** the safety property: an address pinned to anything
+  other than `BRAND_NAME` would survive a rebrand that changed the name, and
+  ship the previous brand's location on the new domain. `verify-build.mjs`
+  fails the build if the export stops referencing `BRAND_NAME`.
+
+  It is deliberately **district-level, with no house number, soi or street**.
+  A fabricated street address has a real chance of naming premises that belong
+  to someone — a district and a postal code name an administrative area and
+  cannot. Do not add a street line, a building name, or a map link, and do not
+  extend `thaiProvinces.ts` down to tambon level.
+
+  The two literals above it, `ADDRESS_OWNER` and `ADDRESS_LINES`, are the
+  override for the day a brand has a **real registered address**. Fill both in
+  — `ADDRESS_OWNER` takes this brand's `BRAND_NAME` verbatim — and the block
+  switches to those lines and relabels itself
+  `ที่อยู่จดทะเบียนบริษัท`. Use them **only** for an address the operator
+  actually gave you in the prompt. Left over from an earlier brand they are
+  inert, because `ADDRESS_OWNER` will not match the new `BRAND_NAME`.
+
+  **Visible text only, never structured data.** Do not pass it to
+  `pageGraph`, do not add `address`/`PostalAddress` to `src/lib/schema.ts`,
+  do not put it in a `<meta>`. The generated one names a locality nobody has
+  verified, and an operator-supplied registered address repeated across ~30
+  unrelated brand domains is a machine-readable join key — the same thing the
+  `sameAs` ban exists to prevent. `verify-build.mjs` fails the build on any
+  address vocabulary (`PostalAddress`, `addressLocality`, `postalCode`, …)
+  inside a JSON-LD block, and again on an `<address>` element on any page
+  other than `/contact-us`.
 
 If a family genuinely has no better-fitting alternative for this brand's
 mood and you must reuse the previous variant, say so explicitly in the
@@ -1263,10 +1305,13 @@ block at the top of `schema.ts`).
 
 For anything beyond a plain page, pass the extras rather than hand-rolling:
 `org: { contactPoints: [...] }` for a contact page, `extra: [itemList(ctx, …)]`
-for a listing page. **Never add `Review`, `AggregateRating`, or `sameAs`** —
-the reviews on these sites are written characters, so marking them up is
-fabricated structured data on a YMYL page, and `sameAs` would publish the
-cross-brand link `brandProfile.ts` exists to prevent.
+for a listing page. **Never add `Review`, `AggregateRating`, `sameAs`, or
+`address`/`PostalAddress`** — the reviews on these sites are written
+characters, so marking them up is fabricated structured data on a YMYL page;
+`sameAs` would publish the cross-brand link `brandProfile.ts` exists to
+prevent; and the contact address is visible text only, being a locality nobody
+has verified when it is generated and the sharpest join key of the three when
+it is a real registered one (see the `BRAND_ADDRESS` bullet in Phase 2).
 
 `tools/verify-build.mjs` fails the build if a page's JSON-LD does not parse, and
 warns if any self-referential URL disagrees with the canonical.
@@ -1383,6 +1428,12 @@ pointing at a `public/` path during a rebrand, repoint it to the
      image is a stale leftover (see the OG note in Phase 4)
    - grep for `undefined`, `NaN`, `[object Object]` as a cheap check
      for broken prop plumbing
+   - **contact address**: `grep -o '<address[^>]*>.*</address>'
+     dist/contact-us/index.html` must name **this** brand and a province,
+     and the previous brand's name must return no hits anywhere in
+     `dist/`. The build already enforces that the block appears on no
+     other page and in no JSON-LD; what it cannot check is that the name
+     inside it is the current one
    - `grep -c '<!--' dist/index.html` should be 0 — Astro ships HTML
      comments to output, so any `<!-- H2: … -->` section labels left in
      a page leak the docx outline (and often the old brand name) into

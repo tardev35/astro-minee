@@ -25,6 +25,8 @@
 //   og:title/description/image/url/type, twitter:card/title/description/image.
 // Only block ORDER and genuinely redundant tags vary.
 
+import { THAI_PROVINCES } from "./thaiProvinces";
+
 export type HeadBlock = "icons" | "appmeta" | "og" | "twitter";
 
 export interface BrandProfile {
@@ -88,6 +90,36 @@ export const BRAND_NAME = "WINSIAM88";
 // ต่อกันลงมา — คลาส text-[#...] ที่ component เขียนเองยังชนะเสมอ เพราะการ
 // ประกาศตรงตัวชนะการ inherit อยู่แล้ว ค่านี้จึงเป็น "พื้น" ไม่ใช่การบังคับ
 export const BRAND_TEXT = "#dfeacf";
+
+// ── ที่อยู่ติดต่อบนหน้า /contact-us ────────────────────────────────────────
+// ปกติไม่ต้องแก้อะไรตรงนี้ — ที่อยู่มาจาก BRAND_NAME เองอัตโนมัติ (ดู SKILL.md)
+// สองบรรทัดล่างคือช่องสำหรับ "ที่อยู่จดทะเบียนจริง" ถ้าวันไหนมี ใส่แล้วมันชนะ
+const ADDRESS_OWNER = "";
+const ADDRESS_LINES: readonly string[] = [];
+
+const CONTACT_DESKS = [
+  "ศูนย์ประสานงานลูกค้า",
+  "ฝ่ายบริการลูกค้า",
+  "ศูนย์ดูแลสมาชิก",
+  "ฝ่ายประสานงานสมาชิก",
+  "ศูนย์บริการสมาชิก",
+] as const;
+
+function generatedAddress(brand: string): readonly string[] {
+  const spot = THAI_PROVINCES[hash32(`${brand} contact-locality`) % THAI_PROVINCES.length];
+  const desk = CONTACT_DESKS[hash32(`${brand} contact-desk`) % CONTACT_DESKS.length];
+  return [`${desk} ${brand}`, `${spot.district} ${spot.province} ${spot.postcode}`];
+}
+
+export interface BrandAddress {
+  readonly label: string;
+  readonly lines: readonly string[];
+}
+
+export const BRAND_ADDRESS: BrandAddress =
+  ADDRESS_OWNER.trim().toUpperCase() === BRAND_NAME.trim().toUpperCase() && ADDRESS_LINES.length > 0
+    ? { label: "ที่อยู่จดทะเบียนบริษัท", lines: ADDRESS_LINES }
+    : { label: "ที่อยู่ติดต่อ", lines: generatedAddress(BRAND_NAME) };
 
 /** ต่อท้าย URL ของไอคอนเป็น ?v=... — ไม่ต้องแก้เอง มาจาก BRAND_NAME
  *

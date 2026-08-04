@@ -243,6 +243,39 @@ if (!siteRaw) {
 }
 const SITE = new URL(siteRaw);
 
+const ADDRESS_TERMS = [
+  "PostalAddress",
+  "streetAddress",
+  "addressLocality",
+  "addressRegion",
+  "addressCountry",
+  "postalCode",
+  '"address"',
+];
+
+const BRAND_PROFILE = "src/lib/brandProfile.ts";
+const addressLines = [];
+if (fs.existsSync(BRAND_PROFILE)) {
+  const profileSrc = fs.readFileSync(BRAND_PROFILE, "utf8");
+  // Match the ASSIGNMENT, not "up to the first semicolon" — a semicolon inside
+  // an inline type annotation truncated the old match and the check silently
+  // read only `export const BRAND_ADDRESS: {`.
+  const decl = profileSrc.match(/export const BRAND_ADDRESS\b[^=]*=([\s\S]*?)(?=\n\S|\n*$)/);
+  if (decl && !/BRAND_NAME/.test(decl[0])) {
+    error(
+      BRAND_PROFILE,
+      "BRAND_ADDRESS no longer keys off BRAND_NAME — that is what makes the address follow a rebrand on its own; pinned to anything else, a round that swaps the name ships the previous brand's address",
+    );
+  }
+  const lines = profileSrc.match(/const ADDRESS_LINES[^=]*=\s*\[([\s\S]*?)\]/);
+  if (lines) {
+    for (const m of lines[1].matchAll(/"([^"\n]+)"/g)) {
+      const line = m[1].trim();
+      if (line.length > 6) addressLines.push(line);
+    }
+  }
+}
+
 const pages = walkHtml(DIST);
 
 // A path -> exists lookup for internal links. Astro emits directory-style
@@ -325,6 +358,14 @@ for (const file of pages) {
   // document HAS a text colour, not that it arrives one particular way.
   if (!rootDeclaresColour(html)) {
     error(where, "no default text colour on <html>/<body> — text without its own colour class renders black (see BRAND_TEXT)");
+  }
+
+  // The contact address belongs to /contact-us and to no other URL. Moving it
+  // into a shared component — a footer is the tempting one — republishes it on
+  // every page in the build, which multiplies how exposed it is and buys
+  // nothing a visitor could not already reach from the nav.
+  if (/<address\b/i.test(html) && !/[\\/]contact-us[\\/]/.test(where)) {
+    error(where, "<address> outside /contact-us — the contact address renders on that one page only (see BRAND_ADDRESS)");
   }
 
   for (const m of html.matchAll(/<img\b[^>]*>/g)) {
@@ -477,6 +518,22 @@ for (const file of pages) {
     error(where, "indexable page with no JSON-LD at all");
   }
   for (const block of ldBlocks) {
+    for (const term of ADDRESS_TERMS) {
+      if (block[1].includes(term)) {
+        error(
+          where,
+          `\`${term}\` inside JSON-LD — the contact address is visible text only. The generated one names a locality nobody has verified, and an operator-supplied registered address repeated across every brand domain is a machine-readable join key (the same reason sameAs is banned)`,
+        );
+      }
+    }
+    for (const line of addressLines) {
+      if (block[1].includes(line)) {
+        error(
+          where,
+          `registered address inside JSON-LD ("${line.slice(0, 30)}…") — it is visible text only; one address published as structured data across every brand domain is a machine-readable join key, the same reason sameAs is banned`,
+        );
+      }
+    }
     let data;
     try {
       data = JSON.parse(block[1]);
