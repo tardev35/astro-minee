@@ -1,5 +1,7 @@
 # build output
 dist/
+# worktrees ชั่วคราวของ tools/distribute.mjs
+.rebrand-dist/
 # generated types
 .astro/
 # wrangler's local state — created by `wrangler dev`, machine-specific
