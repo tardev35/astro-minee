@@ -1,7 +1,7 @@
 // Local-only rebrand console.
 // Run with: npm run rebrand:upload   (opens http://localhost:5555)
 //
-// Two jobs, in the order an operator does them:
+// Four jobs, in the order an operator does them:
 //   1. STAGE (ส่วนที่ 1-5) — copy a new brand's files into src/assets and public
 //      with the exact filenames + extensions the components import, so the
 //      "extension drift" bug class (Phase 4 of the rebrand-site skill) can't
@@ -9,6 +9,9 @@
 //   2. RUN (ส่วนที่ 6) — spawn `claude -p` headless on this repo to perform the
 //      rebrand itself, and stream its progress back to the page over SSE.
 //      It stops at build + verify: it never deploys and never pushes.
+//   3. SHIP (ส่วนที่ 7) — build + preview locally, then `wrangler deploy`.
+//   4. SAVE (ส่วนที่ 8) — commit everything and push to `origin`, on whatever
+//      branch is checked out. Never switches branch, never force-pushes.
 //
 // Deps: Node built-ins + sharp (already in package.json). No new dependency.
 
@@ -1960,6 +1963,227 @@ function cfSnapshot() {
   };
 }
 
+// ════════════════════════════════════════════════════════════════════════════
+// ส่วนที่ 8 — เซฟงานขึ้น GitLab (commit + push)
+// ════════════════════════════════════════════════════════════════════════════
+// Pushes whatever branch is checked out, to `origin`. It does not create,
+// switch, or refuse a branch — that decision belongs to the operator, and a
+// tool that quietly moves you somewhere else is worse than one that does what
+// the label says.
+const GIT_TIMEOUT_MS = 5 * 60 * 1000;
+
+const gitState = {
+  status: "idle", // idle | running | done | error
+  log: [],
+  error: "",
+  hint: "",
+  branch: "",
+  pushed: 0,
+  startedAt: 0,
+  endedAt: 0,
+  child: null,
+};
+
+function gitLog(text) {
+  for (const line of String(text).split(/\r?\n/)) {
+    const clean = line.replace(/\[[0-9;]*m/g, "").trimEnd();
+    if (clean.trim()) gitState.log.push(clean);
+  }
+  if (gitState.log.length > MAX_PREVIEW_LOG) {
+    gitState.log = gitState.log.slice(-MAX_PREVIEW_LOG);
+  }
+}
+
+// Quiet read — for the status panel, which polls. Never touches gitState.log.
+function gitRead(args) {
+  return new Promise((resolvePromise) => {
+    let out = "";
+    let err = "";
+    const child = spawn("git", args, { cwd: ROOT, windowsHide: true, shell: false, stdio: ["ignore", "pipe", "pipe"] });
+    child.stdout.setEncoding("utf8");
+    child.stderr.setEncoding("utf8");
+    child.stdout.on("data", (d) => { out += d; });
+    child.stderr.on("data", (d) => { err += d; });
+    child.on("error", (e) => resolvePromise({ code: -1, out: "", err: e.message }));
+    // trimEnd, never trim: `status --porcelain` puts a status character in
+    // column 1 and a SPACE in column 0 for a worktree-only change, so trimming
+    // the front shifts the first line and eats a character off its path.
+    child.on("close", (code) => resolvePromise({ code, out: out.trimEnd(), err: err.trim() }));
+  });
+}
+
+// Loud run — for the actual commit/push, mirrored into the visible log.
+function gitStep(args) {
+  return new Promise((resolvePromise) => {
+    gitLog("$ git " + args.join(" "));
+    // Same reason as the status read: without it, git renders every Thai path
+    // in this repo as \340\270\227 octal escapes in the log the operator reads.
+    const full = ["-c", "core.quotepath=false", ...args];
+    const child = spawn("git", full, { cwd: ROOT, windowsHide: true, shell: false, stdio: ["ignore", "pipe", "pipe"] });
+    gitState.child = child;
+    child.stdout.setEncoding("utf8");
+    child.stderr.setEncoding("utf8");
+    child.stdout.on("data", gitLog);
+    child.stderr.on("data", gitLog);
+    child.on("error", (e) => { gitLog(e.message); resolvePromise(-1); });
+    child.on("close", (code) => { gitState.child = null; resolvePromise(code); });
+  });
+}
+
+const GIT_STATUS_LABEL = {
+  M: "แก้ไข", A: "เพิ่มใหม่", D: "ลบ", R: "เปลี่ยนชื่อ", C: "คัดลอก", "?": "ไฟล์ใหม่", U: "ชนกัน",
+};
+
+// Anything under these is build output or downloaded packages — never source,
+// and never something a rebrand produced. `git add -A` stages whatever is not
+// ignored, so a repo whose .gitignore is missing or broken turns this button
+// into a several-hundred-megabyte commit that is then pushed. Caught by
+// running the tool against a scratch repo that had no .gitignore at all: the
+// push went through carrying every file in node_modules.
+const GIT_NEVER_COMMIT = ["node_modules/", "dist/", ".astro/", ".wrangler/"];
+
+function offendingPaths(files) {
+  return files.filter((f) => GIT_NEVER_COMMIT.some((bad) => f.path.replace(/\\/g, "/").startsWith(bad)));
+}
+
+async function gitInfo() {
+  const [branchR, originR, statusR, upstreamR, userR] = await Promise.all([
+    gitRead(["rev-parse", "--abbrev-ref", "HEAD"]),
+    gitRead(["remote", "get-url", "origin"]),
+    // -c core.quotepath=false: this repo has Thai page filenames, and git's
+    // default escapes every non-ASCII byte as \340\270\227 in porcelain output.
+    gitRead(["-c", "core.quotepath=false", "status", "--porcelain"]),
+    gitRead(["rev-parse", "--abbrev-ref", "@{u}"]),
+    gitRead(["config", "user.email"]),
+  ]);
+
+  if (branchR.code === -1) {
+    return { ok: false, error: "เรียก git ไม่ได้ — ยังไม่ได้ติดตั้ง Git หรือยังไม่ได้อยู่ใน PATH (ดูคู่มือ ภาค B1)" };
+  }
+  if (branchR.code !== 0) {
+    return { ok: false, error: "โฟลเดอร์นี้ไม่ใช่ git repo" };
+  }
+
+  const files = statusR.out
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .map((line) => {
+      const code = line.slice(0, 2);
+      const path = line.slice(3).trim();
+      const key = code.trim()[0] || "M";
+      return { path, code: code.trim(), label: GIT_STATUS_LABEL[key] || "แก้ไข" };
+    });
+
+  return {
+    ok: true,
+    branch: branchR.out,
+    detached: branchR.out === "HEAD",
+    origin: originR.code === 0 ? originR.out : "",
+    hasUpstream: upstreamR.code === 0,
+    identity: userR.out,
+    files,
+    blocked: offendingPaths(files).slice(0, 5).map((f) => f.path),
+    blockedCount: offendingPaths(files).length,
+    brand: await currentBrandName(),
+  };
+}
+
+// The commit message the box is pre-filled with. Reading the file rather than
+// remembering it means a rebrand that just landed is reflected without a
+// restart — the same reason deployTarget() re-reads wrangler.toml.
+async function currentBrandName() {
+  try {
+    const src = await readFile(join(ROOT, "src", "lib", "brandProfile.ts"), "utf8");
+    return src.match(/export const BRAND_NAME\s*=\s*"([^"]+)"/)?.[1] || "";
+  } catch {
+    return "";
+  }
+}
+
+async function startGitPush(message) {
+  if (gitState.status === "running") throw new Error("กำลังเซฟอยู่แล้ว");
+  if (isActive()) throw new Error("มี rebrand กำลังรันอยู่ — รอให้จบก่อน");
+
+  const msg = String(message || "").trim();
+  if (!msg) throw new Error("ยังไม่ได้ใส่ข้อความ commit");
+
+  const info = await gitInfo();
+  if (!info.ok) throw new Error(info.error);
+  if (info.detached) throw new Error("ตอนนี้ไม่ได้อยู่บน branch ไหนเลย (detached HEAD) — สลับกลับไป branch ก่อน");
+  if (!info.origin) throw new Error("repo นี้ยังไม่มี remote ชื่อ origin — ดูคู่มือ ภาค B4");
+  if (!info.files.length) throw new Error("ไม่มีไฟล์ที่เปลี่ยน — ไม่มีอะไรให้เซฟ");
+  if (info.blockedCount) {
+    throw new Error(
+      `ยังเซฟไม่ได้ — มีของที่ไม่ควรขึ้น git ปนอยู่ (${info.blocked[0]}) ` +
+        "ซึ่งเป็นโฟลเดอร์ที่โหลดมาเองหรือไฟล์ที่ build ขึ้น ไม่ใช่งานที่เราแก้ " +
+        "แปลว่าไฟล์ .gitignore ของ repo นี้หายไปหรือเสีย ให้แจ้งหัวหน้าก่อน อย่าเพิ่งกดเซฟ",
+    );
+  }
+
+  Object.assign(gitState, {
+    status: "running", log: [], error: "", hint: "", branch: info.branch,
+    pushed: info.files.length, startedAt: Date.now(), endedAt: 0,
+  });
+
+  const timer = setTimeout(() => {
+    if (gitState.child) killTree(gitState.child);
+  }, GIT_TIMEOUT_MS);
+
+  try {
+    if ((await gitStep(["add", "-A"])) !== 0) {
+      gitState.status = "error";
+      gitState.error = "git add ไม่ผ่าน — ยังไม่ได้ commit อะไร";
+      return gitSnapshot();
+    }
+
+    if ((await gitStep(["commit", "-m", msg])) !== 0) {
+      gitState.status = "error";
+      gitState.error = "commit ไม่ผ่าน — ยังไม่ได้ส่งอะไรขึ้นไป";
+      const text = gitState.log.join("\n");
+      if (/Please tell me who you are|user\.email/i.test(text)) {
+        gitState.hint = "ยังไม่ได้ตั้งชื่อ/อีเมลของ git บนเครื่องนี้ — ทำตามคู่มือ ภาค B2 (git config --global user.name / user.email) แล้วกดใหม่";
+      }
+      return gitSnapshot();
+    }
+
+    const pushArgs = info.hasUpstream
+      ? ["push", "origin", "HEAD"]
+      : ["push", "-u", "origin", info.branch];
+
+    if ((await gitStep(pushArgs)) !== 0) {
+      gitState.status = "error";
+      gitState.error = "push ไม่สำเร็จ — commit เก็บไว้ในเครื่องแล้ว ยังไม่หายไปไหน";
+      const text = gitState.log.join("\n");
+      if (/non-fast-forward|fetch first|behind its remote/i.test(text)) {
+        gitState.hint = "มีคนส่งงานขึ้น branch นี้ก่อนหน้า — เปิดหน้าต่างดำแล้วสั่ง git pull ก่อน จากนั้นกดปุ่มนี้ใหม่";
+      } else if (/pre-receive hook declined|protected branch/i.test(text)) {
+        gitState.hint = "branch นี้ถูกล็อกไว้ที่ GitLab (protected branch) — ให้หัวหน้าปลดล็อก หรือย้ายไปทำบน branch ของตัวเอง";
+      } else if (/Permission denied|Could not read from remote|publickey/i.test(text)) {
+        gitState.hint = "GitLab ไม่รับกุญแจ SSH ของเครื่องนี้ — ทำตามคู่มือ ภาค B3 ใหม่อีกรอบ";
+      }
+      return gitSnapshot();
+    }
+
+    gitState.status = "done";
+    return gitSnapshot();
+  } finally {
+    clearTimeout(timer);
+    gitState.endedAt = Date.now();
+  }
+}
+
+function gitSnapshot() {
+  return {
+    status: gitState.status,
+    error: gitState.error,
+    hint: gitState.hint,
+    branch: gitState.branch,
+    pushed: gitState.pushed,
+    log: gitState.log.slice(-150),
+    elapsedMs: gitState.startedAt ? (gitState.endedAt || Date.now()) - gitState.startedAt : 0,
+  };
+}
+
 const PAGE = /* html */ `<!doctype html>
 <html lang="th">
 <head>
@@ -2378,6 +2602,20 @@ const PAGE = /* html */ `<!doctype html>
   .cf-acct .id { margin-left: auto; font-family: ui-monospace, monospace; font-size: 10.5px; color: var(--faint); }
   .cf-acct.on { border-color: rgba(74,222,128,0.45); background: rgba(74,222,128,0.08); }
   .cf-acct.on::after { content: 'ใช้อยู่'; font-size: 10.5px; color: var(--ok); font-weight: 700; }
+
+  /* ── ส่วนที่ 8: commit + push ────────────────────────── */
+  #gtWhere b { color: #dbe4f0; font-weight: 700; }
+  #gtWhere code { font-size: 11px; color: var(--faint); }
+  #gtMsg { width: 100%; }
+  #gtFiles, #gtLog {
+    margin: 6px 0 0; padding: 10px 12px; max-height: 200px; overflow: auto;
+    background: #070d1a; border: 1px solid var(--line); border-radius: 9px;
+    font-family: ui-monospace, monospace; font-size: 11px; line-height: 1.7;
+    white-space: pre-wrap; word-break: break-word; color: #cbd5e1;
+  }
+  #gtBox.bad #gtLog { border-color: rgba(248,113,113,0.35); color: #fca5a5; }
+  #gtBox.bad #gtMsgOut { color: var(--err); font-weight: 700; }
+  #gtBox.done #gtMsgOut { color: var(--ok); font-weight: 700; }
 </style>
 </head>
 <body>
@@ -2718,6 +2956,41 @@ const PAGE = /* html */ `<!doctype html>
         <div class="row"><label id="dpTitle"></label></div>
         <span class="status" id="dpMsg"></span>
         <pre id="dpLog"></pre>
+      </div>
+    </section>
+
+    <section class="card" id="card8">
+      <h2 data-n="8">เซฟงานขึ้น GitLab</h2>
+
+      <div class="field">
+        <div class="row"><label>จะเซฟขึ้นที่ไหน</label></div>
+        <span class="status" id="gtWhere">กำลังตรวจสอบ...</span>
+      </div>
+
+      <div class="field" id="gtFilesBox" hidden>
+        <div class="row"><label>ไฟล์ที่เปลี่ยน</label><span class="opt" id="gtCount"></span></div>
+        <pre id="gtFiles"></pre>
+      </div>
+
+      <div class="field">
+        <div class="row"><label>ข้อความ commit</label></div>
+        <div class="row"><input type="text" id="gtMsg" spellcheck="false" placeholder="เขียนสั้นๆ ว่ารอบนี้ทำอะไร" /></div>
+        <span class="status">เขียนเป็นภาษาอะไรก็ได้ — ไว้ให้คนอ่านย้อนหลังรู้ว่ารอบนี้เปลี่ยนอะไร</span>
+      </div>
+
+      <div class="field">
+        <div class="row">
+          <button type="button" id="gtStart" class="fire go" disabled>💾 commit + push</button>
+          <span class="pill" id="gtPill">ยังไม่ได้เซฟ</span>
+          <span class="rb-timer" id="gtTimer"></span>
+        </div>
+        <span class="status" id="gtHint">ทำหลัง deploy เสร็จ หรือจะเซฟระหว่างทางก็ได้</span>
+      </div>
+
+      <div class="field" id="gtBox" hidden>
+        <div class="row"><label id="gtTitle"></label></div>
+        <span class="status" id="gtMsgOut"></span>
+        <pre id="gtLog"></pre>
       </div>
     </section>
   </aside>
@@ -3332,9 +3605,10 @@ const PAGE = /* html */ `<!doctype html>
         const okRun = ev.status === 'done';
         rbLine(okRun ? 'good' : 'bad', (okRun ? '✓ จบงาน' : '✗ จบแบบ ' + ev.status) + ' (exit ' + ev.exitCode + ')');
         rbDone.innerHTML = okRun
-          ? 'ต่อไป: รัน <code>npm run preview</code> ตรวจด้วยตา แล้วค่อย deploy แยกด้วย deploy.ps1'
+          ? 'ต่อไป: <b>ส่วนที่ 7</b> กดทดสอบหน้าเว็บแล้วดูด้วยตา → ขึ้นเว็บจริง → <b>ส่วนที่ 8</b> เซฟงานขึ้น GitLab'
           : 'งานไม่จบสมบูรณ์ — repo อาจถูกแก้ค้างไว้ ตรวจด้วย <code>git status</code> / ย้อนด้วย <code>git checkout .</code> ก่อนยิงใหม่';
         addLog('rebrand: ' + ev.status, okRun);
+        gtRefresh();
         break;
       }
     }
@@ -3914,7 +4188,142 @@ const PAGE = /* html */ `<!doctype html>
     }
     // a fresh docx may have just landed, and cleared inputs change the gate
     await refreshBriefStaged();
+    gtRefresh();
   });
+
+  // ── ส่วนที่ 8: commit + push ──────────────────────────────────────────────
+  const gtStart = document.getElementById('gtStart');
+  const gtPill = document.getElementById('gtPill');
+  const gtHint = document.getElementById('gtHint');
+  const gtTimer = document.getElementById('gtTimer');
+  const gtWhere = document.getElementById('gtWhere');
+  const gtMsg = document.getElementById('gtMsg');
+  const gtBox = document.getElementById('gtBox');
+  const gtFilesBox = document.getElementById('gtFilesBox');
+  let gtTicker = null;
+  let gtBusy = false;
+  let gtInfo = null;
+  let gtTouched = false;
+
+  gtMsg.addEventListener('input', () => { gtTouched = true; gtSync(); });
+
+  function gtRenderInfo(info) {
+    gtInfo = info;
+    if (!info || !info.ok) {
+      gtWhere.innerHTML = '<b style="color:var(--bad)">' + esc(info?.error || 'อ่านสถานะ git ไม่ได้') + '</b>';
+      gtFilesBox.hidden = true;
+      return;
+    }
+    const repo = (info.origin.match(/([^/:]+?)(?:\\.git)?$/) || [])[1] || info.origin;
+    gtWhere.innerHTML = info.origin
+      ? 'repo <b>' + esc(repo) + '</b> · branch <b>' + esc(info.branch) + '</b>'
+      : '<b style="color:var(--bad)">repo นี้ยังไม่มี remote ชื่อ origin</b> — ดูคู่มือ ภาค B4';
+
+    gtFilesBox.hidden = info.files.length === 0;
+    document.getElementById('gtCount').textContent = info.files.length + ' ไฟล์';
+    document.getElementById('gtFiles').textContent =
+      info.files.map((f) => '[' + f.label + '] ' + f.path).join('\\n');
+
+    // Only ever pre-fill a box the operator has not typed into.
+    if (!gtTouched && !gtMsg.value && info.brand) {
+      gtMsg.value = 'Rebrand the site to ' + info.brand;
+    }
+    gtSync();
+  }
+
+  function gtSync() {
+    if (gtBusy) return;
+    const ok = gtInfo && gtInfo.ok && gtInfo.origin && !gtInfo.detached && !gtInfo.blockedCount;
+    const changed = ok && gtInfo.files.length > 0;
+    const typed = gtMsg.value.trim().length > 0;
+    gtStart.disabled = !(changed && typed) || running();
+    if (running()) gtHint.textContent = 'มี rebrand กำลังรันอยู่ — รอให้จบก่อน';
+    else if (gtInfo && gtInfo.blockedCount) gtHint.innerHTML = '⚠ มีของที่ไม่ควรขึ้น git ปนอยู่ (<code>' + esc(gtInfo.blocked[0]) + '</code>) — .gitignore ของ repo นี้หายหรือเสีย <b>แจ้งหัวหน้าก่อน</b>';
+    else if (!ok) gtHint.textContent = 'ยังเซฟไม่ได้ — ดูบรรทัดข้างบน';
+    else if (!changed) gtHint.textContent = 'ไม่มีไฟล์ที่เปลี่ยน — ยังไม่มีอะไรให้เซฟ';
+    else if (!typed) gtHint.textContent = 'ใส่ข้อความ commit ก่อน';
+    else gtHint.innerHTML = 'พร้อมเซฟ ' + gtInfo.files.length + ' ไฟล์ขึ้น branch <code>' + esc(gtInfo.branch) + '</code>';
+  }
+
+  function gtRender(r) {
+    gtBox.hidden = !(r.log && r.log.length);
+    gtBox.className = 'field' + (r.status === 'done' ? ' done' : r.status === 'error' ? ' bad' : '');
+    document.getElementById('gtLog').textContent = (r.log || []).join('\\n');
+    if (r.status === 'done') {
+      gtPill.className = 'pill done'; gtPill.textContent = 'เซฟแล้ว';
+      document.getElementById('gtTitle').textContent = 'เซฟขึ้น GitLab เรียบร้อย';
+      document.getElementById('gtMsgOut').textContent =
+        'ส่ง ' + r.pushed + ' ไฟล์ขึ้น branch ' + r.branch + ' แล้ว';
+    } else if (r.status === 'error') {
+      gtPill.className = 'pill bad'; gtPill.textContent = 'ไม่สำเร็จ';
+      document.getElementById('gtTitle').textContent = 'เซฟไม่สำเร็จ';
+      document.getElementById('gtMsgOut').textContent = (r.error || '') + (r.hint ? ' — ' + r.hint : '');
+    }
+  }
+
+  async function gtRefresh() {
+    if (gtBusy) return;
+    try {
+      const j = await (await fetch('/git/status')).json();
+      gtRenderInfo(j.info);
+    } catch { /* server not answering */ }
+  }
+
+  gtStart.addEventListener('click', async () => {
+    const i = gtInfo || {};
+    const go = await askConfirm({
+      title: 'เซฟงานขึ้น GitLab เลยหรือไม่?',
+      sub: 'ส่งขึ้น branch ที่ยืนอยู่ตอนนี้ ไม่มีการสลับ branch',
+      icon: '💾',
+      lines: [
+        'branch ปลายทาง: <code>' + esc(i.branch || '?') + '</code>',
+        'repo: <code>' + esc(i.origin || '?') + '</code>',
+        'จะส่งไฟล์ที่เปลี่ยนทั้งหมด <b>' + (i.files ? i.files.length : 0) + ' ไฟล์</b>',
+      ],
+      code: 'git add -A\\ngit commit -m "' + gtMsg.value.trim() + '"\\ngit push origin ' + (i.branch || 'HEAD'),
+      ok: '💾 เซฟเลย',
+    });
+    if (!go) return;
+
+    gtBusy = true;
+    gtStart.disabled = true;
+    gtPill.className = 'pill run'; gtPill.textContent = 'กำลังเซฟ...';
+    gtHint.textContent = 'กำลัง commit แล้ว push ขึ้น GitLab';
+    gtBox.hidden = true;
+    const t0 = Date.now();
+    clearInterval(gtTicker);
+    gtTicker = setInterval(() => { gtTimer.textContent = fmtElapsed(Date.now() - t0); }, 1000);
+    try {
+      const j = await (await fetch('/git/push', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: gtMsg.value.trim() }),
+      })).json();
+      gtRender(j.run || { status: 'error', error: j.error, log: [] });
+    } catch (e) {
+      gtRender({ status: 'error', error: 'ต่อ server ไม่ได้: ' + e.message, log: [] });
+    } finally {
+      clearInterval(gtTicker);
+      gtTimer.textContent = fmtElapsed(Date.now() - t0);
+      gtBusy = false;
+      await gtRefresh();
+      gtSync();
+    }
+  });
+
+  // Files change from outside this page constantly — an editor, a terminal, the
+  // rebrand run itself. Refreshing on focus is what keeps the file list from
+  // being a lie the moment the operator alt-tabs back.
+  window.addEventListener('focus', gtRefresh);
+
+  (async () => {
+    try {
+      const j = await (await fetch('/git/status')).json();
+      gtRenderInfo(j.info);
+      if (j.run && j.run.log && j.run.log.length) gtRender(j.run);
+    } catch { /* server not answering */ }
+    gtSync();
+  })();
 </script>
 </body>
 </html>`;
@@ -4196,6 +4605,25 @@ const server = http.createServer(async (req, res) => {
     } catch (err) {
       res.writeHead(400, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ ok: false, error: err.message }));
+    }
+    return;
+  }
+
+  // ── git commit + push ─────────────────────────────────────────────────────
+  if (req.method === "GET" && url.pathname === "/git/status") {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ ok: true, info: await gitInfo(), run: gitSnapshot() }));
+    return;
+  }
+  if (req.method === "POST" && url.pathname === "/git/push") {
+    try {
+      const body = await readJson(req);
+      const snap = await startGitPush(body.message || "");
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ ok: snap.status === "done", run: snap }));
+    } catch (err) {
+      res.writeHead(409, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ ok: false, error: err.message, run: gitSnapshot() }));
     }
     return;
   }
