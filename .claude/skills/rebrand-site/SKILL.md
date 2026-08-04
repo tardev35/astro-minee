@@ -741,6 +741,60 @@ This catches two failure modes a past run actually hit:
   after that section's `ContentBox`, not wherever it happened to sit
   in the old file.
 
+**Only the article content may produce a heading. Chrome may not — at
+any level.** Every `<h1>`/`<h2>`/`<h3>` that survives to the rendered
+page must trace back to a heading in the docx (or to a sanctioned H3
+sub-point, below). Everything that is *furniture* rather than article —
+navbar, footer, announcement ticker, live-winners feed, RTP/volatility
+widget, the login/register box, floating badges, carousel captions,
+card and column labels, "ยินดีต้อนรับ"-style greetings — renders its
+label as a `<p>` or `<span>` carrying the same classes, never as a
+heading. Where the label named a region for assistive tech, move that
+job to `aria-label` on the container; the visual result is identical
+because the size and weight live in the classes, not in the tag.
+
+Two separate things go wrong when chrome takes a heading, which is why
+this rule is about *existence* and the one below is only about level:
+
+- **The Phase 5 heading inventory stops meaning anything.** That check
+  is a by-hand diff of the page's h1/h2/h3 against the docx checklist.
+  A UI label sitting in the h2 list makes the counts disagree with the
+  brief on every future rebrand, and the reflex is to "fix" the count by
+  editing the checklist — so one stray `<h2>` quietly retires the check
+  that would have caught the next real dropped section.
+- **It is a content claim with no content behind it.** A heading tells a
+  crawler a section of the document starts here and this names it. On a
+  ticker or a card label that is simply false, and it is false on every
+  page the component appears on, not just the one being reviewed.
+
+The `<h1>` case is worse than the rest and has bitten this template
+before: a navbar variant carried an `<h1>` in its logo fallback
+(found on `NavbarCyber`, 2026-08-03), which is **two** `<h1>` on the
+homepage and, on every sub-page, a *wrong* one outranking that page's
+real title. `verify-build.mjs` fails the build for a second `<h1>` on
+any indexable page, so this shows up as a red build rather than a
+silent SEO loss — do not "fix" it by deleting the page's real `<h1>`.
+
+Prop-driven headings are not chrome and are fine: `Faq*`'s `title`,
+`ContentBoxSevenThree*`'s `titleleft`/`rightHeading` and the rest all
+receive their text from `index.astro`, i.e. from the docx. The test is
+where the words come from, not which file the tag is written in. A
+hardcoded Thai string inside a component is the tell.
+
+**How to check, and it is not by reading `index.astro`.** Grep every
+component that `index.astro` and `MainLayout.astro` import:
+
+```sh
+grep -n '<h[1-6]' src/components/<each in-use component>.astro
+```
+
+For each hit, confirm the text is interpolated from a prop. Anything
+hardcoded gets downgraded **inside that component**, keeping its
+classes — and if the component is also used by another page, check that
+page still reads correctly afterwards. The same rule holds for the
+sub-pages: their headings come from their own article body, not from
+whatever component they hang it on.
+
 **Heading tags: match what the docx actually uses, everywhere.** If
 every section in the docx is marked H2 (no H3 sub-headings), every
 section title in the rendered page must be an `<h2>` — not just in the
@@ -1452,6 +1506,15 @@ pointing at a `public/` path during a rebrand, repoint it to the
      top-to-bottom order. A missing heading or a section that comes
      out of order is a real bug, not a nitpick; go back and fix the
      page structure, don't just note it.
+
+     **The diff runs both directions.** A heading in the page that is
+     *not* in the checklist is as much a defect as a missing one — it
+     means some piece of chrome took a heading tag (see the "only the
+     article content may produce a heading" rule in Phase 2). Trace it
+     to its component and downgrade it there, keeping the classes.
+     Never reconcile the two lists by adding the stray heading to the
+     checklist; the checklist is the docx, and editing it to match the
+     page is what turns this check into a rubber stamp for good.
    - **heading-tag consistency**: `grep -o "<h3" dist/index.html |
      wc -l` (adjust the level to whatever the docx *doesn't* use) —
      should be 0 unless the docx genuinely has a nested sub-heading
