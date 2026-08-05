@@ -9,6 +9,14 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 const currentPath = Astro.url.pathname;
 
 const isActive = (path: string) => isActivePath(currentPath, path);
+
+const links = [
+  { name: "หน้าแรก", path: "/", icon: "🏠" },
+  { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
+  { name: "ทางเข้า", path: "/ทางเข้า", icon: "🌐" },
+  { name: "ติดต่อเรา", path: "/contact-us", icon: "📞" },
+];
 ---
 
 <header class="sticky top-0 z-50 w-full font-sans">
@@ -30,54 +38,20 @@ const isActive = (path: string) => isActivePath(currentPath, path);
       </div>
 
       <div class="hidden h-full items-center justify-center gap-2 lg:flex xl:gap-4">
-        <a
-          href="/"
-          class={`group relative flex items-center h-full px-4 xl:px-6 text-sm xl:text-base font-bold transition-all duration-300 ${isActive("/") ? "text-amber-300" : "text-amber-100/80 hover:text-amber-200"}`}>
-          <div aria-hidden="true" class={`absolute inset-0 bg-gradient-to-b from-transparent to-amber-400/10 transition-opacity duration-300 ${isActive("/") ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
-          </div>
-          <span class="relative z-10">หน้าแรก</span>
-          <div class={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-amber-400 transition-all duration-300 ${isActive("/") ? "w-full" : "w-0 group-hover:w-full"}`}></div>
-        </a>
-
-        <a
-          href="/promotion"
-          class={`group relative flex items-center h-full px-4 xl:px-6 text-sm xl:text-base font-bold transition-all duration-300 ${isActive("/promotion") ? "text-amber-300" : "text-amber-100/80 hover:text-amber-200"}`}>
-          <div aria-hidden="true"
-            class={`absolute inset-0 bg-gradient-to-b from-transparent to-amber-400/10 transition-opacity duration-300 ${isActive("/promotion") ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
-          </div>
-          <span class="relative z-10">โปรโมชั่น</span>
-          <div class={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-amber-400 transition-all duration-300 ${isActive("/promotion") ? "w-full" : "w-0 group-hover:w-full"}`}></div>
-        </a>
-
-        <a
-          href="/ทดลองเล่น"
-          class={`group relative flex items-center h-full px-4 xl:px-6 text-sm xl:text-base font-bold transition-all duration-300 ${isActive("/ทดลองเล่น") ? "text-amber-300" : "text-amber-100/80 hover:text-amber-200"}`}>
-          <div aria-hidden="true"
-            class={`absolute inset-0 bg-gradient-to-b from-transparent to-amber-400/10 transition-opacity duration-300 ${isActive("/ทดลองเล่น") ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
-          </div>
-          <span class="relative z-10">ทดลองเล่น</span>
-          <div class={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-amber-400 transition-all duration-300 ${isActive("/ทดลองเล่น") ? "w-full" : "w-0 group-hover:w-full"}`}></div>
-        </a>
-
-        <a
-          href="/ทางเข้า"
-          class={`group relative flex items-center h-full px-4 xl:px-6 text-sm xl:text-base font-bold transition-all duration-300 ${isActive("/ทางเข้า") ? "text-amber-300" : "text-amber-100/80 hover:text-amber-200"}`}>
-          <div aria-hidden="true"
-            class={`absolute inset-0 bg-gradient-to-b from-transparent to-amber-400/10 transition-opacity duration-300 ${isActive("/ทางเข้า") ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
-          </div>
-          <span class="relative z-10">ทางเข้า</span>
-          <div class={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-amber-400 transition-all duration-300 ${isActive("/ทางเข้า") ? "w-full" : "w-0 group-hover:w-full"}`}></div>
-        </a>
-
-        <a
-          href="/contact-us"
-          class={`group relative flex items-center h-full px-4 xl:px-6 text-sm xl:text-base font-bold transition-all duration-300 ${isActive("/contact-us") ? "text-amber-300" : "text-amber-100/80 hover:text-amber-200"}`}>
-          <div aria-hidden="true"
-            class={`absolute inset-0 bg-gradient-to-b from-transparent to-amber-400/10 transition-opacity duration-300 ${isActive("/contact-us") ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
-          </div>
-          <span class="relative z-10">ติดต่อเรา</span>
-          <div class={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-amber-400 transition-all duration-300 ${isActive("/contact-us") ? "w-full" : "w-0 group-hover:w-full"}`}></div>
-        </a>
+        {
+          links.map((link) => (
+            <a
+              href={link.path}
+              class={`group relative flex h-full items-center px-4 text-sm font-bold transition-all duration-300 xl:px-6 xl:text-base ${isActive(link.path) ? "text-amber-300" : "text-amber-100/80 hover:text-amber-200"}`}>
+              <div
+                aria-hidden="true"
+                class={`absolute inset-0 bg-gradient-to-b from-transparent to-amber-400/10 transition-opacity duration-300 ${isActive(link.path) ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+              />
+              <span class="relative z-10">{link.name}</span>
+              <div class={`absolute bottom-0 left-1/2 h-[3px] -translate-x-1/2 bg-amber-400 transition-all duration-300 ${isActive(link.path) ? "w-full" : "w-0 group-hover:w-full"}`} />
+            </a>
+          ))
+        }
       </div>
 
       <div class="flex items-center gap-3 md:gap-4">
@@ -108,31 +82,15 @@ const isActive = (path: string) => isActivePath(currentPath, path);
     <div class="flex w-full flex-col items-center space-y-6 px-6">
       <Picture src={mainLogo!} alt="LAPDEE88 Logo" class="menu-item mb-6 h-[50px] w-auto opacity-0 drop-shadow-[0_0_15px_rgba(212,175,90,0.45)]" formats={["avif", "webp"]} fallbackFormat="webp" />
 
-      <a
-        href="/"
-        class={`menu-item opacity-0 text-3xl font-black uppercase tracking-wider transition-all duration-300 ${isActive("/") ? "text-amber-300 drop-shadow-[0_0_8px_rgba(212,175,90,0.8)]" : "text-amber-100/80 hover:text-white"}`}>
-        หน้าแรก
-      </a>
-      <a
-        href="/promotion"
-        class={`menu-item opacity-0 text-3xl font-black uppercase tracking-wider transition-all duration-300 ${isActive("/promotion") ? "text-amber-300 drop-shadow-[0_0_8px_rgba(212,175,90,0.8)]" : "text-amber-100/80 hover:text-white"}`}>
-        โปรโมชั่น
-      </a>
-      <a
-        href="/ทดลองเล่น"
-        class={`menu-item opacity-0 text-3xl font-black uppercase tracking-wider transition-all duration-300 ${isActive("/ทดลองเล่น") ? "text-amber-300 drop-shadow-[0_0_8px_rgba(212,175,90,0.8)]" : "text-amber-100/80 hover:text-white"}`}>
-        ทดลองเล่น
-      </a>
-      <a
-        href="/ทางเข้า"
-        class={`menu-item opacity-0 text-3xl font-black uppercase tracking-wider transition-all duration-300 ${isActive("/ทางเข้า") ? "text-amber-300 drop-shadow-[0_0_8px_rgba(212,175,90,0.8)]" : "text-amber-100/80 hover:text-white"}`}>
-        ทางเข้า
-      </a>
-      <a
-        href="/contact-us"
-        class={`menu-item opacity-0 text-3xl font-black uppercase tracking-wider transition-all duration-300 ${isActive("/contact-us") ? "text-amber-300 drop-shadow-[0_0_8px_rgba(212,175,90,0.8)]" : "text-amber-100/80 hover:text-white"}`}>
-        ติดต่อเรา
-      </a>
+      {
+        links.map((link) => (
+          <a
+            href={link.path}
+            class={`menu-item text-3xl font-black tracking-wider uppercase opacity-0 transition-all duration-300 ${isActive(link.path) ? "text-amber-300 drop-shadow-[0_0_8px_rgba(212,175,90,0.8)]" : "text-amber-100/80 hover:text-white"}`}>
+            {link.name}
+          </a>
+        ))
+      }
 
       <div class="menu-item mt-4 flex w-full max-w-[280px] flex-col gap-4 border-t border-amber-800/50 pt-8 opacity-0">
         <a
