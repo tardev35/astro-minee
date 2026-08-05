@@ -15,8 +15,7 @@ import { BRAND_ADDRESS } from "../lib/brandProfile";
 // be two hand-typed variants of the same sentence, and the JSON-LD copy was the
 // one nobody reread. 150–160 CHARACTERS (Thai is 3 bytes/char, so a byte count
 // reads ~3x too long and will send you rewriting a description that was fine).
-const pageDescription =
-  "ช่องทางติดต่อทีมงาน OKG777 ผ่าน LINE Official สำหรับปัญหาสมัครสมาชิก เข้าสู่ระบบ โปรโมชั่นสมาชิกใหม่ และสถานะฝากถอนอัตโนมัติ พร้อมข้อมูลที่ควรเตรียมก่อนแจ้ง";
+const pageDescription = "ช่องทางติดต่อทีมงาน OKG777 ผ่าน LINE Official สำหรับปัญหาสมัครสมาชิก เข้าสู่ระบบ โปรโมชั่นสมาชิกใหม่ และสถานะฝากถอนอัตโนมัติ พร้อมข้อมูลที่ควรเตรียมก่อนแจ้ง";
 
 const graph = pageGraph(Astro, {
   type: "ContactPage",
@@ -49,9 +48,7 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout
-  title="ติดต่อเรา OKG777 แจ้งปัญหาสมัครสมาชิก โปรโมชั่น และฝากถอนอัตโนมัติ ผ่าน LINE Official"
-  description={pageDescription}>
+<MainLayout title="ติดต่อเรา OKG777 แจ้งปัญหาสมัครสมาชิก โปรโมชั่น และฝากถอนอัตโนมัติ ผ่าน LINE Official" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
@@ -72,13 +69,21 @@ const graph = pageGraph(Astro, {
     />
     {
       BRAND_ADDRESS.lines.length > 0 && (
-        <address
-          aria-label={BRAND_ADDRESS.label}
-          class="mt-8 mb-8 border-l-4 border-[#ff4fd8] pl-6 text-left text-base leading-relaxed text-[#ece2fb] not-italic">
+        <address aria-label={BRAND_ADDRESS.label} class="mt-8 mb-8 border-l-4 border-[#ff4fd8] pl-6 text-left text-base leading-relaxed text-[#ece2fb] not-italic">
           <p class="mb-1 font-bold text-[#ffe94d]">{BRAND_ADDRESS.label}</p>
           {BRAND_ADDRESS.lines.map((line) => (
             <span class="block">{line}</span>
           ))}
+          {BRAND_ADDRESS.email && (
+            <span class="mt-3 block">
+              <span aria-hidden="true" class="mr-2">
+                ✉️
+              </span>
+              <a href={`mailto:${BRAND_ADDRESS.email}`} class="font-bold text-[#ffe94d] underline decoration-[#ff4fd8]/60 underline-offset-4 transition-colors hover:text-[#ff4fd8]">
+                {BRAND_ADDRESS.email}
+              </a>
+            </span>
+          )}
         </address>
       )
     }

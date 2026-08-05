@@ -46,14 +46,7 @@ const DIST = "dist";
 //   fonts.googleapis.com the google-sans branch of BRAND_FONT
 //   fonts.gstatic.com    ditto, the preconnect target
 //   www.w3.org           SVG xmlns
-const ALLOWED_HOSTS = new Set([
-  "yoalink.com",
-  "tinyurl.com",
-  "schema.org",
-  "fonts.googleapis.com",
-  "fonts.gstatic.com",
-  "www.w3.org",
-]);
+const ALLOWED_HOSTS = new Set(["yoalink.com", "tinyurl.com", "schema.org", "fonts.googleapis.com", "fonts.gstatic.com", "www.w3.org"]);
 
 // alt text that describes the file rather than the picture. A screen reader
 // announcing "bank" or "Website Background" is worse than no image at all,
@@ -119,10 +112,7 @@ const meta = (html, name) => {
  *  reader even when it is two UTF-16 units. */
 const chars = (s) => [...s].length;
 
-const VOID_TAGS = new Set([
-  "area", "base", "br", "col", "embed", "hr", "img", "input",
-  "link", "meta", "param", "source", "track", "wbr",
-]);
+const VOID_TAGS = new Set(["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"]);
 
 /** Every .css Astro emitted, concatenated. Read once — `inlineStylesheets` is
  *  off, so a rule on html/body lives out here rather than in the page. */
@@ -243,20 +233,14 @@ if (!siteRaw) {
 }
 const SITE = new URL(siteRaw);
 
-const ADDRESS_TERMS = [
-  "PostalAddress",
-  "streetAddress",
-  "addressLocality",
-  "addressRegion",
-  "addressCountry",
-  "postalCode",
-  '"address"',
-];
+const ADDRESS_TERMS = ["PostalAddress", "streetAddress", "addressLocality", "addressRegion", "addressCountry", "postalCode", '"address"'];
 
 const BRAND_PROFILE = "src/lib/brandProfile.ts";
 const addressLines = [];
+let brandName = "";
 if (fs.existsSync(BRAND_PROFILE)) {
   const profileSrc = fs.readFileSync(BRAND_PROFILE, "utf8");
+  brandName = (profileSrc.match(/export const BRAND_NAME\s*(?::[^=]*)?=\s*["'`]([^"'`]+)/) || ["", ""])[1].trim();
   // Match the ASSIGNMENT, not "up to the first semicolon" — a semicolon inside
   // an inline type annotation truncated the old match and the check silently
   // read only `export const BRAND_ADDRESS: {`.
@@ -360,12 +344,21 @@ for (const file of pages) {
     error(where, "no default text colour on <html>/<body> — text without its own colour class renders black (see BRAND_TEXT)");
   }
 
-  // The contact address belongs to /contact-us and to no other URL. Moving it
-  // into a shared component — a footer is the tempting one — republishes it on
-  // every page in the build, which multiplies how exposed it is and buys
-  // nothing a visitor could not already reach from the nav.
-  if (/<address\b/i.test(html) && !/[\\/]contact-us[\\/]/.test(where)) {
-    error(where, "<address> outside /contact-us — the contact address renders on that one page only (see BRAND_ADDRESS)");
+  // The address renders on /contact-us and in the footer, so it is on every
+  // page by design. What still cannot happen is a PREVIOUS brand's address
+  // surviving a rebrand — the derivation keys off BRAND_NAME precisely so that
+  // cannot happen silently, and this is the check that proves it did not.
+  for (const m of html.matchAll(/<address\b[^>]*>([\s\S]*?)<\/address>/gi)) {
+    const text = decodeEntities(m[1].replace(/<[^>]*>/g, " "))
+      .replace(/\s+/g, " ")
+      .trim();
+    if (brandName && !text.includes(brandName)) {
+      error(where, `<address> does not name ${brandName} ("${text.slice(0, 60)}…") — a leftover address from an earlier brand (see BRAND_ADDRESS)`);
+    }
+    const mail = text.match(/[\w.+-]+@([\w.-]+)/);
+    if (mail && mail[1].replace(/^www\./, "") !== SITE.hostname.replace(/^www\./, "")) {
+      error(where, `contact email is at ${mail[1]}, not this brand's ${SITE.hostname} — an address block carried over from an earlier brand`);
+    }
   }
 
   for (const m of html.matchAll(/<img\b[^>]*>/g)) {
@@ -450,8 +443,7 @@ for (const file of pages) {
   if (inlineStyle > INLINE_STYLE_MAX) {
     error(
       where,
-      `${inlineStyle.toLocaleString()} bytes of inline <style> (limit ${INLINE_STYLE_MAX.toLocaleString()}) — ` +
-        `check build.inlineStylesheets in astro.config.mjs is not back to "always"`,
+      `${inlineStyle.toLocaleString()} bytes of inline <style> (limit ${INLINE_STYLE_MAX.toLocaleString()}) — ` + `check build.inlineStylesheets in astro.config.mjs is not back to "always"`,
     );
   }
 
@@ -595,7 +587,9 @@ for (const file of pages) {
     bytes: html.length,
     h1: h1s.map((m) => decodeEntities(m[1].replace(/<[^>]*>/g, "")).trim()),
     h2: [...html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/g)].map((m) =>
-      decodeEntities(m[1].replace(/<[^>]*>/g, "")).replace(/\s+/g, " ").trim(),
+      decodeEntities(m[1].replace(/<[^>]*>/g, ""))
+        .replace(/\s+/g, " ")
+        .trim(),
     ),
     h3: [...html.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>/g)].length,
   });
@@ -731,8 +725,7 @@ function scanAstroFrontmatter(dir) {
     if (hit) {
       error(
         p.split(path.sep).join("/"),
-        `${hit[1]}) in frontmatter — runs at BUILD time, so every deploy churns the markup. ` +
-          `Use brandPick()/brandFlag() from src/lib/brandProfile.ts to derive it from the domain instead.`,
+        `${hit[1]}) in frontmatter — runs at BUILD time, so every deploy churns the markup. ` + `Use brandPick()/brandFlag() from src/lib/brandProfile.ts to derive it from the domain instead.`,
       );
     }
   }
@@ -754,11 +747,7 @@ if (fs.existsSync("wrangler.toml")) {
   const name = (wrangler.match(/^\s*name\s*=\s*"([^"]+)"/m) || [])[1];
   const slug = SITE.hostname.replace(/^www\./i, "").split(/[-.]/)[0];
   if (name && slug && name.toLowerCase() !== slug.toLowerCase()) {
-    error(
-      "wrangler.toml",
-      `name = "${name}" but the site is ${SITE.hostname} (expected "${slug}") — ` +
-        `deploying now would overwrite the "${name}" brand's live worker`,
-    );
+    error("wrangler.toml", `name = "${name}" but the site is ${SITE.hostname} (expected "${slug}") — ` + `deploying now would overwrite the "${name}" brand's live worker`);
   }
 }
 
