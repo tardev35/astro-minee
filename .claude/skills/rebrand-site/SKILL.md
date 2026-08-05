@@ -1004,8 +1004,9 @@ come from their own body, per Phase 5.
 
 `Footer*` rotates every rebrand, and the block lives in the file, not in
 `MainLayout` — so **whichever footer you switch to, port it across**. Resolve
-the live one from `MainLayout.astro`'s `import Footer`, then add to its brand
-column, under the LINE button:
+the live one from `MainLayout.astro`'s `import Footer`. Every variant puts an
+`<a href="/line">` in a customer-service column; drop this immediately after
+that anchor, and add the import to the frontmatter:
 
 ```astro
 import { BRAND_ADDRESS } from "../lib/brandProfile";
@@ -1014,18 +1015,31 @@ import { BRAND_ADDRESS } from "../lib/brandProfile";
 ```astro
 {
   BRAND_ADDRESS.lines.length > 0 && (
-    <address aria-label={BRAND_ADDRESS.label} class="… not-italic">
-      <p>{BRAND_ADDRESS.label}</p>
-      {BRAND_ADDRESS.lines.map((line) => <span class="block">{line}</span>)}
-      {BRAND_ADDRESS.email && <a href={`mailto:${BRAND_ADDRESS.email}`}>{BRAND_ADDRESS.email}</a>}
+    <address aria-label={BRAND_ADDRESS.label} class="mt-2 rounded-xl border border-white/15 bg-black/20 p-4 text-xs leading-relaxed not-italic opacity-90">
+      <p class="mb-2 flex items-center gap-2 text-[11px] font-bold tracking-wider uppercase opacity-80">
+        <span aria-hidden="true" class="text-sm">📍</span>
+        {BRAND_ADDRESS.label}
+      </p>
+      {BRAND_ADDRESS.lines.map((line) => (
+        <span class="block">{line}</span>
+      ))}
+      {BRAND_ADDRESS.email && (
+        <a href={`mailto:${BRAND_ADDRESS.email}`} class="mt-3 inline-flex items-center gap-2 font-bold underline decoration-current/40 underline-offset-4 opacity-90 transition-opacity hover:opacity-100">
+          <span aria-hidden="true" class="text-sm">✉️</span>
+          {BRAND_ADDRESS.email}
+        </a>
+      )}
     </address>
   )
 }
 ```
 
-Theme it in that footer's own palette — this template keeps colours in each
-variant, not in a shared token, so copying the previous footer's hex values
-across is how the last brand's colours leak into the new one.
+**Paste it verbatim — do not theme it, and do not put a hex value in it.** It
+carries no brand colour on purpose: `border-white/15`, `bg-black/20` and
+`opacity` over the footer's inherited text colour land correctly on every
+variant in the library, which are all dark. Retyping it in this brand's palette
+buys nothing and is the exact move that leaves the previous brand's hex behind
+next time.
 
 Rules that bite here: the label is a `<p>` or `<span>`, **never a heading**
 (chrome may not take a heading tag, and the footer is on every page, so one
