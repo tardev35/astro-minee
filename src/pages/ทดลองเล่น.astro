@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement5.astro";
+import Announcement from "../components/Announcement.astro";
 
 import { Picture } from "astro:assets";
 import { itemList, pageGraph, schemaCtx } from "../lib/schema";
@@ -19,36 +19,30 @@ import image10 from "../assets/gamedemo16.webp";
 import image11 from "../assets/gamedemo17.webp";
 import image12 from "../assets/gamedemo18.webp";
 
-// One list, two consumers: the gallery below and the ItemList in the JSON-LD.
-// They used to be two hand-kept arrays that had to stay in the same order, and
-// the name shown to a reader could drift from the name handed to a crawler.
 const demoGames = [
-  { name: "AskmeSlot", src: image1, alt: "แบนเนอร์เกมสล็อตค่าย AskmeSlot ที่เปิดให้ทดลองเล่นบน OKG777" },
-  { name: "Popular Game", src: image2, alt: "แบนเนอร์รวมเกมยอดนิยม Popular Game พร้อมกองชิปและเหรียญทอง" },
-  { name: "SlotXO", src: image3, alt: "แบนเนอร์เกมสล็อตค่าย SlotXO ที่เปิดให้ทดลองเล่นบน OKG777" },
-  { name: "Skywind Group", src: image4, alt: "แบนเนอร์เกมสล็อตค่าย Skywind Group ที่เปิดให้ทดลองเล่นบน OKG777" },
-  { name: "PG Soft", src: image5, alt: "แบนเนอร์เกมสล็อตค่าย PG Soft ที่เปิดให้ทดลองเล่นบน OKG777" },
-  { name: "SBOBET", src: image6, alt: "แบนเนอร์ค่ายเกม SBOBET พร้อมตัวละครการ์ตูนถือลูกอม" },
-  { name: "Sexy Slot", src: image7, alt: "แบนเนอร์เกมสล็อตค่าย Sexy Slot ที่เปิดให้ทดลองเล่นบน OKG777" },
-  { name: "JILI", src: image8, alt: "แบนเนอร์เกมสล็อตค่าย JILI ที่เปิดให้ทดลองเล่นบน OKG777" },
-  { name: "Ask Me Bet", src: image9, alt: "แบนเนอร์ค่ายเกม Ask Me Bet ที่เปิดให้ทดลองเล่นบน OKG777" },
-  { name: "New Game", src: image10, alt: "แบนเนอร์เกมออกใหม่ New Game พร้อมตัวการ์ตูนฟักทองและโครงกระดูก" },
-  { name: "JOKER", src: image11, alt: "แบนเนอร์เกมสล็อตค่าย JOKER ที่เปิดให้ทดลองเล่นบน OKG777" },
-  { name: "AFB Gaming", src: image12, alt: "แบนเนอร์ค่ายเกม AFB Gaming ที่เปิดให้ทดลองเล่นบน OKG777" },
+  { name: "AskmeSlot", src: image1, alt: "แบนเนอร์ค่าย askmeslot โลโก้โพดำสีทองที่มีสัญลักษณ์ไพ่อยู่ข้างใน คู่กับตัวการ์ตูนเด็กชายสวมหมวกแดงติดดาว กางแขนวิ่งบนถนนในเมืองยุโรปที่มีกังหันลม" },
+  { name: "Popular Game", src: image2, alt: "แบนเนอร์ Popular Game ตัวอักษรทองนูนหน้าวงแหวนชิปคาสิโนสีทอง ขนาบด้วยกระต่ายถือหีบสมบัติกับแมวใส่แว่นกันแดด ท่ามกลางเหรียญทองและชิปที่ลอยฟุ้ง" },
+  { name: "SlotXO", src: image3, alt: "แบนเนอร์ค่าย SLOTXO โลโก้ตู้สล็อตล้อมด้วยเหรียญทอง คู่กับนักรบโรมันผมขาวสวมมงกุฎใบลอเรลและเกราะทอง ยืนหน้าโคลอสเซียมกับทหารอีกสองนาย" },
+  { name: "Skywind Group", src: image4, alt: "แบนเนอร์ค่าย Skywind Group โลโก้วงกลมสี่สีบนพื้นดำ คู่กับแมวกวักนำโชคสีขาวคาดกระพรวนทอง ยืนข้างไหทองและถุงเงินสีม่วงใต้ต้นซากุระ" },
+  { name: "PG Soft", src: image5, alt: "แบนเนอร์ค่าย PG Pocket Games Soft โลโก้ตัวอักษรพิกเซลบนพื้นดำ คู่กับตัวละครหญิงนักรบผิวแทนสวมเครื่องประดับทองและหมวกขนนกสไตล์แอซเท็ก" },
+  { name: "SBOBET", src: image6, alt: "แบนเนอร์ค่ายเกม SBOBET โลโก้ตัวอักษรขาวบนพื้นดำ คู่กับตัวการ์ตูนอนิเมะสาวหูจิ้งจอกผมบลอนด์ในชุดกิโมโนสีชมพู มือถืออมยิ้มเกลียวหลากสี" },
+  { name: "Sexy Slot", src: image7, alt: "แบนเนอร์ค่าย Sexy Slot ตัวอักษรสีชมพูม่วงมีประกายวิบวับ คู่กับตัวการ์ตูนสาวผมน้ำตาลในชุดรัดรูปสีม่วง นั่งอยู่ในกรอบวงกลมที่ล้อมด้วยหัวใจสีชมพู" },
+  { name: "JILI", src: image8, alt: "แบนเนอร์ค่ายเกม JILI ตัวอักษรทองบนพื้นดำ คู่กับนางเงือกผมแดงสวมเกราะเปลือกหอยสีทอง ยกหอยสังข์แนบหูอยู่ใต้ทะเลที่มีปลาการ์ตูนและปะการัง" },
+  { name: "Ask Me Bet", src: image9, alt: "แบนเนอร์ค่ายเกม ask me bet โลโก้สามช่องสีขาวเขียวเหลืองบนพื้นดำ คู่กับหัวสิงโตเชิดตรุษจีนสีแดงทองตาโต ใต้แถวโคมไฟแดงหน้าศาลเจ้า" },
+  { name: "New Game", src: image10, alt: "แบนเนอร์ New Game ตัวอักษรสีขาวนูนกลางภาพ ขนาบด้วยตัวการ์ตูนฟักทองหัวไฟกับโครงกระดูกยิ้ม ยืนบนฟลอร์นีออนสีชมพูฟ้าที่เกลื่อนด้วยชิปและลูกเต๋า" },
+  { name: "JOKER", src: image11, alt: "แบนเนอร์ค่ายเกม JOKER ตัวอักษรขาวทองบนพื้นดำ คู่กับนักรบโรมันสวมหมวกเหล็กติดขนนกและถือโล่ ยืนเคียงสิงโตกำลังคำรามกลางสนามประลอง" },
+  { name: "AFB Gaming", src: image12, alt: "แบนเนอร์ค่ายเกม AFB Gaming โลโก้ตัวอักษรทองบนพื้นดำ คู่กับเทพซุสเคราขาวตาเรืองแสงสีฟ้า สวมมงกุฎใบลอเรลและกำไลทองหน้าวิหารกรีก" },
 ];
 
-// The URL each entry resolves to is schema.ts's problem, not this file's — an
-// older version pasted a hand-built page URL onto all 12 and got the trailing
-// slash and the Thai encoding wrong on every one of them.
 const gameList = demoGames.map((game) => ({ name: game.name, imagePath: game.src.src }));
 
 const pageDescription =
-  "ทดลองเล่นเกมของ OKG777 เปิดดูหน้าสล็อตเว็บตรงหลายค่ายและคาสิโนสดก่อนใช้เครดิตจริง พร้อมจุดที่ควรดูทั้งเดิมพันเริ่มต้นต่อรอบ ฟีเจอร์โบนัส และความผันผวนของเกม";
+  "ทดลองเล่นสล็อตเว็บตรงไทยแท้ YIMSIAM88 เปิดดูหน้าเกมจากหลายค่ายก่อนใช้เครดิตจริง ดูเดิมพันต่อรอบ ฟีเจอร์โบนัส และจังหวะการแตกของแต่ละเกมได้ครบก่อนตัดสินใจ";
 
 const ctx = schemaCtx(Astro);
 const graph = pageGraph(Astro, {
   type: "CollectionPage",
-  name: "ทดลองเล่นเกมของ OKG777 ลองระบบก่อนเล่นด้วยเงินจริง",
+  name: "ทดลองเล่นสล็อต YIMSIAM88 ลองระบบให้ชัดก่อนลงเครดิตจริง",
   description: pageDescription,
   breadcrumb: [
     { name: "หน้าแรก", path: "/" },
@@ -56,8 +50,8 @@ const graph = pageGraph(Astro, {
   ],
   extra: [
     itemList(ctx, {
-      name: "ทดลองเล่นเกมสล็อตและคาสิโนของ OKG777",
-      alternateName: "OKG777 โหมดทดลองเล่นสล็อตหลายค่ายบนมือถือก่อนเล่นด้วยเงินจริง",
+      name: "ทดลองเล่นเกมสล็อตของ YIMSIAM88",
+      alternateName: "YIMSIAM88 โหมดทดลองสล็อตหลายค่ายบนมือถือก่อนเล่นด้วยเงินจริง",
       itemType: "Game",
       items: gameList,
     }),
@@ -65,19 +59,19 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="ทดลองเล่น OKG777 ลองสล็อตเว็บตรงและคาสิโนสดก่อนเล่นจริง" description={pageDescription}>
+<MainLayout title="ทดลองเล่น - YIMSIAM88" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
-  <ContentBox title="ทดลองเล่นเกมของ OKG777 ลองระบบก่อนเล่นด้วยเงินจริง">
+  <ContentBox title="ทดลองเล่นสล็อต YIMSIAM88 ลองระบบให้ชัดก่อนลงเครดิตจริง">
     <div>
-      <h2 class="mb-6 bg-gradient-to-r from-[#ffe94d] via-[#ffd400] to-[#ff4fd8] bg-clip-text text-2xl leading-normal font-bold text-transparent">โหมดทดลองของ OKG777 มีไว้ทำอะไร และควรดูอะไรก่อนเลือกเกม</h2>
+      <h2 class="mb-6 bg-gradient-to-r from-[#ffd98a] via-[#ffa347] to-[#ff7a18] bg-clip-text text-2xl leading-normal font-bold text-transparent">โหมดทดลองของ YIMSIAM88 มีไว้ทำอะไร และควรดูอะไรก่อนเลือกเกม</h2>
 
-      <p class="mb-8 text-left text-base leading-relaxed text-[#ece2fb]">
-        OKG777 เป็นเว็บตรงที่รวมสล็อต คาสิโนสด และกีฬาไว้ในบัญชีเดียว หมวดสล็อตแบ่งตามค่ายและรูปแบบการเล่นค่อนข้างชัด ทั้ง PG, JILI, JOKER, SLOTXO และ HABANERO ให้เลือกอยู่ในเมนูเดียวกัน จึงไล่ดูตามค่ายหรือตามเกมยอดนิยมได้โดยไม่ต้องเลื่อนจนเมื่อยนิ้ว
-        หน้านี้จึงเป็นที่ให้กดเปิดดูหน้าเกมก่อนว่าหน้าตาระบบเป็นแบบไหน ปุ่มปรับเดิมพันอยู่ตรงไหน ฟีเจอร์โบนัสทำงานอย่างไร และหนึ่งรอบกินเวลาแค่ไหน โดยยังไม่ต้องใส่เงินจริงและไม่มีการได้เสียเกิดขึ้น
-        สิ่งที่ควรดูจริงคือเดิมพันเริ่มต้นต่อรอบ ความผันผวน และรูปแบบการจ่าย มากกว่าดูว่าเกมไหนกำลังดังที่สุด เกมดังช่วยให้หารีวิวง่าย แต่ไม่ได้ช่วยเจรจากับระบบสุ่มเป็นการส่วนตัว ถือเป็นการอ่านคู่มือก่อนขับ ซึ่งน่าเบื่อกว่าการลองขับเลยอยู่แล้ว แต่ค่าซ่อมมันถูกกว่ากันเยอะ
+      <p class="mb-8 text-left text-base leading-relaxed text-[#f7e6d4]">
+        YIMSIAM88 เป็นสล็อตเว็บตรงไทยแท้ครับ หน้ารวมเกมของเราแบ่งตามค่ายและรูปแบบการเล่นไว้ชัดเจน ทั้ง PG Soft, JILI, JOKER, SLOTXO, Skywind และ AFB Gaming อยู่ในเมนูเดียวกัน เมนูเป็นภาษาไทยตัวใหญ่ จิ้มปุ๊บเจอปั๊บ ไม่ต้องเลื่อนหาจนเมื่อยนิ้ว
+        หน้านี้จึงมีไว้ให้กดเปิดดูหน้าเกมก่อนว่าหน้าตาระบบเป็นแบบไหน ปุ่มปรับเดิมพันอยู่ตรงไหน ฟีเจอร์ฟรีสปินเรียกใช้อย่างไร และหนึ่งรอบกินเวลาแค่ไหน โดยยังไม่ต้องใส่เงินจริงและไม่มีการได้เสียเกิดขึ้น
+        สิ่งที่ควรดูจริงคือเดิมพันเริ่มต้นต่อรอบ ความผันผวนของเกม และรูปแบบการจ่าย มากกว่าดูว่าเกมไหนกำลังดังที่สุด เกมดังช่วยให้หารีวิวง่ายก็จริง แต่ไม่ได้ช่วยเจรจากับระบบสุ่มให้เราเป็นการส่วนตัวครับ ถือเสียว่าอ่านคู่มือก่อนขับ น่าเบื่อกว่าลองขับเลยอยู่แล้ว แต่ค่าซ่อมมันถูกกว่ากันเยอะ
       </p>
 
       <div class="mb-5 grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4">
@@ -91,7 +85,7 @@ const graph = pageGraph(Astro, {
                 fetchpriority="low"
                 widths={[200, 400, 600]}
                 sizes="(max-width: 768px) 100vw, 25vw"
-                class="block h-auto w-full object-cover shadow-[0_10px_30px_rgba(255,212,0,0.18)] transition-transform duration-300 group-hover/game:scale-105"
+                class="block h-auto w-full object-cover shadow-[0_10px_30px_rgba(255,122,24,0.18)] transition-transform duration-300 group-hover/game:scale-105"
                 decoding="async"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
@@ -101,33 +95,33 @@ const graph = pageGraph(Astro, {
                 href="/register"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`สมัครสมาชิกเพื่อเล่น ${game.name} ที่ OKG777`}
-                class="absolute inset-0 flex items-center justify-center bg-[#0d0320]/75 opacity-0 transition-opacity duration-300 group-hover/game:opacity-100 focus-visible:opacity-100">
-                <span class="rounded-full border border-[#ffd400]/60 bg-gradient-to-r from-[#ffe94d] via-[#ff4fd8] to-[#8f1080] px-6 py-2 font-bold text-[#1a0330] shadow-[0_10px_30px_rgba(255,212,0,0.30)] transition-transform hover:scale-110">เล่นเลย</span>
+                aria-label={`สมัครสมาชิกเพื่อเล่น ${game.name} ที่ YIMSIAM88`}
+                class="absolute inset-0 flex items-center justify-center bg-[#160604]/75 opacity-0 transition-opacity duration-300 group-hover/game:opacity-100 focus-visible:opacity-100">
+                <span class="rounded-full border border-[#ff7a18]/60 bg-gradient-to-r from-[#ffd98a] via-[#ffa347] to-[#8d2b09] px-6 py-2 font-bold text-[#160604] shadow-[0_10px_30px_rgba(255,122,24,0.30)] transition-transform hover:scale-110">เล่นเลย</span>
               </a>
             </div>
           ))
         }
       </div>
 
-      <h2 class="mt-8 mb-6 bg-gradient-to-r from-[#ffe94d] via-[#ffd400] to-[#ff4fd8] bg-clip-text text-2xl leading-normal font-bold text-transparent">โหมดทดลองบอกอะไรได้ และบอกอะไรไม่ได้</h2>
+      <h2 class="mt-8 mb-6 bg-gradient-to-r from-[#ffd98a] via-[#ffa347] to-[#ff7a18] bg-clip-text text-2xl leading-normal font-bold text-transparent">โหมดทดลองบอกอะไรได้ และบอกอะไรไม่ได้</h2>
 
-      <p class="mb-4 text-left text-base leading-relaxed text-[#ece2fb]">
-        โหมดทดลองบอกได้ว่าเกมทำงานอย่างไร เมนูอยู่ตรงไหน ฟีเจอร์ซื้อฟรีสปินเรียกใช้ยังไง และหนึ่งรอบใช้เวลาเท่าไร แต่เครดิตในโหมดนี้เป็นยอดสมมติ ถอนไม่ได้ และผลที่ออกมาก็ไม่ได้บอกว่าเล่นจริงจะได้ผลเหมือนกัน
-        ต่อให้กดในโหมดทดลองแล้วจังหวะเข้ามือ ก็ไม่ใช่หลักฐานว่าเกมนั้นกำลังอารมณ์ดีรอเราอยู่ โหมดนี้มีไว้ศึกษาระบบ ไม่ใช่ไว้ดูดวงผ่านหน้าจอ
+      <p class="mb-4 text-left text-base leading-relaxed text-[#f7e6d4]">
+        โหมดทดลองบอกได้ว่าเกมทำงานอย่างไร เมนูอยู่ตรงไหน ฟีเจอร์ซื้อฟรีสปินเรียกใช้อย่างไร และหนึ่งรอบใช้เวลาเท่าไร แต่เครดิตในโหมดนี้เป็นยอดสมมติ ถอนไม่ได้ และผลที่ออกมาก็ไม่ได้แปลว่าเล่นจริงแล้วจะออกแบบเดียวกัน
+        เกมทุกเกมของ YIMSIAM88 รันด้วยระบบ RNG มาตรฐานโลก การแตกของโบนัสจึงเป็นไปตามธรรมชาติล้วนๆ ไม่มีการกั๊กช่วงเวลา ไม่มีการปรับ % ให้เกลือ ฉะนั้นต่อให้กดในโหมดทดลองแล้วจังหวะเข้ามือ ก็ไม่ใช่หลักฐานว่าเกมนั้นกำลังอารมณ์ดีรอเราอยู่ครับ โหมดนี้มีไว้ศึกษาระบบ ไม่ใช่ไว้ดูดวงผ่านหน้าจอ
       </p>
 
-      <p class="mb-4 text-left text-base leading-relaxed text-[#ece2fb]">
+      <p class="mb-4 text-left text-base leading-relaxed text-[#f7e6d4]">
         อีกเรื่องที่ควรเผื่อใจคือโหมดทดลองไม่ได้มีให้ครบทุกเกม จึงควรเปิดหน้ารายละเอียดของเกมดูก่อนเลือก และยอดที่หมุนในโหมดทดลองไม่นับเป็นยอดเทิร์นของบัญชีหรือของโปรโมชั่นใด
-        ถ้าเกมที่อยากลองไม่มีปุ่มทดลอง ให้ถือว่าวันนี้โชคไม่ดี ไม่ใช่สัญญาณลับที่ระบบส่งมาให้เราคนเดียว ส่วนคาสิโนสดอย่างบาคาร่า รูเล็ต และเกมโต๊ะรูปแบบอื่นเป็นโต๊ะเรียลไทม์ที่ไม่มีโหมดทดลองให้กดลองผล จึงต้องอาศัยการอ่านกติกา ดูวงเงินโต๊ะ ความเร็วรอบ และสถานะเปิดรับเดิมพันให้แม่นแทน เช่นเดียวกับหมวดกีฬาที่ต้องดูคู่แข่งขัน ตลาดเดิมพัน ราคา และเวลาเริ่มแข่งจากหน้าจริงเท่านั้น
+        ถ้าเกมที่อยากลองไม่มีปุ่มทดลอง ให้ถือว่าวันนี้ยังไม่ถูกจังหวะ ไม่ใช่สัญญาณลับที่ระบบส่งมาให้เราคนเดียว และเวลาเทียบเกมกัน ให้ดูที่จำนวนไลน์ ตัวคูณ เงื่อนไขการเข้าฟรีสปิน แล้วเอามาเทียบกับงบต่อรอบของตัวเองครับ นั่นคือข้อมูลที่เอาไปตัดสินใจได้จริง ไม่ใช่ความรู้สึกว่าเกมไหนหน้าตาใจดีกว่ากัน
       </p>
 
-      <h2 class="mt-8 mb-6 bg-gradient-to-r from-[#ffe94d] via-[#ffd400] to-[#ff4fd8] bg-clip-text text-2xl leading-normal font-bold text-transparent">จากโหมดทดลองไปเล่นจริงบน OKG777 ควรเช็กอะไรก่อน</h2>
+      <h2 class="mt-8 mb-6 bg-gradient-to-r from-[#ffd98a] via-[#ffa347] to-[#ff7a18] bg-clip-text text-2xl leading-normal font-bold text-transparent">จากโหมดทดลองไปเล่นจริงกับ YIMSIAM88 ควรเช็กอะไรก่อน</h2>
 
-      <p class="mb-2 text-left text-base leading-relaxed text-[#ece2fb]">
-        ถ้าจะขยับจากโหมดทดลองไปเล่นด้วยเงินจริง เรื่องที่ควรดูก่อนคือบัญชี งบต่อรอบ โปรโมชั่น และลิงก์ ด้านบัญชี ควรเตรียมเบอร์โทรที่ใช้งานจริงและรับข้อความได้ ชื่อบัญชีธนาคารที่ตรงกับผู้สมัคร และรหัส PIN 4 หลักที่ไม่ใช่เลขวันเกิด เลขเรียง หรือเลขซ้ำทั้งชุด เพราะระบบฝากถอนอัตโนมัติของ OKG777 ช่วยลดเวลารอได้ก็จริง แต่กรอกชื่อบัญชีผิดตั้งแต่แรกแล้วตามแก้ทีหลัง ความเร็วก็หายหมด
-        ด้านงบ เกมสล็อตงบน้อยอาจเริ่มที่ประมาณ 1–10 บาทต่อรอบ ตัวเลขนี้เป็นเดิมพันของเกมที่รองรับ ไม่ใช่ขั้นต่ำของการฝากหรือการถอน จึงควรดูยอดบนหน้าฝากและหน้าเกมแยกกันอีกครั้ง ส่วนคาสิโนสดควรเริ่มจากโต๊ะวงเงินต่ำแล้วค่อยปรับตามงบจริง และถ้าจะกดรับสิทธิ์สมาชิกใหม่รับฟรี 18 บาท เครดิตฟรี 38 บาท หรือรางวัลชวนเพื่อน 88 บาท ก็ต้องอ่านให้จบทั้งรอบรับสิทธิ์ จำนวนเทิร์น หมวดเกมที่ร่วมรายการ และเพดานถอน
-        สุดท้ายควรเข้าใช้งานผ่านทางเข้าจริงของ OKG777 ที่ตรวจชื่อเว็บไซต์แล้วและเชื่อมต่อแบบ HTTPS เท่านั้น ไม่ใช่ลิงก์ที่ส่งต่อกันมาในแชตพร้อมคำโฆษณา เพราะลิงก์แบบนั้นมักพาไปเจออะไรจริง แค่ไม่ใช่ในทางที่เราหวัง
+      <p class="mb-2 text-left text-base leading-relaxed text-[#f7e6d4]">
+        ถ้าจะขยับจากโหมดทดลองไปเล่นด้วยเงินจริง เรื่องที่ควรดูก่อนคือบัญชี งบต่อรอบ และลิงก์ที่ใช้เข้า ด้านบัญชี สมัครกับเราไม่เรื่องมากครับ ขอข้อมูลเท่าที่จำเป็น ไม่ต้องส่งบัตรประชาชน ไม่ต้องถ่ายหน้า แต่ชื่อบัญชีธนาคารต้องตรงกับผู้สมัครและเบอร์โทรต้องรับข้อความได้จริง เพราะระบบออโต้จะไวแค่ไหน ถ้ากรอกชื่อบัญชีผิดตั้งแต่แรกแล้วมาตามแก้ทีหลัง ความเร็วก็หายหมด
+        ด้านงบ เกมสล็อตสายประหยัดเริ่มได้ที่หลักบาทต่อรอบ ตัวเลขนี้เป็นเดิมพันของเกมที่รองรับ คนละส่วนกับยอดฝาก เพราะฝั่งฝากถอนของ YIMSIAM88 ไม่มีขั้นต่ำจริงๆ ฝาก 1 บาทก็เล่นได้ รองรับทุกช่องทางรวมถึง True Money Wallet และเมื่อชนะเราจ่ายเต็มไม่มีหัก จะยอดหลักร้อยหรือแจ็คพอตหลักล้านก็โอนครบทุกบาททุกสตางค์ ไม่หักค่าธรรมเนียมหรือค่าดำเนินการใดทั้งสิ้น
+        สุดท้ายควรเข้าใช้งานผ่านทางเข้าจริงของ YIMSIAM88 ที่ตรวจชื่อเว็บไซต์แล้วและเชื่อมต่อแบบ HTTPS เท่านั้น ไม่ใช่ลิงก์ที่ส่งต่อกันมาในแชตพร้อมคำโฆษณา เพราะลิงก์แบบนั้นมักพาไปเจออะไรจริง แค่ไม่ใช่ในทางที่เราหวัง ติดขัดตรงไหนทักไลน์มาได้เลยครับ ทีมงานคนไทยแสตนด์บายตอบเองตลอด 24 ชม. ไม่ใช้บอท
       </p>
     </div>
   </ContentBox>

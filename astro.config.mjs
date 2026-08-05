@@ -30,10 +30,10 @@ export default defineConfig({
   },
 
   redirects: {
-    "/line": "https://tinyurl.com/suhng",
+    "/line": "https://tinyurl.com/simfun8",
   },
 
-  site: "https://okg777-brand.com",
+  site: "https://yimsiam88-homepage.net",
   integrations: [
     sitemap({
       // /login, /register and /line are forwarding pages that all ship

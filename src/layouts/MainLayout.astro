@@ -6,8 +6,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle7.astro";
-import Footer from "../components/FooterStyle3.astro";
+import Navbar from "../components/NavbarStyle4.astro";
+import Footer from "../components/FooterPremiumSumo.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -56,8 +56,8 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "OKG777 สล็อตเว็บตรง คาสิโน กีฬา ระบบเร็ว สมาชิกใหม่รับฟรี 18 บาท",
-  description = "รีวิว OKG777 สล็อตเว็บตรง รวมคาสิโนและกีฬา พร้อมระบบฝากถอนรวดเร็ว เช็กสมาชิกใหม่รับฟรี 18 บาท ทางเข้าเว็บหลัก โปรโมชั่น และขั้นตอนใช้งานให้ครบก่อนสมัครสมาชิก",
+  title = "YIMSIAM88 | สล็อตเว็บตรงไทยแท้ โบนัสแรงแตกบ่อย จ่ายเต็มไม่มีหัก",
+  description = "YIMSIAM88 เว็บสล็อตเว็บตรงไทยแท้ จัดเต็มทั้งโบนัส ความลื่น ความเร็ว จ่ายจริงไม่มีหัก รองรับทุกช่องทาง ไม่มีกั๊ก เล่นง่ายแบบคนไทยเข้าใจคนไทย ฝากถอนออโต้ 24 ชม.",
   robots = "index, follow",
 } = Astro.props;
 
@@ -164,7 +164,7 @@ const profile = brandProfile(Astro.site);
 
           {block === "appmeta" && (
             <Fragment>
-              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="okg777" />}
+              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="yimsiam88" />}
               <link rel="manifest" href="/site.webmanifest" />
             </Fragment>
           )}
@@ -206,7 +206,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #0d0320;
+        background-color: #160604;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -259,7 +259,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ OKG777 ตัวอักษรสีเหลืองทองและเลข 777 สีชมพูนีออน ใต้ภาพเขียนว่า สล็อต คาสิโน กีฬา ครบในบัญชีเดียว ต่อด้วยแถบ ระบบเร็ว ฝากถอนง่าย สมาชิกใหม่รับฟรี 18 บาท และป้าย เครดิตฟรี 38 บาท กับ ชวนเพื่อนรับ 88 บาท ปิดท้ายด้วยปุ่มเว็บหลัก บนพื้นหลังเมืองยามค่ำคืนโทนม่วงนีออน"
+          alt="แบนเนอร์ YIMSIAM88 ตัวอักษรสีทองอมส้มขนาดใหญ่ มีโลโก้หน้าจั่ววัดไทยสีทองอยู่ด้านบน ใต้ชื่อเขียนว่า สล็อตเว็บตรงไทยแท้ อันดับ 1 บริการดี ไม่ติดรำ สองข้างเป็นพรีเซนเตอร์หญิงสามคนในชุดราตรีสีทองและแดงถือไพ่ รอบภาพมีเหรียญทอง ชิปคาสิโน และไพ่ปลิว บนพื้นหลังเปลวไฟและลาวาสีส้มแดง"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

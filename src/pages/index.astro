@@ -1,52 +1,51 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/Announcement5.astro";
+import Announcement from "../components/Announcement.astro";
 import ContentBox from "../components/ContentBox.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
-import ContentBoxTwoCyberCut from "../components/ContentBoxTwoCyberCut.astro";
-import ContentBoxTwoFloatingBadge from "../components/ContentBoxTwoFloatingBadge.astro";
-import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
-import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
+import ContentBoxPremium from "../components/ContentBoxPremium.astro";
+import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
+import ContentBoxTwoPremium from "../components/ContentBoxTwoPremium.astro";
+import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
+import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
+import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners2 from "../components/LatestWinners2.astro";
+import LatestWinnersPremium from "../components/LatestWinnersPremium.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq2.astro";
+import Faq from "../components/Faq.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
 import { pageGraph } from "../lib/schema";
-import imgSlots from "../assets/slide1.png";
-import imgWelcome from "../assets/slide2.png";
+import imgSupport from "../assets/slide1.png";
+import imgPayout from "../assets/slide2.png";
 
-const pageTitle = "OKG777 สล็อตเว็บตรง คาสิโน กีฬา ระบบเร็ว สมาชิกใหม่รับฟรี 18 บาท";
+const pageTitle = "YIMSIAM88 | สล็อตเว็บตรงไทยแท้ โบนัสแรงแตกบ่อย จ่ายเต็มไม่มีหัก";
 
-const pageDescription =
-  "รีวิว OKG777 สล็อตเว็บตรง รวมคาสิโนและกีฬา พร้อมระบบฝากถอนรวดเร็ว เช็กสมาชิกใหม่รับฟรี 18 บาท ทางเข้าเว็บหลัก โปรโมชั่น และขั้นตอนใช้งานให้ครบก่อนสมัครสมาชิก";
+const pageDescription = "YIMSIAM88 เว็บสล็อตเว็บตรงไทยแท้ จัดเต็มทั้งโบนัส ความลื่น ความเร็ว จ่ายจริงไม่มีหัก รองรับทุกช่องทาง ไม่มีกั๊ก เล่นง่ายแบบคนไทยเข้าใจคนไทย ฝากถอนออโต้ 24 ชม.";
 
 const faqs = [
   {
-    q: "สมาชิกใหม่ OKG777 รับฟรี 18 บาท ต้องทำอะไรบ้าง",
-    a: "สิทธิ์รับฟรี 18 บาทเป็นกิจกรรมสำหรับสมาชิกใหม่ตามเงื่อนไขที่เว็บกำหนด ขั้นตอนรับสิทธิ์โดยทั่วไปเชื่อมกับการสมัครสมาชิกและการยืนยันข้อมูล เมื่อบัญชีพร้อมใช้งานจึงกดรับได้จากหน้าสมาชิกหรือช่องทางที่ระบุไว้ ก่อนกดรับควรอ่านช่วงเวลาของกิจกรรม เกมที่ร่วมรายการ และข้อกำหนดการถอนให้ครบ เพราะกิจกรรมแบบนี้ปรับเงื่อนไขได้ตามรอบโปรโมชั่น ยอดนี้ออกแบบมาให้ใช้สำรวจระบบและเลือกเกมที่ถูกใจ ไม่ใช่ทุนก้อนหลักที่จะพาใครไปถึงฝั่งฝันภายในคืนเดียว",
+    q: "YIMSIAM88 เป็นสล็อตเว็บตรงไทยแท้จริงไหม ต่างจากเว็บอื่นตรงไหน",
+    a: "เราเป็นสล็อตเว็บตรงไทยแท้ครับ ออกแบบมาเพื่อคนไทยโดยเฉพาะ หน้าเว็บเป็นเมนูภาษาไทยตัวใหญ่ชัดเจน จัดหมวดหมู่เกมให้หาง่ายเหมือนเดินเข้าเซเว่น อยากเล่นเกมไหน ค่ายอะไร จิ้มปุ๊บเจอเลย ทีมงานหลังบ้านของเราก็คนไทยแท้ๆ คุยกันรู้เรื่อง เข้าใจมุก เข้าใจปัญหา ไม่ต้องมานั่งคุยกับบอทหรือคนต่างชาติที่ใช้ Google Translate ตอบ และที่สำคัญคือมีความจริงใจแบบลูกผู้ชายครับ ที่นี่เราดูแลกันแบบพี่แบบน้อง สบายใจหายห่วงไปได้เลย",
   },
   {
-    q: "เครดิตฟรี 38 บาท กับรางวัลชวนเพื่อน 88 บาท ต่างกันอย่างไร",
-    a: "สองรายการนี้คนละเป้าหมายกัน เครดิตฟรี 38 บาทเป็นกิจกรรมที่เพิ่มเครดิตให้ผู้เข้าร่วมตามช่วงโปรโมชั่น ส่วนรางวัลชวนเพื่อน 88 บาทตอบแทนสมาชิกที่แนะนำผู้ใช้ใหม่เข้ามาใช้งานจริง คนที่ชอบตามเก็บสิทธิ์จากกิจกรรมจึงเหมาะกับโปรแรก ส่วนคนที่มีเพื่อนสนใจเกมออนไลน์อยู่แล้วจะได้ประโยชน์จากโปรหลังมากกว่า ทั้งคู่ควรอ่านเงื่อนไขการรับสิทธิ์และรอบกิจกรรมก่อนกด สรุปสั้น ๆ คือโปรหนึ่งให้จากการเข้าร่วม อีกโปรให้จากการมีเพื่อนเยอะ ซึ่งรอบนี้เพื่อนเยอะมีประโยชน์ขึ้นมาจริง",
+    q: "โบนัสแรงแตกบ่อยของ YIMSIAM88 คือแตกจริงไหม ระบบเกมแฟร์หรือเปล่า",
+    a: "เพราะเกมของเราใช้ระบบ RNG มาตรฐานโลกครับ การแตกของโบนัสจึงเป็นไปตามธรรมชาติที่สุด บทจะแตกก็แตกจนร้องขอชีวิต บทจะเข้าฟรีสปินก็ไหลยาวเป็นหางว่าว คำว่าโบนัสแรงของเราคือแรงตามดวงและจังหวะเกมจริงๆ ไม่มีการปรับ % ให้เกลือเพื่อกินตังค์ท่าน และไม่มีการกั๊กช่วงเวลาว่าต้องมาปั่นตอนไหนถึงจะเข้า เล่นได้คือได้ เล่นเสียคือเสียตามเกมแฟร์ๆ วัดกันที่ดวงและฝีมือล้วนๆ นี่แหละครับรสชาติของการเดิมพันที่แท้จริง",
   },
   {
-    q: "ระบบฝากถอนอัตโนมัติของ OKG777 ตรวจสอบรายการได้จากไหน",
-    a: "ระบบฝากถอนเป็นแบบอัตโนมัติ ช่วยลดเวลารอและทำให้เครดิตเข้าบัญชีได้ต่อเนื่อง จุดที่ควรใช้เป็นหลักคือหน้าบัญชีของตัวเอง เพราะสถานะรายการและประวัติธุรกรรมถูกเก็บไว้ที่นั่น หากเครดิตยังไม่เข้า ให้เปิดประวัติดูก่อนว่ารายการอยู่ระหว่างประมวลผลหรือไม่ แทนการกดทำรายการซ้ำทันที และควรตรวจชื่อบัญชีกับช่องทางที่ผูกไว้ให้ตรงกับข้อมูลสมาชิกทุกครั้ง ระบบรองรับการใช้งานตลอดวันก็จริง แต่การกดซ้ำรัว ๆ ไม่เคยทำให้ธนาคารเปลี่ยนใจเร็วขึ้น",
+    q: "ถอนเงินกับ YIMSIAM88 จ่ายเต็มไม่มีหักจริงหรือเปล่า",
+    a: "จ่ายเต็มไม่มีหักครับ! นี่คือคำมั่นสัญญาของเรา ไม่ว่าจะยอดหลักร้อยหรือแจ็คพอตหลักล้าน เราโอนให้ครบทุกบาททุกสตางค์ ไม่มีหักค่าธรรมเนียมหรือค่าดำเนินการใดๆ ทั้งสิ้น ระบบออโต้ของเราก็ไวดั่งใจนึก กดถอนปุ๊บเงินเด้งเข้าบัญชีปั๊บภายในไม่กี่วินาที ไม่ต้องนั่งส่งสลิปแล้วรอแอดมินตอบแชทข้ามวันให้เสียอารมณ์ เงินที่ท่านหามาด้วยน้ำพักน้ำแรงและความเก่ง ก็สมควรได้รับกลับไปเต็มกระเป๋าครับ",
   },
   {
-    q: "บัญชีเดียวของ OKG777 ใช้ได้ทั้งสล็อต คาสิโน และกีฬาจริงไหม",
-    a: "จากการลองสลับหมวด ระบบยังใช้เครดิตจากบัญชีเดียว จึงไม่ต้องโอนยอดแยกระหว่างสล็อต คาสิโนสด และกีฬา ทำให้เปลี่ยนเกมได้ต่อเนื่องและลดขั้นตอนสำหรับคนที่เล่นมากกว่าหนึ่งประเภทในวันเดียว ฝั่งคาสิโนมีเกมโต๊ะยอดนิยม ส่วนหมวดกีฬาจัดคู่แข่งขันและตลาดเดิมพันไว้เป็นหมวดชัด สิ่งที่ต่างกันคือข้อมูลที่ใช้ตัดสินใจ สล็อตดูฟรีสปินกับตัวคูณ ส่วนกีฬาดูคู่แข่งขัน ราคา และเวลาเริ่มแข่ง บัญชีเดียวช่วยเรื่องความสะดวก แต่ยังไม่ช่วยอ่านเงื่อนไขแทนเจ้าของบัญชี",
+    q: "ฝากถอนของ YIMSIAM88 มีขั้นต่ำไหม รองรับ True Money Wallet หรือเปล่า",
+    a: "ไม่มีขั้นต่ำครับผม ฝาก 1 บาทก็เล่นได้ อยากถอนกี่บาทก็ถอนได้ ไม่มีการตั้งเงื่อนไขและไม่บังคับทำกิจกรรมให้ยุ่งยาก ระบบเงินของเรารองรับทุกช่องทางรวมถึง True Money Wallet ด้วย เติมผ่านวอเล็ทก็จบได้ในไม่กี่วินาที เพราะเรารู้ว่าคนไทยมีสไตล์การเล่นของตัวเอง จะสายประหยัด สายซื้อฟรีสปิน หรือสายขำๆ คั่นเวลา ก็สนุกได้เหมือนกัน อยากเล่นแบบไหนจัดได้เลยครับ เราเปิดไฟเขียวให้หมด",
   },
   {
-    q: "ทางเข้า OKG777 เว็บหลักบนมือถือใช้งานอย่างไร",
-    a: "ทางเข้าเว็บหลักรองรับการเปิดผ่านสมาร์ตโฟนโดยตรง หน้าเว็บปรับขนาดให้เหมาะกับหน้าจอ และวางเมนูสมัครสมาชิก เข้าสู่ระบบ โปรโมชั่น กับหมวดเกมไว้ในตำแหน่งที่กดด้วยมือเดียวได้ สมาชิกจึงเปิดเกมผ่านเบราว์เซอร์ได้โดยไม่ต้องสลับอุปกรณ์ ก่อนล็อกอินควรตรวจชื่อเว็บไซต์ การเชื่อมต่อ HTTPS และปลายทางของปุ่มสมัครให้ตรงกัน โดยเฉพาะลิงก์ที่ได้รับจากข้อความส่วนตัว และหากมีใครทักมาขอรหัสผ่านหรือ OTP ให้หยุดทำรายการทันทีไม่ว่าอีกฝ่ายจะอ้างตำแหน่งอะไร",
+    q: "สมัครสมาชิก YIMSIAM88 ยุ่งยากไหม ต้องส่งบัตรประชาชนหรือเปล่า",
+    a: "ไม่ยุ่งยากครับ ในยุคที่เว็บเล็กหลายเว็บชอบขอข้อมูลส่วนตัวจนเกินความจำเป็น YIMSIAM88 เลือกเดินทางแบบไทยแท้ ใจกว้าง ไม่ล้ำเส้น เราขอข้อมูลเท่าที่จำเป็นเพื่อยืนยันตัวตนเท่านั้น ไม่ต้องส่งบัตรประชาชน ไม่ต้องถ่ายหน้า และไม่ล้ำเส้นความเป็นส่วนตัวของท่าน ข้อมูลทุกอย่างเข้ารหัสตามมาตรฐานเว็บใหญ่ สมัครง่ายๆ ไวๆ แล้วเข้าเล่นได้เลยในไม่กี่วินาทีครับ",
   },
 ];
 
@@ -60,78 +59,48 @@ const graph = pageGraph(Astro, {
 <MainLayout title={pageTitle} description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
-  <Announcement
-    message="OKG777 รวมสล็อต คาสิโนสด และกีฬาไว้ในบัญชีเดียว เปลี่ยนหมวดเกมได้ต่อเนื่องโดยไม่ต้องโอนยอดแยก • สมาชิกใหม่รับฟรี 18 บาท ตามเงื่อนไขของกิจกรรมที่กำหนด • เครดิตฟรี 38 บาท ให้จากการเข้าร่วมกิจกรรม ส่วนรางวัลชวนเพื่อน 88 บาท ให้จากการแนะนำผู้ใช้ใหม่ • ระบบฝากถอนอัตโนมัติ ตรวจสถานะรายการและประวัติธุรกรรมได้จากหน้าบัญชีก่อนกดซ้ำ"
-  />
+  <Announcement />
 
-  <ContentBoxCyberCut as="h1" title="OKG777 รีวิวสล็อตเว็บตรง คาสิโน กีฬา ระบบเร็ว พร้อมรับฟรี 18 บาท">
-    <p class="text-left text-base leading-relaxed text-[#ece2fb]">
-      <strong class="text-[#ffe94d]">OKG777</strong> รวมสล็อต คาสิโน และกีฬาไว้ในบัญชีเดียว พร้อมระบบสมาชิกที่ช่วยให้เปลี่ยนหมวดเกมได้ต่อเนื่อง ไม่ต้องสมัครหลายเว็บหรือย้ายเครดิตจนเสียอารมณ์
-      จุดเด่นที่เห็นชัดคือเกมใหม่ โปรโมชั่นสมาชิก และการใช้งานผ่านมือถือที่ออกแบบมาให้กดง่ายตั้งแต่หน้าแรก
+  <ContentBoxPremium as="h1" title="YIMSIAM88 สล็อตเว็บตรงไทยแท้ โบนัสแรงแตกบ่อย จ่ายเต็มไม่มีหัก">
+    <p class="text-left text-base leading-relaxed text-[#f7e6d4]">
+      <strong class="text-[#ffd98a]">YIMSIAM88</strong> (ยิ้มสยาม88) คือสล็อตเว็บตรงไทยแท้ ที่ตั้งใจทำให้มัน “ไทยแท้แบบมีมาตรฐาน” ครับ ทั้งระบบการเงินที่คล่องมือ เกมแท้ที่เล่นลื่นไม่มีสะดุด และโบนัสที่เข้าตามแบบฉบับเว็บตรงจริงๆ
+      ไม่ใช่เว็บที่พูดไว้สวยหรูแล้วพอถึงเวลาจริงกลับทำไม่ได้
     </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#ece2fb]">
-      สมาชิกใหม่ยังมีสิทธิ์รับฟรี 18 บาท รวมถึงกิจกรรมเครดิตฟรีและชวนเพื่อนตามช่วงโปรโมชั่น จึงเหมาะกับคนที่อยากเริ่มจากงบเบา ๆ ก่อนค่อยเลือกเกมที่ถูกใจ
-      เรียกได้ว่าเข้ามาครั้งเดียว มีทั้งเกมให้เลือกและของต้อนรับ ไม่ปล่อยให้ยืนงงอยู่หน้าเว็บ
+    <p class="mt-3 text-left text-base leading-relaxed text-[#f7e6d4]">
+      YIMSIAM88 มีระบบเกมที่แฟร์ๆ โบนัสแรงแตกบ่อย จัดเต็มทั้งโบนัสแบบไม่มีกั๊ก จะปั่นหลักสิบหรือหวดหลักพันก็มีสิทธิ์ลุ้นรางวัลใหญ่เท่าเทียมกัน และที่สำคัญที่สุด
+      พี่สยามขอยืนยันด้วยเกียรติลูกผู้ชายเลยว่า เมื่อท่านชนะ เราพร้อมจ่ายเต็มไม่มีหัก จะยอดหลักล้านเราก็โอนให้ครบทุกบาททุกสตางค์
     </p>
-  </ContentBoxCyberCut>
+  </ContentBoxPremium>
 
-  <ContentBoxFloatingBadge as="h2" title="ทำความรู้จัก OKG777 ก่อนเริ่มใช้งานผ่านเว็บหลัก">
-    <p class="text-left text-base leading-relaxed text-[#ece2fb]">
-      OKG777 เป็นแพลตฟอร์มเกมออนไลน์ที่รวมสล็อต คาสิโนสด และกีฬาไว้ภายในระบบเดียว สมาชิกสามารถจัดการเครดิต โปรโมชั่น และประวัติการใช้งานผ่านบัญชีเดียว
-      จึงช่วยลดขั้นตอนที่ไม่จำเป็นและทำให้เปลี่ยนหมวดเกมได้สะดวกขึ้น
+  <ContentBoxNeumorphism as="h2" title="YIMSIAM88 สล็อตเว็บตรงไทยแท้ เล่นง่ายแบบคนไทยเข้าใจคนไทย">
+    <p class="text-left text-base leading-relaxed text-[#f7e6d4]">
+      YIMSIAM88 เราทำเว็บไซต์แบรนด์ของเรา ออกแบบทุกอย่างมาเพื่อพี่น้องชาวไทยโดยเฉพาะครับ หน้าเว็บของเราเป็นเมนูภาษาไทยตัวใหญ่ชัดเจน จัดหมวดหมู่เกมให้หาง่ายเหมือนเดินเข้าเซเว่น อยากเล่นเกมไหน ค่ายอะไร
+      จิ้มปุ๊บเจอเลย ไม่ต้องเลื่อนวนหาจนหมดอารมณ์ก่อนจะได้ปั่นสักตา
     </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#ece2fb]">
-      หน้าเว็บออกแบบให้เมนูหลักมองเห็นง่าย ทั้งสมัครสมาชิก เข้าสู่ระบบ เกมใหม่ และโปรโมชั่น ผู้ใช้จึงเข้าถึงสิ่งที่ต้องการได้รวดเร็ว
-      ไม่ต้องคลิกวนเหมือนกำลังหาห้องน้ำในห้างใหญ่
+    <p class="mt-3 text-left text-base leading-relaxed text-[#f7e6d4]">
+      แถมทีมงานหลังบ้านของเราก็คนไทยแท้ๆ คุยกันรู้เรื่อง เข้าใจมุก เข้าใจปัญหา ไม่ต้องมานั่งคุยกับบอทหรือคนต่างชาติที่ใช้ Google Translate ตอบจนปวดหัว เราดูแลกันแบบพี่แบบน้อง สบายใจหายห่วงได้เลยครับ
     </p>
-  </ContentBoxFloatingBadge>
-
-  <ContentBoxSevenThreeCyberCut titleright="รีวิว สล็อต OKG777 เกมใหม่และค่ายที่ให้บริการ ปี 2026">
-    <Picture
-      slot="left"
-      src={imgSlots}
-      loading="lazy"
-      fetchpriority="low"
-      widths={[200, 400, 600]}
-      sizes="(max-width: 768px) 100vw, 30vw"
-      decoding="async"
-      formats={["avif", "webp"]}
-      fallbackFormat="webp"
-      quality={80}
-      alt="แบนเนอร์ OKG777 หัวข้อ รีวิวสล็อต OKG777 เกมใหม่ + ค่ายดัง พร้อมโลโก้ OKG777 และพรีเซนเตอร์ชี้ไปที่ตารางเกม 12 เกม ได้แก่ Dragon Fortune, Lucky Panda, Golden Treasure, Wild Safari, Crystal Gems, Mermaid's Pearl, Joker's Fiesta, Sweet Bonanza, Pharaoh's Riches, Buffalo Blitz, Fortune Mouse และ Magic Wizard ด้านซ้ายมีป้าย เกมใหม่ หลายค่าย เล่นง่าย และแถบท้ายระบุค่าย PG JILI JOKER SLOTXO HABANERO"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#ffd400]/25 shadow-[0_10px_30px_rgba(255,212,0,0.18)]"
-    />
-    <div slot="right">
-      <p class="text-left text-base leading-relaxed text-[#ece2fb]">
-        จากการไล่ดูหมวดสล็อต พบว่ามีทั้งเกมคลาสสิก เกมฟีเจอร์โบนัส และเกมใหม่ที่ออกแบบสำหรับมือถือ จุดเด่นคือแบ่งหมวดค่อนข้างชัด
-        ทำให้เลือกตามค่าย เกมยอดนิยม หรือรูปแบบการเล่นได้ง่าย ไม่ต้องเลื่อนจนเมื่อยนิ้วก่อนเริ่มหมุน
-      </p>
-      <p class="mt-3 text-left text-base leading-relaxed text-[#ece2fb]">
-        เกมแต่ละค่ายต่างกันด้านภาพ เสียง ฟรีสปิน ตัวคูณ และจังหวะการจ่าย ผู้เล่นจึงเลือกได้ทั้งสายชอบเกมเร็วและสายชอบฟีเจอร์แน่น
-        ภาพรวมถือว่ามีตัวเลือกหลากหลายพอให้เปลี่ยนเกมตามอารมณ์ได้ โดยไม่ต้องย้ายออกไปหาเว็บอื่น
-      </p>
-    </div>
-  </ContentBoxSevenThreeCyberCut>
-
-  <ProviderGrid />
-
-  <ContentBoxTwoCyberCut as="h2" title="ทดสอบ คาสิโนและกีฬา OKG777 ใช้งานผ่านบัญชีเดียว ลองฟรี">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#ece2fb]">
-      เมื่อลองสลับจากสล็อตไปคาสิโนและกีฬา ระบบยังใช้เครดิตจากบัญชีเดียว ทำให้ไม่ต้องโอนยอดแยกระหว่างหมวด การเปลี่ยนเกมจึงต่อเนื่องและลดขั้นตอน
-      เหมาะกับคนที่เล่นมากกว่าหนึ่งประเภทในวันเดียว
-    </p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#ece2fb]">
-      คาสิโนมีเกมโต๊ะยอดนิยม ส่วนหมวดกีฬาจัดคู่แข่งขันและตลาดเดิมพันเป็นหมวดชัด การใช้งานบนมือถือยังตอบสนองได้ดี เมนูไม่ซับซ้อน
-      ลองเปลี่ยนจากโต๊ะสดไปดูบอลได้เร็วพอ ๆ กับเปลี่ยนช่องทีวี เพียงแต่ตื่นเต้นกว่านิดหน่อย
-    </p>
-  </ContentBoxTwoCyberCut>
+  </ContentBoxNeumorphism>
 
   <GameRankingBoard />
 
-  <ContentBoxSevenThreeFloatingBadge title="สมาชิกใหม่รับฟรี 18 บาท ต้องทำตามเงื่อนไขอะไรบ้าง">
+  <ContentBox as="h2" title="YIMSIAM88 โบนัสแรงแตกบ่อย เป็นธรรมชาติ">
+    <p class="text-left text-base leading-relaxed text-[#f7e6d4]">
+      เกมสล็อตที่ YIMSIAM88 ทุกเกม รันด้วยระบบ RNG มาตรฐานโลก ทำให้การทำโบนัสแตกบ่อยเป็นไปอย่าง “เป็นธรรมชาติ” ที่สุดครับ บทจะแตกก็แตกจนร้องขอชีวิต บทจะเข้าฟรีสปินก็ไหลยาวเป็นหางว่าว
+      ไม่มีใครต้องมานั่งเฝ้าจังหวะให้เสียเวลา
+    </p>
+    <p class="mt-3 text-left text-base leading-relaxed text-[#f7e6d4]">
+      คำว่าโบนัสแรงของเรา คือแรงตามดวงและจังหวะเกมจริงๆ ไม่มีการกั๊กช่วงเวลา ไม่มีการปรับ % ให้เกลือเพื่อกินตังค์ท่าน เล่นได้คือได้ เล่นเสียคือเสียตามเกมแฟร์ๆ นี่แหละครับรสชาติของการเดิมพันที่แท้จริง
+      วัดกันที่ดวงและฝีมือล้วนๆ
+    </p>
+  </ContentBox>
+
+  <ProviderGrid />
+
+  <ContentBoxSevenThreePremium titleright="จ่ายเต็มไม่มีหัก ฝากถอนไวดั่งใจนึก ระบบออโต้">
     <Picture
       slot="left"
-      src={imgWelcome}
+      src={imgPayout}
       loading="lazy"
       fetchpriority="low"
       widths={[200, 400, 600]}
@@ -140,97 +109,90 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์ OKG777 บนพื้นเมืองนีออนสีม่วง ข้อความ สมาชิกใหม่ OKG777 รับฟรี 18 บาท เป็นตัวเลขขนาดใหญ่ พร้อมป้าย เครดิตฟรี 38 บาท ชวนเพื่อนรับ 88 บาท และคืนยอดเสีย 8% มีไพ่ ลูกเต๋า และชิปคาสิโนประกอบ ด้านล่างระบุ สล็อต คาสิโน กีฬา และข้อความ เช็กเงื่อนไขก่อนรับสิทธิ์"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#ffd400]/25 shadow-[0_10px_30px_rgba(255,212,0,0.18)]"
+      alt="แบนเนอร์ YIMSIAM88 ตัวอักษร YIMSIAM88 เป็นเปลวไฟสีทอง มีโลโก้หน้าจั่ววัดไทยสีทองอยู่ด้านบน ใต้ชื่อเขียนว่า แตก10ล้าน จ่ายเต็มไม่มีหัก ด้านข้างมีพรีเซนเตอร์หญิงในชุดราตรีสีแดงทองชี้ไปที่ไพ่ที่คลี่เป็นพัด รอบภาพมีเหรียญทองและชิปคาสิโนบนพื้นหลังลาวาและเปลวไฟ"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f6c475]/30 shadow-[0_10px_30px_rgba(255,122,24,0.22)]"
     />
     <div slot="right">
-      <p class="text-left text-base leading-relaxed text-[#ece2fb]">
-        สมาชิกใหม่ของ OKG777 มีสิทธิ์รับฟรี 18 บาทตามกิจกรรมที่กำหนด เหมาะสำหรับใช้เริ่มต้นสำรวจระบบ เลือกเกมที่สนใจ
-        และทำความคุ้นเคยกับเมนูต่าง ๆ ก่อนเพิ่มเครดิตด้วยตัวเอง
+      <p class="text-left text-base leading-relaxed text-[#f7e6d4]">
+        สมัยนี้ยุคไหนแล้วครับ ให้มานั่งส่งสลิปแล้วรอแอดมินตอบแชทข้ามวัน มันไม่ทันกิน! ระบบออโต้ของ YIMSIAM88 พัฒนามาให้ไวดั่งใจนึก กดถอนปุ๊บ เงินเด้งเข้าบัญชีปั๊บภายในไม่กี่วินาที
+        เร็วกว่าต้มมาม่าสุกอีกครับ
       </p>
-      <p class="mt-3 text-left text-base leading-relaxed text-[#ece2fb]">
-        ขั้นตอนรับสิทธิ์โดยทั่วไปเชื่อมกับการสมัครสมาชิกและยืนยันข้อมูล เมื่อบัญชีพร้อมใช้งานจึงสามารถกดรับจากหน้าสมาชิกหรือช่องทางที่กำหนด
-        โปรนี้ช่วยให้เริ่มต้นได้เบา ๆ แบบไม่ต้องเปิดเกมพร้อมเปิดกระเป๋าหนักตั้งแต่นาทีแรก
+      <p class="mt-3 text-left text-base leading-relaxed text-[#f7e6d4]">
+        และที่สำคัญที่สุดคือคำมั่นสัญญาของลูกผู้ชาย “จ่ายเต็มไม่มีหัก” ไม่ว่าท่านจะถอนหลักร้อย หรือแจ็คพอตแตกหลักล้าน เราโอนให้เต็มเม็ดเต็มหน่วย บาทเดียวก็ไม่หักเป็นค่าธรรมเนียม หรือค่าดำเนินการใดๆ
+        ทั้งสิ้น เงินท่านหามาด้วยน้ำพักน้ำแรงและความเก่ง ก็สมควรได้รับกลับไปเต็มกระเป๋าครับ
       </p>
     </div>
-  </ContentBoxSevenThreeFloatingBadge>
+  </ContentBoxSevenThreePremium>
 
-  <LatestWinners2 />
+  <LatestWinnersPremium />
 
-  <ContentBox as="h2" title="เครดิตฟรี 38 บาท และรางวัลชวนเพื่อน 88 บาท ต่างกันอย่างไร">
-    <p class="text-left text-base leading-relaxed text-[#ece2fb]">
-      เครดิตฟรี 38 บาทเป็นกิจกรรมที่ช่วยเพิ่มเครดิตสำหรับผู้เข้าร่วมตามช่วงโปรโมชั่น ส่วนรางวัลชวนเพื่อน 88 บาทเน้นตอบแทนสมาชิกที่แนะนำผู้ใช้ใหม่เข้ามาใช้งาน
-      ทั้งสองโปรจึงมีเป้าหมายต่างกันแต่ช่วยเพิ่มความคุ้มค่าให้บัญชีเหมือนกัน
+  <ContentBoxTwoPremium as="h2" title="ระบบเงินรองรับทุกช่องทาง เติมผ่านวอเล็ทก็ได้ ไม่มีขั้นต่ำจริง">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f7e6d4]">
+      อยากฝาก 1 บาท? ได้ครับ อยากถอนกี่บาท? ได้เหมือนกัน ไม่มีการตั้งเงื่อนไข ไม่มีขั้นต่ำของจริง และไม่บังคับทำกิจกรรมให้ยุ่งยากใจ ระบบเงินของ YIMSIAM88 รองรับทุกช่องทาง เติมผ่านวอเล็ทก็ได้
+      จบในไม่กี่วินาทีเหมือนกัน
     </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#ece2fb]">
-      ผู้ที่ชอบรับสิทธิ์จากกิจกรรมสามารถติดตามโปรเครดิตฟรี ส่วนคนที่มีเพื่อนสนใจเกมออนไลน์อยู่แล้ว กิจกรรมชวนเพื่อนจะเหมาะกว่า
-      เรียกง่าย ๆ ว่าโปรหนึ่งให้จากการเข้าร่วม อีกโปรให้จากการมีเพื่อนเยอะ ซึ่งครั้งนี้เพื่อนเยอะมีประโยชน์จริง
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f7e6d4]">
+      คุณอยากเล่นแบบไหน เล่นยังไง YIMSIAM88 เปิดไฟเขียวให้หมดครับ เพราะเรารู้ว่าคนไทยมีสไตล์การเล่นของตัวเอง จะสายประหยัดค่อยๆ เก็บ สายซื้อฟรีสปินรัวๆ หรือสายขำๆ คั่นเวลาก่อนนอน
+      ก็สนุกได้เหมือนกันทั้งนั้น
     </p>
-  </ContentBox>
+  </ContentBoxTwoPremium>
 
   <SmoothCarousel />
 
-  <ContentBoxCyberCut as="h2" title="ระบบฝากถอนของ OKG777 เร็วและตรวจสอบรายการได้แค่ไหน">
-    <p class="text-left text-base leading-relaxed text-[#ece2fb]">
-      OKG777 ใช้ระบบฝากถอนอัตโนมัติ ช่วยลดเวลารอและทำให้เครดิตเข้าสู่บัญชีได้ต่อเนื่อง สมาชิกสามารถตรวจสถานะรายการและประวัติธุรกรรมผ่านหน้าบัญชี
-      จึงติดตามยอดได้โดยไม่ต้องทักถามทุกขั้นตอน
+  <ContentBoxSpecial as="h2" title="สมัครสมาชิกง่าย YIMSIAM88 ไม่ขอข้อมูลเยอะ ไม่เรื่องมาก">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f7e6d4]">
+      ในยุคที่เว็บเล็กหลายเว็บชอบขอข้อมูลส่วนตัวจนเกินความจำเป็น YIMSIAM88 เลือกเดินทางแบบ “ไทยแท้ ใจกว้าง ไม่ล้ำเส้น” ครับ เราขอข้อมูลเท่าที่จำเป็นจริงๆ ไม่ต้องส่งบัตร ไม่ต้องถ่ายหน้า
+      ไม่ต้องกรอกอะไรยาวเป็นใบสมัครงาน
     </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#ece2fb]">
-      ระบบรองรับการใช้งานตลอดวัน เหมาะกับคนที่มีเวลาเล่นไม่ตรงกัน บางคนว่างตอนเช้า บางคนว่างตอนดึก
-      แต่ระบบไม่ควรเลือกเวลาง่วงเหมือนเจ้าของบัญชี
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f7e6d4]">
+      ระบบเข้ารหัสข้อมูลตามมาตรฐานเว็บใหญ่ ข้อมูลของท่านจึงอยู่กับเราอย่างปลอดภัย สมัครง่ายๆ ไวๆ แล้วเข้าเล่นได้เลยในไม่กี่วินาที ไม่ต้องรออนุมัติข้ามวันให้ใจหายใจคว่ำครับ
     </p>
-  </ContentBoxCyberCut>
-
-  <ContentBoxFloatingBadge as="h2" title="ทางเข้า OKG777 เว็บหลัก ใช้งานผ่านมือถือสะดวก ไม่ติดขัด">
-    <p class="text-left text-base leading-relaxed text-[#ece2fb]">
-      ทางเข้า OKG777 รองรับการใช้งานผ่านสมาร์ตโฟนโดยตรง หน้าเว็บปรับขนาดให้เหมาะกับหน้าจอ เมนูสมัคร เข้าสู่ระบบ โปรโมชั่น และหมวดเกมวางตำแหน่งชัด
-      ทำให้ใช้งานด้วยมือเดียวได้สะดวก
-    </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#ece2fb]">
-      สมาชิกสามารถเปิดเกมผ่านเบราว์เซอร์โดยไม่ต้องสลับอุปกรณ์ เหมาะกับการเล่นระหว่างพักหรือช่วงที่ไม่ได้อยู่หน้าคอม
-      ระบบมือถือจึงไม่ใช่แค่เวอร์ชันย่อ แต่เป็นทางเข้าหลักที่หยิบขึ้นมาใช้ได้ทันที
-    </p>
-  </ContentBoxFloatingBadge>
+  </ContentBoxSpecial>
 
   <LoginRtpSection />
 
-  <ContentBoxTwoFloatingBadge title="OKG777 ปลอดภัยหรือไม่ ต้องดูจากระบบส่วนใด">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#ece2fb]">
-      OKG777 ใช้ระบบสมาชิกแยกบัญชี พร้อมการจัดเก็บประวัติธุรกรรมและข้อมูลการใช้งานภายในหน้าโปรไฟล์
-      ช่วยให้สมาชิกติดตามเครดิต รายการฝากถอน และสิทธิ์โปรโมชั่นได้เป็นระเบียบ
-    </p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#ece2fb]">
-      การมีข้อมูลครบในบัญชีเดียวช่วยลดความสับสนเมื่อต้องตรวจยอดหรือย้อนดูรายการที่ผ่านมา ทุกอย่างถูกรวมไว้ในจุดเดียว
-      ไม่ต้องจำเองจนสมองทำงานหนักกว่าตอนลุ้นเกม
-    </p>
-  </ContentBoxTwoFloatingBadge>
-
-  <ContentBoxCyberCut as="h2" title="สรุป OKG777 เหมาะกับผู้ใช้ คนรักเกมเดิมพันแบบไหน">
-    <p class="text-left text-base leading-relaxed text-[#ece2fb]">
-      <strong class="text-[#ffe94d]">OKG777</strong> เหมาะกับผู้ใช้ที่ชอบความหลากหลาย ต้องการสล็อต คาสิโน และกีฬาในบัญชีเดียว
-      รวมถึงคนที่ให้ความสำคัญกับเกมใหม่ โปรโมชั่นสมาชิก และระบบฝากถอนอัตโนมัติ
-    </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#ece2fb]">
-      จุดเด่นคือเปลี่ยนหมวดได้ง่าย เล่นผ่านมือถือสะดวก และมีสิทธิ์ให้เลือกหลายรูปแบบ ทั้งรับฟรี 18 บาท เครดิตฟรี และชวนเพื่อน 88 บาท
-      จึงเหมาะกับสายลองเกมใหม่และคนที่ไม่อยากสมัครหลายเว็บจนรหัสผ่านเยอะกว่ารายชื่อเพื่อนในโทรศัพท์
-    </p>
-  </ContentBoxCyberCut>
+  <ContentBoxSevenThreeNeumorphism titleright="บริการด้วยรอยยิ้ม ทีมงานคนไทย YIMSIAM88 คุยง่าย ไม่ใช้บอทตอบ">
+    <Picture
+      slot="left"
+      src={imgSupport}
+      loading="lazy"
+      fetchpriority="low"
+      widths={[200, 400, 600]}
+      sizes="(max-width: 768px) 100vw, 30vw"
+      decoding="async"
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      quality={80}
+      alt="แบนเนอร์ YIMSIAM88 ตัวอักษร YIMSIAM88 เป็นเปลวไฟสีทอง มีโลโก้หน้าจั่ววัดไทยสีทองอยู่ด้านบน ใต้ชื่อเขียนว่า แชทได้24ชม ตอบไว ไม่ใช้บอท ด้านข้างมีพรีเซนเตอร์หญิงในชุดราตรีสีดำแดงถือไพ่อยู่ในมือ รอบภาพมีเหรียญทองและไพ่กระจายบนพื้นหลังลาวาและเปลวไฟ"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f6c475]/30 shadow-[0_10px_30px_rgba(255,122,24,0.22)]"
+    />
+    <div slot="right">
+      <p class="text-left text-base leading-relaxed text-[#f7e6d4]">
+        เคยไหมครับ? มีปัญหาแล้วเจอแต่บอทตอบคำถามวนไปวนมา น่าหงุดหงิดชะมัด! แต่ที่ YIMSIAM88 เราใช้ “คนจริง” ล้วนๆ ครับ ทีมงานซัพพอร์ตของเราคือคนไทยที่ผ่านการอบรมมาอย่างดี พูดจาสุภาพ ขี้เล่น
+        และพร้อมช่วยเหลือดุจญาติมิตร
+      </p>
+      <h3 class="mt-5 text-xl leading-normal font-black text-[#ffd98a]">มีปัญหาทักมา พร้อมเคลียร์ให้ตลอด 24 ชม.</h3>
+      <p class="mt-3 text-left text-base leading-relaxed text-[#f7e6d4]">
+        ไม่ว่าจะตี 2 หรือเที่ยงวัน หากเกิดปัญหาติดขัด ทักไลน์หาเราได้เลย เราแสตนด์บายตลอด 24 ชั่วโมง ไม่มีวันหยุดราชการ เพราะความสบายใจของคุณ คือหน้าที่ของเราครับ
+      </p>
+    </div>
+  </ContentBoxSevenThreeNeumorphism>
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#ffe94d] via-[#ff4fd8] to-[#8f1080] px-4 py-3 text-sm font-black whitespace-nowrap text-[#1a0330] shadow-[0_10px_30px_rgba(255,212,0,0.26)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(255,212,0,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#ffd98a] via-[#ff7a18] to-[#8d2b09] px-4 py-3 text-sm font-black whitespace-nowrap text-[#160604] shadow-[0_10px_30px_rgba(255,122,24,0.26)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(255,122,24,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#8f1080]/70 bg-[#170733]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#ffe94d] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#ffd400] hover:bg-[#231045]/85 hover:shadow-[0_15px_40px_rgba(255,79,216,0.35)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#f6c475]/70 bg-[#24100a]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#ffd98a] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#ff7a18] hover:bg-[#3a1a0e]/85 hover:shadow-[0_15px_40px_rgba(246,196,117,0.35)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ OKG777" faqs={faqs} />
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ YIMSIAM88" faqs={faqs} />
 
   <ReviewCardSumo2 />
 

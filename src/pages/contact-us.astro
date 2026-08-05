@@ -2,44 +2,30 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBoxPremium.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement5.astro";
+import Announcement from "../components/Announcement.astro";
 
 import { Picture } from "astro:assets";
 import imgLine from "../assets/contact-line.webp";
 import { pageGraph } from "../lib/schema";
 import { BRAND_ADDRESS } from "../lib/brandProfile";
 
-// One string, used three times: MainLayout's <meta name="description">, the
-// WebPage node's description, and nothing else. Keeping it in a const is what
-// stops the meta tag and the structured data from drifting apart — they used to
-// be two hand-typed variants of the same sentence, and the JSON-LD copy was the
-// one nobody reread. 150–160 CHARACTERS (Thai is 3 bytes/char, so a byte count
-// reads ~3x too long and will send you rewriting a description that was fine).
-const pageDescription = "ช่องทางติดต่อทีมงาน OKG777 ผ่าน LINE Official สำหรับปัญหาสมัครสมาชิก เข้าสู่ระบบ โปรโมชั่นสมาชิกใหม่ และสถานะฝากถอนอัตโนมัติ พร้อมข้อมูลที่ควรเตรียมก่อนแจ้ง";
+const pageDescription =
+  "ช่องทางติดต่อทีมงานคนไทยของ YIMSIAM88 ผ่าน LINE Official ตอบเองไม่ใช้บอท ดูแลเรื่องสมัครสมาชิก เข้าสู่ระบบ ฝากถอนออโต้ พร้อมที่อยู่และอีเมลของเว็บ ตลอด 24 ชม.";
 
 const graph = pageGraph(Astro, {
   type: "ContactPage",
-  name: "ติดต่อทีมงาน OKG777 ผ่าน LINE Official",
+  name: "ติดต่อทีมงาน YIMSIAM88 ผ่าน LINE Official",
   description: pageDescription,
   breadcrumb: [
     { name: "หน้าแรก", path: "/" },
     { name: "ติดต่อเรา", path: "/contact-us" },
   ],
   org: {
-    alternateName: "OKG777 เว็บตรงรวมสล็อต คาสิโนสด และกีฬาในบัญชีเดียว",
+    alternateName: "YIMSIAM88 สล็อตเว็บตรงไทยแท้ โบนัสแรงแตกบ่อย จ่ายเต็มไม่มีหัก",
     contactPoints: [
       {
         contactType: "customer service",
         availableLanguage: ["Thai", "English"],
-        // Point at this site's own /line hop, not the short link behind it.
-        // This page is indexed, and structured data is read and stored by
-        // Google directly — so a shortener host here is the group's most
-        // exposed shared identifier. /line forwards to the same place and
-        // that redirect page is noindex.
-        //
-        // `contactOption: "TollFree"` used to be here. That enum describes a
-        // freephone NUMBER; on a chat link it is simply false, and a
-        // ContactPoint Google rejects takes the rest of the node with it.
         path: "/line",
         description: "ติดต่อแอดมินผ่าน LINE Official",
       },
@@ -48,20 +34,20 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="ติดต่อเรา OKG777 แจ้งปัญหาสมัครสมาชิก โปรโมชั่น และฝากถอนอัตโนมัติ ผ่าน LINE Official" description={pageDescription}>
+<MainLayout title="ติดต่อ - YIMSIAM88" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
-  <ContentBox title="ติดต่อทีมงาน OKG777" as="h1">
+  <ContentBox title="ติดต่อทีมงาน YIMSIAM88" as="h1">
     <Picture
       src={imgLine}
-      alt="พนักงานหญิงในชุดเลื่อมสีชมพูยิ้มอยู่ข้างปุ่ม LINE Support สีเขียว ช่องทางแชตกับทีมงาน OKG777"
+      alt="พนักงานหญิงชุดเลื่อมสีชมพูยิ้มกอดอก ข้างปุ่มสีขาวที่มีโลโก้ LINE สีเขียวและคำว่า Support ช่องทางแชตกับทีมงานคนไทยของ YIMSIAM88"
       loading="lazy"
       fetchpriority="low"
       widths={[200, 400, 600]}
       sizes="(max-width: 768px) 100vw"
-      class="mx-auto h-auto w-full max-w-[400px] object-contain shadow-[0_10px_30px_rgba(255,212,0,0.18)]"
+      class="mx-auto h-auto w-full max-w-[400px] object-contain shadow-[0_10px_30px_rgba(255,122,24,0.18)]"
       decoding="async"
       formats={["avif", "webp"]}
       fallbackFormat="webp"
@@ -69,8 +55,8 @@ const graph = pageGraph(Astro, {
     />
     {
       BRAND_ADDRESS.lines.length > 0 && (
-        <address aria-label={BRAND_ADDRESS.label} class="mt-8 mb-8 border-l-4 border-[#ff4fd8] pl-6 text-left text-base leading-relaxed text-[#ece2fb] not-italic">
-          <p class="mb-1 font-bold text-[#ffe94d]">{BRAND_ADDRESS.label}</p>
+        <address aria-label={BRAND_ADDRESS.label} class="mt-8 mb-8 border-l-4 border-[#ff7a18] pl-6 text-left text-base leading-relaxed text-[#f7e6d4] not-italic">
+          <p class="mb-1 font-bold text-[#ffd98a]">{BRAND_ADDRESS.label}</p>
           {BRAND_ADDRESS.lines.map((line) => (
             <span class="block">{line}</span>
           ))}
@@ -79,7 +65,7 @@ const graph = pageGraph(Astro, {
               <span aria-hidden="true" class="mr-2">
                 ✉️
               </span>
-              <a href={`mailto:${BRAND_ADDRESS.email}`} class="font-bold text-[#ffe94d] underline decoration-[#ff4fd8]/60 underline-offset-4 transition-colors hover:text-[#ff4fd8]">
+              <a href={`mailto:${BRAND_ADDRESS.email}`} class="font-bold text-[#ffd98a] underline decoration-[#ff7a18]/60 underline-offset-4 transition-colors hover:text-[#ffa347]">
                 {BRAND_ADDRESS.email}
               </a>
             </span>
@@ -92,14 +78,14 @@ const graph = pageGraph(Astro, {
       <a
         href="/register"
         aria-label="สมัครสมาชิก"
-        class="flex items-center justify-center rounded-lg border border-[#ffd400]/60 bg-gradient-to-b from-[#ffe94d] via-[#ff4fd8] to-[#8f1080] px-8 py-3 font-bold text-[#1a0330] shadow-[0_10px_30px_rgba(255,212,0,0.18)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(255,79,216,0.30)]">
+        class="flex items-center justify-center rounded-lg border border-[#f6c475]/60 bg-gradient-to-b from-[#ffd98a] via-[#ff7a18] to-[#8d2b09] px-8 py-3 font-bold text-[#160604] shadow-[0_10px_30px_rgba(255,122,24,0.18)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(255,122,24,0.30)]">
         สมัครสมาชิก
       </a>
 
       <a
         href="/login"
         aria-label="เข้าสู่ระบบ"
-        class="flex items-center justify-center rounded-lg border border-[#ffd400]/60 bg-[#170733] px-8 py-3 font-extrabold text-[#ffe94d] shadow-[0_4px_14px_rgba(255,212,0,0.18)] transition-transform hover:scale-105 hover:bg-[#231045]">
+        class="flex items-center justify-center rounded-lg border border-[#f6c475]/60 bg-[#24100a] px-8 py-3 font-extrabold text-[#ffd98a] shadow-[0_4px_14px_rgba(255,122,24,0.18)] transition-transform hover:scale-105 hover:bg-[#2a0f06]">
         เข้าสู่ระบบ
       </a>
 

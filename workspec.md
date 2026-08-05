@@ -3753,3 +3753,209 @@ glow: `rgba(18,184,79,a)` → `rgba(255,212,0,a)`, `rgba(92,255,155,a)` →
   ยืนยันกับ operator ว่าโดเมนนี้เคย park ด้วย domain-placeholder ไว้หรือยัง**
   ถ้าเคย park ชื่อ Worker ต้องตรงกับตัวที่ park ไว้เป๊ะ ๆ ก่อน deploy ให้เช็ก
   `npx wrangler deployments list --name okg777` ก่อน
+
+---
+
+## 2026-08-05 — รีแบรนด์เป็น YIMSIAM88 (ยิ้มสยาม88)
+
+**เป้าหมาย:** รีแบรนด์ + retheme จาก OKG777 เป็น **YIMSIAM88** พร้อมโดเมนจริง
+`https://yimsiam88-homepage.net` รันแบบขนานตาม playbook หยุดที่ build + verify
+ไม่ deploy ไม่ commit ไม่ push
+
+**แหล่งเนื้อหา:** `src/assets/content.txt` (uploader แตกจาก docx ให้แล้ว) —
+ไม่มี `content.docx` ค้าง ถือว่าปกติ
+
+### แบรนด์ + พาเลต
+
+เว็บสล็อตเว็บตรงไทยแท้ **ไม่มีหวย ไม่มีกีฬา** (ต่างจาก OKG777 ที่มีกีฬา —
+เนื้อหากีฬา/คาสิโนสดของเดิมถูก **ลบ** ไม่ใช่แค่เปลี่ยนสี) โลโก้เป็นหน้าจั่ววัดไทย
+สีทอง แบนเนอร์/สไลด์เป็นเปลวไฟ+ลาวา+เหรียญทอง เสียงในไฟล์ docx เป็นบุรุษที่ 1
+แบบ "พี่สยาม" (ครับ, พี่น้องชาวไทย, มุกตลก) — คงน้ำเสียงนี้ในทุกหน้า
+
+**แบรนด์แรกของ template ที่ใช้โทนไฟ/ลาวา** (ก่อนหน้านี้มีทอง-ดำ, ม่วงนีออน,
+เขียวหยก, ชมพูแคนดี้ แต่ยังไม่มีส้มไฟ)
+
+| บทบาท | ค่า |
+|---|---|
+| พื้นหลังหน้า | `#160604` (ดำอมน้ำตาลอุ่น) |
+| การ์ด | `#24100a` / `#2a0f06` |
+| **สีนำ — ส้มไฟ** | `#ff7a18` |
+| ส้มสว่าง (hover/glow) | `#ffa347` |
+| ส้มลึก (ขอบ/เงา) | `#8d2b09` |
+| **ทอง (หัวข้อ ตรงกับโลโก้)** | `#f6c475` |
+| ทองสว่าง | `#ffd98a` |
+| เนื้อความ (`BRAND_TEXT`) | `#f7e6d4` |
+
+เฉดเสริมที่ตั้งเพิ่มระหว่างงานเพื่อให้ทุก agent ใช้ตรงกัน: surface ชั้นสาม
+`#3a1a0e`, ขอบ `#4a2311` / `#5a2a12`, muted `#c9ac91` / `#a88a6e`, ทองลึก
+`#c8921e`, เงาคู่ของ neumorphism `#0a0201` / `#3a1a0e`
+
+สีที่ต้องล้างออก: ชุดของ OKG777 (`#ffd400` `#ffe94d` `#ff4fd8` `#8f1080`
+`#0d0320` `#1a0330` `#170733` `#231045` `#ece2fb`) และชุด **เขียว** ของแบรนด์เก่า
+กว่านั้นที่ติดมากับ variant ที่เพิ่งหยิบมาใช้ (`#12b84f` `#5cff9b` `#0a6b2f`
+`#d5f0dd` `#08150d` `#050d07` `#0e2216` `#153b26`)
+
+### การหมุน variant (ตามกฎ Phase 2 — ห้ามซ้ำของแบรนด์ก่อน)
+
+| ตระกูล | OKG777 (ออก) | YIMSIAM88 (เข้า) |
+|---|---|---|
+| Navbar | `NavbarStyle7` | **`NavbarStyle4`** |
+| Footer | `FooterStyle3` | **`FooterPremiumSumo`** |
+| Announcement | `Announcement5` | **`Announcement`** (plain, variant gold) |
+| LatestWinners | `LatestWinners2` | **`LatestWinnersPremium`** |
+| Faq | `Faq2` | **`Faq`** (plain — มี title + faqs props แล้ว) |
+| ContentBox mix | CyberCut + FloatingBadge เป็นหลัก | **Premium + Neumorphism + Special + plain** |
+| ฟอนต์ | `google-sans` | **`kanit`** |
+
+ทุกตระกูลเปลี่ยนจริง ไม่มีตัวไหนใช้ซ้ำของเดิม
+`NavbarStyle4` เป็นตัวที่ยังไม่เคยถูกใช้เลย (ที่เคยใช้คือ `NavbarStyle4Black`
+ซึ่งเป็นคนละไฟล์ — BESTCLUB88 และ YOK789)
+
+### โครง index.astro (เรียงตาม docx ไม่ใช่ตามโครงเดิมของไฟล์)
+
+หัวข้อจาก docx ครบ 8 หัวตามลำดับเอกสาร: h1 คูณ 1, h2 คูณ 6, h3 คูณ 1
+บวก h2 ของ `Faq` title อีก 1 → **h1 คูณ 1 / h2 คูณ 7 / h3 คูณ 1**
+(ตรงกับที่ verify-build พิมพ์)
+
+1. `ContentBoxPremium` เป็น h1 — หัวข้อ 1
+2. `ContentBoxNeumorphism` เป็น h2 — หัวข้อ 2
+3. `GameRankingBoard`
+4. `ContentBox` เป็น h2 — หัวข้อ 3
+5. `ProviderGrid`
+6. `ContentBoxSevenThreePremium` + **slide2** — หัวข้อ 4
+7. `LatestWinnersPremium`
+8. `ContentBoxTwoPremium` เป็น h2 — หัวข้อ 5
+9. `SmoothCarousel`
+10. `ContentBoxSpecial` เป็น h2 — หัวข้อ 6
+11. `LoginRtpSection`
+12. `ContentBoxSevenThreeNeumorphism` + **slide1** — หัวข้อ 7 (+ h3 หัวข้อ 8 ใน slot เดียวกัน)
+13. แถวปุ่ม login/register
+14. `Faq` — 5 ข้อ
+15. `ReviewCardSumo2`
+16. `Navfoot`
+
+**SevenThree ใช้ 2 บล็อกพอดี** ตามเพดาน — slide2 ("แตก10ล้าน จ่ายเต็มไม่มีหัก")
+คู่กับหัวข้อ 4 เรื่องการถอน และ slide1 ("แชทได้24ชม ตอบไว ไม่ใช้บอท") คู่กับ
+หัวข้อ 7 เรื่องทีมงาน **slide3/slide4 ไม่ได้ใช้บน index** (ยัง render ใน
+`SmoothCarousel` และ `promotion.astro` จึงไม่มีรูปที่ import แล้วไม่ถูกใช้)
+
+ย่อหน้าท้าย docx 5 ย่อหน้าที่ไม่มีหัวข้อ (บรรทัด 29–33) คือ **คำตอบ FAQ**
+ไม่ใช่ section ใหม่ — เอาไปเป็น faqs 5 ข้อ พร้อมเขียนคำถามให้ตรงกับคำตอบ
+
+### ไฟล์ที่แก้
+
+**โดเมน/ตัวตน (3 ไฟล์ตามกฎ real-URL + manifest)**
+
+- `astro.config.mjs` — `site:` เป็น `https://yimsiam88-homepage.net`
+- `wrangler.toml` — `name` เป็น `yimsiam88` (`account_id` ไม่แตะตามกฎ)
+- `public/site.webmanifest` — name/short_name/theme_color `#ff7a18` /
+  background_color `#160604`
+- `src/lib/brandProfile.ts` — `BRAND_NAME` / `BRAND_FONT` / `BRAND_TEXT` อย่างละบรรทัด
+- ไม่มี string literal โดเมนใน `index.astro` แล้ว (schema มาจาก `pageGraph()` ทั้งหมด)
+
+**Shared chrome — orchestrator ทำเองแบบ sequential ก่อน fan-out (Step P1)**
+
+`src/layouts/MainLayout.astro`, `NavbarStyle4`, `FooterPremiumSumo`, `Navfoot`,
+`ContentBox`, `ContentBoxPremium`, `Announcement`
+
+**Agent A — index + component เฉพาะ index (14 ไฟล์)**
+
+`index.astro`, `ContentBoxNeumorphism`, `ContentBoxTwoPremium`,
+`ContentBoxSpecial`, `ContentBoxSevenThreePremium`,
+`ContentBoxSevenThreeNeumorphism`, `LoginRtpSection`, `ContentBoxTwo`,
+`ProviderGrid`, `GameRankingBoard`, `ReviewCardSumo2`, `SmoothCarousel`,
+`LatestWinnersPremium`, `Faq`
+
+**Agent B — 3 หน้า** `promotion.astro`, `contact-us.astro`, `ทางเข้า.astro`
+
+**Agent C — 5 หน้า** `ทดลองเล่น.astro`, `about-us.astro`, `login.astro`,
+`register.astro`, `404.astro`
+
+### สิ่งที่เจอ / ตัดสินใจ
+
+- **description ใน docx ยาว 139 ตัวอักษร — ต่ำกว่าพื้น 150 ที่ `verify-build.mjs`
+  บังคับ** เป็นแบรนด์ที่ **5 ติดกัน** ที่เจอปัญหานี้ (MIRACLE55 131, WINSIAM88 142,
+  YOK789 142, OKG777 145) ต่อท้ายเป็น "... ฝากถอนออโต้ 24 ชม." ได้ 158 ตัวอักษร
+  ไม่งั้น build แดง — กฎ "ใช้ของ docx verbatim" ใช้ไม่ได้กับ docx ชุดนี้อีกแล้ว
+- **`ContentBoxTwoPremium` ไม่เคยมี prop title/as** มีแต่ titleleft/titleright
+  ที่เป็น h2 ต่อคอลัมน์ (จะได้ h2 สองตัวต่อหนึ่งหัวข้อ docx) เพิ่ม title + as
+  เป็น header ระดับ section เหนือกริด แบบเดียวกับ `ContentBoxSpecial` และคง
+  titleleft/titleright ไว้เป็น optional — ไม่มีไฟล์อื่นใช้ component นี้
+- **`NavbarStyle4` มีเมนู hardcode ซ้ำสองชุด** (desktop + mobile drawer) รวบเป็น
+  links const เดียว, มี `<style is:global>` ที่ตั้ง font-family ให้ `a` ทุกตัว
+  รั่วออกทั้งเว็บ — ถอดกฎนั้นออก (คง `is:global` ไว้สำหรับ hamburger/sidebar
+  เพื่อไม่ให้ Astro ยัด `data-astro-cid-*` เพิ่ม), alt ของโลโก้ยังเป็น
+  **"CEO66 Logo"** ของแบรนด์เก่ากว่า OKG777 อีกที และมี HTML comment 5 จุด
+- **`FooterPremiumSumo` ยังเป็นของ SUDYOD888 ทั้งไฟล์** รวมบรรทัด copyright ที่
+  พิมพ์โดเมน SUDYOD888-BRAND.COM ไว้ตรง ๆ — เปลี่ยนครบ และ **เติมบล็อก
+  `<address>` `BRAND_ADDRESS`** ที่ footer variant นี้ยังไม่มี (paste verbatim
+  ไม่ใส่สีแบรนด์ตามกฎ)
+- **`LatestWinnersPremium` ยังเป็นชื่อ SUDYOD888** — เปลี่ยนชื่อ + สี คง
+  `data-winner-*`, `winnersFeed.ts`, `brandPick`/`brandFlag` และ row ที่
+  server-render ไว้ครบ ไม่กลับไปใช้ `define:vars`
+- **`GameRankingBoard` / `LoginRtpSection` / `ReviewCardSumo2` เป็นเนื้อหาคาสิโนสด
+  + กีฬา + "รับฟรี 18 บาท" ของ OKG777 ทั้งชุด** — เขียนใหม่เป็นสล็อตล้วน ไม่ใช่
+  แค่ retheme เพราะ genre เปลี่ยน
+- **ตัวเลขโปรของ OKG777 (18 / 38 / 88 บาท, คืนยอดเสีย 8%) ถูกลบทิ้งทุกหน้า**
+  docx ของ YIMSIAM88 ไม่ได้อ้างตัวเลขโปรใด ๆ เลย
+- **`login.astro` / `register.astro` ตั้งชื่อ CSS var หลอกตา** — ชื่อเป็นเหลือง/
+  มาเจนต้าแต่ค่าเป็นของแบรนด์เก่า เปลี่ยนชื่อเป็น brand-flame / brand-deep /
+  brand-light / brand-gold แล้ว ส่วน targetUrl (yoalink/tinyurl) ไม่แตะตามกฎ
+- **`404.astro` ไม่ต้องแก้อะไรเลย** — ไม่มีชื่อแบรนด์ ไม่มี hex ไม่มีคลาสสี
+  อาศัย `BRAND_TEXT` บน `<html>` ตามที่ออกแบบไว้
+- **ไม่มี FloatingBadge ในรอบนี้** จึงไม่ต้องตรวจ badge ล้นจอ/ทับเนื้อหา
+
+### หน้าที่เปิด/ปิด
+
+- **หวยปิด** — `ตรวจหวย.astro` / `แนวทาง.astro` อยู่ใน `src/pages-disabled/` อยู่แล้ว
+  และ grep ทั้ง `src/` ไม่พบลิงก์ในไฟล์ที่ active เลย → **ไม่ต้องทำอะไร**
+  ยืนยันด้วย build (ไม่มี route) และ preview (route ตรวจหวย ตอบ 404)
+- **`about-us.astro` เก็บไว้** — มีเนื้อหาจริง ไม่มี TODO(rebrand) placeholder
+  จึงบอกไม่ได้ว่า operator กดเปิดรอบนี้หรือเปล่า ตัดสินใจ **เก็บ + rebrand เนื้อหา
+  เต็ม** แทนการ park เพราะทั้ง navbar และ footer ที่ active ลิงก์ถึง และมันขึ้นมา
+  สองแบรนด์ติด (YOK789, OKG777) การ rebrand เนื้อหาปิดความเสี่ยงเดียวที่กฎ park
+  กันไว้ (บทความของแบรนด์ก่อนหลุดขึ้นเว็บ) อยู่แล้ว — ถ้า operator อยากให้ park
+  ย้ายไป `src/pages-disabled/` แล้วถอดลิงก์ออกจาก `NavbarStyle4` + `FooterPremiumSumo`
+- **`terms` / `privacy` ไม่แตะ** — brand-neutral โดยโครงสร้าง ทุกคำที่เป็นชื่อแบรนด์
+  มาจาก `BRAND_NAME` และทั้งสองหน้ายัง render ผ่าน `ContentBox.astro` ตามกฎ
+
+### การ verify ที่ทำจริง
+
+- `npm run build` (รอบเดียวตาม build cadence) — 11 หน้า **0 error 0 warning**
+  จาก `tools/verify-build.mjs`
+- heading inventory ที่ script พิมพ์ ตรงกับ checklist ของ docx ทั้งสองทิศทาง —
+  index = h1 คูณ 1 / h2 คูณ 7 / h3 คูณ 1, contact-us และ ทางเข้า = **h2 คูณ 0,
+  h3 คูณ 0** ตามกฎหน้าปุ่ม
+- grep `dist/` ทั้งหมด: ชื่อแบรนด์เก่า (OKG777 / SUDYOD888 / LAPDEE88 / CEO66)
+  = **0**, คลาสสีเก่าใน class attribute = **0**, HTML comment ใน `index.html`
+  = **0**, อ้าง `banner.png` / `banner2` / `banner3` = **0**
+- og:image = `/_astro/og.*.jpeg` (ของ uploader 1200x630) ไม่ใช่ path ใน `public/`
+- `<address>` — footer render บนทุกหน้า (index = 1), contact-us = 2
+  (body + footer) เนื้อหา "ฝ่ายบริการลูกค้า YIMSIAM88 / อำเภอเมืองฉะเชิงเทรา
+  จังหวัดฉะเชิงเทรา 24000 / service@yimsiam88-homepage.net" — อีเมลอยู่บน host
+  เดียวกับ `site:` ตามที่ derive ไว้
+- meta description ทุกหน้าที่ index ได้ อยู่ในช่วง 150–160 (153–158)
+  login/register 149/157 เป็น noindex เกทข้าม
+- undefined/NaN ที่ grep เจอ 1 จุด อยู่ใน JS ที่ bundle แล้วของ winnersFeed
+  ไม่ใช่ prop ที่พัง
+- FAQ render ครบ 5 `<details>` — ไม่มี `<script>` ใน `Faq`
+- `npm run preview` + curl: 10 route ตอบ 200 (route ไทยต้อง percent-encode ไม่งั้น
+  500), route ตรวจหวย ตอบ **404** ตามที่ควร แล้วปิด server ด้วย
+  `Get-NetTCPConnection -LocalPort 4321` (ห้าม `taskkill /IM node.exe`)
+- ฟอนต์: preload `kanit-*.woff2` 3 ไฟล์ และ request ไป fonts.googleapis.com
+  = **0** → การหมุนฟอนต์ลงจริง
+
+### นอกสโคป / ไม่ได้แตะ
+
+- **ไม่ commit ไม่ push ไม่ deploy ตามที่สั่ง**
+- component variant ที่ไม่ได้ใช้ยังเป็นของแบรนด์เก่าตามเดิม — `Announcement5`,
+  `FooterStyle3`, `LatestWinners2`, `NavbarStyle7`, `Faq2` และตัวอื่น ๆ ที่หลุดจาก
+  การ render รอบนี้ ยังมีชื่อ OKG777 อยู่ข้างใน = drift ที่คาดไว้ ไม่ใช่บั๊ก
+- `src/assets/banner.png` (2.2 MB), `banner2.png`, `banner3.png` ยังค้างบนดิสก์ —
+  ไม่มีโค้ดไหน import แล้ว (glob เจาะชื่อ banner1 เท่านั้น) จึงไม่ขึ้น `dist/`
+- `src/styles/_sources.generated.css` เปลี่ยนเองจาก prebuild เพราะสลับ
+  navbar/footer/announcement = diff ที่ถูกต้อง ไม่ต้องแก้กลับ
+- `wrangler.toml` `account_id` ไม่แตะตามกฎ — และ **ยังไม่ได้ยืนยันกับ operator ว่า
+  `yimsiam88-homepage.net` เคย park ด้วย domain-placeholder ไว้หรือยัง** ถ้าเคย
+  ชื่อ Worker ต้องตรงกับตัวที่ park เป๊ะ ๆ เช็ก
+  `npx wrangler deployments list --name yimsiam88` ก่อน deploy
