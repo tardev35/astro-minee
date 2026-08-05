@@ -439,14 +439,9 @@ different colors:
 
   Do it the way `NavbarStyle1` does: put the icon in the `links` array
   next to `name` and `path`, then render it as its own
-  `<span aria-hidden="true">`. Two things that follow from that, both
-  enforced by `tools/verify-build.mjs`:
-
-  - **`aria-hidden="true"` is not optional.** A decorative emoji outside
-    an aria-hidden element fails the build, and without it a screen
-    reader announces the menu as "house หน้าแรก".
-  - **The icon must be a sibling of the label, never inside its text.**
-    Concatenating them puts the emoji into the accessible name.
+  `<span aria-hidden="true">` — a **sibling** of the label, never inside its
+  text. Both halves are build errors; the reasoning is in "Accessibility rules
+  the build now enforces" and is not repeated here.
 
   Several variants — `NavbarPremium` among them — declare the menu twice,
   once for desktop and once for the mobile drawer. Hoist that into one
@@ -1525,35 +1520,20 @@ files:
 grep -rlE "slide[0-9]\.png|banner[0-9]?\.png" src/
 ```
 
-**The glob-selection trap:** `MainLayout.astro` (and similar) often
-pick a hero/banner image via
-`import.meta.glob("../assets/banner*.{png,webp,jpg,jpeg}")` and just
-take `Object.keys(...)[0]`. If old `.png` originals are still sitting
-in `src/assets` alongside the new `.webp` drop (common — the asset
-swap usually keeps same-name old files around), **alphabetical sort
-picks the stale file silently** — no build error, just the wrong
-image rendering. Verify this by checking the actual rendered `<img
-src>` in Phase 5, not just that the build succeeds. Fix by explicitly
-preferring `.webp` and/or the specific file the user referenced as
-"ref", with the naive alphabetical pick only as a last-resort fallback.
+**The hero pick needs nothing from you — leave it alone.** `MainLayout`
+pins `import.meta.glob("../assets/banner1.{png,webp,jpg,jpeg}")` by name and
+throws if the file is missing, so there is no wide `banner*` glob to pick the
+wrong number out of and no silent fallback to a previous brand's art. If both
+`banner1.png` and `banner1.webp` are on disk it prefers the `.webp`. The
+banner/slide roles themselves are Phase 1's; do not restate or re-derive them
+here.
 
-**The `banner1` = hero convention (reconcile the glob pick with it).**
-The upload tool (`tools/rebrand-uploader`) and Phase 1/2 fix the hero as
-**`banner1`**, with `banner2`, `banner3`, … reserved as article-
-illustration images. So when you retheme `MainLayout.astro`, its
-preferred-banner pick **must target `banner1`** (`path.endsWith("banner1.")`
-across the glob'd extensions, or the user's explicit "ref"), and must
-*not* inherit the previous brand's hardcoded banner number. A live file
-has shipped hardcoding `banner3.png` as the preferred hero (that was one
-brand's specific choice); left as-is, once a new brand also uploads a
-`banner3` *article* image, the glob would grab that article image as the
-hero. When you rewrite `MainLayout.astro` in Phase 3, repoint the
-`preferredBannerPath` line to `banner1` — don't carry the old number
-forward. Two halves of this trap now differ in how they're handled:
-the **stale-extension** half is largely prevented at source (the uploader
-normalizes to one extension per name and deletes same-base siblings), but
-the **wrong-number** half is not — it's on you to point the hero pick at
-`banner1` every rebrand.
+Do **not** reintroduce a `banner*` glob, a `preferredBannerPath` variable, or
+any fallback chain while rethemeing. Every one of those existed and each cost a
+brand something: an eager wide glob emits every match into `dist/` whether or
+not a page renders it (3.1 MB of three dead brands' banners, every build), and
+a fallback silently served old art when the new file was missing instead of
+stopping the build.
 
 **The OG/Twitter image comes from `slide1` (not a `public/` file).**
 `MainLayout.astro` sets the `og:image`/`twitter:image` via the `ImageOg`
@@ -1602,9 +1582,11 @@ pointing at a `public/` path during a rebrand, repoint it to the
      owns them. They are pre-existing and expected — **do not go fix them
      during a rebrand.** Chasing a warning mid-rebrand means editing files
      outside the brief.
-   - It also prints the `h1`/`h2` inventory per page. Diff that against the
-     docx checklist here rather than grepping for headings by hand; the
-     script cannot read the brief, so this part is still your job.
+   - It also prints the `h1`/`h2` inventory per page. **That printout is the
+     only heading list you need** — the script cannot read the brief, so
+     diffing it against the docx checklist is still your job, but extracting
+     the headings is not. Step 2 below says what to compare and in which
+     directions; do not grep the pages for headings a second time.
 
    The script lives outside every file a rebrand rewrites, on purpose. If a
    new class of bug shows up twice, add a check to it instead of adding a
@@ -1647,13 +1629,13 @@ pointing at a `public/` path during a rebrand, repoint it to the
      screenshot or in a build log
    - if a FAQ/accordion was wired up, count its item markup to confirm
      all entries rendered
-   - **content completeness/order**: extract every `<h1>`/`<h2>`
-     (whatever level the docx uses) from the rendered HTML with a
-     regex pass, strip tags, and diff that list against the numbered
-     docx heading checklist from Phase 2 — same count, same text, same
-     top-to-bottom order. A missing heading or a section that comes
-     out of order is a real bug, not a nitpick; go back and fix the
-     page structure, don't just note it.
+   - **content completeness/order** — this is the heading diff from
+     step 1, not a second pass. Do not re-extract the headings with a
+     regex; the build already printed them per page. Read that list
+     against the numbered docx checklist from Phase 2: same count,
+     same text, same top-to-bottom order. A missing heading or a
+     section out of order is a real bug — fix the page structure,
+     don't just note it.
 
      **The diff runs both directions.** A heading in the page that is
      *not* in the checklist is as much a defect as a missing one — it
