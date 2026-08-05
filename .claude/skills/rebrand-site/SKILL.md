@@ -950,6 +950,34 @@ Phase 5 build covers all pages at once.) For each page:
    verify they carry **zero** old-brand-name references; only the theme
    is exempt, not the brand name. Note this decision in the workspec.
 
+### `/contact-us` carries no article body — image, address, buttons, nothing else
+
+`contact-us.astro` is the one sub-page that is **not** an article. Its whole
+body is four things, in this order:
+
+1. the `ContentBox` `title` (the page's single `<h1>`)
+2. the LINE image (`src/assets/contact-line.webp`)
+3. the `BRAND_ADDRESS` block
+4. the `สมัครสมาชิก` / `เข้าสู่ระบบ` / `ติดต่อผ่าน Line Official` button row
+
+**Do not add section headings or explanatory paragraphs here.** Not "ควรเตรียม
+ข้อมูลอะไรก่อนแจ้ง", not "ทักทีมงานทางไหน", not a PIN/OTP safety notice —
+however well-written. Someone opens this page to press a button, and every
+paragraph pushes those buttons further down.
+
+Where the copy keeps coming from: the docx **SUB-PAGES** section gives this page
+a `Title` and a `Meta` and **never a body**, so any prose you find here was
+invented by an earlier rebrand and then rewritten by every rebrand since,
+each one assuming the last one had a reason. It didn't. If the page you
+inherit has `<h2>`s and paragraphs, **delete them** — that is a fix, not a
+scope overrun.
+
+Consequence for the Phase 5 inventory: `/contact-us` contributes **`h1×1`,
+`h2×0`, `h3×0`**. An `<h2>` on that page means this rule was missed.
+
+The other sub-pages are the opposite — they *are* articles and their headings
+come from their own body, per Phase 5.
+
 **Lottery pages — normally the operator's switch, not yours.** `ตรวจหวย.astro`
 and `แนวทาง.astro` are routed only when they sit in `src/pages/`; Astro ignores
 `src/pages-disabled/` entirely.
@@ -1512,6 +1540,9 @@ pointing at a `public/` path during a rebrand, repoint it to the
      `dist/`. The build already enforces that the block appears on no
      other page and in no JSON-LD; what it cannot check is that the name
      inside it is the current one
+   - **`grep -c '<h2' dist/contact-us/index.html` must be `0`** — that page
+     is a button page, not an article (Phase 4.5). Any hit means prose was
+     written back into it; delete the prose, don't demote the tag
    - `grep -c '<!--' dist/index.html` should be 0 — Astro ships HTML
      comments to output, so any `<!-- H2: … -->` section labels left in
      a page leak the docx outline (and often the old brand name) into

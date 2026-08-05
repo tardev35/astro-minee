@@ -3543,3 +3543,213 @@ ContentBoxCyberCut / ContentBoxFloatingBadge / SevenThree ทั้งสอง�
   ยืนยันกับ operator ว่าโดเมนนี้เคย park ด้วย domain-placeholder ไว้หรือยัง** ถ้าเคย
   park ชื่อ Worker ต้องตรงกับตัวที่ park ไว้เป๊ะ ๆ ก่อน deploy ให้เช็ก
   `npx wrangler deployments list --name yok789` ก่อน
+
+---
+
+## 2026-08-04 — รีแบรนด์ YOK789 → OKG777 (สล็อตเว็บตรง/คาสิโนสด/กีฬา, เหลืองนีออน + ชมพูมาเจนต้า บนม่วงเข้ม)
+
+### เป้าหมาย
+
+รีแบรนด์ทั้งเว็บจาก YOK789 เป็น **OKG777** พร้อมโดเมนจริง
+`https://okg777-brand.com` ที่ operator ระบุมาในคำสั่ง รันแบบขนานตาม playbook
+(orchestrator ทำ chrome ร่วมก่อน แล้วแตก 3 agent ตามไฟล์ที่ไม่ทับกัน)
+**หยุดที่ build + verify — ไม่ deploy ไม่ commit ไม่ push**
+
+บรีฟมาทาง `src/assets/content.txt` (uploader แตกจาก docx ให้แล้ว) โครงเป็น
+**H1 x1 + H2 x9 ไม่มี H3 เลย** เนื้อหาเป็นสล็อต + คาสิโนสด + **กีฬา**
+ในบัญชีเดียว จุดขายคือสมาชิกใหม่รับฟรี 18 บาท / เครดิตฟรี 38 บาท /
+ชวนเพื่อนรับ 88 บาท / ฝากถอนอัตโนมัติ — **ไม่มีหวย** และไม่มีตัวเลขชุดของ
+YOK789 (40 ค่าย, 4,000 เกม, 1 วินาที) อยู่ในบรีฟนี้เลย
+
+### พาเลตต์
+
+อ่านจาก `palette.json` + เปิดรูปดูจริง อาร์ตเวิร์กเป็นเมืองกลางคืนโทนม่วงนีออน
+ตัวอักษร OKG เหลืองทอง เลข 777 ชมพูมาเจนต้า
+
+| บทบาท | YOK789 (เดิม) | OKG777 (ใหม่) |
+|---|---|---|
+| accent สว่าง | `#5cff9b` | `#ffe94d` |
+| accent หลัก | `#12b84f` | `#ffd400` |
+| accent เข้ม | `#0a6b2f` | `#b8860a` |
+| support สว่าง | `#ffd94a` | `#ff4fd8` |
+| support เข้ม | `#8a6510` | `#8f1080` |
+| พื้นหน้าเว็บ | `#050d07` | `#0d0320` |
+| พื้นการ์ด | `#08150d` | `#170733` |
+| พื้นยกระดับ/hover | `#0e2216` | `#231045` |
+| ตัวอักษรบนพื้นสว่าง | `#04140a` | `#1a0330` |
+| เนื้อความ (BRAND_TEXT) | `#d5f0dd` | `#ece2fb` |
+
+glow: `rgba(18,184,79,a)` → `rgba(255,212,0,a)`, `rgba(92,255,155,a)` →
+`rgba(255,233,77,a)`, `rgba(255,217,74,a)` → `rgba(255,79,216,a)` (alpha คงเดิม)
+สีที่ไม่ย้าย: เขียว LINE `#00B900` และโลโก้ธนาคารใน BankStrip
+
+### การหมุน variant (before → after)
+
+- **Navbar: `NavbarStyle4Black` → `NavbarStyle7`**
+- **Footer: `FooterStyle2` → `FooterStyle3`**
+- **Announcement: `Announcement4` → `Announcement5`** (ทั้ง 6 หน้า)
+- **LatestWinners: `LatestWinners` (plain) → `LatestWinners2`**
+- **Faq: `Faq4` → `Faq2`**
+- **ContentBox mix: Premium+Neumorphism+plain+Special+SevenThree{Premium,Neumorphism}
+  → CyberCut+FloatingBadge+Two{CyberCut,FloatingBadge}+plain+SevenThree{CyberCut,FloatingBadge}**
+- **BRAND_FONT: `kanit` → `google-sans`**
+
+ไม่มี family ไหนที่ใช้ variant ซ้ำกับ YOK789 เลย
+
+### โครงหน้าแรก (เรียงตาม docx ทุกหัวข้อ)
+
+1. H1 → `ContentBoxCyberCut`
+2. ทำความรู้จัก → `ContentBoxFloatingBadge`
+3. รีวิวสล็อต/ค่าย ปี 2026 → `ContentBoxSevenThreeCyberCut` + `slide1.png` → `ProviderGrid`
+4. ทดสอบคาสิโนและกีฬา → `ContentBoxTwoCyberCut` → `GameRankingBoard`
+5. สมาชิกใหม่รับฟรี 18 บาท → `ContentBoxSevenThreeFloatingBadge` + `slide2.png` → `LatestWinners2`
+6. เครดิตฟรี 38 / ชวนเพื่อน 88 → `ContentBox` (plain) → `SmoothCarousel`
+7. ระบบฝากถอน → `ContentBoxCyberCut`
+8. ทางเข้า/มือถือ → `ContentBoxFloatingBadge` → `LoginRtpSection`
+9. ปลอดภัยหรือไม่ → `ContentBoxTwoFloatingBadge`
+10. สรุป → `ContentBoxCyberCut`
+
+ปิดท้าย: ปุ่ม login/register → `Faq2` (5 ข้อ เขียนใหม่จากบรีฟนี้) → `ReviewCardSumo2` → `Navfoot`
+
+ทุกหัวข้อได้ **2 ย่อหน้าเต็มตาม docx ครบ 20 ย่อหน้า** ไม่ย่อ ไม่รวบ ไม่สลับลำดับ
+
+### ไฟล์ที่แก้
+
+**ตั้งค่าแบรนด์ / โดเมน (3 จุดที่ต้องเปลี่ยนพร้อมกันเมื่อมี URL จริง)**
+
+- `src/lib/brandProfile.ts` — BRAND_NAME, BRAND_FONT, BRAND_TEXT (อย่างละบรรทัดเดียว)
+- `astro.config.mjs` — `site:` เป็น `https://okg777-brand.com`
+- `wrangler.toml` — `name` เป็น `okg777` (**ของเดิมเป็น `yok789` ถ้าไม่เปลี่ยนแล้ว deploy จะทับ Worker ของแบรนด์นั้น**) ไม่แตะ `account_id`
+- `public/site.webmanifest` — name / short_name / theme_color / background_color
+
+**chrome ร่วม (orchestrator ทำก่อนแตก agent — คือโซนที่ชนกันได้)**
+
+- `src/layouts/MainLayout.astro` — สลับ import navbar/footer, title/description default, alt ของ hero, สีพื้น body
+- `src/components/NavbarStyle7.astro` — retheme เต็มไฟล์ (ของเดิมเป็นแดง/ทองของ CASHOT123), **ยุบเมนูที่ประกาศซ้ำ 2 ชุด (desktop + mobile) เหลือ array เดียว**, ใส่ไอคอนให้ทุกเมนู (desktop เดิมไม่มีเลย) เป็น span พี่น้องที่มี aria-hidden, เพิ่มลิงก์ `/about-us`, ลบ style block ที่ซ้ำซ้อนกับ font ของ body
+- `src/components/FooterStyle3.astro` — retheme เต็มไฟล์ + เขียนคอปี้ใหม่ (ของเดิมเป็นทองและเนื้อหาฟุตบอลของ UFAG8 ทั้งบล็อก), ยุบลิงก์เป็น array, เพิ่ม `/about-us`
+- `src/components/Navfoot.astro`, `ContentBox.astro`, `ContentBoxPremium.astro` — retheme
+- `src/components/Announcement5.astro` — retheme + **เขียน default message ใหม่** (ของเดิมเป็นสโลแกน SUDYOD888 พร้อมโดเมนของแบรนด์นั้น ซึ่งจะกลายเป็น off-domain URL = build error ทันทีที่หน้าย่อยเรียกแบบไม่ส่ง prop)
+
+**หน้าแรก + component เฉพาะหน้าแรก (Agent A)**
+
+`index.astro` และ `ContentBoxCyberCut`, `ContentBoxFloatingBadge`,
+`ContentBoxTwoCyberCut`, `ContentBoxTwoFloatingBadge`,
+`ContentBoxSevenThreeCyberCut`, `ContentBoxSevenThreeFloatingBadge`,
+`ContentBoxTwo`, `LoginRtpSection`, `ProviderGrid`, `GameRankingBoard`,
+`ReviewCardSumo2`, `LatestWinners2`, `SmoothCarousel`, `Faq2`
+
+**หน้าย่อย (Agent B)** — `login.astro`, `register.astro`, `about-us.astro`
+
+**หน้าย่อย (Agent C)** — `promotion.astro`, `contact-us.astro`, `ทดลองเล่น.astro`, `ทางเข้า.astro`
+
+### บั๊ก/กับดักที่เจอรอบนี้
+
+- **description ใน docx ยาว 145 อักขระ ต่ำกว่าพื้น 150 ที่ `verify-build.mjs`
+  ถือเป็น error (ไม่ใช่ warning)** — เป็นแบรนด์ที่ 4 ติดกันที่บรีฟมาสั้นกว่าเกณฑ์
+  แก้โดยต่อวรรคเดียวให้เป็น 157 อักขระ ไม่ได้เขียนใหม่ทั้งประโยค
+- **`Announcement5` default message เป็นของ SUDYOD888 พร้อมโดเมนของแบรนด์นั้น**
+  หน้าย่อย 5 หน้าเรียก `<Announcement />` เปล่า จึงกินค่า default ตรง ๆ
+- **brief ที่ orchestrator ส่งให้ Agent C บอกผิดว่า 4 หน้านั้น import
+  `Announcement5` อยู่แล้ว** ความจริงยังเป็น `Announcement4` — Agent C ตรวจเจอเอง
+  และสลับให้ครบก่อนที่ correction จะไปถึงพอดี (บทเรียน: P0 ต้อง grep import
+  ของ *ทุกหน้า* ไม่ใช่แค่ index ก่อนเขียน brief)
+- **`ContentBoxTwoFloatingBadge` ระยะ padding ด้านบนไม่พอ** — ของเดิมเผื่อไว้ 64px
+  ขณะที่ป้ายลอยวางที่ระยะ -24px และ H2 จริงของ docx ยาวจนตัด 2–3 บรรทัด
+  (3 บรรทัด = ล้ำเข้าเนื้อหา 17px) แก้เป็น 128px มือถือ / 112px เดสก์ท็อป
+  ให้ตรงกับอีก 2 ไฟล์ในตระกูล และเพิ่ม min-width 0 ให้หัวข้อใน flex
+- **heading ที่ chrome ยึดไว้** — `ContentBoxSevenThreeFloatingBadge` และ
+  `ContentBoxTwoFloatingBadge` render `titleleft`/`titleright` เป็น heading
+  ทั้งที่ป้ายลอยถือหัวข้อ docx อยู่แล้ว, `Faq2` render คำถามเป็น heading ระดับ 3
+  — ลดทั้งหมดเป็น span/p โดยคงคลาสเดิม จึงได้ h3 = 0 ทั้งเว็บตรงกับ docx ที่แบน
+- **`SmoothCarousel` โหลด 2 สไลด์แรกแบบ eager + priority สูง** แข่งกับ hero
+  ที่เป็น LCP จริง — เปลี่ยนเป็น lazy/low
+- ตัวเลข h2 ที่ orchestrator เขียนไว้ใน spec (11) นับพลาด ของจริงคือ **10**
+  (docx 9 + หัวข้อ FAQ 1) — Agent A ตรวจเจอและทักกลับมา ไม่ใช่ section หาย
+
+### หน้าที่เปิด/ปิด
+
+- **`ตรวจหวย.astro` / `แนวทาง.astro` ยังจอดอยู่ที่ `src/pages-disabled/`** ถูกต้อง
+  แล้วสำหรับแบรนด์สล็อต/คาสิโน/กีฬาที่บรีฟไม่มีหวยเลย — ยืนยันด้วย build ว่า
+  ทั้งสอง route ตอบ 404 และ navbar/footer ตัวใหม่ไม่มีลิงก์ไปหาทั้งคู่
+- **`about-us.astro` เปิดไว้ตามเดิม** ไฟล์นี้ถูกสร้างตอนรีแบรนด์ YOK789
+  (commit 7034328) และไม่มี placeholder `TODO(rebrand)` แปลว่า uploader
+  ไม่ได้ scaffold ใหม่รอบนี้ ตัดสินใจ **คงไว้แล้วรีแบรนด์เนื้อหาทั้งหน้า**
+  เพราะ uploader เป็นตัวที่ park หน้าที่ไม่ต้องการเอง (รอบนี้มัน park สองหน้าหวย
+  จริง ๆ แต่ปล่อยหน้านี้ routed ไว้) การพักหน้าที่มีเนื้อหาจริงทิ้งจึงเป็นความ
+  เสียหายที่ย้อนยากกว่า — **ได้แจ้ง operator ไว้ในรายงานแล้วว่าถ้าอยากให้ปิดก็บอกได้**
+  พร้อมกันนี้เพิ่มลิงก์ `/about-us` เข้า navbar และ footer ตัวใหม่ให้ครบ
+
+### การ verify ที่ทำจริง
+
+- `npm run build` **ครั้งเดียวทั้งงาน** ผ่านสะอาด 11 หน้า + `verify-build.mjs`
+  รายงาน **0 error / 0 warning**
+- route ที่ build ออกมา 12 ไฟล์ ตรงกับที่ควรเป็นของแบรนด์สล็อต — **ไม่มี
+  `/ตรวจหวย` และ `/แนวทาง`** (curl แล้วได้ 404 ทั้งคู่)
+- `astro preview` พอร์ต 8899: ทุก route ตอบ 200 (route ไทย curl แบบ
+  percent-encode ตามกับดักเดิม) ปิดเซิร์ฟเวอร์ด้วย `Get-NetTCPConnection`
+  แล้ว `Stop-Process` ตาม PID — **ไม่ใช้ `taskkill /IM node.exe`**
+- ชื่อ `YOK789` / `หยก789` / `yok789` ใน `dist/` ทั้งหมด = **0**
+- ชื่อแบรนด์เก่าอื่นอีก 17 ชื่อ (UFAG8, CASHOT123, SUDYOD888, SUMOHENG,
+  BRAZIL999 ฯลฯ) ใน `dist/` = **0**
+- hex ชุดเดิมทั้ง 10 ค่าใน `dist/` = **0**
+- heading inventory หน้าแรก = **h1 x1, h2 x10, h3 x0** ตรงกับ checklist
+  (9 หัวข้อ docx เรียงตามลำดับเอกสาร + หัวข้อ FAQ) และ h3 ทั้ง `dist/` = **0**
+- description ของ 8 หน้าที่ index ได้ **152–157 อักขระ** อยู่ในกรอบ 150–160 ทุกหน้า
+  (นับเป็นอักขระด้วย node ไม่ใช่ `wc -c` ที่อ่านเป็นไบต์ = ~3 เท่า)
+  ส่วน 404/login/register เป็น noindex จึงไม่ติดเกท
+- `<!--` ใน HTML ที่ build ออกมา = **0** ทุกหน้า
+- og:image ชี้ `/_astro/og.xKTafCs3_Z1sxEQ8.jpeg` (og.png ของแบรนด์นี้) ไม่ใช่ path ใน public/
+- canonical: 9 หน้าเป็น `https://okg777-brand.com` + 1 หน้า tinyurl
+  (`dist/line/index.html` = redirect ภายนอกที่ตั้งใจ)
+- `<address>` บน contact-us = "ฝ่ายประสานงานสมาชิก OKG777 / อำเภอเมืองสระแก้ว
+  จังหวัดสระแก้ว 27000" มาจาก BRAND_ADDRESS ที่ derive จาก BRAND_NAME ไม่ได้เขียนมือ
+- `undefined` / `[object Object]` ใน `dist/` = **0**
+- FAQ render ครบ 5 ข้อ (นับ `<details>`)
+- ไอคอนใน head ต่อท้าย `?v=okg777` ครบ (cache-bust ของ favicon)
+- `<html>` ยังมี `color: #ece2fb` จาก BRAND_TEXT และ font stack เป็น Google Sans
+  ส่วน preload ของ Kanit = **0** ตามที่ควรเป็นเมื่อสลับไป google-sans
+- รูปที่ถูก emit เข้า `dist/_astro` มีแค่ banner1 + og + slide1-4
+  **ไม่มี `banner.png` / `banner2` / `banner3` หลุดเข้าไปเลย**
+- ป้ายลอยของตระกูล FloatingBadge: ไม่มี `whitespace-nowrap` เหลือบนป้ายสักตัว
+  (ที่เจอเป็นปุ่ม CTA กับ marquee ซึ่งถูกต้อง) และระยะเผื่อด้านบนพอสำหรับหัวข้อ
+  ที่ตัด 3 บรรทัดบนมือถือ
+- ลิงก์ affiliate `yoalink.com` ใน login/register ยังอยู่ครบ ไม่ถูกแตะ
+
+### รูปที่ใช้ / ไม่ได้ใช้
+
+- `banner1.png` = hero ผ่าน glob เจาะชื่อไฟล์ (7 candidate ตั้งแต่ 412w ถึง 1900w)
+- **ไม่มี `banner1-mobile.*` บนดิสก์** จึงไม่มี `<source>` สำหรับมือถือ ถูกต้อง
+- `slide1.png` → SevenThreeCyberCut หัวข้อ "รีวิว สล็อต OKG777 เกมใหม่และค่าย"
+  (อาร์ตเวิร์กเป็นตารางเกม 12 ใบ + แถบ PG JILI JOKER SLOTXO HABANERO ตรงหัวข้อพอดี)
+- `slide2.png` → SevenThreeFloatingBadge หัวข้อ "สมาชิกใหม่รับฟรี 18 บาท"
+  (อาร์ตเวิร์กเป็นป้าย 18 บาท + 38 + 88 + คืนยอดเสีย 8%)
+- ใช้ SevenThree รวม **2 บล็อก** พอดีเพดาน
+- `slide3.png` / `slide4.png` ไม่ได้เข้า SevenThree (เพดานเต็ม) แต่ยังขึ้นผ่าน
+  `SmoothCarousel` และหน้า promotion ; slide1 ยังเป็นต้นทางของ og.png
+- **`banner.png` (30 ก.ค.), `banner2.png` (28 ก.ค.), `banner3.png` (23 ก.ค.)
+  เป็นของแบรนด์เก่า** ลงวันที่ก่อนชุดอาร์ตเวิร์กรอบนี้ (4 ส.ค. 22:50) จึงไม่ใช้
+  เป็นภาพประกอบบทความ รอบนี้ไม่มีภาพประกอบแบบคอลัมน์เดียว
+
+### นอกสโคป / ไม่ได้แตะ
+
+- `src/assets/banner.png banner2.png banner3.png` ยังอยู่ในโฟลเดอร์แต่ไม่มีใคร
+  import แล้ว จึงไม่ขึ้น dist — ปล่อยไว้ตามธรรมเนียมรีโป
+- `404.astro` ไม่แก้ — ไม่มีชื่อแบรนด์และไม่มี hex ของแบรนด์เก่าในไฟล์เลย
+  สี/ฟอนต์/เส้นขอบมาจาก MainLayout กับ BRAND_TEXT ผ่าน currentColor อยู่แล้ว
+- `terms.astro` / `privacy.astro` แก้ **0 บรรทัด** — ทุกคำที่เป็นชื่อแบรนด์มาจาก
+  BRAND_NAME บรรทัดเดียว ยังยิงผ่าน `ContentBox.astro` (ไม่ใช่ variant ที่หมุน)
+  ไม่มี class สีบนย่อหน้า และ privacy ยังตรงกับความจริงของ build
+  (grep ทั้งรีโปแล้วไม่มี analytics / pixel / cookie banner / form ที่ post ออก)
+- `promotion.astro` ยังวาง slide1–4 เป็นกริดในกล่อง ContentBox เหมือนรอบก่อน
+  ตามเหตุผลเดิม (กฎ "slide ต้องอยู่ใน SevenThree เท่านั้น" เป็นกฎการประกอบ
+  *หน้าแรก* ส่วนหน้า promotion เป็นแกลเลอรีตามรูปทรงเดิมของหน้านั้น)
+- `contact-line.webp` ยังเป็นภาพของ template ไม่มีชื่อแบรนด์อื่นติดมา
+- คอมเมนต์ `//` เดิมใน frontmatter ของหลายไฟล์ปล่อยไว้ ไม่ churn
+  (ลบเฉพาะบล็อกที่เขียนชื่อ YOK789 ตรง ๆ)
+- `account_id` ใน wrangler.toml ไม่แตะตามกฎ
+- `_sources.generated.css` เปลี่ยนเองตาม component ที่ reachable เปลี่ยนไป — ปกติ
+- **ไม่ commit ไม่ push ไม่ deploy ตามที่สั่ง**
+- ⚠️ `wrangler.toml` `name` ตั้งเป็น `okg777` แบบ derive จากชื่อแบรนด์ **ยังไม่ได้
+  ยืนยันกับ operator ว่าโดเมนนี้เคย park ด้วย domain-placeholder ไว้หรือยัง**
+  ถ้าเคย park ชื่อ Worker ต้องตรงกับตัวที่ park ไว้เป๊ะ ๆ ก่อน deploy ให้เช็ก
+  `npx wrangler deployments list --name okg777` ก่อน

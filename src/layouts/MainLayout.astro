@@ -6,8 +6,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle4Black.astro";
-import Footer from "../components/FooterStyle2.astro";
+import Navbar from "../components/NavbarStyle7.astro";
+import Footer from "../components/FooterStyle3.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -56,8 +56,8 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "YOK789 สล็อตเว็บตรง คาสิโน หวย กีฬา จ่ายจริง คืนยอดเสีย 8%",
-  description = "รีวิว YOK789 สล็อตเว็บตรง รวมคาสิโน หวย และกีฬาไว้ในบัญชีเดียว เช็กค่ายเกม ระบบฝากถอนออโต้ เงื่อนไขคืนยอดเสีย 8% โปรโมชั่น ทางเข้า และมือถือก่อนใช้งานจริงครบ",
+  title = "OKG777 สล็อตเว็บตรง คาสิโน กีฬา ระบบเร็ว สมาชิกใหม่รับฟรี 18 บาท",
+  description = "รีวิว OKG777 สล็อตเว็บตรง รวมคาสิโนและกีฬา พร้อมระบบฝากถอนรวดเร็ว เช็กสมาชิกใหม่รับฟรี 18 บาท ทางเข้าเว็บหลัก โปรโมชั่น และขั้นตอนใช้งานให้ครบก่อนสมัครสมาชิก",
   robots = "index, follow",
 } = Astro.props;
 
@@ -164,7 +164,7 @@ const profile = brandProfile(Astro.site);
 
           {block === "appmeta" && (
             <Fragment>
-              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="yok789" />}
+              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="okg777" />}
               <link rel="manifest" href="/site.webmanifest" />
             </Fragment>
           )}
@@ -206,7 +206,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #050d07;
+        background-color: #0d0320;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -259,7 +259,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ YOK789 รีวิวสล็อตเว็บตรง คาสิโน หวย กีฬา จ่ายจริง พร้อมป้ายคืนยอดเสีย 8% แถบข้อมูล 40+ ค่ายเกม 4,000+ เกม ฝากถอนออโต้ และปุ่มสมัครสมาชิก บนพื้นหลังวงล้อรูเล็ต ลูกเต๋า และชิปคาสิโนโทนเขียวมรกต"
+          alt="แบนเนอร์ OKG777 ตัวอักษรสีเหลืองทองและเลข 777 สีชมพูนีออน ใต้ภาพเขียนว่า สล็อต คาสิโน กีฬา ครบในบัญชีเดียว ต่อด้วยแถบ ระบบเร็ว ฝากถอนง่าย สมาชิกใหม่รับฟรี 18 บาท และป้าย เครดิตฟรี 38 บาท กับ ชวนเพื่อนรับ 88 บาท ปิดท้ายด้วยปุ่มเว็บหลัก บนพื้นหลังเมืองยามค่ำคืนโทนม่วงนีออน"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

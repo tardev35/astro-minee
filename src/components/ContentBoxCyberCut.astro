@@ -9,17 +9,17 @@ const headingSize = HeadingTag === "h1" ? "text-2xl md:text-3xl" : "text-xl md:t
 
 <section class="my-6 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-7xl border border-[#d4a017]/35 bg-[#0b1408]/92 p-8 text-left text-base leading-relaxed text-[#dfeacf] shadow-[0_10px_30px_rgba(212,160,23,0.16)] backdrop-blur-md"
+    class="relative isolate w-full max-w-7xl border border-[#ffd400]/35 bg-[#170733]/92 p-8 text-left text-base leading-relaxed text-[#ece2fb] shadow-[0_10px_30px_rgba(255,212,0,0.16)] backdrop-blur-md"
     style="clip-path: polygon(40px 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%, 0 40px);">
-    <div class="absolute top-0 left-0 -z-10 h-1 w-32 bg-gradient-to-r from-[#d4a017] to-transparent"></div>
-    <div class="absolute right-0 bottom-0 -z-10 h-1 w-32 bg-gradient-to-l from-[#a3e635] to-transparent"></div>
-    <div class="absolute top-0 left-0 -z-10 h-32 w-1 bg-gradient-to-b from-[#d4a017] to-transparent"></div>
-    <div class="absolute right-0 bottom-0 -z-10 h-32 w-1 bg-gradient-to-t from-[#a3e635] to-transparent"></div>
+    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-1 w-32 bg-gradient-to-r from-[#ffd400] to-transparent"></div>
+    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-1 w-32 bg-gradient-to-l from-[#ff4fd8] to-transparent"></div>
+    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-32 w-1 bg-gradient-to-b from-[#ffd400] to-transparent"></div>
+    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-32 w-1 bg-gradient-to-t from-[#ff4fd8] to-transparent"></div>
 
     {
       title && (
-        <header class="mb-8 border-l-4 border-[#a3e635] pl-6">
-          <HeadingTag class={`bg-gradient-to-r from-[#f5cf4d] via-[#d4a017] to-[#9a7112] bg-clip-text ${headingSize} leading-normal font-black text-transparent uppercase`}>{title}</HeadingTag>
+        <header class="mb-8 border-l-4 border-[#ff4fd8] pl-6">
+          <HeadingTag class={`bg-gradient-to-r from-[#ffe94d] via-[#ffd400] to-[#ff4fd8] bg-clip-text ${headingSize} leading-normal font-black text-transparent uppercase`}>{title}</HeadingTag>
         </header>
       )
     }

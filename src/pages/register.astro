@@ -25,10 +25,10 @@ const fontHref = usesGoogleFonts
 <html lang="th" style={`--font-sans: ${fontStack};`}>
   <head>
     <meta charset="utf-8" />
-    <title>สมัครสมาชิก YOK789 | กำลังเชื่อมต่อไปหน้าสมัครอัตโนมัติ</title>
+    <title>สมัครสมาชิก OKG777 | กำลังเชื่อมต่อไปหน้าสมัครอัตโนมัติ</title>
     <meta
       name="description"
-      content="หน้าเชื่อมต่อสมัครสมาชิก YOK789 เว็บตรงรวมสล็อต คาสิโนสด หวย และกีฬา ที่ใช้เบอร์โทรศัพท์กับรหัส PIN 4 หลักเป็นข้อมูลหลัก ระบบกำลังพาไปยังหน้าสมัครของเว็บ"
+      content="หน้าเชื่อมต่อสมัครสมาชิก OKG777 เว็บตรงรวมสล็อต คาสิโนสด และกีฬาไว้ในบัญชีเดียว ใช้เบอร์โทรศัพท์กับรหัส PIN 4 หลักเป็นข้อมูลหลัก ระบบกำลังพาไปยังหน้าสมัครของเว็บ"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -67,21 +67,15 @@ const fontHref = usesGoogleFonts
     </style>
 
     <style>
-      /* YOK789 is a jade-green brand on a near-black green surface, with gold as
-         its only support hue. No pink, no cyan, no red, no copper. Every
-         variable below is NAMED FOR THE COLOUR IT HOLDS, which previous brands
-         stopped doing: this block once declared `--brand-gold` on brands with
-         no gold in them and `--brand-pink` on a gold one, so the next editor
-         reused it by name and shipped the wrong hue. Rename with the value. */
       :root {
-        --page-bg: #050d07;
-        --panel-bg: rgba(8, 21, 13, 0.94);
-        --brand-green: #12b84f;
-        --brand-green-deep: #0a6b2f;
-        --brand-green-light: #5cff9b;
-        --brand-gold: #ffd94a;
-        --text-body: #d5f0dd;
-        --text-muted: #9dbfa8;
+        --page-bg: #0d0320;
+        --panel-bg: rgba(23, 7, 51, 0.94);
+        --brand-yellow: #ffd400;
+        --brand-yellow-deep: #b8860a;
+        --brand-yellow-light: #ffe94d;
+        --brand-magenta: #ff4fd8;
+        --text-body: #ece2fb;
+        --text-muted: #a99ac4;
       }
 
       body {
@@ -90,8 +84,8 @@ const fontHref = usesGoogleFonts
         color: var(--text-body);
 
         background:
-          radial-gradient(circle at 50% 10%, rgba(18, 184, 79, 0.18) 0%, transparent 55%),
-          radial-gradient(circle at 50% 92%, rgba(255, 217, 74, 0.22) 0%, transparent 55%), var(--page-bg);
+          radial-gradient(circle at 50% 10%, rgba(255, 212, 0, 0.18) 0%, transparent 55%),
+          radial-gradient(circle at 50% 92%, rgba(255, 79, 216, 0.22) 0%, transparent 55%), var(--page-bg);
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -105,11 +99,11 @@ const fontHref = usesGoogleFonts
         max-width: 450px;
         padding: 3.5rem;
         background: var(--panel-bg);
-        border: 1px solid rgba(18, 184, 79, 0.4);
+        border: 1px solid rgba(255, 212, 0, 0.4);
         border-radius: 2rem;
         box-shadow:
-          0 1rem 3rem rgba(18, 184, 79, 0.18),
-          0 0 2rem rgba(18, 184, 79, 0.25);
+          0 1rem 3rem rgba(255, 212, 0, 0.18),
+          0 0 2rem rgba(255, 212, 0, 0.25);
         text-align: center;
         backdrop-filter: blur(10px);
       }
@@ -118,13 +112,13 @@ const fontHref = usesGoogleFonts
         font-family: "Oswald", sans-serif;
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(180deg, var(--brand-green-light) 0%, #2fd96f 40%, var(--brand-green) 72%, var(--brand-green-deep) 100%);
+        background: linear-gradient(180deg, var(--brand-yellow-light) 0%, var(--brand-yellow) 45%, var(--brand-magenta) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         letter-spacing: 0.3em;
         margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 2px rgba(18, 184, 79, 0.35));
+        filter: drop-shadow(0 1px 2px rgba(255, 212, 0, 0.35));
       }
 
       .sophisticated-loader {
@@ -140,30 +134,30 @@ const fontHref = usesGoogleFonts
       .orb {
         width: 40px;
         height: 40px;
-        background: radial-gradient(circle, var(--brand-green-light) 0%, var(--brand-green) 45%, var(--brand-green-deep) 100%);
+        background: radial-gradient(circle, var(--brand-yellow-light) 0%, var(--brand-yellow) 45%, var(--brand-yellow-deep) 100%);
         border-radius: 50%;
-        box-shadow: 0 0 2rem rgba(18, 184, 79, 0.35);
+        box-shadow: 0 0 2rem rgba(255, 212, 0, 0.35);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .ring {
         position: absolute;
         border-radius: 50%;
-        border: 3px solid rgba(18, 184, 79, 0.2);
+        border: 3px solid rgba(255, 212, 0, 0.2);
         animation: spin linear infinite;
       }
 
       .ring-1 {
         width: 100%;
         height: 100%;
-        border-top-color: var(--brand-green-deep);
+        border-top-color: var(--brand-yellow-deep);
         animation-duration: 4s;
       }
 
       .ring-2 {
         width: 80%;
         height: 80%;
-        border-bottom-color: var(--brand-gold);
+        border-bottom-color: var(--brand-magenta);
         animation-duration: 6s;
         animation-direction: reverse;
       }
@@ -180,11 +174,11 @@ const fontHref = usesGoogleFonts
         0%,
         100% {
           transform: scale(1);
-          box-shadow: 0 0 2rem rgba(18, 184, 79, 0.35);
+          box-shadow: 0 0 2rem rgba(255, 212, 0, 0.35);
         }
         50% {
           transform: scale(1.15);
-          box-shadow: 0 0 3rem rgba(18, 184, 79, 0.5);
+          box-shadow: 0 0 3rem rgba(255, 212, 0, 0.5);
         }
       }
 
@@ -195,7 +189,7 @@ const fontHref = usesGoogleFonts
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text-body);
-        text-shadow: 0 1px 1px rgba(18, 184, 79, 0.25);
+        text-shadow: 0 1px 1px rgba(255, 212, 0, 0.25);
         margin: 0;
       }
       .status-text .p {
@@ -208,7 +202,7 @@ const fontHref = usesGoogleFonts
   </head>
   <body>
     <div class="premium-loading-container">
-      <div class="brand-identity">YOK789</div>
+      <div class="brand-identity">OKG777</div>
 
       <div class="sophisticated-loader">
         <div class="orb"></div>
@@ -218,7 +212,7 @@ const fontHref = usesGoogleFonts
 
       <div class="status-text">
         <h1 class="h1">CREATING SECURE ACCOUNT SESSION...</h1>
-        <p class="p">กำลังพาไปหน้าสมัครสมาชิก YOK789 ด้วยเบอร์โทรศัพท์ <span aria-hidden="true">🔒</span></p>
+        <p class="p">กำลังพาไปหน้าสมัครสมาชิก OKG777 ด้วยเบอร์โทรศัพท์ <span aria-hidden="true">🔒</span></p>
       </div>
     </div>
 
