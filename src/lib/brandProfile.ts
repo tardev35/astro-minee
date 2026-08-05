@@ -91,19 +91,16 @@ export const BRAND_NAME = "LCX88";
 // ประกาศตรงตัวชนะการ inherit อยู่แล้ว ค่านี้จึงเป็น "พื้น" ไม่ใช่การบังคับ
 export const BRAND_TEXT = "#d7e3ff";
 
-// ── ที่อยู่ติดต่อบนหน้า /contact-us ────────────────────────────────────────
-// ปกติไม่ต้องแก้อะไรตรงนี้ — ที่อยู่มาจาก BRAND_NAME เองอัตโนมัติ (ดู SKILL.md)
-// สองบรรทัดล่างคือช่องสำหรับ "ที่อยู่จดทะเบียนจริง" ถ้าวันไหนมี ใส่แล้วมันชนะ
+// ── ที่อยู่ + อีเมลติดต่อ (หน้า /contact-us และ footer) ────────────────────
+// ปกติไม่ต้องแก้อะไรตรงนี้ — ทั้งที่อยู่และอีเมลมาจาก BRAND_NAME กับ site:
+// เองอัตโนมัติ (ดู SKILL.md) สองบรรทัดล่างคือช่องสำหรับ "ที่อยู่จดทะเบียนจริง"
+// ถ้าวันไหนมี ใส่แล้วมันชนะ
 const ADDRESS_OWNER = "";
 const ADDRESS_LINES: readonly string[] = [];
 
-const CONTACT_DESKS = [
-  "ศูนย์ประสานงานลูกค้า",
-  "ฝ่ายบริการลูกค้า",
-  "ศูนย์ดูแลสมาชิก",
-  "ฝ่ายประสานงานสมาชิก",
-  "ศูนย์บริการสมาชิก",
-] as const;
+const CONTACT_DESKS = ["ศูนย์ประสานงานลูกค้า", "ฝ่ายบริการลูกค้า", "ศูนย์ดูแลสมาชิก", "ฝ่ายประสานงานสมาชิก", "ศูนย์บริการสมาชิก"] as const;
+
+const CONTACT_MAILBOXES = ["support", "contact", "info", "service", "help"] as const;
 
 function generatedAddress(brand: string): readonly string[] {
   const spot = THAI_PROVINCES[hash32(`${brand} contact-locality`) % THAI_PROVINCES.length];
@@ -111,15 +108,27 @@ function generatedAddress(brand: string): readonly string[] {
   return [`${desk} ${brand}`, `${spot.district} ${spot.province} ${spot.postcode}`];
 }
 
+function generatedEmail(brand: string): string {
+  const box = CONTACT_MAILBOXES[hash32(`${brand} contact-mailbox`) % CONTACT_MAILBOXES.length];
+  let host = "";
+  try {
+    host = new URL(import.meta.env.SITE ?? "").hostname.replace(/^www\./, "");
+  } catch {
+    host = "";
+  }
+  return host ? `${box}@${host}` : "";
+}
+
 export interface BrandAddress {
   readonly label: string;
   readonly lines: readonly string[];
+  readonly email: string;
 }
 
 export const BRAND_ADDRESS: BrandAddress =
   ADDRESS_OWNER.trim().toUpperCase() === BRAND_NAME.trim().toUpperCase() && ADDRESS_LINES.length > 0
-    ? { label: "ที่อยู่จดทะเบียนบริษัท", lines: ADDRESS_LINES }
-    : { label: "ที่อยู่ติดต่อ", lines: generatedAddress(BRAND_NAME) };
+    ? { label: "ที่อยู่จดทะเบียนบริษัท", lines: ADDRESS_LINES, email: generatedEmail(BRAND_NAME) }
+    : { label: "ที่อยู่ติดต่อ", lines: generatedAddress(BRAND_NAME), email: generatedEmail(BRAND_NAME) };
 
 /** ต่อท้าย URL ของไอคอนเป็น ?v=... — ไม่ต้องแก้เอง มาจาก BRAND_NAME
  *
