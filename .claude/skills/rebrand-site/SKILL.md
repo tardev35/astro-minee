@@ -106,7 +106,7 @@ subagent that builds mid-flight both wastes the most expensive step and
 can't see the other agents' not-yet-merged edits anyway.
 
 **Step P3 — you merge + verify.** After every fan-out agent reports back, run
-Phase 5 (the one build), Phase 6 (workspec), and any Phase 7 follow-ups
+Phase 5 (the one build), Phase 6 (the closing report), and any Phase 7 follow-ups
 yourself. If verification shows a shared-chrome component needs a further
 change, make it **yourself** in this step — never send a subagent back
 into the shared set after fan-out.
@@ -578,9 +578,18 @@ the same one:
   current `BRAND_NAME`, and any email inside it must be at the host in `site:`**.
   A block left over from the previous brand fails the build on both counts.
 
+**Read the previous brand's picks from git, in one command.** They are in the
+code that shipped, which is the authoritative record — not in any log someone
+had to remember to write:
+
+```sh
+git show HEAD:src/layouts/MainLayout.astro | grep -E 'components/(Navbar|Footer)'
+git show HEAD:src/pages/index.astro | grep -E 'from "\.\./components/'
+```
+
 If a family genuinely has no better-fitting alternative for this brand's
-mood and you must reuse the previous variant, say so explicitly in the
-`workspec.md` entry with the reason — don't silently leave the old pick
+mood and you must reuse the previous variant, **say so with the reason in the
+summary you give the operator at the end** — don't silently leave the old pick
 in place. The default expectation on every rebrand is: different navbar,
 different footer, different announcement, different winners feed, and a
 visibly different ContentBox shape-mix than the brand before.
@@ -699,8 +708,7 @@ deleting it turns each `<p>` into its own flex item beside the icon) and
 `ContentBoxTwoCyberCut` ×1 (its intro-slot wrapper carries a real `mb-8`
 and sits next to the grid, so it can't be hoisted onto the card).
 
-All 25 `ContentBox*` files were swept on 2026-07-26; see that
-`workspec.md` entry.
+All 25 `ContentBox*` files were swept on 2026-07-26.
 
 **House style for body copy inside any content box — headings may be
 centered, paragraphs are always flush left at `text-base`.** Set on
@@ -755,8 +763,8 @@ column). Read the slides with `Read`, choose the 2 whose drawn content
 maps cleanly onto a docx section (e.g. a certification/SSL image → the
 "licensed/standards" section, a speed-test image → the "performance
 test" section), and don't feel obliged to place all four — leaving 2
-slides unused is expected and fine. Note which slides you used vs left
-out in the workspec.
+slides unused is expected and fine. Say which slides you used and which you
+left out in the closing summary.
 
 **Every docx heading must survive, in document order, before you touch
 theming.** Before writing a single line of `index.astro`, list out
@@ -969,7 +977,7 @@ Phase 5 build covers all pages at once.) For each page:
    `Huay` theme (red/gold) + `AnnouncementHuay` on purpose — do **not**
    force them onto the casino brand's hue or `AnnouncementCyber`. Still
    verify they carry **zero** old-brand-name references; only the theme
-   is exempt, not the brand name. Note this decision in the workspec.
+   is exempt, not the brand name. Note this decision in the closing summary.
 
 ### Two pages carry no article body — `/contact-us` and `/ทางเข้า`
 
@@ -1125,7 +1133,7 @@ turning them off is an action, not an absence of one:**
 - Leave the `*Huay` components themselves alone — they are inventory for the
   next lottery brand, same as every other unused variant.
 
-Record the on/off decision in the workspec either way.
+Record the on/off decision in the closing summary either way.
 
 **`terms.astro` and `privacy.astro` are NOT in that decision.** They ship on
 every brand, are never parked, and are never rewritten. They are brand-neutral
@@ -1688,29 +1696,35 @@ pointing at a `public/` path during a rebrand, repoint it to the
    unavailable, leave the dev server running and move on — a leftover
    dev server is harmless. Never widen the kill to make it succeed.
 
-## Phase 6 — Update the workspec
+## Phase 6 — Report, and do NOT write `workspec.md`
 
-Keep a `workspec.md` at the repo root as a running log of rebrand work:
-goal, docx section inventory, file-by-file change list (grouped:
-stale-asset fixes named by the user / layout chrome / component
-retheme / content rewrite), the glob/asset bug found and how it was
-fixed, verification steps actually run, and an explicit "out of scope"
-section listing anything left untouched (other pages still on the old
-brand, dead leftover asset files not deleted). Append a new dated
-section for follow-up asks (e.g. a later single-component redesign)
-rather than rewriting history.
+**Do not append to `workspec.md`.** It is not maintained any more (owner's
+call, 2026-08-05). The file stays at the repo root as history; leave it alone.
+Writing a full entry — goal, section inventory, file-by-file change list,
+verification steps, out-of-scope — cost a couple of minutes of every run to
+produce a record nobody read back, in a 500 KB file the build has to scan.
 
-**Record each family's variant pick as a before→after line so the
-rotation rule (Phase 2) stays auditable.** For this rebrand, write out
-which sibling each family moved *from* and *to* — e.g. `Navbar:
-NavbarStyle11 → NavbarStyle6`, `Footer: FooterPremiumSumo → FooterCyber`,
-`Announcement: Announcement6 → Announcement3`, `LatestWinners:
-LatestWinners2 → LatestWinnersPremium`, `ContentBox mix:
-FloatingBadge+CyberCut-heavy → Premium+plain-heavy`. The next rebrand
-reads this section to know what NOT to reuse; if any family stayed on
-the same variant, the line must say so with the reason. Grep the
-previous dated entry's picks before choosing this brand's, so you don't
-accidentally land on the same sibling two brands running.
+Everything it held now lives somewhere that gets read:
+
+| เคยอยู่ใน workspec | อยู่ที่ไหนแทน |
+|---|---|
+| ไฟล์ที่แก้ | `git status` / `git diff` — ตรงกว่าและไม่มีทางลืม |
+| variant ที่รอบก่อนใช้ | โค้ดที่ shipped อยู่ อ่านด้วย `git show HEAD:...` (Phase 2) |
+| บั๊กที่เจอ + วิธีแก้ | commit message |
+| การ verify ที่รันจริง | ผล `npm run build` ที่ต่อท้ายด้วย `verify-build` |
+| สิ่งที่จงใจไม่แตะ | **สรุปที่คุณเขียนให้ operator ตอนจบ** |
+
+**Write that closing summary instead.** It is the one thing here an operator
+actually reads, it costs nothing extra (you are ending the run anyway), and it
+is where every "note this in the workspec" instruction elsewhere in this file
+now points. Cover:
+
+- ชื่อแบรนด์ · โดเมนที่ตั้งใน `site:` · ฟอนต์
+- variant ที่เลือกแต่ละตระกูล เป็น before→after (`Navbar: NavbarStyle11 →
+  NavbarStyle6`) และถ้าตระกูลไหนใช้ตัวเดิม **ต้องบอกเหตุผล**
+- `h1`/`h2`/`h3` ที่ได้ เทียบกับ checklist จาก docx
+- ของที่จงใจไม่แตะ และหน้าที่ยังเป็นของแบรนด์เก่า (ถ้ามี)
+- อะไรที่ operator ต้องไปทำต่อเอง (เช่น description ที่ยังสั้นกว่า 150)
 
 ## Phase 7 — Follow-up single-component redesign requests
 
@@ -1744,7 +1758,5 @@ re-run the full rebrand:
    version still feels like the same site, not a different brand.
 5. Rebuild (`npm run build`) and re-verify per Phase 5 before reporting
    done — a redesign that breaks the build isn't done.
-6. Append a dated `## Redesign: <ComponentName>` section to
-   `workspec.md` (per Phase 6) describing what changed and why — even
-   for a second/third pass on the same component, keep appending, keep
-   old entries.
+6. Report what changed and why — which component, what it looked like before,
+   what drove the new shape. In the reply, not in a file (Phase 6).
