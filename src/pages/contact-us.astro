@@ -83,6 +83,14 @@ const graph = pageGraph(Astro, {
           {BRAND_ADDRESS.lines.map((line) => (
             <span class="block">{line}</span>
           ))}
+          {BRAND_ADDRESS.email && (
+            <span class="mt-3 block">
+              <span aria-hidden="true" class="mr-2">✉️</span>
+              <a href={`mailto:${BRAND_ADDRESS.email}`} class="font-bold text-[#ffe08a] underline decoration-current/40 underline-offset-4">
+                {BRAND_ADDRESS.email}
+              </a>
+            </span>
+          )}
         </address>
       )
     }
