@@ -6,24 +6,24 @@ import slide2 from "../assets/slide2.png";
 import slide3 from "../assets/slide3.png";
 import slide4 from "../assets/slide4.png";
 
-// Each alt is the text actually printed on that slide, including the safety
-// strip every one of them carries along the bottom edge.
+// Each alt is the text actually printed on that slide. Only slide4 carries the
+// safety strip along its bottom edge, so only slide4's alt mentions it.
 const images = [
   {
     src: slide1,
-    alt: "แบนเนอร์โปรโมชั่น XFINITYPLAY ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม พร้อมแถบด้านล่าง มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝาก-ถอน ออโต้ ระบบเร็ว ทันใจ ภายในวินาที และ รองรับมือถือ 100% เล่นได้ทุกที่ ทุกเวลา 24 ชม.",
+    alt: "แบนเนอร์โปรโมชั่น LCX88 ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที",
   },
   {
     src: slide2,
-    alt: "แบนเนอร์โปรโมชั่น XFINITYPLAY ข้อความ คืนยอดเสียทุกวัน 10% สูงสุด 5,000 บาท พร้อมแถบด้านล่าง มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝาก-ถอน ออโต้ ระบบเร็ว ทันใจ ภายในวินาที และ รองรับมือถือ 100% เล่นได้ทุกที่ ทุกเวลา 24 ชม.",
+    alt: "แบนเนอร์โปรโมชั่น LCX88 ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม",
   },
   {
     src: slide3,
-    alt: "แบนเนอร์โปรโมชั่น XFINITYPLAY ข้อความ ชวนเพื่อน รับเครดิตฟรี 300 บาท พร้อมแถบด้านล่าง มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝาก-ถอน ออโต้ ระบบเร็ว ทันใจ ภายในวินาที และ รองรับมือถือ 100% เล่นได้ทุกที่ ทุกเวลา 24 ชม.",
+    alt: "แบนเนอร์โปรโมชั่น LCX88 ข้อความ คืนยอดเสียทุกวัน 10% สูงสุด 5,000 บาท",
   },
   {
     src: slide4,
-    alt: "แบนเนอร์โปรโมชั่น XFINITYPLAY ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมแถบด้านล่าง มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝาก-ถอน ออโต้ ระบบเร็ว ทันใจ ภายในวินาที และ รองรับมือถือ 100% เล่นได้ทุกที่ ทุกเวลา 24 ชม.",
+    alt: "แบนเนอร์โปรโมชั่น LCX88 ข้อความ ชวนเพื่อน รับเครดิตฟรี 300 บาท ชวนมาก ได้มาก พร้อมแถบด้านล่าง มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝากถอนออโต้ รวดเร็ว ทันใจ รองรับมือถือ แอปใช้งานง่าย และ บริการตลอด 24 ชม. ดูแลทุกการใช้งาน",
   },
 ];
 
@@ -35,7 +35,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
   <input id="carousel-pause" type="checkbox" class="peer sr-only" />
   <label
     for="carousel-pause"
-    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#22d3ee]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#a5f3fc]">
+    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#f5c542]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#ffe08a]">
     หยุด / เล่นสไลด์ภาพ
   </label>
 
@@ -48,11 +48,11 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
             <Picture
               src={slide.src}
               alt={isDuplicate ? "" : slide.alt}
-              class="block w-full rounded-xl border border-[#22d3ee]/25 object-cover shadow-[0_10px_30px_rgba(34,211,238,0.2)]"
+              class="block w-full rounded-xl border border-[#2f6bff]/30 object-cover shadow-[0_10px_30px_rgba(47,107,255,0.22)]"
               width={slide.src.width}
               height={slide.src.height}
-              loading={index < 2 ? "eager" : "lazy"}
-              fetchpriority={index === 0 ? "high" : "auto"}
+              loading="lazy"
+              fetchpriority="low"
               decoding="async"
               widths={[200, 400, 600]}
               sizes="(max-width: 768px) 50vw, 33vw"

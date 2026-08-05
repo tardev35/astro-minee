@@ -5,22 +5,31 @@ export interface Props {
 }
 const { title, as: HeadingTag = "h1" } = Astro.props;
 const headingSize = HeadingTag === "h1" ? "text-xl sm:text-2xl md:text-3xl" : "text-lg sm:text-xl md:text-2xl";
+
+// Badge clearance, checked against a real two-line docx H2 rather than a short
+// placeholder: the badge is `absolute -top-6`, so its bottom edge sits at
+// (badge height - 24px) from the card's top. Two lines at md (24px x 1.5) plus
+// py-2.5 and the 2px borders comes to ~96px, i.e. 72px below the card top —
+// which is why the card keeps pt-32 / md:pt-28 rather than the pt-16 the
+// single-line variants get away with. Do not trim that padding.
 ---
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#d4a017]/25 bg-gradient-to-b from-[#0b1408]/95 to-[#071005]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#dfeacf] shadow-[0_10px_30px_rgba(212,160,23,0.16)] md:pt-28">
-    <div class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#d4a017]/25 blur-[60px]"></div>
-    <div class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#a3e635]/35 blur-[60px]"></div>
+    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#2f6bff]/30 bg-gradient-to-b from-[#0a1547]/95 to-[#040b2e]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#d7e3ff] shadow-[0_10px_30px_rgba(47,107,255,0.18)] md:pt-28">
+    <div class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#f5c542]/25 blur-[60px]"></div>
+    <div class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#2f6bff]/35 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#d4a017]/35 bg-[#0b1408] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(212,160,23,0.22)] sm:px-8">
-          <span aria-hidden="true" class="shrink-0 text-[#a3e635]">
+        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#f5c542]/40 bg-[#071138] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(245,197,66,0.22)] sm:px-8">
+          <span aria-hidden="true" class="shrink-0 text-[#6ea3ff]">
             ✦
           </span>
-          <HeadingTag class={`bg-gradient-to-r from-[#f5cf4d] via-[#d4a017] to-[#9a7112] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>{title}</HeadingTag>
-          <span aria-hidden="true" class="shrink-0 text-[#a3e635]">
+          <HeadingTag class={`bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#c08b1f] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
+            {title}
+          </HeadingTag>
+          <span aria-hidden="true" class="shrink-0 text-[#6ea3ff]">
             ✦
           </span>
         </div>

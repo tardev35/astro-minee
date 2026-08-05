@@ -5,18 +5,23 @@ export interface Props {
   titleright?: string;
 }
 const { title, titleleft, titleright } = Astro.props;
+
+// Same badge arithmetic as ContentBoxFloatingBadge: `absolute -top-6` puts the
+// badge's bottom edge at (badge height - 24px) below the card top. A two-line
+// docx H2 at md is ~96px tall, so it lands ~72px down and needs the card to
+// reserve more than that — hence pt-32 / md:pt-28. Do not trim that padding.
 ---
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#d4a017]/25 bg-gradient-to-b from-[#0b1408]/95 to-[#071005]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(212,160,23,0.16)] md:pt-28">
-    <div class="pointer-events-none absolute -right-10 -bottom-16 -z-10 h-40 w-40 rounded-full bg-[#a3e635]/35 blur-[60px]"></div>
-    <div class="pointer-events-none absolute -top-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#d4a017]/25 blur-[60px]"></div>
+    class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#2f6bff]/30 bg-gradient-to-b from-[#0a1547]/95 to-[#040b2e]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(47,107,255,0.18)] md:pt-28">
+    <div class="pointer-events-none absolute -right-10 -bottom-16 -z-10 h-40 w-40 rounded-full bg-[#2f6bff]/35 blur-[60px]"></div>
+    <div class="pointer-events-none absolute -top-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#f5c542]/25 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 w-[92%] max-w-2xl -translate-x-1/2 rounded-lg border-2 border-[#d4a017]/35 bg-[#0b1408] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(212,160,23,0.22)] sm:px-8">
-          <h2 class="bg-gradient-to-r from-[#f5cf4d] via-[#d4a017] to-[#9a7112] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
+        <div class="absolute -top-6 left-1/2 w-[92%] max-w-2xl -translate-x-1/2 rounded-lg border-2 border-[#f5c542]/40 bg-[#071138] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(245,197,66,0.22)] sm:px-8">
+          <h2 class="bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#c08b1f] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
             {title}
           </h2>
         </div>
@@ -24,13 +29,13 @@ const { title, titleleft, titleright } = Astro.props;
     }
 
     <div class="grid grid-cols-1 gap-10 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#dfeacf]">
-        {titleleft && <h2 class="text-2xl leading-normal font-bold text-[#d4a017]">{titleleft}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#d7e3ff]">
+        {titleleft && <h2 class="text-2xl leading-normal font-bold text-[#f5c542]">{titleleft}</h2>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#dfeacf] md:border-l md:border-[#d4a017]/25 md:pl-10">
-        {titleright && <h2 class="text-2xl leading-normal font-bold text-[#d4a017]">{titleright}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#d7e3ff] md:border-l md:border-[#2f6bff]/30 md:pl-10">
+        {titleright && <h2 class="text-2xl leading-normal font-bold text-[#f5c542]">{titleright}</h2>}
         <slot name="right" />
       </article>
     </div>

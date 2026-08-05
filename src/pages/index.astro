@@ -1,46 +1,48 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/Announcement5.astro";
+import Announcement from "../components/Announcement3.astro";
 import ContentBox from "../components/ContentBox.astro";
-import ContentBoxPremium from "../components/ContentBoxPremium.astro";
-import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
-import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
-import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
-import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
+import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
+import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
+import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
+import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinnersCyber.astro";
+import LatestWinners from "../components/LatestWinnersPremium.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq4.astro";
+import Faq from "../components/Faq2.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
 import { pageGraph } from "../lib/schema";
-// slide4 illustrates the เว็บตรง section, slide1 the ฝากถอนไม่มีขั้นต่ำ section.
-// Slides may only live inside a ContentBoxSevenThree* block; SmoothCarousel
-// keeps rendering all four as the pre-existing promotion carousel.
-import imgWebDirect from "../assets/slide4.png";
-import imgNoMinimum from "../assets/slide1.png";
+// slide4 illustrates the ระบบออโต้ section (its own bottom strip reads
+// ฝากถอนออโต้ / บริการตลอด 24 ชม.), slide2 the โอนไว/ตรวจสอบสถานะ section.
+// Slides may only live inside a ContentBoxSevenThree* block, max two per
+// rebrand; SmoothCarousel keeps rendering all four as the promotion carousel.
+import imgAutoSystem from "../assets/slide4.png";
+import imgFastTransfer from "../assets/slide2.png";
 
-const pageTitle = "XFINITYPLAY เว็บรวมเกมส์ยอดนิยม แตกง่ายมั่นคง ฝากถอนไม่มีขั้นต่ำ";
+const pageTitle = "LCX88 | คาสิโนออนไลน์ระบบออโต้ ฝากถอนไม่มีขั้นต่ำ ปลอดภัยโอนไว";
 
-const pageDescription =
-  "XFINITYPLAY เว็บรวมเกมส์ยอดนิยมจากหลายค่ายไว้ในระบบเดียว แตกง่ายมั่นคง ฝากถอนไม่มีขั้นต่ำ รองรับมือถือ พร้อมระบบออโต้ใช้งานสะดวกและบริการสมาชิกตลอด 24 ชั่วโมง";
+// 155 characters. verify-build.mjs errors outside 150–160 CHARACTERS, and the
+// docx-supplied description is 127 — the trailing clause closes that gap
+// without changing what the brief says.
+const pageDescription = "LCX88 คาสิโนออนไลน์ระบบออโต้ ฝากถอนไม่มีขั้นต่ำ รองรับมือถือ ใช้งานปลอดภัย โอนไว พร้อมเกมหลากหลายและบริการสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาก่อนเริ่มใช้งาน";
 
 const faqs = [
   {
-    q: "XFINITYPLAY มีเกมสล็อตประเภทใดบ้าง?",
-    a: "ภายในระบบมีทั้งสล็อตคลาสสิก วิดีโอสล็อต เกมโบนัส และเกมจากหลายค่าย สมาชิกสามารถค้นหาเกมตามธีม ฟีเจอร์ หรือระดับความผันผวนที่ต้องการได้",
+    q: "LCX88 มีเกมคาสิโนประเภทใดบ้าง?",
+    a: "ภายในระบบมีทั้งเกมสล็อต บาคาร่า รูเล็ต เกมไพ่ และคาสิโนสดจากหลายค่าย สมาชิกสามารถเลือกเกมตามประเภทและรูปแบบที่ตนเองสนใจได้",
   },
   {
-    q: "XFINITYPLAY ฝากถอนไม่มีขั้นต่ำจริงหรือไม่?",
-    a: "ระบบรองรับเงื่อนไขไม่มีขั้นต่ำในช่องทางที่เว็บไซต์กำหนด แต่สมาชิกควรตรวจสอบรายละเอียดล่าสุด เพราะข้อกำหนดอาจแตกต่างตามช่องทางและโปรโมชั่น",
+    q: "LCX88 ฝากถอนไม่มีขั้นต่ำจริงหรือไม่?",
+    a: "ระบบรองรับเงื่อนไขไม่มีขั้นต่ำในช่องทางที่เว็บไซต์กำหนด แต่ควรตรวจสอบรายละเอียดล่าสุด เพราะข้อกำหนดอาจแตกต่างตามช่องทางและโปรโมชั่น",
   },
   {
-    q: "เกมแตกง่ายของ XFINITYPLAY รับประกันผลลัพธ์หรือไม่?",
-    a: "ไม่สามารถรับประกันผลลัพธ์ของเกมสล็อตได้ เนื่องจากแต่ละเกมมีระบบและความผันผวนแตกต่างกัน ควรอ่านกติกา ทดลองเล่น และกำหนดงบประมาณก่อนเริ่ม",
+    q: "ระบบโอนไวของ LCX88 ใช้เวลานานหรือไม่?",
+    a: "ระบบออโต้ช่วยลดขั้นตอนการทำรายการ แต่ระยะเวลาอาจแตกต่างตามธนาคาร ช่องทางชำระเงิน และสถานะการตรวจสอบข้อมูลของบัญชี",
   },
 ];
 
@@ -55,35 +57,68 @@ const graph = pageGraph(Astro, {
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement
-    message="XFINITYPLAY รวมเกมสล็อตยอดนิยมหลายค่ายไว้ในระบบเดียว ทั้งสล็อตคลาสสิก วิดีโอสล็อต และเกมโบนัส • ระบบเว็บตรง สมัคร เข้าสู่ระบบ และเลือกเกมได้จากหน้าเว็บไซต์เดียว • ฝากถอนไม่มีขั้นต่ำตามช่องทางที่เว็บไซต์กำหนด • ทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง ควรตรวจกติกา อัตราจ่าย และระดับความผันผวนก่อนเลือกเกมทุกครั้ง"
+    message="LCX88 คาสิโนออนไลน์ระบบออโต้ รวมเกมสล็อต บาคาร่า รูเล็ต เกมไพ่ และคาสิโนสดจากหลายค่ายไว้ในระบบเดียว • ฝากถอนไม่มีขั้นต่ำตามช่องทางที่เว็บไซต์กำหนด • ระบบโอนไวควรตรวจสอบสถานะรายการทุกครั้งก่อนออกจากหน้าเว็บไซต์ • ทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาและเงื่อนไขก่อนเริ่มใช้งานทุกครั้ง"
   />
 
-  <ContentBoxPremium as="h1" title="XFINITYPLAY เว็บรวมเกมส์ยอดนิยม แตกง่ายมั่นคง ฝากถอนไม่มีขั้นต่ำ">
-    <p class="text-left text-base leading-relaxed text-[#cfe3f5]">
-      <strong class="text-[#a5f3fc]">XFINITYPLAY</strong> เป็นแพลตฟอร์มที่รวบรวมเกมสล็อตยอดนิยมจากหลายค่ายไว้ในระบบเดียว รองรับการใช้งานผ่านมือถือ
-      พร้อมระบบฝากถอนออโต้และเงื่อนไขไม่มีขั้นต่ำตามช่องทางที่กำหนด
+  <ContentBoxCyberCut as="h1" title="LCX88 | คาสิโนออนไลน์ระบบออโต้ ฝากถอนไม่มีขั้นต่ำ ปลอดภัยโอนไว">
+    <p class="text-left text-base leading-relaxed text-[#d7e3ff]">
+      <strong class="text-[#f5c542]">LCX88</strong> เป็นแพลตฟอร์มคาสิโนออนไลน์ที่รวมเกมหลายรูปแบบไว้ในระบบเดียว รองรับการฝากถอนออโต้และเงื่อนไขไม่มีขั้นต่ำตามช่องทางที่กำหนด สมาชิกสามารถเลือกเกม ตรวจสอบโปรโมชั่น
+      และจัดการบัญชีผ่านมือถือได้สะดวก ควรอ่านกติกา เงื่อนไขโบนัส และรายละเอียดธุรกรรมก่อนเริ่มใช้งานทุกครั้ง
     </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#cfe3f5]">
-      สมาชิกสามารถเลือกเกม ตรวจสอบโปรโมชั่น และจัดการบัญชีได้สะดวก ควรอ่านกติกาและเงื่อนไขก่อนเริ่มใช้งานทุกครั้ง
-    </p>
-  </ContentBoxPremium>
+  </ContentBoxCyberCut>
 
-  <ContentBox as="h2" title="XFINITYPLAY รวมเกมสล็อตยอดนิยมหลายค่ายไว้">
-    <p class="text-left text-base leading-relaxed text-[#cfe3f5]">
-      ภายใน XFINITYPLAY มีทั้งสล็อตคลาสสิก วิดีโอสล็อต เกมโบนัส และเกมที่มาพร้อมฟีเจอร์พิเศษ ผู้เล่นสามารถค้นหาเกมตามค่าย ธีม
-      หรือรูปแบบที่ชื่นชอบได้ง่าย
-    </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#cfe3f5]">
-      ควรตรวจสอบกติกา อัตราจ่าย และระดับความผันผวน เพื่อเลือกเกมให้เหมาะกับงบประมาณของตนเอง
+  <ContentBox as="h2" title="รวมเกมคาสิโนออนไลน์หลายรูปแบบไว้บน LCX88">
+    <p class="text-left text-base leading-relaxed text-[#d7e3ff]">
+      ภายใน LCX88 มีทั้งเกมสล็อต เกมไพ่ บาคาร่า รูเล็ต และเกมคาสิโนสดจากหลายค่าย ผู้เล่นสามารถเลือกเกมตามประเภท รูปแบบ หรือความถนัดของตนเองได้ง่าย ควรศึกษากติกา อัตราการจ่าย
+      และเงื่อนไขของแต่ละเกมก่อนเริ่ม เพื่อวางงบประมาณได้อย่างเหมาะสม
     </p>
   </ContentBox>
 
   <ProviderGrid />
 
-  <ContentBoxSevenThreePremium title="ระบบเว็บตรงช่วยลดขั้นตอนและทำให้ใช้งานง่าย">
+  <GameRankingBoard />
+
+  <ContentBoxSevenThreeCyberCut titleright="ระบบออโต้ช่วยลดขั้นตอนการฝากและถอน">
     <Picture
       slot="left"
-      src={imgWebDirect}
+      src={imgAutoSystem}
+      loading="lazy"
+      fetchpriority="low"
+      widths={[300, 450, 600]}
+      sizes="(max-width: 768px) calc(100vw - 4rem), 355px"
+      decoding="async"
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      quality={80}
+      alt="แบนเนอร์โปรโมชั่น LCX88 ข้อความ ชวนเพื่อน รับเครดิตฟรี 300 บาท ชวนมาก ได้มาก พร้อมแถบด้านล่าง มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝากถอนออโต้ รวดเร็ว ทันใจ รองรับมือถือ แอปใช้งานง่าย และ บริการตลอด 24 ชม. ดูแลทุกการใช้งาน"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#2f6bff]/35 shadow-[0_10px_30px_rgba(47,107,255,0.22)]"
+    />
+    <p slot="right" class="text-left text-base leading-relaxed text-[#d7e3ff]">
+      ระบบฝากถอนออโต้ช่วยให้สมาชิกทำรายการผ่านหน้าบัญชีได้ด้วยตนเอง โดยควรใช้ข้อมูลที่ตรงกับบัญชีสมัคร ตรวจสอบยอดก่อนยืนยัน และเก็บหลักฐานรายการไว้จนกว่าระบบจะแสดงสถานะสำเร็จ
+      หากพบความล่าช้าควรติดต่อทีมงานผ่านช่องทางหลัก
+    </p>
+  </ContentBoxSevenThreeCyberCut>
+
+  <ContentBoxFloatingBadge as="h2" title="ฝากถอนไม่มีขั้นต่ำผ่านระบบของ LCX88">
+    <p class="text-left text-base leading-relaxed text-[#d7e3ff]">
+      เงื่อนไขไม่มีขั้นต่ำของ LCX88 ช่วยให้สมาชิกกำหนดยอดทำรายการได้ยืดหยุ่นมากขึ้น แต่ควรตรวจสอบช่องทางที่รองรับ สถานะบัญชี และข้อกำหนดของโปรโมชั่นก่อนยืนยันทุกครั้ง
+      เพื่อช่วยลดปัญหาจากข้อมูลไม่ตรงกันหรือรายการที่ต้องตรวจสอบเพิ่มเติม
+    </p>
+  </ContentBoxFloatingBadge>
+
+  <ContentBox as="h2" title="LCX88 ให้ความสำคัญกับความปลอดภัยของบัญชี">
+    <p class="text-left text-base leading-relaxed text-[#d7e3ff]">
+      การใช้งาน LCX88 อย่างปลอดภัยควรเริ่มจากการเข้าสู่ระบบผ่านช่องทางหลัก ตั้งรหัสผ่านที่คาดเดายาก และไม่เปิดเผยรหัสยืนยันแก่บุคคลอื่น สมาชิกควรหลีกเลี่ยงเครือข่ายสาธารณะเมื่อต้องทำธุรกรรม
+      และออกจากระบบทุกครั้งเมื่อใช้อุปกรณ์ร่วมกับผู้อื่น
+    </p>
+  </ContentBox>
+
+  <LoginRtpSection />
+
+  <ContentBoxSevenThreeFloatingBadge title="ระบบโอนไวควรตรวจสอบสถานะรายการทุกครั้ง">
+    <Picture
+      slot="left"
+      src={imgFastTransfer}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -92,95 +127,41 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่น XFINITYPLAY ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมแถบด้านล่าง มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝาก-ถอน ออโต้ ระบบเร็ว ทันใจ ภายในวินาที และ รองรับมือถือ 100% เล่นได้ทุกที่ ทุกเวลา 24 ชม."
-      class="mx-auto h-auto w-full rounded-2xl border border-[#22d3ee]/30 shadow-[0_10px_30px_rgba(34,211,238,0.2)]"
+      alt="แบนเนอร์โปรโมชั่น LCX88 ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f5c542]/35 shadow-[0_10px_30px_rgba(245,197,66,0.22)]"
     />
-    <div slot="right">
-      <p class="text-left text-base leading-relaxed text-[#cfe3f5]">
-        การใช้งานผ่านระบบเว็บตรงช่วยให้สมาชิกสมัคร เข้าสู่ระบบ เลือกเกม และตรวจสอบรายการได้จากหน้าเว็บไซต์เดียว
-      </p>
-      <p class="mt-3 text-left text-base leading-relaxed text-[#cfe3f5]">
-        ควรตรวจสอบช่องทางเข้าให้ถูกต้องก่อนกรอกข้อมูล ตั้งรหัสผ่านที่คาดเดายาก และไม่เปิดเผยรหัสยืนยันแก่ผู้อื่น เพื่อเพิ่มความปลอดภัยของบัญชี
-      </p>
-    </div>
-  </ContentBoxSevenThreePremium>
-
-  <LoginRtpSection />
-
-  <ContentBoxNeumorphism as="h2" title="เกมแตกง่ายบน XFINITYPLAY ควรเลือกจากข้อมูลประกอบ">
-    <p class="text-left text-base leading-relaxed text-[#cfe3f5]">
-      คำว่าเกมแตกง่ายบน XFINITYPLAY ใช้สื่อถึงเกมที่มีฟีเจอร์และจังหวะลุ้นรางวัลน่าสนใจ แต่ไม่สามารถรับประกันผลลัพธ์ได้
+    <p slot="right" class="text-left text-base leading-relaxed text-[#d7e3ff]">
+      ความเร็วของรายการอาจขึ้นอยู่กับธนาคาร ช่องทางชำระเงิน และสถานะบัญชี สมาชิกควรตรวจสอบชื่อบัญชี จำนวนเงิน และผลการทำรายการก่อนออกจากหน้าเว็บไซต์ หากรายการยังไม่สำเร็จ ไม่ควรทำซ้ำทันที
+      แต่ควรเก็บข้อมูลไว้และติดต่อทีมงานเพื่อตรวจสอบ
     </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#cfe3f5]">
-      ผู้เล่นควรศึกษาความผันผวน อัตราจ่าย และรูปแบบโบนัส พร้อมกำหนดวงเงินและเวลาเล่นให้ชัดเจนก่อนเริ่ม
-    </p>
-  </ContentBoxNeumorphism>
-
-  <GameRankingBoard />
-
-  <ContentBoxSevenThreeNeumorphism title="ฝากถอนไม่มีขั้นต่ำผ่านระบบของ XFINITYPLAY">
-    <Picture
-      slot="left"
-      src={imgNoMinimum}
-      loading="lazy"
-      fetchpriority="low"
-      widths={[300, 450, 600]}
-      sizes="(max-width: 768px) calc(100vw - 4rem), 390px"
-      decoding="async"
-      formats={["avif", "webp"]}
-      fallbackFormat="webp"
-      quality={80}
-      alt="แบนเนอร์โปรโมชั่น XFINITYPLAY ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม พร้อมแถบด้านล่าง มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝาก-ถอน ออโต้ ระบบเร็ว ทันใจ ภายในวินาที และ รองรับมือถือ 100% เล่นได้ทุกที่ ทุกเวลา 24 ชม."
-      class="mx-auto h-auto w-full rounded-2xl border border-[#a855f7]/30 shadow-[0_10px_30px_rgba(168,85,247,0.22)]"
-    />
-    <div slot="right">
-      <p class="text-left text-base leading-relaxed text-[#cfe3f5]">
-        เงื่อนไขฝากถอนไม่มีขั้นต่ำของ XFINITYPLAY ช่วยให้สมาชิกกำหนดยอดทำรายการได้ยืดหยุ่นมากขึ้น
-      </p>
-      <p class="mt-3 text-left text-base leading-relaxed text-[#cfe3f5]">
-        อย่างไรก็ตาม ควรตรวจสอบช่องทางที่รองรับ สถานะบัญชี และข้อกำหนดของโปรโมชั่นก่อนยืนยัน เพื่อช่วยลดปัญหารายการล่าช้าหรือข้อมูลไม่ตรงกัน
-      </p>
-    </div>
-  </ContentBoxSevenThreeNeumorphism>
+  </ContentBoxSevenThreeFloatingBadge>
 
   <LatestWinners />
 
-  <ContentBoxSpecial as="h2" title="เล่นผ่านมือถือได้สะดวกทุกอุปกรณ์">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#cfe3f5]">
-      เว็บไซต์รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ ผู้ใช้งานจึงสามารถเข้าสู่ระบบ ค้นหาเกม ตรวจสอบโปรโมชั่น และทำรายการผ่านเบราว์เซอร์ได้
+  <ContentBoxCyberCut as="h2" title="ช่องทางดูแลสมาชิกจากทีมงาน LCX88">
+    <p class="text-left text-base leading-relaxed text-[#d7e3ff]">
+      เมื่อพบปัญหาเกี่ยวกับบัญชี ทางเข้าเล่น โปรโมชั่น หรือสถานะฝากถอน สมาชิกสามารถติดต่อทีมงาน <strong class="text-[#f5c542]">LCX88</strong> ผ่านช่องทางที่เว็บไซต์ระบุ ควรเตรียมชื่อผู้ใช้ เวลา และรายละเอียดรายการให้ครบถ้วน
+      โดยไม่ส่งรหัสผ่านหรือรหัสยืนยันแก่บุคคลอื่น
     </p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#cfe3f5]">
-      ควรใช้อินเทอร์เน็ตที่เสถียร อัปเดตเบราว์เซอร์ และหลีกเลี่ยงเครือข่ายสาธารณะเมื่อต้องทำธุรกรรม
-    </p>
-  </ContentBoxSpecial>
+  </ContentBoxCyberCut>
 
-  <ContentBoxPremium as="h2" title="ช่องทางดูแลสมาชิกจากทีมงาน XFINITYPLAY">
-    <p class="text-left text-base leading-relaxed text-[#cfe3f5]">
-      เมื่อพบปัญหาเกี่ยวกับบัญชี ทางเข้าเล่น โปรโมชั่น หรือสถานะฝากถอน สมาชิกสามารถติดต่อทีมงาน <strong class="text-[#a5f3fc]">XFINITYPLAY</strong>
-      ผ่านช่องทางที่เว็บไซต์ระบุ
-    </p>
-    <p class="mt-3 text-left text-base leading-relaxed text-[#cfe3f5]">
-      ควรเตรียมชื่อผู้ใช้ เวลา และรายละเอียดรายการให้ครบถ้วน โดยไม่ส่งรหัสผ่านหรือรหัสยืนยันแก่บุคคลอื่น
-    </p>
-  </ContentBoxPremium>
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ LCX88" faqs={faqs} />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#a5f3fc] via-[#22d3ee] to-[#a855f7] px-4 py-3 text-sm font-black whitespace-nowrap text-[#080520] shadow-[0_10px_30px_rgba(34,211,238,0.28)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(34,211,238,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#c08b1f] px-4 py-3 text-sm font-black whitespace-nowrap text-[#04102e] shadow-[0_10px_30px_rgba(245,197,66,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(245,197,66,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#a855f7]/70 bg-[#0d0a2b]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#a5f3fc] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#22d3ee] hover:bg-[#130d3a]/85 hover:shadow-[0_15px_40px_rgba(168,85,247,0.38)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#2f6bff]/70 bg-[#0a1547]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#ffe08a] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#f5c542] hover:bg-[#122264]/85 hover:shadow-[0_15px_40px_rgba(47,107,255,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>
 
   <SmoothCarousel />
-
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ XFINITYPLAY" faqs={faqs} />
 
   <ReviewCardSumo2 />
 

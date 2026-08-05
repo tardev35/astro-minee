@@ -1,21 +1,21 @@
 ---
 const providers = [
-  { name: "สล็อตคลาสสิก", desc: "วงล้อรูปแบบดั้งเดิม กติกาสั้น เข้าใจจังหวะเกมได้ไว", tag: "เริ่มจากกติกา", icon: "🍒" },
-  { name: "วิดีโอสล็อต", desc: "ธีมและกราฟิกหลากหลาย ดูอัตราจ่ายและความผันผวนก่อนเลือก", tag: "ดูอัตราจ่าย", icon: "🎬" },
-  { name: "เกมโบนัส", desc: "มีรอบโบนัสและฟีเจอร์พิเศษ ตรวจเงื่อนไขการเข้ารอบก่อนเล่น", tag: "อ่านเงื่อนไข", icon: "🎁" },
-  { name: "เกมฟีเจอร์พิเศษ", desc: "ระบบเสริมเฉพาะตัวในแต่ละเกม ควรลองทำความเข้าใจก่อนลงเครดิต", tag: "ทำความเข้าใจก่อน", icon: "✨" },
-  { name: "ค้นหาตามค่ายเกม", desc: "รวมเกมจากหลายค่ายไว้ในระบบเดียว เลือกดูตามผู้พัฒนาได้", tag: "หลายค่ายในที่เดียว", icon: "🏷️" },
-  { name: "ค้นหาตามธีม", desc: "จัดกลุ่มตามธีมและรูปแบบที่ชื่นชอบ ช่วยให้หาเกมได้เร็วขึ้น", tag: "หาเกมได้ง่าย", icon: "🔎" },
-  { name: "ระดับความผันผวน", desc: "เทียบความผันผวนกับงบประมาณของตนเองก่อนตัดสินใจเลือกเกม", tag: "เลือกให้เข้ากับงบ", icon: "📊" },
+  { name: "เกมสล็อต", desc: "วงล้อหลายรูปแบบ ทั้งกติกาสั้นและเกมที่มีฟีเจอร์เสริม", tag: "เริ่มจากกติกา", icon: "🎰" },
+  { name: "บาคาร่า", desc: "เกมไพ่ที่สมาชิกเลือกเล่นมาก ควรอ่านเงื่อนไขการจ่ายก่อนเริ่ม", tag: "อ่านเงื่อนไขก่อน", icon: "🎴" },
+  { name: "รูเล็ต", desc: "วงล้อหมุนพร้อมรูปแบบการวางเดิมพันหลายแบบในเกมเดียว", tag: "หลายรูปแบบ", icon: "🎡" },
+  { name: "เกมไพ่", desc: "รวมเกมไพ่หลายชนิด เลือกตามประเภทและความถนัดของตนเองได้", tag: "เลือกตามถนัด", icon: "🃏" },
+  { name: "คาสิโนสด", desc: "ถ่ายทอดจากโต๊ะจริง ควรตรวจสัญญาณอินเทอร์เน็ตก่อนเข้าเล่น", tag: "ถ่ายทอดสด", icon: "🎥" },
+  { name: "เลือกตามค่ายเกม", desc: "รวมเกมจากหลายค่ายไว้ในระบบเดียว เลือกดูตามผู้พัฒนาได้", tag: "หลายค่ายในที่เดียว", icon: "🏷️" },
+  { name: "อัตราการจ่ายและกติกา", desc: "เทียบอัตราการจ่ายกับงบประมาณของตนเองก่อนตัดสินใจเลือกเกม", tag: "วางงบให้เหมาะ", icon: "📊" },
 ];
 ---
 
-<section aria-label="หมวดเกมสล็อตยอดนิยมจากหลายค่ายที่ XFINITYPLAY รวมไว้ในระบบเดียว" class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
+<section aria-label="หมวดเกมคาสิโนออนไลน์ที่ LCX88 รวมไว้ในระบบเดียว" class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
-    <p class="bg-gradient-to-r from-[#a5f3fc] via-[#22d3ee] to-[#a855f7] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
-      หมวดเกมสล็อตยอดนิยมที่ <span class="text-[#e879f9]">XFINITYPLAY</span> รวมไว้ในระบบเดียว
+    <p class="bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#6ea3ff] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
+      หมวดเกมคาสิโนออนไลน์ที่ <span class="text-[#f5c542]">LCX88</span> รวมไว้ในระบบเดียว
     </p>
-    <div class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#22d3ee] to-transparent"></div>
+    <div class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#2f6bff] to-transparent"></div>
   </div>
 
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5 xl:grid-cols-7">
@@ -23,20 +23,20 @@ const providers = [
       providers.map((provider) => (
         <a
           href="/register"
-          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#22d3ee]/25 bg-[#0d0a2b]/92 p-5 shadow-[0_10px_30px_rgba(34,211,238,0.18)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#22d3ee]/50 hover:bg-[#130d3a]/95 hover:shadow-[0_15px_40px_rgba(34,211,238,0.3)]">
-          <div class="pointer-events-none absolute inset-0 bg-[#a855f7]/12 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#2f6bff]/30 bg-[#0a1547]/92 p-5 shadow-[0_10px_30px_rgba(47,107,255,0.2)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#f5c542]/50 hover:bg-[#122264]/95 hover:shadow-[0_15px_40px_rgba(245,197,66,0.28)]">
+          <div class="pointer-events-none absolute inset-0 bg-[#2f6bff]/12 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#a5f3fc] via-[#22d3ee] to-[#a855f7] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#080520] shadow-sm transition-transform duration-300 group-hover:scale-110">
+          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#c08b1f] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#04102e] shadow-sm transition-transform duration-300 group-hover:scale-110">
             {provider.tag}
           </div>
 
           <div aria-hidden="true" class="mb-3 text-4xl transition-transform duration-300 group-hover:scale-125 group-hover:rotate-3">
             {provider.icon}
           </div>
-          <p class="text-center text-sm font-black text-[#cfe3f5] transition-colors group-hover:text-[#a5f3fc]">{provider.name}</p>
-          <p class="mt-1 text-center text-[10px] text-[#9fb3cc]">{provider.desc}</p>
+          <p class="text-center text-sm font-black text-[#d7e3ff] transition-colors group-hover:text-[#ffe08a]">{provider.name}</p>
+          <p class="mt-1 text-center text-[10px] text-[#9db0dd]">{provider.desc}</p>
 
-          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#22d3ee]/25 bg-[#080520] py-1.5 text-center text-[11px] font-bold text-[#22d3ee] shadow-inner transition-colors duration-300 group-hover:border-[#22d3ee]/50 group-hover:bg-gradient-to-r group-hover:from-[#a5f3fc] group-hover:via-[#22d3ee] group-hover:to-[#a855f7] group-hover:text-[#080520]">
+          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#2f6bff]/30 bg-[#040b2e] py-1.5 text-center text-[11px] font-bold text-[#6ea3ff] shadow-inner transition-colors duration-300 group-hover:border-[#f5c542]/50 group-hover:bg-gradient-to-r group-hover:from-[#ffe08a] group-hover:via-[#f5c542] group-hover:to-[#c08b1f] group-hover:text-[#04102e]">
             เข้าดูเกม
           </span>
         </a>

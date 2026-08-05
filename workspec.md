@@ -3542,3 +3542,167 @@ plain / Premium / CyberCut / FloatingBadge / Neumorphism (Huay สงวนไ�
   และแย่ง priority กับ hero (Agent A รายงานขึ้นมา) = ของเดิมทุกแบรนด์ ไม่ใช่เรื่องธีม ไม่แก้รอบนี้
 - prettier drift ที่มีอยู่ก่อนแล้ว (ทั้ง 11 หน้าไม่ผ่าน `--check` รวมไฟล์ที่ไม่มีใครแตะ)
   ไม่ได้ไล่จัดใหม่ เพราะจะกลบ diff ของงานรีแบรนด์
+
+
+## 2026-08-04 — รีแบรนด์ XFINITYPLAY → LCX88 (คาสิโนออนไลน์, น้ำเงินรอยัล + ทอง บนกรมท่าเข้ม)
+
+**เป้าหมาย:** เปิดตัวแบรนด์ LCX88 บน template เดิม พร้อมโดเมนจริง `https://lcx88-auto.org`
+รันแบบขนานตาม playbook (P0/P1 ทำเอง → fan-out 3 agent → merge+verify เอง)
+**สั่งให้หยุดที่ build + verify — ไม่ deploy ไม่ git push** (ทำตามนั้น)
+
+### Brief / assets
+- brief มาจาก `src/assets/content.txt` (uploader แตกจาก docx ให้แล้ว) — H1 1 + H2 6 + Q&A 3
+- palette จาก `src/assets/palette.json` + เปิดดูรูปจริง: logo vivid `#01124d`, banner1 vivid `#020b4c`
+  → แบรนด์สองสี **น้ำเงินรอยัล + ทอง** (ตัว X ในโลโก้กับหัวข้อบนแบนเนอร์เป็นทอง)
+- สีที่ใช้: base `#040b2e` / card `#0a1547` / `#071138` / raised `#122264` ·
+  royal `#2f6bff` `#6ea3ff` `#1b3fa8` · gold `#f5c542` `#ffe08a` `#c08b1f` ·
+  body text `#d7e3ff` · muted `#9db0dd` · text-on-gold `#04102e`
+- `banner1-mobile.png` มาพร้อม drop นี้ (mtime ตรงกับ banner1) = ของแบรนด์นี้จริง เก็บไว้
+- ไม่มี `banner2/3/4` รอบนี้ → ไม่มีรูปประกอบใน ContentBox คอลัมน์เดียว
+- slide ที่ใช้: **slide4 → §3 (ระบบออโต้)**, **slide2 → §4 (ฝากถอนไม่มีขั้นต่ำ)** — 2 บล็อกพอดี cap
+  **slide1/slide3 ไม่ได้ใช้ใน SevenThree** (ตามที่ playbook บอกว่าปกติ) แต่ยังอยู่ใน SmoothCarousel
+
+### การหมุน variant (before → after)
+- **Navbar: `NavbarStyle8` → `NavbarStyle6`**
+- **Footer: `FooterStyle3` → `FooterStyle2`**
+- **Announcement: `Announcement5` → `Announcement3`**
+- **LatestWinners: `LatestWinnersCyber` → `LatestWinnersPremium`**
+- **Faq: `Faq4` → `Faq2`**
+- **ContentBox mix: `Premium+plain+Neumorphism+Special+SevenThreePremium+SevenThreeNeumorphism`
+  → `CyberCut+FloatingBadge+plain+SevenThreeCyberCut+SevenThreeFloatingBadge`**
+- **BRAND_FONT: `kanit` → `google-sans`**
+ไม่มี family ไหนที่ต้องใช้ตัวเดิมซ้ำ
+หมายเหตุ: `NavbarStyle6`/`FooterStyle2`/`Announcement3` เป็น inventory ธีม **PRODED888** ซึ่งเป็น
+กรมท่า+ทองอยู่แล้ว จึงเป็นการ "จูนสี" ไม่ใช่รื้อ — แต่ชื่อแบรนด์เก่าต้องกวาดออกหมด
+(`LatestWinnersPremium` ฮาร์ดโค้ด **SUDYOD888** ไว้ใน header ด้วย เจอแล้วลบ)
+
+### ไฟล์ที่แก้ — chrome ร่วม (orchestrator ทำเองก่อน fan-out)
+- `src/lib/brandProfile.ts` — `BRAND_FONT`/`BRAND_NAME`/`BRAND_TEXT` 3 บรรทัด
+  (`BRAND_ADDRESS` derive จาก `BRAND_NAME` เอง ไม่แตะ → ออกมาเป็น ลำปาง 52000)
+- `astro.config.mjs` `site:` · `wrangler.toml` `name = "lcx88"` · `public/site.webmanifest`
+  (`account_id` ไม่แตะตามกฎ)
+- `src/layouts/MainLayout.astro` — repoint navbar/footer, title/description default, alt ของ hero,
+  `apple-mobile-web-app-title`, body `background-color`
+- `NavbarStyle6` (ยุบเมนูซ้ำ 2 ชุดเหลือ `links` const เดียว + ไอคอนครบทุกเมนู),
+  `FooterStyle2`, `Announcement3`, `Navfoot`, `ContentBox`, `ContentBoxPremium`
+
+### ไฟล์ที่แก้ — fan-out (3 agent, ไฟล์ไม่ทับกันเลย)
+- **Agent A** — `index.astro` + `ContentBoxCyberCut` `ContentBoxFloatingBadge`
+  `ContentBoxSevenThreeCyberCut` `ContentBoxSevenThreeFloatingBadge` `LoginRtpSection`
+  `ContentBoxTwo` `ProviderGrid` `GameRankingBoard` `ReviewCardSumo2` `LatestWinnersPremium`
+  `SmoothCarousel` `Faq2`
+- **Agent B** — `promotion.astro` `ทางเข้า.astro` `ทดลองเล่น.astro` `404.astro`
+- **Agent C** — `contact-us.astro` `login.astro` `register.astro` `terms.astro` `privacy.astro`
+
+### บั๊ก/ของที่เจอรอบนี้
+1. **meta description ของ docx สั้นเกินเกท — ทุกอัน** `verify-build.mjs` ตั้ง `DESC_MIN=150`
+   `DESC_MAX=160` และนับเป็น **ERROR** ไม่ใช่ warning แต่ค่าที่ docx ให้มาอยู่ที่ 109–127 ตัวอักษร
+   (Main SEO 127) ถ้าใช้ verbatim ตามที่ SKILL บอก = build แดงทุกหน้าที่ index ได้
+   → ต่อประโยคปิดท้ายให้ทุกหน้าจนอยู่ในหน้าต่าง 150–160 แล้ว broadcast ให้ทั้ง 3 agent กลางทาง
+   **ผลลัพธ์: 151–159 ทุกหน้า**
+2. **`MainLayout` default `description` ก็สั้นเกิน (127)** — หน้าไหนที่ไม่ส่ง `description` มาเองจะ
+   ตกมาใช้ค่านี้แล้วแดง (Agent A รายงานขึ้นมา) → orchestrator แก้เองใน P3 พร้อมคอมเมนต์กำกับ
+3. **`FooterStyle2` ส่ง `limit={12}` ให้ `BankStrip` → โลโก้ธนาคาร 10 ตัว ship แบบไม่มีใคร render
+   (513 kB)** — `BankStrip` glob แบบ eager ทั้งโฟลเดอร์ 22 ไฟล์ แล้วค่อย `.slice(0, limit)`
+   ซึ่ง **glob ที่แมตช์ = emit เสมอ ต่อให้ไม่ render** (บั๊กคลาสเดียวกับ `bg.png` ใน MainLayout)
+   `FooterStyle2` เป็น footer ตัวเดียวในคลังที่ส่ง `limit` — ตัวอื่น render ครบ 22 หมด
+   บั๊กนี้หลบอยู่จนการหมุน variant รอบนี้ไปเจอ → **ตัด `limit` ออก** build ถึงเขียว
+4. **alt ของ slide ในไฟล์ที่รับมาเหลื่อมกันไป 1 ตัว** (slide1 ถูกเขียนว่า "ฝากครั้งแรก 50%"
+   ซึ่งจริงๆ คือ slide2) — Agent A/B เปิดรูปทั้ง 4 อ่านข้อความจริงแล้วเขียน alt ใหม่ทั้งชุด
+5. `Faq2` render คำถามเป็น `<h3>` → ปรับเป็น `<h2>` (docx เป็น H1+H2 แบน)
+6. `login`/`register` ธีมด้วย hex ดิบใน `<style>` ล้วน และ **ตัวแปร CSS 4 ตัวชื่อไม่ตรงกับสีที่เก็บ**
+   (`--brand-cyan`, `--brand-violet`) → เปลี่ยนทั้งชื่อและค่าเป็น `--brand-blue` / `--brand-gold`
+
+### หน้าเว็บ: เปิด/ปิดรอบนี้
+- **แบรนด์คาสิโน ไม่ใช่หวย** → `ตรวจหวย.astro` / `แนวทาง.astro` อยู่ใน `src/pages-disabled/` อยู่แล้ว
+  และ navbar/footer ที่ใช้จริงไม่มีลิงก์ทั้งคู่ = ไม่ต้องทำอะไร (ตรวจแล้ว ไม่ได้เดา)
+- **`about-us.astro` → ย้ายเข้า `src/pages-disabled/`** เนื้อหาข้างในเป็นบทความของ XFINITYPLAY เต็มๆ
+  docx รอบนี้ไม่มีหัวข้อ "เกี่ยวกับเรา" และไม่มี `TODO(rebrand)` แปลว่า uploader ไม่ได้ scaffold
+  มารอบนี้ = หน้าของแบรนด์ก่อน **ไม่ลบ ย้ายไปพัก** · `NavbarStyle6`/`FooterStyle2` ไม่ได้ลิงก์อยู่แล้ว
+- **`บทความ` ไม่ได้สร้าง** ทั้งที่ docx ให้ Title/Meta มา — เพราะการสร้างหน้าเป็นสวิตช์ ส่วนที่ 5 ของ
+  uploader ไม่ใช่สิ่งที่ docx สั่งได้ และ operator ไม่ได้เปิดมา **แจ้ง operator ไว้แล้ว ถ้าอยากได้ให้กดเปิด**
+
+### Verify ที่รันจริง
+- `npm run build` — 10 หน้า, **verify-build.mjs: 0 error 0 warning** (build แรกเจอ 10 error จาก
+  ข้อ 3 ข้างบน แก้แล้ว build ซ้ำ 1 ครั้ง)
+- heading inventory เทียบ checklist ของ docx **สองทาง**: index = `h1×1 h2×10 h3×0`
+  (6 หัวข้อ docx + หัวข้อ FAQ + 3 คำถาม) ครบ ตรงลำดับ ไม่มีหัวข้อแปลกปลอมจาก chrome
+- grep `dist/` ทั้งหมด: ชื่อแบรนด์เก่า (XFINITYPLAY/PRODED888/SUDYOD888/…) = **0**,
+  คลาส `cyan-/purple-/violet-/fuchsia-/indigo-` ใน `class="…"` = **0**,
+  hex เก่า = **0**, `<!--` = **0 ทุกหน้า**
+- `og:image` = `/_astro/og.CFXmFB-X_*.jpeg` บนโดเมนใหม่ (ไม่ใช่ path ใน `public/`)
+- `contact-us`: `<h2>` = **0** (เป็นหน้าปุ่ม ไม่ใช่บทความ) · `<address>` ขึ้น
+  "ศูนย์ประสานงานลูกค้า LCX88 / อำเภอเมืองลำปาง จังหวัดลำปาง 52000"
+- meta description ทุกหน้าที่ index ได้ = 152–159 ตัวอักษร (นับเป็น "ตัวอักษร" ด้วย UTF-8 จริง
+  ไม่ใช่ byte — PowerShell 5.1 อ่านไฟล์เป็น ANSI จะได้เลข ~3 เท่า หลอกได้ง่ายมาก)
+- canonical ทุกหน้า host = `lcx88-auto.org` (ยกเว้น `/line` ที่เป็น redirect ออก tinyurl ตาม config)
+- hero: `<source media="(max-width: 767px)">` มี 1 อัน ชี้ `banner1-mobile` ถูกต้อง
+- `*FloatingBadge` 2 ตัวที่ใช้: badge เป็น `-top-6` + `w-[92%] max-w-2xl` + `text-center`
+  ไม่มี `whitespace-nowrap` และการ์ดกัน `pt-32` / `md:pt-28` ไว้ = หัวข้อ docx ยาว 2 บรรทัดยังเหลือ
+  ระยะ ~56px **เขียนเลขคำนวณกำกับไว้ใน frontmatter ของทั้งสองไฟล์แล้ว** กันคนหลังมา "จัดให้เรียบร้อย"
+- ไม่ได้ start dev server รอบนี้ — ตรวจบน `dist/` ตรงๆ ซึ่งคือไบต์ที่จะขึ้นจริง
+
+### นอกสโคป / ตั้งใจไม่แตะ
+- **ไม่ deploy ไม่ `git push` ไม่ `git commit`** ตามที่สั่งมาในคำสั่ง
+- `account_id` ใน `wrangler.toml` (ต้องเปลี่ยนผ่านปุ่มสลับบัญชีของ uploader เท่านั้น)
+- `src/assets/bg.json` = `{"mode":"color","color":"#0f172a"}` เขียนโดย uploader ใน drop นี้เอง
+  = ค่าที่ operator เลือก ไม่ใช่ของค้าง จึงไม่แก้
+- `MainLayout.astro` บรรทัด ~107 ยังมีคำว่า `XFINITYPLAY` ใน **คอมเมนต์ frontmatter** —
+  เป็นบันทึกว่าบั๊ก `bg.png` ship ทั้งที่ไม่ render ถูกจับได้ตอนแบรนด์ไหน Astro ตัดทิ้งไม่ขึ้น output
+  = ประวัติ ไม่ใช่ drift **ไม่ลบ**
+- `promotion.astro` ยังโชว์ slide ทั้ง 4 เป็นกริดใน `ContentBox` ไม่ใช่ `ContentBoxSevenThree*` —
+  กฎ "slide อยู่ได้แต่ใน SevenThree" คุมการประกอบ **หน้าแรก** ส่วนหน้าโปรโมชั่นมีหน้าที่โชว์โปรทั้งชุด
+  อยู่แล้ว = รูปเดิมของหน้านี้ ไม่เปลี่ยน
+- `promotion.astro`/`contact-us.astro` ยังใช้ `ContentBoxPremium` (chrome ร่วม ธีมใหม่แล้ว)
+  ไม่ได้หมุนตาม mix ของหน้าแรก
+- `terms.astro`/`privacy.astro` ไม่แก้เลย — brand-neutral โดยโครงสร้าง ทุกคำที่เป็นชื่อแบรนด์มาจาก
+  `BRAND_NAME` และไม่มีคลาสสีอยู่ข้างใน (ตรวจแล้ว) · privacy ยังตรงกับความจริงของ build
+- `src/assets/bg.unused.png`, `content.docx`, slide1/slide3, และ component variant ที่ไม่ได้ใช้ทั้งหมด
+  = inventory ของแบรนด์ถัดไป **ไม่ลบ**
+- prettier drift ที่มีอยู่ก่อนแล้ว ไม่ได้ไล่จัดใหม่ เพราะจะกลบ diff ของงานรีแบรนด์
+---
+
+## 2026-08-04 — LCX88 ตามงาน: เปิดหน้า /about-us + เพิ่มเมนู "เกี่ยวกับเรา"
+
+**สั่งงาน:** "ขาดเมนูเกี่ยวกับเรา เพิ่มให้หน่อยแล้วต้องอยู่ก่อนเมนูติดต่อ"
+
+### ทำไมไม่ใช่แค่เพิ่มบรรทัดเดียวในเมนู
+รอบรีแบรนด์ LCX88 `about-us.astro` ถูก **ย้ายไปพักที่ `src/pages-disabled/`** (ดูรายการก่อนหน้า)
+เพราะ docx ไม่มีหัวข้อ "เกี่ยวกับเรา" และเนื้อในเป็นบทความของ **XFINITYPLAY** เต็มๆ
+→ ถ้าเพิ่มลิงก์เฉยๆ ผลคือเมนูชี้ไป route ที่ไม่มี (verify จับเป็น error `href points at a route
+that does not exist`) หรือถ้าย้ายไฟล์เดิมกลับมาดื้อๆ ก็จะได้หน้าที่พูดชื่อแบรนด์ก่อนหน้าทั้งหน้า
+**ต้องเขียนเนื้อหา LCX88 ใหม่ก่อน แล้วค่อยผูกเมนู**
+
+### ไฟล์ที่แก้
+- `src/pages/about-us.astro` — **เขียนใหม่ทั้งไฟล์เป็นเนื้อหา LCX88** (ไม่ได้ก๊อป XFINITYPLAY มาแก้ชื่อ)
+  chrome ตามที่แบรนด์นี้ใช้: `Announcement3` + `ContentBox` + `Navfoot` (ชุดเดียวกับ `ทางเข้า.astro`)
+  โครง `h1×1` (ผ่าน `ContentBox as="h1"`) + `h2×3` — รวมเกมหลายค่าย / ระบบออโต้+ไม่มีขั้นต่ำ /
+  ความปลอดภัยบัญชี+ช่องทางดูแล 24 ชม. เนื้อหาเรียบเรียงจาก Main SEO ของ docx
+  **Title/Meta เขียนเอง เพราะ docx ไม่มีแถว SUB-PAGES ของหน้านี้** — เขียนคอมเมนต์กำกับไว้ในไฟล์แล้ว
+  ว่าไม่มีอะไรให้ไปเทียบกับ docx (กันคนหลังมาไล่หาว่าตกหล่น)
+- `src/components/NavbarStyle6.astro` — เพิ่ม `{ name: "เกี่ยวกับเรา", path: "/about-us", icon: "🏢" }`
+  **ก่อน** ติดต่อเรา · รอบรีแบรนด์ที่แล้วยุบเมนูซ้ำ 2 ชุดเหลือ `links` const เดียวไว้ = แก้ที่เดียว
+  ได้ทั้ง rail จอใหญ่และ drawer มือถือ
+- `src/components/FooterStyle2.astro` — เพิ่มแถวเดียวกันในลิสต์ "เมนูหลัก" ก่อนติดต่อเรา
+- **ลบ `src/pages-disabled/about-us.astro`** — diff กับ `HEAD:src/pages/about-us.astro` แล้ว
+  **byte-identical** (กู้จาก git ได้ตลอด) และ `server.mjs` เองเตือนไว้ว่าห้ามให้ชื่อไฟล์เดียวกัน
+  ค้างอยู่สองโฟลเดอร์ เพราะ `createPage()` เช็ก `src/pages/` ก่อนแล้ว return ทันที
+  = ตัวที่พักไว้จะกลายเป็นของค้างที่ไม่มีวันถูกใช้
+
+### หมายเหตุเรื่อง uploader
+ปุ่ม preset `aboutus` ของ uploader เพิ่มลิงก์ด้วย `addNavLink`/`addFooterLink` ซึ่ง **append ท้ายลิสต์**
+ไม่ใช่แทรกก่อนติดต่อเรา ถ้าวันหลัง operator กดปิด/เปิดหน้านี้ผ่าน uploader ลำดับเมนูจะเพี้ยนกลับ
+ไปอยู่ท้ายสุด — ต้องมาเรียงมือเองอีกรอบ (ไม่ได้แก้ uploader รอบนี้ อยู่นอกสิ่งที่สั่ง)
+
+### Verify ที่รันจริง
+- `npm run build` — **11 หน้า** (เดิม 10), `verify-build.mjs` **0 error 0 warning**
+- `dist/about-us/index.html`: meta description = **158 ตัวอักษร** (เกท 150–160), `h1×1 h2×3 h3×0`,
+  grep `XFINITYPLAY` = **0**
+- ลำดับเมนูใน `dist/index.html`: `/ทางเข้า` → `/about-us` → `/contact-us` **เรียงถูกครบทั้ง 3 จุด**
+  (rail จอใหญ่ + drawer มือถือ + footer) — grep ยืนยัน ไม่ได้ดูจากซอร์ส
+- ไม่ได้ start dev server — ตรวจบน `dist/` ตรงๆ
+
+### นอกสโคป / ตั้งใจไม่แตะ
+- **ไม่ deploy ไม่ commit ไม่ push**
+- หน้า `บทความ` ยังไม่ได้สร้าง (docx ให้ Title/Meta มา แต่ operator ไม่ได้เปิดสวิตช์ — ค้างจากรอบที่แล้ว)
+- `ตรวจหวย.astro` / `แนวทาง.astro` ยังพักใน `src/pages-disabled/` ตามเดิม
