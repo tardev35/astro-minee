@@ -971,10 +971,13 @@ Phase 5 build covers all pages at once.) For each page:
    verify they carry **zero** old-brand-name references; only the theme
    is exempt, not the brand name. Note this decision in the workspec.
 
-### `/contact-us` carries no article body — image, address, buttons, nothing else
+### Two pages carry no article body — `/contact-us` and `/ทางเข้า`
 
-`contact-us.astro` is the one sub-page that is **not** an article. Its whole
-body is four things, in this order:
+Both are **button pages, not articles**: a visitor opens them to press
+something, and every paragraph above the buttons pushes them further down.
+Their whole body is, in order:
+
+**`contact-us.astro`**
 
 1. the `ContentBox` `title` (the page's single `<h1>`)
 2. the LINE image (`src/assets/contact-line.webp`)
@@ -982,20 +985,36 @@ body is four things, in this order:
    `mailto:` link underneath
 4. the `สมัครสมาชิก` / `เข้าสู่ระบบ` / `ติดต่อผ่าน Line Official` button row
 
-**Do not add section headings or explanatory paragraphs here.** Not "ควรเตรียม
-ข้อมูลอะไรก่อนแจ้ง", not "ทักทีมงานทางไหน", not a PIN/OTP safety notice —
-however well-written. Someone opens this page to press a button, and every
-paragraph pushes those buttons further down.
+**`ทางเข้า.astro`**
 
-Where the copy keeps coming from: the docx **SUB-PAGES** section gives this page
-a `Title` and a `Meta` and **never a body**, so any prose you find here was
-invented by an earlier rebrand and then rewritten by every rebrand since,
-each one assuming the last one had a reason. It didn't. If the page you
-inherit has `<h2>`s and paragraphs, **delete them** — that is a fix, not a
-scope overrun.
+1. the `ContentBox` `title` (the page's single `<h1>`)
+2. the two-column `เข้าสู่ระบบ` / `สมัครสมาชิก` button grid
 
-Consequence for the Phase 5 inventory: `/contact-us` contributes **`h1×1`,
-`h2×0`, `h3×0`**. An `<h2>` on that page means this rule was missed.
+**Write no section headings and no explanatory paragraphs on either.** Not
+"ควรเตรียมข้อมูลอะไรก่อนแจ้ง", not "ตรวจ 4 จุดก่อนล็อกอิน", not a PIN/OTP
+safety notice — however well-written and however much the previous copy looks
+like it belongs.
+
+Where the copy keeps coming from: the docx **SUB-PAGES** section gives these
+pages a `Title` and a `Meta` and **never a body**, so any prose you find is
+something an earlier rebrand invented and every rebrand since has faithfully
+rewritten, each assuming the last one had a reason. It didn't. If the page you
+inherit has `<h2>`s and paragraphs, **delete them** — that is a fix, not a scope
+overrun.
+
+**Everything else on these pages stays**: the `Announcement`, the buttons and
+their icons, `Navfoot`, the `pageGraph` call, the `MainLayout` title and
+description. Only the headings and the prose come out. Retheme the buttons to
+the new palette as normal.
+
+Give the `<h1>` a title that names what the page **is** — "ทางเข้า
+`<BRAND>` เว็บหลัก", "ติดต่อทีมงาน `<BRAND>`". A title that previews an article
+("…ต้องตรวจ 4 จุดก่อนล็อกอิน") reads as a broken promise once the article is
+gone, and it is the line most likely to tempt the next rebrand into writing the
+body back.
+
+Consequence for the Phase 5 inventory: each contributes **`h1×1`, `h2×0`,
+`h3×0`**. An `<h2>` on either means this rule was missed.
 
 The other sub-pages are the opposite — they *are* articles and their headings
 come from their own body, per Phase 5.
@@ -1004,8 +1023,9 @@ come from their own body, per Phase 5.
 
 `Footer*` rotates every rebrand, and the block lives in the file, not in
 `MainLayout` — so **whichever footer you switch to, port it across**. Resolve
-the live one from `MainLayout.astro`'s `import Footer`, then add to its brand
-column, under the LINE button:
+the live one from `MainLayout.astro`'s `import Footer`. Every variant puts an
+`<a href="/line">` in a customer-service column; drop this immediately after
+that anchor, and add the import to the frontmatter:
 
 ```astro
 import { BRAND_ADDRESS } from "../lib/brandProfile";
@@ -1014,18 +1034,31 @@ import { BRAND_ADDRESS } from "../lib/brandProfile";
 ```astro
 {
   BRAND_ADDRESS.lines.length > 0 && (
-    <address aria-label={BRAND_ADDRESS.label} class="… not-italic">
-      <p>{BRAND_ADDRESS.label}</p>
-      {BRAND_ADDRESS.lines.map((line) => <span class="block">{line}</span>)}
-      {BRAND_ADDRESS.email && <a href={`mailto:${BRAND_ADDRESS.email}`}>{BRAND_ADDRESS.email}</a>}
+    <address aria-label={BRAND_ADDRESS.label} class="mt-2 rounded-xl border border-white/15 bg-black/20 p-4 text-xs leading-relaxed not-italic opacity-90">
+      <p class="mb-2 flex items-center gap-2 text-[11px] font-bold tracking-wider uppercase opacity-80">
+        <span aria-hidden="true" class="text-sm">📍</span>
+        {BRAND_ADDRESS.label}
+      </p>
+      {BRAND_ADDRESS.lines.map((line) => (
+        <span class="block">{line}</span>
+      ))}
+      {BRAND_ADDRESS.email && (
+        <a href={`mailto:${BRAND_ADDRESS.email}`} class="mt-3 inline-flex items-center gap-2 font-bold underline decoration-current/40 underline-offset-4 opacity-90 transition-opacity hover:opacity-100">
+          <span aria-hidden="true" class="text-sm">✉️</span>
+          {BRAND_ADDRESS.email}
+        </a>
+      )}
     </address>
   )
 }
 ```
 
-Theme it in that footer's own palette — this template keeps colours in each
-variant, not in a shared token, so copying the previous footer's hex values
-across is how the last brand's colours leak into the new one.
+**Paste it verbatim — do not theme it, and do not put a hex value in it.** It
+carries no brand colour on purpose: `border-white/15`, `bg-black/20` and
+`opacity` over the footer's inherited text colour land correctly on every
+variant in the library, which are all dark. Retyping it in this brand's palette
+buys nothing and is the exact move that leaves the previous brand's hex behind
+next time.
 
 Rules that bite here: the label is a `<p>` or `<span>`, **never a heading**
 (chrome may not take a heading tag, and the footer is on every page, so one
@@ -1599,9 +1632,10 @@ pointing at a `public/` path during a rebrand, repoint it to the
      for you to look at is that the footer renders it **at all** —
      `grep -c '<address' dist/index.html` should be `1`. A `0` means the
      footer swap in Phase 4.5 dropped it, which no gate catches
-   - **`grep -c '<h2' dist/contact-us/index.html` must be `0`** — that page
-     is a button page, not an article (Phase 4.5). Any hit means prose was
-     written back into it; delete the prose, don't demote the tag
+   - **`grep -c '<h2' dist/contact-us/index.html dist/ทางเข้า/index.html`
+     must be `0` for both** — they are button pages, not articles
+     (Phase 4.5). Any hit means prose was written back in; delete the prose,
+     don't demote the tag
    - `grep -c '<!--' dist/index.html` should be 0 — Astro ships HTML
      comments to output, so any `<!-- H2: … -->` section labels left in
      a page leak the docx outline (and often the old brand name) into
