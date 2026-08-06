@@ -2,13 +2,18 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement3.astro";
+import Announcement from "../components/Announcement5.astro";
 import { pageGraph } from "../lib/schema";
 
-const pageTitle = "ทางเข้าเล่น LCX88 รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์";
+// Button page, not an article: the whole body is the <h1> plus the two-button
+// grid. The docx SUB-PAGES block gives this page a Title and a Meta and never
+// a body, so no <h2> and no prose belong here. The <h1> names what the page IS
+// rather than previewing a section that does not exist.
+const pageTitle = "ทางเข้า TGAZM เว็บหลัก";
 
+// docx Meta (117 chars) + one closing clause to clear the 150 gate. 159 chars.
 const pageDescription =
-  "LCX88 ทางเข้าเล่นคาสิโนออนไลน์ รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมรวมเกม โปรโมชั่น และบริการต่าง ๆ ไว้ในระบบเดียว ควรตรวจสอบช่องทางเข้าก่อนกรอกข้อมูล";
+  "TGAZM ทางเข้าเล่นสล็อตออนไลน์รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมรวมเกม โปรโมชั่น และระบบสมาชิกไว้ในหน้าเดียว ควรตรวจสอบช่องทางเข้าก่อนกรอกข้อมูลทุกครั้ง";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -20,58 +25,57 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="LCX88 | ทางเข้าเล่นคาสิโนออนไลน์รองรับทุกอุปกรณ์" description={pageDescription}>
+<MainLayout title="TGAZM | ทางเข้าเล่นสล็อตออนไลน์รองรับมือถือทุกระบบ" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
-      <div class="mb-5 grid grid-cols-1 gap-8 md:grid-cols-2">
-        <div class="flex flex-col items-center justify-center gap-4">
-          <a
-            href="/login"
-            aria-label="เข้าสู่ระบบ LCX88"
-            class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#2f6bff]/60 bg-[#071138] px-6 py-4 shadow-[0_10px_30px_rgba(47,107,255,0.20)] transition-all duration-300 hover:scale-105 hover:border-[#f5c542] hover:bg-[#122264] hover:shadow-[0_15px_40px_rgba(245,197,66,0.30)]">
-            <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#2f6bff]/25 to-transparent"></div>
+    <div class="mb-5 grid grid-cols-1 gap-8 md:grid-cols-2">
+      <div class="flex flex-col items-center justify-center gap-4">
+        <a
+          href="/login"
+          aria-label="เข้าสู่ระบบ TGAZM"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#a3e635]/60 bg-[#0a2411] px-6 py-4 shadow-[0_10px_30px_rgba(163,230,53,0.20)] transition-all duration-300 hover:scale-105 hover:border-[#ffd54a] hover:bg-[#123018] hover:shadow-[0_15px_40px_rgba(255,213,74,0.30)]">
+          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#a3e635]/25 to-transparent"></div>
 
-            <svg
-              class="relative z-10 h-9 w-9 text-[#6ea3ff]"
-              aria-hidden="true"
-              focusable="false"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
-            </svg>
+          <svg
+            class="relative z-10 h-9 w-9 text-[#c6f76a]"
+            aria-hidden="true"
+            focusable="false"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+          </svg>
 
-            <span class="relative z-10 text-3xl font-bold tracking-wide text-[#ffe08a]">เข้าสู่ระบบ</span>
-          </a>
-        </div>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#ffeaa0]">เข้าสู่ระบบ</span>
+        </a>
+      </div>
 
-        <div class="flex flex-col items-center justify-center gap-4">
-          <a
-            href="/register"
-            aria-label="สมัครสมาชิก LCX88"
-            class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#f5c542]/60 bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#c08b1f] px-6 py-4 shadow-[0_10px_30px_rgba(245,197,66,0.22)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(245,197,66,0.34)]">
-            <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/55 to-transparent"></div>
+      <div class="flex flex-col items-center justify-center gap-4">
+        <a
+          href="/register"
+          aria-label="สมัครสมาชิก TGAZM"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#ffd54a]/60 bg-gradient-to-r from-[#ffeaa0] via-[#ffd54a] to-[#c9911a] px-6 py-4 shadow-[0_10px_30px_rgba(255,213,74,0.22)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(255,213,74,0.34)]">
+          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/55 to-transparent"></div>
 
-            <svg
-              class="relative z-10 h-9 w-9 text-[#04102e]"
-              aria-hidden="true"
-              focusable="false"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
-            </svg>
+          <svg
+            class="relative z-10 h-9 w-9 text-[#04150a]"
+            aria-hidden="true"
+            focusable="false"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+          </svg>
 
-            <span class="relative z-10 text-3xl font-bold tracking-wide text-[#04102e]">สมัครสมาชิก</span>
-          </a>
-        </div>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#04150a]">สมัครสมาชิก</span>
+        </a>
       </div>
     </div>
   </ContentBox>

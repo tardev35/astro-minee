@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle6.astro";
-import Footer from "../components/FooterStyle2.astro";
+import Navbar from "../components/NavbarStyle9.astro";
+import Footer from "../components/FooterStyle3.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,11 +55,11 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "LCX88 | คาสิโนออนไลน์ระบบออโต้ ฝากถอนไม่มีขั้นต่ำ ปลอดภัยโอนไว",
+  title = "TGAZM | เว็บสล็อตระบบออโต้ เดิมพันง่าย ฝากไม่มีขั้นต่ำ มั่นคงปลอดภัย",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings.
-  description = "LCX88 คาสิโนออนไลน์ระบบออโต้ ฝากถอนไม่มีขั้นต่ำ รองรับมือถือ ใช้งานปลอดภัย โอนไว พร้อมเกมหลากหลายและบริการสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาก่อนเริ่มใช้งาน",
+  description = "TGAZM เว็บสล็อตระบบออโต้ เดิมพันง่าย ฝากถอนไม่มีขั้นต่ำ รองรับมือถือ พร้อมระบบบัญชีมั่นคง ปลอดภัย และบริการสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาก่อนเริ่มเล่น",
   robots = "index, follow",
 } = Astro.props;
 
@@ -194,7 +194,7 @@ const profile = brandProfile(Astro.site);
 
           {block === "appmeta" && (
             <Fragment>
-              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="lcx88" />}
+              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="tgazm" />}
               <link rel="manifest" href="/site.webmanifest" />
             </Fragment>
           )}
@@ -236,7 +236,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #040b2e;
+        background-color: #04150a;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -289,7 +289,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ LCX88 สล็อต คาสิโน กีฬา ครบจบในเว็บเดียว ฝากถอนออโต้ รวดเร็ว รองรับมือถือ 24 ชม. พร้อมแถบมั่นคงปลอดภัยระบบมาตรฐานสากล ฝากถอนออโต้รวดเร็วทันใจ รองรับมือถือเล่นง่ายทุกอุปกรณ์ และบริการตลอด 24 ชม. ดูแลทุกการใช้งาน"
+          alt="แบนเนอร์ TGAZM สล็อต คาสิโน กีฬา ครบจบในเว็บเดียว ฝากถอนออโต้ รวดเร็ว รองรับมือถือ 24 ชม. พร้อมแถบมั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม. บนพื้นหลังคาสิโนสีเขียวมะนาวประดับเหรียญทอง"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

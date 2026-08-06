@@ -1,6 +1,7 @@
 ---
 import { Picture } from "astro:assets";
 import BankStrip from "./BankStrip.astro";
+import { BRAND_ADDRESS } from "../lib/brandProfile";
 const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
 
 const imagePaths = Object.keys(images);
@@ -8,23 +9,23 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 ---
 
 <footer
-  class="relative mt-32 w-full border-t border-[#22d3ee]/30 bg-[#050318] pt-64 pb-6 font-sans text-[#cfe3f5] shadow-[0_-10px_30px_rgba(34,211,238,0.15)] md:pt-40">
+  class="relative mt-32 w-full border-t border-[#a3e635]/30 bg-[#04150a] pt-64 pb-6 font-sans text-[#e2f3cd] shadow-[0_-10px_30px_rgba(163,230,53,0.15)] md:pt-40">
   <div
-    class="absolute -top-14 left-1/2 z-20 flex w-[92%] max-w-5xl -translate-x-1/2 flex-col items-center justify-between rounded-2xl border border-[#22d3ee]/35 bg-gradient-to-r from-[#0d0a2b] via-[#130d3a] to-[#0d0a2b] p-6 shadow-[0_15px_40px_rgba(168,85,247,0.28)] md:-top-16 md:flex-row md:p-8">
+    class="absolute -top-14 left-1/2 z-20 flex w-[92%] max-w-5xl -translate-x-1/2 flex-col items-center justify-between rounded-2xl border border-[#a3e635]/35 bg-gradient-to-r from-[#0a2411] via-[#123018] to-[#0a2411] p-6 shadow-[0_15px_40px_rgba(163,230,53,0.28)] md:-top-16 md:flex-row md:p-8">
     <div class="mb-5 flex flex-col text-center md:mb-0 md:text-left">
-      <p class="text-xl font-black tracking-wide text-[#a5f3fc] uppercase italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] md:text-3xl">
-        <span aria-hidden="true">🎰</span> พร้อมเริ่มเล่นกับ XFINITYPLAY แล้วหรือยัง?
+      <p class="text-xl font-black tracking-wide text-[#e8fb9c] uppercase italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] md:text-3xl">
+        <span aria-hidden="true">🎰</span> พร้อมเริ่มเล่นกับ TGAZM แล้วหรือยัง?
       </p>
-      <p class="mt-2 text-sm font-medium text-[#9fb3cc] md:text-base">
-        สมัคร XFINITYPLAY ด้วยเบอร์โทรภายในไม่กี่นาที แล้วเลือกเกมสล็อตจากหลายค่ายได้ในบัญชีเดียว รองรับระบบฝากถอนออโต้ ควรอ่านกติกาและเงื่อนไขทุกครั้งก่อนเริ่มใช้งาน
+      <p class="mt-2 text-sm font-medium text-[#a9c48c] md:text-base">
+        สมัคร TGAZM ด้วยเบอร์โทรภายในไม่กี่นาที แล้วเลือกเกมสล็อตจากหลายรูปแบบได้ในบัญชีเดียว รองรับระบบฝากถอนออโต้ ควรอ่านกติกาและกำหนดงบประมาณให้ชัดเจนก่อนเริ่มใช้งานทุกครั้ง
       </p>
     </div>
 
     <a
       href="/register"
-      class="group relative flex items-center justify-center overflow-hidden rounded-full border border-[#22d3ee] bg-gradient-to-b from-[#a5f3fc] to-[#0891b2] px-8 py-3.5 text-sm font-extrabold whitespace-nowrap text-[#080520] shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all hover:scale-105 md:text-base">
+      class="group relative flex items-center justify-center overflow-hidden rounded-full border border-[#ffd54a] bg-gradient-to-b from-[#ffeaa0] to-[#c9911a] px-8 py-3.5 text-sm font-extrabold whitespace-nowrap text-[#04150a] shadow-[0_0_15px_rgba(255,213,74,0.4)] transition-all hover:scale-105 md:text-base">
       <span class="relative z-10">สมัครสมาชิกเลย <span aria-hidden="true">🚀</span></span>
-      <div class="absolute inset-0 translate-y-full bg-[#a855f7] transition-transform duration-300 group-hover:translate-y-0"></div>
+      <div class="absolute inset-0 translate-y-full bg-[#a3e635] transition-transform duration-300 group-hover:translate-y-0"></div>
     </a>
   </div>
 
@@ -36,24 +37,24 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
             mainLogo ? (
               <Picture
                 src={mainLogo}
-                alt="XFINITYPLAY"
+                alt="โลโก้ TGAZM ตัวอักษรสามมิติสีเขียวมะนาวเคลือบเงาบนฐานสีทอง"
                 widths={[100, 200, 300]}
                 sizes="100px"
                 height={45}
                 loading="lazy"
                 decoding="async"
-                class="h-[45px] w-auto drop-shadow-[0_0_12px_rgba(34,211,238,0.6)]"
+                class="h-[45px] w-auto drop-shadow-[0_0_12px_rgba(163,230,53,0.6)]"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
               />
             ) : (
-              <p class="bg-gradient-to-b from-[#a5f3fc] to-[#a855f7] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]">XFINITYPLAY</p>
+              <p class="bg-gradient-to-b from-[#e8fb9c] to-[#4d7c0f] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(163,230,53,0.5)]">TGAZM</p>
             )
           }
         </a>
-        <p class="text-sm leading-relaxed text-[#9fb3cc]">
-          XFINITYPLAY รวบรวมเกมสล็อตยอดนิยมจากหลายค่ายไว้ในระบบเดียว ทั้งสล็อตคลาสสิก วิดีโอสล็อต เกมโบนัส และเกมที่มาพร้อมฟีเจอร์พิเศษ ค้นหาเกมตามค่าย ธีม หรือรูปแบบที่ชอบได้ง่าย
-          รองรับการใช้งานผ่านมือถือ พร้อมระบบฝากถอนออโต้
+        <p class="text-sm leading-relaxed text-[#a9c48c]">
+          TGAZM รวบรวมเกมสล็อตหลายรูปแบบไว้ในระบบเดียว ตั้งแต่การสมัคร เลือกเกม ไปจนถึงการฝากถอนผ่านระบบออโต้ ค้นหาเกมตามค่าย ธีม หรือระดับความผันผวนได้จากหน้าเดียว รองรับการใช้งานบนมือถือ
+          พร้อมเงื่อนไขฝากไม่มีขั้นต่ำในช่องทางที่กำหนด
         </p>
 
         <div class="mt-2 flex flex-wrap gap-3">
@@ -62,73 +63,88 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
             class="flex items-center gap-2 rounded-full border border-[#00B900]/30 bg-[#00B900]/10 px-4 py-2 text-xs font-bold text-[#00B900] shadow-[0_0_10px_rgba(0,185,0,0.1)] transition-colors hover:bg-[#00B900] hover:text-white">
             <span aria-hidden="true" class="text-base">💬</span> LINE OFFICIAL
           </a>
-          {/* A YOUTUBE button pointing at href="#" used to sit here. There is
-              no YouTube channel to point it at, and a link that goes nowhere
-              costs a visitor a tap to find that out. If a brand ever has one,
-              add the button back with its real URL. */}
+          {
+            BRAND_ADDRESS.lines.length > 0 && (
+              <address aria-label={BRAND_ADDRESS.label} class="mt-2 rounded-xl border border-white/15 bg-black/20 p-4 text-xs leading-relaxed not-italic opacity-90">
+                <p class="mb-2 flex items-center gap-2 text-[11px] font-bold tracking-wider uppercase opacity-80">
+                  <span aria-hidden="true" class="text-sm">📍</span>
+                  {BRAND_ADDRESS.label}
+                </p>
+                {BRAND_ADDRESS.lines.map((line) => (
+                  <span class="block">{line}</span>
+                ))}
+                {BRAND_ADDRESS.email && (
+                  <a href={`mailto:${BRAND_ADDRESS.email}`} class="mt-3 inline-flex items-center gap-2 font-bold underline decoration-current/40 underline-offset-4 opacity-90 transition-opacity hover:opacity-100">
+                    <span aria-hidden="true" class="text-sm">✉️</span>
+                    {BRAND_ADDRESS.email}
+                  </a>
+                )}
+              </address>
+            )
+          }
         </div>
       </div>
 
       <div class="md:col-span-6 lg:col-span-5">
-        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#cfe3f5] uppercase">
+        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#e2f3cd] uppercase">
           ลิงก์ด่วน (Quick Links)
-          <span class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#a855f7] to-[#22d3ee] shadow-[0_0_8px_rgba(34,211,238,0.6)]"></span>
+          <span class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#ffd54a] to-[#a3e635] shadow-[0_0_8px_rgba(163,230,53,0.6)]"></span>
         </p>
 
         <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
-          <a href="/" class="group flex items-center text-[#9fb3cc] transition-colors hover:text-[#a5f3fc]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#22d3ee] transition-transform group-hover:rotate-45"></span> หน้าแรก
+          <a href="/" class="group flex items-center text-[#a9c48c] transition-colors hover:text-[#e8fb9c]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#a3e635] transition-transform group-hover:rotate-45"></span> หน้าแรก
           </a>
-          <a href="/ทดลองเล่น" class="group flex items-center text-[#9fb3cc] transition-colors hover:text-[#a5f3fc]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#22d3ee] transition-transform group-hover:rotate-45"></span> ทดลองเล่นเกมฟรี
+          <a href="/ทดลองเล่น" class="group flex items-center text-[#a9c48c] transition-colors hover:text-[#e8fb9c]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#a3e635] transition-transform group-hover:rotate-45"></span> ทดลองเล่นเกมฟรี
           </a>
-          <a href="/promotion" class="group flex items-center text-[#9fb3cc] transition-colors hover:text-[#a5f3fc]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#22d3ee] transition-transform group-hover:rotate-45"></span> โปรโมชั่นสมาชิกใหม่
+          <a href="/promotion" class="group flex items-center text-[#a9c48c] transition-colors hover:text-[#e8fb9c]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#a3e635] transition-transform group-hover:rotate-45"></span> โปรโมชั่นสมาชิกใหม่
           </a>
-          <a href="/ทางเข้า" class="group flex items-center text-[#9fb3cc] transition-colors hover:text-[#a5f3fc]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#22d3ee] transition-transform group-hover:rotate-45"></span> ทางเข้าล่าสุด
+          <a href="/ทางเข้า" class="group flex items-center text-[#a9c48c] transition-colors hover:text-[#e8fb9c]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#a3e635] transition-transform group-hover:rotate-45"></span> ทางเข้าล่าสุด
           </a>
-          <a href="/register" class="group flex items-center text-[#9fb3cc] transition-colors hover:text-[#a5f3fc]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#22d3ee] transition-transform group-hover:rotate-45"></span> สมัครสมาชิก
+          <a href="/register" class="group flex items-center text-[#a9c48c] transition-colors hover:text-[#e8fb9c]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#a3e635] transition-transform group-hover:rotate-45"></span> สมัครสมาชิก
           </a>
-          <a href="/about-us" class="group flex items-center text-[#9fb3cc] transition-colors hover:text-[#a5f3fc]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#22d3ee] transition-transform group-hover:rotate-45"></span> เกี่ยวกับเรา
+          <a href="/about-us" class="group flex items-center text-[#a9c48c] transition-colors hover:text-[#e8fb9c]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#a3e635] transition-transform group-hover:rotate-45"></span> เกี่ยวกับเรา
           </a>
-          <a href="/contact-us" class="group flex items-center text-[#9fb3cc] transition-colors hover:text-[#a5f3fc]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#22d3ee] transition-transform group-hover:rotate-45"></span> ติดต่อแอดมิน
+          <a href="/contact-us" class="group flex items-center text-[#a9c48c] transition-colors hover:text-[#e8fb9c]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#a3e635] transition-transform group-hover:rotate-45"></span> ติดต่อแอดมิน
           </a>
         </div>
       </div>
 
       <div class="md:col-span-6 lg:col-span-3">
-        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#cfe3f5] uppercase">
+        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#e2f3cd] uppercase">
           ระบบการเงิน
-          <span class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#a855f7] to-[#22d3ee] shadow-[0_0_8px_rgba(34,211,238,0.6)]"></span>
+          <span class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#ffd54a] to-[#a3e635] shadow-[0_0_8px_rgba(163,230,53,0.6)]"></span>
         </p>
 
-        <p class="mb-4 text-xs text-[#9fb3cc]">รองรับการฝาก-ถอนผ่านแอปธนาคารชั้นนำและ TrueMoney Wallet โดยควรใช้บัญชีชื่อเดียวกับข้อมูลที่สมัครไว้</p>
+        <p class="mb-4 text-xs text-[#a9c48c]">รองรับการฝาก-ถอนผ่านแอปธนาคารชั้นนำและ TrueMoney Wallet โดยควรใช้บัญชีชื่อเดียวกับข้อมูลที่สมัครไว้</p>
 
         <BankStrip size={30} />
 
-        <div class="mt-3 flex h-10 items-center justify-center rounded border border-white/5 bg-[#0d0a2b] transition-colors hover:border-[#22d3ee]/50" title="ตรวจรายการย้อนหลัง">
-          <span class="flex items-center gap-1 text-xs font-bold text-[#cfe3f5]"><span aria-hidden="true" class="text-lg text-[#22d3ee]">🧾</span> เก็บเลขรายการไว้ตรวจสอบได้</span>
+        <div class="mt-3 flex h-10 items-center justify-center rounded border border-white/5 bg-[#0a2411] transition-colors hover:border-[#a3e635]/50" title="ตรวจรายการย้อนหลัง">
+          <span class="flex items-center gap-1 text-xs font-bold text-[#e2f3cd]"><span aria-hidden="true" class="text-lg text-[#a3e635]">🧾</span> เก็บเลขรายการไว้ตรวจสอบได้</span>
         </div>
       </div>
     </div>
 
-    <hr class="mb-6 border-[#22d3ee]/25" />
+    <hr class="mb-6 border-[#a3e635]/25" />
 
-    <div class="mb-6 hidden text-justify text-[10px] leading-relaxed text-[#7f8fa6] md:block">
-      เกมสล็อตออนไลน์ สล็อตคลาสสิก วิดีโอสล็อต เกมโบนัส ฟีเจอร์พิเศษ ค้นหาเกมตามค่าย ธีม และระดับความผันผวน ตรวจอัตราจ่ายและกติกาก่อนเลือกเกม ระบบเว็บตรงสมัครและเข้าสู่ระบบจากหน้าเดียว
-      ฝากถอนไม่มีขั้นต่ำตามช่องทางที่กำหนด รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ ทางเข้าเว็บล่าสุด สมัครสมาชิกใหม่ XFINITYPLAY
+    <div class="mb-6 hidden text-justify text-[10px] leading-relaxed text-[#7f9166] md:block">
+      เกมสล็อตออนไลน์ ระบบออโต้ สล็อตคลาสสิก วิดีโอสล็อต เกมโบนัส ฟีเจอร์พิเศษ ค้นหาเกมตามค่าย ธีม และระดับความผันผวน ตรวจอัตราจ่ายและกติกาก่อนเลือกเกม สมัครและเข้าสู่ระบบจากหน้าเดียว
+      ฝากไม่มีขั้นต่ำตามช่องทางที่กำหนด รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ ทางเข้าเว็บล่าสุด สมัครสมาชิกใหม่ TGAZM
     </div>
 
-    <div class="flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-[#7f8fa6] md:flex-row">
-      <p>&copy; {new Date().getFullYear()} <span class="font-bold tracking-wider text-[#a5f3fc] uppercase">XFINITYPLAY</span>. All Rights Reserved.</p>
+    <div class="flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-[#7f9166] md:flex-row">
+      <p>&copy; {new Date().getFullYear()} <span class="font-bold tracking-wider text-[#e8fb9c] uppercase">TGAZM</span>. All Rights Reserved.</p>
 
       <div class="flex items-center gap-6">
-        <a href="/terms/" class="transition-colors hover:text-[#cfe3f5]">เงื่อนไขและข้อตกลง</a>
-        <a href="/privacy/" class="transition-colors hover:text-[#cfe3f5]">นโยบายความเป็นส่วนตัว</a>
+        <a href="/terms/" class="transition-colors hover:text-[#e2f3cd]">เงื่อนไขและข้อตกลง</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#e2f3cd]">นโยบายความเป็นส่วนตัว</a>
 
         {/* An anchor, not a button with onclick. Smooth scrolling comes from
             `scroll-behavior` in global.css, which the reduced-motion block
@@ -137,7 +153,7 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
             because the rest of this footer is. */}
         <a
           href="#top"
-          class="flex h-8 w-8 items-center justify-center rounded border border-white/10 bg-white/5 text-[#cfe3f5] transition-all hover:border-[#22d3ee] hover:bg-[#130d3a] hover:shadow-[0_0_15px_rgba(34,211,238,0.5)]"
+          class="flex h-8 w-8 items-center justify-center rounded border border-white/10 bg-white/5 text-[#e2f3cd] transition-all hover:border-[#a3e635] hover:bg-[#123018] hover:shadow-[0_0_15px_rgba(163,230,53,0.5)]"
           aria-label="กลับขึ้นด้านบนสุดของหน้า">
           <span aria-hidden="true">↑</span>
         </a>
@@ -151,8 +167,5 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
     text-decoration: none;
     color: inherit;
     transition: all 0.3s ease;
-  }
-  footer {
-    font-family: var(--font-sans);
   }
 </style>

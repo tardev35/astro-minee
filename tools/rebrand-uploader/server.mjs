@@ -2721,7 +2721,7 @@ const PAGE = /* html */ `<!doctype html>
 <body>
 <header>
   <div class="head-inner">
-    <h1><span class="mark">📦</span> <span class="grad-text">Rebrand Asset Uploader</span></h1>
+    <h1><span class="mark">📦</span> <span class="grad-text">Minee Uploader</span></h1>
     
   </div>
 </header>

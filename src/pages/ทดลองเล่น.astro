@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement3.astro";
+import Announcement from "../components/Announcement5.astro";
 
 import { Picture } from "astro:assets";
 import { itemList, pageGraph, schemaCtx } from "../lib/schema";
@@ -23,18 +23,18 @@ import image12 from "../assets/gamedemo18.webp";
 // They used to be two hand-kept arrays that had to stay in the same order, and
 // the name shown to a reader could drift from the name handed to a crawler.
 const demoGames = [
-  { name: "AskmeSlot", src: image1, alt: "แบนเนอร์เกมสล็อตค่าย AskmeSlot ที่เปิดให้ทดลองเล่นบน LCX88" },
+  { name: "AskmeSlot", src: image1, alt: "แบนเนอร์เกมสล็อตค่าย AskmeSlot ที่เปิดให้ทดลองเล่นบน TGAZM" },
   { name: "Popular Game", src: image2, alt: "แบนเนอร์รวมเกมยอดนิยม Popular Game พร้อมกองชิปและเหรียญทอง" },
-  { name: "SlotXO", src: image3, alt: "แบนเนอร์เกมสล็อตค่าย SlotXO ที่เปิดให้ทดลองเล่นบน LCX88" },
-  { name: "Skywind Group", src: image4, alt: "แบนเนอร์เกมสล็อตค่าย Skywind Group ที่เปิดให้ทดลองเล่นบน LCX88" },
-  { name: "PG Soft", src: image5, alt: "แบนเนอร์เกมสล็อตค่าย PG Soft ที่เปิดให้ทดลองเล่นบน LCX88" },
+  { name: "SlotXO", src: image3, alt: "แบนเนอร์เกมสล็อตค่าย SlotXO ที่เปิดให้ทดลองเล่นบน TGAZM" },
+  { name: "Skywind Group", src: image4, alt: "แบนเนอร์เกมสล็อตค่าย Skywind Group ที่เปิดให้ทดลองเล่นบน TGAZM" },
+  { name: "PG Soft", src: image5, alt: "แบนเนอร์เกมสล็อตค่าย PG Soft ที่เปิดให้ทดลองเล่นบน TGAZM" },
   { name: "SBOBET", src: image6, alt: "แบนเนอร์ค่ายเกม SBOBET พร้อมตัวละครการ์ตูนถือลูกอม" },
-  { name: "Sexy Slot", src: image7, alt: "แบนเนอร์เกมสล็อตค่าย Sexy Slot ที่เปิดให้ทดลองเล่นบน LCX88" },
-  { name: "JILI", src: image8, alt: "แบนเนอร์เกมสล็อตค่าย JILI ที่เปิดให้ทดลองเล่นบน LCX88" },
-  { name: "Ask Me Bet", src: image9, alt: "แบนเนอร์ค่ายเกม Ask Me Bet ที่เปิดให้ทดลองเล่นบน LCX88" },
+  { name: "Sexy Slot", src: image7, alt: "แบนเนอร์เกมสล็อตค่าย Sexy Slot ที่เปิดให้ทดลองเล่นบน TGAZM" },
+  { name: "JILI", src: image8, alt: "แบนเนอร์เกมสล็อตค่าย JILI ที่เปิดให้ทดลองเล่นบน TGAZM" },
+  { name: "Ask Me Bet", src: image9, alt: "แบนเนอร์ค่ายเกม Ask Me Bet ที่เปิดให้ทดลองเล่นบน TGAZM" },
   { name: "New Game", src: image10, alt: "แบนเนอร์เกมออกใหม่ New Game พร้อมตัวการ์ตูนฟักทองและโครงกระดูก" },
-  { name: "JOKER", src: image11, alt: "แบนเนอร์เกมสล็อตค่าย JOKER ที่เปิดให้ทดลองเล่นบน LCX88" },
-  { name: "AFB Gaming", src: image12, alt: "แบนเนอร์ค่ายเกม AFB Gaming ที่เปิดให้ทดลองเล่นบน LCX88" },
+  { name: "JOKER", src: image11, alt: "แบนเนอร์เกมสล็อตค่าย JOKER ที่เปิดให้ทดลองเล่นบน TGAZM" },
+  { name: "AFB Gaming", src: image12, alt: "แบนเนอร์ค่ายเกม AFB Gaming ที่เปิดให้ทดลองเล่นบน TGAZM" },
 ];
 
 // The URL each entry resolves to is schema.ts's problem, not this file's — an
@@ -42,10 +42,11 @@ const demoGames = [
 // slash and the Thai encoding wrong on every one of them.
 const gameList = demoGames.map((game) => ({ name: game.name, imagePath: game.src.src }));
 
-const pageTitle = "ทดลองเล่นคาสิโนออนไลน์ LCX88 ก่อนเริ่มใช้งานจริง";
+const pageTitle = "ทดลองเล่นเกมสล็อต TGAZM ก่อนเริ่มใช้งานจริง";
 
+// 156 ตัวอักษร (นับตัวอักษร ไม่ใช่ไบต์) — อยู่ในกรอบ 150–160 ที่ verify-build บังคับ
 const pageDescription =
-  "LCX88 ทดลองเล่นคาสิโนออนไลน์เพื่อศึกษากติกา ฟีเจอร์ และรูปแบบเกม ช่วยให้เลือกเกมได้เหมาะกับความชอบและงบประมาณ โดยไม่ต้องใช้เงินจริงและไม่มีผลต่อบัญชีสมาชิก";
+  "TGAZM ทดลองเล่นสล็อตเพื่อเรียนรู้กติกา โบนัส และรูปแบบการจ่ายของแต่ละเกม ช่วยให้เลือกเกมสอดคล้องกับงบประมาณมากขึ้น โดยไม่ใช้เงินจริงและไม่มีผลต่อบัญชีสมาชิก";
 
 const ctx = schemaCtx(Astro);
 const graph = pageGraph(Astro, {
@@ -58,8 +59,8 @@ const graph = pageGraph(Astro, {
   ],
   extra: [
     itemList(ctx, {
-      name: "ทดลองเล่นเกมคาสิโนออนไลน์หลายค่ายของ LCX88",
-      alternateName: "LCX88 โหมดทดลองเล่นเกมคาสิโนบนมือถือก่อนเริ่มใช้งานจริง",
+      name: "ทดลองเล่นเกมสล็อตหลายค่ายของ TGAZM",
+      alternateName: "TGAZM โหมดทดลองเล่นเกมสล็อตบนมือถือก่อนเริ่มใช้งานจริง",
       itemType: "Game",
       items: gameList,
     }),
@@ -67,19 +68,19 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="LCX88 | ทดลองเล่นคาสิโนออนไลน์ก่อนเริ่มใช้งานจริง" description={pageDescription}>
+<MainLayout title="TGAZM | ทดลองเกมสล็อตเพื่อศึกษาฟีเจอร์ก่อนเล่นจริง" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <h2 class="mb-6 bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#6ea3ff] bg-clip-text text-2xl leading-normal font-bold text-transparent">โหมดทดลองของ LCX88 มีไว้ทำอะไร และควรดูอะไรก่อนเลือกเกม</h2>
+      <h2 class="mb-6 bg-gradient-to-r from-[#ffeaa0] via-[#ffd54a] to-[#c6f76a] bg-clip-text text-2xl leading-normal font-bold text-transparent">โหมดทดลองของ TGAZM มีไว้ทำอะไร และควรดูอะไรก่อนเลือกเกม</h2>
 
-      <p class="mb-8 text-left text-base leading-relaxed text-[#d7e3ff]">
-        LCX88 รวมเกมคาสิโนออนไลน์หลายรูปแบบไว้ในระบบเดียว ทั้งเกมสล็อต บาคาร่า รูเล็ต เกมไพ่ และคาสิโนสดจากหลายค่าย โดยมีค่ายอย่าง PG Soft, JOKER, JILI และค่ายอื่นอยู่ในเมนูเดียวกัน
+      <p class="mb-8 text-left text-base leading-relaxed text-[#e2f3cd]">
+        TGAZM รวมเกมสล็อตหลายรูปแบบไว้ในระบบเดียว ทั้งสล็อตคลาสสิก สล็อตวิดีโอหลายไลน์ และเกมที่มีฟีเจอร์โบนัสหลายชั้น โดยมีค่ายอย่าง PG Soft, JOKER, JILI และค่ายอื่นอยู่ในเมนูเดียวกัน
         หน้านี้จึงเป็นที่ให้กดเปิดดูหน้าเกมก่อนว่าหน้าตาระบบเป็นแบบไหน ปุ่มปรับเดิมพันอยู่ตรงไหน ฟีเจอร์ต่าง ๆ ทำงานอย่างไร และหนึ่งรอบกินเวลาแค่ไหน โดยยังไม่ต้องใส่เงินจริงและไม่มีการได้เสียเกิดขึ้น
-        สิ่งที่ควรดูจริงคือกติกา อัตราการจ่าย ระดับความผันผวน และเดิมพันเริ่มต้นต่อรอบ เพื่อเลือกเกมให้เหมาะกับงบประมาณของตนเอง มากกว่าดูว่าเกมไหนกำลังดังที่สุด
+        สิ่งที่ควรดูจริงคือกติกา รูปแบบการจ่าย ระดับความผันผวน และเดิมพันเริ่มต้นต่อรอบ เพื่อเลือกเกมให้เหมาะกับงบประมาณของตนเอง มากกว่าดูว่าเกมไหนกำลังดังที่สุด
         เกมดังช่วยให้หารีวิวง่าย แต่ไม่ได้ช่วยเจรจากับระบบสุ่มเป็นการส่วนตัว ถือเป็นการอ่านคู่มือก่อนขับ ซึ่งน่าเบื่อกว่าการลองขับเลยอยู่แล้ว แต่ค่าซ่อมมันถูกกว่ากันเยอะ
       </p>
 
@@ -94,7 +95,7 @@ const graph = pageGraph(Astro, {
                 fetchpriority="low"
                 widths={[160, 320, 480]}
                 sizes="(max-width: 767px) 42vw, (max-width: 1520px) 23vw, 320px"
-                class="block h-auto w-full object-cover shadow-[0_10px_30px_rgba(47,107,255,0.20)] transition-transform duration-300 group-hover/game:scale-105"
+                class="block h-auto w-full object-cover shadow-[0_10px_30px_rgba(163,230,53,0.20)] transition-transform duration-300 group-hover/game:scale-105"
                 decoding="async"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
@@ -104,38 +105,38 @@ const graph = pageGraph(Astro, {
                 href="/register"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`สมัครสมาชิกเพื่อเล่น ${game.name} ที่ LCX88`}
-                class="absolute inset-0 flex items-center justify-center bg-[#040b2e]/75 opacity-0 transition-opacity duration-300 group-hover/game:opacity-100 focus-visible:opacity-100">
-                <span class="rounded-full border border-[#f5c542]/60 bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#c08b1f] px-6 py-2 font-bold text-[#04102e] shadow-[0_10px_30px_rgba(245,197,66,0.32)] transition-transform hover:scale-110">เล่นเลย</span>
+                aria-label={`สมัครสมาชิกเพื่อเล่น ${game.name} ที่ TGAZM`}
+                class="absolute inset-0 flex items-center justify-center bg-[#04150a]/75 opacity-0 transition-opacity duration-300 group-hover/game:opacity-100 focus-visible:opacity-100">
+                <span class="rounded-full border border-[#ffd54a]/60 bg-gradient-to-r from-[#ffeaa0] via-[#ffd54a] to-[#c9911a] px-6 py-2 font-bold text-[#04150a] shadow-[0_10px_30px_rgba(255,213,74,0.32)] transition-transform hover:scale-110">เล่นเลย</span>
               </a>
             </div>
           ))
         }
       </div>
 
-      <h2 class="mt-8 mb-6 bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#6ea3ff] bg-clip-text text-2xl leading-normal font-bold text-transparent">โหมดทดลองบอกอะไรได้ และบอกอะไรไม่ได้</h2>
+      <h2 class="mt-8 mb-6 bg-gradient-to-r from-[#ffeaa0] via-[#ffd54a] to-[#c6f76a] bg-clip-text text-2xl leading-normal font-bold text-transparent">โหมดทดลองบอกอะไรได้ และบอกอะไรไม่ได้</h2>
 
-      <p class="mb-4 text-left text-base leading-relaxed text-[#d7e3ff]">
+      <p class="mb-4 text-left text-base leading-relaxed text-[#e2f3cd]">
         โหมดทดลองบอกได้ว่าเกมทำงานอย่างไร เมนูอยู่ตรงไหน ฟีเจอร์พิเศษเรียกใช้ยังไง และหนึ่งรอบใช้เวลาเท่าไร แต่เครดิตในโหมดนี้เป็นยอดสมมติ ถอนไม่ได้ และผลที่ออกมาก็ไม่ได้บอกว่าเล่นจริงจะได้ผลเหมือนกัน
         คำว่าเกมแตกง่ายใช้สื่อถึงเกมที่มีฟีเจอร์และจังหวะลุ้นรางวัลน่าสนใจ แต่ไม่สามารถรับประกันผลลัพธ์ได้ ต่อให้กดในโหมดทดลองแล้วจังหวะเข้ามือ ก็ไม่ใช่หลักฐานว่าเกมนั้นกำลังอารมณ์ดีรอเราอยู่
         โหมดนี้มีไว้ศึกษาระบบ ไม่ใช่ไว้ดูดวงผ่านหน้าจอ
       </p>
 
-      <p class="mb-4 text-left text-base leading-relaxed text-[#d7e3ff]">
-        อีกเรื่องที่ควรเผื่อใจคือโหมดทดลองไม่ได้มีให้ครบทุกเกม โดยเฉพาะโต๊ะคาสิโนสดที่เปิดถ่ายทอดจริงและมักไม่มีโหมดนี้ จึงควรเปิดหน้ารายละเอียดของเกมดูก่อนเลือก
+      <p class="mb-4 text-left text-base leading-relaxed text-[#e2f3cd]">
+        อีกเรื่องที่ควรเผื่อใจคือโหมดทดลองไม่ได้มีให้ครบทุกเกม โดยเฉพาะเกมที่เพิ่งเปิดตัวหรือเกมบางค่ายที่ยังไม่เปิดโหมดนี้ จึงควรเปิดหน้ารายละเอียดของเกมดูก่อนเลือก
         และยอดที่หมุนในโหมดทดลองไม่นับเป็นยอดเทิร์นของบัญชีหรือของโปรโมชั่นใด ถ้าเกมที่อยากลองไม่มีปุ่มทดลอง ให้ถือว่าวันนี้โชคไม่ดี ไม่ใช่สัญญาณลับที่ระบบส่งมาให้เราคนเดียว
         การรวมเกมไว้ในระบบเดียวช่วยให้ค้นหาตามค่าย ประเภทเกม หรือรูปแบบที่ชื่นชอบได้จากหน้าเดียว และเว็บไซต์รองรับทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์ จึงเปิดดูเกมผ่านเบราว์เซอร์ได้โดยไม่ต้องติดตั้งโปรแกรมเพิ่ม
         ควรใช้อินเทอร์เน็ตที่เสถียรและอัปเดตเบราว์เซอร์ให้เป็นรุ่นล่าสุด
       </p>
 
-      <h2 class="mt-8 mb-6 bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#6ea3ff] bg-clip-text text-2xl leading-normal font-bold text-transparent">จากโหมดทดลองไปเล่นจริงบน LCX88 ควรเช็กอะไรก่อน</h2>
+      <h2 class="mt-8 mb-6 bg-gradient-to-r from-[#ffeaa0] via-[#ffd54a] to-[#c6f76a] bg-clip-text text-2xl leading-normal font-bold text-transparent">จากโหมดทดลองไปเล่นจริงบน TGAZM ควรเช็กอะไรก่อน</h2>
 
-      <p class="mb-2 text-left text-base leading-relaxed text-[#d7e3ff]">
+      <p class="mb-2 text-left text-base leading-relaxed text-[#e2f3cd]">
         ถ้าจะขยับจากโหมดทดลองไปเล่นด้วยเงินจริง เรื่องที่ควรดูก่อนคือบัญชี งบต่อรอบ โปรโมชั่น และช่องทางเข้า ด้านบัญชี ควรใช้ข้อมูลที่ตรงกับตอนสมัคร ทั้งเบอร์โทรที่รับข้อความได้จริงและชื่อบัญชีธนาคารของผู้สมัครเอง
-        และตั้งรหัสผ่านที่คาดเดายาก ไม่ใช่เลขวันเกิด เลขเรียง หรือเลขซ้ำทั้งชุด เพราะสมัครเร็วเป็นเรื่องดี แต่กรอกผิดแล้วตามแก้ทีหลัง ความเร็วก็หายหมด
+        และตั้งรหัสผ่านที่คาดเดายาก ไม่ซ้ำกับบริการอื่น ไม่ใช่เลขวันเกิด เลขเรียง หรือเลขซ้ำทั้งชุด เพราะสมัครเร็วเป็นเรื่องดี แต่กรอกผิดแล้วตามแก้ทีหลัง ความเร็วก็หายหมด
         ด้านงบ ควรกำหนดวงเงินและเวลาเล่นให้ชัดเจนก่อนเริ่ม แล้วดูเดิมพันเริ่มต้นต่อรอบของเกมที่เลือกประกอบ ตัวเลขนั้นเป็นเดิมพันของเกม ไม่ใช่เงื่อนไขของการฝากหรือการถอน
-        เงื่อนไขฝากถอนไม่มีขั้นต่ำของ LCX88 ใช้ได้ตามช่องทางที่เว็บไซต์กำหนด จึงควรดูยอดบนหน้าฝากและหน้าเกมแยกกันอีกครั้ง และถ้าจะกดรับโปรโมชั่นก็ต้องอ่านยอดฝากขั้นต่ำ โบนัสที่ได้รับ จำนวนเทิร์น เกมที่ร่วมรายการ และเพดานถอนให้จบก่อน
-        สุดท้ายควรเข้าใช้งานผ่านช่องทางเข้าจริงของ LCX88 ที่ตรวจชื่อเว็บไซต์แล้วและเชื่อมต่อแบบ HTTPS เท่านั้น ไม่ใช่ลิงก์ที่ส่งต่อกันมาในแชตพร้อมคำโฆษณา และหากติดปัญหาระหว่างใช้งาน ทีมงานดูแลสมาชิกรับเรื่องตลอด 24 ชั่วโมงผ่านช่องทางที่เว็บไซต์ระบุ
+        เงื่อนไขฝากไม่มีขั้นต่ำของ TGAZM ใช้ได้ตามช่องทางที่เว็บไซต์กำหนด จึงควรดูยอดบนหน้าฝากและหน้าเกมแยกกันอีกครั้ง และถ้าจะกดรับโปรโมชั่นก็ต้องอ่านยอดฝากขั้นต่ำ โบนัสที่ได้รับ จำนวนเทิร์น เกมที่ร่วมรายการ และเพดานถอนให้จบก่อน
+        สุดท้ายควรเข้าใช้งานผ่านช่องทางเข้าหลักของ TGAZM ที่ตรวจชื่อเว็บไซต์แล้วและเชื่อมต่อแบบ HTTPS เท่านั้น ไม่ใช่ลิงก์ที่ส่งต่อกันมาในแชตพร้อมคำโฆษณา และหากติดปัญหาระหว่างใช้งาน ทีมงานดูแลสมาชิกรับเรื่องตลอด 24 ชั่วโมงผ่านช่องทางที่เว็บไซต์ระบุ
       </p>
     </div>
   </ContentBox>

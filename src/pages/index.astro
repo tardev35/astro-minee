@@ -1,48 +1,49 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/Announcement3.astro";
+import Announcement from "../components/Announcement5.astro";
 import ContentBox from "../components/ContentBox.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
-import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
-import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
+import ContentBoxPremium from "../components/ContentBoxPremium.astro";
+import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
+import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
+import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
+import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinnersPremium.astro";
+import LatestWinners from "../components/LatestWinners3.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq2.astro";
+import Faq from "../components/Faq4.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
 import { pageGraph } from "../lib/schema";
-// slide4 illustrates the ระบบออโต้ section (its own bottom strip reads
-// ฝากถอนออโต้ / บริการตลอด 24 ชม.), slide2 the โอนไว/ตรวจสอบสถานะ section.
+// slide4 illustrates the ระบบออโต้ section (its bottom strip reads ฝากถอนออโต้ /
+// บริการ 24 ชม.), slide1 the ฝากไม่มีขั้นต่ำ section (ฝากครั้งแรก รับเพิ่ม 50%).
 // Slides may only live inside a ContentBoxSevenThree* block, max two per
 // rebrand; SmoothCarousel keeps rendering all four as the promotion carousel.
 import imgAutoSystem from "../assets/slide4.png";
-import imgFastTransfer from "../assets/slide2.png";
+import imgNoMinimum from "../assets/slide1.png";
 
-const pageTitle = "LCX88 | คาสิโนออนไลน์ระบบออโต้ ฝากถอนไม่มีขั้นต่ำ ปลอดภัยโอนไว";
+const pageTitle = "TGAZM | เว็บสล็อตระบบออโต้ เดิมพันง่าย ฝากไม่มีขั้นต่ำ มั่นคงปลอดภัย";
 
-// 155 characters. verify-build.mjs errors outside 150–160 CHARACTERS, and the
-// docx-supplied description is 127 — the trailing clause closes that gap
+// 154 characters. verify-build.mjs errors outside 150–160 CHARACTERS, and the
+// docx-supplied description is 128 — the trailing clause closes that gap
 // without changing what the brief says.
-const pageDescription = "LCX88 คาสิโนออนไลน์ระบบออโต้ ฝากถอนไม่มีขั้นต่ำ รองรับมือถือ ใช้งานปลอดภัย โอนไว พร้อมเกมหลากหลายและบริการสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาก่อนเริ่มใช้งาน";
+const pageDescription = "TGAZM เว็บสล็อตระบบออโต้ เดิมพันง่าย ฝากถอนไม่มีขั้นต่ำ รองรับมือถือ พร้อมระบบบัญชีมั่นคง ปลอดภัย และบริการสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาก่อนเริ่มเล่น";
 
 const faqs = [
   {
-    q: "LCX88 มีเกมคาสิโนประเภทใดบ้าง?",
-    a: "ภายในระบบมีทั้งเกมสล็อต บาคาร่า รูเล็ต เกมไพ่ และคาสิโนสดจากหลายค่าย สมาชิกสามารถเลือกเกมตามประเภทและรูปแบบที่ตนเองสนใจได้",
+    q: "TGAZM ฝากเงินโดยไม่มีขั้นต่ำได้ทุกช่องทางหรือไม่?",
+    a: "เงื่อนไขไม่มีขั้นต่ำอาจใช้เฉพาะช่องทางที่เว็บไซต์กำหนด สมาชิกจึงควรตรวจสอบข้อมูลล่าสุด รวมถึงข้อกำหนดของโปรโมชั่นก่อนทำรายการทุกครั้ง",
   },
   {
-    q: "LCX88 ฝากถอนไม่มีขั้นต่ำจริงหรือไม่?",
-    a: "ระบบรองรับเงื่อนไขไม่มีขั้นต่ำในช่องทางที่เว็บไซต์กำหนด แต่ควรตรวจสอบรายละเอียดล่าสุด เพราะข้อกำหนดอาจแตกต่างตามช่องทางและโปรโมชั่น",
+    q: "ระบบออโต้ของ TGAZM ช่วยเรื่องใดบ้าง?",
+    a: "ระบบออโต้ช่วยให้สมาชิกฝาก ถอน และตรวจสอบสถานะรายการผ่านหน้าบัญชีได้ด้วยตนเอง แต่ระยะเวลาดำเนินการอาจขึ้นอยู่กับช่องทางชำระเงิน",
   },
   {
-    q: "ระบบโอนไวของ LCX88 ใช้เวลานานหรือไม่?",
-    a: "ระบบออโต้ช่วยลดขั้นตอนการทำรายการ แต่ระยะเวลาอาจแตกต่างตามธนาคาร ช่องทางชำระเงิน และสถานะการตรวจสอบข้อมูลของบัญชี",
+    q: "ควรเลือกเกมสล็อตใน TGAZM จากอะไร?",
+    a: "ควรพิจารณากติกา รูปแบบโบนัส อัตราจ่าย และความผันผวนของเกม พร้อมเลือกให้เหมาะกับงบประมาณและระยะเวลาที่กำหนดไว้",
   },
 ];
 
@@ -57,28 +58,24 @@ const graph = pageGraph(Astro, {
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement
-    message="LCX88 คาสิโนออนไลน์ระบบออโต้ รวมเกมสล็อต บาคาร่า รูเล็ต เกมไพ่ และคาสิโนสดจากหลายค่ายไว้ในระบบเดียว • ฝากถอนไม่มีขั้นต่ำตามช่องทางที่เว็บไซต์กำหนด • ระบบโอนไวควรตรวจสอบสถานะรายการทุกครั้งก่อนออกจากหน้าเว็บไซต์ • ทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาและเงื่อนไขก่อนเริ่มใช้งานทุกครั้ง"
+    message="TGAZM เว็บสล็อตระบบออโต้ สมัคร เลือกเกม และฝากถอนได้จบในบัญชีเดียว • ฝากไม่มีขั้นต่ำตามช่องทางที่เว็บไซต์กำหนด • ระบบออโต้ทำรายการเองได้จากหน้าบัญชี ควรตรวจสอบสถานะรายการก่อนปิดหน้าเว็บทุกครั้ง • ทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาและกำหนดงบประมาณก่อนเริ่มเล่น"
   />
 
-  <ContentBoxCyberCut as="h1" title="LCX88 | คาสิโนออนไลน์ระบบออโต้ ฝากถอนไม่มีขั้นต่ำ ปลอดภัยโอนไว">
-    <p class="text-left text-base leading-relaxed text-[#d7e3ff]">
-      <strong class="text-[#f5c542]">LCX88</strong> เป็นแพลตฟอร์มคาสิโนออนไลน์ที่รวมเกมหลายรูปแบบไว้ในระบบเดียว รองรับการฝากถอนออโต้และเงื่อนไขไม่มีขั้นต่ำตามช่องทางที่กำหนด สมาชิกสามารถเลือกเกม ตรวจสอบโปรโมชั่น
-      และจัดการบัญชีผ่านมือถือได้สะดวก ควรอ่านกติกา เงื่อนไขโบนัส และรายละเอียดธุรกรรมก่อนเริ่มใช้งานทุกครั้ง
+  <ContentBoxPremium as="h1" title="TGAZM เว็บสล็อตระบบออโต้ เดิมพันง่าย ฝากไม่มีขั้นต่ำ มั่นคงปลอดภัย">
+    <p class="text-left text-base leading-relaxed text-[#e2f3cd]">
+      <strong class="text-[#ffd54a]">TGAZM</strong> เป็นเว็บสล็อตที่ออกแบบระบบให้สมาชิกเริ่มใช้งานได้ไม่ซับซ้อน ตั้งแต่การสมัคร เลือกเกม ไปจนถึงการฝากถอนผ่านระบบออโต้ ภายในรวบรวมเกมสล็อตหลายรูปแบบและรองรับการใช้งานบนมือถือ
+      จุดเด่นคือเงื่อนไขฝากไม่มีขั้นต่ำในช่องทางที่กำหนด พร้อมระบบบัญชีที่ควรใช้งานผ่านทางเข้าหลักเพื่อเพิ่มความปลอดภัย
     </p>
-  </ContentBoxCyberCut>
+  </ContentBoxPremium>
 
-  <ContentBox as="h2" title="รวมเกมคาสิโนออนไลน์หลายรูปแบบไว้บน LCX88">
-    <p class="text-left text-base leading-relaxed text-[#d7e3ff]">
-      ภายใน LCX88 มีทั้งเกมสล็อต เกมไพ่ บาคาร่า รูเล็ต และเกมคาสิโนสดจากหลายค่าย ผู้เล่นสามารถเลือกเกมตามประเภท รูปแบบ หรือความถนัดของตนเองได้ง่าย ควรศึกษากติกา อัตราการจ่าย
-      และเงื่อนไขของแต่ละเกมก่อนเริ่ม เพื่อวางงบประมาณได้อย่างเหมาะสม
+  <ContentBox as="h2" title="เริ่มเดิมพันได้ง่ายผ่านระบบของ TGAZM">
+    <p class="text-left text-base leading-relaxed text-[#e2f3cd]">
+      หน้าใช้งานของ TGAZM จัดหมวดหมู่เกมและเมนูสำคัญไว้อย่างชัดเจน สมาชิกสามารถค้นหาเกม ตรวจสอบยอดเงิน และเลือกโปรโมชั่นได้จากบัญชีเดียว ก่อนเริ่มควรศึกษากติกาและกำหนดงบประมาณให้ชัดเจน
+      เพื่อให้การใช้งานเป็นขั้นตอนและไม่เกินขอบเขตที่ตนเองวางไว้
     </p>
   </ContentBox>
 
-  <ProviderGrid />
-
-  <GameRankingBoard />
-
-  <ContentBoxSevenThreeCyberCut titleright="ระบบออโต้ช่วยลดขั้นตอนการฝากและถอน">
+  <ContentBoxSevenThreePremium title="ระบบออโต้ช่วยจัดการธุรกรรมได้คล่องตัวกว่าเดิม">
     <Picture
       slot="left"
       src={imgAutoSystem}
@@ -90,35 +87,19 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่น LCX88 ข้อความ ชวนเพื่อน รับเครดิตฟรี 300 บาท ชวนมาก ได้มาก พร้อมแถบด้านล่าง มั่นคง ปลอดภัย ระบบมาตรฐานสากล ฝากถอนออโต้ รวดเร็ว ทันใจ รองรับมือถือ แอปใช้งานง่าย และ บริการตลอด 24 ชม. ดูแลทุกการใช้งาน"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#2f6bff]/35 shadow-[0_10px_30px_rgba(47,107,255,0.22)]"
+      alt="แบนเนอร์โปรโมชั่น TGAZM ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
+      class="mx-auto h-auto w-full rounded-2xl border border-[#a3e635]/35 shadow-[0_10px_30px_rgba(163,230,53,0.22)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#d7e3ff]">
-      ระบบฝากถอนออโต้ช่วยให้สมาชิกทำรายการผ่านหน้าบัญชีได้ด้วยตนเอง โดยควรใช้ข้อมูลที่ตรงกับบัญชีสมัคร ตรวจสอบยอดก่อนยืนยัน และเก็บหลักฐานรายการไว้จนกว่าระบบจะแสดงสถานะสำเร็จ
-      หากพบความล่าช้าควรติดต่อทีมงานผ่านช่องทางหลัก
+    <p slot="right" class="text-left text-base leading-relaxed text-[#e2f3cd]">
+      ระบบออโต้ช่วยลดการส่งข้อมูลซ้ำและเปิดให้สมาชิกทำรายการผ่านหน้าบัญชีได้ด้วยตนเอง ควรตรวจสอบชื่อบัญชี ยอดเงิน และสถานะรายการก่อนปิดหน้าเว็บทุกครั้ง หากรายการยังอยู่ระหว่างดำเนินการ ไม่ควรกดยืนยันซ้ำ
+      แต่ควรเก็บรายละเอียดไว้เพื่อตรวจสอบกับทีมงาน
     </p>
-  </ContentBoxSevenThreeCyberCut>
+  </ContentBoxSevenThreePremium>
 
-  <ContentBoxFloatingBadge as="h2" title="ฝากถอนไม่มีขั้นต่ำผ่านระบบของ LCX88">
-    <p class="text-left text-base leading-relaxed text-[#d7e3ff]">
-      เงื่อนไขไม่มีขั้นต่ำของ LCX88 ช่วยให้สมาชิกกำหนดยอดทำรายการได้ยืดหยุ่นมากขึ้น แต่ควรตรวจสอบช่องทางที่รองรับ สถานะบัญชี และข้อกำหนดของโปรโมชั่นก่อนยืนยันทุกครั้ง
-      เพื่อช่วยลดปัญหาจากข้อมูลไม่ตรงกันหรือรายการที่ต้องตรวจสอบเพิ่มเติม
-    </p>
-  </ContentBoxFloatingBadge>
-
-  <ContentBox as="h2" title="LCX88 ให้ความสำคัญกับความปลอดภัยของบัญชี">
-    <p class="text-left text-base leading-relaxed text-[#d7e3ff]">
-      การใช้งาน LCX88 อย่างปลอดภัยควรเริ่มจากการเข้าสู่ระบบผ่านช่องทางหลัก ตั้งรหัสผ่านที่คาดเดายาก และไม่เปิดเผยรหัสยืนยันแก่บุคคลอื่น สมาชิกควรหลีกเลี่ยงเครือข่ายสาธารณะเมื่อต้องทำธุรกรรม
-      และออกจากระบบทุกครั้งเมื่อใช้อุปกรณ์ร่วมกับผู้อื่น
-    </p>
-  </ContentBox>
-
-  <LoginRtpSection />
-
-  <ContentBoxSevenThreeFloatingBadge title="ระบบโอนไวควรตรวจสอบสถานะรายการทุกครั้ง">
+  <ContentBoxSevenThreeNeumorphism title="ฝากไม่มีขั้นต่ำกับ TGAZM ช่วยให้เริ่มตามงบได้">
     <Picture
       slot="left"
-      src={imgFastTransfer}
+      src={imgNoMinimum}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -127,36 +108,58 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่น LCX88 ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#f5c542]/35 shadow-[0_10px_30px_rgba(245,197,66,0.22)]"
+      alt="แบนเนอร์โปรโมชั่น TGAZM ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
+      class="mx-auto h-auto w-full rounded-2xl border border-[#ffd54a]/35 shadow-[0_10px_30px_rgba(255,213,74,0.22)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#d7e3ff]">
-      ความเร็วของรายการอาจขึ้นอยู่กับธนาคาร ช่องทางชำระเงิน และสถานะบัญชี สมาชิกควรตรวจสอบชื่อบัญชี จำนวนเงิน และผลการทำรายการก่อนออกจากหน้าเว็บไซต์ หากรายการยังไม่สำเร็จ ไม่ควรทำซ้ำทันที
-      แต่ควรเก็บข้อมูลไว้และติดต่อทีมงานเพื่อตรวจสอบ
+    <p slot="right" class="text-left text-base leading-relaxed text-[#e2f3cd]">
+      เงื่อนไขฝากไม่มีขั้นต่ำของ TGAZM ช่วยให้สมาชิกเลือกยอดเริ่มต้นได้ยืดหยุ่น โดยไม่จำเป็นต้องใช้เงินจำนวนสูง อย่างไรก็ตาม ควรตรวจสอบช่องทางที่รองรับและข้อกำหนดของโปรโมชั่นก่อนฝาก
+      พร้อมกำหนดวงเงินที่ไม่กระทบค่าใช้จ่ายส่วนตัวและไม่เพิ่มทุนเพื่อตามยอดที่เสียไป
     </p>
-  </ContentBoxSevenThreeFloatingBadge>
+  </ContentBoxSevenThreeNeumorphism>
+
+  <ContentBoxNeumorphism as="h2" title="เลือกเกมสล็อตจากรูปแบบการจ่ายและความผันผวน">
+    <p class="text-left text-base leading-relaxed text-[#e2f3cd]">
+      เกมสล็อตแต่ละประเภทมีจังหวะการจ่าย ฟีเจอร์โบนัส และระดับความผันผวนแตกต่างกัน เกมที่จ่ายบ่อยอาจให้รางวัลต่อครั้งไม่สูง ส่วนเกมผันผวนสูงอาจต้องรอนานกว่า ผู้เล่นจึงควรอ่านข้อมูลเกม ทดลองเล่น
+      และเลือกตามงบประมาณแทนการตัดสินใจจากคำโฆษณาเพียงอย่างเดียว
+    </p>
+  </ContentBoxNeumorphism>
+
+  <ProviderGrid />
+
+  <GameRankingBoard />
+
+  <ContentBoxSpecial as="h2" title="TGAZM วางระบบบัญชีเพื่อการใช้งานที่มั่นคง">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#e2f3cd]">
+      การใช้งาน TGAZM ให้ปลอดภัยควรเริ่มจากการเข้าผ่านช่องทางหลัก ตั้งรหัสผ่านที่ไม่ซ้ำกับบริการอื่น และไม่ส่งรหัสยืนยันให้บุคคลใด
+    </p>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#e2f3cd]">
+      สมาชิกควรหลีกเลี่ยงเครือข่ายสาธารณะเมื่อต้องทำธุรกรรม รวมถึงออกจากระบบเมื่อใช้อุปกรณ์ที่ไม่ใช่ของตนเอง
+    </p>
+  </ContentBoxSpecial>
+
+  <ContentBox as="h2" title="รับความช่วยเหลือเป็นขั้นตอนจากทีมงาน TGAZM">
+    <p class="text-left text-base leading-relaxed text-[#e2f3cd]">
+      เมื่อพบปัญหาด้านบัญชี โปรโมชั่น ทางเข้า หรือรายการฝากถอน สมาชิกสามารถติดต่อทีมงาน <strong class="text-[#ffd54a]">TGAZM</strong> ผ่านช่องทางที่เว็บไซต์ระบุ ควรแจ้งชื่อผู้ใช้ เวลา ยอดเงิน และรายละเอียดปัญหาให้ครบ
+      โดยไม่เปิดเผยรหัสผ่าน เพื่อให้ทีมงานตรวจสอบต้นเหตุและดำเนินการได้ตรงจุดมากขึ้น
+    </p>
+  </ContentBox>
+
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ TGAZM" faqs={faqs} />
+
+  <LoginRtpSection />
 
   <LatestWinners />
-
-  <ContentBoxCyberCut as="h2" title="ช่องทางดูแลสมาชิกจากทีมงาน LCX88">
-    <p class="text-left text-base leading-relaxed text-[#d7e3ff]">
-      เมื่อพบปัญหาเกี่ยวกับบัญชี ทางเข้าเล่น โปรโมชั่น หรือสถานะฝากถอน สมาชิกสามารถติดต่อทีมงาน <strong class="text-[#f5c542]">LCX88</strong> ผ่านช่องทางที่เว็บไซต์ระบุ ควรเตรียมชื่อผู้ใช้ เวลา และรายละเอียดรายการให้ครบถ้วน
-      โดยไม่ส่งรหัสผ่านหรือรหัสยืนยันแก่บุคคลอื่น
-    </p>
-  </ContentBoxCyberCut>
-
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ LCX88" faqs={faqs} />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#c08b1f] px-4 py-3 text-sm font-black whitespace-nowrap text-[#04102e] shadow-[0_10px_30px_rgba(245,197,66,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(245,197,66,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#ffeaa0] via-[#ffd54a] to-[#c9911a] px-4 py-3 text-sm font-black whitespace-nowrap text-[#04150a] shadow-[0_10px_30px_rgba(255,213,74,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(255,213,74,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#2f6bff]/70 bg-[#0a1547]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#ffe08a] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#f5c542] hover:bg-[#122264]/85 hover:shadow-[0_15px_40px_rgba(47,107,255,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#a3e635]/70 bg-[#0a2411]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#e8fb9c] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#ffd54a] hover:bg-[#123018]/85 hover:shadow-[0_15px_40px_rgba(163,230,53,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>

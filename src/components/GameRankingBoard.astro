@@ -8,12 +8,12 @@ import img5 from "../assets/providers/game5.avif";
 import img6 from "../assets/providers/game6.avif";
 
 const games = [
-  { rank: 1, name: "บาคาร่าห้องถ่ายทอดสด", type: "คาสิโนสด • เกมไพ่", menus: ["ยอดนิยม", "เล่นล่าสุด"], players: 5124, img: img6 },
-  { rank: 2, name: "สล็อตฟีเจอร์โบนัส", type: "เกมสล็อต • มีรอบพิเศษ", menus: ["ยอดนิยม", "รายการโปรด"], players: 3842, img: img3 },
-  { rank: 3, name: "รูเล็ตออนไลน์", type: "คาสิโนสด • วางเดิมพันหลายแบบ", menus: ["ยอดนิยม", "รายการโปรด"], players: 3517, img: img1 },
-  { rank: 4, name: "เกมไพ่เสือมังกร", type: "เกมไพ่ • กติกาสั้น", menus: ["เกมใหม่", "เล่นล่าสุด"], players: 2905, img: img2 },
-  { rank: 5, name: "สล็อตคลาสสิก 3 วงล้อ", type: "เกมสล็อต • เหมาะกับงบจำกัด", menus: ["เกมใหม่", "รายการโปรด"], players: 2431, img: img4 },
-  { rank: 6, name: "สล็อตแจ็กพอตสะสม", type: "เกมสล็อต • รางวัลสะสม", menus: ["เกมใหม่", "เล่นล่าสุด"], players: 2108, img: img5 },
+  { rank: 1, name: "สล็อตฟีเจอร์ฟรีสปิน", type: "เกมสล็อต • มีรอบพิเศษ", menus: ["ยอดนิยม", "เล่นล่าสุด"], players: 5124, img: img6 },
+  { rank: 2, name: "สล็อตแจ็กพอตสะสม", type: "เกมสล็อต • รางวัลสะสม", menus: ["ยอดนิยม", "รายการโปรด"], players: 3842, img: img3 },
+  { rank: 3, name: "สล็อตเมกะเวย์หลายเส้นจ่าย", type: "เกมสล็อต • เส้นจ่ายหลายรูปแบบ", menus: ["ยอดนิยม", "รายการโปรด"], players: 3517, img: img1 },
+  { rank: 4, name: "สล็อตคลาสสิก 3 วงล้อ", type: "เกมสล็อต • เหมาะกับงบจำกัด", menus: ["เกมใหม่", "เล่นล่าสุด"], players: 2905, img: img2 },
+  { rank: 5, name: "สล็อตผลไม้ความผันผวนต่ำ", type: "เกมสล็อต • จ่ายบ่อยกว่า", menus: ["เกมใหม่", "รายการโปรด"], players: 2431, img: img4 },
+  { rank: 6, name: "สล็อตธีมสัตว์นำโชค", type: "เกมสล็อต • ความผันผวนปานกลาง", menus: ["เกมใหม่", "เล่นล่าสุด"], players: 2108, img: img5 },
 ];
 
 // The medal replaces the rank NUMBER for the top three, so the emoji carries
@@ -22,15 +22,15 @@ const games = [
 const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : null);
 ---
 
-<section aria-label="อันดับเกมคาสิโนยอดนิยมบน LCX88" class="mx-auto w-full max-w-[1300px] px-4 py-8 font-sans">
+<section aria-label="อันดับเกมสล็อตยอดนิยมบน TGAZM" class="mx-auto w-full max-w-[1300px] px-4 py-8 font-sans">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
     <span aria-hidden="true" class="text-2xl">🏆</span>
-    <p class="bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#6ea3ff] bg-clip-text text-2xl font-black tracking-widest text-transparent uppercase">อันดับเกมคาสิโนยอดนิยมบน LCX88</p>
-    <p class="max-w-3xl text-base leading-relaxed text-[#9db0dd]">
-      รายชื่อด้านล่างใช้เพื่ออ้างอิงความนิยมเท่านั้น ไม่ได้รับประกันผลลัพธ์ของเกมใดเกมหนึ่ง ก่อนเลือกควรดูกติกา อัตราการจ่าย และเงื่อนไขของแต่ละเกม แล้วกำหนดวงเงินและเวลาเล่นให้ชัดเจน
+    <p class="bg-gradient-to-r from-[#ffeaa0] via-[#ffd54a] to-[#c6f76a] bg-clip-text text-2xl font-black tracking-widest text-transparent uppercase">อันดับเกมสล็อตยอดนิยมบน TGAZM</p>
+    <p class="max-w-3xl text-base leading-relaxed text-[#a9c48c]">
+      รายชื่อด้านล่างใช้เพื่ออ้างอิงความนิยมเท่านั้น ไม่ได้รับประกันผลลัพธ์ของเกมใดเกมหนึ่ง ก่อนเลือกควรดูกติกา อัตราการจ่าย และความผันผวนของแต่ละเกม แล้วกำหนดวงเงินและเวลาเล่นให้ชัดเจน
       เพราะรายชื่อในแต่ละหมวดเปลี่ยนแปลงได้ตามช่วงเวลา
     </p>
-    <div class="mt-2 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#2f6bff] to-transparent"></div>
+    <div class="mt-2 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#a3e635] to-transparent"></div>
   </div>
 
   <div class="flex flex-col gap-3">
@@ -41,10 +41,10 @@ const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : ran
           <article
             class={`group relative flex items-center gap-3 overflow-hidden rounded-2xl border p-3 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 sm:gap-5 sm:p-4 ${
               top
-                ? "border-[#f5c542]/50 bg-gradient-to-r from-[#122264]/95 via-[#0a1547]/92 to-[#0a1547]/92 shadow-[0_15px_40px_rgba(245,197,66,0.26)]"
-                : "border-[#2f6bff]/30 bg-[#0a1547]/92 shadow-[0_10px_30px_rgba(47,107,255,0.2)] hover:border-[#f5c542]/50 hover:shadow-[0_15px_40px_rgba(245,197,66,0.24)]"
+                ? "border-[#ffd54a]/50 bg-gradient-to-r from-[#123018]/95 via-[#0a2411]/92 to-[#0a2411]/92 shadow-[0_15px_40px_rgba(255,213,74,0.26)]"
+                : "border-[#a3e635]/30 bg-[#0a2411]/92 shadow-[0_10px_30px_rgba(163,230,53,0.2)] hover:border-[#ffd54a]/50 hover:shadow-[0_15px_40px_rgba(255,213,74,0.24)]"
             }`}>
-            <div class="pointer-events-none absolute top-1/2 -left-10 h-24 w-24 -translate-y-1/2 rounded-full bg-[#2f6bff]/35 blur-[40px] transition-all duration-500 group-hover:bg-[#f5c542]/30" />
+            <div class="pointer-events-none absolute top-1/2 -left-10 h-24 w-24 -translate-y-1/2 rounded-full bg-[#a3e635]/35 blur-[40px] transition-all duration-500 group-hover:bg-[#ffd54a]/30" />
 
             <div class="relative z-10 flex w-8 shrink-0 flex-col items-center justify-center sm:w-12">
               {medal(g.rank) ? (
@@ -53,14 +53,14 @@ const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : ran
                   <span class="sr-only">อันดับ {g.rank}</span>
                 </span>
               ) : (
-                <span class="text-xl font-black text-[#6ea3ff] sm:text-2xl">#{g.rank}</span>
+                <span class="text-xl font-black text-[#c6f76a] sm:text-2xl">#{g.rank}</span>
               )}
             </div>
 
-            <div class={`relative z-10 h-14 w-14 shrink-0 overflow-hidden rounded-xl border sm:h-16 sm:w-16 ${top ? "border-[#f5c542]/50" : "border-[#2f6bff]/30"}`}>
+            <div class={`relative z-10 h-14 w-14 shrink-0 overflow-hidden rounded-xl border sm:h-16 sm:w-16 ${top ? "border-[#ffd54a]/50" : "border-[#a3e635]/30"}`}>
               <Picture
                 src={g.img}
-                alt={`ภาพหน้าปกเกม ${g.name} ในอันดับเกมคาสิโนยอดนิยมของ LCX88`}
+                alt={`ภาพหน้าปกเกม ${g.name} ในอันดับเกมสล็อตยอดนิยมของ TGAZM`}
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
                 loading="lazy"
@@ -74,22 +74,22 @@ const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : ran
 
             <div class="relative z-10 min-w-0 flex-1">
               <div class="flex items-center gap-2">
-                <p class="truncate text-base font-black text-[#d7e3ff] sm:text-lg">{g.name}</p>
+                <p class="truncate text-base font-black text-[#e2f3cd] sm:text-lg">{g.name}</p>
                 {top && (
-                  <span class="hidden shrink-0 rounded-full border border-[#f5c542]/70 bg-[#040b2e] px-2 py-0.5 text-[9px] font-black tracking-wider text-[#ffe08a] sm:inline">ยอดนิยมสูงสุด</span>
+                  <span class="hidden shrink-0 rounded-full border border-[#ffd54a]/70 bg-[#04150a] px-2 py-0.5 text-[9px] font-black tracking-wider text-[#ffeaa0] sm:inline">ยอดนิยมสูงสุด</span>
                 )}
               </div>
-              <p class="truncate text-[11px] text-[#9db0dd] sm:text-xs">{g.type}</p>
+              <p class="truncate text-[11px] text-[#a9c48c] sm:text-xs">{g.type}</p>
 
               <div class="mt-2 flex flex-wrap items-center gap-1.5">
                 {g.menus.map((m) => (
-                  <span class="rounded-full border border-[#2f6bff]/30 bg-[#040b2e] px-2.5 py-0.5 text-[10px] font-bold text-[#6ea3ff]">{m}</span>
+                  <span class="rounded-full border border-[#a3e635]/30 bg-[#04150a] px-2.5 py-0.5 text-[10px] font-bold text-[#c6f76a]">{m}</span>
                 ))}
               </div>
             </div>
 
             <div class="relative z-10 hidden shrink-0 flex-col items-end gap-1 sm:flex">
-              <span class="flex items-center gap-1.5 text-[11px] text-[#9db0dd]">
+              <span class="flex items-center gap-1.5 text-[11px] text-[#a9c48c]">
                 <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500 shadow-[0_0_6px_rgba(34,197,94,0.6)]" />
                 <span class="tabular-nums" data-players data-base={g.players}>
                   {g.players.toLocaleString("en-US")}
@@ -100,8 +100,8 @@ const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : ran
                 href="/register"
                 class={`rounded-full px-4 py-1.5 text-xs font-black transition-transform hover:scale-105 ${
                   top
-                    ? "bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#c08b1f] text-[#04102e] shadow-[0_10px_30px_rgba(245,197,66,0.28)]"
-                    : "border border-[#2f6bff]/60 bg-[#040b2e] text-[#6ea3ff] hover:border-[#f5c542] hover:bg-[#122264]"
+                    ? "bg-gradient-to-r from-[#ffeaa0] via-[#ffd54a] to-[#c9911a] text-[#04150a] shadow-[0_10px_30px_rgba(255,213,74,0.28)]"
+                    : "border border-[#a3e635]/60 bg-[#04150a] text-[#c6f76a] hover:border-[#ffd54a] hover:bg-[#123018]"
                 }`}>
                 เข้าดูเกม
               </a>

@@ -2,21 +2,25 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement3.astro";
+import Announcement from "../components/Announcement5.astro";
 import { pageGraph } from "../lib/schema";
 
-const pageTitle = "เกี่ยวกับเรา LCX88 คาสิโนออนไลน์ระบบออโต้ รวมเกมหลายค่ายในระบบเดียว";
+const pageTitle = "เกี่ยวกับเรา TGAZM เว็บสล็อตระบบออโต้ รวมเกมสล็อตหลายรูปแบบในบัญชีเดียว";
 
 // One string, three jobs: MainLayout's <meta name="description">, the WebPage
 // node's description, and nothing else. 150–160 CHARACTERS (Thai is 3 bytes per
-// character, so a byte count reads ~3x too long). This one is 158.
+// character, so a byte count reads ~3x too long). This one is 155.
 //
-// The docx for this brand has no "เกี่ยวกับเรา" section — it lists only
-// โปรโมชั่น / บทความ / ติดต่อเรา / เข้าสู่ระบบ / ทางเข้าเล่น / ทดลองเล่น — so the
-// Title and Meta here are written from the brief's Main SEO block rather than
-// copied from a SUB-PAGES row. Nothing to reconcile against the docx.
+// The docx for this brand has no "เกี่ยวกับเรา" section — its SUB-PAGES block
+// lists only โปรโมชั่น / บทความ / ติดต่อเรา / เข้าสู่ระบบ / ทางเข้าเล่น / ทดลองเล่น —
+// so the Title and Meta here are written from the brief's Main SEO block rather
+// than copied from a SUB-PAGES row. Nothing to reconcile against the docx.
+//
+// Body copy is deliberately written as "about the site" (who we are, how the
+// service is set up, what we commit to) so it does not restate the homepage's
+// docx sections, which cover the same topics from the how-to-use angle.
 const pageDescription =
-  "เกี่ยวกับ LCX88 คาสิโนออนไลน์ระบบออโต้ รวมสล็อต บาคาร่า รูเล็ต และคาสิโนสดไว้ในบัญชีเดียว รองรับมือถือ ฝากถอนไม่มีขั้นต่ำ พร้อมทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง";
+  "เกี่ยวกับ TGAZM เว็บสล็อตระบบออโต้ รวมเกมสล็อตหลายรูปแบบไว้ในบัญชีเดียว รองรับมือถือ ฝากไม่มีขั้นต่ำตามช่องทางที่กำหนด พร้อมทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -28,38 +32,39 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="LCX88 | เกี่ยวกับเราและบริการคาสิโนออนไลน์ระบบออโต้" description={pageDescription}>
+<MainLayout title="TGAZM | เกี่ยวกับเราและแนวทางให้บริการเว็บสล็อตระบบออโต้" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <h2 class="mb-6 bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#6ea3ff] bg-clip-text text-2xl leading-normal font-bold text-transparent">LCX88 รวมเกมคาสิโนออนไลน์หลายรูปแบบไว้ในบัญชีเดียว</h2>
+      <h2 class="mb-6 bg-gradient-to-r from-[#ffeaa0] via-[#ffd54a] to-[#c6f76a] bg-clip-text text-2xl leading-normal font-bold text-transparent">TGAZM คือเว็บแบบไหน และหน้าเว็บไซต์นี้มีอะไรอยู่บ้าง</h2>
 
-      <p class="mb-6 text-left text-base leading-relaxed text-[#d7e3ff]">
-        <strong class="text-[#ffe08a]">LCX88</strong> เป็นแพลตฟอร์มคาสิโนออนไลน์ที่รวมเกมหลายรูปแบบไว้ในระบบเดียว ทั้งเกมสล็อต บาคาร่า รูเล็ต เกมไพ่ และคาสิโนสดจากหลายค่าย
-        สมาชิกเลือกเกมตามประเภท ค่าย หรือรูปแบบที่ถนัดได้จากหน้าเดียว โดยไม่ต้องสลับบัญชีไปมาระหว่างค่าย ก่อนเริ่มเล่นทุกครั้งควรศึกษากติกา อัตราการจ่าย
-        และเงื่อนไขของแต่ละเกมให้ครบ เพื่อวางงบประมาณให้เหมาะกับตนเองมากกว่าเลือกจากหน้าปกเกมอย่างเดียว เว็บไซต์รองรับทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์
-        จึงเปิดใช้งานผ่านเบราว์เซอร์ได้โดยไม่ต้องติดตั้งโปรแกรมเพิ่ม
+      <p class="mb-6 text-left text-base leading-relaxed text-[#e2f3cd]">
+        <strong class="text-[#ffeaa0]">TGAZM</strong> เป็นเว็บสล็อตออนไลน์ที่ตั้งใจออกแบบให้ผู้ใช้งานเริ่มต้นได้โดยไม่ต้องผ่านขั้นตอนที่ซับซ้อน ตั้งแต่การสมัคร การเลือกเกม ไปจนถึงการฝากถอนผ่านระบบออโต้
+        เนื้อหาบนเว็บไซต์ถูกจัดเป็นหน้าย่อยไม่กี่หน้าเพื่อให้หาสิ่งที่ต้องการได้เร็ว ได้แก่ หน้าแรกที่อธิบายภาพรวมของระบบ หน้าโปรโมชั่นที่แจกแจงสิทธิ์และเงื่อนไขของแต่ละรายการ
+        หน้าทดลองเล่นสำหรับเปิดดูเกมของแต่ละค่ายก่อนตัดสินใจ หน้าทางเข้าสำหรับเข้าใช้งานผ่านช่องทางหลัก และหน้าติดต่อเราสำหรับส่งเรื่องถึงทีมงานโดยตรง
+        หน้านี้ไม่ได้เป็นคู่มือการใช้งาน แต่มีไว้บอกว่าเราเป็นใคร ตั้งใจให้บริการแบบไหน และผู้ใช้งานควรคาดหวังอะไรได้จากเว็บไซต์นี้
       </p>
 
-      <h2 class="mb-6 bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#6ea3ff] bg-clip-text text-2xl leading-normal font-bold text-transparent">ระบบออโต้และเงื่อนไขฝากถอนไม่มีขั้นต่ำของ LCX88</h2>
+      <h2 class="mb-6 bg-gradient-to-r from-[#ffeaa0] via-[#ffd54a] to-[#c6f76a] bg-clip-text text-2xl leading-normal font-bold text-transparent">แนวทางการวางระบบและการให้ข้อมูลของทีมงาน TGAZM</h2>
 
-      <p class="mb-6 text-left text-base leading-relaxed text-[#d7e3ff]">
-        ระบบฝากถอนออโต้ช่วยให้สมาชิกทำรายการผ่านหน้าบัญชีของตนเองได้โดยลดขั้นตอนที่ไม่จำเป็นลง ส่วนเงื่อนไขไม่มีขั้นต่ำผ่านระบบของ LCX88
-        ช่วยให้กำหนดยอดทำรายการได้ยืดหยุ่นตามช่องทางที่เว็บไซต์กำหนด ก่อนกดยืนยันควรใช้ข้อมูลที่ตรงกับบัญชีที่สมัครไว้ ตรวจสอบชื่อบัญชี จำนวนเงิน ช่องทางที่รองรับ
-        และข้อกำหนดของโปรโมชั่นให้ตรงกันทุกครั้ง หากยอดยังไม่เปลี่ยนไม่ควรกดซ้ำทันที เพราะระบบอาจกำลังประมวลผลอยู่ และความเร็วของรายการยังขึ้นอยู่กับธนาคาร
-        ช่องทางชำระเงิน และสถานะการตรวจสอบข้อมูลของบัญชีด้วย หลังทำรายการควรเก็บเลขรายการหรือภาพหน้าจอไว้จนกว่าระบบจะแสดงสถานะสำเร็จ
+      <p class="mb-6 text-left text-base leading-relaxed text-[#e2f3cd]">
+        แนวทางที่เรายึดในการวางระบบมีอยู่สามข้อ ข้อแรกคือลดขั้นตอนที่ไม่จำเป็นออก ระบบออโต้จึงเปิดให้สมาชิกทำรายการและตรวจสถานะได้จากหน้าบัญชีของตนเอง แทนที่จะต้องส่งข้อมูลเดิมซ้ำหลายรอบ
+        ข้อสองคือไม่กำหนดเพดานเริ่มต้นให้สูงเกินจำเป็น เงื่อนไขฝากไม่มีขั้นต่ำจึงเปิดใช้ตามช่องทางที่เว็บไซต์กำหนด เพื่อให้แต่ละคนเลือกยอดเริ่มต้นได้ตามงบของตนเอง
+        ข้อสามคือเขียนเงื่อนไขให้อ่านได้จริง ทั้งยอดขั้นต่ำของโปรโมชั่น จำนวนเทิร์น ค่ายเกมที่ร่วมรายการ และเพดานถอน จะถูกระบุไว้ให้ตรวจก่อนกดรับเสมอ
+        เราไม่ใช้คำที่รับประกันผลการเล่นและไม่แนะนำสูตรใด เพราะเกมสล็อตทำงานด้วยระบบสุ่ม สิ่งที่เว็บไซต์ให้ได้คือข้อมูลที่ครบพอให้ตัดสินใจเอง ไม่ใช่คำสัญญาเรื่องผลลัพธ์
       </p>
 
-      <h2 class="mb-6 bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#6ea3ff] bg-clip-text text-2xl leading-normal font-bold text-transparent">ความปลอดภัยของบัญชีและช่องทางดูแลสมาชิกตลอด 24 ชั่วโมง</h2>
+      <h2 class="mb-6 bg-gradient-to-r from-[#ffeaa0] via-[#ffd54a] to-[#c6f76a] bg-clip-text text-2xl leading-normal font-bold text-transparent">สิ่งที่เรารับผิดชอบต่อบัญชีสมาชิกและการติดต่อกลับ</h2>
 
-      <p class="mb-2 text-left text-base leading-relaxed text-[#d7e3ff]">
-        การใช้งานอย่างปลอดภัยควรเริ่มจากการเข้าสู่ระบบผ่านช่องทางหลักที่ตรวจแล้ว ตั้งรหัสผ่านที่คาดเดายาก ไม่เปิดเผยรหัสยืนยันแก่บุคคลอื่นไม่ว่ากรณีใด
-        หลีกเลี่ยงเครือข่ายสาธารณะเมื่อต้องทำธุรกรรม และออกจากระบบทุกครั้งเมื่อใช้อุปกรณ์ร่วมกับผู้อื่น เมื่อพบปัญหาเรื่องบัญชี ทางเข้าเล่น โปรโมชั่น หรือสถานะฝากถอน
-        ทีมงานดูแลสมาชิกของ LCX88 รับเรื่องตลอด 24 ชั่วโมงผ่านช่องทางที่เว็บไซต์ระบุ ควรเตรียมชื่อผู้ใช้ เวลาที่ทำรายการ และรายละเอียดรายการให้ครบตั้งแต่ข้อความแรก
-        เพื่อให้ตรวจสอบได้เร็วขึ้น โดยไม่ส่งรหัสผ่านหรือรหัสยืนยันให้ผู้ใด เพราะทีมงานไม่ขอข้อมูลเหล่านี้ผ่านช่องทางส่วนตัว
+      <p class="mb-2 text-left text-base leading-relaxed text-[#e2f3cd]">
+        เรื่องบัญชีเป็นส่วนที่เราถือว่าสำคัญที่สุด ทีมงานจะไม่ขอรหัสผ่านหรือรหัสยืนยันจากสมาชิกไม่ว่ากรณีใด ผ่านช่องทางส่วนตัวหรือช่องทางสาธารณะก็ตาม
+        ถ้ามีข้อความในลักษณะนั้นส่งมา ให้ถือว่าไม่ได้มาจากเรา และเราแนะนำให้เข้าใช้งานผ่านช่องทางเข้าหลักที่ตรวจชื่อเว็บไซต์แล้วเท่านั้น ไม่ใช่ลิงก์ที่ส่งต่อกันมาพร้อมคำโฆษณา
+        ด้านการติดต่อ ทีมงานดูแลสมาชิกของ TGAZM รับเรื่องตลอด 24 ชั่วโมงผ่านช่องทางที่เว็บไซต์ระบุ ทั้งเรื่องบัญชี ทางเข้าเล่น โปรโมชั่น และสถานะฝากถอน
+        การแจ้งชื่อผู้ใช้ เวลาที่ทำรายการ และรายละเอียดของรายการมาให้ครบตั้งแต่ข้อความแรก จะช่วยให้เราตรวจสอบต้นเหตุได้ตรงจุดและเร็วขึ้น
+        สุดท้ายเราขอย้ำว่าการเดิมพันควรอยู่ในวงเงินที่ไม่กระทบค่าใช้จ่ายส่วนตัว และไม่ควรเพิ่มทุนเพื่อตามยอดที่เสียไป
       </p>
     </div>
   </ContentBox>

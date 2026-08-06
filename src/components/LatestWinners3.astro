@@ -40,32 +40,41 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
 
 <div class="mx-auto w-full max-w-[900px] p-4 font-sans">
   <section
-    aria-label="ประวัติการถอนเงินล่าสุดของสมาชิก ตังค์มา168"
-    class="relative overflow-hidden rounded-[30px] border-2 border-[#ff3d9a]/40 bg-[#16050f]/90 px-4 py-8 shadow-[0_10px_30px_rgba(255,61,154,0.2)] backdrop-blur-md md:p-10">
-    <div class="pointer-events-none absolute -top-16 -right-10 h-40 w-40 rounded-full bg-[#ff3d9a]/25 blur-[60px]"></div>
-    <div class="pointer-events-none absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-[#22d3ee]/25 blur-[60px]"></div>
+    aria-label="ประวัติการถอนเงินล่าสุดของสมาชิก TGAZM"
+    class="relative overflow-hidden rounded-[30px] border-2 border-[#a3e635]/40 bg-[#04150a]/90 px-4 py-8 shadow-[0_10px_30px_rgba(163,230,53,0.2)] backdrop-blur-md md:p-10">
+    <div class="pointer-events-none absolute -top-16 -right-10 h-40 w-40 rounded-full bg-[#a3e635]/25 blur-[60px]"></div>
+    <div class="pointer-events-none absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-[#ffd54a]/22 blur-[60px]"></div>
 
     <div class="relative z-10 mb-8 text-center">
-      <p class="bg-gradient-to-b from-[#ffa6d2] to-[#c21a70] bg-clip-text text-xl font-black text-transparent md:text-3xl">ประวัติการถอนเงินของสมาชิก ตังค์มา168 แบบเรียลไทม์</p>
-      <p class="mt-2 text-base leading-relaxed text-[#d9a7c4]">ระบบออโต้เปิดทำรายการตลอด 24 ชั่วโมง ตัวเลขด้านล่างเป็นข้อมูลตัวอย่างสำหรับแสดงรูปแบบรายการเท่านั้น</p>
+      <p class="bg-gradient-to-b from-[#ffeaa0] to-[#c9911a] bg-clip-text text-xl font-black text-transparent md:text-3xl">ประวัติการถอนเงินของสมาชิก TGAZM แบบเรียลไทม์</p>
+      <p class="mt-2 text-base leading-relaxed text-[#a9c48c]">ระบบออโต้เปิดทำรายการตลอด 24 ชั่วโมง ตัวเลขด้านล่างเป็นข้อมูลตัวอย่างสำหรับแสดงรูปแบบรายการเท่านั้น</p>
     </div>
 
-    <div data-winners-feed class="relative z-10 ml-4 border-l-2 border-[#ff3d9a]/50 pl-6 md:ml-8 md:pl-8">
+    <div
+      data-winners-feed
+      data-interval="4000"
+      data-max-rows="5"
+      data-amount-min="15000"
+      data-amount-max="95000"
+      data-pending-chance="0.4"
+      data-user-style="letters"
+      data-user-digits="4"
+      class="relative z-10 ml-4 border-l-2 border-[#a3e635]/50 pl-6 md:ml-8 md:pl-8">
       {
         initialRows.map((row) => (
           <div data-winner-row class="winner-row relative mb-6 transition-all duration-500 ease-out">
-            <div class="absolute top-2 -left-[35px] h-4 w-4 rounded-full border-2 border-[#16050f] bg-[#22d3ee] shadow-[0_0_10px_rgba(34,211,238,0.8)] md:-left-[43px]" />
+            <div class="absolute top-2 -left-[35px] h-4 w-4 rounded-full border-2 border-[#04150a] bg-[#ffd54a] shadow-[0_0_10px_rgba(255,213,74,0.8)] md:-left-[43px]" />
 
-            <div class="flex items-center gap-4 rounded-[20px] bg-gradient-to-r from-[#7d0f46]/35 to-transparent p-4 transition-colors hover:from-[#7d0f46]/60">
+            <div class="flex items-center gap-4 rounded-[20px] bg-gradient-to-r from-[#123018]/50 to-transparent p-4 transition-colors hover:from-[#123018]/85">
               <div data-winner-bank class={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${row.bank.color}`}>
                 <img data-winner-icon src={row.bank.icon} alt="" width="24" height="24" loading="lazy" decoding="async" class="h-6 w-6 object-contain" />
               </div>
 
               <div class="min-w-0 flex-1">
-                <div class="text-sm text-[#d9a7c4]">
-                  ยูสเซอร์: <span data-winner-user class="font-bold text-[#fdeaf4]">{row.user}</span>
+                <div class="text-sm text-[#a9c48c]">
+                  ยูสเซอร์: <span data-winner-user class="font-bold text-[#e2f3cd]">{row.user}</span>
                 </div>
-                <div class="text-xl font-black text-[#ff3d9a]">
+                <div class="text-xl font-black text-[#a3e635]">
                   <span data-winner-amount>{row.amount}</span> THB
                 </div>
               </div>
@@ -101,8 +110,8 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
   /* The two status colours are classes rather than inline strings so the JS in
      src/lib/winnersFeed.ts never has to know what this brand's palette is. */
   .winner-status.is-pending {
-    color: #d9a7c4;
-    border-color: #7d0f46;
+    color: #ffeaa0;
+    border-color: #c9911a;
   }
   .winner-status.is-verified {
     color: oklch(79.2% 0.209 151.711);
