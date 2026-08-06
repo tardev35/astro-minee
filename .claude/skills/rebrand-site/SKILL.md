@@ -1254,7 +1254,8 @@ with what it may have written.)
 
 **The uploader's "ส่วนที่ 5 — สร้างหน้าเพิ่ม (ตัวเลือก)" can scaffold NEW
 pages before you start.** An operator may toggle on one of the preset extra
-pages (currently `บทความ.astro` and `about-us.astro`) in the uploader. When
+pages (`บทความ.astro` and `about-us.astro`; `register.astro`/`login.astro` are
+also toggles but behave differently — see below) in the uploader. When
 they do, the tool creates that `src/pages/*.astro` for real — cloning an
 existing sub-page's frontmatter (so it inherits the brand's current
 `Announcement*`/`ContentBox*` variants) — but leaves the **body as a blank
@@ -1276,6 +1277,29 @@ final copy. **These pages are in scope for this phase like any other
    the tool's default label/`(อยู่ระหว่างจัดทำเนื้อหา)` placeholder), same as
    item 1 of this phase.
 3. Run the same brand-name / hue / chrome / stale-asset sweep on it.
+
+**`register.astro` and `login.astro` are a different kind of preset — button
+pages, not articles.** Their toggle converts the interstitial that auto-forwards
+to the affiliate link into a real page whose only content is one button to that
+same destination, so the route becomes indexable instead of reading as a sneaky
+redirect. Spot them by `const targetUrl` in the frontmatter next to a
+`TODO(rebrand)` comment. On these:
+
+- **Never write an article, and never add an `<h2>`.** One `<h1>` from
+  `<ContentBox as="h1">` and one button — the same rule `/contact-us` and
+  `/ทางเข้า` follow.
+- **Never edit `targetUrl`.** It is this brand's affiliate link, carried over
+  from the page you replaced. Restyle the button, leave the destination and its
+  `rel="nofollow sponsored"` alone.
+- **Title and description are now load-bearing.** These pages used to be
+  `noindex`; as button pages they are indexed, so `verify-build` holds their
+  description to 150–160 characters like any other page. The tool carries over
+  the old interstitial's copy as a starting point, and that copy still describes
+  an automatic redirect that no longer happens — rewrite both.
+- Recolour the button to the palette. The tool clones its classes from whichever
+  matching button `/ทางเข้า` already has, so it is usually right already; if
+  `/ทางเข้า` had no such button the class falls back to a neutral grey and the
+  TODO comment says so.
 
 The uploader also tries to add the page's `{ name, path }`
 to the **active navbar's** link arrays (both desktop + mobile) on a
