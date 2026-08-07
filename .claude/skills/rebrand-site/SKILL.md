@@ -450,6 +450,30 @@ different colors:
   match the brand's genre (a lottery brand's menu should not be led by a
   slot machine), and keep them to one per item.
 
+  **Menu order: `สมัครสมาชิก` and `เข้าสู่ระบบ` go immediately after
+  `โปรโมชั่น`, not at the end of the list.** Asked for on 2026-08-07, on
+  WINNOW168's `NavbarStyle6`, and it applies to whichever variant a brand
+  picks from here on. The order is:
+
+  ```
+  หน้าแรก · โปรโมชั่น · สมัครสมาชิก · เข้าสู่ระบบ · <everything else>
+  ```
+
+  Those two are the only menu entries that are conversion actions rather
+  than pages to read, so they belong where a visitor scanning left-to-right
+  reaches them before the informational pages (`ทดลองเล่น`, `เกี่ยวกับเรา`,
+  `ติดต่อเรา`, `บทความ`). They arrive last because the uploader's ส่วนที่ 5
+  **appends** a newly-toggled page's `{ name, path }` to the end of the
+  `links` array — so every rebrand inherits them in the wrong place unless
+  someone moves them. Reorder the array; do not special-case them in the
+  markup.
+
+  Two things this does NOT change: `หน้าแรก` stays first, and the header's
+  own login/register **CTA buttons** (most variants have a pair pinned in a
+  corner or in the mobile bar) are separate chrome — leave them where the
+  variant puts them. If a brand has the cta toggle off, there are no
+  `/register` and `/login` menu entries to order and this rule is a no-op.
+
 **Rotate every family's variant on each rebrand — the ONE variant you
 must not reuse is the one the previous brand had wired in.** This is a
 hard rule, not a nice-to-have: these are unrelated clients on a shared
