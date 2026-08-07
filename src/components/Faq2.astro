@@ -10,39 +10,45 @@ export interface Props {
 }
 
 const { title, faqs = [] } = Astro.props;
+
+// The section title is the docx's FAQ H2; each question sits one level below it
+// as an <h3>. That is the single sanctioned h3 on a docx-driven page — the
+// questions are sub-points of the FAQ section, not sections of their own, and
+// leaving them at h2 puts three entries into the h2 inventory that the docx
+// heading checklist has no row for.
 ---
 
 <section class="mx-auto max-w-[950px] space-y-6 px-4 py-6 font-sans">
   {
     title && (
       <header class="mb-8 text-center">
-        <h2 class="bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#c08b1f] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase drop-shadow-sm md:text-3xl">
+        <h2 class="bg-gradient-to-r from-[#e8f6ff] via-[#7fdcff] to-[#29abe3] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase drop-shadow-sm md:text-3xl">
           {title}
         </h2>
-        <div class="mx-auto mt-3 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#2f6bff] to-transparent" />
+        <div class="mx-auto mt-3 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#1573e6] to-transparent" />
       </header>
     )
   }
 
   {
     faqs.map((faq) => (
-      <div class="group relative bg-[#122264] p-[1px] [clip-path:polygon(0_0,calc(100%-20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%-20px))]">
-        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c542] via-[#2f6bff] to-transparent opacity-40 transition-opacity group-hover:opacity-100" />
+      <div class="group relative bg-[#123157] p-[1px] [clip-path:polygon(0_0,calc(100%-20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%-20px))]">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#29abe3] via-[#1573e6] to-transparent opacity-40 transition-opacity group-hover:opacity-100" />
 
-        <details class="faq-item relative bg-[#071138] p-4 [clip-path:polygon(0_0,calc(100%-19px)_0,100%_19px,100%_100%,19px_100%,0_calc(100%-19px))]">
+        <details class="faq-item relative bg-[#070f1f] p-4 [clip-path:polygon(0_0,calc(100%-19px)_0,100%_19px,100%_100%,19px_100%,0_calc(100%-19px))]">
           <summary class="flex w-full cursor-pointer items-center gap-4 text-left">
             <span
               aria-hidden="true"
-              class="flex h-10 w-10 shrink-0 items-center justify-center bg-gradient-to-br from-[#ffe08a] to-[#c08b1f] font-black text-[#04102e] italic [clip-path:polygon(20%_0,100%_0,80%_100%,0_100%)]">
+              class="flex h-10 w-10 shrink-0 items-center justify-center bg-gradient-to-br from-[#7fdcff] to-[#0b3f96] font-black text-[#050c1a] italic [clip-path:polygon(20%_0,100%_0,80%_100%,0_100%)]">
               ?
             </span>
-            <h2 class="flex-1 text-base leading-normal font-bold tracking-tight text-[#d7e3ff]">{faq.q}</h2>
-            <span aria-hidden="true" class="faq-arrow shrink-0 text-[#f5c542] transition-transform duration-300">
+            <h3 class="flex-1 text-base leading-normal font-bold tracking-tight text-[#cfe6f7]">{faq.q}</h3>
+            <span aria-hidden="true" class="faq-arrow shrink-0 text-[#29abe3] transition-transform duration-300">
               ▼
             </span>
           </summary>
 
-          <p class="faq-answer mt-4 border-l-2 border-[#2f6bff]/70 pl-4 text-left text-base leading-relaxed text-[#d7e3ff]/90">{faq.a}</p>
+          <p class="faq-answer mt-4 border-l-2 border-[#1573e6]/70 pl-4 text-left text-base leading-relaxed text-[#cfe6f7]/90">{faq.a}</p>
         </details>
       </div>
     ))

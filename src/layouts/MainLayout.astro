@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle9.astro";
-import Footer from "../components/FooterStyle3.astro";
+import Navbar from "../components/NavbarCyber.astro";
+import Footer from "../components/FooterCyber.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,11 +55,11 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "TGAZM | เว็บสล็อตระบบออโต้ เดิมพันง่าย ฝากไม่มีขั้นต่ำ มั่นคงปลอดภัย",
+  title = "KOHKAE789 | บาคาร่าออโต้ แตกง่าย มั่นคง ไม่ผ่านเอเย่นต์ จ่ายไว",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings.
-  description = "TGAZM เว็บสล็อตระบบออโต้ เดิมพันง่าย ฝากถอนไม่มีขั้นต่ำ รองรับมือถือ พร้อมระบบบัญชีมั่นคง ปลอดภัย และบริการสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาก่อนเริ่มเล่น",
+  description = "KOHKAE789 บาคาร่าเว็บตรงระบบออโต้ ไม่ผ่านเอเย่นต์ ฝากถอนไว รองรับมือถือ ใช้งานมั่นคง พร้อมโต๊ะเกมหลากหลายและบริการสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาก่อนเล่น",
   robots = "index, follow",
 } = Astro.props;
 
@@ -194,7 +194,7 @@ const profile = brandProfile(Astro.site);
 
           {block === "appmeta" && (
             <Fragment>
-              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="tgazm" />}
+              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="kohkae789" />}
               <link rel="manifest" href="/site.webmanifest" />
             </Fragment>
           )}
@@ -236,7 +236,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #04150a;
+        background-color: #050c1a;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -289,7 +289,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ TGAZM สล็อต คาสิโน กีฬา ครบจบในเว็บเดียว ฝากถอนออโต้ รวดเร็ว รองรับมือถือ 24 ชม. พร้อมแถบมั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม. บนพื้นหลังคาสิโนสีเขียวมะนาวประดับเหรียญทอง"
+          alt="แบนเนอร์ KOHKAE789 ข้อความ สล็อต คาสิโน กีฬา ครบจบในเว็บเดียว ฝากถอนออโต้ รวดเร็ว ตลอด 24 ชม. พร้อมแถบมั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม. ข้างมาสคอตนักพนันถือไพ่ บนพื้นหลังเมืองสีน้ำเงินประดับเหรียญทองและชิปคาสิโน"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

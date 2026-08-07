@@ -1,49 +1,50 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/Announcement5.astro";
+import Announcement from "../components/AnnouncementCyber.astro";
 import ContentBox from "../components/ContentBox.astro";
-import ContentBoxPremium from "../components/ContentBoxPremium.astro";
-import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
-import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
-import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
-import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
+import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
+import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
+import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
+import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
-import ProviderGrid from "../components/ProviderGrid.astro";
+import ProviderGrid from "../components/ProviderGridPremium.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinners3.astro";
+import LatestWinners from "../components/LatestWinnersCyber.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq4.astro";
+import Faq from "../components/Faq2.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
 import { pageGraph } from "../lib/schema";
-// slide4 illustrates the ระบบออโต้ section (its bottom strip reads ฝากถอนออโต้ /
-// บริการ 24 ชม.), slide1 the ฝากไม่มีขั้นต่ำ section (ฝากครั้งแรก รับเพิ่ม 50%).
-// Slides may only live inside a ContentBoxSevenThree* block, max two per
-// rebrand; SmoothCarousel keeps rendering all four as the promotion carousel.
-import imgAutoSystem from "../assets/slide4.png";
-import imgNoMinimum from "../assets/slide1.png";
+// slide1 illustrates the ระบบออโต้ section (it reads เริ่มสนุกได้ทันที over a
+// ฝากถอนออโต้ badge strip); slide3 the ตรวจสอบยอดจ่าย section (คืนยอดเสียทุกวัน
+// 10% สูงสุด 5,000 บาท — a payout/amount image). Slides may only live inside a
+// ContentBoxSevenThree* block, max two per rebrand; slide2 and slide4 go unused
+// here and keep rendering in SmoothCarousel and on /promotion.
+import imgAutoSystem from "../assets/slide1.png";
+import imgPayout from "../assets/slide3.png";
 
-const pageTitle = "TGAZM | เว็บสล็อตระบบออโต้ เดิมพันง่าย ฝากไม่มีขั้นต่ำ มั่นคงปลอดภัย";
+const pageTitle = "KOHKAE789 | บาคาร่าออโต้ แตกง่าย มั่นคง ไม่ผ่านเอเย่นต์ จ่ายไว";
 
-// 154 characters. verify-build.mjs errors outside 150–160 CHARACTERS, and the
-// docx-supplied description is 128 — the trailing clause closes that gap
+// 156 characters. verify-build.mjs errors outside 150–160 CHARACTERS, and the
+// docx-supplied description is 133 — the trailing clause closes that gap
 // without changing what the brief says.
-const pageDescription = "TGAZM เว็บสล็อตระบบออโต้ เดิมพันง่าย ฝากถอนไม่มีขั้นต่ำ รองรับมือถือ พร้อมระบบบัญชีมั่นคง ปลอดภัย และบริการสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาก่อนเริ่มเล่น";
+const pageDescription =
+  "KOHKAE789 บาคาร่าเว็บตรงระบบออโต้ ไม่ผ่านเอเย่นต์ ฝากถอนไว รองรับมือถือ ใช้งานมั่นคง พร้อมโต๊ะเกมหลากหลายและบริการสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาก่อนเล่น";
 
 const faqs = [
   {
-    q: "TGAZM ฝากเงินโดยไม่มีขั้นต่ำได้ทุกช่องทางหรือไม่?",
-    a: "เงื่อนไขไม่มีขั้นต่ำอาจใช้เฉพาะช่องทางที่เว็บไซต์กำหนด สมาชิกจึงควรตรวจสอบข้อมูลล่าสุด รวมถึงข้อกำหนดของโปรโมชั่นก่อนทำรายการทุกครั้ง",
+    q: "KOHKAE789 เป็นบาคาร่าเว็บตรงไม่ผ่านเอเย่นต์อย่างไร?",
+    a: "สมาชิกสามารถเข้าสู่ระบบ เลือกโต๊ะบาคาร่า และจัดการธุรกรรมผ่านบัญชีของตนเองโดยตรง ควรตรวจสอบช่องทางเข้าให้ถูกต้องก่อนกรอกข้อมูลทุกครั้ง",
   },
   {
-    q: "ระบบออโต้ของ TGAZM ช่วยเรื่องใดบ้าง?",
-    a: "ระบบออโต้ช่วยให้สมาชิกฝาก ถอน และตรวจสอบสถานะรายการผ่านหน้าบัญชีได้ด้วยตนเอง แต่ระยะเวลาดำเนินการอาจขึ้นอยู่กับช่องทางชำระเงิน",
+    q: "ระบบออโต้ของ KOHKAE789 ช่วยเรื่องอะไร?",
+    a: "ระบบออโต้ช่วยลดขั้นตอนการฝาก ถอน และตรวจสอบสถานะธุรกรรม ทำให้สมาชิกจัดการรายการจากหน้าบัญชีได้โดยไม่ต้องส่งข้อมูลหลายรอบ",
   },
   {
-    q: "ควรเลือกเกมสล็อตใน TGAZM จากอะไร?",
-    a: "ควรพิจารณากติกา รูปแบบโบนัส อัตราจ่าย และความผันผวนของเกม พร้อมเลือกให้เหมาะกับงบประมาณและระยะเวลาที่กำหนดไว้",
+    q: "บาคาร่าแตกง่ายสามารถรับประกันผลกำไรได้หรือไม่?",
+    a: "ไม่สามารถรับประกันผลหรือกำไรจากบาคาร่าได้ เพราะผลแต่ละรอบมีความไม่แน่นอน ผู้เล่นควรเข้าใจกติกา กำหนดงบประมาณ และหลีกเลี่ยงการไล่ตามผลเสีย",
   },
 ];
 
@@ -58,24 +59,28 @@ const graph = pageGraph(Astro, {
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement
-    message="TGAZM เว็บสล็อตระบบออโต้ สมัคร เลือกเกม และฝากถอนได้จบในบัญชีเดียว • ฝากไม่มีขั้นต่ำตามช่องทางที่เว็บไซต์กำหนด • ระบบออโต้ทำรายการเองได้จากหน้าบัญชี ควรตรวจสอบสถานะรายการก่อนปิดหน้าเว็บทุกครั้ง • ทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาและกำหนดงบประมาณก่อนเริ่มเล่น"
+    message="KOHKAE789 บาคาร่าเว็บตรงระบบออโต้ ไม่ผ่านเอเย่นต์ เลือกโต๊ะ ตรวจยอด และจัดการธุรกรรมได้จากบัญชีเดียว • ระบบออโต้ช่วยลดขั้นตอนฝากถอน ควรตรวจชื่อบัญชีและจำนวนเงินก่อนยืนยันทุกครั้ง • ผลบาคาร่าแต่ละรอบไม่สามารถรับประกันได้ ควรศึกษากติกา Banker Player และ Tie พร้อมกำหนดงบประมาณก่อนเริ่มเล่น • ทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง"
   />
 
-  <ContentBoxPremium as="h1" title="TGAZM เว็บสล็อตระบบออโต้ เดิมพันง่าย ฝากไม่มีขั้นต่ำ มั่นคงปลอดภัย">
-    <p class="text-left text-base leading-relaxed text-[#e2f3cd]">
-      <strong class="text-[#ffd54a]">TGAZM</strong> เป็นเว็บสล็อตที่ออกแบบระบบให้สมาชิกเริ่มใช้งานได้ไม่ซับซ้อน ตั้งแต่การสมัคร เลือกเกม ไปจนถึงการฝากถอนผ่านระบบออโต้ ภายในรวบรวมเกมสล็อตหลายรูปแบบและรองรับการใช้งานบนมือถือ
-      จุดเด่นคือเงื่อนไขฝากไม่มีขั้นต่ำในช่องทางที่กำหนด พร้อมระบบบัญชีที่ควรใช้งานผ่านทางเข้าหลักเพื่อเพิ่มความปลอดภัย
+  <ContentBoxCyberCut as="h1" title="KOHKAE789 บาคาร่าออโต้ แตกง่าย มั่นคง ไม่ผ่านเอเย่นต์ จ่ายไว">
+    <p class="text-left text-base leading-relaxed text-[#cfe6f7]">
+      <strong class="text-[#7fdcff]">KOHKAE789</strong> เป็นแพลตฟอร์มบาคาร่าออนไลน์ที่เน้นการใช้งานผ่านระบบตรงและระบบออโต้ สมาชิกสามารถเลือกโต๊ะเกม ตรวจสอบยอด และจัดการธุรกรรมจากบัญชีเดียวโดยไม่ต้องผ่านตัวแทน
+      รองรับทั้งมือถือและคอมพิวเตอร์ ก่อนเริ่มควรทำความเข้าใจกติกา รูปแบบเดิมพัน และกำหนดงบประมาณให้เหมาะกับตนเอง
     </p>
-  </ContentBoxPremium>
+  </ContentBoxCyberCut>
 
-  <ContentBox as="h2" title="เริ่มเดิมพันได้ง่ายผ่านระบบของ TGAZM">
-    <p class="text-left text-base leading-relaxed text-[#e2f3cd]">
-      หน้าใช้งานของ TGAZM จัดหมวดหมู่เกมและเมนูสำคัญไว้อย่างชัดเจน สมาชิกสามารถค้นหาเกม ตรวจสอบยอดเงิน และเลือกโปรโมชั่นได้จากบัญชีเดียว ก่อนเริ่มควรศึกษากติกาและกำหนดงบประมาณให้ชัดเจน
-      เพื่อให้การใช้งานเป็นขั้นตอนและไม่เกินขอบเขตที่ตนเองวางไว้
+  <ContentBox as="h2" title="เลือกโต๊ะบาคาร่าให้เข้ากับสไตล์บน KOHKAE789">
+    <p class="text-left text-base leading-relaxed text-[#cfe6f7]">
+      ภายใน KOHKAE789 มีโต๊ะบาคาร่าและรูปแบบการเดิมพันให้เลือกหลายระดับ ผู้เล่นควรพิจารณาวงเงินขั้นต่ำ ความเร็วของแต่ละรอบ และกติกาของโต๊ะก่อนเข้าเล่น
+      การเลือกโต๊ะที่สอดคล้องกับงบประมาณช่วยให้ควบคุมจำนวนเดิมพันและวางแผนการเล่นได้เป็นระบบมากขึ้น
     </p>
   </ContentBox>
 
-  <ContentBoxSevenThreePremium title="ระบบออโต้ช่วยจัดการธุรกรรมได้คล่องตัวกว่าเดิม">
+  <ProviderGrid />
+
+  <GameRankingBoard />
+
+  <ContentBoxSevenThreeCyberCut titleright="ทำรายการได้คล่องตัวด้วยระบบออโต้">
     <Picture
       slot="left"
       src={imgAutoSystem}
@@ -87,19 +92,40 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่น TGAZM ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
-      class="mx-auto h-auto w-full rounded-2xl border border-[#a3e635]/35 shadow-[0_10px_30px_rgba(163,230,53,0.22)]"
+      alt="แบนเนอร์โปรโมชั่น KOHKAE789 ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
+      class="mx-auto h-auto w-full rounded-2xl border border-[#29abe3]/35 shadow-[0_10px_30px_rgba(41,171,227,0.22)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#e2f3cd]">
-      ระบบออโต้ช่วยลดการส่งข้อมูลซ้ำและเปิดให้สมาชิกทำรายการผ่านหน้าบัญชีได้ด้วยตนเอง ควรตรวจสอบชื่อบัญชี ยอดเงิน และสถานะรายการก่อนปิดหน้าเว็บทุกครั้ง หากรายการยังอยู่ระหว่างดำเนินการ ไม่ควรกดยืนยันซ้ำ
-      แต่ควรเก็บรายละเอียดไว้เพื่อตรวจสอบกับทีมงาน
+    <p slot="right" class="text-left text-base leading-relaxed text-[#cfe6f7]">
+      ระบบออโต้ช่วยลดขั้นตอนระหว่างการฝาก ถอน และตรวจสอบสถานะรายการ สมาชิกควรตรวจสอบชื่อบัญชี จำนวนเงิน และข้อมูลทุกครั้งก่อนยืนยัน หากธุรกรรมยังอยู่ระหว่างดำเนินการควรรอผลจากระบบแทนการส่งรายการซ้ำ
+      เพื่อป้องกันความสับสนในการตรวจสอบภายหลัง
     </p>
-  </ContentBoxSevenThreePremium>
+  </ContentBoxSevenThreeCyberCut>
 
-  <ContentBoxSevenThreeNeumorphism title="ฝากไม่มีขั้นต่ำกับ TGAZM ช่วยให้เริ่มตามงบได้">
+  <ContentBoxFloatingBadge as="h2" title="ไม่ผ่านเอเย่นต์ เข้าถึงระบบ KOHKAE789 ได้โดยตรง">
+    <p class="text-left text-base leading-relaxed text-[#cfe6f7]">
+      การใช้งาน KOHKAE789 ผ่านช่องทางตรงช่วยให้สมาชิกจัดการบัญชี เลือกเกม และตรวจสอบธุรกรรมได้ด้วยตนเอง โดยไม่ต้องส่งข้อมูลส่วนตัวผ่านตัวแทน ควรตรวจสอบชื่อโดเมนก่อนเข้าสู่ระบบ
+      และหลีกเลี่ยงการกรอกรหัสผ่านผ่านลิงก์ที่ไม่สามารถยืนยันแหล่งที่มาได้
+    </p>
+  </ContentBoxFloatingBadge>
+
+  <ContentBox as="h2" title="ทำความเข้าใจบาคาร่าแทนการมองเพียงคำว่าแตกง่าย">
+    <p class="text-left text-base leading-relaxed text-[#cfe6f7]">
+      ผลบาคาร่าในแต่ละรอบไม่สามารถรับประกันได้ แม้คำว่าแตกง่ายจะถูกใช้เพื่อสื่อถึงโอกาสลุ้นผลตอบแทน ผู้เล่นควรให้ความสำคัญกับกติกา Banker, Player และ Tie รวมถึงอัตราจ่ายของแต่ละตัวเลือก
+      พร้อมกำหนดวงเงินสูงสุดก่อนเล่นแทนการเพิ่มเดิมพันเพื่อตามผลรอบก่อนหน้า
+    </p>
+  </ContentBox>
+
+  <ContentBoxCyberCut as="h2" title="ความมั่นคงของบัญชีเริ่มต้นที่ KOHKAE789 และผู้ใช้งาน">
+    <p class="text-left text-base leading-relaxed text-[#cfe6f7]">
+      KOHKAE789 ควรใช้งานผ่านทางเข้าหลักร่วมกับการตั้งรหัสผ่านที่คาดเดายากและไม่ซ้ำกับบริการอื่น สมาชิกไม่ควรส่ง OTP หรือรหัสยืนยันให้บุคคลใด และควรออกจากระบบเมื่อใช้อุปกรณ์ร่วมกับผู้อื่น
+      โดยเฉพาะเมื่อต้องตรวจสอบยอดหรือดำเนินธุรกรรมทางการเงิน
+    </p>
+  </ContentBoxCyberCut>
+
+  <ContentBoxSevenThreeFloatingBadge title="ตรวจสอบยอดจ่ายและสถานะธุรกรรมกับ KOHKAE789">
     <Picture
       slot="left"
-      src={imgNoMinimum}
+      src={imgPayout}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -108,43 +134,16 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่น TGAZM ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
-      class="mx-auto h-auto w-full rounded-2xl border border-[#ffd54a]/35 shadow-[0_10px_30px_rgba(255,213,74,0.22)]"
+      alt="แบนเนอร์โปรโมชั่น 3 ของ KOHKAE789 ข้อความ คืนยอดเสียทุกวัน 10% สูงสุด 5,000 บาท พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
+      class="mx-auto h-auto w-full rounded-2xl border border-[#1573e6]/35 shadow-[0_10px_30px_rgba(21,115,230,0.22)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#e2f3cd]">
-      เงื่อนไขฝากไม่มีขั้นต่ำของ TGAZM ช่วยให้สมาชิกเลือกยอดเริ่มต้นได้ยืดหยุ่น โดยไม่จำเป็นต้องใช้เงินจำนวนสูง อย่างไรก็ตาม ควรตรวจสอบช่องทางที่รองรับและข้อกำหนดของโปรโมชั่นก่อนฝาก
-      พร้อมกำหนดวงเงินที่ไม่กระทบค่าใช้จ่ายส่วนตัวและไม่เพิ่มทุนเพื่อตามยอดที่เสียไป
+    <p slot="right" class="text-left text-base leading-relaxed text-[#cfe6f7]">
+      ก่อนส่งคำขอถอนผ่าน KOHKAE789 ควรตรวจสอบยอดคงเหลือ สถานะบัญชี และข้อกำหนดของโปรโมชั่นให้ครบ หากรายการล่าช้าควรเก็บเวลา ยอดเงิน และข้อมูลอ้างอิงไว้สำหรับติดต่อทีมงาน
+      โดยไม่เปิดเผยรหัสผ่านหรือข้อมูลยืนยันที่ใช้เข้าถึงบัญชี
     </p>
-  </ContentBoxSevenThreeNeumorphism>
+  </ContentBoxSevenThreeFloatingBadge>
 
-  <ContentBoxNeumorphism as="h2" title="เลือกเกมสล็อตจากรูปแบบการจ่ายและความผันผวน">
-    <p class="text-left text-base leading-relaxed text-[#e2f3cd]">
-      เกมสล็อตแต่ละประเภทมีจังหวะการจ่าย ฟีเจอร์โบนัส และระดับความผันผวนแตกต่างกัน เกมที่จ่ายบ่อยอาจให้รางวัลต่อครั้งไม่สูง ส่วนเกมผันผวนสูงอาจต้องรอนานกว่า ผู้เล่นจึงควรอ่านข้อมูลเกม ทดลองเล่น
-      และเลือกตามงบประมาณแทนการตัดสินใจจากคำโฆษณาเพียงอย่างเดียว
-    </p>
-  </ContentBoxNeumorphism>
-
-  <ProviderGrid />
-
-  <GameRankingBoard />
-
-  <ContentBoxSpecial as="h2" title="TGAZM วางระบบบัญชีเพื่อการใช้งานที่มั่นคง">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#e2f3cd]">
-      การใช้งาน TGAZM ให้ปลอดภัยควรเริ่มจากการเข้าผ่านช่องทางหลัก ตั้งรหัสผ่านที่ไม่ซ้ำกับบริการอื่น และไม่ส่งรหัสยืนยันให้บุคคลใด
-    </p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#e2f3cd]">
-      สมาชิกควรหลีกเลี่ยงเครือข่ายสาธารณะเมื่อต้องทำธุรกรรม รวมถึงออกจากระบบเมื่อใช้อุปกรณ์ที่ไม่ใช่ของตนเอง
-    </p>
-  </ContentBoxSpecial>
-
-  <ContentBox as="h2" title="รับความช่วยเหลือเป็นขั้นตอนจากทีมงาน TGAZM">
-    <p class="text-left text-base leading-relaxed text-[#e2f3cd]">
-      เมื่อพบปัญหาด้านบัญชี โปรโมชั่น ทางเข้า หรือรายการฝากถอน สมาชิกสามารถติดต่อทีมงาน <strong class="text-[#ffd54a]">TGAZM</strong> ผ่านช่องทางที่เว็บไซต์ระบุ ควรแจ้งชื่อผู้ใช้ เวลา ยอดเงิน และรายละเอียดปัญหาให้ครบ
-      โดยไม่เปิดเผยรหัสผ่าน เพื่อให้ทีมงานตรวจสอบต้นเหตุและดำเนินการได้ตรงจุดมากขึ้น
-    </p>
-  </ContentBox>
-
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ TGAZM" faqs={faqs} />
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ KOHKAE789" faqs={faqs} />
 
   <LoginRtpSection />
 
@@ -153,13 +152,13 @@ const graph = pageGraph(Astro, {
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#ffeaa0] via-[#ffd54a] to-[#c9911a] px-4 py-3 text-sm font-black whitespace-nowrap text-[#04150a] shadow-[0_10px_30px_rgba(255,213,74,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(255,213,74,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#7fdcff] via-[#29abe3] to-[#0b3f96] px-4 py-3 text-sm font-black whitespace-nowrap text-[#050c1a] shadow-[0_10px_30px_rgba(41,171,227,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(41,171,227,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#a3e635]/70 bg-[#0a2411]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#e8fb9c] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#ffd54a] hover:bg-[#123018]/85 hover:shadow-[0_15px_40px_rgba(163,230,53,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#29abe3]/70 bg-[#0b1c33]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#bfe9ff] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#1573e6] hover:bg-[#12294a]/85 hover:shadow-[0_15px_40px_rgba(21,115,230,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>
