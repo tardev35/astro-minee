@@ -782,6 +782,35 @@ async function ctaButtonClass(route) {
   }
 }
 
+// Both generated kinds need the same head. Only the imports are taken from the
+// canonical sub-page — they carry whichever component variants this brand
+// rotated in. Its graph is NOT taken: cloning the frontmatter whole publishes
+// the canonical page's name, description and breadcrumb on the new route, and
+// leaving the graph out entirely fails verify-build's "indexable page with no
+// JSON-LD at all".
+function pageHead(canonicalFm, cfg, t, d, extra = "") {
+  const imports = canonicalFm.split(/\r?\n/).filter((l) => /^\s*import\b/.test(l)).join("\n");
+  const hasGraph = /\bpageGraph\b/.test(imports);
+  const parts = [`const pageDescription =\n  "${d}";`];
+  if (hasGraph) {
+    parts.push(
+      `const graph = pageGraph(Astro, {\n` +
+        `  name: "${t}",\n` +
+        `  description: pageDescription,\n` +
+        `  breadcrumb: [\n` +
+        `    { name: "หน้าแรก", path: "/" },\n` +
+        `    { name: "${cfg.navLabel}", path: "${cfg.route}" },\n` +
+        `  ],\n` +
+        `});`,
+    );
+  }
+  if (extra.trim()) parts.push(extra.trim());
+  return {
+    head: `---\n${imports}\n\n${parts.join("\n\n")}\n---\n\n`,
+    ldScript: hasGraph ? `  <script type="application/ld+json" set:html={graph} />\n\n` : "",
+  };
+}
+
 async function createCtaPage(cfg, title, desc, label) {
   const file = join(PAGES, cfg.file);
   const backup = redirectBackup(cfg);
@@ -810,26 +839,13 @@ async function createCtaPage(cfg, title, desc, label) {
   // brand rotated in, which is the whole reason to read the canonical page —
   // but its graph names its own route, so publishing that here would put the
   // wrong name and breadcrumb on this page. That one is written fresh.
-  const imports = fm[1].split(/\r?\n/).filter((l) => /^\s*import\b/.test(l)).join("\n");
-  const hasGraph = /\bpageGraph\b/.test(imports);
   const cls = await ctaButtonClass(cfg.route);
+  const { head, ldScript } = pageHead(fm[1], cfg, t, d, `const targetUrl = "${target}";\n`);
 
   const page =
-    `---\n${imports}\n\n` +
-    `const pageDescription =\n  "${d}";\n\n` +
-    (hasGraph
-      ? `const graph = pageGraph(Astro, {\n` +
-        `  name: "${t}",\n` +
-        `  description: pageDescription,\n` +
-        `  breadcrumb: [\n` +
-        `    { name: "หน้าแรก", path: "/" },\n` +
-        `    { name: "${cfg.navLabel}", path: "${cfg.route}" },\n` +
-        `  ],\n` +
-        `});\n\n`
-      : "") +
-    `const targetUrl = "${target}";\n---\n\n` +
+    head +
     `<MainLayout title="${t}" description={pageDescription}>\n` +
-    (hasGraph ? `  <script type="application/ld+json" set:html={graph} />\n\n` : "") +
+    ldScript +
     `  <Announcement />\n\n` +
     `  <ContentBox title="${cfg.boxTitle}" as="h1">\n` +
     `    <!-- TODO(rebrand): ตั้ง title/description บน <MainLayout> จาก content brief ตอนรีแบรนด์ และจัดสีปุ่มให้ตรงพาเลตต์${cls ? "" : " (ยังไม่ได้คลาสจาก " + CANONICAL_PAGE + " — ปุ่มนี้ยังไม่มีสีแบรนด์)"} -->\n` +
@@ -892,9 +908,11 @@ async function createPage(key, title, desc) {
   const canonical = await readFile(join(PAGES, CANONICAL_PAGE), "utf8");
   const fm = canonical.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!fm) throw new Error(`ไม่พบ frontmatter ใน ${CANONICAL_PAGE} (ต้นแบบหน้าย่อย)`);
+  const { head, ldScript } = pageHead(fm[1], cfg, t, d);
   const page =
-    `---\n${fm[1]}\n---\n\n` +
-    `<MainLayout title="${t}" description="${d}">\n` +
+    head +
+    `<MainLayout title="${t}" description={pageDescription}>\n` +
+    ldScript +
     `  <Announcement />\n\n` +
     `  <ContentBox title="${cfg.boxTitle}">\n` +
     `    <!-- TODO(rebrand): เขียนบทความจริงของ "${cfg.navLabel}" ~1 ย่อหน้าใน <ContentBox> นี้ + ตั้ง title/description บน <MainLayout> จาก content.docx ตอนรีแบรนด์ -->\n` +
