@@ -1300,6 +1300,12 @@ redirect. Spot them by `const targetUrl` in the frontmatter next to a
   matching button `/ทางเข้า` already has, so it is usually right already; if
   `/ทางเข้า` had no such button the class falls back to a neutral grey and the
   TODO comment says so.
+- **`ทางเข้า` leaves the menu while either toggle is on, by design.** That page
+  exists only to offer เข้าสู่ระบบ and สมัครสมาชิก, so once those two are menu
+  entries themselves it is a third link to the same two places. The page stays
+  routed and indexed — only its menu entry goes, and switching the last cta
+  toggle back off restores it with its original icon. Do not re-add it by hand,
+  and do not delete `src/pages/ทางเข้า.astro`.
 
 The uploader also tries to add the page's `{ name, path }`
 to the **active navbar's** link arrays (both desktop + mobile) on a

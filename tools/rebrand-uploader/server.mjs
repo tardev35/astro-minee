@@ -361,12 +361,12 @@ const PAGE_META = {
 //              Huay theme; it may only ever be moved in or out of src/pages,
 //              never regenerated, or a rebrand would wipe the lottery copy
 const PRESET_PAGES = {
-  article: { kind: "scaffold", file: "บทความ.astro", route: "/บทความ", navLabel: "บทความ", boxTitle: "บทความ" },
-  aboutus: { kind: "scaffold", file: "about-us.astro", route: "/about-us", navLabel: "เกี่ยวกับเรา", boxTitle: "เกี่ยวกับเรา" },
-  huaycheck: { kind: "template", file: "ตรวจหวย.astro", route: "/ตรวจหวย", navLabel: "ตรวจหวย", footerLabel: "ตรวจผลรางวัล", boxTitle: "ตรวจหวย" },
-  huayguide: { kind: "template", file: "แนวทาง.astro", route: "/แนวทาง", navLabel: "แนวทาง", footerLabel: "แนวทางหวย", boxTitle: "แนวทาง" },
-  register: { kind: "cta", file: "register.astro", route: "/register", navLabel: "สมัครสมาชิก", boxTitle: "สมัครสมาชิก", cta: "สมัครสมาชิก" },
-  login: { kind: "cta", file: "login.astro", route: "/login", navLabel: "เข้าสู่ระบบ", boxTitle: "เข้าสู่ระบบ", cta: "เข้าระบบเกม" },
+  article: { kind: "scaffold", file: "บทความ.astro", route: "/บทความ", navLabel: "บทความ", boxTitle: "บทความ", icon: "📰" },
+  aboutus: { kind: "scaffold", file: "about-us.astro", route: "/about-us", navLabel: "เกี่ยวกับเรา", boxTitle: "เกี่ยวกับเรา", icon: "🏢" },
+  huaycheck: { kind: "template", file: "ตรวจหวย.astro", route: "/ตรวจหวย", navLabel: "ตรวจหวย", footerLabel: "ตรวจผลรางวัล", boxTitle: "ตรวจหวย", icon: "🔍" },
+  huayguide: { kind: "template", file: "แนวทาง.astro", route: "/แนวทาง", navLabel: "แนวทาง", footerLabel: "แนวทางหวย", boxTitle: "แนวทาง", icon: "📊" },
+  register: { kind: "cta", file: "register.astro", route: "/register", navLabel: "สมัครสมาชิก", boxTitle: "สมัครสมาชิก", cta: "สมัครสมาชิก", icon: "📝" },
+  login: { kind: "cta", file: "login.astro", route: "/login", navLabel: "เข้าสู่ระบบ", boxTitle: "เข้าสู่ระบบ", cta: "เข้าระบบเกม", icon: "🔑" },
 };
 // A "cta" page replaces the interstitial that auto-forwards to the affiliate
 // link with a real page whose only content is one button to the same place.
@@ -378,6 +378,26 @@ const LEGACY_DESC_RE = /<meta\b[^>]*\bname=["']description["'][^>]*\bcontent=["'
 const LEGACY_DESC_RE_ALT = /<meta\b[^>]*\bcontent=["']([^"']*)["'][^>]*\bname=["']description["']/i;
 const redirectBackup = (cfg) => join(PAGES_DISABLED, cfg.file.replace(/\.astro$/, ".redirect.astro"));
 const isCtaPage = (src) => /<MainLayout\b/.test(src);
+// /ทางเข้า exists to offer เข้าสู่ระบบ and สมัครสมาชิก and nothing else. Once
+// those two are menu entries in their own right it becomes a third link to the
+// same two places, so any cta toggle takes it out of the menu and the last one
+// switched off puts it back. Only the menu entry moves — the page stays routed,
+// because it is linked from the homepage and indexed.
+const ENTRANCE = { route: "/ทางเข้า", label: "ทางเข้า", icon: "🚪" };
+// The entry is stashed verbatim on the way out so switching back on returns the
+// brand's own icon, not a stand-in. Rebuilding it from label + a default icon
+// silently repaints one menu row a different colour of emoji than the rest.
+const ENTRANCE_STASH = join(PAGES_DISABLED, ".entrance-nav.txt");
+
+async function anyCtaEnabled() {
+  for (const cfg of Object.values(PRESET_PAGES)) {
+    if (cfg.kind !== "cta") continue;
+    try {
+      if (isCtaPage(await readFile(join(PAGES, cfg.file), "utf8"))) return true;
+    } catch { /* not routed — not enabled */ }
+  }
+  return false;
+}
 // A generated page is cloned from this existing sub-page's frontmatter so it
 // stays on the brand's current component variants without hardcoding names here.
 const CANONICAL_PAGE = "ทางเข้า.astro";
@@ -909,7 +929,18 @@ async function disablePage(key) {
     written.push(`src/pages/${cfg.file}`);
     const nav = await removeNavLink(cfg.route);
     if (nav.removed) written.push(`navbar ${nav.navFile} (-${nav.removed})`);
-    return { written, parked: true, reverted: true, navRemoved: nav.removed || 0 };
+    let entranceBack = 0;
+    if (!(await anyCtaEnabled())) {
+      let saved = null;
+      try { saved = (await readFile(ENTRANCE_STASH, "utf8")).trim() || null; } catch { /* first run, or stash cleaned */ }
+      const back = await addNavLink(ENTRANCE.route, ENTRANCE.label, ENTRANCE.icon, saved);
+      entranceBack = back.inserted || 0;
+      if (entranceBack) {
+        written.push(`navbar ${back.navFile} (+${entranceBack} ${ENTRANCE.label})`);
+        if (saved) await unlink(ENTRANCE_STASH).catch(() => {});
+      }
+    }
+    return { written, parked: true, reverted: true, navRemoved: nav.removed || 0, entranceRestored: entranceBack };
   }
 
   if (await fileExists(file)) {
@@ -992,7 +1023,7 @@ function dropFromGroups(src, re, route) {
     if (before) start -= before[0].length;
     out = out.slice(0, start) + out.slice(end);
   }
-  return { out, count: items.length };
+  return { out, count: items.length, removed: items.map((m) => m[0]) };
 }
 
 // Which navbar/footer is live rotates every rebrand, so resolve from MainLayout
@@ -1007,7 +1038,9 @@ async function activeChrome(kind) {
   return { name: m[1], file: join(ROOT, "src", "components", m[1]) };
 }
 
-async function addNavLink(route, label) {
+// `verbatim` re-inserts an entry exactly as it was removed, so restoring a menu
+// item gives back the icon the brand picked rather than a generic stand-in.
+async function addNavLink(route, label, icon, verbatim) {
   const nav = await activeChrome("navbar");
   if (!nav) return { warning: `หา import Navbar ใน MainLayout.astro ไม่เจอ — เพิ่มลิงก์ ${route} (${label}) ในเมนูเองตอนรีแบรนด์` };
   let src;
@@ -1016,7 +1049,11 @@ async function addNavLink(route, label) {
   if (src.includes(`path: "${route}"`) || src.includes(`path: '${route}'`)) {
     return { navFile: nav.name, already: true };
   }
-  const { out, count } = appendToGroups(src, NAV_ITEM_RE, () => `{ name: "${label}", path: "${route}" }`);
+  // Every menu item in this library carries an icon; an entry without one reads
+  // as a gap in the row. Only skip it on a navbar whose entries have none.
+  const usesIcons = /\bicon:\s*["']/.test(src);
+  const entry = verbatim || `{ name: "${label}", path: "${route}"${usesIcons && icon ? `, icon: "${icon}"` : ""} }`;
+  const { out, count } = appendToGroups(src, NAV_ITEM_RE, () => entry);
   if (!count) return { navFile: nav.name, warning: `navbar ${nav.name} ไม่ตรงรูปแบบ array ที่รองรับ — เพิ่มลิงก์ ${route} (${label}) ในเมนูเองตอนรีแบรนด์` };
   await writeFile(nav.file, out);
   return { navFile: nav.name, inserted: count };
@@ -1027,9 +1064,9 @@ async function removeNavLink(route) {
   if (!nav) return { removed: 0 };
   let src;
   try { src = await readFile(nav.file, "utf8"); } catch { return { removed: 0 }; }
-  const { out, count } = dropFromGroups(src, NAV_ITEM_RE, route);
+  const { out, count, removed } = dropFromGroups(src, NAV_ITEM_RE, route);
   if (count) await writeFile(nav.file, out);
-  return { navFile: nav.name, removed: count };
+  return { navFile: nav.name, removed: count, entry: removed[0] || null };
 }
 
 async function addFooterLink(route, label) {
@@ -4712,14 +4749,20 @@ const server = http.createServer(async (req, res) => {
           extra = { disabled: off.parked, missing: !!off.missing };
         } else {
           const pageRes = await createPage(key, url.searchParams.get("title"), url.searchParams.get("desc"));
-          const navRes = await addNavLink(cfg.route, cfg.navLabel);
+          const navRes = await addNavLink(cfg.route, cfg.navLabel, cfg.icon);
           // Footers already ship their own /login and /register rows, so a cta
           // toggle neither adds one nor is allowed to remove one — the off path
           // would otherwise delete a link it never created.
           const footRes = cfg.kind === "cta" ? {} : await addFooterLink(cfg.route, cfg.footerLabel || cfg.navLabel);
+          const entRes = cfg.kind === "cta" ? await removeNavLink(ENTRANCE.route) : {};
+          if (entRes.entry) {
+            await mkdir(PAGES_DISABLED, { recursive: true });
+            await writeFile(ENTRANCE_STASH, entRes.entry);
+          }
           written = [...pageRes.written];
           if (navRes.inserted) written.push(`navbar ${navRes.navFile} (+${navRes.inserted})`);
           if (footRes.inserted) written.push(`footer ${footRes.footerFile} (+${footRes.inserted})`);
+          if (entRes.removed) written.push(`navbar ${entRes.navFile} (-${entRes.removed} ${ENTRANCE.label})`);
           extra = {
             created: pageRes.created,
             // distinguishes "moved back from pages-disabled" from "scaffolded
