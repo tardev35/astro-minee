@@ -1043,8 +1043,50 @@ body back.
 Consequence for the Phase 5 inventory: each contributes **`h1×1`, `h2×0`,
 `h3×0`**. An `<h2>` on either means this rule was missed.
 
-The other sub-pages are the opposite — they *are* articles and their headings
-come from their own body, per Phase 5.
+### `/promotion` is an IMAGE page — about four lines of prose, no more
+
+Asked for on 2026-08-08, after NORWAY89's promotion page shipped a four-section
+article. It applies to every rebrand from here on.
+
+The promotion page's content **is the `slide*` artwork**. Each slide already
+states its own offer in large type — the bonus, the percentage, the terms — so
+prose underneath it re-types what the visitor can already read, in smaller
+letters. A visitor opens `/promotion` to see what the promotions *are*, and
+every paragraph pushes the grid further down.
+
+Its whole body is, in order:
+
+1. the `ContentBox` `title` (the page's single `<h1>`)
+2. **one short intro paragraph — about four lines, and that is the entire prose
+   budget for the page**
+3. the promo image grid (the `slide*` files, `grid-cols-1 sm:grid-cols-2`)
+4. one `สมัครสมาชิก <BRAND>` button
+
+**Write no section headings.** Not "โบนัสสมาชิกใหม่…", not "โปรฝากประจำวันและ
+สิทธิ์คืนยอดเสีย", not "ฝากถอนออโต้และการรับสิทธิ์จากทุกอุปกรณ์" — however
+accurate the copy is and however much the page you inherit looks like it wants
+them. The intro says what the page holds and that conditions differ per
+promotion; the pictures say the rest.
+
+This is the same failure mode as `/contact-us` and `/ทางเข้า` above, and it
+arrives the same way: the docx **SUB-PAGES** section gives this page a `Title`
+and a `Meta` and **never a body**, so every paragraph on it was invented by some
+earlier rebrand and rewritten by every rebrand since. If the page you inherit
+has `<h2>`s and seven paragraphs, **delete them down to the one intro** — that
+is a fix, not a scope overrun.
+
+Everything else stays: the `Announcement`, the image grid and its `alt` text,
+the CTA, `Navfoot`, the `pageGraph` call (keep `primaryImagePath`), the
+`MainLayout` title and description. Retheme all of it to the new palette as
+normal, and keep writing a real 150–160 character description — the page is
+still indexed and still needs to say what it is.
+
+Consequence for the Phase 5 inventory: `/promotion` contributes **`h1×1`,
+`h2×0`, `h3×0`**, exactly like the two button pages.
+
+The remaining sub-pages — `/about-us`, `/ทดลองเล่น`, `/บทความ`, `/terms`,
+`/privacy` — are the opposite: they *are* articles and their headings come from
+their own body, per Phase 5.
 
 ### The active footer carries the same contact block
 
@@ -1324,6 +1366,18 @@ redirect. Spot them by `const targetUrl` in the frontmatter next to a
   matching button `/ทางเข้า` already has, so it is usually right already; if
   `/ทางเข้า` had no such button the class falls back to a neutral grey and the
   TODO comment says so.
+- **`CtaRedirect.astro` is rendered on both of these pages, so it is in scope
+  for the retheme.** It is the loading animation the interstitial used to show
+  on its way to the affiliate link — an orb, two counter-rotating rings and the
+  brand name — now triggered by the click instead of by page load, so the page
+  itself stays a real page. Nothing else in the repo renders it, which means an
+  un-rethemed copy ships the **previous** brand's hues on the one screen a
+  visitor sees at the moment they convert. Its scoped `<style>` is the only
+  place to change: swap the hexes for the palette's primary, its light and deep
+  shades, the second hue on `.ring-2`, and the panel/backdrop surface. Leave the
+  markup, the timings and the `<script>` alone — `data-cta-redirect` on the
+  anchor is what the script binds to, and the brand name comes from
+  `BRAND_NAME` on its own.
 - **`ทางเข้า` leaves the menu while either toggle is on, by design.** That page
   exists only to offer เข้าสู่ระบบ and สมัครสมาชิก, so once those two are menu
   entries themselves it is a third link to the same two places. The page stays
@@ -1676,10 +1730,13 @@ pointing at a `public/` path during a rebrand, repoint it to the
      for you to look at is that the footer renders it **at all** —
      `grep -c '<address' dist/index.html` should be `1`. A `0` means the
      footer swap in Phase 4.5 dropped it, which no gate catches
-   - **`grep -c '<h2' dist/contact-us/index.html dist/ทางเข้า/index.html`
-     must be `0` for both** — they are button pages, not articles
-     (Phase 4.5). Any hit means prose was written back in; delete the prose,
-     don't demote the tag
+   - **`grep -c '<h2' dist/contact-us/index.html dist/ทางเข้า/index.html
+     dist/promotion/index.html` must be `0` for all three** — the first two
+     are button pages and `/promotion` is an image page, none of them are
+     articles (Phase 4.5). Any hit means prose was written back in; delete the
+     prose, don't demote the tag. On `/promotion` also eyeball that the prose
+     above the image grid is still **one paragraph of about four lines** — the
+     `h2` count alone won't catch six headingless paragraphs
    - `grep -c '<!--' dist/index.html` should be 0 — Astro ships HTML
      comments to output, so any `<!-- H2: … -->` section labels left in
      a page leak the docx outline (and often the old brand name) into
