@@ -12,19 +12,19 @@ import slide4 from "../assets/slide4.png";
 const images = [
   {
     src: slide1,
-    alt: "แบนเนอร์โปรโมชั่น KOHKAE789 ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม.",
+    alt: "แบนเนอร์โปรโมชั่นของ DUCK36 ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม.",
   },
   {
     src: slide2,
-    alt: "แบนเนอร์โปรโมชั่น KOHKAE789 ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม.",
+    alt: "แบนเนอร์โปรโมชั่นของ DUCK36 ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม.",
   },
   {
     src: slide3,
-    alt: "แบนเนอร์โปรโมชั่น 3 ของ KOHKAE789 ข้อความ คืนยอดเสียทุกวัน 10% สูงสุด 5,000 บาท พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม.",
+    alt: "แบนเนอร์โปรโมชั่นของ DUCK36 ข้อความ คืนยอดเสียทุกวัน 10% สูงสุด 5,000 บาท พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม.",
   },
   {
     src: slide4,
-    alt: "แบนเนอร์โปรโมชั่น 4 ของ KOHKAE789 ข้อความ ชวนเพื่อน รับเครดิตฟรี 300 บาท ชวนมาก ได้มาก พร้อมแถบด้านล่าง ชวนง่าย รับทันที คุ้มค่า และปลอดภัย",
+    alt: "แบนเนอร์โปรโมชั่นของ DUCK36 ข้อความ ชวนเพื่อน รับเครดิตฟรี 300 บาท ชวนมาก ได้มาก พร้อมแถบด้านล่าง ชวนง่าย รับทันที คุ้มค่า และปลอดภัย",
   },
 ];
 
@@ -36,7 +36,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
   <input id="carousel-pause" type="checkbox" class="peer sr-only" />
   <label
     for="carousel-pause"
-    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#29abe3]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#7fdcff]">
+    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#f5b70a]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#ffd76a]">
     หยุด / เล่นสไลด์ภาพ
   </label>
 
@@ -49,7 +49,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
             <Picture
               src={slide.src}
               alt={isDuplicate ? "" : slide.alt}
-              class="block w-full rounded-xl border border-[#29abe3]/30 object-cover shadow-[0_10px_30px_rgba(41,171,227,0.22)]"
+              class="block w-full rounded-xl border border-[#f5b70a]/30 object-cover shadow-[0_10px_30px_rgba(245,183,10,0.22)]"
               width={slide.src.width}
               height={slide.src.height}
               loading="lazy"

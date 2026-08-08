@@ -1,53 +1,59 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/AnnouncementCyber.astro";
+import Announcement from "../components/Announcement3.astro";
+import ContentBoxPremium from "../components/ContentBoxPremium.astro";
 import ContentBox from "../components/ContentBox.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
-import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
-import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
+import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
+import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
+import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
+import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
-import ProviderGrid from "../components/ProviderGridPremium.astro";
+import ProviderGrid from "../components/ProviderGrid.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinnersCyber.astro";
+import LatestWinners from "../components/LatestWinners4.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq2.astro";
+import Faq from "../components/Faq4.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
 import { pageGraph } from "../lib/schema";
-// slide1 illustrates the ระบบออโต้ section (it reads เริ่มสนุกได้ทันที over a
-// ฝากถอนออโต้ badge strip); slide3 the ตรวจสอบยอดจ่าย section (คืนยอดเสียทุกวัน
-// 10% สูงสุด 5,000 บาท — a payout/amount image). Slides may only live inside a
-// ContentBoxSevenThree* block, max two per rebrand; slide2 and slide4 go unused
-// here and keep rendering in SmoothCarousel and on /promotion.
+
+// Slides may only live inside a ContentBoxSevenThree* block and there are at
+// most two of those per rebrand — both are spent here. slide1 reads
+// "สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที" over a ฝากถอนออโต้ badge strip,
+// which is the ระบบออโต้ section; slide2 reads "ฝากครั้งแรก รับเพิ่ม 50%" and
+// sits with the True Wallet section. slide3 and slide4 stay unused here and
+// keep rendering in SmoothCarousel and on /promotion.
 import imgAutoSystem from "../assets/slide1.png";
-import imgPayout from "../assets/slide3.png";
+import imgTrueWallet from "../assets/slide2.png";
 
-const pageTitle = "KOHKAE789 | บาคาร่าออโต้ แตกง่าย มั่นคง ไม่ผ่านเอเย่นต์ จ่ายไว";
+const pageTitle = "DUCK36 | เว็บสล็อตออนไลน์ค่ายดัง ระบบออโต้ฝากถอนผ่าน true wallet";
 
-// 156 characters. verify-build.mjs errors outside 150–160 CHARACTERS, and the
-// docx-supplied description is 133 — the trailing clause closes that gap
-// without changing what the brief says.
+// 157 characters. verify-build.mjs errors outside 150–160 CHARACTERS, and the
+// docx-supplied description is 128 — the trailing clause closes that gap
+// without changing what the brief says. Measured; do not reword.
 const pageDescription =
-  "KOHKAE789 บาคาร่าเว็บตรงระบบออโต้ ไม่ผ่านเอเย่นต์ ฝากถอนไว รองรับมือถือ ใช้งานมั่นคง พร้อมโต๊ะเกมหลากหลายและบริการสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาก่อนเล่น";
+  "DUCK36 เว็บสล็อตออนไลน์ค่ายดัง ระบบออโต้ฝากถอนผ่าน True Wallet รองรับมือถือ รวมเกมยอดนิยม พร้อมระบบใช้งานสะดวกและบริการสมาชิก ควรศึกษาเงื่อนไขก่อนเริ่มใช้งาน";
 
+// The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
+// Faq4's own default, which is always the previous brand's FAQ.
 const faqs = [
   {
-    q: "KOHKAE789 เป็นบาคาร่าเว็บตรงไม่ผ่านเอเย่นต์อย่างไร?",
-    a: "สมาชิกสามารถเข้าสู่ระบบ เลือกโต๊ะบาคาร่า และจัดการธุรกรรมผ่านบัญชีของตนเองโดยตรง ควรตรวจสอบช่องทางเข้าให้ถูกต้องก่อนกรอกข้อมูลทุกครั้ง",
+    q: "DUCK36 มีเกมสล็อตจากค่ายดังหรือไม่?",
+    a: "DUCK36 รวมเกมสล็อตจากหลายค่ายที่มีรูปแบบแตกต่างกัน สมาชิกสามารถเลือกเกมตามธีม ฟีเจอร์ และรูปแบบการเล่นที่สนใจได้",
   },
   {
-    q: "ระบบออโต้ของ KOHKAE789 ช่วยเรื่องอะไร?",
-    a: "ระบบออโต้ช่วยลดขั้นตอนการฝาก ถอน และตรวจสอบสถานะธุรกรรม ทำให้สมาชิกจัดการรายการจากหน้าบัญชีได้โดยไม่ต้องส่งข้อมูลหลายรอบ",
+    q: "DUCK36 รองรับฝากถอนผ่าน True Wallet หรือไม่?",
+    a: "ระบบรองรับการทำรายการผ่าน True Wallet ตามช่องทางที่กำหนด สมาชิกควรตรวจสอบข้อมูลวอลเลทและยอดเงินก่อนยืนยันทุกครั้ง",
   },
   {
-    q: "บาคาร่าแตกง่ายสามารถรับประกันผลกำไรได้หรือไม่?",
-    a: "ไม่สามารถรับประกันผลหรือกำไรจากบาคาร่าได้ เพราะผลแต่ละรอบมีความไม่แน่นอน ผู้เล่นควรเข้าใจกติกา กำหนดงบประมาณ และหลีกเลี่ยงการไล่ตามผลเสีย",
+    q: "ระบบออโต้ของ DUCK36 ช่วยอะไรบ้าง?",
+    a: "ระบบออโต้ช่วยลดขั้นตอนการฝากถอนและตรวจสอบสถานะรายการ ทำให้สมาชิกสามารถจัดการธุรกรรมผ่านหน้าบัญชีได้สะดวกมากขึ้น",
   },
 ];
 
+// Homepage: no breadcrumb — there is no trail above the root.
 const graph = pageGraph(Astro, {
   name: pageTitle,
   description: pageDescription,
@@ -59,28 +65,26 @@ const graph = pageGraph(Astro, {
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement
-    message="KOHKAE789 บาคาร่าเว็บตรงระบบออโต้ ไม่ผ่านเอเย่นต์ เลือกโต๊ะ ตรวจยอด และจัดการธุรกรรมได้จากบัญชีเดียว • ระบบออโต้ช่วยลดขั้นตอนฝากถอน ควรตรวจชื่อบัญชีและจำนวนเงินก่อนยืนยันทุกครั้ง • ผลบาคาร่าแต่ละรอบไม่สามารถรับประกันได้ ควรศึกษากติกา Banker Player และ Tie พร้อมกำหนดงบประมาณก่อนเริ่มเล่น • ทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง"
+    message="DUCK36 เว็บสล็อตออนไลน์ค่ายดัง รวมเกมจากหลายค่ายไว้ในระบบเดียว • ฝากถอนผ่าน True Wallet ด้วยระบบออโต้ ช่วยลดขั้นตอนการทำรายการ ควรตรวจสอบยอดเงินและข้อมูลบัญชีก่อนยืนยันทุกครั้ง • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ ใช้งานผ่านเบราว์เซอร์ได้ทันที • ทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง ควรศึกษารายละเอียดเกมและเงื่อนไขก่อนเริ่มใช้งาน"
   />
 
-  <ContentBoxCyberCut as="h1" title="KOHKAE789 บาคาร่าออโต้ แตกง่าย มั่นคง ไม่ผ่านเอเย่นต์ จ่ายไว">
-    <p class="text-left text-base leading-relaxed text-[#cfe6f7]">
-      <strong class="text-[#7fdcff]">KOHKAE789</strong> เป็นแพลตฟอร์มบาคาร่าออนไลน์ที่เน้นการใช้งานผ่านระบบตรงและระบบออโต้ สมาชิกสามารถเลือกโต๊ะเกม ตรวจสอบยอด และจัดการธุรกรรมจากบัญชีเดียวโดยไม่ต้องผ่านตัวแทน
-      รองรับทั้งมือถือและคอมพิวเตอร์ ก่อนเริ่มควรทำความเข้าใจกติกา รูปแบบเดิมพัน และกำหนดงบประมาณให้เหมาะกับตนเอง
+  <ContentBoxPremium as="h1" title="DUCK36 เว็บสล็อตออนไลน์ค่ายดัง ระบบออโต้ฝากถอนผ่าน true wallet">
+    <p class="text-left text-base leading-relaxed text-[#efe3c9]">
+      <strong class="text-[#ffd76a]">DUCK36</strong> เป็นแพลตฟอร์มสล็อตออนไลน์ที่รวบรวมเกมจากค่ายยอดนิยมไว้ในระบบเดียว รองรับการฝากถอนผ่าน True Wallet และระบบออโต้ที่ช่วยลดขั้นตอนการทำรายการ
+      สมาชิกสามารถเข้าใช้งานผ่านมือถือ เลือกเกม ตรวจสอบโปรโมชั่น และจัดการบัญชีได้ง่าย ควรศึกษารายละเอียดเกมและเงื่อนไขก่อนเริ่มใช้งาน
     </p>
-  </ContentBoxCyberCut>
+  </ContentBoxPremium>
 
-  <ContentBox as="h2" title="เลือกโต๊ะบาคาร่าให้เข้ากับสไตล์บน KOHKAE789">
-    <p class="text-left text-base leading-relaxed text-[#cfe6f7]">
-      ภายใน KOHKAE789 มีโต๊ะบาคาร่าและรูปแบบการเดิมพันให้เลือกหลายระดับ ผู้เล่นควรพิจารณาวงเงินขั้นต่ำ ความเร็วของแต่ละรอบ และกติกาของโต๊ะก่อนเข้าเล่น
-      การเลือกโต๊ะที่สอดคล้องกับงบประมาณช่วยให้ควบคุมจำนวนเดิมพันและวางแผนการเล่นได้เป็นระบบมากขึ้น
+  <ContentBox as="h2" title="รวมเกมสล็อตจากค่ายดังไว้ใน DUCK36">
+    <p class="text-left text-base leading-relaxed text-[#efe3c9]">
+      ภายใน DUCK36 มีเกมสล็อตจากหลายค่ายให้เลือก ทั้งเกมแนวคลาสสิก เกมกราฟิกสวย และเกมที่มีฟีเจอร์โบนัสหลากหลาย ผู้เล่นสามารถเลือกเกมตามธีม รูปแบบการเล่น หรือความถนัดของตนเอง
+      ควรอ่านรายละเอียดเกมและกติกาก่อนเริ่ม เพื่อเลือกเกมที่เหมาะกับงบประมาณ
     </p>
   </ContentBox>
 
   <ProviderGrid />
 
-  <GameRankingBoard />
-
-  <ContentBoxSevenThreeCyberCut titleright="ทำรายการได้คล่องตัวด้วยระบบออโต้">
+  <ContentBoxSevenThreePremium titleright="ระบบออโต้ช่วยให้การทำรายการง่ายขึ้น">
     <Picture
       slot="left"
       src={imgAutoSystem}
@@ -92,40 +96,19 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่น KOHKAE789 ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
-      class="mx-auto h-auto w-full rounded-2xl border border-[#29abe3]/35 shadow-[0_10px_30px_rgba(41,171,227,0.22)]"
+      alt="แบนเนอร์โปรโมชั่นของ DUCK36 ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f5b70a]/35 shadow-[0_10px_30px_rgba(245,183,10,0.22)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#cfe6f7]">
-      ระบบออโต้ช่วยลดขั้นตอนระหว่างการฝาก ถอน และตรวจสอบสถานะรายการ สมาชิกควรตรวจสอบชื่อบัญชี จำนวนเงิน และข้อมูลทุกครั้งก่อนยืนยัน หากธุรกรรมยังอยู่ระหว่างดำเนินการควรรอผลจากระบบแทนการส่งรายการซ้ำ
-      เพื่อป้องกันความสับสนในการตรวจสอบภายหลัง
+    <p slot="right" class="text-left text-base leading-relaxed text-[#efe3c9]">
+      ระบบออโต้ช่วยให้สมาชิกจัดการฝากและถอนผ่านหน้าบัญชีได้ด้วยตนเอง ลดขั้นตอนที่ต้องส่งข้อมูลหลายครั้ง ก่อนยืนยันรายการควรตรวจสอบยอดเงิน ข้อมูลบัญชี และสถานะธุรกรรมให้ครบถ้วน
+      เพื่อช่วยลดข้อผิดพลาดระหว่างการใช้งาน
     </p>
-  </ContentBoxSevenThreeCyberCut>
+  </ContentBoxSevenThreePremium>
 
-  <ContentBoxFloatingBadge as="h2" title="ไม่ผ่านเอเย่นต์ เข้าถึงระบบ KOHKAE789 ได้โดยตรง">
-    <p class="text-left text-base leading-relaxed text-[#cfe6f7]">
-      การใช้งาน KOHKAE789 ผ่านช่องทางตรงช่วยให้สมาชิกจัดการบัญชี เลือกเกม และตรวจสอบธุรกรรมได้ด้วยตนเอง โดยไม่ต้องส่งข้อมูลส่วนตัวผ่านตัวแทน ควรตรวจสอบชื่อโดเมนก่อนเข้าสู่ระบบ
-      และหลีกเลี่ยงการกรอกรหัสผ่านผ่านลิงก์ที่ไม่สามารถยืนยันแหล่งที่มาได้
-    </p>
-  </ContentBoxFloatingBadge>
-
-  <ContentBox as="h2" title="ทำความเข้าใจบาคาร่าแทนการมองเพียงคำว่าแตกง่าย">
-    <p class="text-left text-base leading-relaxed text-[#cfe6f7]">
-      ผลบาคาร่าในแต่ละรอบไม่สามารถรับประกันได้ แม้คำว่าแตกง่ายจะถูกใช้เพื่อสื่อถึงโอกาสลุ้นผลตอบแทน ผู้เล่นควรให้ความสำคัญกับกติกา Banker, Player และ Tie รวมถึงอัตราจ่ายของแต่ละตัวเลือก
-      พร้อมกำหนดวงเงินสูงสุดก่อนเล่นแทนการเพิ่มเดิมพันเพื่อตามผลรอบก่อนหน้า
-    </p>
-  </ContentBox>
-
-  <ContentBoxCyberCut as="h2" title="ความมั่นคงของบัญชีเริ่มต้นที่ KOHKAE789 และผู้ใช้งาน">
-    <p class="text-left text-base leading-relaxed text-[#cfe6f7]">
-      KOHKAE789 ควรใช้งานผ่านทางเข้าหลักร่วมกับการตั้งรหัสผ่านที่คาดเดายากและไม่ซ้ำกับบริการอื่น สมาชิกไม่ควรส่ง OTP หรือรหัสยืนยันให้บุคคลใด และควรออกจากระบบเมื่อใช้อุปกรณ์ร่วมกับผู้อื่น
-      โดยเฉพาะเมื่อต้องตรวจสอบยอดหรือดำเนินธุรกรรมทางการเงิน
-    </p>
-  </ContentBoxCyberCut>
-
-  <ContentBoxSevenThreeFloatingBadge title="ตรวจสอบยอดจ่ายและสถานะธุรกรรมกับ KOHKAE789">
+  <ContentBoxSevenThreeNeumorphism titleright="ฝากถอนผ่าน True Wallet กับ DUCK36 สะดวกบนมือถือ">
     <Picture
       slot="left"
-      src={imgPayout}
+      src={imgTrueWallet}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -134,16 +117,41 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่น 3 ของ KOHKAE789 ข้อความ คืนยอดเสียทุกวัน 10% สูงสุด 5,000 บาท พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
-      class="mx-auto h-auto w-full rounded-2xl border border-[#1573e6]/35 shadow-[0_10px_30px_rgba(21,115,230,0.22)]"
+      alt="แบนเนอร์โปรโมชั่นของ DUCK36 ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
+      class="mx-auto h-auto w-full rounded-2xl border border-[#d99908]/35 shadow-[0_10px_30px_rgba(217,153,8,0.22)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#cfe6f7]">
-      ก่อนส่งคำขอถอนผ่าน KOHKAE789 ควรตรวจสอบยอดคงเหลือ สถานะบัญชี และข้อกำหนดของโปรโมชั่นให้ครบ หากรายการล่าช้าควรเก็บเวลา ยอดเงิน และข้อมูลอ้างอิงไว้สำหรับติดต่อทีมงาน
-      โดยไม่เปิดเผยรหัสผ่านหรือข้อมูลยืนยันที่ใช้เข้าถึงบัญชี
+    <p slot="right" class="text-left text-base leading-relaxed text-[#efe3c9]">
+      ระบบ True Wallet ของ DUCK36 ช่วยให้สมาชิกสามารถทำรายการผ่านโทรศัพท์มือถือได้สะดวกมากขึ้น ควรใช้บัญชีวอลเลทที่ตรงกับข้อมูลสมัคร ตรวจสอบยอดก่อนยืนยัน
+      และเก็บหลักฐานรายการไว้จนกว่าระบบจะแสดงสถานะสำเร็จ
     </p>
-  </ContentBoxSevenThreeFloatingBadge>
+  </ContentBoxSevenThreeNeumorphism>
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ KOHKAE789" faqs={faqs} />
+  <ContentBoxNeumorphism as="h2" title="เลือกเกมสล็อตค่ายดังจากข้อมูล ไม่ใช่เพียงความนิยม">
+    <p class="text-left text-base leading-relaxed text-[#efe3c9]">
+      เกมสล็อตแต่ละค่ายมีเอกลักษณ์แตกต่างกัน ทั้งรูปแบบโบนัส ความผันผวน และฟีเจอร์ภายในเกม ผู้เล่นควรศึกษารายละเอียดของแต่ละเกม ทดลองเล่นก่อน และกำหนดวงเงินให้เหมาะสม
+      เพื่อช่วยควบคุมการใช้งานได้อย่างมีแบบแผน
+    </p>
+  </ContentBoxNeumorphism>
+
+  <GameRankingBoard />
+
+  <ContentBoxSpecial as="h2" title="DUCK36 รองรับการใช้งานผ่านมือถือทุกระบบ">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#efe3c9]">
+      เว็บไซต์ DUCK36 รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ สมาชิกสามารถเข้าสู่ระบบ เลือกเกม ตรวจสอบโปรโมชั่น และทำรายการผ่านเบราว์เซอร์ได้
+    </p>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#efe3c9]">
+      ควรใช้อินเทอร์เน็ตที่เสถียรและอัปเดตระบบให้พร้อม เพื่อประสบการณ์ใช้งานที่ต่อเนื่อง
+    </p>
+  </ContentBoxSpecial>
+
+  <ContentBox as="h2" title="ตรวจสอบรายการและรับบริการจากทีมงาน DUCK36">
+    <p class="text-left text-base leading-relaxed text-[#efe3c9]">
+      หากพบปัญหาเกี่ยวกับบัญชี โปรโมชั่น หรือรายการฝากถอน สมาชิกสามารถติดต่อทีมงาน DUCK36 ผ่านช่องทางที่เว็บไซต์กำหนด ควรแจ้งชื่อผู้ใช้ เวลา และรายละเอียดปัญหาให้ครบถ้วน
+      โดยไม่เปิดเผยรหัสผ่านหรือข้อมูลยืนยันส่วนตัว
+    </p>
+  </ContentBox>
+
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ DUCK36" faqs={faqs} />
 
   <LoginRtpSection />
 
@@ -152,13 +160,13 @@ const graph = pageGraph(Astro, {
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#7fdcff] via-[#29abe3] to-[#0b3f96] px-4 py-3 text-sm font-black whitespace-nowrap text-[#050c1a] shadow-[0_10px_30px_rgba(41,171,227,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(41,171,227,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#ffd76a] via-[#f5b70a] to-[#8a5c07] px-4 py-3 text-sm font-black whitespace-nowrap text-[#050403] shadow-[0_10px_30px_rgba(245,183,10,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(245,183,10,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#29abe3]/70 bg-[#0b1c33]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#bfe9ff] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#1573e6] hover:bg-[#12294a]/85 hover:shadow-[0_15px_40px_rgba(21,115,230,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#f5b70a]/70 bg-[#12100b]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#f3e3bd] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#d99908] hover:bg-[#1e1a10]/85 hover:shadow-[0_15px_40px_rgba(217,153,8,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>
