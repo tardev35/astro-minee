@@ -378,6 +378,11 @@ const LEGACY_DESC_RE = /<meta\b[^>]*\bname=["']description["'][^>]*\bcontent=["'
 const LEGACY_DESC_RE_ALT = /<meta\b[^>]*\bcontent=["']([^"']*)["'][^>]*\bname=["']description["']/i;
 const redirectBackup = (cfg) => join(PAGES_DISABLED, cfg.file.replace(/\.astro$/, ".redirect.astro"));
 const isCtaPage = (src) => /<MainLayout\b/.test(src);
+// The interstitial these pages replace showed a loading animation on the way to
+// the affiliate link, and losing it made the hand-off feel like a dead click.
+// The component brings it back on the click instead of on page load, so the
+// page itself stays a real indexable page rather than a redirect.
+const CTA_REDIRECT_IMPORT = 'import CtaRedirect from "../components/CtaRedirect.astro";';
 // /ทางเข้า exists to offer เข้าสู่ระบบ and สมัครสมาชิก and nothing else. Once
 // those two are menu entries in their own right it becomes a third link to the
 // same two places, so any cta toggle takes it out of the menu and the last one
@@ -788,8 +793,10 @@ async function ctaButtonClass(route) {
 // the canonical page's name, description and breadcrumb on the new route, and
 // leaving the graph out entirely fails verify-build's "indexable page with no
 // JSON-LD at all".
-function pageHead(canonicalFm, cfg, t, d, extra = "") {
-  const imports = canonicalFm.split(/\r?\n/).filter((l) => /^\s*import\b/.test(l)).join("\n");
+function pageHead(canonicalFm, cfg, t, d, extra = "", extraImports = []) {
+  const cloned = canonicalFm.split(/\r?\n/).filter((l) => /^\s*import\b/.test(l));
+  const missing = extraImports.filter((line) => !cloned.some((l) => l.trim() === line.trim()));
+  const imports = [...cloned, ...missing].join("\n");
   const hasGraph = /\bpageGraph\b/.test(imports);
   const parts = [`const pageDescription =\n  "${d}";`];
   if (hasGraph) {
@@ -840,7 +847,7 @@ async function createCtaPage(cfg, title, desc, label) {
   // but its graph names its own route, so publishing that here would put the
   // wrong name and breadcrumb on this page. That one is written fresh.
   const cls = await ctaButtonClass(cfg.route);
-  const { head, ldScript } = pageHead(fm[1], cfg, t, d, `const targetUrl = "${target}";\n`);
+  const { head, ldScript } = pageHead(fm[1], cfg, t, d, `const targetUrl = "${target}";\n`, [CTA_REDIRECT_IMPORT]);
 
   const page =
     head +
@@ -848,18 +855,20 @@ async function createCtaPage(cfg, title, desc, label) {
     ldScript +
     `  <Announcement />\n\n` +
     `  <ContentBox title="${cfg.boxTitle}" as="h1">\n` +
-    `    <!-- TODO(rebrand): ตั้ง title/description บน <MainLayout> จาก content brief ตอนรีแบรนด์ และจัดสีปุ่มให้ตรงพาเลตต์${cls ? "" : " (ยังไม่ได้คลาสจาก " + CANONICAL_PAGE + " — ปุ่มนี้ยังไม่มีสีแบรนด์)"} -->\n` +
+    `    <!-- TODO(rebrand): ตั้ง title/description บน <MainLayout> จาก content brief ตอนรีแบรนด์ และจัดสีปุ่มกับ CtaRedirect.astro ให้ตรงพาเลตต์${cls ? "" : " (ยังไม่ได้คลาสจาก " + CANONICAL_PAGE + " — ปุ่มนี้ยังไม่มีสีแบรนด์)"} -->\n` +
     `    <div class="flex justify-center py-8">\n` +
     `      <a\n` +
     `        href={targetUrl}\n` +
     `        rel="nofollow sponsored"\n` +
+    `        data-cta-redirect\n` +
     `        aria-label="${cfg.cta}"\n` +
     `        class="${cls || "inline-flex items-center justify-center rounded-lg border border-white/25 bg-white/10 px-10 py-4 text-2xl font-bold"}">\n` +
     `        ${cfg.cta}\n` +
     `      </a>\n` +
     `    </div>\n` +
     `  </ContentBox>\n\n` +
-    `  <Navfoot />\n` +
+    `  <Navfoot />\n\n` +
+    `  <CtaRedirect label="${cfg.navLabel}" />\n` +
     `</MainLayout>\n`;
 
   // Keep the interstitial we are about to replace: it is the only copy of this

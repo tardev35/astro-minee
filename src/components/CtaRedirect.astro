@@ -1,0 +1,183 @@
+---
+import { BRAND_NAME } from "../lib/brandProfile";
+
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="cta-redirect" data-cta-overlay hidden>
+  <div class="panel" role="status" aria-live="polite">
+    <p class="brand">{BRAND_NAME}</p>
+
+    <div class="loader" aria-hidden="true">
+      <span class="orb"></span>
+      <span class="ring ring-1"></span>
+      <span class="ring ring-2"></span>
+    </div>
+
+    <p class="hd">กำลังเชื่อมต่อ</p>
+    <p class="sub">กำลังพาไปหน้า{label} {BRAND_NAME} <span aria-hidden="true">🔒</span></p>
+  </div>
+</div>
+
+<style>
+  .cta-redirect {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    padding: 1.5rem;
+    background:
+      radial-gradient(circle at 50% 12%, rgba(224, 170, 46, 0.18) 0%, transparent 55%),
+      radial-gradient(circle at 50% 90%, rgba(216, 205, 182, 0.14) 0%, transparent 55%),
+      rgba(10, 7, 4, 0.96);
+    animation: cta-fade 0.25s ease-out both;
+  }
+
+  .cta-redirect[hidden] {
+    display: none;
+  }
+
+  .panel {
+    width: 100%;
+    max-width: 420px;
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 1px solid rgba(224, 170, 46, 0.4);
+    border-radius: 1.5rem;
+    background: rgba(22, 15, 7, 0.94);
+    box-shadow:
+      0 1rem 3rem rgba(224, 170, 46, 0.2),
+      0 0 2rem rgba(216, 205, 182, 0.12);
+  }
+
+  .brand {
+    margin: 0 0 2rem 0;
+    font-size: 1.375rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    background: linear-gradient(180deg, #f5d488 0%, #e0aa2e 50%, #b87814 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .loader {
+    position: relative;
+    display: flex;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 2.5rem auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .orb {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #f5d488 0%, #e0aa2e 45%, #6b4310 100%);
+    box-shadow: 0 0 2rem rgba(224, 170, 46, 0.35);
+    animation: cta-pulse 2s ease-in-out infinite;
+  }
+
+  .ring {
+    position: absolute;
+    border: 3px solid rgba(224, 170, 46, 0.2);
+    border-radius: 50%;
+    animation: cta-spin linear infinite;
+  }
+
+  .ring-1 {
+    width: 100%;
+    height: 100%;
+    border-top-color: #e0aa2e;
+    animation-duration: 4s;
+  }
+
+  .ring-2 {
+    width: 80%;
+    height: 80%;
+    border-bottom-color: #d8cdb6;
+    animation-duration: 6s;
+    animation-direction: reverse;
+  }
+
+  .hd {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #efe0c4;
+  }
+
+  .sub {
+    margin: 0.75rem 0 0 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: rgba(239, 224, 196, 0.7);
+  }
+
+  @keyframes cta-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes cta-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 2rem rgba(224, 170, 46, 0.35);
+    }
+    50% {
+      transform: scale(1.15);
+      box-shadow: 0 0 3rem rgba(224, 170, 46, 0.5);
+    }
+  }
+
+  @keyframes cta-fade {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-redirect,
+    .orb,
+    .ring {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const overlay = document.querySelector<HTMLElement>("[data-cta-overlay]");
+  const links = document.querySelectorAll<HTMLAnchorElement>("a[data-cta-redirect]");
+
+  if (overlay && links.length) {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    for (const link of links) {
+      link.addEventListener("click", (event) => {
+        if (event.defaultPrevented || event.button !== 0) return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+        event.preventDefault();
+        overlay.hidden = false;
+
+        const go = () => window.location.assign(link.href);
+        if (reduced) go();
+        else window.setTimeout(go, 1500);
+      });
+    }
+
+    window.addEventListener("pageshow", () => {
+      overlay.hidden = true;
+    });
+  }
+</script>
