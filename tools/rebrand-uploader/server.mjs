@@ -2394,13 +2394,29 @@ async function gitInfo() {
     files,
     blocked: offendingPaths(files).slice(0, 5).map((f) => f.path),
     blockedCount: offendingPaths(files).length,
-    brand: await currentBrandName(),
+    commitName: (await currentSiteHost()) || (await currentBrandName()),
   };
 }
 
-// The commit message the box is pre-filled with. Reading the file rather than
-// remembering it means a rebrand that just landed is reflected without a
+// What the commit message box is pre-filled with. Reading the files rather than
+// remembering them means a rebrand that just landed is reflected without a
 // restart — the same reason deployTarget() re-reads wrangler.toml.
+//
+// The domain wins over BRAND_NAME because it is the one identifier that is
+// unique per brand: names get typo'd in the prompt (WINNOW168 shipped as
+// "winnow167"), reused across rounds, and spelled three ways between the
+// artwork, the docx and the URL. BRAND_NAME stays as the fallback for a tree
+// whose astro.config.mjs has no site: yet.
+async function currentSiteHost() {
+  try {
+    const src = await readFile(CONFIG, "utf8");
+    const raw = src.match(/^\s*site:\s*["']([^"']+)["']/m)?.[1];
+    return raw ? new URL(raw).hostname.replace(/^www\./, "") : "";
+  } catch {
+    return "";
+  }
+}
+
 async function currentBrandName() {
   try {
     const src = await readFile(join(ROOT, "src", "lib", "brandProfile.ts"), "utf8");
@@ -4585,8 +4601,8 @@ const PAGE = /* html */ `<!doctype html>
       info.files.map((f) => '[' + f.label + '] ' + f.path).join('\\n');
 
     // Only ever pre-fill a box the operator has not typed into.
-    if (!gtTouched && !gtMsg.value && info.brand) {
-      gtMsg.value = 'Rebrand the site to ' + info.brand;
+    if (!gtTouched && !gtMsg.value && info.commitName) {
+      gtMsg.value = 'Rebrand the site to ' + info.commitName;
     }
     gtSync();
   }
