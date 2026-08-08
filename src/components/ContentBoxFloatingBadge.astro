@@ -7,11 +7,13 @@ const { title, as: HeadingTag = "h1" } = Astro.props;
 const headingSize = HeadingTag === "h1" ? "text-xl sm:text-2xl md:text-3xl" : "text-lg sm:text-xl md:text-2xl";
 
 // Badge clearance, re-measured against this brand's longest real docx H2
-// ("ไม่ผ่านเอเย่นต์ เข้าถึงระบบ KOHKAE789 ได้โดยตรง") rather than a short
-// placeholder. The badge is `absolute -top-6`, so its bottom edge sits at
+// ("รวมเกมคาสิโนหลากหลายรูปแบบไว้บน WIN666") rather than a short placeholder.
+// The badge is `absolute -top-6`, so its bottom edge sits at
 // (badge height - 24px) from the card's top:
-//   mobile  text-lg  18px x 1.5 = 27px/line; 3 lines + py-2.5 + 2px borders
-//           = 105px  ->  81px below the card top, vs pt-32 (128px). OK.
+//   mobile  text-lg  18px x 1.5 = 27px/line. At a 375px viewport the badge's
+//           text box is ~232px wide, so the title wraps to 2 lines; budget 3.
+//           3 lines + py-2.5 + 2px borders = 105px  ->  81px below the card
+//           top, vs pt-32 (128px). OK.
 //   md      text-2xl 24px x 1.5 = 36px/line; 2 lines + py-2.5 + 2px borders
 //           = 96px   ->  72px below the card top, vs md:pt-28 (112px). OK.
 // The title has no `whitespace-nowrap` on purpose — it is width-capped
@@ -21,20 +23,20 @@ const headingSize = HeadingTag === "h1" ? "text-xl sm:text-2xl md:text-3xl" : "t
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#1573e6]/30 bg-gradient-to-b from-[#0a1424]/95 to-[#050c1a]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#cfe6f7] shadow-[0_10px_30px_rgba(21,115,230,0.18)] md:pt-28">
-    <div class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#29abe3]/25 blur-[60px]"></div>
-    <div class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#1573e6]/35 blur-[60px]"></div>
+    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#f6931e]/30 bg-gradient-to-b from-[#161009]/95 to-[#080503]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#f2dfc4] shadow-[0_10px_30px_rgba(246,147,30,0.18)] md:pt-28">
+    <div class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#ffb35c]/25 blur-[60px]"></div>
+    <div class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#f6931e]/35 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#29abe3]/40 bg-[#070f1f] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(41,171,227,0.22)] sm:px-8">
-          <span aria-hidden="true" class="shrink-0 text-[#7fdcff]">
+        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#ffb35c]/40 bg-[#080503] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(246,147,30,0.22)] sm:px-8">
+          <span aria-hidden="true" class="shrink-0 text-[#ffb35c]">
             ✦
           </span>
-          <HeadingTag class={`bg-gradient-to-r from-[#e8f6ff] via-[#7fdcff] to-[#29abe3] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
+          <HeadingTag class={`bg-gradient-to-r from-[#fff2e0] via-[#ffb35c] to-[#f6931e] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
             {title}
           </HeadingTag>
-          <span aria-hidden="true" class="shrink-0 text-[#7fdcff]">
+          <span aria-hidden="true" class="shrink-0 text-[#ffb35c]">
             ✦
           </span>
         </div>

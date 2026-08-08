@@ -1,8 +1,8 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import ContentBox from "../components/ContentBoxPremium.astro";
+import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement3.astro";
+import Announcement from "../components/AnnouncementPremium.astro";
 
 import { Picture } from "astro:assets";
 
@@ -16,12 +16,11 @@ import { pageGraph } from "../lib/schema";
 // paragraph, the four promo images and one CTA. No section headings and no
 // second paragraph — the slides already print their own offer in large type,
 // so prose underneath only re-types what the visitor can already read.
-const pageTitle = "โปรโมชั่น DUCK36 สำหรับสมาชิกใหม่และสมาชิกเดิม";
+const pageTitle = "โปรโมชั่น WIN666 สำหรับสมาชิกใหม่และสมาชิกเดิม";
 
 // docx SUB-PAGES Meta สำหรับหน้าโปรโมชั่น + ประโยคปิดท้ายหนึ่งวรรคให้ผ่านเกท 150
 // นับเป็น "ตัวอักษร" ไม่ใช่ไบต์ (ภาษาไทย 3 ไบต์/ตัว) — สตริงนี้วัดได้ 157 ตัวอักษร
-const pageDescription =
-  "DUCK36 รวมโปรโมชั่นสล็อต โบนัสสมาชิก และสิทธิพิเศษต่าง ๆ พร้อมรายละเอียดเงื่อนไขให้ตรวจสอบก่อนเลือกรับสิทธิ์ที่เหมาะกับการใช้งาน ควรอ่านเงื่อนไขก่อนรับสิทธิ์";
+const pageDescription = "WIN666 รวมโปรโมชั่นคาสิโน โบนัสต้อนรับ และสิทธิพิเศษสำหรับสมาชิก พร้อมรายละเอียดเงื่อนไขให้ตรวจสอบก่อนเลือกรับสิทธิ์ที่เหมาะสม ควรอ่านเงื่อนไขก่อนกดรับสิทธิ์";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -34,26 +33,26 @@ const graph = pageGraph(Astro, {
 });
 
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#f5b70a]/30 object-contain shadow-[0_10px_30px_rgba(245,183,10,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#d99908]/55 hover:shadow-[0_15px_40px_rgba(217,153,8,0.30)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#f6931e]/30 object-contain shadow-[0_10px_30px_rgba(246,147,30,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#e07b12]/55 hover:shadow-[0_15px_40px_rgba(224,123,18,0.30)]";
 ---
 
-<MainLayout title="DUCK36 | โปรโมชั่นสล็อตและโบนัสสำหรับสมาชิก" description={pageDescription}>
+<MainLayout title="WIN666 | โปรโมชั่นคาสิโนออนไลน์และสิทธิพิเศษสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#efe3c9]">
-        <strong class="text-[#fff8e6]">DUCK36</strong> รวมโปรโมชั่นสล็อตและโบนัสสำหรับสมาชิกไว้ในหน้าเดียว ทั้งสิทธิ์ของบัญชีที่เพิ่งเปิดใช้งาน โบนัสจากยอดฝากครั้งแรก การคืนยอดเสียตามรอบวัน
-        และเครดิตจากการชวนเพื่อน รายละเอียดของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ทั้งเปอร์เซ็นต์ที่ได้รับและเพดานสูงสุดของรายการนั้น ก่อนกดรับสิทธิ์ควรอ่านเงื่อนไขของโปรโมชั่นที่เลือกให้ครบ
-        เพราะแต่ละรายการกำหนดยอดฝากขั้นต่ำ จำนวนเทิร์น และเกมที่ร่วมรายการไม่เหมือนกัน หากไม่แน่ใจจุดใด สอบถามทีมงานผ่านช่องทางที่เว็บไซต์ระบุได้ตลอด 24 ชั่วโมง
+      <p class="mb-8 text-left text-base leading-relaxed text-[#f2dfc4]">
+        <strong class="text-[#fff2e0]">WIN666</strong> รวมโปรโมชั่นคาสิโนและสิทธิพิเศษสำหรับสมาชิกไว้ในหน้าเดียว ทั้งโบนัสของบัญชีที่เพิ่งเปิดใช้งาน โบนัสจากยอดฝากครั้งแรก การคืนยอดเสียตามรอบวัน และเครดิตจากการชวนเพื่อน
+        รายละเอียดของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ทั้งเปอร์เซ็นต์ที่ได้รับและเพดานสูงสุดของรายการนั้น ก่อนกดรับสิทธิ์ควรอ่านเงื่อนไขของโปรโมชั่นที่เลือกให้ครบ เพราะแต่ละรายการกำหนดยอดฝากขั้นต่ำ
+        จำนวนเทิร์น และเกมที่ร่วมรายการไม่เหมือนกัน หากไม่แน่ใจจุดใด สอบถามทีมงานผ่านช่องทางที่เว็บไซต์ระบุได้ตลอด 24 ชั่วโมง
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น DUCK36 ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมมาสคอตเป็ดใส่แว่นกันแดด สวมหมวก DUCK36 และสร้อยทองคำ บนพื้นหลังวงล้อสล็อตและกองเหรียญทองสีดำเข้ม แถบล่างระบุ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ บริการ 24 ชม."
+          alt="แบนเนอร์โปรโมชั่น WIN666 ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที บนพื้นหลังสีดำทองพร้อมวงล้อสล็อตเลข 777 กองเหรียญทอง และหีบสมบัติ แถบล่างระบุ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ บริการ 24 ชม."
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -67,7 +66,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น DUCK36 ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม พร้อมมาสคอตเป็ดใส่แว่นกันแดด สวมหมวก DUCK36 และสร้อยทองคำ บนพื้นหลังวงล้อสล็อตและกองเหรียญทองสีดำเข้ม แถบล่างระบุ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ บริการ 24 ชม."
+          alt="แบนเนอร์โปรโมชั่น WIN666 ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม บนพื้นหลังสีดำทองพร้อมป้ายไฟนีออนเลข 777 กองเหรียญทอง และชิปคาสิโน WIN666 แถบล่างระบุ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ บริการ 24 ชม."
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -81,7 +80,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น DUCK36 ข้อความ คืนยอดเสียทุกวัน 10% สูงสุด 5,000 บาท พร้อมมาสคอตเป็ดใส่แว่นกันแดด สวมหมวก DUCK36 และสร้อยทองคำ บนพื้นหลังวงล้อรูเล็ตและกองเหรียญทองสีดำเข้ม แถบล่างระบุ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ บริการ 24 ชม."
+          alt="แบนเนอร์โปรโมชั่น WIN666 ข้อความ คืนยอดเสียทุกวัน 10% สูงสุด 5,000 บาท บนพื้นหลังสีดำทองพร้อมวงล้อรูเล็ต ชิปคาสิโนที่ลอยกระจาย และกองเหรียญทอง แถบล่างระบุ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ บริการ 24 ชม."
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -95,7 +94,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น DUCK36 ข้อความ ชวนเพื่อน รับเครดิตฟรี 300 บาท ชวนมาก ได้มาก พร้อมมาสคอตเป็ดใส่แว่นกันแดด สวมหมวก DUCK36 และสร้อยทองคำ บนพื้นหลังวงล้อสล็อตและกองเหรียญทองสีดำเข้ม แถบล่างระบุ ชวนง่าย รับทันที คุ้มค่า ปลอดภัย"
+          alt="แบนเนอร์โปรโมชั่น WIN666 ข้อความ ชวนเพื่อน รับเครดิตฟรี 300 บาท ชวนมาก ได้มาก บนพื้นหลังสีดำทองพร้อมเหรียญทอง ชิปคาสิโน และสัญลักษณ์ไพ่ แถบล่างระบุ ชวนง่าย รับทันที คุ้มค่า ปลอดภัย"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -111,8 +110,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#f5b70a]/60 bg-gradient-to-r from-[#ffd76a] via-[#f5b70a] to-[#a8720a] px-10 py-3.5 text-lg font-black text-[#120d02] shadow-[0_10px_30px_rgba(245,183,10,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(245,183,10,0.40)]">
-          สมัครสมาชิก DUCK36
+          class="flex items-center justify-center rounded-lg border border-[#f6931e]/60 bg-gradient-to-r from-[#ffb35c] via-[#f6931e] to-[#a8560a] px-10 py-3.5 text-lg font-black text-[#180d02] shadow-[0_10px_30px_rgba(246,147,30,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(246,147,30,0.40)]">
+          สมัครสมาชิก WIN666
         </a>
       </div>
     </div>

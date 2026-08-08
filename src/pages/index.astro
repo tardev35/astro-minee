@@ -1,19 +1,19 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/Announcement3.astro";
-import ContentBoxPremium from "../components/ContentBoxPremium.astro";
+import Announcement from "../components/AnnouncementPremium.astro";
+import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
+import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
+import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
 import ContentBox from "../components/ContentBox.astro";
+import ContentBoxSevenThree from "../components/ContentBoxSevenThree.astro";
 import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
-import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
-import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
-import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinners4.astro";
+import LatestWinners from "../components/LatestWinners2.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq4.astro";
+import Faq from "../components/Faq3.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
@@ -23,33 +23,33 @@ import { pageGraph } from "../lib/schema";
 // most two of those per rebrand — both are spent here. slide1 reads
 // "สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที" over a ฝากถอนออโต้ badge strip,
 // which is the ระบบออโต้ section; slide2 reads "ฝากครั้งแรก รับเพิ่ม 50%" and
-// sits with the True Wallet section. slide3 and slide4 stay unused here and
-// keep rendering in SmoothCarousel and on /promotion.
+// sits with the เกมแตกบ่อย section. slide3 and slide4 stay unused here and keep
+// rendering in SmoothCarousel and on /promotion.
 import imgAutoSystem from "../assets/slide1.png";
-import imgTrueWallet from "../assets/slide2.png";
+import imgGameStyle from "../assets/slide2.png";
 
-const pageTitle = "DUCK36 | เว็บสล็อตออนไลน์ค่ายดัง ระบบออโต้ฝากถอนผ่าน true wallet";
+const pageTitle = "WIN666 | คาสิโนออนไลน์ระบบใหม่ ฝากถอนง่ายออโต้ แตกบ่อยจ่ายจริง มั่นคง";
 
-// 157 characters. verify-build.mjs errors outside 150–160 CHARACTERS, and the
-// docx-supplied description is 128 — the trailing clause closes that gap
+// 159 characters. verify-build.mjs errors outside 150–160 CHARACTERS, and the
+// docx-supplied description is 131 — the trailing clause closes that gap
 // without changing what the brief says. Measured; do not reword.
 const pageDescription =
-  "DUCK36 เว็บสล็อตออนไลน์ค่ายดัง ระบบออโต้ฝากถอนผ่าน True Wallet รองรับมือถือ รวมเกมยอดนิยม พร้อมระบบใช้งานสะดวกและบริการสมาชิก ควรศึกษาเงื่อนไขก่อนเริ่มใช้งาน";
+  "WIN666 คาสิโนออนไลน์ระบบใหม่ ฝากถอนง่ายด้วยระบบออโต้ รองรับมือถือ รวมเกมหลากหลาย พร้อมระบบใช้งานมั่นคงและบริการสมาชิกตลอด 24 ชั่วโมง ควรศึกษาเงื่อนไขก่อนใช้งาน";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq4's own default, which is always the previous brand's FAQ.
+// Faq3's own default, which is always the previous brand's FAQ.
 const faqs = [
   {
-    q: "DUCK36 มีเกมสล็อตจากค่ายดังหรือไม่?",
-    a: "DUCK36 รวมเกมสล็อตจากหลายค่ายที่มีรูปแบบแตกต่างกัน สมาชิกสามารถเลือกเกมตามธีม ฟีเจอร์ และรูปแบบการเล่นที่สนใจได้",
+    q: "WIN666 มีเกมคาสิโนประเภทใดบ้าง?",
+    a: "WIN666 มีเกมคาสิโนหลายรูปแบบ เช่น สล็อต บาคาร่า เกมไพ่ และเกมอื่น ๆ สมาชิกสามารถเลือกตามความสนใจและรูปแบบการเดิมพันที่ต้องการ",
   },
   {
-    q: "DUCK36 รองรับฝากถอนผ่าน True Wallet หรือไม่?",
-    a: "ระบบรองรับการทำรายการผ่าน True Wallet ตามช่องทางที่กำหนด สมาชิกควรตรวจสอบข้อมูลวอลเลทและยอดเงินก่อนยืนยันทุกครั้ง",
+    q: "WIN666 ฝากถอนผ่านระบบออโต้หรือไม่?",
+    a: "ระบบรองรับการทำรายการผ่านระบบออโต้ตามช่องทางที่กำหนด สมาชิกควรตรวจสอบข้อมูลบัญชีและยอดเงินก่อนยืนยันทุกครั้ง",
   },
   {
-    q: "ระบบออโต้ของ DUCK36 ช่วยอะไรบ้าง?",
-    a: "ระบบออโต้ช่วยลดขั้นตอนการฝากถอนและตรวจสอบสถานะรายการ ทำให้สมาชิกสามารถจัดการธุรกรรมผ่านหน้าบัญชีได้สะดวกมากขึ้น",
+    q: "เกมแตกบ่อยของ WIN666 รับประกันผลได้หรือไม่?",
+    a: "ไม่สามารถรับประกันผลลัพธ์ของเกมได้ เนื่องจากแต่ละเกมมีรูปแบบและความผันผวนแตกต่างกัน ผู้เล่นควรศึกษากติกาและกำหนดงบประมาณก่อนใช้งาน",
   },
 ];
 
@@ -65,26 +65,26 @@ const graph = pageGraph(Astro, {
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement
-    message="DUCK36 เว็บสล็อตออนไลน์ค่ายดัง รวมเกมจากหลายค่ายไว้ในระบบเดียว • ฝากถอนผ่าน True Wallet ด้วยระบบออโต้ ช่วยลดขั้นตอนการทำรายการ ควรตรวจสอบยอดเงินและข้อมูลบัญชีก่อนยืนยันทุกครั้ง • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ ใช้งานผ่านเบราว์เซอร์ได้ทันที • ทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง ควรศึกษารายละเอียดเกมและเงื่อนไขก่อนเริ่มใช้งาน"
+    message="WIN666 คาสิโนออนไลน์ระบบใหม่ รวมเกมสล็อต บาคาร่า และเกมไพ่ไว้ในระบบเดียว • ฝากถอนผ่านระบบออโต้จากหน้าบัญชีได้ด้วยตนเอง ควรตรวจสอบยอดเงินและข้อมูลบัญชีก่อนยืนยันทุกครั้ง • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ ใช้งานผ่านเบราว์เซอร์ได้ทันที • ทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง ควรศึกษากติกาและเงื่อนไขของแต่ละเกมก่อนเริ่มใช้งาน"
   />
 
-  <ContentBoxPremium as="h1" title="DUCK36 เว็บสล็อตออนไลน์ค่ายดัง ระบบออโต้ฝากถอนผ่าน true wallet">
-    <p class="text-left text-base leading-relaxed text-[#efe3c9]">
-      <strong class="text-[#ffd76a]">DUCK36</strong> เป็นแพลตฟอร์มสล็อตออนไลน์ที่รวบรวมเกมจากค่ายยอดนิยมไว้ในระบบเดียว รองรับการฝากถอนผ่าน True Wallet และระบบออโต้ที่ช่วยลดขั้นตอนการทำรายการ
-      สมาชิกสามารถเข้าใช้งานผ่านมือถือ เลือกเกม ตรวจสอบโปรโมชั่น และจัดการบัญชีได้ง่าย ควรศึกษารายละเอียดเกมและเงื่อนไขก่อนเริ่มใช้งาน
+  <ContentBoxCyberCut as="h1" title="WIN666 คาสิโนออนไลน์ระบบใหม่ ฝากถอนง่ายออโต้ แตกบ่อยจ่ายจริง มั่นคง">
+    <p class="text-left text-base leading-relaxed text-[#f2dfc4]">
+      <strong class="text-[#ffb35c]">WIN666</strong> เป็นแพลตฟอร์มคาสิโนออนไลน์ระบบใหม่ที่ออกแบบให้ใช้งานง่ายตั้งแต่การสมัคร เลือกเกม ไปจนถึงการทำรายการผ่านระบบออโต้
+      รองรับการใช้งานบนมือถือและคอมพิวเตอร์ พร้อมรวมเกมคาสิโนหลายรูปแบบไว้ในระบบเดียว สมาชิกควรศึกษากติกา โปรโมชั่น และเงื่อนไขต่าง ๆ ก่อนเริ่มใช้งาน
     </p>
-  </ContentBoxPremium>
+  </ContentBoxCyberCut>
 
-  <ContentBox as="h2" title="รวมเกมสล็อตจากค่ายดังไว้ใน DUCK36">
-    <p class="text-left text-base leading-relaxed text-[#efe3c9]">
-      ภายใน DUCK36 มีเกมสล็อตจากหลายค่ายให้เลือก ทั้งเกมแนวคลาสสิก เกมกราฟิกสวย และเกมที่มีฟีเจอร์โบนัสหลากหลาย ผู้เล่นสามารถเลือกเกมตามธีม รูปแบบการเล่น หรือความถนัดของตนเอง
-      ควรอ่านรายละเอียดเกมและกติกาก่อนเริ่ม เพื่อเลือกเกมที่เหมาะกับงบประมาณ
+  <ContentBoxFloatingBadge as="h2" title="รวมเกมคาสิโนหลากหลายรูปแบบไว้บน WIN666">
+    <p class="text-left text-base leading-relaxed text-[#f2dfc4]">
+      ภายใน WIN666 มีเกมคาสิโนหลายประเภทให้เลือก ทั้งเกมสล็อต บาคาร่า เกมไพ่ และเกมรูปแบบอื่น ๆ ผู้เล่นสามารถเลือกตามความสนใจและรูปแบบการเดิมพันของตนเอง
+      ควรทำความเข้าใจกติกา อัตราจ่าย และเงื่อนไขของแต่ละเกมก่อนเริ่ม เพื่อวางแผนการใช้งานได้เหมาะสม
     </p>
-  </ContentBox>
+  </ContentBoxFloatingBadge>
 
   <ProviderGrid />
 
-  <ContentBoxSevenThreePremium titleright="ระบบออโต้ช่วยให้การทำรายการง่ายขึ้น">
+  <ContentBoxSevenThreeCyberCut titleright="ระบบออโต้ช่วยให้ฝากถอนง่ายขึ้น">
     <Picture
       slot="left"
       src={imgAutoSystem}
@@ -96,19 +96,26 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่นของ DUCK36 ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
-      class="mx-auto h-auto w-full rounded-2xl border border-[#f5b70a]/35 shadow-[0_10px_30px_rgba(245,183,10,0.22)]"
+      alt="แบนเนอร์โปรโมชั่นของ WIN666 ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมวงล้อ 777 เหรียญทองและหีบสมบัติ ด้านล่างเป็นแถบ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f6931e]/35 shadow-[0_10px_30px_rgba(246,147,30,0.22)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#efe3c9]">
-      ระบบออโต้ช่วยให้สมาชิกจัดการฝากและถอนผ่านหน้าบัญชีได้ด้วยตนเอง ลดขั้นตอนที่ต้องส่งข้อมูลหลายครั้ง ก่อนยืนยันรายการควรตรวจสอบยอดเงิน ข้อมูลบัญชี และสถานะธุรกรรมให้ครบถ้วน
-      เพื่อช่วยลดข้อผิดพลาดระหว่างการใช้งาน
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f2dfc4]">
+      ระบบออโต้ช่วยลดขั้นตอนการทำรายการ ทำให้สมาชิกสามารถฝากและถอนผ่านหน้าบัญชีได้ด้วยตนเอง ควรตรวจสอบข้อมูลบัญชี ยอดเงิน และสถานะรายการก่อนยืนยันทุกครั้ง
+      หากรายการยังไม่เสร็จสมบูรณ์ ควรรอตรวจสอบแทนการส่งรายการซ้ำ
     </p>
-  </ContentBoxSevenThreePremium>
+  </ContentBoxSevenThreeCyberCut>
 
-  <ContentBoxSevenThreeNeumorphism titleright="ฝากถอนผ่าน True Wallet กับ DUCK36 สะดวกบนมือถือ">
+  <ContentBox as="h2" title="WIN666 รองรับระบบใหม่ เพิ่มความสะดวกในการใช้งาน">
+    <p class="text-left text-base leading-relaxed text-[#f2dfc4]">
+      ระบบของ WIN666 ถูกออกแบบให้เมนูต่าง ๆ ใช้งานง่ายขึ้น สมาชิกสามารถเข้าถึงเกม โปรโมชั่น และข้อมูลบัญชีได้จากหน้าเดียว ควรเข้าสู่ระบบผ่านช่องทางหลัก
+      ตั้งรหัสผ่านที่ปลอดภัย และหลีกเลี่ยงการเปิดเผยข้อมูลส่วนตัวแก่บุคคลอื่น
+    </p>
+  </ContentBox>
+
+  <ContentBoxSevenThree titleright="เกมแตกบ่อยควรพิจารณาจากรูปแบบการเล่น">
     <Picture
       slot="left"
-      src={imgTrueWallet}
+      src={imgGameStyle}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -117,41 +124,32 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่นของ DUCK36 ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม พร้อมแถบด้านล่าง มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
-      class="mx-auto h-auto w-full rounded-2xl border border-[#d99908]/35 shadow-[0_10px_30px_rgba(217,153,8,0.22)]"
+      alt="แบนเนอร์โปรโมชั่นของ WIN666 ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม พร้อมป้ายไฟนีออนเลข 777 กองเหรียญทองและชิป WIN666 ด้านล่างเป็นแถบ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
+      class="mx-auto h-auto w-full rounded-2xl border border-[#e07b12]/35 shadow-[0_10px_30px_rgba(224,123,18,0.22)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#efe3c9]">
-      ระบบ True Wallet ของ DUCK36 ช่วยให้สมาชิกสามารถทำรายการผ่านโทรศัพท์มือถือได้สะดวกมากขึ้น ควรใช้บัญชีวอลเลทที่ตรงกับข้อมูลสมัคร ตรวจสอบยอดก่อนยืนยัน
-      และเก็บหลักฐานรายการไว้จนกว่าระบบจะแสดงสถานะสำเร็จ
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f2dfc4]">
+      คำว่าแตกบ่อยเป็นการสื่อถึงประสบการณ์ลุ้นรางวัลและฟีเจอร์ภายในเกม แต่ผลลัพธ์ของแต่ละเกมไม่สามารถรับประกันได้ ผู้เล่นควรศึกษาความผันผวน รูปแบบโบนัส และอัตราจ่าย
+      พร้อมกำหนดงบประมาณก่อนเล่นเพื่อควบคุมการใช้งาน
     </p>
-  </ContentBoxSevenThreeNeumorphism>
-
-  <ContentBoxNeumorphism as="h2" title="เลือกเกมสล็อตค่ายดังจากข้อมูล ไม่ใช่เพียงความนิยม">
-    <p class="text-left text-base leading-relaxed text-[#efe3c9]">
-      เกมสล็อตแต่ละค่ายมีเอกลักษณ์แตกต่างกัน ทั้งรูปแบบโบนัส ความผันผวน และฟีเจอร์ภายในเกม ผู้เล่นควรศึกษารายละเอียดของแต่ละเกม ทดลองเล่นก่อน และกำหนดวงเงินให้เหมาะสม
-      เพื่อช่วยควบคุมการใช้งานได้อย่างมีแบบแผน
-    </p>
-  </ContentBoxNeumorphism>
+  </ContentBoxSevenThree>
 
   <GameRankingBoard />
 
-  <ContentBoxSpecial as="h2" title="DUCK36 รองรับการใช้งานผ่านมือถือทุกระบบ">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#efe3c9]">
-      เว็บไซต์ DUCK36 รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ สมาชิกสามารถเข้าสู่ระบบ เลือกเกม ตรวจสอบโปรโมชั่น และทำรายการผ่านเบราว์เซอร์ได้
+  <ContentBoxNeumorphism as="h2" title="WIN666 มั่นคงด้วยระบบบัญชีและการจัดการข้อมูล">
+    <p class="text-left text-base leading-relaxed text-[#f2dfc4]">
+      การใช้งาน WIN666 ควรเริ่มจากการตรวจสอบช่องทางเข้า ตั้งรหัสผ่านที่คาดเดายาก และตรวจสอบข้อมูลบัญชีอย่างสม่ำเสมอ ไม่ควรใช้เครือข่ายสาธารณะเมื่อต้องทำธุรกรรม
+      และควรออกจากระบบเมื่อใช้อุปกรณ์ร่วมกับผู้อื่น
     </p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#efe3c9]">
-      ควรใช้อินเทอร์เน็ตที่เสถียรและอัปเดตระบบให้พร้อม เพื่อประสบการณ์ใช้งานที่ต่อเนื่อง
-    </p>
-  </ContentBoxSpecial>
+  </ContentBoxNeumorphism>
 
-  <ContentBox as="h2" title="ตรวจสอบรายการและรับบริการจากทีมงาน DUCK36">
-    <p class="text-left text-base leading-relaxed text-[#efe3c9]">
-      หากพบปัญหาเกี่ยวกับบัญชี โปรโมชั่น หรือรายการฝากถอน สมาชิกสามารถติดต่อทีมงาน DUCK36 ผ่านช่องทางที่เว็บไซต์กำหนด ควรแจ้งชื่อผู้ใช้ เวลา และรายละเอียดปัญหาให้ครบถ้วน
-      โดยไม่เปิดเผยรหัสผ่านหรือข้อมูลยืนยันส่วนตัว
+  <ContentBoxCyberCut as="h2" title="ดูแลรายการฝากถอนผ่านทีมงาน WIN666">
+    <p class="text-left text-base leading-relaxed text-[#f2dfc4]">
+      หากพบปัญหาเกี่ยวกับบัญชี โปรโมชั่น หรือสถานะธุรกรรม สมาชิกสามารถติดต่อทีมงาน WIN666 ผ่านช่องทางที่เว็บไซต์กำหนด ควรเตรียมชื่อผู้ใช้ เวลา และรายละเอียดรายการให้ครบถ้วน
+      โดยไม่ส่งรหัสผ่านหรือรหัสยืนยัน เพื่อช่วยให้ตรวจสอบปัญหาได้รวดเร็วขึ้น
     </p>
-  </ContentBox>
+  </ContentBoxCyberCut>
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ DUCK36" faqs={faqs} />
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ WIN666" faqs={faqs} />
 
   <LoginRtpSection />
 
@@ -160,13 +158,13 @@ const graph = pageGraph(Astro, {
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#ffd76a] via-[#f5b70a] to-[#8a5c07] px-4 py-3 text-sm font-black whitespace-nowrap text-[#050403] shadow-[0_10px_30px_rgba(245,183,10,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(245,183,10,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#ffb35c] via-[#f6931e] to-[#8f4b06] px-4 py-3 text-sm font-black whitespace-nowrap text-[#180d02] shadow-[0_10px_30px_rgba(246,147,30,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(246,147,30,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#f5b70a]/70 bg-[#12100b]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#f3e3bd] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#d99908] hover:bg-[#1e1a10]/85 hover:shadow-[0_15px_40px_rgba(217,153,8,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#f6931e]/70 bg-[#161009]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#f5e0bb] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#e07b12] hover:bg-[#241a0e]/85 hover:shadow-[0_15px_40px_rgba(224,123,18,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>
