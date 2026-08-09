@@ -66,6 +66,15 @@ const DESC_MIN = 150;
 const DESC_MAX = 160;
 const DESC_HARD_MAX = 200;
 
+// Pages whose description the brand owner has fixed at a length below
+// DESC_MIN, mapped to the floor that page is allowed. A per-path exemption
+// rather than a lower DESC_MIN for everyone: a 135-character description is a
+// deliberate call on the homepage and still a bug anywhere else. The homepage
+// entry is the docx wording verbatim, with the padding clause removed on the
+// owner's instruction (2026-08-09) — see the comment on pageDescription in
+// src/pages/index.astro.
+const DESC_MIN_EXEMPT = new Map([[`${DIST}/index.html`, 135]]);
+
 // Astro emits one <style> per page with inlineStylesheets:"always". Past this
 // size the stylesheet is pushing the LCP image out of the parser's reach.
 const INLINE_STYLE_MAX = 40_000;
@@ -473,10 +482,11 @@ for (const file of pages) {
     error(where, "empty or missing meta description");
   } else {
     const n = chars(desc);
+    const descMin = DESC_MIN_EXEMPT.get(where) ?? DESC_MIN;
     if (n > DESC_HARD_MAX) {
       error(where, `meta description ${n} characters — will be truncated in every SERP (max ${DESC_HARD_MAX})`);
-    } else if (n < DESC_MIN || n > DESC_MAX) {
-      error(where, `meta description ${n} characters, outside ${DESC_MIN}–${DESC_MAX} — count CHARACTERS, not bytes`);
+    } else if (n < descMin || n > DESC_MAX) {
+      error(where, `meta description ${n} characters, outside ${descMin}–${DESC_MAX} — count CHARACTERS, not bytes`);
     }
   }
 

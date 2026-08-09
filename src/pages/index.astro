@@ -27,11 +27,14 @@ import imgPayout from "../assets/slide3.png";
 
 const pageTitle = "KOHKAE789 | บาคาร่าออโต้ แตกง่าย มั่นคง ไม่ผ่านเอเย่นต์ จ่ายไว";
 
-// 156 characters. verify-build.mjs errors outside 150–160 CHARACTERS, and the
-// docx-supplied description is 133 — the trailing clause closes that gap
-// without changing what the brief says.
+// The docx wording verbatim, 135 characters — the owner asked for exactly this
+// string and no padding clause (2026-08-09). That is below the 150–160 window
+// verify-build.mjs enforces, so dist/index.html carries a named exemption in
+// DESC_MIN_EXEMPT there. Every other page still has to land in the window; if
+// you shorten this further, raise the exemption in the same commit or the
+// build goes red without explaining why.
 const pageDescription =
-  "KOHKAE789 บาคาร่าเว็บตรงระบบออโต้ ไม่ผ่านเอเย่นต์ ฝากถอนไว รองรับมือถือ ใช้งานมั่นคง พร้อมโต๊ะเกมหลากหลายและบริการสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาก่อนเล่น";
+  "KOHKAE789 บาคาร่าเว็บตรงระบบออโต้ ไม่ผ่านเอเย่นต์ ฝากถอนไว รองรับมือถือ ใช้งานมั่นคง พร้อมโต๊ะเกมหลากหลายและบริการสมาชิกตลอด 24 ชั่วโมง";
 
 const faqs = [
   {
