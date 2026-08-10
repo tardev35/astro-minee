@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
+import Announcement from "../components/Announcement5.astro";
 
 import { Picture } from "astro:assets";
 
@@ -16,11 +16,11 @@ import { pageGraph } from "../lib/schema";
 // paragraph, the four promo images and one CTA. No section headings and no
 // second paragraph — the slides already print their own offer in large type,
 // so prose underneath only re-types what the visitor can already read.
-const pageTitle = "โปรโมชั่น WIN666 สำหรับสมาชิกใหม่และสมาชิกเดิม";
+const pageTitle = "โปรโมชั่น BUGGY888 สำหรับสมาชิกใหม่และสมาชิกเดิม";
 
 // docx SUB-PAGES Meta สำหรับหน้าโปรโมชั่น + ประโยคปิดท้ายหนึ่งวรรคให้ผ่านเกท 150
-// นับเป็น "ตัวอักษร" ไม่ใช่ไบต์ (ภาษาไทย 3 ไบต์/ตัว) — สตริงนี้วัดได้ 157 ตัวอักษร
-const pageDescription = "WIN666 รวมโปรโมชั่นคาสิโน โบนัสต้อนรับ และสิทธิพิเศษสำหรับสมาชิก พร้อมรายละเอียดเงื่อนไขให้ตรวจสอบก่อนเลือกรับสิทธิ์ที่เหมาะสม ควรอ่านเงื่อนไขก่อนกดรับสิทธิ์";
+// นับเป็น "ตัวอักษร" ไม่ใช่ไบต์ (ภาษาไทย 3 ไบต์/ตัว) — สตริงนี้วัดได้ 152 ตัวอักษร
+const pageDescription = "BUGGY888 รวมโปรโมชั่นคาสิโน โบนัสสมาชิกใหม่ และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจนให้ตรวจสอบก่อนเลือกรับสิทธิ์ที่ตรงกับรูปแบบการเล่นของตนเองเสมอ";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -33,26 +33,26 @@ const graph = pageGraph(Astro, {
 });
 
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#f6931e]/30 object-contain shadow-[0_10px_30px_rgba(246,147,30,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#e07b12]/55 hover:shadow-[0_15px_40px_rgba(224,123,18,0.30)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#ffd233]/30 object-contain shadow-[0_10px_30px_rgba(255,210,51,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#e0a81c]/55 hover:shadow-[0_15px_40px_rgba(224,168,28,0.30)]";
 ---
 
-<MainLayout title="WIN666 | โปรโมชั่นคาสิโนออนไลน์และสิทธิพิเศษสมาชิก" description={pageDescription}>
+<MainLayout title="BUGGY888 | โปรโมชั่นคาสิโนออนไลน์และสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#f2dfc4]">
-        <strong class="text-[#fff2e0]">WIN666</strong> รวมโปรโมชั่นคาสิโนและสิทธิพิเศษสำหรับสมาชิกไว้ในหน้าเดียว ทั้งโบนัสของบัญชีที่เพิ่งเปิดใช้งาน โบนัสจากยอดฝากครั้งแรก การคืนยอดเสียตามรอบวัน และเครดิตจากการชวนเพื่อน
-        รายละเอียดของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ทั้งเปอร์เซ็นต์ที่ได้รับและเพดานสูงสุดของรายการนั้น ก่อนกดรับสิทธิ์ควรอ่านเงื่อนไขของโปรโมชั่นที่เลือกให้ครบ เพราะแต่ละรายการกำหนดยอดฝากขั้นต่ำ
-        จำนวนเทิร์น และเกมที่ร่วมรายการไม่เหมือนกัน หากไม่แน่ใจจุดใด สอบถามทีมงานผ่านช่องทางที่เว็บไซต์ระบุได้ตลอด 24 ชั่วโมง
+      <p class="mb-8 text-left text-base leading-relaxed text-[#f7e2c4]">
+        <strong class="text-[#fff3cf]">BUGGY888</strong> รวมโปรโมชั่นคาสิโนและสิทธิพิเศษสำหรับสมาชิกไว้ในหน้าเดียว ทั้งโบนัสของบัญชีที่เพิ่งเปิดใช้งาน โบนัสจากยอดฝากแรกของวัน การคืนยอดเสียตามรอบวัน และค่าคอมมิชชั่นจากการแนะนำเพื่อน
+        รายละเอียดของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ทั้งเปอร์เซ็นต์ที่ได้รับและเงื่อนไขหลักของรายการนั้น ก่อนกดรับสิทธิ์ควรอ่านเงื่อนไขของโปรโมชั่นที่เลือกให้ครบ เพราะแต่ละรายการกำหนดยอดฝากขั้นต่ำ
+        จำนวนเทิร์น และเกมที่ร่วมรายการไม่เหมือนกัน หากไม่แน่ใจจุดใด สอบถามทีมงานผ่านช่องทางที่เว็บไซต์กำหนดได้ตลอด 24 ชั่วโมง
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น WIN666 ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที บนพื้นหลังสีดำทองพร้อมวงล้อสล็อตเลข 777 กองเหรียญทอง และหีบสมบัติ แถบล่างระบุ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ บริการ 24 ชม."
+          alt="แบนเนอร์โปรโมชั่น BUGGY888 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที และปุ่ม รับโปรเลย บนพื้นหลังสีแดงทอง มีป้ายทอง BUGGY 888 กับมาสคอตโจรสลัดตัวตลก นางแบบชุดแดงทอง วงล้อสล็อตเลข 777 หีบสมบัติ กองเหรียญทองและอัญมณีสีแดง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -66,7 +66,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น WIN666 ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม บนพื้นหลังสีดำทองพร้อมป้ายไฟนีออนเลข 777 กองเหรียญทอง และชิปคาสิโน WIN666 แถบล่างระบุ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ บริการ 24 ชม."
+          alt="แบนเนอร์โปรโมชั่น BUGGY888 ข้อความ ฝากแรกของวัน รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก และปุ่ม ฝากเลย บนพื้นหลังสีแดงทอง มีป้ายทอง BUGGY 888 กับมาสคอตโจรสลัดตัวตลก นางแบบชุดแดงทองถือเหรียญ ตู้สล็อต JACKPOT เลข 777 กองเหรียญทองและอัญมณีสีแดง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -80,7 +80,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น WIN666 ข้อความ คืนยอดเสียทุกวัน 10% สูงสุด 5,000 บาท บนพื้นหลังสีดำทองพร้อมวงล้อรูเล็ต ชิปคาสิโนที่ลอยกระจาย และกองเหรียญทอง แถบล่างระบุ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ บริการ 24 ชม."
+          alt="แบนเนอร์โปรโมชั่น BUGGY888 ข้อความ คืนยอดเสียทุกวัน สูงสุด 0.8% เล่นต่อได้ทุกวัน และปุ่ม รับสิทธิ์ บนพื้นหลังสีแดงทอง มีป้ายทอง BUGGY 888 กับมาสคอตโจรสลัดตัวตลก นางแบบชุดแดงทอง ป้ายไฟ JACKPOT วงล้อสล็อตเลข 777 กองเหรียญทองและอัญมณีสีแดง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -94,7 +94,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น WIN666 ข้อความ ชวนเพื่อน รับเครดิตฟรี 300 บาท ชวนมาก ได้มาก บนพื้นหลังสีดำทองพร้อมเหรียญทอง ชิปคาสิโน และสัญลักษณ์ไพ่ แถบล่างระบุ ชวนง่าย รับทันที คุ้มค่า ปลอดภัย"
+          alt="แบนเนอร์โปรโมชั่น BUGGY888 ข้อความ แนะนำเพื่อน รับค่าคอม 10% ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม และปุ่ม ชวนเลย บนพื้นหลังสีแดงทอง มีป้ายทอง BUGGY 888 กับมาสคอตโจรสลัดตัวตลก นางแบบชุดแดงทอง ป้ายไฟ JACKPOT หีบสมบัติ กองเหรียญทองและอัญมณีสีแดง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -110,8 +110,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#f6931e]/60 bg-gradient-to-r from-[#ffb35c] via-[#f6931e] to-[#a8560a] px-10 py-3.5 text-lg font-black text-[#180d02] shadow-[0_10px_30px_rgba(246,147,30,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(246,147,30,0.40)]">
-          สมัครสมาชิก WIN666
+          class="flex items-center justify-center rounded-lg border border-[#ffd233]/60 bg-gradient-to-r from-[#ffe98a] via-[#ffd233] to-[#8d630b] px-10 py-3.5 text-lg font-black text-[#2a0704] shadow-[0_10px_30px_rgba(255,210,51,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(255,210,51,0.40)]">
+          สมัครสมาชิก BUGGY888
         </a>
       </div>
     </div>

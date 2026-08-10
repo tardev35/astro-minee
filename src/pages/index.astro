@@ -1,19 +1,18 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
-import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
+import Announcement from "../components/Announcement5.astro";
+import ContentBoxPremium from "../components/ContentBoxPremium.astro";
+import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
 import ContentBox from "../components/ContentBox.astro";
-import ContentBoxSevenThree from "../components/ContentBoxSevenThree.astro";
-import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
-import LoginRtpSection from "../components/LoginRtpSection.astro";
+import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
+import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
+import LoginRtpSection from "../components/LoginRtpSection.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinners2.astro";
+import LatestWinners from "../components/LatestWinnersPremium.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq3.astro";
+import Faq from "../components/Faq4.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
@@ -21,35 +20,35 @@ import { pageGraph } from "../lib/schema";
 
 // Slides may only live inside a ContentBoxSevenThree* block and there are at
 // most two of those per rebrand — both are spent here. slide1 reads
-// "สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที" over a ฝากถอนออโต้ badge strip,
-// which is the ระบบออโต้ section; slide2 reads "ฝากครั้งแรก รับเพิ่ม 50%" and
-// sits with the เกมแตกบ่อย section. slide3 and slide4 stay unused here and keep
-// rendering in SmoothCarousel and on /promotion.
-import imgAutoSystem from "../assets/slide1.png";
-import imgGameStyle from "../assets/slide2.png";
+// "สมาชิกใหม่ รับโบนัส 50%", which sits with the game-selection section;
+// slide2 reads "ฝากแรกของวัน รับเพิ่ม 20%" and sits with the ไม่มีขั้นต่ำ
+// section. slide3 and slide4 stay unused here and keep rendering in
+// SmoothCarousel and on /promotion.
+import imgGameTypes from "../assets/slide1.png";
+import imgNoMinimum from "../assets/slide2.png";
 
-const pageTitle = "WIN666 | คาสิโนออนไลน์ระบบใหม่ ฝากถอนง่ายออโต้ แตกบ่อยจ่ายจริง มั่นคง";
+const pageTitle = "BUGGY888 | เว็บรวมเกมคาสิโนออนไลน์ ระบบออโต้ฝากถอน ไม่มีขั้นต่ำ";
 
-// 159 characters. verify-build.mjs errors outside 150–160 CHARACTERS, and the
-// docx-supplied description is 131 — the trailing clause closes that gap
+// 155 characters. verify-build.mjs errors outside 150–160 CHARACTERS, and the
+// docx-supplied description runs short — the trailing clause closes that gap
 // without changing what the brief says. Measured; do not reword.
 const pageDescription =
-  "WIN666 คาสิโนออนไลน์ระบบใหม่ ฝากถอนง่ายด้วยระบบออโต้ รองรับมือถือ รวมเกมหลากหลาย พร้อมระบบใช้งานมั่นคงและบริการสมาชิกตลอด 24 ชั่วโมง ควรศึกษาเงื่อนไขก่อนใช้งาน";
+  "BUGGY888 เว็บรวมเกมคาสิโนออนไลน์ ระบบฝากถอนออโต้ ไม่มีขั้นต่ำตามเงื่อนไข รองรับมือถือ พร้อมเกมหลากหลายและบริการสมาชิกตลอด 24 ชั่วโมง ควรศึกษากติกาก่อนเริ่ม";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq3's own default, which is always the previous brand's FAQ.
+// Faq4's own default, which is always the previous brand's FAQ.
 const faqs = [
   {
-    q: "WIN666 มีเกมคาสิโนประเภทใดบ้าง?",
-    a: "WIN666 มีเกมคาสิโนหลายรูปแบบ เช่น สล็อต บาคาร่า เกมไพ่ และเกมอื่น ๆ สมาชิกสามารถเลือกตามความสนใจและรูปแบบการเดิมพันที่ต้องการ",
+    q: "BUGGY888 มีเกมคาสิโนประเภทใดบ้าง?",
+    a: "ภายในระบบมีเกมสล็อต บาคาร่า รูเล็ต เกมไพ่ และคาสิโนสดหลายรูปแบบ สมาชิกสามารถเลือกเกมตามกติกา ความสนใจ และงบประมาณของตนเองได้",
   },
   {
-    q: "WIN666 ฝากถอนผ่านระบบออโต้หรือไม่?",
-    a: "ระบบรองรับการทำรายการผ่านระบบออโต้ตามช่องทางที่กำหนด สมาชิกควรตรวจสอบข้อมูลบัญชีและยอดเงินก่อนยืนยันทุกครั้ง",
+    q: "BUGGY888 ฝากถอนไม่มีขั้นต่ำทุกช่องทางหรือไม่?",
+    a: "เงื่อนไขไม่มีขั้นต่ำอาจรองรับเฉพาะช่องทางที่กำหนด สมาชิกควรตรวจสอบรายละเอียดล่าสุด รวมถึงเงื่อนไขของโปรโมชั่นก่อนทำรายการทุกครั้ง",
   },
   {
-    q: "เกมแตกบ่อยของ WIN666 รับประกันผลได้หรือไม่?",
-    a: "ไม่สามารถรับประกันผลลัพธ์ของเกมได้ เนื่องจากแต่ละเกมมีรูปแบบและความผันผวนแตกต่างกัน ผู้เล่นควรศึกษากติกาและกำหนดงบประมาณก่อนใช้งาน",
+    q: "ระบบฝากถอนออโต้ของ BUGGY888 ทำงานอย่างไร?",
+    a: "สมาชิกสามารถทำรายการผ่านหน้าบัญชีและติดตามสถานะได้ด้วยตนเอง ระยะเวลาดำเนินการอาจแตกต่างตามช่องทางชำระเงินและการตรวจสอบของระบบ",
   },
 ];
 
@@ -65,91 +64,93 @@ const graph = pageGraph(Astro, {
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement
-    message="WIN666 คาสิโนออนไลน์ระบบใหม่ รวมเกมสล็อต บาคาร่า และเกมไพ่ไว้ในระบบเดียว • ฝากถอนผ่านระบบออโต้จากหน้าบัญชีได้ด้วยตนเอง ควรตรวจสอบยอดเงินและข้อมูลบัญชีก่อนยืนยันทุกครั้ง • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ ใช้งานผ่านเบราว์เซอร์ได้ทันที • ทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง ควรศึกษากติกาและเงื่อนไขของแต่ละเกมก่อนเริ่มใช้งาน"
+    message="BUGGY888 เว็บรวมเกมคาสิโนออนไลน์ ทั้งสล็อต บาคาร่า รูเล็ต เกมไพ่ และคาสิโนสดในระบบเดียว • ระบบฝากถอนออโต้ทำรายการผ่านหน้าบัญชีได้ด้วยตนเอง ควรตรวจสอบชื่อบัญชีและจำนวนเงินก่อนยืนยันทุกครั้ง • เงื่อนไขไม่มีขั้นต่ำรองรับเฉพาะช่องทางที่กำหนด • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง"
   />
 
-  <ContentBoxCyberCut as="h1" title="WIN666 คาสิโนออนไลน์ระบบใหม่ ฝากถอนง่ายออโต้ แตกบ่อยจ่ายจริง มั่นคง">
-    <p class="text-left text-base leading-relaxed text-[#f2dfc4]">
-      <strong class="text-[#ffb35c]">WIN666</strong> เป็นแพลตฟอร์มคาสิโนออนไลน์ระบบใหม่ที่ออกแบบให้ใช้งานง่ายตั้งแต่การสมัคร เลือกเกม ไปจนถึงการทำรายการผ่านระบบออโต้
-      รองรับการใช้งานบนมือถือและคอมพิวเตอร์ พร้อมรวมเกมคาสิโนหลายรูปแบบไว้ในระบบเดียว สมาชิกควรศึกษากติกา โปรโมชั่น และเงื่อนไขต่าง ๆ ก่อนเริ่มใช้งาน
+  <ContentBoxPremium as="h1" title="BUGGY888 | เว็บรวมเกมคาสิโนออนไลน์ ระบบออโต้ฝากถอน ไม่มีขั้นต่ำ">
+    <p class="text-left text-base leading-relaxed text-[#f7e2c4]">
+      <strong class="text-[#ffe98a]">BUGGY888</strong> เป็นแพลตฟอร์มคาสิโนออนไลน์ที่รวบรวมเกมหลายประเภทไว้ในระบบเดียว ทั้งสล็อต บาคาร่า รูเล็ต เกมไพ่ และคาสิโนสด
+      พร้อมระบบฝากถอนออโต้ที่ช่วยลดขั้นตอนการทำรายการ และรองรับเงื่อนไขไม่มีขั้นต่ำในช่องทางที่กำหนด สมาชิกควรตรวจสอบกติกา โปรโมชั่น และรายละเอียดธุรกรรมก่อนเริ่มใช้งานทุกครั้ง
     </p>
-  </ContentBoxCyberCut>
+  </ContentBoxPremium>
 
-  <ContentBoxFloatingBadge as="h2" title="รวมเกมคาสิโนหลากหลายรูปแบบไว้บน WIN666">
-    <p class="text-left text-base leading-relaxed text-[#f2dfc4]">
-      ภายใน WIN666 มีเกมคาสิโนหลายประเภทให้เลือก ทั้งเกมสล็อต บาคาร่า เกมไพ่ และเกมรูปแบบอื่น ๆ ผู้เล่นสามารถเลือกตามความสนใจและรูปแบบการเดิมพันของตนเอง
-      ควรทำความเข้าใจกติกา อัตราจ่าย และเงื่อนไขของแต่ละเกมก่อนเริ่ม เพื่อวางแผนการใช้งานได้เหมาะสม
+  <ContentBoxSevenThreePremium titleright="เลือกเกมคาสิโนหลายประเภทได้ใน BUGGY888">
+    <Picture
+      slot="left"
+      src={imgGameTypes}
+      loading="lazy"
+      fetchpriority="low"
+      widths={[300, 450, 600]}
+      sizes="(max-width: 768px) calc(100vw - 6rem), 350px"
+      decoding="async"
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      quality={80}
+      alt="แบนเนอร์โปรโมชั่นของ BUGGY888 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที และปุ่ม รับโปรเลย พร้อมป้ายทอง BUGGY 888 ตัวมาสคอตโจรสลัดหน้าตัวตลก นางแบบชุดแดงทอง วงล้อ 777 เหรียญทองและอัญมณีสีแดง"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#ffd233]/35 shadow-[0_10px_30px_rgba(255,210,51,0.22)]"
+    />
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f7e2c4]">
+      ภายใน BUGGY888 มีทั้งเกมสล็อต บาคาร่า รูเล็ต เกมไพ่ และคาสิโนสดให้เลือกตามความสนใจ ผู้เล่นสามารถพิจารณาเกมจากกติกา รูปแบบการเดิมพัน และระดับความเสี่ยงของแต่ละประเภท
+      เพื่อเลือกเกมที่เหมาะกับงบประมาณและสไตล์การเล่นของตนเองได้ง่ายขึ้น
     </p>
-  </ContentBoxFloatingBadge>
+  </ContentBoxSevenThreePremium>
 
   <ProviderGrid />
 
-  <ContentBoxSevenThreeCyberCut titleright="ระบบออโต้ช่วยให้ฝากถอนง่ายขึ้น">
-    <Picture
-      slot="left"
-      src={imgAutoSystem}
-      loading="lazy"
-      fetchpriority="low"
-      widths={[300, 450, 600]}
-      sizes="(max-width: 768px) calc(100vw - 4rem), 355px"
-      decoding="async"
-      formats={["avif", "webp"]}
-      fallbackFormat="webp"
-      quality={80}
-      alt="แบนเนอร์โปรโมชั่นของ WIN666 ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมวงล้อ 777 เหรียญทองและหีบสมบัติ ด้านล่างเป็นแถบ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
-      class="mx-auto h-auto w-full rounded-2xl border border-[#f6931e]/35 shadow-[0_10px_30px_rgba(246,147,30,0.22)]"
-    />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f2dfc4]">
-      ระบบออโต้ช่วยลดขั้นตอนการทำรายการ ทำให้สมาชิกสามารถฝากและถอนผ่านหน้าบัญชีได้ด้วยตนเอง ควรตรวจสอบข้อมูลบัญชี ยอดเงิน และสถานะรายการก่อนยืนยันทุกครั้ง
-      หากรายการยังไม่เสร็จสมบูรณ์ ควรรอตรวจสอบแทนการส่งรายการซ้ำ
-    </p>
-  </ContentBoxSevenThreeCyberCut>
-
-  <ContentBox as="h2" title="WIN666 รองรับระบบใหม่ เพิ่มความสะดวกในการใช้งาน">
-    <p class="text-left text-base leading-relaxed text-[#f2dfc4]">
-      ระบบของ WIN666 ถูกออกแบบให้เมนูต่าง ๆ ใช้งานง่ายขึ้น สมาชิกสามารถเข้าถึงเกม โปรโมชั่น และข้อมูลบัญชีได้จากหน้าเดียว ควรเข้าสู่ระบบผ่านช่องทางหลัก
-      ตั้งรหัสผ่านที่ปลอดภัย และหลีกเลี่ยงการเปิดเผยข้อมูลส่วนตัวแก่บุคคลอื่น
+  <ContentBox as="h2" title="ระบบออโต้ช่วยให้จัดการรายการได้เป็นขั้นตอน">
+    <p class="text-left text-base leading-relaxed text-[#f7e2c4]">
+      ระบบออโต้ช่วยให้สมาชิกฝาก ถอน และตรวจสอบสถานะรายการผ่านหน้าบัญชีได้ด้วยตนเอง ก่อนยืนยันควรตรวจสอบชื่อบัญชี จำนวนเงิน และข้อมูลให้ถูกต้อง หากธุรกรรมยังอยู่ระหว่างดำเนินการ
+      ควรรอผลจากระบบก่อนส่งรายการใหม่ เพื่อป้องกันความสับสนในการตรวจสอบ
     </p>
   </ContentBox>
 
-  <ContentBoxSevenThree titleright="เกมแตกบ่อยควรพิจารณาจากรูปแบบการเล่น">
+  <ContentBoxSevenThreeNeumorphism titleright="ฝากถอนไม่มีขั้นต่ำกับ BUGGY888 เพิ่มความยืดหยุ่น">
     <Picture
       slot="left"
-      src={imgGameStyle}
+      src={imgNoMinimum}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
-      sizes="(max-width: 768px) calc(100vw - 4rem), 350px"
+      sizes="(max-width: 768px) calc(100vw - 6rem), 380px"
       decoding="async"
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่นของ WIN666 ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม พร้อมป้ายไฟนีออนเลข 777 กองเหรียญทองและชิป WIN666 ด้านล่างเป็นแถบ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม."
-      class="mx-auto h-auto w-full rounded-2xl border border-[#e07b12]/35 shadow-[0_10px_30px_rgba(224,123,18,0.22)]"
+      alt="แบนเนอร์โปรโมชั่นของ BUGGY888 ข้อความ ฝากแรกของวัน รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก และปุ่ม ฝากเลย พร้อมป้ายทอง BUGGY 888 ตัวมาสคอตโจรสลัดหน้าตัวตลก นางแบบชุดแดงทองถือเหรียญ ตู้สล็อต JACKPOT เลข 777 และกองเหรียญทอง"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#ffd233]/35 shadow-[0_10px_30px_rgba(255,210,51,0.22)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f2dfc4]">
-      คำว่าแตกบ่อยเป็นการสื่อถึงประสบการณ์ลุ้นรางวัลและฟีเจอร์ภายในเกม แต่ผลลัพธ์ของแต่ละเกมไม่สามารถรับประกันได้ ผู้เล่นควรศึกษาความผันผวน รูปแบบโบนัส และอัตราจ่าย
-      พร้อมกำหนดงบประมาณก่อนเล่นเพื่อควบคุมการใช้งาน
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f7e2c4]">
+      เงื่อนไขไม่มีขั้นต่ำของ BUGGY888 ช่วยให้สมาชิกเลือกยอดทำรายการตามงบของตนเองได้ยืดหยุ่นมากขึ้น อย่างไรก็ตาม ควรตรวจสอบช่องทางที่รองรับ สถานะบัญชี และข้อกำหนดของโปรโมชั่นก่อนทำรายการ
+      เพื่อให้เข้าใจเงื่อนไขการฝากถอนอย่างครบถ้วน
     </p>
-  </ContentBoxSevenThree>
+  </ContentBoxSevenThreeNeumorphism>
+
+  <ContentBoxSpecial as="h2" title="เปรียบเทียบเกมจากกติกาและรูปแบบการจ่าย">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f7e2c4]">
+      เกมคาสิโนแต่ละประเภทมีวิธีเล่น อัตราจ่าย และระดับความเสี่ยงต่างกัน ผู้เล่นควรศึกษากติกาและเงื่อนไขของเกมก่อนเริ่ม ไม่ควรเลือกจากความนิยมเพียงอย่างเดียว
+    </p>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f7e2c4]">
+      การกำหนดงบและระยะเวลาไว้ล่วงหน้าจะช่วยให้ควบคุมการใช้งานได้เป็นระบบมากขึ้น
+    </p>
+  </ContentBoxSpecial>
 
   <GameRankingBoard />
 
-  <ContentBoxNeumorphism as="h2" title="WIN666 มั่นคงด้วยระบบบัญชีและการจัดการข้อมูล">
-    <p class="text-left text-base leading-relaxed text-[#f2dfc4]">
-      การใช้งาน WIN666 ควรเริ่มจากการตรวจสอบช่องทางเข้า ตั้งรหัสผ่านที่คาดเดายาก และตรวจสอบข้อมูลบัญชีอย่างสม่ำเสมอ ไม่ควรใช้เครือข่ายสาธารณะเมื่อต้องทำธุรกรรม
-      และควรออกจากระบบเมื่อใช้อุปกรณ์ร่วมกับผู้อื่น
+  <ContentBoxPremium as="h2" title="BUGGY888 รองรับมือถือและการใช้งานหลายอุปกรณ์">
+    <p class="text-left text-base leading-relaxed text-[#f7e2c4]">
+      เว็บไซต์ BUGGY888 รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ สมาชิกสามารถเข้าสู่ระบบ เลือกเกม ดูโปรโมชั่น และตรวจสอบธุรกรรมผ่านเบราว์เซอร์ได้
+      ควรใช้อินเทอร์เน็ตที่เสถียรและเข้าใช้งานผ่านช่องทางหลักเพื่อช่วยรักษาความปลอดภัยของบัญชี
     </p>
-  </ContentBoxNeumorphism>
+  </ContentBoxPremium>
 
-  <ContentBoxCyberCut as="h2" title="ดูแลรายการฝากถอนผ่านทีมงาน WIN666">
-    <p class="text-left text-base leading-relaxed text-[#f2dfc4]">
-      หากพบปัญหาเกี่ยวกับบัญชี โปรโมชั่น หรือสถานะธุรกรรม สมาชิกสามารถติดต่อทีมงาน WIN666 ผ่านช่องทางที่เว็บไซต์กำหนด ควรเตรียมชื่อผู้ใช้ เวลา และรายละเอียดรายการให้ครบถ้วน
-      โดยไม่ส่งรหัสผ่านหรือรหัสยืนยัน เพื่อช่วยให้ตรวจสอบปัญหาได้รวดเร็วขึ้น
+  <ContentBox as="h2" title="ตรวจสอบบัญชีและรับความช่วยเหลือจาก BUGGY888">
+    <p class="text-left text-base leading-relaxed text-[#f7e2c4]">
+      เมื่อพบปัญหาเกี่ยวกับบัญชี ทางเข้า โปรโมชั่น หรือสถานะฝากถอน สมาชิกสามารถติดต่อทีมงาน BUGGY888 ผ่านช่องทางที่เว็บไซต์กำหนด ควรแจ้งชื่อผู้ใช้ เวลา และรายละเอียดรายการให้ครบ
+      โดยไม่เปิดเผยรหัสผ่านหรือรหัสยืนยัน เพื่อช่วยให้ตรวจสอบปัญหาได้ตรงจุด
     </p>
-  </ContentBoxCyberCut>
+  </ContentBox>
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ WIN666" faqs={faqs} />
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ BUGGY888" faqs={faqs} />
 
   <LoginRtpSection />
 
@@ -158,13 +159,13 @@ const graph = pageGraph(Astro, {
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#ffb35c] via-[#f6931e] to-[#8f4b06] px-4 py-3 text-sm font-black whitespace-nowrap text-[#180d02] shadow-[0_10px_30px_rgba(246,147,30,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(246,147,30,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#ffe98a] via-[#ffd233] to-[#8d630b] px-4 py-3 text-sm font-black whitespace-nowrap text-[#2a0704] shadow-[0_10px_30px_rgba(255,210,51,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(255,210,51,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#f6931e]/70 bg-[#161009]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#f5e0bb] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#e07b12] hover:bg-[#241a0e]/85 hover:shadow-[0_15px_40px_rgba(224,123,18,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#ffd233]/70 bg-[#1b0806]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#f7e2c4] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#e8241a] hover:bg-[#2a0d09]/85 hover:shadow-[0_15px_40px_rgba(232,36,26,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>

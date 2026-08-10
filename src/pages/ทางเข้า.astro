@@ -2,18 +2,18 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
+import Announcement from "../components/Announcement5.astro";
 import { pageGraph } from "../lib/schema";
 
 // Button page, not an article: the whole body is the <h1> plus the two-button
 // grid. The docx SUB-PAGES block gives this page a Title and a Meta and never
 // a body, so no section heading and no prose belong here. The h1 names what it IS
 // rather than previewing a section that does not exist.
-const pageTitle = "ทางเข้า WIN666 เว็บหลัก";
+const pageTitle = "ทางเข้า BUGGY888 เว็บหลัก";
 
 // docx SUB-PAGES Meta + one closing clause to clear the 150 gate.
-// 154 CHARACTERS (count characters, not bytes — Thai is 3 bytes per character).
-const pageDescription = "WIN666 ทางเข้าเล่นคาสิโนออนไลน์ รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมรวมเกม ระบบสมาชิก และบริการต่าง ๆ ไว้ในระบบเดียว ควรตรวจสอบช่องทางก่อนเข้าใช้งาน";
+// 153 CHARACTERS (count characters, not bytes — Thai is 3 bytes per character).
+const pageDescription = "BUGGY888 ทางเข้าเล่นคาสิโนออนไลน์ รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมรวมเกม โปรโมชั่น และระบบสมาชิกไว้ในที่เดียว เข้าใช้งานผ่านช่องทางหลักทุกครั้ง";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -25,7 +25,7 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="WIN666 | ทางเข้าเล่นคาสิโนออนไลน์ระบบใหม่" description={pageDescription}>
+<MainLayout title="BUGGY888 | ทางเข้าเล่นคาสิโนออนไลน์รองรับทุกอุปกรณ์" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
@@ -35,12 +35,12 @@ const graph = pageGraph(Astro, {
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/login"
-          aria-label="เข้าสู่ระบบ WIN666"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#f6931e]/60 bg-[#161009] px-6 py-4 shadow-[0_10px_30px_rgba(246,147,30,0.22)] transition-all duration-300 hover:scale-105 hover:border-[#e07b12] hover:bg-[#241a0e] hover:shadow-[0_15px_40px_rgba(224,123,18,0.32)]">
-          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#f6931e]/25 to-transparent"></div>
+          aria-label="เข้าสู่ระบบ BUGGY888"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#ffd233]/60 bg-[#1b0806] px-6 py-4 shadow-[0_10px_30px_rgba(255,210,51,0.22)] transition-all duration-300 hover:scale-105 hover:border-[#e0a81c] hover:bg-[#2a0d09] hover:shadow-[0_15px_40px_rgba(224,168,28,0.32)]">
+          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#ffd233]/25 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#ffb35c]"
+            class="relative z-10 h-9 w-9 text-[#ffe98a]"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -51,19 +51,19 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#fff2e0]">เข้าสู่ระบบ</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#fff3cf]">เข้าสู่ระบบ</span>
         </a>
       </div>
 
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/register"
-          aria-label="สมัครสมาชิก WIN666"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#f6931e]/60 bg-gradient-to-r from-[#ffb35c] via-[#f6931e] to-[#a8560a] px-6 py-4 shadow-[0_10px_30px_rgba(246,147,30,0.28)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(246,147,30,0.40)]">
+          aria-label="สมัครสมาชิก BUGGY888"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#ffd233]/60 bg-gradient-to-r from-[#ffe98a] via-[#ffd233] to-[#8d630b] px-6 py-4 shadow-[0_10px_30px_rgba(255,210,51,0.28)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(255,210,51,0.40)]">
           <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/35 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#180d02]"
+            class="relative z-10 h-9 w-9 text-[#2a0704]"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -74,7 +74,7 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#180d02]">สมัครสมาชิก</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#2a0704]">สมัครสมาชิก</span>
         </a>
       </div>
     </div>

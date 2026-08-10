@@ -25,8 +25,8 @@ const fontHref = usesGoogleFonts
 <html lang="th" style={`--font-sans: ${fontStack};`}>
   <head>
     <meta charset="utf-8" />
-    <title>WIN666 | สมัครสมาชิกคาสิโนออนไลน์ระบบใหม่</title>
-    <meta name="description" content="WIN666 สมัครสมาชิกคาสิโนออนไลน์ผ่านช่องทางหลัก รองรับมือถือและคอมพิวเตอร์ พร้อมเริ่มใช้งานระบบออโต้ เลือกเกม และตรวจสอบโปรโมชั่นได้จากบัญชีเดียว" />
+    <title>BUGGY888 | สมัครสมาชิกคาสิโนออนไลน์ผ่านช่องทางหลัก</title>
+    <meta name="description" content="BUGGY888 สมัครสมาชิกผ่านช่องทางหลัก รองรับมือถือและคอมพิวเตอร์ พร้อมเริ่มใช้ระบบฝากถอนออโต้ เลือกเกม และตรวจสอบโปรโมชั่นได้" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {
@@ -66,22 +66,22 @@ const fontHref = usesGoogleFonts
     </style>
 
     <style>
-      /* WIN666 is a two-tone casino brand: vivid orange glow and deep ember
-         structure on near-black surfaces. Any hue outside that pair is out of
-         palette. Every variable below is NAMED FOR THE COLOUR IT HOLDS, which
-         previous brands stopped doing: this block once declared `--brand-gold`
-         on brands with no gold in them and `--brand-red` on a blue one, so the
-         next editor reused it by name and shipped the wrong hue. Rename with
-         the value. */
+      /* BUGGY888 is a two-tone carnival casino brand: bright gold on deep red
+         and near-black surfaces. Any hue outside that pair is out of palette.
+         Every variable below is NAMED FOR THE COLOUR IT HOLDS, which previous
+         brands stopped doing: this block once declared `--brand-gold` on brands
+         with no gold in them and `--brand-red` on a blue one, so the next editor
+         reused it by name and shipped the wrong hue. Rename with the value. */
       :root {
-        --page-bg: #080503;
-        --panel-bg: rgba(22, 16, 9, 0.94);
-        --brand-orange: #f6931e;
-        --brand-ember-deep: #8f4b06;
-        --brand-orange-light: #ffb35c;
-        --brand-amber: #e07b12;
-        --text-body: #f2dfc4;
-        --text-muted: #c4a882;
+        --page-bg: #0b0302;
+        --panel-bg: rgba(27, 8, 6, 0.94);
+        --brand-gold: #ffd233;
+        --brand-gold-deep: #8d630b;
+        --brand-gold-light: #ffe98a;
+        --brand-gold-mid: #e0a81c;
+        --brand-red: #e8241a;
+        --text-body: #f7e2c4;
+        --text-muted: #d6ab7e;
       }
 
       body {
@@ -89,7 +89,7 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         color: var(--text-body);
 
-        background: radial-gradient(circle at 50% 10%, rgba(246, 147, 30, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(224, 123, 18, 0.18) 0%, transparent 55%), var(--page-bg);
+        background: radial-gradient(circle at 50% 10%, rgba(255, 210, 51, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(232, 36, 26, 0.18) 0%, transparent 55%), var(--page-bg);
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -103,11 +103,11 @@ const fontHref = usesGoogleFonts
         max-width: 450px;
         padding: 3.5rem;
         background: var(--panel-bg);
-        border: 1px solid rgba(246, 147, 30, 0.4);
+        border: 1px solid rgba(255, 210, 51, 0.4);
         border-radius: 2rem;
         box-shadow:
-          0 1rem 3rem rgba(246, 147, 30, 0.2),
-          0 0 2rem rgba(224, 123, 18, 0.18);
+          0 1rem 3rem rgba(255, 210, 51, 0.2),
+          0 0 2rem rgba(232, 36, 26, 0.22);
         text-align: center;
         backdrop-filter: blur(10px);
       }
@@ -116,13 +116,13 @@ const fontHref = usesGoogleFonts
         font-family: "Oswald", sans-serif;
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(180deg, var(--brand-orange-light) 0%, var(--brand-orange) 45%, var(--brand-ember-deep) 72%, var(--brand-amber) 100%);
+        background: linear-gradient(180deg, var(--brand-gold-light) 0%, var(--brand-gold) 45%, var(--brand-gold-deep) 72%, var(--brand-gold-mid) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         letter-spacing: 0.3em;
         margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 2px rgba(246, 147, 30, 0.35));
+        filter: drop-shadow(0 1px 2px rgba(255, 210, 51, 0.35));
       }
 
       .sophisticated-loader {
@@ -138,30 +138,30 @@ const fontHref = usesGoogleFonts
       .orb {
         width: 40px;
         height: 40px;
-        background: radial-gradient(circle, var(--brand-orange-light) 0%, var(--brand-orange) 45%, var(--brand-ember-deep) 100%);
+        background: radial-gradient(circle, var(--brand-gold-light) 0%, var(--brand-gold) 45%, var(--brand-gold-deep) 100%);
         border-radius: 50%;
-        box-shadow: 0 0 2rem rgba(246, 147, 30, 0.35);
+        box-shadow: 0 0 2rem rgba(255, 210, 51, 0.35);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .ring {
         position: absolute;
         border-radius: 50%;
-        border: 3px solid rgba(246, 147, 30, 0.2);
+        border: 3px solid rgba(255, 210, 51, 0.2);
         animation: spin linear infinite;
       }
 
       .ring-1 {
         width: 100%;
         height: 100%;
-        border-top-color: var(--brand-ember-deep);
+        border-top-color: var(--brand-gold);
         animation-duration: 4s;
       }
 
       .ring-2 {
         width: 80%;
         height: 80%;
-        border-bottom-color: var(--brand-amber);
+        border-bottom-color: var(--brand-red);
         animation-duration: 6s;
         animation-direction: reverse;
       }
@@ -178,11 +178,11 @@ const fontHref = usesGoogleFonts
         0%,
         100% {
           transform: scale(1);
-          box-shadow: 0 0 2rem rgba(246, 147, 30, 0.35);
+          box-shadow: 0 0 2rem rgba(255, 210, 51, 0.35);
         }
         50% {
           transform: scale(1.15);
-          box-shadow: 0 0 3rem rgba(246, 147, 30, 0.5);
+          box-shadow: 0 0 3rem rgba(255, 210, 51, 0.5);
         }
       }
 
@@ -193,7 +193,7 @@ const fontHref = usesGoogleFonts
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text-body);
-        text-shadow: 0 1px 1px rgba(246, 147, 30, 0.25);
+        text-shadow: 0 1px 1px rgba(255, 210, 51, 0.25);
         margin: 0;
       }
       .status-text .p {
@@ -206,7 +206,7 @@ const fontHref = usesGoogleFonts
   </head>
   <body>
     <div class="premium-loading-container">
-      <div class="brand-identity">WIN666</div>
+      <div class="brand-identity">BUGGY888</div>
 
       <div class="sophisticated-loader">
         <div class="orb"></div>
@@ -216,7 +216,7 @@ const fontHref = usesGoogleFonts
 
       <div class="status-text">
         <h1 class="h1">CREATING SECURE ACCOUNT SESSION...</h1>
-        <p class="p">กำลังพาไปหน้าสมัครสมาชิก WIN666 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
+        <p class="p">กำลังพาไปหน้าสมัครสมาชิก BUGGY888 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
       </div>
     </div>
 

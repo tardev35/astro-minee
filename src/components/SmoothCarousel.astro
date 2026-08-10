@@ -6,25 +6,25 @@ import slide2 from "../assets/slide2.png";
 import slide3 from "../assets/slide3.png";
 import slide4 from "../assets/slide4.png";
 
-// Each alt is the text actually printed on that slide, read off the artwork —
-// including the strip of four badges along the bottom edge, which slide4 words
-// differently from the other three.
+// Each alt is the text actually printed on that slide, read off the artwork,
+// plus the scene it sits in. All four share the gold BUGGY 888 plaque with the
+// pirate-clown mascot, a model in a red-and-gold outfit, gold coins and red gems.
 const images = [
   {
     src: slide1,
-    alt: "แบนเนอร์โปรโมชั่นของ WIN666 ข้อความ สมาชิกใหม่ รับโบนัส 100% เริ่มสนุกได้ทันที พร้อมวงล้อ 777 เหรียญทองและหีบสมบัติ ด้านล่างเป็นแถบ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม.",
+    alt: "แบนเนอร์โปรโมชั่นของ BUGGY888 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที และปุ่ม รับโปรเลย พร้อมป้ายทอง BUGGY 888 ตัวมาสคอตโจรสลัดหน้าตัวตลก นางแบบชุดแดงทอง วงล้อ 777 เหรียญทองและอัญมณีสีแดง",
   },
   {
     src: slide2,
-    alt: "แบนเนอร์โปรโมชั่นของ WIN666 ข้อความ ฝากครั้งแรก รับเพิ่ม 50% โบนัสต้อนรับสุดคุ้ม พร้อมป้ายไฟนีออนเลข 777 กองเหรียญทองและชิป WIN666 ด้านล่างเป็นแถบ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม.",
+    alt: "แบนเนอร์โปรโมชั่นของ BUGGY888 ข้อความ ฝากแรกของวัน รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก และปุ่ม ฝากเลย พร้อมป้ายทอง BUGGY 888 ตัวมาสคอตโจรสลัดหน้าตัวตลก นางแบบชุดแดงทองถือเหรียญ ตู้สล็อต JACKPOT เลข 777 และกองเหรียญทอง",
   },
   {
     src: slide3,
-    alt: "แบนเนอร์โปรโมชั่นของ WIN666 ข้อความ คืนยอดเสียทุกวัน 10% สูงสุด 5,000 บาท พร้อมวงล้อรูเล็ต ชิปคาสิโนปลิวและกองเหรียญทอง ด้านล่างเป็นแถบ มั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม.",
+    alt: "แบนเนอร์โปรโมชั่นของ BUGGY888 ข้อความ คืนยอดเสียทุกวัน สูงสุด 0.8% เล่นต่อได้ทุกวัน และปุ่ม รับสิทธิ์ พร้อมป้ายทอง BUGGY 888 ตัวมาสคอตโจรสลัดหน้าตัวตลก นางแบบชุดแดงทอง ป้ายไฟ JACKPOT เหรียญทองและอัญมณีสีแดง",
   },
   {
     src: slide4,
-    alt: "แบนเนอร์โปรโมชั่นของ WIN666 ข้อความ ชวนเพื่อน รับเครดิตฟรี 300 บาท ชวนมาก ได้มาก พร้อมเหรียญทอง ชิปคาสิโนและสัญลักษณ์ไพ่ ด้านล่างเป็นแถบ ชวนง่าย รับทันที คุ้มค่า และปลอดภัย",
+    alt: "แบนเนอร์โปรโมชั่นของ BUGGY888 ข้อความ แนะนำเพื่อน รับค่าคอม 10% ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม และปุ่ม ชวนเลย พร้อมป้ายทอง BUGGY 888 ตัวมาสคอตโจรสลัดหน้าตัวตลก นางแบบชุดแดงทอง หีบสมบัติ เหรียญทองและอัญมณีสีแดง",
   },
 ];
 
@@ -36,7 +36,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
   <input id="carousel-pause" type="checkbox" class="peer sr-only" />
   <label
     for="carousel-pause"
-    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#f6931e]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#ffb35c]">
+    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#ffd233]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#ffe98a]">
     หยุด / เล่นสไลด์ภาพ
   </label>
 
@@ -49,7 +49,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
             <Picture
               src={slide.src}
               alt={isDuplicate ? "" : slide.alt}
-              class="block w-full rounded-xl border border-[#f6931e]/30 object-cover shadow-[0_10px_30px_rgba(246,147,30,0.22)]"
+              class="block w-full rounded-xl border border-[#ffd233]/35 object-cover shadow-[0_10px_30px_rgba(255,210,51,0.22)]"
               width={slide.src.width}
               height={slide.src.height}
               loading="lazy"

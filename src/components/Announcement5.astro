@@ -4,27 +4,27 @@
 // สองรอบ screen reader จะอ่าน emoji ซ้ำตามไปด้วย และห้ามใส่ชื่อโดเมนลงในข้อความ
 // (verify-build.mjs จับ URL นอกโดเมนแล้วทำให้ build แดง)
 const {
-  message = "TGAZM เว็บสล็อตระบบออโต้ รวมเกมสล็อตหลายรูปแบบไว้ในบัญชีเดียว รองรับมือถือทุกระบบ • ฝากไม่มีขั้นต่ำตามช่องทางที่เว็บไซต์กำหนด • ระบบออโต้ทำรายการเองได้จากหน้าบัญชี ควรตรวจสถานะรายการก่อนปิดหน้าเว็บทุกครั้ง • ทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาและกำหนดงบประมาณก่อนเริ่มเล่น",
+  message = "BUGGY888 เว็บรวมเกมคาสิโนออนไลน์ ทั้งสล็อต บาคาร่า รูเล็ต เกมไพ่ และคาสิโนสดในระบบเดียว • ระบบฝากถอนออโต้ทำรายการผ่านหน้าบัญชีได้ด้วยตนเอง ควรตรวจสอบชื่อบัญชีและจำนวนเงินก่อนยืนยันทุกครั้ง • เงื่อนไขไม่มีขั้นต่ำรองรับเฉพาะช่องทางที่กำหนด • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง",
 } = Astro.props;
 ---
 
 <div class="mx-auto w-full max-w-7xl px-4 py-3 font-sans">
-  <div class="relative overflow-hidden rounded-md border border-[#a3e635]/45 bg-[#0a2411] shadow-[0_0_15px_rgba(163,230,53,0.18)]">
-    <div class="absolute top-0 -left-4 h-full w-8 -skew-x-12 bg-gradient-to-b from-[#c6f76a] to-[#4d7c0f]"></div>
-    <div class="absolute top-0 -right-4 h-full w-8 -skew-x-12 bg-[#ffd54a]/25"></div>
+  <div class="relative overflow-hidden rounded-md border border-[#ffd233]/45 bg-[#250806] shadow-[0_0_15px_rgba(255,210,51,0.18)]">
+    <div class="absolute top-0 -left-4 h-full w-8 -skew-x-12 bg-gradient-to-b from-[#ffe98a] to-[#8d630b]"></div>
+    <div class="absolute top-0 -right-4 h-full w-8 -skew-x-12 bg-[#e8241a]/35"></div>
 
     <div class="flex items-center">
-      <div class="relative z-10 flex w-12 shrink-0 items-center justify-center bg-gradient-to-b from-[#c6f76a] to-[#4d7c0f] py-2.5">
-        <span aria-hidden="true" class="animate-pulse text-lg drop-shadow-[0_0_5px_rgba(4,21,10,0.85)]">🔔</span>
+      <div class="relative z-10 flex w-12 shrink-0 items-center justify-center bg-gradient-to-b from-[#ffe98a] to-[#8d630b] py-2.5">
+        <span aria-hidden="true" class="animate-pulse text-lg drop-shadow-[0_0_5px_rgba(42,7,4,0.85)]">🔔</span>
       </div>
 
       <div class="marquee-container relative flex-1 overflow-hidden py-2.5 pr-6">
-        <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#0a2411] to-transparent"></div>
-        <div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-12 bg-gradient-to-l from-[#0a2411] to-transparent"></div>
+        <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#250806] to-transparent"></div>
+        <div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-12 bg-gradient-to-l from-[#250806] to-transparent"></div>
 
-        <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-wide whitespace-nowrap text-[#e8fb9c]">
-          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#ffd54a] shadow-[0_0_5px_rgba(255,213,74,0.85)]"></span>{message}</span>
-          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#ffd54a] shadow-[0_0_5px_rgba(255,213,74,0.85)]"></span>{message}</span>
+        <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-wide whitespace-nowrap text-[#ffefb0]">
+          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#ffd233] shadow-[0_0_5px_rgba(255,210,51,0.85)]"></span>{message}</span>
+          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#ffd233] shadow-[0_0_5px_rgba(255,210,51,0.85)]"></span>{message}</span>
         </div>
       </div>
     </div>

@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle4.astro";
-import Footer from "../components/FooterPremiumSumo.astro";
+import Navbar from "../components/NavbarStyle9.astro";
+import Footer from "../components/FooterStyle3.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,11 +55,11 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "WIN666 | คาสิโนออนไลน์ระบบใหม่ ฝากถอนง่ายออโต้ แตกบ่อยจ่ายจริง มั่นคง",
+  title = "BUGGY888 | เว็บรวมเกมคาสิโนออนไลน์ ระบบออโต้ฝากถอน ไม่มีขั้นต่ำ",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings.
-  description = "WIN666 คาสิโนออนไลน์ระบบใหม่ ฝากถอนง่ายด้วยระบบออโต้ รองรับมือถือ รวมเกมหลากหลาย พร้อมระบบใช้งานมั่นคงและบริการสมาชิกตลอด 24 ชั่วโมง ควรศึกษาเงื่อนไขก่อนใช้งาน",
+  description = "BUGGY888 เว็บรวมเกมคาสิโนออนไลน์ ระบบฝากถอนออโต้ ไม่มีขั้นต่ำตามเงื่อนไข รองรับมือถือ พร้อมเกมหลากหลายและบริการสมาชิกตลอด 24 ชั่วโมง ควรศึกษากติกาก่อนเริ่ม",
   robots = "index, follow",
 } = Astro.props;
 
@@ -194,7 +194,7 @@ const profile = brandProfile(Astro.site);
 
           {block === "appmeta" && (
             <Fragment>
-              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="win666" />}
+              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="buggy888" />}
               <link rel="manifest" href="/site.webmanifest" />
             </Fragment>
           )}
@@ -236,7 +236,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #080503;
+        background-color: #0b0302;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -289,7 +289,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ WIN666 ข้อความ สล็อต คาสิโน กีฬา ครบจบในเว็บเดียว ฝากถอนออโต้ รวดเร็ว ตลอด 24 ชม. พร้อมแถบมั่นคงปลอดภัย ฝากถอนออโต้ รองรับมือถือ และบริการ 24 ชม. ข้างโลโก้ WIN666 สีส้มบนพื้นหลังสีดำประดับวงล้อรูเล็ต เหรียญทองสลักตัว W ชิปคาสิโน และตู้สล็อตเลข 777"
+          alt="แบนเนอร์ BUGGY888 ข้อความ สล็อตเว็บตรง โปรแรงทุกวัน ฝาก-ถอนออโต้ รวดเร็ว เล่นง่าย จ่ายจริง พร้อมแถบระบบออโต้ รวดเร็วทันใจ โบนัสคุ้ม จัดเต็มทุกโปร และบริการ 24 ชม. ถัดจากปุ่มสมัครเลย ข้างโลโก้ BUGGY 888 สีทองบนป้ายสีแดง มีมาสคอตโจรสลัดตัวตลก ป้ายไฟ JACKPOT ตู้สล็อตเลข 777 กองเหรียญทองและอัญมณีสีแดง"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}
