@@ -30,11 +30,12 @@ import imgWallet from "../assets/slide3.png";
 
 const pageTitle = "AMBPLUS | ระบบออโต้สล็อตเว็บตรง แตกง่ายจ่ายไวฝากถอนผ่าน wallet";
 
-// 157 characters. verify-build.mjs errors outside 150–160 CHARACTERS, and the
-// docx-supplied description runs short — the trailing clause closes that gap
-// without changing what the brief says. Measured; do not reword.
+// The docx Meta Description, verbatim at the length it was written (121
+// characters). DESC_MIN does not apply to the home page — verify-build.mjs
+// exempts it precisely so the brand's own copy ships unpadded. Do not top it
+// up to 150.
 const pageDescription =
-  "AMBPLUS สล็อตเว็บตรงระบบออโต้ ฝากถอนผ่าน Wallet รองรับมือถือ รวมเกมหลายรูปแบบ ใช้งานสะดวก พร้อมระบบรวดเร็วและบริการสมาชิก ควรอ่านกติกาก่อนเริ่มใช้งานทุกครั้ง";
+  "AMBPLUS สล็อตเว็บตรงระบบออโต้ ฝากถอนผ่าน Wallet รองรับมือถือ รวมเกมหลายรูปแบบ ใช้งานสะดวก พร้อมระบบรวดเร็วและบริการสมาชิก";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
 // Faq2's own default, which is always the previous brand's FAQ.
