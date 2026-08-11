@@ -6,6 +6,8 @@ import ktbLogo from "../assets/banks/ktb.png";
 import ttbLogo from "../assets/banks/ttb.png";
 import { brandFlag, brandPick } from "../lib/brandProfile";
 
+// Real bank brand colours — these are not part of the palette swap and must
+// stay as the banks' own identity colours.
 const bankPool = [
   { name: "KBank", color: "bg-[#1155cc]", icon: kbankLogo.src },
   { name: "SCB", color: "bg-[#4e1c80]", icon: scbLogo.src },
@@ -19,8 +21,8 @@ const bankPool = [
 // is:inline, which strips type/async/defer and leaves a parser-blocking script
 // three quarters of the way down the document — tools/verify-build.mjs fails the
 // build on it. The rows are server-rendered here, the bank list travels as inert
-// JSON below, and src/lib/winnersFeed.ts (shared with LatestWinnersCyber, and
-// selector-driven so it needs no changes) takes over the rotation with
+// JSON below, and src/lib/winnersFeed.ts (shared with the other feed variants,
+// and selector-driven so it needs no changes) takes over the rotation with
 // on-screen, hidden-tab and reduced-motion guards.
 //
 // The values come from the brand's own domain hash, NOT Math.random(): a
@@ -40,14 +42,14 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
 
 <div class="mx-auto w-full max-w-[900px] p-4 font-sans">
   <section
-    aria-label="ประวัติการถอนเงินล่าสุดของสมาชิก TGAZM"
-    class="relative overflow-hidden rounded-[30px] border-2 border-[#a3e635]/40 bg-[#04150a]/90 px-4 py-8 shadow-[0_10px_30px_rgba(163,230,53,0.2)] backdrop-blur-md md:p-10">
-    <div class="pointer-events-none absolute -top-16 -right-10 h-40 w-40 rounded-full bg-[#a3e635]/25 blur-[60px]"></div>
-    <div class="pointer-events-none absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-[#ffd54a]/22 blur-[60px]"></div>
+    aria-label="ประวัติการถอนเงินล่าสุดของสมาชิก AMBPLUS"
+    class="relative overflow-hidden rounded-[30px] border-2 border-[#ecd48c]/40 bg-[#0a0806]/90 px-4 py-8 shadow-[0_10px_30px_rgba(236,212,140,0.2)] backdrop-blur-md md:p-10">
+    <div class="pointer-events-none absolute -top-16 -right-10 h-40 w-40 rounded-full bg-[#ecd48c]/25 blur-[60px]"></div>
+    <div class="pointer-events-none absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-[#6b4e17]/45 blur-[60px]"></div>
 
     <div class="relative z-10 mb-8 text-center">
-      <p class="bg-gradient-to-b from-[#ffeaa0] to-[#c9911a] bg-clip-text text-xl font-black text-transparent md:text-3xl">ประวัติการถอนเงินของสมาชิก TGAZM แบบเรียลไทม์</p>
-      <p class="mt-2 text-base leading-relaxed text-[#a9c48c]">ระบบออโต้เปิดทำรายการตลอด 24 ชั่วโมง ตัวเลขด้านล่างเป็นข้อมูลตัวอย่างสำหรับแสดงรูปแบบรายการเท่านั้น</p>
+      <p class="bg-gradient-to-b from-[#fbf2c4] to-[#c9a24a] bg-clip-text text-xl font-black text-transparent md:text-3xl">ประวัติการถอนเงินของสมาชิก AMBPLUS แบบเรียลไทม์</p>
+      <p class="mt-2 text-base leading-relaxed text-[#bfaa85]">ระบบออโต้เปิดทำรายการตลอด 24 ชั่วโมง ตัวเลขด้านล่างเป็นข้อมูลตัวอย่างสำหรับแสดงรูปแบบรายการเท่านั้น</p>
     </div>
 
     <div
@@ -59,22 +61,22 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
       data-pending-chance="0.4"
       data-user-style="letters"
       data-user-digits="4"
-      class="relative z-10 ml-4 border-l-2 border-[#a3e635]/50 pl-6 md:ml-8 md:pl-8">
+      class="relative z-10 ml-4 border-l-2 border-[#ecd48c]/50 pl-6 md:ml-8 md:pl-8">
       {
         initialRows.map((row) => (
           <div data-winner-row class="winner-row relative mb-6 transition-all duration-500 ease-out">
-            <div class="absolute top-2 -left-[35px] h-4 w-4 rounded-full border-2 border-[#04150a] bg-[#ffd54a] shadow-[0_0_10px_rgba(255,213,74,0.8)] md:-left-[43px]" />
+            <div class="absolute top-2 -left-[35px] h-4 w-4 rounded-full border-2 border-[#0a0806] bg-[#ecd48c] shadow-[0_0_10px_rgba(236,212,140,0.8)] md:-left-[43px]" />
 
-            <div class="flex items-center gap-4 rounded-[20px] bg-gradient-to-r from-[#123018]/50 to-transparent p-4 transition-colors hover:from-[#123018]/85">
+            <div class="flex items-center gap-4 rounded-[20px] bg-gradient-to-r from-[#241b0e]/60 to-transparent p-4 transition-colors hover:from-[#241b0e]/90">
               <div data-winner-bank class={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${row.bank.color}`}>
                 <img data-winner-icon src={row.bank.icon} alt="" width="24" height="24" loading="lazy" decoding="async" class="h-6 w-6 object-contain" />
               </div>
 
               <div class="min-w-0 flex-1">
-                <div class="text-sm text-[#a9c48c]">
-                  ยูสเซอร์: <span data-winner-user class="font-bold text-[#e2f3cd]">{row.user}</span>
+                <div class="text-sm text-[#bfaa85]">
+                  ยูสเซอร์: <span data-winner-user class="font-bold text-[#efe3c8]">{row.user}</span>
                 </div>
-                <div class="text-xl font-black text-[#a3e635]">
+                <div class="text-xl font-black text-[#ecd48c]">
                   <span data-winner-amount>{row.amount}</span> THB
                 </div>
               </div>
@@ -108,10 +110,12 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
 
 <style>
   /* The two status colours are classes rather than inline strings so the JS in
-     src/lib/winnersFeed.ts never has to know what this brand's palette is. */
+     src/lib/winnersFeed.ts never has to know what this brand's palette is.
+     Pending is the champagne gold; verified keeps the semantic success green,
+     which is not part of the brand swap. */
   .winner-status.is-pending {
-    color: #ffeaa0;
-    border-color: #c9911a;
+    color: #fbf2c4;
+    border-color: #c9a24a;
   }
   .winner-status.is-verified {
     color: oklch(79.2% 0.209 151.711);

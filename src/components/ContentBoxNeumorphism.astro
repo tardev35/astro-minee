@@ -5,16 +5,24 @@ export interface Props {
 }
 const { title, as: HeadingTag = "h1" } = Astro.props;
 const headingSize = HeadingTag === "h1" ? "text-3xl" : "text-2xl";
+
+// text-center lives on the <header> ONLY, never on the card or the <section>.
+// This file shipped that bug once: centering on an ancestor inherits straight
+// into the slot and centers the body paragraph with it. House style is headings
+// may be centered, paragraphs are always flush left at text-base.
+//
+// The neumorphic pair is a hard black (#010101) against the raised panel tone
+// (#241b0e) so the card still reads as extruded on the near-black page ground.
 ---
 
 <section class="relative z-10 my-6 flex w-full justify-center px-4 font-sans">
   <div
-    class="w-full max-w-[1400px] rounded-[25px] border border-[#f6931e]/25 bg-[#161009] p-8 text-left text-base leading-relaxed text-[#f2dfc4] shadow-[10px_10px_20px_#010101,-10px_-10px_20px_#241a0e]">
+    class="w-full max-w-[1400px] rounded-[25px] border border-[#ecd48c]/25 bg-[#16110a] p-8 text-left text-base leading-relaxed text-[#efe3c8] shadow-[10px_10px_20px_#010101,-10px_-10px_20px_#241b0e]">
     {
       title && (
-        <header class="mb-8 border-b border-[#e07b12]/25 pb-4 text-center">
+        <header class="mb-8 border-b border-[#c9a24a]/25 pb-4 text-center">
           <HeadingTag
-            class={`bg-gradient-to-r from-[#fff2e0] via-[#ffb35c] to-[#f6931e] bg-clip-text ${headingSize} leading-normal font-black tracking-wide text-transparent`}>
+            class={`bg-gradient-to-r from-[#fbf2c4] via-[#ecd48c] to-[#c9a24a] bg-clip-text ${headingSize} leading-normal font-black tracking-wide text-transparent`}>
             {title}
           </HeadingTag>
         </header>

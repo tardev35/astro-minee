@@ -9,19 +9,41 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 const currentPath = Astro.url.pathname;
 
 const isActive = (path: string) => isActivePath(currentPath, path);
+
+// เมนูชุดเดียวใช้ทั้งแถบบนจอกว้างและ sidebar มือถือ ไฟล์นี้เคยเขียนแท็ก <a> ซ้ำ
+// สองชุด (10 อัน) ทำให้แก้ชุดเดียวแล้วอีกชุดค้าง จึงยุบมาเป็นอาร์เรย์เดียว
+//
+// ไอคอนอยู่ในอาร์เรย์ แล้วเรนเดอร์เป็น <span aria-hidden="true"> แยกจากตัวอักษร
+// ห้ามต่อ emoji เข้าไปในสตริงชื่อเมนู เพราะ screen reader จะอ่านชื่อไอคอนติดมา
+//
+// ลำดับ: หน้าแรก มาก่อนเสมอ ตามด้วย โปรโมชั่น แล้วจึงเป็นหน้าอ่านข้อมูล
+// แบรนด์นี้ปิด cta toggle (login/register ยังเป็นหน้า interstitial) จึงไม่มีเมนู
+// สมัครสมาชิก/เข้าสู่ระบบ และ ทางเข้า ยังอยู่ในเมนูตามปกติ
+const links = [
+  { name: "หน้าแรก", path: "/", icon: "🏠" },
+  { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
+  { name: "ทางเข้า", path: "/ทางเข้า", icon: "🌐" },
+  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "🏢" },
+  { name: "ติดต่อเรา", path: "/contact-us", icon: "📞" },
+];
+
+const logoAlt = "โลโก้ AMBPlus+ ตัวอักษร AMB สีทองสามมิติเคลือบเงา ต่อด้วยคำว่า Plus และเครื่องหมายบวกสีครีมขอบทอง";
 ---
 
-<nav class="sticky top-0 z-50 w-full border-b border-red-600/50 bg-[#050508] font-sans shadow-[0_0_20px_rgba(220,38,38,0.2)]">
+<nav class="sticky top-0 z-50 w-full border-b border-[#ecd48c]/40 bg-[#0c0a07] font-sans shadow-[0_0_20px_rgba(236,212,140,0.18)]">
   <div class="flex h-[75px] w-full items-center justify-between px-4 xl:px-8">
     <div class="z-50 flex items-center">
       <a href="/" class="group relative flex items-center">
-        <div class="absolute inset-0 scale-0 rounded-full bg-red-600/20 blur-xl transition-transform duration-500 group-hover:scale-150"></div>
+        <div class="absolute inset-0 scale-0 rounded-full bg-[#ecd48c]/20 blur-xl transition-transform duration-500 group-hover:scale-150"></div>
         <Picture
           src={mainLogo!}
-          alt="BESTCLUB88"
+          alt={logoAlt}
           loading="eager"
           fetchpriority="high"
-          class="relative h-[40px] w-auto drop-shadow-[0_0_10px_rgba(255,255,255,0.1)] transition-transform group-hover:scale-105 xl:h-[45px]"
+          widths={[130, 260, 390]}
+          sizes="130px"
+          class="relative h-[40px] w-auto drop-shadow-[0_0_10px_rgba(236,212,140,0.35)] transition-transform group-hover:scale-105 xl:h-[45px]"
           formats={["avif", "webp"]}
           fallbackFormat="webp"
         />
@@ -29,70 +51,33 @@ const isActive = (path: string) => isActivePath(currentPath, path);
     </div>
 
     <div class="z-10 hidden items-center gap-2 lg:gap-4 xl:flex">
-      <a
-        href="/"
-        class={`group relative px-6 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive("/") ? "bg-red-600/20 border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.4)]" : "bg-white/5 border-white/10 hover:border-red-500/50"}`}>
-        <div aria-hidden="true"
-          class={`absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 translate-y-full transition-transform duration-300 ${isActive("/") ? "translate-y-0 opacity-20" : "group-hover:translate-y-0 opacity-40"}`}>
-        </div>
-        <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive("/") ? "text-yellow-400" : "text-gray-300 group-hover:text-white"}`}>
-          <span aria-hidden="true" class="mr-1">🏠</span> หน้าแรก
-        </span>
-      </a>
-
-      <a
-        href="/promotion"
-        class={`group relative px-6 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive("/promotion") ? "bg-red-600/20 border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.4)]" : "bg-white/5 border-white/10 hover:border-red-500/50"}`}>
-        <div aria-hidden="true"
-          class={`absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 translate-y-full transition-transform duration-300 ${isActive("/promotion") ? "translate-y-0 opacity-20" : "group-hover:translate-y-0 opacity-40"}`}>
-        </div>
-        <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive("/promotion") ? "text-yellow-400" : "text-gray-300 group-hover:text-white"}`}>
-          <span aria-hidden="true" class="mr-1">🎁</span> โปรโมชั่น
-        </span>
-      </a>
-
-      <a
-        href="/ทดลองเล่น"
-        class={`group relative px-6 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive("/ทดลองเล่น") ? "bg-red-600/20 border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.4)]" : "bg-white/5 border-white/10 hover:border-red-500/50"}`}>
-        <div aria-hidden="true"
-          class={`absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 translate-y-full transition-transform duration-300 ${isActive("/ทดลองเล่น") ? "translate-y-0 opacity-20" : "group-hover:translate-y-0 opacity-40"}`}>
-        </div>
-        <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive("/ทดลองเล่น") ? "text-yellow-400" : "text-gray-300 group-hover:text-white"}`}>
-          <span aria-hidden="true" class="mr-1">🎰</span> ทดลองเล่น
-        </span>
-      </a>
-
-      <a
-        href="/ทางเข้า"
-        class={`group relative px-6 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive("/ทางเข้า") ? "bg-red-600/20 border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.4)]" : "bg-white/5 border-white/10 hover:border-red-500/50"}`}>
-        <div aria-hidden="true"
-          class={`absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 translate-y-full transition-transform duration-300 ${isActive("/ทางเข้า") ? "translate-y-0 opacity-20" : "group-hover:translate-y-0 opacity-40"}`}>
-        </div>
-        <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive("/ทางเข้า") ? "text-yellow-400" : "text-gray-300 group-hover:text-white"}`}>
-          <span aria-hidden="true" class="mr-1">🌐</span> ทางเข้า
-        </span>
-      </a>
-
-      <a
-        href="/contact-us"
-        class={`group relative px-6 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive("/contact-us") ? "bg-red-600/20 border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.4)]" : "bg-white/5 border-white/10 hover:border-red-500/50"}`}>
-        <div aria-hidden="true"
-          class={`absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 translate-y-full transition-transform duration-300 ${isActive("/contact-us") ? "translate-y-0 opacity-20" : "group-hover:translate-y-0 opacity-40"}`}>
-        </div>
-        <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive("/contact-us") ? "text-yellow-400" : "text-gray-300 group-hover:text-white"}`}>
-          <span aria-hidden="true" class="mr-1">📞</span> ติดต่อเรา
-        </span>
-      </a>
+      {
+        links.map((link) => (
+          <a
+            href={link.path}
+            class={`group relative skew-x-[-15deg] overflow-hidden border px-6 py-2.5 transition-all duration-300 ${isActive(link.path) ? "border-[#ecd48c] bg-[#ecd48c]/15 shadow-[0_0_15px_rgba(236,212,140,0.35)]" : "border-[#ecd48c]/15 bg-white/5 hover:border-[#ecd48c]/60"}`}>
+            <div
+              aria-hidden="true"
+              class={`absolute inset-0 translate-y-full bg-gradient-to-r from-[#8c6b22] to-[#c9a24a] transition-transform duration-300 ${isActive(link.path) ? "translate-y-0 opacity-25" : "opacity-40 group-hover:translate-y-0"}`}
+            />
+            <span
+              class={`relative z-10 flex skew-x-[15deg] items-center gap-1.5 font-bold tracking-wide transition-colors ${isActive(link.path) ? "text-[#fbf2c4]" : "text-[#bfaa85] group-hover:text-[#efe3c8]"}`}>
+              <span aria-hidden="true">{link.icon}</span>
+              <span>{link.name}</span>
+            </span>
+          </a>
+        ))
+      }
     </div>
 
     <div class="z-50 flex items-center gap-2">
       <button
         id="hamburger-btn"
-        class="relative flex h-[45px] w-[45px] flex-col items-center justify-center space-y-1.5 rounded-md border border-red-500/30 bg-red-900/20 p-2 transition-all hover:bg-red-900/40 xl:hidden"
-        aria-label="Toggle menu">
-        <span class="hamburger-line h-[2px] w-6 origin-center bg-white transition-all duration-300"></span>
-        <span class="hamburger-line h-[2px] w-6 bg-white transition-all duration-300"></span>
-        <span class="hamburger-line h-[2px] w-6 origin-center bg-white transition-all duration-300"></span>
+        class="relative flex h-[45px] w-[45px] flex-col items-center justify-center space-y-1.5 rounded-md border border-[#ecd48c]/30 bg-[#241b0e]/60 p-2 transition-all hover:bg-[#241b0e] xl:hidden"
+        aria-label="เปิดเมนู">
+        <span class="hamburger-line h-[2px] w-6 origin-center bg-[#efe3c8] transition-all duration-300"></span>
+        <span class="hamburger-line h-[2px] w-6 bg-[#efe3c8] transition-all duration-300"></span>
+        <span class="hamburger-line h-[2px] w-6 origin-center bg-[#efe3c8] transition-all duration-300"></span>
       </button>
     </div>
   </div>
@@ -101,50 +86,25 @@ const isActive = (path: string) => isActivePath(currentPath, path);
 
   <div
     id="mobile-sidebar"
-    class="fixed top-0 right-0 z-40 h-screen w-[280px] translate-x-full transform overflow-y-auto border-l border-red-600/50 bg-[#050508] shadow-[-10px_0_30px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out xl:hidden">
+    class="fixed top-0 right-0 z-40 h-screen w-[280px] translate-x-full transform overflow-y-auto border-l border-[#ecd48c]/40 bg-[#0c0a07] shadow-[-10px_0_30px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out xl:hidden">
     <div class="flex flex-col space-y-3 px-6 pt-24 pb-10">
-      <a
-        href="/"
-        class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive("/") ? "bg-red-600/20 border-red-500 text-yellow-400 shadow-[inset_4px_0_0_rgba(220,38,38,1)]" : "bg-white/5 border-transparent text-gray-300 hover:bg-white/10 hover:text-white"}`}>
-        <span aria-hidden="true" class="mr-3 text-xl">🏠</span>
-        <span class="text-sm font-bold">หน้าแรก</span>
-      </a>
-
-      <a
-        href="/promotion"
-        class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive("/promotion") ? "bg-red-600/20 border-red-500 text-yellow-400 shadow-[inset_4px_0_0_rgba(220,38,38,1)]" : "bg-white/5 border-transparent text-gray-300 hover:bg-white/10 hover:text-white"}`}>
-        <span aria-hidden="true" class="mr-3 text-xl">🎁</span>
-        <span class="text-sm font-bold">โปรโมชั่น</span>
-      </a>
-
-      <a
-        href="/ทดลองเล่น"
-        class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive("/ทดลองเล่น") ? "bg-red-600/20 border-red-500 text-yellow-400 shadow-[inset_4px_0_0_rgba(220,38,38,1)]" : "bg-white/5 border-transparent text-gray-300 hover:bg-white/10 hover:text-white"}`}>
-        <span aria-hidden="true" class="mr-3 text-xl">🎰</span>
-        <span class="text-sm font-bold">ทดลองเล่น</span>
-      </a>
-
-      <a
-        href="/ทางเข้า"
-        class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive("/ทางเข้า") ? "bg-red-600/20 border-red-500 text-yellow-400 shadow-[inset_4px_0_0_rgba(220,38,38,1)]" : "bg-white/5 border-transparent text-gray-300 hover:bg-white/10 hover:text-white"}`}>
-        <span aria-hidden="true" class="mr-3 text-xl">🌐</span>
-        <span class="text-sm font-bold">ทางเข้า</span>
-      </a>
-
-      <a
-        href="/contact-us"
-        class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive("/contact-us") ? "bg-red-600/20 border-red-500 text-yellow-400 shadow-[inset_4px_0_0_rgba(220,38,38,1)]" : "bg-white/5 border-transparent text-gray-300 hover:bg-white/10 hover:text-white"}`}>
-        <span aria-hidden="true" class="mr-3 text-xl">📞</span>
-        <span class="text-sm font-bold">ติดต่อเรา</span>
-      </a>
+      {
+        links.map((link) => (
+          <a
+            href={link.path}
+            class={`sidebar-item flex items-center rounded-lg border px-4 py-3.5 transition-all ${isActive(link.path) ? "border-[#ecd48c] bg-[#ecd48c]/15 text-[#fbf2c4] shadow-[inset_4px_0_0_#ecd48c]" : "border-transparent bg-white/5 text-[#bfaa85] hover:bg-white/10 hover:text-[#efe3c8]"}`}>
+            <span aria-hidden="true" class="mr-3 text-xl">
+              {link.icon}
+            </span>
+            <span class="text-sm font-bold">{link.name}</span>
+          </a>
+        ))
+      }
     </div>
   </div>
 </nav>
 
 <style is:global>
-  a {
-    font-family: kanit, sans-serif !important;
-  }
   /* อนิเมชันปุ่ม Hamburger กลายเป็น X */
   #hamburger-btn.active .hamburger-line:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
@@ -185,10 +145,20 @@ const isActive = (path: string) => isActivePath(currentPath, path);
   .sidebar-item:nth-child(5) {
     transition-delay: 0.3s;
   }
+  .sidebar-item:nth-child(6) {
+    transition-delay: 0.35s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sidebar-item,
+    #mobile-sidebar,
+    #mobile-overlay {
+      transition-duration: 0.01ms;
+    }
+  }
 </style>
 
 <script>
-  // 🌟 เขียน JS แบบบังคับสลับ Class Tailwind ตรงๆ ชัวร์สุดครับ
   const hamburgerBtn = document.getElementById("hamburger-btn");
   const overlay = document.getElementById("mobile-overlay");
   const sidebar = document.getElementById("mobile-sidebar");
@@ -211,16 +181,13 @@ const isActive = (path: string) => isActivePath(currentPath, path);
     // 4. ล็อกหน้าจอหลังไม่ให้เลื่อนได้
     if (sidebar?.classList.contains("translate-x-0")) {
       document.body.style.overflow = "hidden";
-      // เติมคลาสโชว์เมนูให้เด้งทีละอัน
       sidebarItems.forEach((item) => item.classList.add("item-show"));
     } else {
       document.body.style.overflow = "";
-      // ซ่อนเมนูกลับไป
       sidebarItems.forEach((item) => item.classList.remove("item-show"));
     }
   };
 
-  // ดักการกดปุ่ม
   hamburgerBtn?.addEventListener("click", toggleMenu);
   overlay?.addEventListener("click", toggleMenu);
 

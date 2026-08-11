@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle9.astro";
-import Footer from "../components/FooterStyle3.astro";
+import Navbar from "../components/NavbarStyle4Black.astro";
+import Footer from "../components/FooterPremium.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,11 +55,11 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "BUGGY888 | เว็บรวมเกมคาสิโนออนไลน์ ระบบออโต้ฝากถอน ไม่มีขั้นต่ำ",
+  title = "AMBPLUS | ระบบออโต้สล็อตเว็บตรง แตกง่ายจ่ายไวฝากถอนผ่าน wallet",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings.
-  description = "BUGGY888 เว็บรวมเกมคาสิโนออนไลน์ ระบบฝากถอนออโต้ ไม่มีขั้นต่ำตามเงื่อนไข รองรับมือถือ พร้อมเกมหลากหลายและบริการสมาชิกตลอด 24 ชั่วโมง ควรศึกษากติกาก่อนเริ่ม",
+  description = "AMBPLUS สล็อตเว็บตรงระบบออโต้ ฝากถอนผ่าน Wallet รองรับมือถือ รวมเกมหลายรูปแบบ ใช้งานสะดวก พร้อมระบบรวดเร็วและบริการสมาชิก ควรอ่านกติกาก่อนเริ่มใช้งานทุกครั้ง",
   robots = "index, follow",
 } = Astro.props;
 
@@ -194,7 +194,7 @@ const profile = brandProfile(Astro.site);
 
           {block === "appmeta" && (
             <Fragment>
-              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content="buggy888" />}
+              {profile.showAppTitle && <meta name="apple-mobile-web-app-title" content={BRAND_NAME} />}
               <link rel="manifest" href="/site.webmanifest" />
             </Fragment>
           )}
@@ -236,7 +236,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #0b0302;
+        background-color: #0a0806;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -289,7 +289,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ BUGGY888 ข้อความ สล็อตเว็บตรง โปรแรงทุกวัน ฝาก-ถอนออโต้ รวดเร็ว เล่นง่าย จ่ายจริง พร้อมแถบระบบออโต้ รวดเร็วทันใจ โบนัสคุ้ม จัดเต็มทุกโปร และบริการ 24 ชม. ถัดจากปุ่มสมัครเลย ข้างโลโก้ BUGGY 888 สีทองบนป้ายสีแดง มีมาสคอตโจรสลัดตัวตลก ป้ายไฟ JACKPOT ตู้สล็อตเลข 777 กองเหรียญทองและอัญมณีสีแดง"
+          alt="แบนเนอร์ AMBPlus+ ตัวอักษรทองบนพื้นดำ ข้อความ คาสิโนออนไลน์ครบวงจร โบนัสจัดเต็ม ฝากถอนรวดเร็ว และแถบ ระบบออโต้ 24 ชม. เล่นง่าย จ่ายจริง เหนือปุ่มสมัครเลย ด้านข้างมีนางแบบชุดราตรีสีดำทอง ตู้สล็อตป้ายไฟ JACKPOT เลข 777 วงล้อรูเล็ต ไพ่ป๊อก และกองชิปกับเหรียญทอง"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

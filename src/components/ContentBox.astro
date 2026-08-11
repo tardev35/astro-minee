@@ -8,15 +8,15 @@ const { title, as: HeadingTag = "h1" } = Astro.props;
 
 <section class="relative z-10 my-8 flex w-full justify-center px-4 font-sans">
   <div
-    class="group relative isolate w-full max-w-[1400px] overflow-hidden rounded-3xl border border-[#ffd233]/30 bg-[#1b0806]/92 p-8 text-left text-base leading-relaxed text-[#f7e2c4] shadow-[0_10px_30px_rgba(255,210,51,0.16)] backdrop-blur-xl transition-all duration-500 hover:border-[#e0a81c]/55 hover:shadow-[0_15px_40px_rgba(224,168,28,0.22)] md:p-10">
-    <div class="pointer-events-none absolute -top-20 -left-20 -z-10 h-40 w-40 rounded-full bg-[#ffd233]/25 blur-[60px] transition-all duration-500 group-hover:bg-[#ffd233]/35"></div>
-    <div class="pointer-events-none absolute -right-20 -bottom-20 -z-10 h-40 w-40 rounded-full bg-[#a5140b]/30 blur-[60px] transition-all duration-500 group-hover:bg-[#e8241a]/35"></div>
+    class="group relative isolate w-full max-w-[1400px] overflow-hidden rounded-3xl border border-[#ecd48c]/30 bg-[#16110a]/92 p-8 text-left text-base leading-relaxed text-[#efe3c8] shadow-[0_10px_30px_rgba(236,212,140,0.16)] backdrop-blur-xl transition-all duration-500 hover:border-[#c9a24a]/55 hover:shadow-[0_15px_40px_rgba(201,162,74,0.22)] md:p-10">
+    <div class="pointer-events-none absolute -top-20 -left-20 -z-10 h-40 w-40 rounded-full bg-[#ecd48c]/25 blur-[60px] transition-all duration-500 group-hover:bg-[#ecd48c]/35"></div>
+    <div class="pointer-events-none absolute -right-20 -bottom-20 -z-10 h-40 w-40 rounded-full bg-[#6b4e17]/40 blur-[60px] transition-all duration-500 group-hover:bg-[#8c6b22]/45"></div>
 
     {
       title && (
-        <header class="mb-6 flex items-center gap-4 border-b border-[#ffd233]/25 pb-4">
-          <div class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffe98a] to-[#8d630b] shadow-[0_0_10px_rgba(255,210,51,0.5)]" />
-          <HeadingTag class="bg-gradient-to-r from-[#fff3cf] via-[#ffd233] to-[#e0a81c] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
+        <header class="mb-6 flex items-center gap-4 border-b border-[#ecd48c]/25 pb-4">
+          <div class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#fbf2c4] to-[#8c6b22] shadow-[0_0_10px_rgba(236,212,140,0.5)]" />
+          <HeadingTag class="bg-gradient-to-r from-[#fbf2c4] via-[#ecd48c] to-[#c9a24a] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
         </header>
       )
     }

@@ -4,24 +4,30 @@ export interface Props {
   titleright?: string;
 }
 const { titleleft, titleright } = Astro.props;
+
+// Both column titles are <h2> and both receive their text from the page, i.e.
+// from the docx — they are article headings, not chrome. The columns are
+// flattened: the text classes sit on the <article> and the slot renders as a
+// direct child, so `leading-normal` on each heading neutralises the inherited
+// leading-relaxed. Do not re-add a wrapper <div> around either slot.
 ---
 
 <section class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div
-    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#f6931e]/30 bg-[#161009]/92 p-8 text-[#f2dfc4] shadow-[0_10px_30px_rgba(246,147,30,0.16)] backdrop-blur-xl transition-all duration-500 hover:border-[#e07b12]/55 hover:shadow-[0_15px_40px_rgba(224,123,18,0.22)] md:p-10">
+    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#ecd48c]/30 bg-[#16110a]/92 p-8 text-[#efe3c8] shadow-[0_10px_30px_rgba(236,212,140,0.16)] backdrop-blur-xl transition-all duration-500 hover:border-[#c9a24a]/55 hover:shadow-[0_15px_40px_rgba(201,162,74,0.22)] md:p-10">
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
       <article
-        class="flex flex-col gap-4 border-b border-[#f6931e]/25 pb-6 text-left text-base leading-relaxed font-medium text-[#f5e0bb] md:border-r md:border-b-0 md:pr-6 md:pb-0">
+        class="flex flex-col gap-4 border-b border-[#ecd48c]/25 pb-6 text-left text-base leading-relaxed font-medium text-[#efe3c8] md:border-r md:border-b-0 md:pr-6 md:pb-0">
         {
           titleleft && (
-            <h2 class="text-center text-3xl leading-normal font-black tracking-wider text-[#fff2e0] uppercase drop-shadow-[0_2px_10px_rgba(246,147,30,0.35)] md:text-left">{titleleft}</h2>
+            <h2 class="text-center text-3xl leading-normal font-black tracking-wider text-[#fbf2c4] uppercase drop-shadow-[0_2px_10px_rgba(236,212,140,0.35)] md:text-left">{titleleft}</h2>
           )
         }
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-3 text-left text-base leading-relaxed text-[#f2dfc4] md:pl-6">
-        {titleright && <h2 class="flex items-center gap-2 text-2xl leading-normal font-black text-[#f6931e] drop-shadow-[0_0_8px_rgba(246,147,30,0.35)]">{titleright}</h2>}
+      <article class="flex flex-col gap-3 text-left text-base leading-relaxed text-[#efe3c8] md:pl-6">
+        {titleright && <h2 class="flex items-center gap-2 text-2xl leading-normal font-black text-[#ecd48c] drop-shadow-[0_0_8px_rgba(236,212,140,0.35)]">{titleright}</h2>}
         <slot name="right" />
       </article>
     </div>

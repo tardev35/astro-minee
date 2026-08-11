@@ -7,24 +7,25 @@ import slide3 from "../assets/slide3.png";
 import slide4 from "../assets/slide4.png";
 
 // Each alt is the text actually printed on that slide, read off the artwork,
-// plus the scene it sits in. All four share the gold BUGGY 888 plaque with the
-// pirate-clown mascot, a model in a red-and-gold outfit, gold coins and red gems.
+// plus the scene it sits in. All four share the gold AMBPlus+ wordmark on a
+// near-black ground, a model in a black-and-gold dress, gold coins and chips,
+// a 777 JACKPOT reel, a roulette wheel and a poker hand.
 const images = [
   {
     src: slide1,
-    alt: "แบนเนอร์โปรโมชั่นของ BUGGY888 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที และปุ่ม รับโปรเลย พร้อมป้ายทอง BUGGY 888 ตัวมาสคอตโจรสลัดหน้าตัวตลก นางแบบชุดแดงทอง วงล้อ 777 เหรียญทองและอัญมณีสีแดง",
+    alt: "แบนเนอร์โปรโมชั่นของ AMBPLUS ข้อความ AMBPlus+ คาสิโนออนไลน์ครบวงจร เล่นง่าย จ่ายจริง ฝากถอนออโต้ รองรับมือถือ ระบบออโต้ 24 ชม. และปุ่ม สมัครเลย พร้อมนางแบบชุดดำทอง วงล้อรูเล็ต ตู้สล็อต 777 ไพ่โป๊กเกอร์ เหรียญและชิปสีทอง",
   },
   {
     src: slide2,
-    alt: "แบนเนอร์โปรโมชั่นของ BUGGY888 ข้อความ ฝากแรกของวัน รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก และปุ่ม ฝากเลย พร้อมป้ายทอง BUGGY 888 ตัวมาสคอตโจรสลัดหน้าตัวตลก นางแบบชุดแดงทองถือเหรียญ ตู้สล็อต JACKPOT เลข 777 และกองเหรียญทอง",
+    alt: "แบนเนอร์โปรโมชั่นของ AMBPLUS ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่ม รับโปรเลย พร้อมนางแบบชุดดำทอง ไพ่โป๊กเกอร์ ตู้สล็อต 777 เหรียญและชิปสีทอง",
   },
   {
     src: slide3,
-    alt: "แบนเนอร์โปรโมชั่นของ BUGGY888 ข้อความ คืนยอดเสียทุกวัน สูงสุด 0.8% เล่นต่อได้ทุกวัน และปุ่ม รับสิทธิ์ พร้อมป้ายทอง BUGGY 888 ตัวมาสคอตโจรสลัดหน้าตัวตลก นางแบบชุดแดงทอง ป้ายไฟ JACKPOT เหรียญทองและอัญมณีสีแดง",
+    alt: "แบนเนอร์โปรโมชั่นของ AMBPLUS ข้อความ ฝากแรกของวัน รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่ม ฝากเลย พร้อมนางแบบชุดดำทอง ตู้สล็อต 777 วงล้อรูเล็ต ไพ่โป๊กเกอร์ เหรียญและชิปสีทอง",
   },
   {
     src: slide4,
-    alt: "แบนเนอร์โปรโมชั่นของ BUGGY888 ข้อความ แนะนำเพื่อน รับค่าคอม 10% ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม และปุ่ม ชวนเลย พร้อมป้ายทอง BUGGY 888 ตัวมาสคอตโจรสลัดหน้าตัวตลก นางแบบชุดแดงทอง หีบสมบัติ เหรียญทองและอัญมณีสีแดง",
+    alt: "แบนเนอร์โปรโมชั่นของ AMBPLUS ข้อความ คืนยอดเสียทุกวัน 0.8% เล่นต่อได้ทุกวัน คืนยอดเสียคุ้มค่า ไม่พลาดทุกความสนุก และปุ่ม รับสิทธิ์ พร้อมนางแบบชุดดำทอง ไพ่โป๊กเกอร์ ตู้สล็อต 777 วงล้อรูเล็ต เหรียญและชิปสีทอง",
   },
 ];
 
@@ -36,7 +37,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
   <input id="carousel-pause" type="checkbox" class="peer sr-only" />
   <label
     for="carousel-pause"
-    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#ffd233]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#ffe98a]">
+    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#ecd48c]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#fbf2c4]">
     หยุด / เล่นสไลด์ภาพ
   </label>
 
@@ -49,7 +50,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
             <Picture
               src={slide.src}
               alt={isDuplicate ? "" : slide.alt}
-              class="block w-full rounded-xl border border-[#ffd233]/35 object-cover shadow-[0_10px_30px_rgba(255,210,51,0.22)]"
+              class="block w-full rounded-xl border border-[#ecd48c]/35 object-cover shadow-[0_10px_30px_rgba(236,212,140,0.22)]"
               width={slide.src.width}
               height={slide.src.height}
               loading="lazy"

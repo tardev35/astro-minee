@@ -5,21 +5,24 @@ export interface Props {
 }
 const { title, as: HeadingTag = "h1" } = Astro.props;
 const headingSize = HeadingTag === "h1" ? "text-2xl md:text-3xl" : "text-xl md:text-2xl";
+
+// isolate on the card + -z-10 on each decorative corner rule is what lets the
+// slot content paint above the decoration without a wrapper <div>. Keep both.
 ---
 
 <section class="my-6 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-7xl border border-[#f6931e]/35 bg-[#161009]/92 p-8 text-left text-base leading-relaxed text-[#f2dfc4] shadow-[0_10px_30px_rgba(246,147,30,0.18)] backdrop-blur-md"
+    class="relative isolate w-full max-w-7xl border border-[#ecd48c]/35 bg-[#16110a]/92 p-8 text-left text-base leading-relaxed text-[#efe3c8] shadow-[0_10px_30px_rgba(236,212,140,0.18)] backdrop-blur-md"
     style="clip-path: polygon(40px 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%, 0 40px);">
-    <div class="absolute top-0 left-0 -z-10 h-1 w-32 bg-gradient-to-r from-[#ffb35c] to-transparent"></div>
-    <div class="absolute right-0 bottom-0 -z-10 h-1 w-32 bg-gradient-to-l from-[#f6931e] to-transparent"></div>
-    <div class="absolute top-0 left-0 -z-10 h-32 w-1 bg-gradient-to-b from-[#ffb35c] to-transparent"></div>
-    <div class="absolute right-0 bottom-0 -z-10 h-32 w-1 bg-gradient-to-t from-[#f6931e] to-transparent"></div>
+    <div class="absolute top-0 left-0 -z-10 h-1 w-32 bg-gradient-to-r from-[#fbf2c4] to-transparent"></div>
+    <div class="absolute right-0 bottom-0 -z-10 h-1 w-32 bg-gradient-to-l from-[#ecd48c] to-transparent"></div>
+    <div class="absolute top-0 left-0 -z-10 h-32 w-1 bg-gradient-to-b from-[#fbf2c4] to-transparent"></div>
+    <div class="absolute right-0 bottom-0 -z-10 h-32 w-1 bg-gradient-to-t from-[#ecd48c] to-transparent"></div>
 
     {
       title && (
-        <header class="mb-8 border-l-4 border-[#ffb35c] pl-6">
-          <HeadingTag class={`bg-gradient-to-r from-[#fff2e0] via-[#ffb35c] to-[#f6931e] bg-clip-text ${headingSize} leading-normal font-black text-transparent uppercase`}>{title}</HeadingTag>
+        <header class="mb-8 border-l-4 border-[#c9a24a] pl-6">
+          <HeadingTag class={`bg-gradient-to-r from-[#fbf2c4] via-[#ecd48c] to-[#c9a24a] bg-clip-text ${headingSize} leading-normal font-black text-transparent uppercase`}>{title}</HeadingTag>
         </header>
       )
     }

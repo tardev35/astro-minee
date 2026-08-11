@@ -4,40 +4,44 @@ export interface Props {
   titleright?: string;
 }
 const { titleleft, titleright } = Astro.props;
+
+// Both column titles are <h2> receiving their text from the page (the docx).
+// The clipped corner rules are decorative and carry -z-10 against the card's
+// `isolate`, so the slot content always paints above them without a wrapper.
 ---
 
 <section class="mx-auto mb-6 w-full max-w-7xl px-4 font-sans">
   <div
-    class="relative isolate w-full border border-[#f6931e]/30 bg-[#161009]/92 p-8 text-[#f2dfc4] shadow-[0_10px_30px_rgba(246,147,30,0.18)] backdrop-blur-md transition-all duration-300 hover:border-[#ffb35c]/50 hover:shadow-[0_15px_40px_rgba(224,123,18,0.24)]"
+    class="relative isolate w-full border border-[#ecd48c]/30 bg-[#16110a]/92 p-8 text-[#efe3c8] shadow-[0_10px_30px_rgba(236,212,140,0.18)] backdrop-blur-md transition-all duration-300 hover:border-[#c9a24a]/50 hover:shadow-[0_15px_40px_rgba(201,162,74,0.24)]"
     style="clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);">
-    <div class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#ffb35c] to-transparent"></div>
-    <div class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#f6931e] to-transparent"></div>
-    <div class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#ffb35c] to-transparent"></div>
-    <div class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#f6931e] to-transparent"></div>
+    <div class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#fbf2c4] to-transparent"></div>
+    <div class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#ecd48c] to-transparent"></div>
+    <div class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#fbf2c4] to-transparent"></div>
+    <div class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#ecd48c] to-transparent"></div>
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f2dfc4]">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#efe3c8]">
         {
           titleleft && (
-            <div class="flex items-baseline gap-2 border-b border-[#f6931e]/30 pb-2">
-              <span aria-hidden="true" class="font-mono text-[#ffb35c]">
+            <div class="flex items-baseline gap-2 border-b border-[#ecd48c]/30 pb-2">
+              <span aria-hidden="true" class="font-mono text-[#c9a24a]">
                 &gt;_
               </span>
-              <h2 class="text-xl leading-normal font-black text-[#f6931e] uppercase">{titleleft}</h2>
+              <h2 class="text-xl leading-normal font-black text-[#ecd48c] uppercase">{titleleft}</h2>
             </div>
           )
         }
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f2dfc4] md:border-l md:border-[#f6931e]/30 md:pl-8">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#efe3c8] md:border-l md:border-[#ecd48c]/30 md:pl-8">
         {
           titleright && (
-            <div class="flex items-baseline gap-2 border-b border-[#f6931e]/30 pb-2">
-              <span aria-hidden="true" class="font-mono text-[#ffb35c]">
+            <div class="flex items-baseline gap-2 border-b border-[#ecd48c]/30 pb-2">
+              <span aria-hidden="true" class="font-mono text-[#c9a24a]">
                 &gt;_
               </span>
-              <h2 class="text-xl leading-normal font-black text-[#f6931e] uppercase">{titleright}</h2>
+              <h2 class="text-xl leading-normal font-black text-[#ecd48c] uppercase">{titleright}</h2>
             </div>
           )
         }
