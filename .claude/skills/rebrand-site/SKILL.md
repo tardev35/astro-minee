@@ -1292,8 +1292,14 @@ inferring them from the docx's main title/H1/H2 the same way you did for
 GROW268.**
 
 **Length rule for any `description` you write yourself: 150–160
-characters.** A description the docx supplies is used verbatim — those
-are already written to length — but the ones you infer have run long
+characters.** A description the docx supplies is used **verbatim, at
+whatever length it arrives** — do not pad it, do not top it up to 150,
+do not reach into the H1/H2 for extra clauses. Short docx descriptions
+are the norm, not the exception (ANDAMAN168 134, NORWAY89 136,
+WINSIAM88 142), and `verify-build` deliberately does not enforce its
+150-character floor on the home page for exactly this reason, so a
+134-character home description is a passing build, not something to
+fix. Upper bounds still bind everywhere — the ones you infer have run long
 every time: on UFAG8 the four sub-pages came out at 234 / 251 / 270 /
 337 characters, roughly double, because each one kept appending another
 clause (`ทั้งแฮนดิแคป สูง–ต่ำ และ 1X2`, `บิลเดี่ยวกับบิลสเต็ป`, …) until
