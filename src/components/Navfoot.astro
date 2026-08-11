@@ -15,4 +15,10 @@
     </a>
   </div>
 </div>
-<div class="h-[75px] lg:hidden"></div>
+<style is:global>
+  @media (max-width: 1023px) {
+    body {
+      padding-bottom: calc(75px + env(safe-area-inset-bottom, 0px));
+    }
+  }
+</style>
