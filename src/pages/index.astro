@@ -1,62 +1,63 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/Announcement3.astro";
-import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ContentBoxSevenThree from "../components/ContentBoxSevenThree.astro";
-import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
-import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
+import Announcement from "../components/Announcement5.astro";
+import ContentBoxPremium from "../components/ContentBoxPremium.astro";
 import ContentBox from "../components/ContentBox.astro";
+import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
+import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
+import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinners3.astro";
+import LatestWinners from "../components/LatestWinners2.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq2.astro";
+import Faq from "../components/Faq4.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
 import { pageGraph } from "../lib/schema";
 
-// Slides may only live inside a ContentBoxSevenThree* block and there are at
-// most two of those per rebrand — both are spent here. slide1 reads
-// "เล่นง่าย จ่ายจริง ฝากถอนออโต้ • ระบบออโต้ 24 ชม.", which sits with the
-// auto-system section; slide3 reads "ฝากแรกของวัน รับเพิ่ม 20% • ฝากง่าย
-// ถอนเร็ว ระบบออโต้" and sits with the Wallet section. slide2 and slide4 stay
-// unused here and keep rendering in SmoothCarousel and on /promotion.
-import imgAutoSystem from "../assets/slide1.png";
-import imgWallet from "../assets/slide3.png";
+// Slides live only inside a ContentBoxSevenThree* block and there are at most
+// two of those per rebrand — both are spent here. slide4 reads "คาสิโนออนไลน์
+// ครบจบในที่เดียว • ระบบออโต้ · ฝาก-ถอน 24 ชม. · รองรับมือถือ", which sits with
+// the "เปิดโลกเกมสล็อตหลายสไตล์" section; slide2 reads "ฝากแรกของวัน รับเพิ่ม
+// 20% • ฝากง่าย ถอนเร็ว ระบบออโต้" and sits with the ฝากถอนไว section. slide1
+// and slide3 stay unused here and keep rendering in SmoothCarousel and on
+// /promotion.
+import imgGameStyles from "../assets/slide4.png";
+import imgCashier from "../assets/slide2.png";
 
-const pageTitle = "AMBPLUS | ระบบออโต้สล็อตเว็บตรง แตกง่ายจ่ายไวฝากถอนผ่าน wallet";
+const pageTitle = "AMB194 | รวมเกมส์สล็อตแตกไม่อั้น เล่นสนุกฝากถอนไว ปลอดภัยมั่นคง";
+const pageHeading = "AMB194 รวมเกมส์สล็อตแตกไม่อั้น เล่นสนุกฝากถอนไว ปลอดภัยมั่นคง";
 
-// The docx Meta Description, verbatim at the length it was written (121
+// The docx Meta Description, verbatim at the length it was written (~118
 // characters). DESC_MIN does not apply to the home page — verify-build.mjs
 // exempts it precisely so the brand's own copy ships unpadded. Do not top it
 // up to 150.
 const pageDescription =
-  "AMBPLUS สล็อตเว็บตรงระบบออโต้ ฝากถอนผ่าน Wallet รองรับมือถือ รวมเกมหลายรูปแบบ ใช้งานสะดวก พร้อมระบบรวดเร็วและบริการสมาชิก";
+  "AMB194 รวมเกมสล็อตหลายรูปแบบ เล่นสนุก ฝากถอนไว รองรับมือถือ พร้อมระบบใช้งานมั่นคง ปลอดภัย และบริการสมาชิกตลอด 24 ชั่วโมง";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq2's own default, which is always the previous brand's FAQ.
+// Faq4's own default, which is always the previous brand's FAQ.
 const faqs = [
   {
-    q: "AMBPLUS รองรับการฝากถอนผ่าน Wallet หรือไม่?",
-    a: "ระบบรองรับ Wallet ตามช่องทางที่เว็บไซต์กำหนด สมาชิกควรใช้ข้อมูลที่ตรงกับบัญชีสมัคร ตรวจสอบยอด และรอให้ระบบยืนยันรายการทุกครั้ง",
+    q: "AMB194 มีเกมสล็อตแบบไหนให้เลือกบ้าง?",
+    a: "ภายในระบบมีเกมสล็อตหลายแนว ทั้งแบบคลาสสิก เกมโบนัส และเกมธีมสมัยใหม่ ผู้เล่นสามารถเลือกตามความชอบ ฟีเจอร์ และระดับความผันผวนของเกม",
   },
   {
-    q: "ระบบออโต้ของ AMBPLUS ช่วยอะไรบ้าง?",
-    a: "ระบบออโต้ช่วยลดขั้นตอนการฝาก ถอน และติดตามสถานะธุรกรรม ทำให้สมาชิกสามารถจัดการรายการต่าง ๆ ผ่านหน้าบัญชีได้สะดวกขึ้น",
+    q: "ระบบฝากถอนของ AMB194 ใช้เวลานานหรือไม่?",
+    a: "ระบบถูกออกแบบให้ลดขั้นตอนการทำรายการ แต่ระยะเวลาอาจแตกต่างตามช่องทางชำระเงินและสถานะการตรวจสอบของบัญชี",
   },
   {
-    q: "สล็อตแตกง่ายของ AMBPLUS รับประกันผลได้หรือไม่?",
-    a: "ไม่สามารถรับประกันผลของเกมสล็อตได้ เพราะแต่ละเกมมีรูปแบบการจ่ายและความผันผวนต่างกัน ควรศึกษากติกาและกำหนดงบประมาณก่อนเริ่ม",
+    q: "เกมแตกไม่อั้นของ AMB194 รับประกันกำไรหรือไม่?",
+    a: "ไม่สามารถรับประกันกำไรหรือผลลัพธ์ของเกมสล็อตได้ ผู้เล่นควรอ่านกติกา กำหนดวงเงิน และเล่นตามงบที่ตนเองยอมรับความเสี่ยงได้",
   },
 ];
 
 // Homepage: no breadcrumb — there is no trail above the root.
 const graph = pageGraph(Astro, {
-  name: pageTitle,
+  name: pageHeading,
   description: pageDescription,
   faqs,
 });
@@ -66,50 +67,20 @@ const graph = pageGraph(Astro, {
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement
-    message="เข้าถึงเกมสล็อตหลายสไตล์บน AMBPLUS ทั้งเกมคลาสสิก เกมฟีเจอร์โบนัส และเกมที่มีรูปแบบการจ่ายต่างกัน ค้นหาตามค่าย ธีม หรือสไตล์ที่สนใจได้ • คำว่าแตกง่ายไม่สามารถรับประกันผลได้ ควรตรวจอัตราจ่าย ความผันผวน และกำหนดวงเงินก่อนเล่นทุกครั้ง • ก่อนส่งคำขอถอนควรตรวจสอบยอดคงเหลือ สถานะบัญชี และเงื่อนไขโปรโมชั่นให้ครบถ้วน โดยไม่เปิดเผยรหัสผ่านหรือรหัสยืนยันบัญชี"
+    message="AMB194 รวมเกมสล็อตหลายรูปแบบไว้ในระบบเดียว ทั้งสล็อตคลาสสิก เกมโบนัส และเกมสล็อตธีมใหม่ ๆ เลือกได้ตามรูปแบบการเล่น ฟีเจอร์ และระดับความผันผวน • ระบบฝากถอนช่วยลดขั้นตอน ทำรายการผ่านหน้าบัญชีได้โดยตรง ควรตรวจสอบชื่อบัญชีและจำนวนเงินก่อนยืนยันทุกครั้ง • คำว่าแตกไม่อั้นเป็นคำโฆษณา ไม่ใช่การรับประกันผลลัพธ์ ควรกำหนดวงเงินให้ชัดเจนก่อนเริ่มเล่น • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง"
   />
 
-  <ContentBoxNeumorphism as="h1" title="AMBPLUS | ระบบออโต้สล็อตเว็บตรง แตกง่ายจ่ายไวฝากถอนผ่าน wallet">
-    <p class="text-left text-base leading-relaxed text-[#efe3c8]">
-      <strong class="text-[#ecd48c]">AMBPLUS</strong> เป็นแพลตฟอร์มสล็อตเว็บตรงที่รวมระบบออโต้และเกมสล็อตหลายรูปแบบไว้ในบัญชีเดียว รองรับการฝากถอนผ่าน Wallet และการใช้งานผ่านมือถือ
-      ช่วยลดขั้นตอนระหว่างการทำรายการ สมาชิกสามารถเลือกเกม ตรวจสอบโปรโมชั่น และติดตามสถานะธุรกรรมได้สะดวก ควรอ่านกติกาและเงื่อนไขก่อนเริ่มใช้งานทุกครั้ง
+  <ContentBoxPremium as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#f5ecd6]">
+      <strong class="text-[#f8d441]">AMB194</strong> เป็นแพลตฟอร์มเกมสล็อตออนไลน์ที่รวบรวมเกมหลายรูปแบบไว้ในระบบเดียว เน้นการใช้งานที่สะดวกทั้งบนมือถือและคอมพิวเตอร์
+      พร้อมระบบฝากถอนที่ช่วยลดขั้นตอนและเมนูที่เข้าถึงง่าย สมาชิกสามารถเลือกเกม ตรวจสอบโปรโมชั่น และจัดการบัญชีได้จากหน้าเดียว ควรอ่านกติกาและเงื่อนไขก่อนเริ่มทุกครั้ง
     </p>
-  </ContentBoxNeumorphism>
+  </ContentBoxPremium>
 
-  <ContentBoxCyberCut as="h2" title="เข้าถึงเกมสล็อตหลายสไตล์ได้ง่ายบน AMBPLUS">
-    <p class="text-left text-base leading-relaxed text-[#efe3c8]">
-      ภายใน AMBPLUS มีเกมสล็อตหลายประเภทให้เลือก ทั้งเกมคลาสสิก เกมฟีเจอร์โบนัส และเกมที่มีรูปแบบการจ่ายแตกต่างกัน สมาชิกสามารถค้นหาตามค่าย ธีม หรือสไตล์ที่สนใจได้ง่าย
-      ควรศึกษากติกาและความผันผวนก่อนเริ่ม เพื่อเลือกเกมให้เหมาะกับงบประมาณของตนเอง
-    </p>
-  </ContentBoxCyberCut>
-
-  <ProviderGrid />
-
-  <ContentBoxSevenThree titleright="ระบบออโต้ช่วยลดขั้นตอนตั้งแต่ฝากจนถึงถอน">
+  <ContentBoxSevenThreePremium titleright="เปิดโลกเกมสล็อตหลายสไตล์ได้ใน AMB194">
     <Picture
       slot="left"
-      src={imgAutoSystem}
-      loading="lazy"
-      fetchpriority="low"
-      widths={[300, 450, 600]}
-      sizes="(max-width: 768px) calc(100vw - 6rem), 380px"
-      decoding="async"
-      formats={["avif", "webp"]}
-      fallbackFormat="webp"
-      quality={80}
-      alt="แบนเนอร์โปรโมชั่นของ AMBPLUS ข้อความ AMBPlus+ คาสิโนออนไลน์ครบวงจร เล่นง่าย จ่ายจริง ฝากถอนออโต้ รองรับมือถือ ระบบออโต้ 24 ชม. และปุ่ม สมัครเลย พร้อมนางแบบชุดดำทอง วงล้อรูเล็ต ตู้สล็อต 777 ไพ่โป๊กเกอร์ เหรียญและชิปสีทอง"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#ecd48c]/35 shadow-[0_10px_30px_rgba(236,212,140,0.22)]"
-    />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#efe3c8]">
-      ระบบออโต้ช่วยให้สมาชิกทำรายการผ่านหน้าบัญชีได้ด้วยตนเอง โดยไม่ต้องส่งข้อมูลซ้ำหลายครั้ง ก่อนยืนยันควรตรวจสอบชื่อบัญชี จำนวนเงิน และสถานะรายการให้ถูกต้อง
-      หากธุรกรรมยังดำเนินการอยู่ควรรอผลจากระบบก่อนทำรายการใหม่ เพื่อลดความสับสนในการตรวจสอบ
-    </p>
-  </ContentBoxSevenThree>
-
-  <ContentBoxSevenThreeCyberCut titleright="ฝากถอนผ่าน Wallet กับ AMBPLUS สะดวกบนมือถือ">
-    <Picture
-      slot="left"
-      src={imgWallet}
+      src={imgGameStyles}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -118,54 +89,88 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่นของ AMBPLUS ข้อความ ฝากแรกของวัน รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่ม ฝากเลย พร้อมนางแบบชุดดำทอง ตู้สล็อต 777 วงล้อรูเล็ต ไพ่โป๊กเกอร์ เหรียญและชิปสีทอง"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#ecd48c]/35 shadow-[0_10px_30px_rgba(236,212,140,0.22)]"
+      alt="แบนเนอร์โปรโมชั่นของ AMB194 ข้อความ คาสิโนออนไลน์ ครบจบในที่เดียว เล่นง่าย ฝากไว จ่ายจริง ระบบออโต้ ฝาก-ถอน 24 ชม. รองรับมือถือ และปุ่ม สมัครเลย พร้อมนางแบบชุดราตรีสีดำทอง โทรศัพท์มือถือที่เปิดหน้าเดิมพันกีฬา เหรียญและชิปสีทอง"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f8d441]/35 shadow-[0_10px_30px_rgba(248,212,65,0.22)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#efe3c8]">
-      การรองรับ Wallet ของ AMBPLUS ช่วยให้สมาชิกจัดการธุรกรรมผ่านโทรศัพท์มือถือได้สะดวกขึ้น ควรใช้ข้อมูลกระเป๋าเงินที่ตรงกับบัญชีสมัคร ตรวจสอบยอดก่อนยืนยัน
-      และเก็บรายละเอียดรายการไว้จนกว่าระบบจะแสดงสถานะสำเร็จ เพื่อช่วยลดปัญหาจากข้อมูลไม่ตรงกัน
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f5ecd6]">
+      ภายใน AMB194 มีทั้งสล็อตคลาสสิก เกมโบนัส และเกมสล็อตธีมใหม่ ๆ ให้เลือกตามความชอบ ผู้เล่นสามารถพิจารณาเกมจากรูปแบบการเล่น ฟีเจอร์ และความผันผวนก่อนเริ่ม
+      เพื่อช่วยให้เลือกเกมที่เหมาะกับงบประมาณและสไตล์ของตนเองมากขึ้น
     </p>
-  </ContentBoxSevenThreeCyberCut>
+  </ContentBoxSevenThreePremium>
 
-  <ContentBoxFloatingBadge as="h2" title="เกมแตกง่ายควรพิจารณาควบคู่กับความผันผวน">
-    <p class="text-left text-base leading-relaxed text-[#efe3c8]">
-      คำว่าแตกง่ายมักใช้สื่อถึงเกมที่มีจังหวะลุ้นรางวัลและฟีเจอร์โบนัสน่าสนใจ แต่ผลลัพธ์ไม่สามารถรับประกันได้ ผู้เล่นควรตรวจสอบอัตราจ่าย ความผันผวน และเงื่อนไขของแต่ละเกม
-      พร้อมกำหนดวงเงินก่อนเล่น เพื่อควบคุมการใช้งานให้อยู่ในขอบเขตที่เหมาะสม
-    </p>
-  </ContentBoxFloatingBadge>
+  <ProviderGrid />
+
+  <ContentBoxSpecial as="h2" title="เล่นสนุกขึ้นเมื่อเลือกเกมให้ตรงกับสไตล์ตัวเอง">
+    <div slot="left">
+      <p class="text-left text-base leading-relaxed text-[#f5ecd6]">
+        ความสนุกของเกมสล็อตไม่ได้ขึ้นอยู่กับรางวัลเพียงอย่างเดียว แต่ยังรวมถึงธีมเกม ฟีเจอร์โบนัส ความเร็วของแต่ละรอบ และระดับความผันผวน
+      </p>
+    </div>
+    <div slot="right">
+      <p class="text-left text-base leading-relaxed text-[#f5ecd6]">ผู้เล่นควรทดลองเกมหลายรูปแบบก่อน เพื่อค้นหาแนวที่เล่นแล้วเข้าใจง่ายและไม่ทำให้ต้องเพิ่มงบเกินแผน</p>
+    </div>
+  </ContentBoxSpecial>
 
   <GameRankingBoard />
 
-  <ContentBox as="h2" title="AMBPLUS รองรับการใช้งานผ่านหลายอุปกรณ์">
-    <p class="text-left text-base leading-relaxed text-[#efe3c8]">
-      เว็บไซต์ AMBPLUS รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ สมาชิกจึงสามารถเข้าสู่ระบบ เลือกเกม ดูโปรโมชั่น และติดตามธุรกรรมผ่านเบราว์เซอร์ได้ ควรใช้อินเทอร์เน็ตที่เสถียร
-      เข้าผ่านช่องทางหลัก และหลีกเลี่ยงเครือข่ายสาธารณะเมื่อต้องทำรายการทางการเงิน
+  <ContentBoxSevenThreeNeumorphism titleright="ฝากถอนไวผ่านระบบของ AMB194 ช่วยลดเวลารอ">
+    <Picture
+      slot="left"
+      src={imgCashier}
+      loading="lazy"
+      fetchpriority="low"
+      widths={[300, 450, 600]}
+      sizes="(max-width: 768px) calc(100vw - 6rem), 380px"
+      decoding="async"
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      quality={80}
+      alt="แบนเนอร์โปรโมชั่นของ AMB194 ข้อความ ฝากแรกของวัน รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่ม ฝากเลย พร้อมนางแบบชุดราตรีสีดำทอง โทรศัพท์มือถือที่แสดงโลโก้ truemoney wallet เหรียญและชิปสีทอง"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f8d441]/35 shadow-[0_10px_30px_rgba(248,212,65,0.22)]"
+    />
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f5ecd6]">
+      ระบบธุรกรรมของ AMB194 ช่วยให้สมาชิกทำรายการผ่านหน้าบัญชีได้โดยตรง ก่อนยืนยันควรตรวจสอบชื่อบัญชี จำนวนเงิน และสถานะรายการให้ครบถ้วน หากรายการยังดำเนินการอยู่
+      ควรรอผลจากระบบก่อนทำซ้ำ เพื่อช่วยลดความสับสนในการตรวจสอบย้อนหลัง
+    </p>
+  </ContentBoxSevenThreeNeumorphism>
+
+  <LatestWinners />
+
+  <ContentBox as="h2" title="แตกไม่อั้นเป็นคำโฆษณา ไม่ใช่การรับประกันผลลัพธ์">
+    <p class="text-left text-base leading-relaxed text-[#f5ecd6]">
+      คำว่าแตกไม่อั้นมักใช้สื่อถึงเกมที่มีโอกาสลุ้นรางวัลและฟีเจอร์น่าสนใจ แต่ผลของเกมสล็อตไม่สามารถรับประกันได้ ผู้เล่นควรดูข้อมูลเกม อัตราจ่าย ความผันผวน
+      และงบประมาณของตนเองร่วมกัน เพื่อให้การเล่นยังอยู่ในขอบเขตที่ควบคุมได้
     </p>
   </ContentBox>
 
-  <ContentBoxNeumorphism as="h2" title="ตรวจสอบรายการจ่ายไวผ่านระบบของ AMBPLUS">
-    <p class="text-left text-base leading-relaxed text-[#efe3c8]">
-      ก่อนส่งคำขอถอนผ่าน AMBPLUS สมาชิกควรตรวจสอบยอดคงเหลือ สถานะบัญชี และเงื่อนไขโปรโมชั่นให้ครบถ้วน หากรายการล่าช้าควรเก็บเวลา จำนวนเงิน และรายละเอียดอ้างอิงไว้สำหรับติดต่อทีมงาน
-      โดยไม่เปิดเผยรหัสผ่านหรือรหัสยืนยันบัญชี
+  <ContentBoxPremium as="h2" title="AMB194 เน้นการใช้งานที่ปลอดภัยและเป็นระบบ">
+    <p class="text-left text-base leading-relaxed text-[#f5ecd6]">
+      การใช้งาน AMB194 ควรเริ่มจากการเข้าผ่านช่องทางหลัก ตั้งรหัสผ่านที่คาดเดายาก และไม่เปิดเผยรหัสยืนยันแก่ผู้อื่น ควรหลีกเลี่ยงเครือข่ายสาธารณะเมื่อต้องทำธุรกรรม
+      และออกจากระบบทุกครั้งเมื่อใช้อุปกรณ์ที่ไม่ใช่ของตนเอง
     </p>
-  </ContentBoxNeumorphism>
+  </ContentBoxPremium>
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ AMBPLUS" faqs={faqs} />
+  <ContentBox as="h2" title="ตรวจสอบบัญชีและธุรกรรมกับทีมงาน AMB194">
+    <p class="text-left text-base leading-relaxed text-[#f5ecd6]">
+      หากพบปัญหาเกี่ยวกับการเข้าสู่ระบบ โปรโมชั่น หรือสถานะฝากถอน สมาชิกสามารถติดต่อทีมงาน AMB194 ผ่านช่องทางที่เว็บไซต์กำหนด ควรแจ้งชื่อผู้ใช้ เวลา และรายละเอียดรายการให้ครบ
+      โดยไม่เปิดเผยรหัสผ่านหรือข้อมูลยืนยัน เพื่อช่วยให้ตรวจสอบได้รวดเร็วขึ้น
+    </p>
+  </ContentBox>
+
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ AMB194" faqs={faqs} />
 
   <LoginRtpSection />
-
-  <LatestWinners />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#fbf2c4] via-[#ecd48c] to-[#8c6b22] px-4 py-3 text-sm font-black whitespace-nowrap text-[#17110a] shadow-[0_10px_30px_rgba(236,212,140,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(236,212,140,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#fff3ae] via-[#f8d441] to-[#8a6205] px-4 py-3 text-sm font-black whitespace-nowrap text-[#170f02] shadow-[0_10px_30px_rgba(248,212,65,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(248,212,65,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#ecd48c]/70 bg-[#16110a]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#efe3c8] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#c9a24a] hover:bg-[#241b0e]/85 hover:shadow-[0_15px_40px_rgba(201,162,74,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border border-[#f8d441]/70 bg-[#150f05]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#f5ecd6] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#d9a520] hover:bg-[#221807]/85 hover:shadow-[0_15px_40px_rgba(217,165,32,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>

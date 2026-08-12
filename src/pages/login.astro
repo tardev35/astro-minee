@@ -25,8 +25,17 @@ const fontHref = usesGoogleFonts
 <html lang="th" style={`--font-sans: ${fontStack};`}>
   <head>
     <meta charset="utf-8" />
-    <title>AMBPLUS | เข้าสู่ระบบสล็อตเว็บตรงผ่านช่องทางหลัก</title>
-    <meta name="description" content="AMBPLUS เข้าสู่ระบบผ่านช่องทางหลัก รองรับมือถือและคอมพิวเตอร์ พร้อมตรวจสอบบัญชี เลือกเกม และจัดการรายการได้อย่างสะดวก" />
+    <title>AMB194 | เข้าสู่ระบบเกมสล็อตผ่านช่องทางหลัก</title>
+
+    {
+      /* Title and description are the docx SUB-PAGES rows for เข้าสู่ระบบ,
+        VERBATIM. This one runs 116 characters, under verify-build's 150 floor,
+        and that is fine here and nowhere else: the floor is only applied to
+        indexable pages and this stub is noindex (see the robots meta below).
+        Do not top it up with a closing clause — the four indexable sub-pages
+        need that, this one does not. */
+    }
+    <meta name="description" content="AMB194 เข้าสู่ระบบผ่านช่องทางหลัก รองรับมือถือและคอมพิวเตอร์ พร้อมตรวจสอบบัญชี เลือกเกม และจัดการรายการได้อย่างสะดวก" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {
@@ -66,24 +75,26 @@ const fontHref = usesGoogleFonts
     </style>
 
     <style>
-      /* AMBPLUS is a monochrome luxury brand: champagne gold on near-black warm
-         surfaces, with bronze as the only second hue. There is NO red in this
-         palette — the `--brand-red` this block used to carry was the previous
-         brand's, and it is gone rather than recoloured.
+      /* AMB194 is bright gold on warm near-black, with a real red second hue —
+         the star inside the spade badge in the logo, and the chips on the
+         slides. The red is the accent on ONE element here (the counter-rotating
+         inner ring); everything else is gold, so it stays a gold page.
          Every variable below is NAMED FOR THE COLOUR IT HOLDS, which previous
          brands stopped doing: this block once declared `--brand-gold` on brands
          with no gold in them and `--brand-red` on a blue one, so the next editor
-         reused it by name and shipped the wrong hue. Rename with the value. */
+         reused it by name and shipped the wrong hue. It also carried
+         `--champagne*` names through a brand whose palette was no longer
+         champagne at all. Rename with the value. */
       :root {
-        --near-black: #0a0806;
-        --panel-black: rgba(22, 17, 10, 0.94);
-        --champagne: #ecd48c;
-        --champagne-deep: #8c6b22;
-        --champagne-light: #fbf2c4;
-        --champagne-mid: #c9a24a;
-        --bronze: #6b4e17;
-        --text-cream: #efe3c8;
-        --text-sand: #bfaa85;
+        --ink: #0b0806;
+        --panel: rgba(21, 15, 5, 0.94);
+        --gold: #f8d441;
+        --gold-light: #fff3ae;
+        --gold-mid: #d9a520;
+        --gold-deep: #8a6205;
+        --red: #e11d2b;
+        --text-cream: #f5ecd6;
+        --text-sand: #c9b784;
       }
 
       body {
@@ -91,7 +102,7 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         color: var(--text-cream);
 
-        background: radial-gradient(circle at 50% 10%, rgba(236, 212, 140, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(140, 107, 34, 0.18) 0%, transparent 55%), var(--near-black);
+        background: radial-gradient(circle at 50% 10%, rgba(248, 212, 65, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(138, 98, 5, 0.18) 0%, transparent 55%), var(--ink);
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -104,12 +115,12 @@ const fontHref = usesGoogleFonts
         width: 90%;
         max-width: 450px;
         padding: 3.5rem;
-        background: var(--panel-black);
-        border: 1px solid rgba(236, 212, 140, 0.4);
+        background: var(--panel);
+        border: 1px solid rgba(248, 212, 65, 0.4);
         border-radius: 2rem;
         box-shadow:
-          0 1rem 3rem rgba(236, 212, 140, 0.2),
-          0 0 2rem rgba(140, 107, 34, 0.22);
+          0 1rem 3rem rgba(248, 212, 65, 0.2),
+          0 0 2rem rgba(138, 98, 5, 0.22);
         text-align: center;
         backdrop-filter: blur(10px);
       }
@@ -118,13 +129,13 @@ const fontHref = usesGoogleFonts
         font-family: "Oswald", sans-serif;
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(180deg, var(--champagne-light) 0%, var(--champagne) 45%, var(--champagne-deep) 72%, var(--champagne-mid) 100%);
+        background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 45%, var(--gold-deep) 72%, var(--gold-mid) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         letter-spacing: 0.3em;
         margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 2px rgba(236, 212, 140, 0.35));
+        filter: drop-shadow(0 1px 2px rgba(248, 212, 65, 0.35));
       }
 
       .sophisticated-loader {
@@ -140,30 +151,30 @@ const fontHref = usesGoogleFonts
       .orb {
         width: 40px;
         height: 40px;
-        background: radial-gradient(circle, var(--champagne-light) 0%, var(--champagne) 45%, var(--champagne-deep) 100%);
+        background: radial-gradient(circle, var(--gold-light) 0%, var(--gold) 45%, var(--gold-deep) 100%);
         border-radius: 50%;
-        box-shadow: 0 0 2rem rgba(236, 212, 140, 0.35);
+        box-shadow: 0 0 2rem rgba(248, 212, 65, 0.35);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .ring {
         position: absolute;
         border-radius: 50%;
-        border: 3px solid rgba(236, 212, 140, 0.2);
+        border: 3px solid rgba(248, 212, 65, 0.2);
         animation: spin linear infinite;
       }
 
       .ring-1 {
         width: 100%;
         height: 100%;
-        border-top-color: var(--champagne);
+        border-top-color: var(--gold);
         animation-duration: 4s;
       }
 
       .ring-2 {
         width: 80%;
         height: 80%;
-        border-bottom-color: var(--bronze);
+        border-bottom-color: var(--red);
         animation-duration: 6s;
         animation-direction: reverse;
       }
@@ -180,11 +191,11 @@ const fontHref = usesGoogleFonts
         0%,
         100% {
           transform: scale(1);
-          box-shadow: 0 0 2rem rgba(236, 212, 140, 0.35);
+          box-shadow: 0 0 2rem rgba(248, 212, 65, 0.35);
         }
         50% {
           transform: scale(1.15);
-          box-shadow: 0 0 3rem rgba(236, 212, 140, 0.5);
+          box-shadow: 0 0 3rem rgba(248, 212, 65, 0.5);
         }
       }
 
@@ -195,7 +206,7 @@ const fontHref = usesGoogleFonts
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text-cream);
-        text-shadow: 0 1px 1px rgba(236, 212, 140, 0.25);
+        text-shadow: 0 1px 1px rgba(248, 212, 65, 0.25);
         margin: 0;
       }
       .status-text .p {
@@ -208,7 +219,7 @@ const fontHref = usesGoogleFonts
   </head>
   <body>
     <div class="premium-loading-container">
-      <div class="brand-identity">AMBPLUS</div>
+      <div class="brand-identity">AMB194</div>
 
       <div class="sophisticated-loader">
         <div class="orb"></div>
@@ -218,7 +229,7 @@ const fontHref = usesGoogleFonts
 
       <div class="status-text">
         <h1 class="h1">AUTHENTICATING SECURE ACCESS...</h1>
-        <p class="p">กำลังพาไปหน้าเข้าสู่ระบบ AMBPLUS อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
+        <p class="p">กำลังพาไปหน้าเข้าสู่ระบบ AMB194 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
       </div>
     </div>
 

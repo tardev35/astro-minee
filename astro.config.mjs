@@ -33,7 +33,7 @@ export default defineConfig({
     "/line": "https://tinyurl.com/tog191",
   },
 
-  site: "https://ambplus-play.org",
+  site: "https://amb194-play.com",
   integrations: [
     sitemap({
       // /login, /register and /line are forwarding pages that all ship

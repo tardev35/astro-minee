@@ -7,25 +7,25 @@ import slide3 from "../assets/slide3.png";
 import slide4 from "../assets/slide4.png";
 
 // Each alt is the text actually printed on that slide, read off the artwork,
-// plus the scene it sits in. All four share the gold AMBPlus+ wordmark on a
-// near-black ground, a model in a black-and-gold dress, gold coins and chips,
-// a 777 JACKPOT reel, a roulette wheel and a poker hand.
+// plus the scene it sits in. All four share the gold AMB194 wordmark on a
+// near-black ground, a model in a black-and-gold evening dress, gold coins and
+// chips, a 777 JACKPOT reel, a roulette wheel and a poker hand.
 const images = [
   {
     src: slide1,
-    alt: "แบนเนอร์โปรโมชั่นของ AMBPLUS ข้อความ AMBPlus+ คาสิโนออนไลน์ครบวงจร เล่นง่าย จ่ายจริง ฝากถอนออโต้ รองรับมือถือ ระบบออโต้ 24 ชม. และปุ่ม สมัครเลย พร้อมนางแบบชุดดำทอง วงล้อรูเล็ต ตู้สล็อต 777 ไพ่โป๊กเกอร์ เหรียญและชิปสีทอง",
+    alt: "แบนเนอร์โปรโมชั่นของ AMB194 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่ม รับโปรเลย พร้อมนางแบบชุดราตรีสีดำทอง ตู้สล็อต 777 ไพ่โป๊กเกอร์ เหรียญและชิปสีทอง",
   },
   {
     src: slide2,
-    alt: "แบนเนอร์โปรโมชั่นของ AMBPLUS ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่ม รับโปรเลย พร้อมนางแบบชุดดำทอง ไพ่โป๊กเกอร์ ตู้สล็อต 777 เหรียญและชิปสีทอง",
+    alt: "แบนเนอร์โปรโมชั่นของ AMB194 ข้อความ ฝากแรกของวัน รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่ม ฝากเลย พร้อมนางแบบชุดราตรีสีดำทอง โทรศัพท์มือถือที่แสดงโลโก้ truemoney wallet เหรียญและชิปสีทอง",
   },
   {
     src: slide3,
-    alt: "แบนเนอร์โปรโมชั่นของ AMBPLUS ข้อความ ฝากแรกของวัน รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่ม ฝากเลย พร้อมนางแบบชุดดำทอง ตู้สล็อต 777 วงล้อรูเล็ต ไพ่โป๊กเกอร์ เหรียญและชิปสีทอง",
+    alt: "แบนเนอร์โปรโมชั่นของ AMB194 ข้อความ คืนยอดเสียทุกวัน 0.8% เล่นต่อได้ทุกวัน คืนยอดเสียคุ้มค่า ไม่พลาดทุกความสนุก และปุ่ม รับสิทธิ์ พร้อมนางแบบชุดราตรีสีดำทอง วงล้อรูเล็ต ไพ่โป๊กเกอร์ เหรียญและชิปสีทอง",
   },
   {
     src: slide4,
-    alt: "แบนเนอร์โปรโมชั่นของ AMBPLUS ข้อความ คืนยอดเสียทุกวัน 0.8% เล่นต่อได้ทุกวัน คืนยอดเสียคุ้มค่า ไม่พลาดทุกความสนุก และปุ่ม รับสิทธิ์ พร้อมนางแบบชุดดำทอง ไพ่โป๊กเกอร์ ตู้สล็อต 777 วงล้อรูเล็ต เหรียญและชิปสีทอง",
+    alt: "แบนเนอร์โปรโมชั่นของ AMB194 ข้อความ คาสิโนออนไลน์ ครบจบในที่เดียว เล่นง่าย ฝากไว จ่ายจริง ระบบออโต้ ฝาก-ถอน 24 ชม. รองรับมือถือ และปุ่ม สมัครเลย พร้อมนางแบบชุดราตรีสีดำทอง โทรศัพท์มือถือที่เปิดหน้าเดิมพันกีฬา เหรียญและชิปสีทอง",
   },
 ];
 
@@ -37,7 +37,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
   <input id="carousel-pause" type="checkbox" class="peer sr-only" />
   <label
     for="carousel-pause"
-    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#ecd48c]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#fbf2c4]">
+    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#f8d441]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#fff3ae]">
     หยุด / เล่นสไลด์ภาพ
   </label>
 
@@ -50,7 +50,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
             <Picture
               src={slide.src}
               alt={isDuplicate ? "" : slide.alt}
-              class="block w-full rounded-xl border border-[#ecd48c]/35 object-cover shadow-[0_10px_30px_rgba(236,212,140,0.22)]"
+              class="block w-full rounded-xl border border-[#f8d441]/35 object-cover shadow-[0_10px_30px_rgba(248,212,65,0.22)]"
               width={slide.src.width}
               height={slide.src.height}
               loading="lazy"
