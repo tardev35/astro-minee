@@ -4944,7 +4944,7 @@ const PAGE = /* html */ `<!doctype html>
   }
 
   quotaPct.addEventListener('click', async () => {
-    const answer = prompt('เปิด Claude Code แล้วพิมพ์ /usage\nกรอกเลข % ของ Current session ที่เห็นตอนนี้\n\n(กรอกครั้งเดียว หลังจากนั้นแถบจะขยับเอง)');
+    const answer = prompt('เปิด Claude Code แล้วพิมพ์ /usage\\nกรอกเลข % ของ Current session ที่เห็นตอนนี้\\n\\n(กรอกครั้งเดียว หลังจากนั้นแถบจะขยับเอง)');
     if (answer === null) return;
 
     try {
