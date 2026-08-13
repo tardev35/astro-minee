@@ -2519,6 +2519,7 @@ function gitSnapshot() {
   };
 }
 
+
 const PAGE = /* html */ `<!doctype html>
 <html lang="th">
 <head>
@@ -2951,13 +2952,13 @@ const PAGE = /* html */ `<!doctype html>
   #gtBox.bad #gtLog { border-color: rgba(248,113,113,0.35); color: #fca5a5; }
   #gtBox.bad #gtMsgOut { color: var(--err); font-weight: 700; }
   #gtBox.done #gtMsgOut { color: var(--ok); font-weight: 700; }
+
 </style>
 </head>
 <body>
 <header>
   <div class="head-inner">
     <h1><span class="mark">📦</span> <span class="grad-text">Minee Uploader</span></h1>
-    
   </div>
 </header>
 <main>
@@ -4709,6 +4710,7 @@ const PAGE = /* html */ `<!doctype html>
     } catch { /* server not answering */ }
     gtSync();
   })();
+
 </script>
 </body>
 </html>`;
@@ -4720,6 +4722,7 @@ const server = http.createServer(async (req, res) => {
     res.end(PAGE);
     return;
   }
+
   if (req.method === "GET" && url.pathname === "/current") {
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify(await readCurrentLinks()));
