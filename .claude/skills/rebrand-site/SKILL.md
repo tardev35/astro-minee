@@ -1292,9 +1292,12 @@ inferring them from the docx's main title/H1/H2 the same way you did for
 GROW268.**
 
 **Length rule for any `description` you write yourself: 150–160
-characters.** A description the docx supplies is used **verbatim, at
+characters.** A description the brief supplies is used **verbatim, at
 whatever length it arrives** — do not pad it, do not top it up to 150,
-do not reach into the H1/H2 for extra clauses. Short docx descriptions
+do not reach into the H1/H2 for extra clauses. This covers a
+`content.txt` written by `tools/site-import.mjs` exactly as it covers a
+hand-written `content.docx`: the `Description` line under the old site's
+own meta tag is the brand's copy, not a draft to improve. Short brief descriptions
 are the norm, not the exception (ANDAMAN168 134, NORWAY89 136,
 WINSIAM88 142), and `verify-build` deliberately does not enforce its
 150-character floor on the home page for exactly this reason, so a

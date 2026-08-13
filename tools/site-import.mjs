@@ -104,7 +104,8 @@ const chars = (s) => [...s].length;
 function blocksOf(html) {
   const out = [];
   let skipped = 0;
-  const re = /<(h[1-6])\b[^>]*>([\s\S]*?)<\/\1>|<p\b[^>]*>([\s\S]*?)<\/p>|<li\b[^>]*>([\s\S]*?)<\/li>/gi;
+  const re =
+    /<(h[1-6])\b[^>]*>([\s\S]*?)<\/\1>|<p\b[^>]*>((?:(?!<h[1-6]\b)[\s\S])*?)<\/p>|<li\b[^>]*>((?:(?!<h[1-6]\b)[\s\S])*?)<\/li>/gi;
   for (const m of withoutCode(html).matchAll(re)) {
     const tag = (m[1] || (m[3] !== undefined ? "p" : "li")).toLowerCase();
     const text = clean(m[2] ?? m[3] ?? m[4] ?? "");
@@ -333,13 +334,21 @@ async function main() {
   }
 
   const subs = [];
+  const claimed = new Set();
   for (const cfg of SUB_PAGES) {
+    const free = src.list.filter((x) => !x.isHome && !claimed.has(x));
     let p;
     for (const s of cfg.slugs) {
-      p = src.list.find((x) => x.slug === s && !x.isHome);
+      p = free.find((x) => x.slug === s);
       if (p) break;
     }
+    if (!p)
+      for (const s of cfg.slugs) {
+        p = free.find((x) => x.slug.split(/[-_]/).includes(s));
+        if (p) break;
+      }
     if (!p) continue;
+    claimed.add(p);
     const html = src.static ? p.raw : await get(p.url);
     const m = metaOf(html);
     const body = src.static ? blocksOf(articleHtml(p.raw)).blocks : blocksOf(p.html).blocks;
@@ -373,9 +382,8 @@ async function main() {
 
   const warn = [];
   const d = chars(homeMeta.description);
-  if (!d) warn.push("หน้าแรกไม่มี meta description เลย — ต้องเขียนเอง 150–160 ตัวอักษร");
-  else if (d < 150) warn.push(`description หน้าแรก ${d} ตัวอักษร — ต่ำกว่าพื้น 150 ที่ verify-build บังคับ ต้องขยายก่อน build ผ่าน`);
-  else if (d > 160) warn.push(`description หน้าแรก ${d} ตัวอักษร — เกิน 160 Google จะตัดท้ายทิ้ง`);
+  if (!d) warn.push("หน้าแรกไม่มี meta description เลย — agent ต้องเขียนเอง 150–160 ตัวอักษร");
+  else if (d > 160) warn.push(`description หน้าแรก ${d} ตัวอักษร — เกิน 160 verify-build ตีตก ต้องตัดให้สั้นลง`);
   if (counts.h1 !== 1) warn.push(`เจอ H1 ${counts.h1} อัน — หน้าเดียวต้องมี 1 อันเท่านั้น`);
   if (skippedDeepHeadings) warn.push(`ข้าม h4–h6 ${skippedDeepHeadings} อัน — บนเว็บเดิมมันเป็นป้ายการ์ดในวิดเจ็ต ไม่ใช่หัวข้อบทความ`);
 
