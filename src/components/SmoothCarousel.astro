@@ -7,25 +7,25 @@ import slide3 from "../assets/slide3.png";
 import slide4 from "../assets/slide4.png";
 
 // Each alt is the text actually printed on that slide, read off the artwork,
-// plus the scene it sits in. All four share the gold AMB194 wordmark on a
-// near-black ground, a model in a black-and-gold evening dress, gold coins and
-// chips, a 777 JACKPOT reel, a roulette wheel and a poker hand.
+// plus the scene it sits in. All four share the HONEY289 badge (a winking
+// cartoon bee on a honeycomb, HONEY in gold and 289 in pink) over dripping
+// honey, with gold coins, a honey pot, a honey dipper and pink flowers.
 const images = [
   {
     src: slide1,
-    alt: "แบนเนอร์โปรโมชั่นของ AMB194 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่ม รับโปรเลย พร้อมนางแบบชุดราตรีสีดำทอง ตู้สล็อต 777 ไพ่โป๊กเกอร์ เหรียญและชิปสีทอง",
+    alt: "แบนเนอร์ HONEY289 ข้อความ เว็บสล็อตสายหวาน โบนัสทุกวัน เล่นง่าย ฝาก-ถอนออโต้ จ่ายจริง ป้าย แตกง่ายจ่ายจริง และปุ่ม สมัครเลย พร้อมผึ้งการ์ตูนขยิบตาถือไม้จุ่มน้ำผึ้ง ตู้สล็อต SWEET WIN เลข 777 โหลน้ำผึ้ง เหรียญทองและดอกไม้สีชมพู",
   },
   {
     src: slide2,
-    alt: "แบนเนอร์โปรโมชั่นของ AMB194 ข้อความ ฝากแรกของวัน รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่ม ฝากเลย พร้อมนางแบบชุดราตรีสีดำทอง โทรศัพท์มือถือที่แสดงโลโก้ truemoney wallet เหรียญและชิปสีทอง",
+    alt: "แบนเนอร์โปรโมชั่น HONEY289 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก และปุ่ม ฝากเลย พร้อมผึ้งการ์ตูนยกนิ้วโป้ง ตู้สล็อต HONEY289 เลข 777 กล่องของขวัญสีชมพู โหลน้ำผึ้ง เหรียญทองและดอกไม้",
   },
   {
     src: slide3,
-    alt: "แบนเนอร์โปรโมชั่นของ AMB194 ข้อความ คืนยอดเสียทุกวัน 0.8% เล่นต่อได้ทุกวัน คืนยอดเสียคุ้มค่า ไม่พลาดทุกความสนุก และปุ่ม รับสิทธิ์ พร้อมนางแบบชุดราตรีสีดำทอง วงล้อรูเล็ต ไพ่โป๊กเกอร์ เหรียญและชิปสีทอง",
+    alt: "แบนเนอร์โปรโมชั่น HONEY289 ข้อความ แนะนำเพื่อน รับค่าคอม 10% ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม และปุ่ม ชวนเลย พร้อมผึ้งการ์ตูนถือโทรโข่ง รูปเพื่อนสองคนในกรอบรังผึ้ง กล่องของขวัญสีชมพู โหลน้ำผึ้ง เหรียญทองและดอกไม้",
   },
   {
     src: slide4,
-    alt: "แบนเนอร์โปรโมชั่นของ AMB194 ข้อความ คาสิโนออนไลน์ ครบจบในที่เดียว เล่นง่าย ฝากไว จ่ายจริง ระบบออโต้ ฝาก-ถอน 24 ชม. รองรับมือถือ และปุ่ม สมัครเลย พร้อมนางแบบชุดราตรีสีดำทอง โทรศัพท์มือถือที่เปิดหน้าเดิมพันกีฬา เหรียญและชิปสีทอง",
+    alt: "แบนเนอร์โปรโมชั่น HONEY289 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที และปุ่ม รับโปรเลย พร้อมผึ้งการ์ตูนยกนิ้วโป้งถือไม้จุ่มน้ำผึ้ง ตู้สล็อต HONEY289 เลข 777 กล่องของขวัญสีชมพู โหลน้ำผึ้ง เหรียญทองและดอกไม้",
   },
 ];
 
@@ -37,7 +37,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
   <input id="carousel-pause" type="checkbox" class="peer sr-only" />
   <label
     for="carousel-pause"
-    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#f8d441]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#fff3ae]">
+    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#fdbb24]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#ffe3a3]">
     หยุด / เล่นสไลด์ภาพ
   </label>
 
@@ -50,7 +50,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
             <Picture
               src={slide.src}
               alt={isDuplicate ? "" : slide.alt}
-              class="block w-full rounded-xl border border-[#f8d441]/35 object-cover shadow-[0_10px_30px_rgba(248,212,65,0.22)]"
+              class="block w-full rounded-xl border border-[#fdbb24]/35 object-cover shadow-[0_10px_30px_rgba(253,187,36,0.22)]"
               width={slide.src.width}
               height={slide.src.height}
               loading="lazy"

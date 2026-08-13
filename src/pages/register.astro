@@ -25,20 +25,17 @@ const fontHref = usesGoogleFonts
 <html lang="th" style={`--font-sans: ${fontStack};`}>
   <head>
     <meta charset="utf-8" />
-    <title>AMB194 | สมัครสมาชิกเพื่อเริ่มเล่นเกมสล็อตออนไลน์</title>
+    <title>HONEY289 | สมัครสมาชิกเพื่อเริ่มใช้งานเกมเดิมพัน</title>
 
     {
       /* The docx SUB-PAGES table has no สมัครสมาชิก row, so unlike /login these
-        two strings are written here rather than copied — 159 characters, inside
+        two strings are written here rather than copied — 156 characters, inside
         the 150–160 window. Count CHARACTERS, not bytes (Thai is 3 bytes each).
         They say what THIS page is: registering. The previous wording opened
         "ทางเข้าเล่นและสมัครสมาชิก", which described /ทางเข้า instead and gave two
         routes the same promise. */
     }
-    <meta
-      name="description"
-      content="AMB194 สมัครสมาชิกผ่านช่องทางหลักเพื่อเริ่มใช้งานเกมสล็อตออนไลน์ รองรับมือถือและคอมพิวเตอร์ พร้อมเลือกเกม ตรวจสอบโปรโมชั่น และจัดการรายการฝากถอนได้จากหน้าเดียว"
-    />
+    <meta name="description" content="HONEY289 สมัครสมาชิกผ่านช่องทางหลักเพื่อเริ่มใช้งานเกมเดิมพัน รองรับมือถือและคอมพิวเตอร์ พร้อมเลือกเกม ตรวจสอบโปรโมชั่น และจัดการรายการฝากถอนได้จากหน้าเดียว" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {
@@ -78,10 +75,10 @@ const fontHref = usesGoogleFonts
     </style>
 
     <style>
-      /* AMB194 is bright gold on warm near-black, with a real red second hue —
-         the star inside the spade badge in the logo, and the chips on the
-         slides. The red is the accent on ONE element here (the counter-rotating
-         inner ring); everything else is gold, so it stays a gold page.
+      /* HONEY289 is warm amber honey on deep honey-brown, with a bubblegum pink
+         second hue — the "289" in the logo and every CTA pill on the artwork.
+         The pink is the accent on ONE element here (the counter-rotating inner
+         ring); everything else is honey amber, so it stays a honey page.
          Every variable below is NAMED FOR THE COLOUR IT HOLDS, which previous
          brands stopped doing: this block once declared `--brand-gold` on brands
          with no gold in them and `--brand-red` on a blue one, so the next editor
@@ -89,15 +86,15 @@ const fontHref = usesGoogleFonts
          `--champagne*` names through a brand whose palette was no longer
          champagne at all. Rename with the value. */
       :root {
-        --ink: #0b0806;
-        --panel: rgba(21, 15, 5, 0.94);
-        --gold: #f8d441;
-        --gold-light: #fff3ae;
-        --gold-mid: #d9a520;
-        --gold-deep: #8a6205;
-        --red: #e11d2b;
-        --text-cream: #f5ecd6;
-        --text-sand: #c9b784;
+        --ink: #1a0c03;
+        --panel: rgba(42, 18, 6, 0.94);
+        --honey: #fdbb24;
+        --honey-light: #ffe3a3;
+        --honey-mid: #eb9413;
+        --honey-deep: #b35303;
+        --pink: #f2559a;
+        --text-cream: #fdf0d8;
+        --text-sand: #d8bd8e;
       }
 
       body {
@@ -105,7 +102,7 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         color: var(--text-cream);
 
-        background: radial-gradient(circle at 50% 10%, rgba(248, 212, 65, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(138, 98, 5, 0.18) 0%, transparent 55%), var(--ink);
+        background: radial-gradient(circle at 50% 10%, rgba(253, 187, 36, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(179, 83, 3, 0.18) 0%, transparent 55%), var(--ink);
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -119,11 +116,11 @@ const fontHref = usesGoogleFonts
         max-width: 450px;
         padding: 3.5rem;
         background: var(--panel);
-        border: 1px solid rgba(248, 212, 65, 0.4);
+        border: 1px solid rgba(253, 187, 36, 0.4);
         border-radius: 2rem;
         box-shadow:
-          0 1rem 3rem rgba(248, 212, 65, 0.2),
-          0 0 2rem rgba(138, 98, 5, 0.22);
+          0 1rem 3rem rgba(253, 187, 36, 0.2),
+          0 0 2rem rgba(179, 83, 3, 0.22);
         text-align: center;
         backdrop-filter: blur(10px);
       }
@@ -132,13 +129,13 @@ const fontHref = usesGoogleFonts
         font-family: "Oswald", sans-serif;
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 45%, var(--gold-deep) 72%, var(--gold-mid) 100%);
+        background: linear-gradient(180deg, var(--honey-light) 0%, var(--honey) 45%, var(--honey-deep) 72%, var(--honey-mid) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         letter-spacing: 0.3em;
         margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 2px rgba(248, 212, 65, 0.35));
+        filter: drop-shadow(0 1px 2px rgba(253, 187, 36, 0.35));
       }
 
       .sophisticated-loader {
@@ -154,30 +151,30 @@ const fontHref = usesGoogleFonts
       .orb {
         width: 40px;
         height: 40px;
-        background: radial-gradient(circle, var(--gold-light) 0%, var(--gold) 45%, var(--gold-deep) 100%);
+        background: radial-gradient(circle, var(--honey-light) 0%, var(--honey) 45%, var(--honey-deep) 100%);
         border-radius: 50%;
-        box-shadow: 0 0 2rem rgba(248, 212, 65, 0.35);
+        box-shadow: 0 0 2rem rgba(253, 187, 36, 0.35);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .ring {
         position: absolute;
         border-radius: 50%;
-        border: 3px solid rgba(248, 212, 65, 0.2);
+        border: 3px solid rgba(253, 187, 36, 0.2);
         animation: spin linear infinite;
       }
 
       .ring-1 {
         width: 100%;
         height: 100%;
-        border-top-color: var(--gold);
+        border-top-color: var(--honey);
         animation-duration: 4s;
       }
 
       .ring-2 {
         width: 80%;
         height: 80%;
-        border-bottom-color: var(--red);
+        border-bottom-color: var(--pink);
         animation-duration: 6s;
         animation-direction: reverse;
       }
@@ -194,11 +191,11 @@ const fontHref = usesGoogleFonts
         0%,
         100% {
           transform: scale(1);
-          box-shadow: 0 0 2rem rgba(248, 212, 65, 0.35);
+          box-shadow: 0 0 2rem rgba(253, 187, 36, 0.35);
         }
         50% {
           transform: scale(1.15);
-          box-shadow: 0 0 3rem rgba(248, 212, 65, 0.5);
+          box-shadow: 0 0 3rem rgba(253, 187, 36, 0.5);
         }
       }
 
@@ -209,7 +206,7 @@ const fontHref = usesGoogleFonts
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text-cream);
-        text-shadow: 0 1px 1px rgba(248, 212, 65, 0.25);
+        text-shadow: 0 1px 1px rgba(253, 187, 36, 0.25);
         margin: 0;
       }
       .status-text .p {
@@ -222,7 +219,7 @@ const fontHref = usesGoogleFonts
   </head>
   <body>
     <div class="premium-loading-container">
-      <div class="brand-identity">AMB194</div>
+      <div class="brand-identity">HONEY289</div>
 
       <div class="sophisticated-loader">
         <div class="orb"></div>
@@ -232,7 +229,7 @@ const fontHref = usesGoogleFonts
 
       <div class="status-text">
         <h1 class="h1">CREATING SECURE ACCOUNT SESSION...</h1>
-        <p class="p">กำลังพาไปหน้าสมัครสมาชิก AMB194 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
+        <p class="p">กำลังพาไปหน้าสมัครสมาชิก HONEY289 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
       </div>
     </div>
 

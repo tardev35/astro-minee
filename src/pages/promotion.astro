@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement5.astro";
+import Announcement from "../components/Announcement3.astro";
 
 import { Picture } from "astro:assets";
 
@@ -16,12 +16,14 @@ import { pageGraph } from "../lib/schema";
 // paragraph, the four promo images and one CTA. No section headings and no
 // second paragraph — the slides already print their own offer in large type,
 // so prose underneath only re-types what the visitor can already read.
-const pageTitle = "โปรโมชั่นเกมสล็อต AMB194 สำหรับสมาชิกใหม่และสมาชิกเดิม";
+const pageTitle = "โปรโมชั่น HONEY289 รวมโบนัสและสิทธิพิเศษของสมาชิก";
 
-// docx SUB-PAGES Meta ของหน้าโปรโมชั่น + วรรคปิดท้ายหนึ่งวรรคให้ผ่านเกท 150
-// นับเป็น "ตัวอักษร" ไม่ใช่ไบต์ (ภาษาไทย 3 ไบต์/ตัว) — สตริงนี้วัดได้ 158 ตัวอักษร
+// docx SUB-PAGES Meta ของหน้าโปรโมชั่น ยกมาทั้งประโยคโดยไม่แก้ถ้อยคำ (130 ตัวอักษร)
+// + วรรคปิดท้ายหนึ่งวรรคให้ผ่านเกท DESC_MIN 150 ของ tools/verify-build.mjs
+// ซึ่งยกเว้นให้เฉพาะหน้าแรกเท่านั้น นับเป็น "ตัวอักษร" ไม่ใช่ไบต์ (ไทย 3 ไบต์/ตัว)
+// — สตริงนี้วัดได้ 153 ตัวอักษร
 const pageDescription =
-  "AMB194 รวมโปรโมชั่นเกมสล็อต โบนัสสมาชิกใหม่ และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจนให้ตรวจสอบก่อนเลือกรับโปรที่เหมาะกับรูปแบบการใช้งานของตนเองมากที่สุด";
+  "HONEY289 รวมโปรโมชั่นเกมเดิมพัน โบนัสต้อนรับ และสิทธิพิเศษสำหรับสมาชิก พร้อมรายละเอียดเงื่อนไข ช่วยให้เลือกโปรได้เหมาะกับการใช้งาน ตรวจได้ก่อนกดรับสิทธิ์";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -34,26 +36,27 @@ const graph = pageGraph(Astro, {
 });
 
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#f8d441]/30 object-contain shadow-[0_10px_30px_rgba(248,212,65,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#d9a520]/55 hover:shadow-[0_15px_40px_rgba(217,165,32,0.30)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#fdbb24]/30 object-contain shadow-[0_10px_30px_rgba(253,187,36,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#eb9413]/55 hover:shadow-[0_15px_40px_rgba(235,148,19,0.30)]";
 ---
 
-<MainLayout title="AMB194 | โปรโมชั่นเกมสล็อตและสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
+<MainLayout title="HONEY289 | โปรโมชั่นเกมเดิมพันและโบนัสสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#f5ecd6]">
-        <strong class="text-[#f8d441]">AMB194</strong> รวมโปรโมชั่นเกมสล็อตและสิทธิพิเศษของสมาชิกไว้ในหน้าเดียว รายละเอียดของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว
-        ทั้งเปอร์เซ็นต์ที่ได้รับและเงื่อนไขหลักของรายการนั้น ก่อนกดรับสิทธิ์ควรอ่านเงื่อนไขให้ครบ เพราะแต่ละรายการกำหนดยอดฝากขั้นต่ำ จำนวนเทิร์น และเกมที่ร่วมรายการไม่เหมือนกัน
-        หากไม่แน่ใจจุดใด สอบถามทีมงานผ่านช่องทางที่เว็บไซต์กำหนดได้ตลอดทั้งวัน
+      <p class="mb-8 text-left text-base leading-relaxed text-[#fdf0d8]">
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#fdbb24]">HONEY289</strong> เปิดให้สมาชิกไว้ครบในที่เดียว ทั้งโบนัสต้อนรับสมาชิกใหม่ โบนัสฝากครั้งแรก
+        และค่าคอมจากการชวนเพื่อน ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว จึงอ่านจบได้ตั้งแต่ครั้งแรกที่เลื่อนดู
+        ก่อนกดรับสิทธิ์ควรดูยอดฝากขั้นต่ำ จำนวนเทิร์น เกมที่ร่วมรายการ และเพดานถอนของรายการนั้นให้ครบ เพราะแต่ละโปรกำหนดไว้ไม่เท่ากัน
+        หากมีจุดใดไม่ชัดเจน สอบถามทีมงานผ่านช่องทางที่เว็บไซต์กำหนดได้ตลอด 24 ชั่วโมง
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น AMB194 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่มแดงขอบทอง รับโปรเลย บนพื้นดำ มีนางแบบชุดดำทองถือชิปคาสิโน ตัวเลข 50% ทองนูน ตู้สล็อต JACKPOT เลข 777 ไพ่เอซ วงล้อรูเล็ต และกองชิปกับเหรียญทอง"
+          alt="แบนเนอร์โปรโมชั่น HONEY289 ข้อความ เว็บสล็อตสายหวาน โบนัสทุกวัน เล่นง่าย ฝาก-ถอนออโต้ จ่ายจริง และปุ่มสีชมพู สมัครเลย บนพื้นน้ำผึ้งสีทองไหลย้อยลายรังผึ้ง มีผึ้งการ์ตูนขยิบตาถือไม้จุ่มน้ำผึ้ง โลโก้ HONEY สีทองกับเลข 289 สีชมพู ตู้สล็อต SWEET WIN เลข 777 โถน้ำผึ้ง เหรียญทองและดอกไม้"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -67,7 +70,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น AMB194 ข้อความ ฝากแรกของวัน รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่มทอง ฝากเลย บนพื้นดำ มีนางแบบชุดดำทอง ตัวเลข 20% ทองนูน โทรศัพท์แสดงยอดโอนเงินสำเร็จ โลโก้ TrueMoney Wallet ตู้สล็อตเลข 777 ไพ่เอซ และกองชิปกับเหรียญทอง"
+          alt="แบนเนอร์โปรโมชั่น HONEY289 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก และปุ่มสีชมพู ฝากเลย ตัวเลข 20% ขนาดใหญ่สีชมพูขอบทอง มีผึ้งการ์ตูนขยิบตายกนิ้วโป้งถือไม้จุ่มน้ำผึ้ง กล่องของขวัญสีชมพู ตู้สล็อตเลข 777 โถน้ำผึ้งและดอกไม้ บนพื้นน้ำผึ้งสีทองลายรังผึ้ง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -81,7 +84,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น AMB194 ข้อความ คืนยอดเสียทุกวัน 0.8% เล่นต่อได้ทุกวัน คืนยอดเสียคุ้มค่า ไม่พลาดทุกความสนุก และปุ่มทอง รับสิทธิ์ บนพื้นดำ มีนางแบบชุดดำทองแบมือ ตัวเลข 0.8% ทองนูน ตู้สล็อต JACKPOT เลข 777 วงล้อรูเล็ต ไพ่เอซ และกองชิปกับเหรียญทอง"
+          alt="แบนเนอร์โปรโมชั่น HONEY289 ข้อความ แนะนำเพื่อน รับค่าคอม 10% ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม และปุ่มสีชมพู ชวนเลย ตัวเลข 10% ขนาดใหญ่สีชมพู มีผึ้งการ์ตูนถือโทรโข่ง กรอบรังผึ้งรูปเพื่อนสองคนยิ้ม กล่องของขวัญผูกโบว์ โถน้ำผึ้งและเหรียญทอง บนพื้นน้ำผึ้งสีทองลายรังผึ้ง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -95,7 +98,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์ AMB194 ข้อความ คาสิโนออนไลน์ ครบจบในที่เดียว เล่นง่าย ฝากไว จ่ายจริง ป้ายระบบออโต้ ฝาก-ถอน 24 ชม. รองรับมือถือ และปุ่มทอง สมัครเลย บนพื้นดำ มีนางแบบชุดดำทองถือโทรศัพท์ที่เปิดหน้าเดิมพันกีฬา ตู้สล็อต JACKPOT เลข 777 วงล้อรูเล็ต ลูกฟุตบอล ไพ่เอซ และกองชิปกับเหรียญทอง"
+          alt="แบนเนอร์โปรโมชั่น HONEY289 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที และปุ่มสีชมพู รับโปรเลย ตัวเลข 50% ขนาดใหญ่สีชมพูขอบทอง มีผึ้งการ์ตูนขยิบตายกนิ้วโป้ง ตู้สล็อตพิมพ์คำว่า HONEY289 เลข 777 กล่องของขวัญผูกโบว์ชมพู โถน้ำผึ้ง เหรียญทองและดอกไม้"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -111,8 +114,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#f8d441]/60 bg-gradient-to-r from-[#fff3ae] via-[#f8d441] to-[#8a6205] px-10 py-3.5 text-lg font-black text-[#170f02] shadow-[0_10px_30px_rgba(248,212,65,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(248,212,65,0.40)]">
-          สมัครสมาชิก AMB194
+          class="flex items-center justify-center rounded-lg border border-[#fdbb24]/60 bg-gradient-to-r from-[#ffe3a3] via-[#fdbb24] to-[#b35303] px-10 py-3.5 text-lg font-black text-[#3d1304] shadow-[0_10px_30px_rgba(253,187,36,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(253,187,36,0.40)]">
+          สมัครสมาชิก HONEY289
         </a>
       </div>
     </div>

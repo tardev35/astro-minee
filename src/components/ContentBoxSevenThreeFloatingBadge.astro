@@ -7,27 +7,32 @@ export interface Props {
 const { title, titleleft, titleright } = Astro.props;
 
 // Same badge arithmetic as ContentBoxFloatingBadge, re-measured against this
-// brand's real docx H2 ("ตรวจสอบยอดจ่ายและสถานะธุรกรรมกับ KOHKAE789"):
-// `absolute -top-6` puts the badge's bottom edge at (badge height - 24px)
-// below the card top.
-//   mobile  text-lg  18px x 1.5 = 27px/line; 3 lines + py-2.5 + 2px borders
-//           = 105px  ->  81px below the card top, vs pt-32 (128px). OK.
-//   md      text-2xl 24px x 1.5 = 36px/line; 2 lines + py-2.5 + 2px borders
-//           = 96px   ->  72px below the card top, vs md:pt-28 (112px). OK.
+// brand's real docx H2 ("สำรวจเกมยอดนิยมและรูปแบบการจ่ายบน HONEY289", 41
+// chars): `absolute -top-6` puts the badge's bottom edge at (badge height -
+// 24px) below the card top.
+//   mobile  375px viewport -> card 343px wide, badge w-[92%] = ~315px; minus
+//           px-4 the text box is ~283px, so the title wraps to 2 lines.
+//           text-lg 18px x 1.5 = 27px/line. Budget 3 lines: 81 + py-2.5 (20px)
+//           + 2px borders = 105px  ->  81px below the card top, vs pt-32
+//           (128px). 47px of daylight.
+//   md      text-2xl 24px x 1.5 = 36px/line; badge max-w-2xl leaves a ~608px
+//           text box, so the title fits on 1 line. Budget 2 lines: 72 + 20 + 4
+//           = 96px  ->  72px below the card top, vs md:pt-28 (112px). 40px of
+//           daylight.
 // The badge is width-capped (w-[92%] max-w-2xl) and centered, never
 // `whitespace-nowrap`. Do not trim the padding and do not re-add nowrap.
 ---
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#1573e6]/30 bg-gradient-to-b from-[#0a1424]/95 to-[#050c1a]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(21,115,230,0.18)] md:pt-28">
-    <div class="pointer-events-none absolute -right-10 -bottom-16 -z-10 h-40 w-40 rounded-full bg-[#1573e6]/35 blur-[60px]"></div>
-    <div class="pointer-events-none absolute -top-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#29abe3]/25 blur-[60px]"></div>
+    class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#fdbb24]/30 bg-gradient-to-b from-[#2a1206]/95 to-[#170b02]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(253,187,36,0.18)] md:pt-28">
+    <div class="pointer-events-none absolute -right-10 -bottom-16 -z-10 h-40 w-40 rounded-full bg-[#fdbb24]/25 blur-[60px]"></div>
+    <div class="pointer-events-none absolute -top-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#f2559a]/25 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 w-[92%] max-w-2xl -translate-x-1/2 rounded-lg border-2 border-[#29abe3]/40 bg-[#070f1f] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(41,171,227,0.22)] sm:px-8">
-          <h2 class="bg-gradient-to-r from-[#e8f6ff] via-[#7fdcff] to-[#29abe3] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
+        <div class="absolute -top-6 left-1/2 w-[92%] max-w-2xl -translate-x-1/2 rounded-lg border-2 border-[#f2559a]/45 bg-[#170b02] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(242,85,154,0.22)] sm:px-8">
+          <h2 class="bg-gradient-to-r from-[#fff1cc] via-[#ffe3a3] to-[#eb9413] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
             {title}
           </h2>
         </div>
@@ -35,13 +40,13 @@ const { title, titleleft, titleright } = Astro.props;
     }
 
     <div class="grid grid-cols-1 gap-10 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#cfe6f7]">
-        {titleleft && <h2 class="text-2xl leading-normal font-bold text-[#29abe3]">{titleleft}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdf0d8]">
+        {titleleft && <h2 class="text-2xl leading-normal font-bold text-[#f7cf7e]">{titleleft}</h2>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#cfe6f7] md:border-l md:border-[#1573e6]/30 md:pl-10">
-        {titleright && <h2 class="text-2xl leading-normal font-bold text-[#29abe3]">{titleright}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdf0d8] md:border-l md:border-[#fdbb24]/25 md:pl-10">
+        {titleright && <h2 class="text-2xl leading-normal font-bold text-[#f7cf7e]">{titleright}</h2>}
         <slot name="right" />
       </article>
     </div>

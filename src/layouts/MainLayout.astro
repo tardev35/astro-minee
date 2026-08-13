@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle9.astro";
-import Footer from "../components/FooterStyle3.astro";
+import Navbar from "../components/NavbarStyle6.astro";
+import Footer from "../components/FooterStyle2.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,11 +55,11 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "AMB194 | รวมเกมส์สล็อตแตกไม่อั้น เล่นสนุกฝากถอนไว ปลอดภัยมั่นคง",
+  title = "HONEY289 | วันเดิมพันอัตราจ่ายสูง ยอดนิยมอันดับ 1 ฝากง่าย ถอนออโต้",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings.
-  description = "AMB194 รวมเกมสล็อตหลายรูปแบบ เล่นสนุก ฝากถอนไว รองรับมือถือ พร้อมระบบใช้งานมั่นคง ปลอดภัย และบริการสมาชิกตลอด 24 ชั่วโมง ควรอ่านกติกาและเงื่อนไขก่อนเริ่มทุกครั้ง",
+  description = "HONEY289 เกมเดิมพันอัตราจ่ายสูง รวมเกมยอดนิยม ฝากง่าย ถอนออโต้ รองรับมือถือ พร้อมระบบใช้งานสะดวก ตรวจสอบบัญชีได้จากระบบเดียว และบริการสมาชิกตลอด 24 ชั่วโมง",
   robots = "index, follow",
 } = Astro.props;
 
@@ -236,7 +236,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #0b0806;
+        background-color: #1a0c03;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -289,7 +289,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ AMB194 โลโก้ตราโพดำขอบทองมีดาวแดง ข้อความ คาสิโนออนไลน์ครบวงจร เล่นง่าย จ่ายจริง และแถบ ระบบออโต้ ฝาก-ถอนรวดเร็ว รองรับมือถือ 24 ชม. เหนือปุ่มสมัครเลย ด้านข้างมีนางแบบชุดราตรีสีดำทอง ตู้สล็อตป้ายไฟ JACKPOT เลข 777 นักฟุตบอล วงล้อรูเล็ต ไพ่ป๊อก และกองชิปกับเหรียญทอง"
+          alt="แบนเนอร์ HONEY289 โลโก้รังผึ้งกับผึ้งการ์ตูนขยิบตาถือไม้จุ่มน้ำผึ้ง ข้อความ สล็อตหวานแตกง่าย โปรคุ้มทุกวัน และ ฝาก-ถอนออโต้ โบนัสฉ่ำ เล่นง่าย จ่ายจริง พร้อมแถบ ระบบออโต้ โปรโมชั่นทุกวัน รองรับมือถือ บริการ 24 ชม. เหนือปุ่มสมัครเลย ด้านข้างมีตู้สล็อตเลข 777 โถน้ำผึ้ง เหรียญทอง กล่องของขวัญสีชมพู และดอกไม้"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

@@ -6,18 +6,18 @@ export interface Props {
 const { title, as: HeadingTag = "h1" } = Astro.props;
 const headingSize = HeadingTag === "h1" ? "text-xl sm:text-2xl md:text-3xl" : "text-lg sm:text-xl md:text-2xl";
 
-// Badge clearance, re-measured for AMBPLUS against the real docx H2 this brand
-// renders here ("เกมแตกง่ายควรพิจารณาควบคู่กับความผันผวน", 38 chars) rather
-// than a short placeholder. The badge is `absolute -top-6`, so its bottom edge
-// sits at (badge height - 24px) measured from the card's top:
+// Badge clearance, re-measured for HONEY289 against the real docx H2 this brand
+// renders here ("เลือกเกมจากความเข้าใจแทนการยึดอันดับเพียงอย่างเดียว", 50
+// chars) rather than a short placeholder. The badge is `absolute -top-6`, so its
+// bottom edge sits at (badge height - 24px) measured from the card's top:
 //   mobile  375px viewport -> card 343px wide, badge w-[92%] = ~315px; minus
-//           px-4 and the two ✦ spans the title's text box is ~235px, so the
-//           38-char title wraps to 2 lines. text-lg 18px x 1.5 = 27px/line.
-//           Budget 3 lines: 81px + py-2.5 (20px) + 2px borders = 105px
-//           ->  81px below the card top, vs pt-32 (128px). 47px of daylight.
-//   md      text-2xl 24px x 1.5 = 36px/line; the title fits on 1 line at this
-//           width, budget 2: 72 + 20 + 4 = 96px  ->  72px below the card top,
-//           vs md:pt-28 (112px). 40px of daylight.
+//           px-4 and the two ✦ spans the title's text box is ~239px, so the
+//           50-char title wraps to 3 lines. text-lg 18px x 1.5 = 27px/line.
+//           Budget 4 lines: 108px + py-2.5 (20px) + 2px borders = 132px
+//           ->  108px below the card top, vs pt-32 (128px). 20px of daylight.
+//   md      text-2xl 24px x 1.5 = 36px/line; badge max-w-2xl leaves a ~552px
+//           text box, so the title takes 2 lines: 72 + 20 + 4 = 96px
+//           ->  72px below the card top, vs md:pt-28 (112px). 40px of daylight.
 // The title has no `whitespace-nowrap` on purpose — it is width-capped
 // (w-[92%] max-w-2xl) and centered so a full sentence wraps instead of blowing
 // past the viewport. Do not trim the padding and do not re-add nowrap.
@@ -25,20 +25,20 @@ const headingSize = HeadingTag === "h1" ? "text-xl sm:text-2xl md:text-3xl" : "t
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#ecd48c]/30 bg-gradient-to-b from-[#16110a]/95 to-[#0a0806]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#efe3c8] shadow-[0_10px_30px_rgba(236,212,140,0.18)] md:pt-28">
-    <div class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#fbf2c4]/22 blur-[60px]"></div>
-    <div class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#6b4e17]/45 blur-[60px]"></div>
+    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#f7cf7e]/30 bg-gradient-to-b from-[#2a1206]/95 to-[#170b02]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#fdf0d8] shadow-[0_10px_30px_rgba(253,187,36,0.18)] md:pt-28">
+    <div class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#fff1cc]/22 blur-[60px]"></div>
+    <div class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#f2559a]/30 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#c9a24a]/45 bg-[#0a0806] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(236,212,140,0.22)] sm:px-8">
-          <span aria-hidden="true" class="shrink-0 text-[#ecd48c]">
+        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#eb9413]/45 bg-[#170b02] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(253,187,36,0.22)] sm:px-8">
+          <span aria-hidden="true" class="shrink-0 text-[#f7cf7e]">
             ✦
           </span>
-          <HeadingTag class={`bg-gradient-to-r from-[#fbf2c4] via-[#ecd48c] to-[#c9a24a] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
+          <HeadingTag class={`bg-gradient-to-r from-[#fff1cc] via-[#f7cf7e] to-[#eb9413] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
             {title}
           </HeadingTag>
-          <span aria-hidden="true" class="shrink-0 text-[#ecd48c]">
+          <span aria-hidden="true" class="shrink-0 text-[#f7cf7e]">
             ✦
           </span>
         </div>
