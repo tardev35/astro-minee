@@ -29,6 +29,3 @@ pnpm-debug.log*
 
 # git bundle backups (do not commit)
 *.bundle
-
-# ค่าเทียบโควตาของหน้า uploader — ผูกกับเครื่องแต่ละคน ไม่ควรใช้ร่วมกัน
-tools/rebrand-uploader/usage-calibration.json

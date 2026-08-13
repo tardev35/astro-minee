@@ -18,8 +18,7 @@
 import http from "node:http";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve, join } from "node:path";
-import { readFile, readdir, unlink, writeFile, mkdir, stat, rename } from "node:fs/promises";
-import { homedir } from "node:os";
+import { readFile, unlink, writeFile, mkdir, stat, rename } from "node:fs/promises";
 import { inflateRawSync } from "node:zlib";
 import { spawn } from "node:child_process";
 import { randomUUID } from "node:crypto";
@@ -2520,137 +2519,6 @@ function gitSnapshot() {
   };
 }
 
-// ── โควตารอบใช้งาน ────────────────────────────────────────────────────────────
-//
-// Claude นับโควตาเป็นรอบละ 5 ชั่วโมง เริ่มจับเวลาตอนข้อความแรกของรอบ
-// เวลาที่จะรีเซ็ตจึงคำนวณได้ตรงๆ จาก transcript ในเครื่อง
-//
-// ส่วน "ใช้ไปกี่เปอร์เซ็นต์" เป็นตัวเลขที่ Anthropic คิดฝั่งเซิร์ฟเวอร์ ไม่มีอยู่ในเครื่อง
-// เลย ที่ทำได้คือถ่วงน้ำหนัก token ที่ใช้จริงตามราคาแต่ละชนิดแล้วเทียบกับเพดานที่
-// ผู้ใช้ป้อนให้ครั้งเดียวจากหน้า /usage ของ Claude Code — หลังจากนั้นแถบจะขยับเอง
-// ต้องบอกให้ชัดในหน้าเว็บว่าเป็นค่าประมาณ ห้ามให้ใครเอาไปตัดสินใจแทนเลข 100% จริง
-const WINDOW_MS = 5 * 60 * 60 * 1000;
-const USAGE_CAL = join(__dirname, "usage-calibration.json");
-
-// ถ่วงตามสัดส่วนราคาของ token แต่ละชนิด cache read ถูกกว่ามากจนถ้านับเท่ากันหมด
-// รอบที่คุยยาวๆ จะดูเหมือนใช้โควตาหมดตั้งแต่ยังไม่ได้ทำอะไร
-const TOKEN_WEIGHT = { input: 1, cacheCreate: 1.25, cacheRead: 0.1, output: 5 };
-
-// อ่าน transcript ย้อนหลังสามวันทุกครั้งที่ถามคือเปลืองเกินเหตุ หน้าเว็บถามทุกครึ่งนาที
-let usageCache = { at: 0, value: null };
-
-async function collectSessionUsage() {
-  if (usageCache.value && Date.now() - usageCache.at < 20000) return usageCache.value;
-
-  const value = await readSessionUsage();
-  usageCache = { at: Date.now(), value };
-
-  return value;
-}
-
-async function readSessionUsage() {
-  const projects = join(homedir(), ".claude", "projects");
-  const now = Date.now();
-  const LOOKBACK = 3 * 24 * 60 * 60 * 1000;
-  const files = [];
-
-  async function scan(dir) {
-    let entries = [];
-    try {
-      entries = await readdir(dir, { withFileTypes: true });
-    } catch {
-      return;
-    }
-    for (const e of entries) {
-      const p = join(dir, e.name);
-      if (e.isDirectory()) await scan(p);
-      else if (e.name.endsWith(".jsonl")) {
-        try {
-          const st = await stat(p);
-          if (now - st.mtimeMs < LOOKBACK) files.push(p);
-        } catch {
-          /* ไฟล์หายระหว่างไล่ ก็ข้าม */
-        }
-      }
-    }
-  }
-
-  await scan(projects);
-
-  const rows = [];
-  for (const f of files) {
-    let text = "";
-    try {
-      text = await readFile(f, "utf8");
-    } catch {
-      continue;
-    }
-    for (const line of text.split("\n")) {
-      if (!line.includes('"usage"')) continue;
-      const ts = line.match(/"timestamp":"([^"]+)"/);
-      if (!ts) continue;
-      const at = Date.parse(ts[1]);
-      if (!Number.isFinite(at) || now - at > LOOKBACK) continue;
-
-      const u = line.match(/"usage":\{([^}]*)/);
-      if (!u) continue;
-      const num = (k) => Number(u[1].match(new RegExp(`"${k}":(\\d+)`))?.[1] || 0);
-      rows.push({
-        at,
-        input: num("input_tokens"),
-        cacheCreate: num("cache_creation_input_tokens"),
-        cacheRead: num("cache_read_input_tokens"),
-        output: num("output_tokens"),
-      });
-    }
-  }
-
-  rows.sort((a, b) => a.at - b.at);
-
-  // ต้องเริ่มนับจากขอบรอบที่รู้แน่ๆ ก่อน ไม่ใช่จากข้อความแรกที่บังเอิญอยู่ในช่วงที่อ่านมา
-  // ช่วงที่เงียบเกิน 5 ชม. คือขอบที่รู้แน่ (รอบเก่าหมดอายุไปแล้ว ยังไม่มีรอบใหม่)
-  // ข้อความถัดจากช่องว่างนั้นคือจุดเริ่มรอบจริง แล้วค่อยไล่ต่อไปข้างหน้าจากตรงนั้น
-  let anchor = 0;
-  for (let i = rows.length - 1; i > 0; i--) {
-    if (rows[i].at - rows[i - 1].at >= WINDOW_MS) {
-      anchor = i;
-      break;
-    }
-  }
-
-  let windowStart = 0;
-  for (let i = anchor; i < rows.length; i++) {
-    if (!windowStart || rows[i].at - windowStart >= WINDOW_MS) windowStart = rows[i].at;
-  }
-
-  const live = windowStart && now - windowStart < WINDOW_MS;
-  const used = rows.filter((r) => live && r.at >= windowStart);
-
-  const totals = { input: 0, cacheCreate: 0, cacheRead: 0, output: 0 };
-  for (const r of used) for (const k of Object.keys(totals)) totals[k] += r[k];
-
-  const weighted = Object.keys(totals).reduce((sum, k) => sum + totals[k] * TOKEN_WEIGHT[k], 0);
-
-  let ceiling = 0;
-  try {
-    ceiling = JSON.parse(await readFile(USAGE_CAL, "utf8")).weightedCeiling || 0;
-  } catch {
-    /* ยังไม่เคยตั้งเทียบ */
-  }
-
-  return {
-    active: Boolean(live),
-    windowStart: live ? windowStart : null,
-    resetsAt: live ? windowStart + WINDOW_MS : null,
-    minutesLeft: live ? Math.max(0, Math.round((windowStart + WINDOW_MS - now) / 60000)) : null,
-    elapsedPct: live ? Math.min(100, ((now - windowStart) / WINDOW_MS) * 100) : 0,
-    messages: used.length,
-    totals,
-    weighted: Math.round(weighted),
-    calibrated: ceiling > 0,
-    percent: ceiling > 0 ? Math.min(100, (weighted / ceiling) * 100) : null,
-  };
-}
 
 const PAGE = /* html */ `<!doctype html>
 <html lang="th">
@@ -3085,70 +2953,12 @@ const PAGE = /* html */ `<!doctype html>
   #gtBox.bad #gtMsgOut { color: var(--err); font-weight: 700; }
   #gtBox.done #gtMsgOut { color: var(--ok); font-weight: 700; }
 
-  .quota {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: rgba(0,0,0,0.22);
-    border: 1px solid var(--line-soft);
-    border-radius: 10px;
-    padding: 9px 14px;
-    min-width: 320px;
-  }
-
-  .quota[hidden] { display: none; }
-  .quota-text { display: flex; flex-direction: column; line-height: 1.35; white-space: nowrap; }
-  .quota-text b { font-size: 13px; }
-  .quota-text span { font-size: 11px; color: var(--faint); }
-
-  .quota-bar {
-    flex: 1;
-    height: 8px;
-    min-width: 90px;
-    border-radius: 99px;
-    background: rgba(255,255,255,0.09);
-    overflow: hidden;
-  }
-
-  .quota-bar i {
-    display: block;
-    height: 100%;
-    width: 0;
-    border-radius: 99px;
-    background: linear-gradient(90deg, #f59e0b, #fbbf24);
-    transition: width 0.6s ease;
-  }
-
-  .quota.hot .quota-bar i { background: linear-gradient(90deg, #ef4444, #f87171); }
-  .quota.hot .quota-pct { color: #fca5a5; }
-
-  .quota-pct {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--muted);
-    background: none;
-    border: 0;
-    padding: 0;
-    cursor: pointer;
-    white-space: nowrap;
-    font-family: inherit;
-  }
-
-  .quota-pct:hover { color: var(--ink); text-decoration: underline; }
 </style>
 </head>
 <body>
 <header>
   <div class="head-inner">
     <h1><span class="mark">📦</span> <span class="grad-text">Minee Uploader</span></h1>
-    <div class="quota" id="quota" hidden>
-      <div class="quota-text">
-        <b>รอบใช้งานปัจจุบัน</b>
-        <span id="quotaSub">กำลังอ่าน…</span>
-      </div>
-      <div class="quota-bar"><i id="quotaFill"></i></div>
-      <button type="button" class="quota-pct" id="quotaPct" title="กดเพื่อเทียบกับเลขจริงจาก /usage ของ Claude Code">—</button>
-    </div>
   </div>
 </header>
 <main>
@@ -4901,66 +4711,6 @@ const PAGE = /* html */ `<!doctype html>
     gtSync();
   })();
 
-  // โควตารอบใช้งาน — เวลาที่จะรีเซ็ตแม่นยำ ส่วนเปอร์เซ็นต์เป็นค่าประมาณจนกว่าจะเทียบ
-  // กับเลขจริงจาก /usage ของ Claude Code หนึ่งครั้ง (กดที่ตัวเลขเพื่อเทียบ)
-  const quotaBox = document.getElementById('quota');
-  const quotaFill = document.getElementById('quotaFill');
-  const quotaPct = document.getElementById('quotaPct');
-  const quotaSub = document.getElementById('quotaSub');
-
-  function quotaClock(min) {
-    if (min == null) return '';
-    const h = Math.floor(min / 60);
-    return h ? 'รีเซ็ตในอีก ' + h + ' ชม. ' + (min % 60) + ' นาที' : 'รีเซ็ตในอีก ' + min + ' นาที';
-  }
-
-  function quotaPaint(u) {
-    if (!u || !u.active) {
-      quotaBox.hidden = false;
-      quotaFill.style.width = '0%';
-      quotaPct.textContent = 'ยังไม่เริ่ม';
-      quotaSub.textContent = 'รอบใหม่จะเริ่มนับตอนสั่งงานครั้งต่อไป';
-      quotaBox.classList.remove('hot');
-      return;
-    }
-
-    const pct = u.calibrated ? u.percent : null;
-    const shown = pct == null ? u.elapsedPct : pct;
-
-    quotaBox.hidden = false;
-    quotaFill.style.width = Math.max(2, Math.min(100, shown)) + '%';
-    quotaPct.textContent = pct == null ? 'ตั้งค่า %' : Math.round(pct) + '% โดยประมาณ';
-    quotaBox.classList.toggle('hot', pct != null && pct >= 80);
-
-    const mtok = (u.weighted / 1e6).toFixed(2);
-    quotaSub.textContent = quotaClock(u.minutesLeft) + ' · ใช้ไป ' + mtok + 'M token' +
-      (pct == null ? ' · แถบนี้ยังเป็นเวลาที่ผ่านไป' : '');
-  }
-
-  async function quotaSync() {
-    try {
-      quotaPaint(await (await fetch('/usage')).json());
-    } catch { /* server not answering */ }
-  }
-
-  quotaPct.addEventListener('click', async () => {
-    const answer = prompt('เปิด Claude Code แล้วพิมพ์ /usage\\nกรอกเลข % ของ Current session ที่เห็นตอนนี้\\n\\n(กรอกครั้งเดียว หลังจากนั้นแถบจะขยับเอง)');
-    if (answer === null) return;
-
-    try {
-      const r = await fetch('/usage/calibrate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ percent: Number(answer) }),
-      });
-      const j = await r.json();
-      if (!r.ok) { alert(j.error || 'เทียบไม่สำเร็จ'); return; }
-      quotaPaint(j);
-    } catch { alert('ต่อกับเซิร์ฟเวอร์ไม่ได้'); }
-  });
-
-  quotaSync();
-  setInterval(quotaSync, 30000);
 </script>
 </body>
 </html>`;
@@ -4970,31 +4720,6 @@ const server = http.createServer(async (req, res) => {
   if (req.method === "GET" && url.pathname === "/") {
     res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
     res.end(PAGE);
-    return;
-  }
-  if (req.method === "GET" && url.pathname === "/usage") {
-    const u = await collectSessionUsage();
-    res.writeHead(200, { "Content-Type": "application/json", "Cache-Control": "no-store" });
-    res.end(JSON.stringify(u));
-    return;
-  }
-
-  if (req.method === "POST" && url.pathname === "/usage/calibrate") {
-    const body = JSON.parse((await readBody(req)) || "{}");
-    const pct = Number(body.percent);
-    const u = await collectSessionUsage();
-
-    if (!(pct > 0 && pct <= 100) || !u.weighted) {
-      res.writeHead(400, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ ok: false, error: "ใส่เลข 1-100 จากหน้า /usage ของ Claude Code ตอนที่ยังมีงานเดินอยู่" }));
-      return;
-    }
-
-    await writeFile(USAGE_CAL, JSON.stringify({ weightedCeiling: Math.round(u.weighted / (pct / 100)) }, null, 2) + "\n");
-    usageCache = { at: 0, value: null };
-
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ ok: true, ...(await collectSessionUsage()) }));
     return;
   }
 
