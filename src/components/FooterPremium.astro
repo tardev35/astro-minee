@@ -6,11 +6,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png
 const imagePaths = Object.keys(images);
 const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 
-const logoAlt = "โลโก้ AMBPlus+ ตัวอักษร AMB สีทองสามมิติเคลือบเงา ต่อด้วยคำว่า Plus และเครื่องหมายบวกสีครีมขอบทอง";
+const logoAlt = "โลโก้ PG699 ตัวอักษร PG ลายบล็อกทองต่อด้วยเลข 699 สีทองไล่เฉด คั่นด้วยเส้นแนวตั้ง แล้วเป็นโลโก้ OKACE รูปมือสีน้ำเงินทำสัญลักษณ์โอเค ตัวอักษร OK สีน้ำเงินและ ACE สีทอง";
 ---
 
-<footer class="relative mt-16 w-full overflow-hidden rounded-t-[3rem] border-t border-[#ecd48c]/40 bg-[#0a0806] pt-16 pb-8 font-sans text-[#efe3c8] shadow-[0_-15px_40px_rgba(236,212,140,0.22)]">
-  <div class="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-[250px] w-full max-w-4xl rounded-full bg-[#6b4e17]/25 blur-[100px]"></div>
+<footer class="relative mt-16 w-full overflow-hidden rounded-t-[3rem] border-t border-[#f5c518]/40 bg-[#020818] pt-16 pb-8 font-sans text-[#dbe6ff] shadow-[0_-15px_40px_rgba(245,197,24,0.20)]">
+  <div class="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-[250px] w-full max-w-4xl rounded-full bg-[#0b2f8f]/45 blur-[100px]"></div>
 
   <div class="relative z-10 mx-auto w-full max-w-[1200px] px-6">
     <div class="mb-12 grid grid-cols-1 gap-12 md:grid-cols-12">
@@ -23,43 +23,43 @@ const logoAlt = "โลโก้ AMBPlus+ ตัวอักษร AMB สีท
                 alt={logoAlt}
                 widths={[130, 260, 390]}
                 sizes="130px"
-                class="h-[65px] w-auto drop-shadow-[0_5px_15px_rgba(236,212,140,0.35)]"
+                class="h-[65px] w-auto drop-shadow-[0_5px_15px_rgba(245,197,24,0.35)]"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
               />
             ) : (
-              <span class="bg-gradient-to-r from-[#fbf2c4] to-[#c9a24a] bg-clip-text text-4xl font-black tracking-widest text-transparent">AMBPLUS</span>
+              <span class="bg-gradient-to-r from-[#ffe9a8] to-[#b8770a] bg-clip-text text-4xl font-black tracking-widest text-transparent">PG699</span>
             )
           }
         </a>
-        <p class="border-l-2 border-[#ecd48c]/50 pl-4 text-sm leading-relaxed text-[#efe3c8]/60">
-          AMBPLUS เป็นแพลตฟอร์มสล็อตเว็บตรงที่รวมระบบออโต้และเกมสล็อตหลายรูปแบบไว้ในบัญชีเดียว รองรับการฝากถอนผ่าน Wallet และการใช้งานผ่านมือถือ แท็บเล็ต และคอมพิวเตอร์
-          ช่วยลดขั้นตอนระหว่างการทำรายการ ควรอ่านกติกาและเงื่อนไขก่อนเริ่มใช้งานทุกครั้ง
+        <p class="border-l-2 border-[#f5c518]/50 pl-4 text-sm leading-relaxed text-[#dbe6ff]/60">
+          PG699 เป็นแพลตฟอร์มคาสิโนออนไลน์ที่รวบรวมเกมหลายประเภทไว้ในระบบเดียว ทั้งเกมสล็อต บาคาร่า เกมไพ่ และคาสิโนสด พร้อมระบบฝากถอนออโต้ที่ช่วยลดขั้นตอนการทำรายการ
+          รองรับการใช้งานผ่านมือถือและคอมพิวเตอร์ สมาชิกควรศึกษากติกา โปรโมชั่น และเงื่อนไขธุรกรรมก่อนเริ่มใช้งานทุกครั้ง
         </p>
         <div class="mt-4 flex gap-3">
-          <span class="rounded-full border border-[#ecd48c]/30 bg-[#6b4e17]/30 px-4 py-1 text-xs font-medium text-[#fbf2c4] backdrop-blur-sm">WALLET</span>
-          <span class="rounded-full border border-[#fbf2c4]/30 bg-[#6b4e17]/30 px-4 py-1 text-xs font-medium text-[#efe3c8] backdrop-blur-sm">AUTO 24 HRS</span>
+          <span class="rounded-full border border-[#f5c518]/30 bg-[#0b2f8f]/40 px-4 py-1 text-xs font-medium text-[#ffe9a8] backdrop-blur-sm">AUTO WALLET</span>
+          <span class="rounded-full border border-[#5b9dff]/40 bg-[#0b2f8f]/40 px-4 py-1 text-xs font-medium text-[#dbe6ff] backdrop-blur-sm">SERVICE 24 HRS</span>
         </div>
       </div>
 
       <nav class="flex flex-col gap-4 md:col-span-3 lg:pl-8" aria-label="ทางลัดหน้าเว็บ">
-        <p class="text-lg font-black tracking-widest text-[#fbf2c4] uppercase drop-shadow-sm">QUICK LINKS</p>
-        <div class="h-[1px] w-12 bg-[#ecd48c]"></div>
-        <ul class="flex flex-col gap-3 text-sm font-medium text-[#efe3c8]/60">
-          <li><a href="/" class="transition-colors hover:text-[#fbf2c4]">หน้าหลัก (Home)</a></li>
-          <li><a href="/promotion" class="transition-colors hover:text-[#fbf2c4]">โปรโมชั่น (Promotions)</a></li>
-          <li><a href="/ทางเข้า" class="transition-colors hover:text-[#fbf2c4]">ทางเข้า (Access)</a></li>
-          <li><a href="/ทดลองเล่น" class="transition-colors hover:text-[#fbf2c4]">ทดลองเล่น (Demo)</a></li>
-          <li><a href="/about-us" class="transition-colors hover:text-[#fbf2c4]">เกี่ยวกับเรา (About)</a></li>
-          <li><a href="/contact-us" class="transition-colors hover:text-[#fbf2c4]">ติดต่อเรา (Contact)</a></li>
-          <li><a href="/register" class="transition-colors hover:text-[#fbf2c4]">สมัครสมาชิก (Join Us)</a></li>
-          <li><a href="/login" class="transition-colors hover:text-[#fbf2c4]">เข้าสู่ระบบ (Login)</a></li>
+        <p class="text-lg font-black tracking-widest text-[#ffe9a8] uppercase drop-shadow-sm">QUICK LINKS</p>
+        <div class="h-[1px] w-12 bg-[#f5c518]"></div>
+        <ul class="flex flex-col gap-3 text-sm font-medium text-[#dbe6ff]/60">
+          <li><a href="/" class="transition-colors hover:text-[#ffe9a8]">หน้าหลัก (Home)</a></li>
+          <li><a href="/promotion" class="transition-colors hover:text-[#ffe9a8]">โปรโมชั่น (Promotions)</a></li>
+          <li><a href="/ทางเข้า" class="transition-colors hover:text-[#ffe9a8]">ทางเข้า (Access)</a></li>
+          <li><a href="/ทดลองเล่น" class="transition-colors hover:text-[#ffe9a8]">ทดลองเล่น (Demo)</a></li>
+          <li><a href="/about-us" class="transition-colors hover:text-[#ffe9a8]">เกี่ยวกับเรา (About)</a></li>
+          <li><a href="/contact-us" class="transition-colors hover:text-[#ffe9a8]">ติดต่อเรา (Contact)</a></li>
+          <li><a href="/register" class="transition-colors hover:text-[#ffe9a8]">สมัครสมาชิก (Join Us)</a></li>
+          <li><a href="/login" class="transition-colors hover:text-[#ffe9a8]">เข้าสู่ระบบ (Login)</a></li>
         </ul>
       </nav>
 
       <div class="flex flex-col gap-5 md:col-span-4">
-        <p class="text-lg font-black tracking-widest text-[#fbf2c4] uppercase drop-shadow-sm">CUSTOMER SUPPORT</p>
-        <div class="h-[1px] w-12 bg-[#ecd48c]"></div>
+        <p class="text-lg font-black tracking-widest text-[#ffe9a8] uppercase drop-shadow-sm">CUSTOMER SUPPORT</p>
+        <div class="h-[1px] w-12 bg-[#f5c518]"></div>
 
         <a
           href="/line"
@@ -93,16 +93,16 @@ const logoAlt = "โลโก้ AMBPlus+ ตัวอักษร AMB สีท
           )
         }
 
-        <div class="mt-4 text-xs font-medium tracking-widest text-[#ecd48c]/50 uppercase">Supported Payments</div>
+        <div class="mt-4 text-xs font-medium tracking-widest text-[#f5c518]/50 uppercase">Supported Payments</div>
         <BankStrip size={30} />
       </div>
     </div>
 
-    <div class="flex flex-col items-center justify-between border-t border-[#8c6b22]/40 pt-8 text-xs font-medium tracking-wide text-[#efe3c8]/40 md:flex-row">
-      <p>COPYRIGHT &copy; {new Date().getFullYear()} AMBPLUS. ALL RIGHTS RESERVED.</p>
+    <div class="flex flex-col items-center justify-between border-t border-[#1a5cf5]/40 pt-8 text-xs font-medium tracking-wide text-[#dbe6ff]/40 md:flex-row">
+      <p>COPYRIGHT &copy; {new Date().getFullYear()} PG699. ALL RIGHTS RESERVED.</p>
       <div class="mt-4 flex gap-4 md:mt-0">
-        <a href="/terms/" class="transition-colors hover:text-[#fbf2c4]">TERMS &amp; CONDITIONS</a>
-        <a href="/privacy/" class="transition-colors hover:text-[#fbf2c4]">PRIVACY POLICY</a>
+        <a href="/terms/" class="transition-colors hover:text-[#ffe9a8]">TERMS &amp; CONDITIONS</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#ffe9a8]">PRIVACY POLICY</a>
       </div>
     </div>
   </div>

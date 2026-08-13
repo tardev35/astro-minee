@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement3.astro";
+import Announcement from "../components/Announcement5.astro";
 
 import { Picture } from "astro:assets";
 
@@ -16,14 +16,14 @@ import { pageGraph } from "../lib/schema";
 // paragraph, the four promo images and one CTA. No section headings and no
 // second paragraph — the slides already print their own offer in large type,
 // so prose underneath only re-types what the visitor can already read.
-const pageTitle = "โปรโมชั่น HONEY289 รวมโบนัสและสิทธิพิเศษของสมาชิก";
+const pageTitle = "โปรโมชั่น PG699 รวมโบนัสและสิทธิพิเศษสำหรับสมาชิก";
 
-// docx SUB-PAGES Meta ของหน้าโปรโมชั่น ยกมาทั้งประโยคโดยไม่แก้ถ้อยคำ (130 ตัวอักษร)
+// docx SUB-PAGES Meta ของหน้าโปรโมชั่น ยกมาทั้งประโยคโดยไม่แก้ถ้อยคำ (129 ตัวอักษร)
 // + วรรคปิดท้ายหนึ่งวรรคให้ผ่านเกท DESC_MIN 150 ของ tools/verify-build.mjs
 // ซึ่งยกเว้นให้เฉพาะหน้าแรกเท่านั้น นับเป็น "ตัวอักษร" ไม่ใช่ไบต์ (ไทย 3 ไบต์/ตัว)
-// — สตริงนี้วัดได้ 153 ตัวอักษร
+// — สตริงนี้วัดได้ 157 ตัวอักษร
 const pageDescription =
-  "HONEY289 รวมโปรโมชั่นเกมเดิมพัน โบนัสต้อนรับ และสิทธิพิเศษสำหรับสมาชิก พร้อมรายละเอียดเงื่อนไข ช่วยให้เลือกโปรได้เหมาะกับการใช้งาน ตรวจได้ก่อนกดรับสิทธิ์";
+  "PG699 รวมโปรโมชั่นคาสิโน โบนัสต้อนรับ และสิทธิพิเศษสำหรับสมาชิก พร้อมรายละเอียดเงื่อนไข ช่วยให้เลือกโปรได้เหมาะกับรูปแบบการใช้งาน ตรวจเงื่อนไขก่อนกดรับสิทธิ์";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -36,27 +36,26 @@ const graph = pageGraph(Astro, {
 });
 
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#fdbb24]/30 object-contain shadow-[0_10px_30px_rgba(253,187,36,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#eb9413]/55 hover:shadow-[0_15px_40px_rgba(235,148,19,0.30)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#f5c518]/30 object-contain shadow-[0_10px_30px_rgba(245,197,24,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#5b9dff]/55 hover:shadow-[0_15px_40px_rgba(26,92,245,0.30)]";
 ---
 
-<MainLayout title="HONEY289 | โปรโมชั่นเกมเดิมพันและโบนัสสำหรับสมาชิก" description={pageDescription}>
+<MainLayout title="PG699 | โปรโมชั่นคาสิโนและสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#fdf0d8]">
-        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#fdbb24]">HONEY289</strong> เปิดให้สมาชิกไว้ครบในที่เดียว ทั้งโบนัสต้อนรับสมาชิกใหม่ โบนัสฝากครั้งแรก
-        และค่าคอมจากการชวนเพื่อน ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว จึงอ่านจบได้ตั้งแต่ครั้งแรกที่เลื่อนดู
-        ก่อนกดรับสิทธิ์ควรดูยอดฝากขั้นต่ำ จำนวนเทิร์น เกมที่ร่วมรายการ และเพดานถอนของรายการนั้นให้ครบ เพราะแต่ละโปรกำหนดไว้ไม่เท่ากัน
-        หากมีจุดใดไม่ชัดเจน สอบถามทีมงานผ่านช่องทางที่เว็บไซต์กำหนดได้ตลอด 24 ชั่วโมง
+      <p class="mb-8 text-left text-base leading-relaxed text-[#dbe6ff]">
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#f5c518]">PG699</strong> เปิดให้สมาชิกคาสิโนไว้ครบในที่เดียว ทั้งโบนัสต้อนรับสมาชิกใหม่ โบนัสฝากครั้งแรก ค่าคอมจากการแนะนำเพื่อน
+        และคืนยอดเสียรายวัน ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว จึงอ่านจบได้ตั้งแต่ครั้งแรกที่เลื่อนดู ก่อนกดรับสิทธิ์ควรดูยอดฝากขั้นต่ำ จำนวนเทิร์น
+        เกมที่ร่วมรายการ และเพดานถอนของรายการนั้นให้ครบ เพราะแต่ละโปรกำหนดไว้ไม่เท่ากัน หากมีจุดใดไม่ชัดเจน สอบถามทีมบริการสมาชิกผ่านช่องทางที่เว็บไซต์กำหนดได้ตลอด 24 ชั่วโมง
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น HONEY289 ข้อความ เว็บสล็อตสายหวาน โบนัสทุกวัน เล่นง่าย ฝาก-ถอนออโต้ จ่ายจริง และปุ่มสีชมพู สมัครเลย บนพื้นน้ำผึ้งสีทองไหลย้อยลายรังผึ้ง มีผึ้งการ์ตูนขยิบตาถือไม้จุ่มน้ำผึ้ง โลโก้ HONEY สีทองกับเลข 289 สีชมพู ตู้สล็อต SWEET WIN เลข 777 โถน้ำผึ้ง เหรียญทองและดอกไม้"
+          alt="แบนเนอร์โปรโมชั่น PG699 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที และปุ่ม รับโปรเลย ตัวเลข 50% ขนาดใหญ่สีทองขอบน้ำเงิน โลโก้ PG699 คู่กับ OKACE พริตตี้ในชุดน้ำเงินทองชี้นิ้วขึ้น ป้าย JACKPOT ตู้สล็อตเลข 777 กองเหรียญทองและชิปคาสิโน PG699 บนพื้นน้ำเงินเข้ม"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -70,7 +69,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น HONEY289 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก และปุ่มสีชมพู ฝากเลย ตัวเลข 20% ขนาดใหญ่สีชมพูขอบทอง มีผึ้งการ์ตูนขยิบตายกนิ้วโป้งถือไม้จุ่มน้ำผึ้ง กล่องของขวัญสีชมพู ตู้สล็อตเลข 777 โถน้ำผึ้งและดอกไม้ บนพื้นน้ำผึ้งสีทองลายรังผึ้ง"
+          alt="แบนเนอร์โปรโมชั่น PG699 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก และปุ่ม ฝากเลย ตัวเลข 20% ขนาดใหญ่สีทอง โลโก้ PG699 คู่กับ OKACE พริตตี้ในชุดน้ำเงินทองชี้นิ้วขึ้น ป้าย JACKPOT ตู้สล็อตเลข 777 และ BAR กองเหรียญทองและชิปคาสิโน PG699 บนพื้นน้ำเงินเข้ม"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -84,7 +83,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น HONEY289 ข้อความ แนะนำเพื่อน รับค่าคอม 10% ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม และปุ่มสีชมพู ชวนเลย ตัวเลข 10% ขนาดใหญ่สีชมพู มีผึ้งการ์ตูนถือโทรโข่ง กรอบรังผึ้งรูปเพื่อนสองคนยิ้ม กล่องของขวัญผูกโบว์ โถน้ำผึ้งและเหรียญทอง บนพื้นน้ำผึ้งสีทองลายรังผึ้ง"
+          alt="แบนเนอร์โปรโมชั่น PG699 ข้อความ แนะนำเพื่อน รับค่าคอม 10% ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม และปุ่ม ชวนเลย พร้อมแผนภาพสามขั้นตอน แนะนำเพื่อนให้มาสมัคร เพื่อนสมัครและฝากเงิน รับค่าคอมสูงสุด 10% มีพริตตี้ชุดน้ำเงินทองถือโทรศัพท์ที่เปิดหน้าเกม ตู้สล็อต JACKPOT เลข 777 และเหรียญทองบนพื้นน้ำเงินเข้ม"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -98,7 +97,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น HONEY289 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที และปุ่มสีชมพู รับโปรเลย ตัวเลข 50% ขนาดใหญ่สีชมพูขอบทอง มีผึ้งการ์ตูนขยิบตายกนิ้วโป้ง ตู้สล็อตพิมพ์คำว่า HONEY289 เลข 777 กล่องของขวัญผูกโบว์ชมพู โถน้ำผึ้ง เหรียญทองและดอกไม้"
+          alt="แบนเนอร์โปรโมชั่น PG699 ข้อความ คืนยอดเสียทุกวัน 0.8% เล่นต่อได้ทุกวัน และปุ่ม รับสิทธิ์ ตัวเลข 0.8% ขนาดใหญ่สีทอง พร้อมป้ายสามอัน ระบบออโต้ โบนัสคุ้ม และบริการ 24 ชม. มีพริตตี้ชุดน้ำเงินทองชี้นิ้วขึ้น ชิปคาสิโน PG699 และเหรียญทองบนพื้นน้ำเงินเข้ม"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -114,8 +113,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#fdbb24]/60 bg-gradient-to-r from-[#ffe3a3] via-[#fdbb24] to-[#b35303] px-10 py-3.5 text-lg font-black text-[#3d1304] shadow-[0_10px_30px_rgba(253,187,36,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(253,187,36,0.40)]">
-          สมัครสมาชิก HONEY289
+          class="flex items-center justify-center rounded-lg border border-[#f5c518]/60 bg-gradient-to-r from-[#ffe9a8] via-[#f5c518] to-[#b8770a] px-10 py-3.5 text-lg font-black text-[#08122e] shadow-[0_10px_30px_rgba(245,197,24,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(245,197,24,0.40)]">
+          สมัครสมาชิก PG699
         </a>
       </div>
     </div>

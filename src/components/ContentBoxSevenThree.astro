@@ -14,15 +14,15 @@ const { titleleft, titleright } = Astro.props;
 
 <section class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div
-    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#f7cf7e]/30 bg-[#2a1206]/92 p-8 text-[#fdf0d8] shadow-[0_10px_30px_rgba(253,187,36,0.16)] backdrop-blur-xl transition-all duration-500 hover:border-[#eb9413]/55 hover:shadow-[0_15px_40px_rgba(235,148,19,0.22)] md:p-10">
+    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#f5c518]/30 bg-[#0a1a44]/92 p-8 text-[#dbe6ff] shadow-[0_10px_30px_rgba(245,197,24,0.16)] backdrop-blur-xl transition-all duration-500 hover:border-[#5b9dff]/55 hover:shadow-[0_15px_40px_rgba(26,92,245,0.24)] md:p-10">
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 border-b border-[#f7cf7e]/25 pb-6 text-left text-base leading-relaxed font-medium text-[#fdf0d8] md:border-r md:border-b-0 md:pr-6 md:pb-0">
-        {titleleft && <h2 class="text-center text-3xl leading-normal font-black tracking-wider text-[#fff1cc] uppercase drop-shadow-[0_2px_10px_rgba(253,187,36,0.35)] md:text-left">{titleleft}</h2>}
+      <article class="flex flex-col gap-4 border-b border-[#f5c518]/25 pb-6 text-left text-base leading-relaxed font-medium text-[#dbe6ff] md:border-r md:border-b-0 md:pr-6 md:pb-0">
+        {titleleft && <h2 class="text-center text-3xl leading-normal font-black tracking-wider text-[#ffe9a8] uppercase drop-shadow-[0_2px_10px_rgba(245,197,24,0.35)] md:text-left">{titleleft}</h2>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-3 text-left text-base leading-relaxed text-[#fdf0d8] md:pl-6">
-        {titleright && <h2 class="flex items-center gap-2 text-2xl leading-normal font-black text-[#f7cf7e] drop-shadow-[0_0_8px_rgba(253,187,36,0.35)]">{titleright}</h2>}
+      <article class="flex flex-col gap-3 text-left text-base leading-relaxed text-[#dbe6ff] md:pl-6">
+        {titleright && <h2 class="flex items-center gap-2 text-2xl leading-normal font-black text-[#f5c518] drop-shadow-[0_0_8px_rgba(245,197,24,0.35)]">{titleright}</h2>}
         <slot name="right" />
       </article>
     </div>

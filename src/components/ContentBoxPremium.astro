@@ -5,20 +5,23 @@ export interface Props {
 }
 const { title, as: HeadingTag = "h1" } = Astro.props;
 const headingSize = HeadingTag === "h1" ? "text-3xl" : "text-2xl";
+
+// isolate on the card + -z-10 on each decorative aura is what lets the slot
+// content paint above the glow without a wrapper <div>. Keep both.
 ---
 
 <section class="relative z-10 my-8 flex w-full justify-center px-4 font-sans">
   <div
-    class="group relative isolate w-full max-w-[1400px] overflow-hidden rounded-3xl border border-[#f8d441]/35 bg-gradient-to-br from-[#150f05]/92 to-[#0b0806]/88 p-8 text-left text-base leading-relaxed text-[#f5ecd6] shadow-[0_10px_30px_rgba(248,212,65,0.18)] backdrop-blur-xl transition-all duration-500 hover:border-[#f8d441]/65 hover:shadow-[0_15px_40px_rgba(248,212,65,0.3)] md:p-10">
-    <div class="pointer-events-none absolute -top-20 -left-20 -z-10 h-40 w-40 rounded-full bg-[#f8d441]/28 blur-[55px] transition-all duration-500 group-hover:bg-[#fff3ae]/35"></div>
-    <div class="pointer-events-none absolute -right-20 -bottom-20 -z-10 h-40 w-40 rounded-full bg-[#8f0f18]/50 blur-[55px] transition-all duration-500 group-hover:bg-[#e11d2b]/40"></div>
+    class="group relative isolate w-full max-w-[1400px] overflow-hidden rounded-3xl border border-[#f5c518]/35 bg-gradient-to-br from-[#0a1a44]/92 to-[#020818]/88 p-8 text-left text-base leading-relaxed text-[#dbe6ff] shadow-[0_10px_30px_rgba(245,197,24,0.18)] backdrop-blur-xl transition-all duration-500 hover:border-[#f5c518]/65 hover:shadow-[0_15px_40px_rgba(245,197,24,0.3)] md:p-10">
+    <div class="pointer-events-none absolute -top-20 -left-20 -z-10 h-40 w-40 rounded-full bg-[#f5c518]/28 blur-[55px] transition-all duration-500 group-hover:bg-[#ffe9a8]/35"></div>
+    <div class="pointer-events-none absolute -right-20 -bottom-20 -z-10 h-40 w-40 rounded-full bg-[#0b2f8f]/60 blur-[55px] transition-all duration-500 group-hover:bg-[#1a5cf5]/45"></div>
 
     {
       title && (
-        <header class="mb-8 flex items-center gap-4 border-b border-[#f8d441]/30 pb-4">
-          <div class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#fff8d6] via-[#f8d441] to-[#8a6205] shadow-[0_0_10px_rgba(248,212,65,0.5)]" />
+        <header class="mb-8 flex items-center gap-4 border-b border-[#f5c518]/30 pb-4">
+          <div class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffe9a8] via-[#f5c518] to-[#b8770a] shadow-[0_0_10px_rgba(245,197,24,0.5)]" />
           <HeadingTag
-            class={`bg-gradient-to-r from-[#fff8d6] via-[#f8d441] to-[#d9a520] bg-clip-text ${headingSize} leading-normal font-black tracking-widest text-transparent uppercase`}>
+            class={`bg-gradient-to-r from-[#ffe9a8] via-[#f5c518] to-[#b8770a] bg-clip-text ${headingSize} leading-normal font-black tracking-widest text-transparent uppercase`}>
             {title}
           </HeadingTag>
         </header>

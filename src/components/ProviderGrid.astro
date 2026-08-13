@@ -4,22 +4,22 @@
 // the brief. The accessible name for the region lives on the section's
 // aria-label instead.
 const providers = [
-  { name: "เกมยอดนิยมในระบบ", desc: "รวมเกมที่สมาชิกเลือกเล่นบ่อย ดูรูปแบบการเดิมพันได้จากหน้าเดียว", tag: "ดูก่อนเลือก", icon: "🍯" },
-  { name: "รูปแบบการเดิมพันหลายแบบ", desc: "แต่ละประเภทมีวิธีคิดผลและจังหวะเกมต่างกัน เลือกตามที่เข้าใจก่อน", tag: "เลือกตามความสนใจ", icon: "🎰" },
-  { name: "อัตราจ่ายของแต่ละเกม", desc: "ตัวเลขอัตราจ่ายผูกกับเงื่อนไขของเกมนั้น ควรตรวจก่อนเริ่มทุกครั้ง", tag: "ดูอัตราจ่าย", icon: "📊" },
-  { name: "กติกาและวิธีคิดผล", desc: "อ่านกติกาให้ครบก่อนเดิมพัน เพื่อให้ตัดสินใจได้จากข้อมูลจริง", tag: "อ่านกติกาก่อน", icon: "📋" },
-  { name: "ระดับความเสี่ยงที่รับได้", desc: "เกมจ่ายบ่อยกับเกมที่ต้องรอรอบเหมาะกับงบประมาณคนละแบบ", tag: "ดูงบก่อนเลือก", icon: "📈" },
-  { name: "ฝากง่าย ถอนออโต้", desc: "ทำรายการผ่านหน้าบัญชี ตรวจชื่อบัญชีและจำนวนเงินก่อนยืนยัน", tag: "ตรวจก่อนยืนยัน", icon: "⚡" },
+  { name: "เกมสล็อตหลายรูปแบบ", desc: "ดูจังหวะเกม ฟีเจอร์โบนัส และอัตราจ่ายของแต่ละเกมได้ก่อนเลือก", tag: "ดูก่อนเลือก", icon: "🎰" },
+  { name: "บาคาร่าออนไลน์", desc: "รอบเดิมพันสั้น ควรอ่านกติกาและวิธีคิดผลให้ครบก่อนเริ่ม", tag: "อ่านกติกาก่อน", icon: "🀄" },
+  { name: "เกมไพ่หลายประเภท", desc: "แต่ละเกมมีเงื่อนไขต่างกัน เลือกตามที่เข้าใจก่อนลงเดิมพันจริง", tag: "เลือกตามที่เข้าใจ", icon: "🃏" },
+  { name: "คาสิโนสด", desc: "ถ่ายทอดจากห้องเกมจริง จังหวะเร็ว ควรกำหนดวงเงินต่อรอบไว้ก่อน", tag: "กำหนดวงเงิน", icon: "🎥" },
+  { name: "เกมรูปแบบอื่นในระบบ", desc: "รวมเกมหมวดอื่นไว้ในบัญชีเดียว เลือกตามความสนใจและงบประมาณ", tag: "เลือกตามความสนใจ", icon: "🎯" },
+  { name: "ฝากถอนออโต้", desc: "ทำรายการผ่านหน้าบัญชี ตรวจชื่อบัญชีและจำนวนเงินก่อนยืนยัน", tag: "ตรวจก่อนยืนยัน", icon: "⚡" },
   { name: "ใช้งานได้ทุกอุปกรณ์", desc: "เปิดผ่านเบราว์เซอร์บนมือถือ แท็บเล็ต และคอมพิวเตอร์ด้วยบัญชีเดียว", tag: "รองรับมือถือ", icon: "📱" },
 ];
 ---
 
-<section aria-label="หมวดเกมเดิมพันที่ HONEY289 รวมไว้ในระบบเดียว" class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
+<section aria-label="หมวดเกมคาสิโนที่ PG699 รวมไว้ในระบบเดียว" class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
-    <p class="bg-gradient-to-r from-[#ffe3a3] via-[#fdbb24] to-[#eb9413] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
-      หมวดเกมเดิมพันที่ <span class="text-[#ffe3a3]">HONEY289</span> รวมไว้ในระบบเดียว
+    <p class="bg-gradient-to-r from-[#ffe9a8] via-[#f5c518] to-[#b8770a] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
+      หมวดเกมคาสิโนที่ <span class="text-[#ffe9a8]">PG699</span> รวมไว้ในระบบเดียว
     </p>
-    <div class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#fdbb24] to-transparent"></div>
+    <div class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#f5c518] to-transparent"></div>
   </div>
 
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5 xl:grid-cols-7">
@@ -27,20 +27,20 @@ const providers = [
       providers.map((provider) => (
         <a
           href="/register"
-          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#fdbb24]/30 bg-[#2a1206]/92 p-5 shadow-[0_10px_30px_rgba(253,187,36,0.2)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#fdbb24]/60 hover:bg-[#3d1a08]/95 hover:shadow-[0_15px_40px_rgba(235,148,19,0.3)]">
-          <div class="pointer-events-none absolute inset-0 bg-[#7a3a02]/25 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#f5c518]/30 bg-[#0a1a44]/92 p-5 shadow-[0_10px_30px_rgba(245,197,24,0.2)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#f5c518]/60 hover:bg-[#061233]/95 hover:shadow-[0_15px_40px_rgba(26,92,245,0.32)]">
+          <div class="pointer-events-none absolute inset-0 bg-[#0b2f8f]/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#ffe3a3] via-[#fdbb24] to-[#b35303] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#3d1304] shadow-sm transition-transform duration-300 group-hover:scale-110">
+          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#ffe9a8] via-[#f5c518] to-[#b8770a] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#08122e] shadow-sm transition-transform duration-300 group-hover:scale-110">
             {provider.tag}
           </div>
 
           <div aria-hidden="true" class="mb-3 text-4xl transition-transform duration-300 group-hover:scale-125 group-hover:rotate-3">
             {provider.icon}
           </div>
-          <p class="text-center text-sm font-black text-[#fdf0d8] transition-colors group-hover:text-[#ffe3a3]">{provider.name}</p>
-          <p class="mt-1 text-center text-[10px] text-[#d8bd8e]">{provider.desc}</p>
+          <p class="text-center text-sm font-black text-[#dbe6ff] transition-colors group-hover:text-[#ffe9a8]">{provider.name}</p>
+          <p class="mt-1 text-center text-[10px] text-[#9fb8e8]">{provider.desc}</p>
 
-          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#fdbb24]/30 bg-[#1a0c03] py-1.5 text-center text-[11px] font-bold text-[#ffe3a3] shadow-inner transition-colors duration-300 group-hover:border-[#fdbb24]/60 group-hover:bg-gradient-to-r group-hover:from-[#ffe3a3] group-hover:via-[#fdbb24] group-hover:to-[#b35303] group-hover:text-[#3d1304]">
+          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#f5c518]/30 bg-[#020818] py-1.5 text-center text-[11px] font-bold text-[#ffe9a8] shadow-inner transition-colors duration-300 group-hover:border-[#f5c518]/60 group-hover:bg-gradient-to-r group-hover:from-[#ffe9a8] group-hover:via-[#f5c518] group-hover:to-[#b8770a] group-hover:text-[#08122e]">
             เข้าดูเกม
           </span>
         </a>

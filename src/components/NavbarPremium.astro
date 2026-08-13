@@ -26,13 +26,13 @@ const links = [
   { name: "ติดต่อเรา", path: "/contact-us", icon: "💬" },
 ];
 
-const logoAlt = "โลโก้ DUCK36 รูปเป็ดใส่แว่นดำสวมหมวก DUCK36 คล้องสร้อยทอง ถือไม้เบสบอล ในวงกลมสีดำ ใต้ภาพเป็นตัวอักษร DUCK สีเงินและ 36 สีทอง";
+const logoAlt = "โลโก้ PG699 ตัวอักษร PG ลายบล็อกทองต่อด้วยเลข 699 สีทองไล่เฉด คั่นด้วยเส้นแนวตั้ง แล้วเป็นโลโก้ OKACE รูปมือสีน้ำเงินทำสัญลักษณ์โอเค ตัวอักษร OK สีน้ำเงินและ ACE สีทอง";
 ---
 
 <header class="sticky top-0 z-[100] w-full font-sans">
   <nav
-    class="relative mx-auto flex h-[85px] w-full items-center justify-between rounded-b-2xl border-b border-[#f5b70a]/40 bg-[#050403]/85 px-4 shadow-[0_10px_30px_rgba(245,183,10,0.32)] backdrop-blur-xl xl:px-8">
-    <a href="/" class="z-[110] flex-shrink-0 transition-transform duration-300 hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(255,215,106,0.5)]">
+    class="relative mx-auto flex h-[85px] w-full items-center justify-between rounded-b-2xl border-b border-[#f5c518]/40 bg-[#020818]/85 px-4 shadow-[0_10px_30px_rgba(245,197,24,0.28)] backdrop-blur-xl xl:px-8">
+    <a href="/" class="z-[110] flex-shrink-0 transition-transform duration-300 hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(255,233,168,0.5)]">
       {
         mainLogo ? (
           <Picture
@@ -46,8 +46,8 @@ const logoAlt = "โลโก้ DUCK36 รูปเป็ดใส่แว่�
             fallbackFormat="webp"
           />
         ) : (
-          <span class="bg-gradient-to-r from-[#e9e9e9] to-[#c9c9c9] bg-clip-text text-4xl font-black tracking-widest text-transparent drop-shadow-md">
-            DUCK<span class="bg-gradient-to-r from-[#ffd76a] to-[#f5b70a] bg-clip-text text-transparent">36</span>
+          <span class="bg-gradient-to-r from-[#ffe9a8] to-[#b8770a] bg-clip-text text-4xl font-black tracking-widest text-transparent drop-shadow-md">
+            PG<span class="bg-gradient-to-r from-[#5b9dff] to-[#1a5cf5] bg-clip-text text-transparent">699</span>
           </span>
         )
       }
@@ -58,13 +58,13 @@ const logoAlt = "โลโก้ DUCK36 รูปเป็ดใส่แว่�
         links.map((item) => (
           <a
             href={item.path}
-            class={`group relative flex h-full items-center gap-2 px-2 text-sm font-bold tracking-widest uppercase transition-colors duration-300 xl:text-base ${isActive(item.path) ? "text-[#ffd76a]" : "text-[#efe3c9]/60 hover:text-white"}`}>
+            class={`group relative flex h-full items-center gap-2 px-2 text-sm font-bold tracking-widest uppercase transition-colors duration-300 xl:text-base ${isActive(item.path) ? "text-[#ffe9a8]" : "text-[#dbe6ff]/60 hover:text-white"}`}>
             <span aria-hidden="true" class="text-base">
               {item.icon}
             </span>
             <span>{item.name}</span>
             <div
-              class={`absolute bottom-0 left-0 h-[3px] w-full rounded-t-full bg-gradient-to-r from-[#ffd76a] to-[#a8720a] shadow-[0_-2px_10px_rgba(245,183,10,0.8)] transition-transform duration-300 ${isActive(item.path) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+              class={`absolute bottom-0 left-0 h-[3px] w-full rounded-t-full bg-gradient-to-r from-[#ffe9a8] to-[#b8770a] shadow-[0_-2px_10px_rgba(245,197,24,0.8)] transition-transform duration-300 ${isActive(item.path) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
             />
           </a>
         ))
@@ -74,35 +74,35 @@ const logoAlt = "โลโก้ DUCK36 รูปเป็ดใส่แว่�
     <div class="z-[110] flex items-center gap-4">
       <a
         href="/login"
-        class="hidden items-center justify-center rounded-full border border-[#f5b70a]/50 bg-[#050403]/60 px-7 py-2.5 text-sm font-bold text-[#efe3c9] backdrop-blur-md transition-all duration-300 hover:bg-[#8a5c07]/35 hover:text-white hover:shadow-[0_0_15px_rgba(245,183,10,0.4)] lg:flex">
+        class="hidden items-center justify-center rounded-full border border-[#5b9dff]/50 bg-[#061233]/70 px-7 py-2.5 text-sm font-bold text-[#dbe6ff] backdrop-blur-md transition-all duration-300 hover:bg-[#0b2f8f]/60 hover:text-white hover:shadow-[0_0_15px_rgba(26,92,245,0.45)] lg:flex">
         เข้าสู่ระบบ
       </a>
       <a
         href="/register"
-        class="hidden items-center justify-center rounded-full bg-gradient-to-r from-[#ffd76a] via-[#f5b70a] to-[#a8720a] px-7 py-2.5 text-sm font-black text-[#120d02] shadow-[0_4px_15px_rgba(245,183,10,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(245,183,10,0.6)] lg:flex">
+        class="hidden items-center justify-center rounded-full bg-gradient-to-r from-[#ffe9a8] via-[#f5c518] to-[#b8770a] px-7 py-2.5 text-sm font-black text-[#08122e] shadow-[0_4px_15px_rgba(245,197,24,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(245,197,24,0.6)] lg:flex">
         สมัครสมาชิก
       </a>
 
       <button
         id="hamburger-btn"
-        class="relative flex h-[45px] w-[45px] flex-col items-center justify-center gap-[6px] rounded-full border border-[#f5b70a]/30 bg-[#050403]/60 lg:hidden"
+        class="relative flex h-[45px] w-[45px] flex-col items-center justify-center gap-[6px] rounded-full border border-[#f5c518]/30 bg-[#061233]/70 lg:hidden"
         aria-label="เปิดเมนู">
-        <span class="line-1 h-[2px] w-5 origin-center rounded-full bg-[#ffd76a] transition-all duration-300"></span>
-        <span class="line-2 h-[2px] w-5 origin-center rounded-full bg-[#ffd76a] transition-all duration-300"></span>
-        <span class="line-3 h-[2px] w-5 origin-center rounded-full bg-[#ffd76a] transition-all duration-300"></span>
+        <span class="line-1 h-[2px] w-5 origin-center rounded-full bg-[#ffe9a8] transition-all duration-300"></span>
+        <span class="line-2 h-[2px] w-5 origin-center rounded-full bg-[#ffe9a8] transition-all duration-300"></span>
+        <span class="line-3 h-[2px] w-5 origin-center rounded-full bg-[#ffe9a8] transition-all duration-300"></span>
       </button>
     </div>
   </nav>
 
   <div
     id="mobile-menu"
-    class="pointer-events-none absolute top-[85px] left-0 w-full origin-top -translate-y-4 scale-y-95 flex-col rounded-b-3xl border-b border-[#f5b70a]/40 bg-[#050403]/98 px-6 pt-4 pb-8 opacity-0 shadow-2xl backdrop-blur-2xl transition-all duration-400 lg:hidden">
+    class="pointer-events-none absolute top-[85px] left-0 w-full origin-top -translate-y-4 scale-y-95 flex-col rounded-b-3xl border-b border-[#f5c518]/40 bg-[#020818]/98 px-6 pt-4 pb-8 opacity-0 shadow-2xl backdrop-blur-2xl transition-all duration-400 lg:hidden">
     <div class="flex flex-col gap-2">
       {
         links.map((item) => (
           <a
             href={item.path}
-            class={`flex items-center gap-3 rounded-xl px-5 py-3.5 text-lg font-bold tracking-widest uppercase transition-colors ${isActive(item.path) ? "bg-[#8a5c07]/30 text-[#ffd76a] shadow-inner" : "text-[#efe3c9]/60 hover:bg-white/5 hover:text-white"}`}>
+            class={`flex items-center gap-3 rounded-xl px-5 py-3.5 text-lg font-bold tracking-widest uppercase transition-colors ${isActive(item.path) ? "bg-[#0b2f8f]/45 text-[#ffe9a8] shadow-inner" : "text-[#dbe6ff]/60 hover:bg-white/5 hover:text-white"}`}>
             <span aria-hidden="true" class="text-xl">
               {item.icon}
             </span>
@@ -114,10 +114,10 @@ const logoAlt = "โลโก้ DUCK36 รูปเป็ดใส่แว่�
     <div class="mt-6 flex flex-col gap-4">
       <a
         href="/register"
-        class="flex w-full justify-center rounded-full bg-gradient-to-r from-[#ffd76a] to-[#a8720a] py-3.5 text-lg font-black text-[#120d02] shadow-[0_5px_15px_rgba(245,183,10,0.3)]">
+        class="flex w-full justify-center rounded-full bg-gradient-to-r from-[#ffe9a8] to-[#b8770a] py-3.5 text-lg font-black text-[#08122e] shadow-[0_5px_15px_rgba(245,197,24,0.3)]">
         สมัครสมาชิก
       </a>
-      <a href="/login" class="flex w-full justify-center rounded-full border border-[#f5b70a]/50 bg-[#050403]/60 py-3.5 text-lg font-bold text-[#efe3c9]">เข้าสู่ระบบ</a>
+      <a href="/login" class="flex w-full justify-center rounded-full border border-[#5b9dff]/50 bg-[#061233]/70 py-3.5 text-lg font-bold text-[#dbe6ff]">เข้าสู่ระบบ</a>
     </div>
   </div>
 </header>

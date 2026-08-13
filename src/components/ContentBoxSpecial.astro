@@ -4,21 +4,25 @@ export interface Props {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
 const { title, as: HeadingTag = "h2" } = Astro.props;
+
+// Each half is a `flex gap-4` row: the icon box, then whatever single element
+// the page passes into the slot. One element per slot — passing two siblings
+// would put the gap between them.
 ---
 
 <section class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div
-    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#f8d441]/25 bg-[#0b0806]/92 p-6 text-[#f5ecd6] shadow-[0_10px_30px_rgba(248,212,65,0.16)] backdrop-blur-xl transition-all duration-500 hover:border-[#f8d441]/50 md:p-10">
+    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#f5c518]/25 bg-[#020818]/92 p-6 text-[#dbe6ff] shadow-[0_10px_30px_rgba(245,197,24,0.16)] backdrop-blur-xl transition-all duration-500 hover:border-[#f5c518]/50 md:p-10">
     <div
       aria-hidden="true"
-      class="pointer-events-none absolute top-0 left-1/2 -z-10 h-[2px] w-1/2 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#f8d441] to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100">
+      class="pointer-events-none absolute top-0 left-1/2 -z-10 h-[2px] w-1/2 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#f5c518] to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100">
     </div>
 
     {
       title && (
-        <header class="mb-8 flex items-center gap-4 border-b border-[#f8d441]/25 pb-4">
-          <div class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#fff8d6] to-[#8a6205] shadow-[0_0_10px_rgba(248,212,65,0.45)]" />
-          <HeadingTag class="bg-gradient-to-r from-[#fff8d6] via-[#f8d441] to-[#d9a520] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">
+        <header class="mb-8 flex items-center gap-4 border-b border-[#f5c518]/25 pb-4">
+          <div class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffe9a8] to-[#b8770a] shadow-[0_0_10px_rgba(245,197,24,0.45)]" />
+          <HeadingTag class="bg-gradient-to-r from-[#ffe9a8] via-[#f5c518] to-[#b8770a] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">
             {title}
           </HeadingTag>
         </header>
@@ -27,21 +31,21 @@ const { title, as: HeadingTag = "h2" } = Astro.props;
 
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-10">
       <article
-        class="relative flex gap-4 rounded-2xl border border-[#f8d441]/20 bg-[#150f05]/95 p-6 text-left text-base leading-relaxed text-[#f5ecd6] transition-all duration-300 hover:-translate-y-2 hover:border-[#f8d441]/50 hover:bg-[#221807]/90 hover:shadow-[0_15px_40px_rgba(248,212,65,0.28)]">
+        class="relative flex gap-4 rounded-2xl border border-[#f5c518]/20 bg-[#0a1a44]/95 p-6 text-left text-base leading-relaxed text-[#dbe6ff] transition-all duration-300 hover:-translate-y-2 hover:border-[#f5c518]/50 hover:bg-[#061233]/90 hover:shadow-[0_15px_40px_rgba(245,197,24,0.28)]">
         <div
           aria-hidden="true"
-          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#f8d441]/30 bg-gradient-to-br from-[#fff8d6] via-[#f8d441] to-[#8a6205] text-2xl shadow-[0_5px_15px_rgba(248,212,65,0.28)]">
-          📖
+          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#f5c518]/30 bg-gradient-to-br from-[#ffe9a8] via-[#f5c518] to-[#b8770a] text-2xl shadow-[0_5px_15px_rgba(245,197,24,0.28)]">
+          🔐
         </div>
         <slot name="left" />
       </article>
 
       <article
-        class="relative flex gap-4 rounded-2xl border border-[#e11d2b]/25 bg-[#150f05]/95 p-6 text-left text-base leading-relaxed text-[#f5ecd6] transition-all duration-300 hover:-translate-y-2 hover:border-[#e11d2b]/55 hover:bg-[#221807]/90 hover:shadow-[0_15px_40px_rgba(225,29,43,0.28)]">
+        class="relative flex gap-4 rounded-2xl border border-[#1a5cf5]/30 bg-[#0a1a44]/95 p-6 text-left text-base leading-relaxed text-[#dbe6ff] transition-all duration-300 hover:-translate-y-2 hover:border-[#5b9dff]/60 hover:bg-[#061233]/90 hover:shadow-[0_15px_40px_rgba(26,92,245,0.3)]">
         <div
           aria-hidden="true"
-          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#f8d441]/40 bg-gradient-to-br from-[#e11d2b] via-[#8f0f18] to-[#5c0a10] text-2xl shadow-[0_5px_15px_rgba(225,29,43,0.3)]">
-          ⏱️
+          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#5b9dff]/40 bg-gradient-to-br from-[#5b9dff] via-[#1a5cf5] to-[#0b2f8f] text-2xl shadow-[0_5px_15px_rgba(26,92,245,0.32)]">
+          🛡️
         </div>
         <slot name="right" />
       </article>

@@ -1,55 +1,55 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/Announcement3.astro";
-import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
-import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
+import Announcement from "../components/Announcement5.astro";
+import ContentBoxPremium from "../components/ContentBoxPremium.astro";
+import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
+import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
 import ContentBox from "../components/ContentBox.astro";
+import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
 import ContentBoxSevenThree from "../components/ContentBoxSevenThree.astro";
-import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinners4.astro";
+import LatestWinners from "../components/LatestWinnersPremium.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq3.astro";
+import Faq from "../components/Faq4.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
 import { pageGraph } from "../lib/schema";
 
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
-// two of those per rebrand — both are spent here. slide1 is the general brand
-// board ("เว็บสล็อตสายหวาน โบนัสทุกวัน") and sits with the "สำรวจเกมยอดนิยม"
-// section; slide2 reads "ฝากครั้งแรก รับเพิ่ม 20%" and sits with the ฝากง่าย
-// section. slide3 and slide4 stay unused here and keep rendering in
-// SmoothCarousel and on /promotion.
-import imgGameStyles from "../assets/slide1.png";
+// two of those per rebrand — both are spent here. slide2 reads "ฝากครั้งแรก
+// รับเพิ่ม 20%" and sits with the ฝากถอนออโต้ section; slide4 reads "คืนยอดเสีย
+// ทุกวัน 0.8%" and sits with the ตรวจสอบสถานะจ่ายไว section. slide1 and slide3
+// stay unused here and keep rendering in SmoothCarousel and on /promotion.
 import imgCashier from "../assets/slide2.png";
+import imgPayout from "../assets/slide4.png";
 
-const pageTitle = "HONEY289 | วันเดิมพันอัตราจ่ายสูง ยอดนิยมอันดับ 1 ฝากง่าย ถอนออโต้";
-const pageHeading = "HONEY289 วันเดิมพันอัตราจ่ายสูง ยอดนิยมอันดับ 1 ฝากง่าย ถอนออโต้";
+const pageTitle = "PG699 | คาสิโนเกมยอดนิยม มั่นคงฝากถอนออโต้ แตกง่าย จ่ายไวทุกยอด";
+const pageHeading = "PG699 คาสิโนเกมยอดนิยม มั่นคงฝากถอนออโต้ แตกง่าย จ่ายไวทุกยอด";
 
-// The docx Meta Description, verbatim at the length it was written (~130
+// The docx Meta Description, verbatim at the length it was written (122
 // characters). DESC_MIN does not apply to the home page — verify-build.mjs
 // exempts it precisely so the brand's own copy ships unpadded. Do not top it
 // up to 150.
-const pageDescription = "HONEY289 เกมเดิมพันอัตราจ่ายสูง รวมเกมยอดนิยม ฝากง่าย ถอนออโต้ รองรับมือถือ พร้อมระบบใช้งานสะดวกและบริการสมาชิกตลอด 24 ชั่วโมง";
+const pageDescription = "PG699 คาสิโนเกมยอดนิยม ระบบฝากถอนออโต้ รองรับมือถือ ใช้งานสะดวก พร้อมเกมหลากหลาย ระบบมั่นคง และบริการสมาชิกตลอด 24 ชั่วโมง";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq3's own default, which is always the previous brand's FAQ.
+// Faq4's own default, which is always the previous brand's FAQ.
 const faqs = [
   {
-    q: "HONEY289 มีเกมอัตราจ่ายสูงหลายประเภทหรือไม่?",
-    a: "เกมแต่ละประเภทมีอัตราจ่ายและเงื่อนไขแตกต่างกัน สมาชิกควรตรวจสอบข้อมูลของเกมที่สนใจ รวมถึงทำความเข้าใจกติกาก่อนเริ่มเดิมพันทุกครั้ง",
+    q: "PG699 มีเกมคาสิโนประเภทใดให้เลือกบ้าง?",
+    a: "ภายในระบบมีทั้งเกมสล็อต บาคาร่า เกมไพ่ คาสิโนสด และเกมรูปแบบอื่น สมาชิกสามารถเลือกตามกติกา ความสนใจ และงบประมาณของตนเองได้",
   },
   {
-    q: "ระบบถอนออโต้ของ HONEY289 ใช้งานอย่างไร?",
-    a: "สมาชิกสามารถส่งคำขอถอนผ่านหน้าบัญชีและติดตามสถานะได้โดยตรง โดยควรตรวจสอบยอดคงเหลือ ข้อมูลบัญชี และเงื่อนไขที่เกี่ยวข้องก่อนยืนยัน",
+    q: "PG699 ฝากถอนผ่านระบบออโต้หรือไม่?",
+    a: "ระบบรองรับการฝากถอนออโต้ตามช่องทางที่กำหนด สมาชิกควรตรวจสอบข้อมูลบัญชี จำนวนเงิน และสถานะรายการทุกครั้งก่อนยืนยัน",
   },
   {
-    q: "เกมยอดนิยมอันดับ 1 รับประกันผลตอบแทนได้หรือไม่?",
-    a: "ความนิยมหรืออัตราจ่ายไม่สามารถรับประกันผลลัพธ์ได้ ผู้เล่นควรพิจารณากติกา ความเสี่ยง และกำหนดงบประมาณที่เหมาะสมก่อนเริ่มเล่น",
+    q: "คำว่าแตกง่ายและจ่ายไวทุกยอดรับประกันผลได้หรือไม่?",
+    a: "ไม่สามารถรับประกันผลของเกมหรือธุรกรรมทุกกรณีได้ ผลลัพธ์ขึ้นอยู่กับเกม สถานะบัญชี และเงื่อนไขที่เกี่ยวข้อง จึงควรตรวจสอบรายละเอียดก่อนใช้งาน",
   },
 ];
 
@@ -65,20 +65,29 @@ const graph = pageGraph(Astro, {
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement
-    message="HONEY289 รวบรวมเกมเดิมพันหลายรูปแบบไว้ในแพลตฟอร์มเดียว เน้นการเข้าถึงเกมง่าย ระบบฝากสะดวก และการถอนผ่านระบบออโต้ • ควรตรวจสอบกติกา วิธีคิดผล และอัตราจ่ายของแต่ละเกมก่อนเริ่ม เพื่อช่วยให้ตัดสินใจได้จากข้อมูลมากกว่าความนิยมเพียงอย่างเดียว • ก่อนยืนยันรายการฝากควรตรวจสอบชื่อบัญชี จำนวนเงิน และช่องทางที่เลือกให้ถูกต้อง • หากรายการถอนอยู่ระหว่างดำเนินการควรรอผลจากระบบ ไม่ควรส่งรายการซ้ำ • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง"
+    message="PG699 รวบรวมเกมคาสิโนหลายประเภทไว้ในระบบเดียว ทั้งเกมสล็อต บาคาร่า เกมไพ่ และคาสิโนสด เลือกได้ตามกติกา รูปแบบการเดิมพัน และระดับความเสี่ยงที่รับได้ • ระบบฝากถอนออโต้ช่วยลดขั้นตอน ทำรายการผ่านหน้าบัญชีได้เอง ควรตรวจสอบชื่อบัญชีและจำนวนเงินก่อนยืนยันทุกครั้ง • คำว่าแตกง่ายและจ่ายไวทุกยอดเป็นคำโฆษณา ไม่ใช่การรับประกันผลลัพธ์ ควรกำหนดวงเงินและเวลาเล่นก่อนเริ่ม • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง"
   />
 
-  <ContentBoxNeumorphism as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#fdf0d8]">
-      <strong class="text-[#fdbb24]">HONEY289</strong> รวบรวมเกมเดิมพันหลายรูปแบบไว้ในแพลตฟอร์มเดียว เน้นการเข้าถึงเกมง่าย ระบบฝากสะดวก และการถอนผ่านระบบออโต้ รองรับการใช้งานบนมือถือและคอมพิวเตอร์ สมาชิกสามารถตรวจสอบข้อมูลเกม
-      โปรโมชั่น และบัญชีได้จากระบบเดียว โดยควรศึกษากติกา อัตราจ่าย และเงื่อนไขต่าง ๆ ก่อนเริ่มใช้งาน
+  <ContentBoxPremium as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#dbe6ff]">
+      <strong class="text-[#f5c518]">PG699</strong> เป็นแพลตฟอร์มคาสิโนออนไลน์ที่รวบรวมเกมหลายประเภทไว้ในระบบเดียว ทั้งเกมสล็อต บาคาร่า เกมไพ่ และคาสิโนสด พร้อมระบบฝากถอนออโต้ที่ช่วยลดขั้นตอนการทำรายการ
+      รองรับการใช้งานผ่านมือถือและคอมพิวเตอร์ สมาชิกควรศึกษากติกา โปรโมชั่น และเงื่อนไขธุรกรรมก่อนเริ่มใช้งานทุกครั้ง
     </p>
-  </ContentBoxNeumorphism>
+  </ContentBoxPremium>
 
-  <ContentBoxSevenThreeFloatingBadge title="สำรวจเกมยอดนิยมและรูปแบบการจ่ายบน HONEY289">
+  <ContentBoxCyberCut as="h2" title="ค้นหาเกมคาสิโนยอดนิยมได้ง่ายบน PG699">
+    <p class="text-left text-base leading-relaxed text-[#dbe6ff]">
+      ภายใน PG699 มีเกมคาสิโนหลายหมวดให้เลือกตามความสนใจ ทั้งสล็อต บาคาร่า เกมไพ่ และเกมรูปแบบอื่น ผู้เล่นสามารถพิจารณาจากกติกา รูปแบบการเดิมพัน และระดับความเสี่ยงก่อนเริ่ม
+      เพื่อเลือกเกมให้สอดคล้องกับงบประมาณและสไตล์ของตนเอง
+    </p>
+  </ContentBoxCyberCut>
+
+  <ProviderGrid />
+
+  <ContentBoxSevenThreePremium titleright="ระบบฝากถอนออโต้ช่วยลดขั้นตอนระหว่างใช้งาน">
     <Picture
       slot="left"
-      src={imgGameStyles}
+      src={imgCashier}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -87,30 +96,33 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์ HONEY289 ข้อความ เว็บสล็อตสายหวาน โบนัสทุกวัน เล่นง่าย ฝาก-ถอนออโต้ จ่ายจริง แตกง่ายจ่ายจริง และปุ่ม สมัครเลย พร้อมผึ้งการ์ตูนขยิบตาถือไม้จุ่มน้ำผึ้ง รังผึ้งหกเหลี่ยม โหลน้ำผึ้ง วงล้อสล็อต 777 เหรียญทองและดอกไม้สีชมพู"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#fdbb24]/35 shadow-[0_10px_30px_rgba(253,187,36,0.22)]"
+      alt="แบนเนอร์โปรโมชั่น PG699 OKACE ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก และปุ่ม ฝากเลย พร้อมพริตตี้ชุดน้ำเงินทองชูนิ้วชี้ ตู้สล็อต 777 ใต้ป้าย JACKPOT กองเหรียญทองและชิปคาสิโน PG699"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f5c518]/35 shadow-[0_10px_30px_rgba(245,197,24,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#fdf0d8]">
-      ภายใน HONEY289 มีเกมหลายประเภทที่มีรูปแบบการเดิมพันและอัตราจ่ายแตกต่างกัน ผู้เล่นสามารถเลือกตามความสนใจและระดับความเสี่ยงที่ยอมรับได้ ควรตรวจสอบกติกา วิธีคิดผล และอัตราจ่ายของแต่ละเกมก่อนเริ่ม
-      เพื่อช่วยให้ตัดสินใจได้จากข้อมูลมากกว่าความนิยมเพียงอย่างเดียว
+    <p slot="right" class="text-left text-base leading-relaxed text-[#dbe6ff]">
+      ระบบออโต้ช่วยให้สมาชิกฝาก ถอน และตรวจสอบสถานะรายการผ่านหน้าบัญชีได้โดยตรง ก่อนยืนยันควรตรวจสอบชื่อบัญชี จำนวนเงิน และข้อมูลที่เกี่ยวข้องให้ถูกต้อง
+      หากรายการยังดำเนินการอยู่ควรรอผลจากระบบก่อนส่งคำขอใหม่ เพื่อลดความคลาดเคลื่อน
     </p>
-  </ContentBoxSevenThreeFloatingBadge>
+  </ContentBoxSevenThreePremium>
 
-  <ProviderGrid />
+  <ContentBoxSpecial as="h2" title="ความมั่นคงของ PG699 เริ่มจากช่องทางใช้งานที่ชัดเจน">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#dbe6ff]">การใช้งาน PG699 ควรเริ่มจากการเข้าสู่ระบบผ่านช่องทางหลัก ตั้งรหัสผ่านที่คาดเดายาก และไม่เปิดเผยรหัสยืนยันแก่บุคคลอื่น</p>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#dbe6ff]">สมาชิกควรตรวจสอบข้อมูลบัญชีเป็นระยะ และหลีกเลี่ยงเครือข่ายสาธารณะเมื่อต้องจัดการธุรกรรมทางการเงิน</p>
+  </ContentBoxSpecial>
 
-  <ContentBox as="h2" title="อัตราจ่ายสูงควรดูควบคู่กับกติกาของแต่ละเกม">
-    <p class="text-left text-base leading-relaxed text-[#fdf0d8]">
-      ตัวเลขอัตราจ่ายช่วยให้ผู้เล่นเข้าใจผลตอบแทนตามเงื่อนไขของการเดิมพันแต่ละประเภท แต่ไม่ได้หมายความว่าจะได้รับผลตอบแทนทุกครั้ง ควรเปรียบเทียบรูปแบบเกม ความเสี่ยง และจำนวนเงินที่ต้องใช้
-      พร้อมกำหนดงบประมาณล่วงหน้าเพื่อควบคุมการเล่นให้อยู่ในขอบเขต
+  <ContentBox as="h2" title="เกมแตกง่ายควรดูข้อมูลประกอบก่อนตัดสินใจ">
+    <p class="text-left text-base leading-relaxed text-[#dbe6ff]">
+      คำว่าแตกง่ายมักใช้สื่อถึงเกมที่มีจังหวะลุ้นรางวัลหรือฟีเจอร์โบนัสน่าสนใจ แต่ไม่สามารถรับประกันผลลัพธ์ได้ ผู้เล่นควรตรวจสอบอัตราจ่าย ความผันผวน และเงื่อนไขของเกม
+      พร้อมกำหนดวงเงินและเวลาเล่นให้ชัดเจนก่อนเริ่ม
     </p>
   </ContentBox>
 
   <GameRankingBoard />
 
-  <ContentBoxSevenThree titleright="ฝากง่ายและจัดการบัญชีได้สะดวกกับ HONEY289">
+  <ContentBoxSevenThree titleright="ตรวจสอบสถานะจ่ายไวได้ผ่านระบบของ PG699">
     <Picture
       slot="left"
-      src={imgCashier}
+      src={imgPayout}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -119,52 +131,38 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่น HONEY289 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก และปุ่ม ฝากเลย พร้อมผึ้งการ์ตูนยกนิ้วโป้งถือไม้จุ่มน้ำผึ้ง ตู้สล็อต 777 กล่องของขวัญสีชมพู โหลน้ำผึ้ง เหรียญทองและดอกไม้"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#fdbb24]/35 shadow-[0_10px_30px_rgba(253,187,36,0.22)]"
+      alt="แบนเนอร์โปรโมชั่น PG699 OKACE ข้อความ คืนยอดเสียทุกวัน 0.8% เล่นต่อได้ทุกวัน ปุ่ม รับสิทธิ์ และป้าย ระบบออโต้ โบนัสคุ้ม บริการ 24 ชม. พร้อมพริตตี้ชุดน้ำเงินทองชูนิ้วชี้ กองเหรียญทองและชิปคาสิโน PG699"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f5c518]/35 shadow-[0_10px_30px_rgba(245,197,24,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#fdf0d8]">
-      ขั้นตอนฝากเงินของ HONEY289 ถูกจัดให้สมาชิกสามารถดำเนินการผ่านหน้าบัญชีได้สะดวก ก่อนยืนยันควรตรวจสอบชื่อบัญชี จำนวนเงิน และช่องทางที่เลือกให้ถูกต้อง
-      รวมถึงเก็บรายละเอียดรายการจนกว่าระบบจะแสดงผลสำเร็จ เพื่อลดปัญหาเมื่อต้องตรวจสอบย้อนหลัง
+    <p slot="right" class="text-left text-base leading-relaxed text-[#dbe6ff]">
+      สมาชิก PG699 สามารถตรวจสอบยอดคงเหลือ สถานะบัญชี และรายการถอนผ่านหน้าระบบได้ ก่อนทำรายการควรตรวจสอบข้อกำหนดโปรโมชั่นและข้อมูลบัญชีให้ครบ
+      หากพบความล่าช้าควรเก็บรายละเอียดรายการไว้สำหรับติดต่อทีมงาน
     </p>
   </ContentBoxSevenThree>
 
-  <ContentBoxFloatingBadge as="h2" title="เลือกเกมจากความเข้าใจแทนการยึดอันดับเพียงอย่างเดียว">
-    <p class="text-left text-base leading-relaxed text-[#fdf0d8]">
-      เกมที่ได้รับความนิยมอาจเหมาะกับผู้เล่นแต่ละคนไม่เหมือนกัน ก่อนเลือกจึงควรพิจารณากติกา ความเร็วของเกม รูปแบบการเดิมพัน และระดับความเสี่ยงร่วมกัน
-      การทดลองทำความเข้าใจเกมก่อนช่วยให้ตัดสินใจได้เหมาะกับงบประมาณและรูปแบบที่ตนเองชอบมากกว่า
-    </p>
-  </ContentBoxFloatingBadge>
-
-  <ContentBoxNeumorphism as="h2" title="ระบบถอนออโต้บน HONEY289 ช่วยลดขั้นตอนการทำรายการ">
-    <p class="text-left text-base leading-relaxed text-[#fdf0d8]">
-      สมาชิก HONEY289 สามารถส่งคำขอถอนและติดตามสถานะผ่านระบบออโต้ได้โดยตรง ควรตรวจสอบยอดคงเหลือ ข้อมูลบัญชี และเงื่อนไขโปรโมชั่นก่อนยืนยัน หากรายการอยู่ระหว่างดำเนินการควรรอผลจากระบบ
-      ไม่ควรส่งรายการซ้ำเพื่อลดความคลาดเคลื่อน
-    </p>
-  </ContentBoxNeumorphism>
-
   <LatestWinners />
 
-  <ContentBox as="h2" title="ดูแลบัญชีและติดตามรายการได้กับทีม HONEY289">
-    <p class="text-left text-base leading-relaxed text-[#fdf0d8]">
-      เมื่อมีข้อสงสัยเกี่ยวกับบัญชี ทางเข้า โปรโมชั่น หรือสถานะธุรกรรม สามารถติดต่อทีมงาน HONEY289 ผ่านช่องทางที่เว็บไซต์กำหนด ควรเตรียมชื่อผู้ใช้ เวลา และรายละเอียดรายการให้ครบถ้วน
-      โดยไม่เปิดเผยรหัสผ่านหรือรหัสยืนยัน เพื่อช่วยให้ตรวจสอบได้ตรงประเด็น
+  <ContentBoxCyberCut as="h2" title="รับความช่วยเหลือจากทีมบริการสมาชิก PG699">
+    <p class="text-left text-base leading-relaxed text-[#dbe6ff]">
+      หากพบปัญหาเกี่ยวกับบัญชี ทางเข้า โปรโมชั่น หรือสถานะฝากถอน สามารถติดต่อทีมงาน PG699 ผ่านช่องทางที่เว็บไซต์ระบุ ควรเตรียมชื่อผู้ใช้ เวลา และรายละเอียดรายการให้ครบ
+      โดยไม่เปิดเผยรหัสผ่านหรือรหัสยืนยัน เพื่อช่วยให้ตรวจสอบได้รวดเร็วขึ้น
     </p>
-  </ContentBox>
+  </ContentBoxCyberCut>
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ HONEY289" faqs={faqs} />
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ PG699" faqs={faqs} />
 
   <LoginRtpSection />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#ffe3a3] via-[#fdbb24] to-[#b35303] px-4 py-3 text-sm font-black whitespace-nowrap text-[#3d1304] shadow-[0_10px_30px_rgba(253,187,36,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(253,187,36,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#ffe9a8] via-[#f5c518] to-[#b8770a] px-4 py-3 text-sm font-black whitespace-nowrap text-[#08122e] shadow-[0_10px_30px_rgba(245,197,24,0.28)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(245,197,24,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffe3a3]/70 bg-[#f2559a] px-4 py-3 text-sm font-black whitespace-nowrap text-[#3d1304] shadow-[0_10px_30px_rgba(242,85,154,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe3a3] hover:shadow-[0_15px_40px_rgba(242,85,154,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#5b9dff]/70 bg-[#1a5cf5] px-4 py-3 text-sm font-black whitespace-nowrap text-[#ffe9a8] shadow-[0_10px_30px_rgba(26,92,245,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#5b9dff] hover:shadow-[0_15px_40px_rgba(26,92,245,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>
