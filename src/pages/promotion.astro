@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement3.astro";
+import Announcement from "../components/AnnouncementCyber.astro";
 
 import { Picture } from "astro:assets";
 
@@ -16,14 +16,14 @@ import { pageGraph } from "../lib/schema";
 // paragraph, the four promo images and one CTA. No section headings and no
 // second paragraph — the slides already print their own offer in large type,
 // so prose underneath only re-types what the visitor can already read.
-const pageTitle = "โปรโมชั่น HONEY289 รวมโบนัสและสิทธิพิเศษของสมาชิก";
+const pageTitle = "โปรโมชั่น KIKI49 รวมโบนัสและสิทธิพิเศษของสมาชิก";
 
-// docx SUB-PAGES Meta ของหน้าโปรโมชั่น ยกมาทั้งประโยคโดยไม่แก้ถ้อยคำ (130 ตัวอักษร)
+// docx SUB-PAGES Meta ของหน้าโปรโมชั่น ยกถ้อยคำมาทั้งประโยค (122 ตัวอักษร)
 // + วรรคปิดท้ายหนึ่งวรรคให้ผ่านเกท DESC_MIN 150 ของ tools/verify-build.mjs
 // ซึ่งยกเว้นให้เฉพาะหน้าแรกเท่านั้น นับเป็น "ตัวอักษร" ไม่ใช่ไบต์ (ไทย 3 ไบต์/ตัว)
-// — สตริงนี้วัดได้ 153 ตัวอักษร
+// — สตริงนี้วัดได้ 154 ตัวอักษร
 const pageDescription =
-  "HONEY289 รวมโปรโมชั่นเกมเดิมพัน โบนัสต้อนรับ และสิทธิพิเศษสำหรับสมาชิก พร้อมรายละเอียดเงื่อนไข ช่วยให้เลือกโปรได้เหมาะกับการใช้งาน ตรวจได้ก่อนกดรับสิทธิ์";
+  "KIKI49 รวมโปรโมชั่นสล็อตทุนน้อย โบนัสสมาชิก และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดให้ตรวจสอบก่อนเลือกรับโปรให้เหมาะกับงบและแผนการเล่นในแต่ละวันของคุณเอง";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -36,19 +36,19 @@ const graph = pageGraph(Astro, {
 });
 
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#fdbb24]/30 object-contain shadow-[0_10px_30px_rgba(253,187,36,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#eb9413]/55 hover:shadow-[0_15px_40px_rgba(235,148,19,0.30)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#e2131d]/30 object-contain shadow-[0_10px_30px_rgba(226,19,29,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#a80f16]/55 hover:shadow-[0_15px_40px_rgba(168,15,22,0.30)]";
 ---
 
-<MainLayout title="HONEY289 | โปรโมชั่นเกมเดิมพันและโบนัสสำหรับสมาชิก" description={pageDescription}>
+<MainLayout title="KIKI49 | โปรโมชั่นสล็อตทุนน้อยและสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#fdf0d8]">
-        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#fdbb24]">HONEY289</strong> เปิดให้สมาชิกไว้ครบในที่เดียว ทั้งโบนัสต้อนรับสมาชิกใหม่ โบนัสฝากครั้งแรก
-        และค่าคอมจากการชวนเพื่อน ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว จึงอ่านจบได้ตั้งแต่ครั้งแรกที่เลื่อนดู
+      <p class="mb-8 text-left text-base leading-relaxed text-[#f2e2e4]">
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#ff5a5f]">KIKI49</strong> เปิดให้สมาชิกไว้ครบในที่เดียว ทั้งโบนัสสมาชิกใหม่ คืนยอดเสียรายวัน
+        และค่าคอมจากการแนะนำเพื่อน ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว จึงอ่านจบได้ตั้งแต่ครั้งแรกที่เลื่อนดู
         ก่อนกดรับสิทธิ์ควรดูยอดฝากขั้นต่ำ จำนวนเทิร์น เกมที่ร่วมรายการ และเพดานถอนของรายการนั้นให้ครบ เพราะแต่ละโปรกำหนดไว้ไม่เท่ากัน
         หากมีจุดใดไม่ชัดเจน สอบถามทีมงานผ่านช่องทางที่เว็บไซต์กำหนดได้ตลอด 24 ชั่วโมง
       </p>
@@ -56,7 +56,7 @@ const promoCardClass =
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น HONEY289 ข้อความ เว็บสล็อตสายหวาน โบนัสทุกวัน เล่นง่าย ฝาก-ถอนออโต้ จ่ายจริง และปุ่มสีชมพู สมัครเลย บนพื้นน้ำผึ้งสีทองไหลย้อยลายรังผึ้ง มีผึ้งการ์ตูนขยิบตาถือไม้จุ่มน้ำผึ้ง โลโก้ HONEY สีทองกับเลข 289 สีชมพู ตู้สล็อต SWEET WIN เลข 777 โถน้ำผึ้ง เหรียญทองและดอกไม้"
+          alt="แบนเนอร์ KIKI49 ข้อความ เว็บสล็อตแตกง่าย โปรคุ้มทุกวัน ฝาก-ถอนออโต้ รวดเร็ว เล่นง่าย จ่ายจริง ป้ายสามอัน ระบบออโต้ โบนัสคุ้ม บริการ 24 ชม. และปุ่มขาวขอบแดง สมัครเลย ด้านบนเป็นโลโก้ KIKI49 สีขาวเงินคู่กับมาสคอตเพนกวินลายโครงกระดูกในฮู้ดดำติดดอกจันสีขาว ด้านขวาเป็นผู้หญิงในชุดดำแดงพิมพ์คำว่า KIKI49 รายล้อมด้วยเหรียญทอง ชิปโป๊กเกอร์ ลูกเต๋าแดง วงล้อสล็อตเลข 777 และป้ายไฟ JACKPOT ในห้องคาสิโนนีออนสีแดง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -70,7 +70,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น HONEY289 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก และปุ่มสีชมพู ฝากเลย ตัวเลข 20% ขนาดใหญ่สีชมพูขอบทอง มีผึ้งการ์ตูนขยิบตายกนิ้วโป้งถือไม้จุ่มน้ำผึ้ง กล่องของขวัญสีชมพู ตู้สล็อตเลข 777 โถน้ำผึ้งและดอกไม้ บนพื้นน้ำผึ้งสีทองลายรังผึ้ง"
+          alt="แบนเนอร์โปรโมชั่น KIKI49 ข้อความ คืนยอดเสียทุกวัน 0.8% เล่นต่อได้ทุกวัน และปุ่มขาวขอบแดง รับสิทธิ์ ตัวเลข 0.8% ขนาดใหญ่สีแดงเงา มีมาสคอตเพนกวินลายโครงกระดูกในฮู้ดดำติดดอกจันสีขาวยืนยิ้มมุมล่างซ้าย ผู้หญิงในชุดดำแดงพิมพ์คำว่า KIKI49 แบมือชี้ตัวเลข ตู้สล็อตเลข 777 BAR เหรียญทองและชิปโป๊กเกอร์ ในห้องคาสิโนนีออนสีแดง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -84,7 +84,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น HONEY289 ข้อความ แนะนำเพื่อน รับค่าคอม 10% ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม และปุ่มสีชมพู ชวนเลย ตัวเลข 10% ขนาดใหญ่สีชมพู มีผึ้งการ์ตูนถือโทรโข่ง กรอบรังผึ้งรูปเพื่อนสองคนยิ้ม กล่องของขวัญผูกโบว์ โถน้ำผึ้งและเหรียญทอง บนพื้นน้ำผึ้งสีทองลายรังผึ้ง"
+          alt="แบนเนอร์โปรโมชั่น KIKI49 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที และปุ่มขาวขอบแดง รับโปรเลย ตัวเลข 50% ขนาดใหญ่สีแดงขอบทอง ด้านบนเป็นโลโก้ KIKI49 สีขาวเงินคู่กับมาสคอตเพนกวินลายโครงกระดูก ด้านขวาเป็นผู้หญิงในชุดดำแดงพิมพ์คำว่า KIKI49 ชี้นิ้วมาที่ตัวเลข มีกล่องของขวัญสีดำผูกโบว์แดง ลูกเต๋าแดง วงล้อสล็อตเลข 777 และเหรียญทอง ในห้องคาสิโนนีออนสีแดง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -98,7 +98,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น HONEY289 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที และปุ่มสีชมพู รับโปรเลย ตัวเลข 50% ขนาดใหญ่สีชมพูขอบทอง มีผึ้งการ์ตูนขยิบตายกนิ้วโป้ง ตู้สล็อตพิมพ์คำว่า HONEY289 เลข 777 กล่องของขวัญผูกโบว์ชมพู โถน้ำผึ้ง เหรียญทองและดอกไม้"
+          alt="แบนเนอร์โปรโมชั่น KIKI49 ข้อความ แนะนำเพื่อน รับค่าคอม 10% ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม และปุ่มขาวขอบแดง ชวนเลย ตัวเลข 10% ขนาดใหญ่เป็นเส้นนีออนสีแดง มีสามขั้นตอนพร้อมไอคอน คัดลิงก์แนะนำเพื่อน เพื่อนสมัครผ่านลิงก์ของคุณ และรับค่าคอม 10% ไม่จำกัด ด้านขวาเป็นผู้หญิงในชุดดำแดงพิมพ์คำว่า KIKI49 ถือมือถือที่มีโลโก้ KIKI49 ด้านล่างมีป้าย ระบบออโต้ โบนัสคุ้ม บริการ 24 ชม. ในห้องคาสิโนนีออนสีแดง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -114,8 +114,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#fdbb24]/60 bg-gradient-to-r from-[#ffe3a3] via-[#fdbb24] to-[#b35303] px-10 py-3.5 text-lg font-black text-[#3d1304] shadow-[0_10px_30px_rgba(253,187,36,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(253,187,36,0.40)]">
-          สมัครสมาชิก HONEY289
+          class="flex items-center justify-center rounded-lg border border-[#e2131d]/60 bg-gradient-to-r from-[#ff5a5f] via-[#e2131d] to-[#a80f16] px-10 py-3.5 text-lg font-black text-[#fff5f5] shadow-[0_10px_30px_rgba(226,19,29,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(226,19,29,0.40)]">
+          สมัครสมาชิก KIKI49
         </a>
       </div>
     </div>

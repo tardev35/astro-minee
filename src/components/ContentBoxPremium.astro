@@ -5,20 +5,26 @@ export interface Props {
 }
 const { title, as: HeadingTag = "h1" } = Astro.props;
 const headingSize = HeadingTag === "h1" ? "text-3xl" : "text-2xl";
+
+// KIKI49 palette: crimson card on near-black, gold reserved for the heading and
+// one of the two aura blobs so the box carries both brand hues without the
+// title ever sitting on a bright fill (gold-on-black text, never black-on-red).
+// `isolate` on the card + `-z-10` on the blobs is what lets the slot content
+// paint above the decoration with no wrapper <div>. Keep both.
 ---
 
 <section class="relative z-10 my-8 flex w-full justify-center px-4 font-sans">
   <div
-    class="group relative isolate w-full max-w-[1400px] overflow-hidden rounded-3xl border border-[#f8d441]/35 bg-gradient-to-br from-[#150f05]/92 to-[#0b0806]/88 p-8 text-left text-base leading-relaxed text-[#f5ecd6] shadow-[0_10px_30px_rgba(248,212,65,0.18)] backdrop-blur-xl transition-all duration-500 hover:border-[#f8d441]/65 hover:shadow-[0_15px_40px_rgba(248,212,65,0.3)] md:p-10">
-    <div class="pointer-events-none absolute -top-20 -left-20 -z-10 h-40 w-40 rounded-full bg-[#f8d441]/28 blur-[55px] transition-all duration-500 group-hover:bg-[#fff3ae]/35"></div>
-    <div class="pointer-events-none absolute -right-20 -bottom-20 -z-10 h-40 w-40 rounded-full bg-[#8f0f18]/50 blur-[55px] transition-all duration-500 group-hover:bg-[#e11d2b]/40"></div>
+    class="group relative isolate w-full max-w-[1400px] overflow-hidden rounded-3xl border border-[#e2131d]/35 bg-gradient-to-br from-[#1c0407]/92 to-[#100205]/88 p-8 text-left text-base leading-relaxed text-[#f2e2e4] shadow-[0_10px_30px_rgba(226,19,29,0.18)] backdrop-blur-xl transition-all duration-500 hover:border-[#e2131d]/65 hover:shadow-[0_15px_40px_rgba(226,19,29,0.3)] md:p-10">
+    <div class="pointer-events-none absolute -top-20 -left-20 -z-10 h-40 w-40 rounded-full bg-[#e2131d]/28 blur-[55px] transition-all duration-500 group-hover:bg-[#ff5a5f]/35"></div>
+    <div class="pointer-events-none absolute -right-20 -bottom-20 -z-10 h-40 w-40 rounded-full bg-[#5c070b]/55 blur-[55px] transition-all duration-500 group-hover:bg-[#f5c542]/25"></div>
 
     {
       title && (
-        <header class="mb-8 flex items-center gap-4 border-b border-[#f8d441]/30 pb-4">
-          <div class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#fff8d6] via-[#f8d441] to-[#8a6205] shadow-[0_0_10px_rgba(248,212,65,0.5)]" />
+        <header class="mb-8 flex items-center gap-4 border-b border-[#e2131d]/30 pb-4">
+          <div class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffe08a] via-[#f5c542] to-[#a80f16] shadow-[0_0_10px_rgba(245,197,66,0.5)]" />
           <HeadingTag
-            class={`bg-gradient-to-r from-[#fff8d6] via-[#f8d441] to-[#d9a520] bg-clip-text ${headingSize} leading-normal font-black tracking-widest text-transparent uppercase`}>
+            class={`bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#ff5a5f] bg-clip-text ${headingSize} leading-normal font-black tracking-widest text-transparent uppercase`}>
             {title}
           </HeadingTag>
         </header>

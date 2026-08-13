@@ -7,26 +7,26 @@
 // No leading emoji — the marquee renders `message` twice, so a decorative glyph
 // baked into the string is announced twice and cannot be marked aria-hidden.
 const {
-  message = "KOHKAE789 บาคาร่าออโต้ เว็บตรงไม่ผ่านเอเย่นต์ เลือกโต๊ะ ตรวจยอด และจัดการธุรกรรมได้จากบัญชีเดียว • ระบบออโต้ช่วยลดขั้นตอนฝากถอน ควรตรวจสอบชื่อบัญชีและจำนวนเงินก่อนยืนยันทุกครั้ง • ผลบาคาร่าแต่ละรอบไม่สามารถรับประกันได้ ควรศึกษากติกาและกำหนดงบประมาณก่อนเริ่มเล่น",
+  message = "KIKI49 เว็บสล็อตฝากถอนออโต้รวดเร็ว รวมเกมสล็อตหลายรูปแบบไว้ในบัญชีเดียว • โปรทุนน้อยและเงื่อนไขไม่มีขั้นต่ำใช้ได้เฉพาะช่องทางที่กำหนด ควรตรวจสอบรายละเอียดก่อนรับสิทธิ์ • ก่อนยืนยันฝากถอนควรตรวจสอบชื่อบัญชีและจำนวนเงินให้ถูกต้อง หากรายการยังดำเนินการอยู่ควรรอผลจากระบบก่อนทำซ้ำ • คำว่าแตกง่ายไม่ได้รับประกันผลลัพธ์ ควรศึกษาอัตราจ่ายและกำหนดงบประมาณก่อนเริ่มเล่น",
 } = Astro.props;
 ---
 
 <div class="mx-auto w-full max-w-7xl px-4 py-3 font-sans">
   <div
-    class="relative flex overflow-hidden border border-[#29abe3]/50 bg-[#050c1a]/90 shadow-[0_0_15px_rgba(41,171,227,0.3)] backdrop-blur-md"
+    class="relative flex overflow-hidden border border-[#e2131d]/50 bg-[#100205]/90 shadow-[0_0_15px_rgba(226,19,29,0.3)] backdrop-blur-md"
     style="clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);">
     <div
-      class="relative z-10 flex shrink-0 items-center justify-center bg-gradient-to-r from-[#0b3f96] to-[#29abe3] px-6 py-2.5 font-black text-[#050c1a]"
+      class="relative z-10 flex shrink-0 items-center justify-center bg-gradient-to-r from-[#8b0d12] to-[#e2131d] px-6 py-2.5 font-black text-[#fff5f5]"
       style="clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);">
       ประกาศ
     </div>
 
     <div class="marquee-container relative flex-1 overflow-hidden py-2.5 pr-6">
-      <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#050c1a] to-transparent"></div>
+      <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#100205] to-transparent"></div>
 
-      <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-widest whitespace-nowrap text-[#cfe6f7]">
-        <span class="mr-8 inline-flex items-center gap-2"><span class="h-2 w-2 bg-[#7fdcff] shadow-[0_0_8px_rgba(127,220,255,1)]"></span>{message}</span>
-        <span class="mr-8 inline-flex items-center gap-2"><span class="h-2 w-2 bg-[#7fdcff] shadow-[0_0_8px_rgba(127,220,255,1)]"></span>{message}</span>
+      <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-widest whitespace-nowrap text-[#f2e2e4]">
+        <span class="mr-8 inline-flex items-center gap-2"><span class="h-2 w-2 bg-[#f5c542] shadow-[0_0_8px_rgba(245,197,66,1)]"></span>{message}</span>
+        <span class="mr-8 inline-flex items-center gap-2"><span class="h-2 w-2 bg-[#f5c542] shadow-[0_0_8px_rgba(245,197,66,1)]"></span>{message}</span>
       </div>
     </div>
   </div>

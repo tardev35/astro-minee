@@ -2,18 +2,19 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement3.astro";
+import Announcement from "../components/AnnouncementCyber.astro";
 import { pageGraph } from "../lib/schema";
 
 // Button page, not an article: the whole body is the <h1> plus the two-button
 // grid. The docx SUB-PAGES block gives this page a Title and a Meta and never
 // a body, so no section heading and no prose belong here. The h1 names what it IS
 // rather than previewing a section that does not exist.
-const pageTitle = "ทางเข้า HONEY289 เว็บหลัก";
+const pageTitle = "ทางเข้า KIKI49 เว็บหลัก";
 
-// docx SUB-PAGES Meta + one closing clause to clear the 150 gate.
-// 158 CHARACTERS (count characters, not bytes — Thai is 3 bytes per character).
-const pageDescription = "HONEY289 ทางเข้าเกมเดิมพันรองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมรวมเกมยอดนิยม โปรโมชั่น และระบบสมาชิกไว้ในช่องทางเดียว แนะนำให้เข้าผ่านช่องทางหลักทุกครั้ง";
+// docx SUB-PAGES Meta (120 characters) + one closing clause to clear the 150
+// gate in tools/verify-build.mjs, which exempts only the home page.
+// 156 CHARACTERS (count characters, not bytes — Thai is 3 bytes per character).
+const pageDescription = "KIKI49 ทางเข้าเล่นสล็อตออนไลน์ รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมรวมเกม โปรโมชั่น และระบบสมาชิกไว้ในช่องทางเดียว แนะนำให้เข้าผ่านช่องทางหลักทุกครั้ง";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -25,7 +26,7 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="HONEY289 | ทางเข้าเกมเดิมพันยอดนิยมรองรับทุกอุปกรณ์" description={pageDescription}>
+<MainLayout title="KIKI49 | ทางเข้าเล่นสล็อตออนไลน์รองรับมือถือทุกระบบ" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
@@ -35,12 +36,12 @@ const graph = pageGraph(Astro, {
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/login"
-          aria-label="เข้าสู่ระบบ HONEY289"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#fdbb24]/60 bg-[#2a1206] px-6 py-4 shadow-[0_10px_30px_rgba(253,187,36,0.22)] transition-all duration-300 hover:scale-105 hover:border-[#eb9413] hover:bg-[#3d1a08] hover:shadow-[0_15px_40px_rgba(235,148,19,0.32)]">
-          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#fdbb24]/25 to-transparent"></div>
+          aria-label="เข้าสู่ระบบ KIKI49"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#e2131d]/60 bg-[#1c0407] px-6 py-4 shadow-[0_10px_30px_rgba(226,19,29,0.22)] transition-all duration-300 hover:scale-105 hover:border-[#a80f16] hover:bg-[#2a0509] hover:shadow-[0_15px_40px_rgba(168,15,22,0.32)]">
+          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#e2131d]/25 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#ffe3a3]"
+            class="relative z-10 h-9 w-9 text-[#ff5a5f]"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -51,19 +52,19 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#ffe3a3]">เข้าสู่ระบบ</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#ff5a5f]">เข้าสู่ระบบ</span>
         </a>
       </div>
 
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/register"
-          aria-label="สมัครสมาชิก HONEY289"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#fdbb24]/60 bg-gradient-to-r from-[#ffe3a3] via-[#fdbb24] to-[#b35303] px-6 py-4 shadow-[0_10px_30px_rgba(253,187,36,0.28)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(253,187,36,0.40)]">
+          aria-label="สมัครสมาชิก KIKI49"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#e2131d]/60 bg-gradient-to-r from-[#ff5a5f] via-[#e2131d] to-[#a80f16] px-6 py-4 shadow-[0_10px_30px_rgba(226,19,29,0.28)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(226,19,29,0.40)]">
           <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/35 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#3d1304]"
+            class="relative z-10 h-9 w-9 text-[#fff5f5]"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -74,7 +75,7 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#3d1304]">สมัครสมาชิก</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#fff5f5]">สมัครสมาชิก</span>
         </a>
       </div>
     </div>

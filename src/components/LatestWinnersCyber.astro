@@ -6,6 +6,8 @@ import ktbLogo from "../assets/banks/ktb.png";
 import ttbLogo from "../assets/banks/ttb.png";
 import { brandFlag, brandPick } from "../lib/brandProfile";
 
+// Real bank brand colours — these stay whatever the bank uses, a rebrand does
+// not repaint them.
 const bankPool = [
   { name: "KBank", color: "bg-[#1155cc]", icon: kbankLogo.src },
   { name: "SCB", color: "bg-[#4e1c80]", icon: scbLogo.src },
@@ -38,15 +40,15 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
 
 <div class="mx-auto w-full max-w-[1300px] p-4">
   <section
-    aria-label="รายการฝาก-ถอนล่าสุดผ่านระบบออโต้ของ KOHKAE789"
-    class="relative border-r-4 border-l-4 border-[#29abe3] bg-[#050c1a]/85 px-4 py-8 shadow-[0_0_30px_rgba(41,171,227,0.22)] md:p-10"
+    aria-label="รายการฝาก-ถอนล่าสุดผ่านระบบออโต้ของ KIKI49"
+    class="relative border-r-4 border-l-4 border-[#e2131d] bg-[#100205]/90 px-4 py-8 shadow-[0_0_30px_rgba(226,19,29,0.25)] md:p-10"
     style="clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px), 0 20px);">
-    <div class="absolute top-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-[#29abe3] to-transparent"></div>
-    <div class="absolute bottom-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-[#1573e6] to-transparent"></div>
+    <div class="absolute top-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-[#e2131d] to-transparent"></div>
+    <div class="absolute bottom-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-[#f5c542] to-transparent"></div>
 
-    <div class="relative z-10 mb-8 flex items-center justify-between border-b border-[#29abe3]/30 pb-4">
-      <p class="text-xl font-black tracking-[0.2em] text-[#29abe3] drop-shadow-[0_0_8px_rgba(41,171,227,0.8)]">/// KOHKAE789_LIVE_TRANSACTIONS</p>
-      <span class="animate-pulse border border-[#1573e6]/60 px-2 py-1 text-xs font-bold tracking-widest text-[#7fdcff]">ONLINE</span>
+    <div class="relative z-10 mb-8 flex items-center justify-between border-b border-[#e2131d]/30 pb-4">
+      <p class="text-xl font-black tracking-[0.2em] text-[#ff5a5f] drop-shadow-[0_0_8px_rgba(226,19,29,0.8)]">/// KIKI49_LIVE_TRANSACTIONS</p>
+      <span class="animate-pulse border border-[#f5c542]/60 px-2 py-1 text-xs font-bold tracking-widest text-[#f5c542]">ONLINE</span>
     </div>
 
     <div
@@ -62,13 +64,13 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
       {
         initialRows.map((row) => (
           <div data-winner-row class="winner-row origin-left transform transition-all duration-500 ease-out">
-            <div class="flex items-center justify-between border-l-2 border-[#1573e6] bg-gradient-to-r from-[#0b3f96]/30 to-transparent p-3 backdrop-blur-sm transition-colors hover:bg-[#0b3f96]/45">
+            <div class="flex items-center justify-between border-l-2 border-[#e2131d] bg-gradient-to-r from-[#5c070b]/45 to-transparent p-3 backdrop-blur-sm transition-colors hover:bg-[#5c070b]/60">
               <div class="flex items-center gap-4">
                 <div data-winner-bank class={`flex h-8 w-8 items-center justify-center border border-white/10 bg-black/50 mix-blend-screen ${row.bank.color}`}>
                   <img data-winner-icon src={row.bank.icon} alt="" width="20" height="20" loading="lazy" decoding="async" class="h-5 w-5 object-contain grayscale" />
                 </div>
-                <div class="font-mono text-sm text-[#cfe6f7]">
-                  USR_ID: <span data-winner-user class="font-bold text-[#7fdcff]">{row.user}</span>
+                <div class="font-mono text-sm text-[#f2e2e4]">
+                  USR_ID: <span data-winner-user class="font-bold text-[#ff5a5f]">{row.user}</span>
                 </div>
               </div>
               <div class="flex items-center gap-6">
@@ -79,8 +81,8 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
                   class={`winner-status font-mono text-[10px] tracking-widest ${row.pending ? "is-pending" : "is-verified"}`}>
                   {row.pending ? "[PROCESSING]" : "[VERIFIED]"}
                 </div>
-                <div class="font-mono text-xl font-black text-[#29abe3] drop-shadow-[0_0_8px_rgba(41,171,227,0.5)]">
-                  <span data-winner-amount>{row.amount}</span> <span class="text-xs text-[#5aa8ff]">THB</span>
+                <div class="font-mono text-xl font-black text-[#f5c542] drop-shadow-[0_0_8px_rgba(245,197,66,0.5)]">
+                  <span data-winner-amount>{row.amount}</span> <span class="text-xs text-[#ff5a5f]">THB</span>
                 </div>
               </div>
             </div>
@@ -111,8 +113,8 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
   /* The two status colours are classes rather than inline strings so the JS
      never has to know what this brand's palette is. */
   .winner-status.is-pending {
-    color: #7fdcff;
-    border-color: #1573e6;
+    color: #ffe08a;
+    border-color: #f5c542;
   }
   .winner-status.is-verified {
     color: oklch(79.2% 0.209 151.711);

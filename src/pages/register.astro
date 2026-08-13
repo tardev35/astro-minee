@@ -25,17 +25,20 @@ const fontHref = usesGoogleFonts
 <html lang="th" style={`--font-sans: ${fontStack};`}>
   <head>
     <meta charset="utf-8" />
-    <title>HONEY289 | สมัครสมาชิกเพื่อเริ่มใช้งานเกมเดิมพัน</title>
+    <title>KIKI49 | สมัครสมาชิกเพื่อเริ่มเล่นสล็อตออนไลน์</title>
 
     {
       /* The docx SUB-PAGES table has no สมัครสมาชิก row, so unlike /login these
-        two strings are written here rather than copied — 156 characters, inside
-        the 150–160 window. Count CHARACTERS, not bytes (Thai is 3 bytes each).
-        They say what THIS page is: registering. The previous wording opened
-        "ทางเข้าเล่นและสมัครสมาชิก", which described /ทางเข้า instead and gave two
-        routes the same promise. */
+        two strings are written here rather than extended from the brief —
+        159 characters, inside the 150–160 window. Count CHARACTERS, not bytes
+        (Thai is 3 bytes each). They say what THIS page is: registering. The
+        previous wording opened "ทางเข้าเล่นและสมัครสมาชิก", which described
+        /ทางเข้า instead and gave two routes the same promise. */
     }
-    <meta name="description" content="HONEY289 สมัครสมาชิกผ่านช่องทางหลักเพื่อเริ่มใช้งานเกมเดิมพัน รองรับมือถือและคอมพิวเตอร์ พร้อมเลือกเกม ตรวจสอบโปรโมชั่น และจัดการรายการฝากถอนได้จากหน้าเดียว" />
+    <meta
+      name="description"
+      content="KIKI49 สมัครสมาชิกผ่านช่องทางหลักเพื่อเริ่มเล่นสล็อตออนไลน์ รองรับมือถือและคอมพิวเตอร์ พร้อมเลือกเกม ตรวจสอบโปรโมชั่น และจัดการรายการฝากถอนออโต้ได้จากหน้าเดียว"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {
@@ -75,34 +78,36 @@ const fontHref = usesGoogleFonts
     </style>
 
     <style>
-      /* HONEY289 is warm amber honey on deep honey-brown, with a bubblegum pink
-         second hue — the "289" in the logo and every CTA pill on the artwork.
-         The pink is the accent on ONE element here (the counter-rotating inner
-         ring); everything else is honey amber, so it stays a honey page.
+      /* KIKI49 is neon crimson on near-black — a dark casino room lit red —
+         with gold as the second hue (the coins and the JACKPOT signage) and
+         silver-white for the wordmark itself, which is how the logo is drawn.
+         The gold is the accent on ONE element here (the counter-rotating inner
+         ring); everything else is crimson, so it stays a crimson page.
          Every variable below is NAMED FOR THE COLOUR IT HOLDS, which previous
          brands stopped doing: this block once declared `--brand-gold` on brands
          with no gold in them and `--brand-red` on a blue one, so the next editor
-         reused it by name and shipped the wrong hue. It also carried
-         `--champagne*` names through a brand whose palette was no longer
-         champagne at all. Rename with the value. */
+         reused it by name and shipped the wrong hue. The names here were also
+         inherited straight from the outgoing amber brand, whose hues are not in
+         this palette at all. Rename with the value. */
       :root {
-        --ink: #1a0c03;
-        --panel: rgba(42, 18, 6, 0.94);
-        --honey: #fdbb24;
-        --honey-light: #ffe3a3;
-        --honey-mid: #eb9413;
-        --honey-deep: #b35303;
-        --pink: #f2559a;
-        --text-cream: #fdf0d8;
-        --text-sand: #d8bd8e;
+        --ink: #100205;
+        --panel: rgba(28, 4, 7, 0.94);
+        --crimson: #e2131d;
+        --crimson-light: #ff5a5f;
+        --crimson-deep: #a80f16;
+        --maroon: #5c070b;
+        --gold: #f5c542;
+        --silver: #e9edf2;
+        --text-rose: #f2e2e4;
+        --text-rose-dim: #c9a7ac;
       }
 
       body {
         margin: 0;
         font-family: var(--font-sans);
-        color: var(--text-cream);
+        color: var(--text-rose);
 
-        background: radial-gradient(circle at 50% 10%, rgba(253, 187, 36, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(179, 83, 3, 0.18) 0%, transparent 55%), var(--ink);
+        background: radial-gradient(circle at 50% 10%, rgba(226, 19, 29, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(92, 7, 11, 0.18) 0%, transparent 55%), var(--ink);
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -116,11 +121,11 @@ const fontHref = usesGoogleFonts
         max-width: 450px;
         padding: 3.5rem;
         background: var(--panel);
-        border: 1px solid rgba(253, 187, 36, 0.4);
+        border: 1px solid rgba(226, 19, 29, 0.4);
         border-radius: 2rem;
         box-shadow:
-          0 1rem 3rem rgba(253, 187, 36, 0.2),
-          0 0 2rem rgba(179, 83, 3, 0.22);
+          0 1rem 3rem rgba(226, 19, 29, 0.2),
+          0 0 2rem rgba(92, 7, 11, 0.22);
         text-align: center;
         backdrop-filter: blur(10px);
       }
@@ -129,13 +134,13 @@ const fontHref = usesGoogleFonts
         font-family: "Oswald", sans-serif;
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(180deg, var(--honey-light) 0%, var(--honey) 45%, var(--honey-deep) 72%, var(--honey-mid) 100%);
+        background: linear-gradient(180deg, var(--silver) 0%, var(--silver) 42%, var(--crimson) 74%, var(--crimson-deep) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         letter-spacing: 0.3em;
         margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 2px rgba(253, 187, 36, 0.35));
+        filter: drop-shadow(0 1px 2px rgba(226, 19, 29, 0.35));
       }
 
       .sophisticated-loader {
@@ -151,30 +156,30 @@ const fontHref = usesGoogleFonts
       .orb {
         width: 40px;
         height: 40px;
-        background: radial-gradient(circle, var(--honey-light) 0%, var(--honey) 45%, var(--honey-deep) 100%);
+        background: radial-gradient(circle, var(--crimson-light) 0%, var(--crimson) 45%, var(--maroon) 100%);
         border-radius: 50%;
-        box-shadow: 0 0 2rem rgba(253, 187, 36, 0.35);
+        box-shadow: 0 0 2rem rgba(226, 19, 29, 0.35);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .ring {
         position: absolute;
         border-radius: 50%;
-        border: 3px solid rgba(253, 187, 36, 0.2);
+        border: 3px solid rgba(226, 19, 29, 0.2);
         animation: spin linear infinite;
       }
 
       .ring-1 {
         width: 100%;
         height: 100%;
-        border-top-color: var(--honey);
+        border-top-color: var(--crimson);
         animation-duration: 4s;
       }
 
       .ring-2 {
         width: 80%;
         height: 80%;
-        border-bottom-color: var(--pink);
+        border-bottom-color: var(--gold);
         animation-duration: 6s;
         animation-direction: reverse;
       }
@@ -191,11 +196,11 @@ const fontHref = usesGoogleFonts
         0%,
         100% {
           transform: scale(1);
-          box-shadow: 0 0 2rem rgba(253, 187, 36, 0.35);
+          box-shadow: 0 0 2rem rgba(226, 19, 29, 0.35);
         }
         50% {
           transform: scale(1.15);
-          box-shadow: 0 0 3rem rgba(253, 187, 36, 0.5);
+          box-shadow: 0 0 3rem rgba(226, 19, 29, 0.5);
         }
       }
 
@@ -205,13 +210,13 @@ const fontHref = usesGoogleFonts
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--text-cream);
-        text-shadow: 0 1px 1px rgba(253, 187, 36, 0.25);
+        color: var(--text-rose);
+        text-shadow: 0 1px 1px rgba(226, 19, 29, 0.25);
         margin: 0;
       }
       .status-text .p {
         font-size: 0.875rem;
-        color: var(--text-sand);
+        color: var(--text-rose-dim);
         line-height: 1.6;
         margin: 1rem 0 0 0;
       }
@@ -219,7 +224,7 @@ const fontHref = usesGoogleFonts
   </head>
   <body>
     <div class="premium-loading-container">
-      <div class="brand-identity">HONEY289</div>
+      <div class="brand-identity">KIKI49</div>
 
       <div class="sophisticated-loader">
         <div class="orb"></div>
@@ -229,7 +234,7 @@ const fontHref = usesGoogleFonts
 
       <div class="status-text">
         <h1 class="h1">CREATING SECURE ACCOUNT SESSION...</h1>
-        <p class="p">กำลังพาไปหน้าสมัครสมาชิก HONEY289 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
+        <p class="p">กำลังพาไปหน้าสมัครสมาชิก KIKI49 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
       </div>
     </div>
 

@@ -3,23 +3,26 @@
 // the docx section above it, and the page's heading inventory is diffed against
 // the brief. The accessible name for the region lives on the section's
 // aria-label instead.
+//
+// Copy follows the KIKI49 brief: เกมสล็อตหลายแนว, งบที่เหมาะสม, โปรทุนน้อย,
+// ฝากถอนออโต้, ไม่มีขั้นต่ำตามช่องทางที่กำหนด, รองรับมือถือ.
 const providers = [
-  { name: "เกมยอดนิยมในระบบ", desc: "รวมเกมที่สมาชิกเลือกเล่นบ่อย ดูรูปแบบการเดิมพันได้จากหน้าเดียว", tag: "ดูก่อนเลือก", icon: "🍯" },
-  { name: "รูปแบบการเดิมพันหลายแบบ", desc: "แต่ละประเภทมีวิธีคิดผลและจังหวะเกมต่างกัน เลือกตามที่เข้าใจก่อน", tag: "เลือกตามความสนใจ", icon: "🎰" },
-  { name: "อัตราจ่ายของแต่ละเกม", desc: "ตัวเลขอัตราจ่ายผูกกับเงื่อนไขของเกมนั้น ควรตรวจก่อนเริ่มทุกครั้ง", tag: "ดูอัตราจ่าย", icon: "📊" },
-  { name: "กติกาและวิธีคิดผล", desc: "อ่านกติกาให้ครบก่อนเดิมพัน เพื่อให้ตัดสินใจได้จากข้อมูลจริง", tag: "อ่านกติกาก่อน", icon: "📋" },
-  { name: "ระดับความเสี่ยงที่รับได้", desc: "เกมจ่ายบ่อยกับเกมที่ต้องรอรอบเหมาะกับงบประมาณคนละแบบ", tag: "ดูงบก่อนเลือก", icon: "📈" },
-  { name: "ฝากง่าย ถอนออโต้", desc: "ทำรายการผ่านหน้าบัญชี ตรวจชื่อบัญชีและจำนวนเงินก่อนยืนยัน", tag: "ตรวจก่อนยืนยัน", icon: "⚡" },
-  { name: "ใช้งานได้ทุกอุปกรณ์", desc: "เปิดผ่านเบราว์เซอร์บนมือถือ แท็บเล็ต และคอมพิวเตอร์ด้วยบัญชีเดียว", tag: "รองรับมือถือ", icon: "📱" },
+  { name: "สล็อตคลาสสิก", desc: "วงล้อรูปแบบพื้นฐาน กติกาสั้น เข้าใจง่าย เหมาะกับการเริ่มด้วยงบไม่สูง", tag: "เริ่มต้นง่าย", icon: "🎰" },
+  { name: "สล็อตเกมโบนัส", desc: "มีรอบโบนัสและฟรีสปิน ควรอ่านเงื่อนไขการเข้าฟีเจอร์ก่อนเริ่ม", tag: "อ่านเงื่อนไขก่อน", icon: "🎁" },
+  { name: "สล็อตฟีเจอร์หลากหลาย", desc: "ฟีเจอร์หลายชั้นและตัวคูณ จังหวะเกมต่างจากวงล้อแบบพื้นฐาน", tag: "ดูฟีเจอร์ก่อน", icon: "✨" },
+  { name: "ความผันผวนของเกม", desc: "เกมจ่ายบ่อยกับเกมที่ต้องรอรอบ เหมาะกับงบประมาณคนละแบบ", tag: "เทียบความเสี่ยง", icon: "📈" },
+  { name: "รูปแบบการจ่าย", desc: "อัตราจ่ายและเส้นจ่ายผูกกับกติกาของเกมนั้น ควรตรวจก่อนทุกครั้ง", tag: "ตรวจอัตราจ่าย", icon: "📊" },
+  { name: "โปรทุนน้อย", desc: "ยอดเริ่มต้นและเงื่อนไขรับสิทธิ์ต่างกัน ควรเทียบให้ครบก่อนเลือกรับ", tag: "เทียบก่อนรับ", icon: "🪙" },
+  { name: "ฝากถอนออโต้", desc: "ทำรายการผ่านหน้าบัญชี ตรวจชื่อบัญชีและจำนวนเงินก่อนยืนยัน", tag: "ตรวจก่อนยืนยัน", icon: "⚡" },
 ];
 ---
 
-<section aria-label="หมวดเกมเดิมพันที่ HONEY289 รวมไว้ในระบบเดียว" class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
+<section aria-label="หมวดเกมสล็อตและระบบที่ KIKI49 รวมไว้ในบัญชีเดียว" class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
-    <p class="bg-gradient-to-r from-[#ffe3a3] via-[#fdbb24] to-[#eb9413] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
-      หมวดเกมเดิมพันที่ <span class="text-[#ffe3a3]">HONEY289</span> รวมไว้ในระบบเดียว
+    <p class="bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#ff5a5f] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
+      หมวดเกมสล็อตและระบบที่ <span class="text-[#e9edf2]">KIKI49</span> รวมไว้ในบัญชีเดียว
     </p>
-    <div class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#fdbb24] to-transparent"></div>
+    <div class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#e2131d] to-transparent"></div>
   </div>
 
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5 xl:grid-cols-7">
@@ -27,20 +30,20 @@ const providers = [
       providers.map((provider) => (
         <a
           href="/register"
-          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#fdbb24]/30 bg-[#2a1206]/92 p-5 shadow-[0_10px_30px_rgba(253,187,36,0.2)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#fdbb24]/60 hover:bg-[#3d1a08]/95 hover:shadow-[0_15px_40px_rgba(235,148,19,0.3)]">
-          <div class="pointer-events-none absolute inset-0 bg-[#7a3a02]/25 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#e2131d]/30 bg-[#1c0407]/92 p-5 shadow-[0_10px_30px_rgba(226,19,29,0.2)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#e2131d]/60 hover:bg-[#2a0509]/95 hover:shadow-[0_15px_40px_rgba(168,15,22,0.34)]">
+          <div class="pointer-events-none absolute inset-0 bg-[#5c070b]/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#ffe3a3] via-[#fdbb24] to-[#b35303] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#3d1304] shadow-sm transition-transform duration-300 group-hover:scale-110">
+          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#ffe08a] via-[#f5c542] to-[#e2131d] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#2a0206] shadow-sm transition-transform duration-300 group-hover:scale-110">
             {provider.tag}
           </div>
 
           <div aria-hidden="true" class="mb-3 text-4xl transition-transform duration-300 group-hover:scale-125 group-hover:rotate-3">
             {provider.icon}
           </div>
-          <p class="text-center text-sm font-black text-[#fdf0d8] transition-colors group-hover:text-[#ffe3a3]">{provider.name}</p>
-          <p class="mt-1 text-center text-[10px] text-[#d8bd8e]">{provider.desc}</p>
+          <p class="text-center text-sm font-black text-[#f2e2e4] transition-colors group-hover:text-[#ff5a5f]">{provider.name}</p>
+          <p class="mt-1 text-center text-[10px] text-[#f2e2e4]/65">{provider.desc}</p>
 
-          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#fdbb24]/30 bg-[#1a0c03] py-1.5 text-center text-[11px] font-bold text-[#ffe3a3] shadow-inner transition-colors duration-300 group-hover:border-[#fdbb24]/60 group-hover:bg-gradient-to-r group-hover:from-[#ffe3a3] group-hover:via-[#fdbb24] group-hover:to-[#b35303] group-hover:text-[#3d1304]">
+          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#e2131d]/30 bg-[#100205] py-1.5 text-center text-[11px] font-bold text-[#ff5a5f] shadow-inner transition-colors duration-300 group-hover:border-[#f5c542]/60 group-hover:bg-gradient-to-r group-hover:from-[#ffe08a] group-hover:via-[#f5c542] group-hover:to-[#e2131d] group-hover:text-[#2a0206]">
             เข้าดูเกม
           </span>
         </a>

@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle6.astro";
-import Footer from "../components/FooterStyle2.astro";
+import Navbar from "../components/NavbarCyber.astro";
+import Footer from "../components/FooterCyber.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,11 +55,11 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "HONEY289 | วันเดิมพันอัตราจ่ายสูง ยอดนิยมอันดับ 1 ฝากง่าย ถอนออโต้",
+  title = "KIKI49 | เว็บสล็อตฝากถอนออโต้รวดเร็ว แตกง่าย โปรทุนน้อย ไม่มีขั้นต่ำ",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings.
-  description = "HONEY289 เกมเดิมพันอัตราจ่ายสูง รวมเกมยอดนิยม ฝากง่าย ถอนออโต้ รองรับมือถือ พร้อมระบบใช้งานสะดวก ตรวจสอบบัญชีได้จากระบบเดียว และบริการสมาชิกตลอด 24 ชั่วโมง",
+  description = "KIKI49 เว็บสล็อตฝากถอนออโต้รวดเร็ว รวมเกมสล็อตหลากหลายค่าย โปรทุนน้อย ไม่มีขั้นต่ำตามเงื่อนไข รองรับมือถือและคอมพิวเตอร์ พร้อมบริการสมาชิกตลอด 24 ชั่วโมง",
   robots = "index, follow",
 } = Astro.props;
 
@@ -236,7 +236,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #1a0c03;
+        background-color: #100205;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -289,7 +289,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ HONEY289 โลโก้รังผึ้งกับผึ้งการ์ตูนขยิบตาถือไม้จุ่มน้ำผึ้ง ข้อความ สล็อตหวานแตกง่าย โปรคุ้มทุกวัน และ ฝาก-ถอนออโต้ โบนัสฉ่ำ เล่นง่าย จ่ายจริง พร้อมแถบ ระบบออโต้ โปรโมชั่นทุกวัน รองรับมือถือ บริการ 24 ชม. เหนือปุ่มสมัครเลย ด้านข้างมีตู้สล็อตเลข 777 โถน้ำผึ้ง เหรียญทอง กล่องของขวัญสีชมพู และดอกไม้"
+          alt="แบนเนอร์ต้อนรับ KIKI49 โลโก้ตัวอักษร KIKI สีเงินคู่กับเลข 49 สีแดง และมาสคอตเพนกวินสวมหน้ากากดำชุดพิมพ์ลายโครงกระดูก ด้านข้างเป็นผู้หญิงในชุดดำแดงติดโลโก้ KIKI49 ฉากหลังเป็นห้องคาสิโนไฟนีออนสีแดง มีป้ายไฟ JACKPOT ตู้สล็อตเลข 777 เหรียญทอง ชิปคาสิโน ลูกเต๋าสีแดง และปุ่มกดขนาดใหญ่สีแดงอยู่ด้านล่าง"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}
