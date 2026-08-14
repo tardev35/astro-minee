@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarCyber.astro";
-import Footer from "../components/FooterCyber.astro";
+import Navbar from "../components/NavbarStyle8.astro";
+import Footer from "../components/FooterStyle3.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,11 +55,11 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "KIKI49 | เว็บสล็อตฝากถอนออโต้รวดเร็ว แตกง่าย โปรทุนน้อย ไม่มีขั้นต่ำ",
+  title = "ABM96 | รวมเกมสล็อตแตกง่าย เล่นสนุกจ่ายจริง โปรทุนน้อยลุ้นรับเครดิต",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings.
-  description = "KIKI49 เว็บสล็อตฝากถอนออโต้รวดเร็ว รวมเกมสล็อตหลากหลายค่าย โปรทุนน้อย ไม่มีขั้นต่ำตามเงื่อนไข รองรับมือถือและคอมพิวเตอร์ พร้อมบริการสมาชิกตลอด 24 ชั่วโมง",
+  description = "ABM96 รวมเกมสล็อตหลายแนวไว้ในระบบเดียว เล่นสนุก โปรทุนน้อยลุ้นรับเครดิตตามเงื่อนไข รองรับมือถือและคอมพิวเตอร์ พร้อมบริการสมาชิกตลอด 24 ชั่วโมงทุกวัน",
   robots = "index, follow",
 } = Astro.props;
 
@@ -236,7 +236,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #100205;
+        background-color: #0d0207;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -289,7 +289,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ KIKI49 โลโก้ตัวอักษร KIKI สีเงินคู่กับเลข 49 สีแดง และมาสคอตเพนกวินสวมหน้ากากดำชุดพิมพ์ลายโครงกระดูก ด้านข้างเป็นผู้หญิงในชุดดำแดงติดโลโก้ KIKI49 ฉากหลังเป็นห้องคาสิโนไฟนีออนสีแดง มีป้ายไฟ JACKPOT ตู้สล็อตเลข 777 เหรียญทอง ชิปคาสิโน ลูกเต๋าสีแดง และปุ่มกดขนาดใหญ่สีแดงอยู่ด้านล่าง"
+          alt="แบนเนอร์ต้อนรับ ABM96 โลโก้ตัวอักษร ABM สีชมพูคู่กับเลข 96 สีขาว ข้อความ สล็อตออนไลน์ครบวงจร แตกง่าย โปรดี ฝาก-ถอนออโต้ เล่นง่าย จ่ายจริง ป้ายสามอัน ระบบออโต้ โบนัสคุ้ม บริการ 24 ชม. และปุ่มชมพู สมัครเลย ด้านซ้ายเป็นผู้หญิงในชุดกีฬาชมพูขาวพิมพ์คำว่า ABM96 ด้านขวาเป็นมาสคอตหมูสีชมพูสวมเสื้อยืดขาวพิมพ์ ABM96 รายล้อมด้วยตู้สล็อตเลข 777 ป้ายไฟ JACKPOT BIG WIN เหรียญทอง ชิปคาสิโนและไพ่ ในห้องคาสิโนไฟนีออนสีชมพู"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

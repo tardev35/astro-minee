@@ -6,39 +6,44 @@ export interface Props {
 const { title, as: HeadingTag = "h1" } = Astro.props;
 const headingSize = HeadingTag === "h1" ? "text-xl sm:text-2xl md:text-3xl" : "text-lg sm:text-xl md:text-2xl";
 
-// Badge clearance, re-measured for HONEY289 against the real docx H2 this brand
-// renders here ("เลือกเกมจากความเข้าใจแทนการยึดอันดับเพียงอย่างเดียว", 50
-// chars) rather than a short placeholder. The badge is `absolute -top-6`, so its
-// bottom edge sits at (badge height - 24px) measured from the card's top:
+// Badge clearance, re-measured for ABM96 against the real docx H1 this brand
+// renders here ("ABM96 รวมเกมสล็อตแตกง่าย เล่นสนุกจ่ายจริง โปรทุนน้อยลุ้นรับ
+// เครดิต", 65 chars) rather than a short placeholder. The badge is
+// `absolute -top-6`, so its bottom edge sits at (badge height - 24px) measured
+// from the card's top:
 //   mobile  375px viewport -> card 343px wide, badge w-[92%] = ~315px; minus
-//           px-4 and the two ✦ spans the title's text box is ~239px, so the
-//           50-char title wraps to 3 lines. text-lg 18px x 1.5 = 27px/line.
-//           Budget 4 lines: 108px + py-2.5 (20px) + 2px borders = 132px
-//           ->  108px below the card top, vs pt-32 (128px). 20px of daylight.
-//   md      text-2xl 24px x 1.5 = 36px/line; badge max-w-2xl leaves a ~552px
-//           text box, so the title takes 2 lines: 72 + 20 + 4 = 96px
-//           ->  72px below the card top, vs md:pt-28 (112px). 40px of daylight.
-// The title has no `whitespace-nowrap` on purpose — it is width-capped
-// (w-[92%] max-w-2xl) and centered so a full sentence wraps instead of blowing
-// past the viewport. Do not trim the padding and do not re-add nowrap.
+//           px-4 and the two ✦ spans plus their gaps the title's text box is
+//           ~243px, so the 65-char H1 wraps to 4 lines. text-xl 20px x 1.5 =
+//           30px/line. Budget 5 lines: 150px + py-2.5 (20px) + 2px borders =
+//           172px  ->  148px below the card top, vs pt-40 (160px). 12px of
+//           daylight at 5 lines, 40px at the 4 it actually takes.
+//   md      text-3xl 30px x 1.5 = 45px/line; badge max-w-2xl leaves a ~568px
+//           text box after the ✦ spans, so the title takes 2 lines. Budget 3
+//           lines: 135 + 20 + 4 = 159px  ->  135px below the card top, vs
+//           md:pt-36 (144px). 9px of daylight at 3 lines, 54px at 2.
+// This H1 is longer than the H2 the previous brand put here, which is why the
+// padding moved up a step (pt-32/md:pt-28 -> pt-40/md:pt-36). The title has no
+// `whitespace-nowrap` on purpose — it is width-capped (w-[92%] max-w-2xl) and
+// centered so a full sentence wraps instead of blowing past the viewport. Do
+// not trim the padding and do not re-add nowrap.
 ---
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#f7cf7e]/30 bg-gradient-to-b from-[#2a1206]/95 to-[#170b02]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#fdf0d8] shadow-[0_10px_30px_rgba(253,187,36,0.18)] md:pt-28">
-    <div class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#fff1cc]/22 blur-[60px]"></div>
-    <div class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#f2559a]/30 blur-[60px]"></div>
+    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#f1509b]/30 bg-gradient-to-b from-[#2a0a1b]/95 to-[#0d0207]/95 p-8 pt-40 text-left text-base leading-relaxed text-[#f6e3ee] shadow-[0_10px_30px_rgba(241,80,155,0.18)] md:pt-36">
+    <div class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#fda3cd]/22 blur-[60px]"></div>
+    <div class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#f1509b]/30 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#eb9413]/45 bg-[#170b02] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(253,187,36,0.22)] sm:px-8">
-          <span aria-hidden="true" class="shrink-0 text-[#f7cf7e]">
+        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#d1176f]/45 bg-[#0d0207] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(241,80,155,0.22)] sm:px-8">
+          <span aria-hidden="true" class="shrink-0 text-[#f5c542]">
             ✦
           </span>
-          <HeadingTag class={`bg-gradient-to-r from-[#fff1cc] via-[#f7cf7e] to-[#eb9413] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
+          <HeadingTag class={`bg-gradient-to-r from-[#fda3cd] via-[#f1509b] to-[#b5054f] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
             {title}
           </HeadingTag>
-          <span aria-hidden="true" class="shrink-0 text-[#f7cf7e]">
+          <span aria-hidden="true" class="shrink-0 text-[#f5c542]">
             ✦
           </span>
         </div>

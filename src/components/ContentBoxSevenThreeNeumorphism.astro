@@ -6,19 +6,23 @@ export interface Props {
 }
 const { title, titleleft, titleright } = Astro.props;
 const rightHeading = titleright ?? title;
+
+// The neumorphic pair is the page ground (#0d0207) against the raised plum tone
+// (#2a0a1b), matching ContentBoxNeumorphism and ContentBoxTwoNeumorphism so the
+// three read as one extruded system on the near-black pink page.
 ---
 
 <section class="relative z-10 mx-auto mb-8 w-full max-w-[1400px] px-4 font-sans">
   <div
-    class="w-full rounded-[25px] border border-[#f8d441]/25 bg-[#150f05] p-8 shadow-[10px_10px_20px_#050301,-10px_-10px_20px_#251b0a] transition-all duration-300 hover:shadow-[15px_15px_30px_#000000,-15px_-15px_30px_#31240d]">
+    class="w-full rounded-[25px] border border-[#f1509b]/25 bg-[#1d0512] p-8 shadow-[10px_10px_20px_#0d0207,-10px_-10px_20px_#2a0a1b] transition-all duration-300 hover:shadow-[15px_15px_30px_#000000,-15px_-15px_30px_#3a1226]">
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f5ecd6]">
-        {titleleft && <h2 class="text-2xl leading-normal font-black text-[#f8d441]">{titleleft}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f6e3ee]">
+        {titleleft && <h2 class="text-2xl leading-normal font-black text-[#fda3cd]">{titleleft}</h2>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f5ecd6] md:border-l md:border-[#d9a520]/30 md:pl-8">
-        {rightHeading && <h2 class="text-2xl leading-normal font-black text-[#f8d441]">{rightHeading}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f6e3ee] md:border-l md:border-[#d1176f]/30 md:pl-8">
+        {rightHeading && <h2 class="text-2xl leading-normal font-black text-[#fda3cd]">{rightHeading}</h2>}
         <slot name="right" />
       </article>
     </div>

@@ -7,29 +7,28 @@ const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png
 const imagePaths = Object.keys(images);
 const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 
-const logoAlt =
-  "โลโก้ AMB194 ตัวอักษร AMB สีทองและเลข 194 แบบโครงร่างสีเงิน ข้างหน้าเป็นตราโพดำสีดำขอบทองที่มีดาวสีแดงและอักษร M อยู่ตรงกลาง ใต้ชื่อมีคำว่า CASINO ONLINE & SPORT BETTING";
+const logoAlt = "โลโก้ ABM96 ตัวอักษร ABM สีชมพูและเลข 96 สีขาวขอบดำ ด้านขวาเป็นมาสคอตหมูสีชมพูแลบลิ้นสวมเสื้อยืดสีขาวพิมพ์คำว่า ABM96 นั่งอยู่";
 ---
 
 <footer
-  class="relative mt-32 w-full border-t border-[#f8d441]/30 bg-[#0b0806] pt-64 pb-6 font-sans text-[#f5ecd6] shadow-[0_-10px_30px_rgba(248,212,65,0.15)] md:pt-40">
+  class="relative mt-32 w-full border-t border-[#f1509b]/30 bg-[#0d0207] pt-64 pb-6 font-sans text-[#f6e3ee] shadow-[0_-10px_30px_rgba(241,80,155,0.15)] md:pt-40">
   <div
-    class="absolute -top-14 left-1/2 z-20 flex w-[92%] max-w-5xl -translate-x-1/2 flex-col items-center justify-between rounded-2xl border border-[#f8d441]/35 bg-gradient-to-r from-[#150f05] via-[#221807] to-[#150f05] p-6 shadow-[0_15px_40px_rgba(248,212,65,0.28)] md:-top-16 md:flex-row md:p-8">
+    class="absolute -top-14 left-1/2 z-20 flex w-[92%] max-w-5xl -translate-x-1/2 flex-col items-center justify-between rounded-2xl border border-[#f1509b]/35 bg-gradient-to-r from-[#1d0512] via-[#2a0a1b] to-[#1d0512] p-6 shadow-[0_15px_40px_rgba(241,80,155,0.28)] md:-top-16 md:flex-row md:p-8">
     <div class="mb-5 flex flex-col text-center md:mb-0 md:text-left">
-      <p class="text-xl font-black tracking-wide text-[#fff3ae] uppercase italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] md:text-3xl">
-        <span aria-hidden="true">🎰</span> พร้อมเริ่มเล่นกับ AMB194 แล้วหรือยัง?
+      <p class="text-xl font-black tracking-wide text-[#fda3cd] uppercase italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] md:text-3xl">
+        <span aria-hidden="true">🐷</span> พร้อมเริ่มเล่นกับ ABM96 แล้วหรือยัง?
       </p>
-      <p class="mt-2 text-sm font-medium text-[#c9b784] md:text-base">
-        สมัคร AMB194 ผ่านหน้าเดียวได้ภายในไม่กี่นาที แล้วเลือกได้ทั้งสล็อตคลาสสิก เกมโบนัส และเกมธีมใหม่ ๆ จากบัญชีเดียว พร้อมระบบฝากถอนที่ช่วยลดขั้นตอน
+      <p class="mt-2 text-sm font-medium text-[#d0a8bd] md:text-base">
+        สมัคร ABM96 จากหน้าเดียวได้ภายในไม่กี่นาที แล้วเลือกได้ทั้งเกมสล็อตคลาสสิก เกมฟีเจอร์โบนัส และเกมธีมใหม่ ๆ จากบัญชีเดียว พร้อมโปรโมชั่นทุนน้อยและเครดิตตามเงื่อนไขที่กำหนด
         ควรอ่านกติกาและกำหนดงบประมาณให้ชัดเจนก่อนเริ่มใช้งานทุกครั้ง
       </p>
     </div>
 
     <a
       href="/register"
-      class="group relative flex items-center justify-center overflow-hidden rounded-full border border-[#f8d441] bg-gradient-to-b from-[#fff3ae] to-[#d9a520] px-8 py-3.5 text-sm font-extrabold whitespace-nowrap text-[#170f02] shadow-[0_0_15px_rgba(248,212,65,0.4)] transition-all hover:scale-105 md:text-base">
+      class="group relative flex items-center justify-center overflow-hidden rounded-full border border-[#f5c542] bg-gradient-to-b from-[#ffe08a] to-[#f5c542] px-8 py-3.5 text-sm font-extrabold whitespace-nowrap text-[#2a0210] shadow-[0_0_15px_rgba(245,197,66,0.4)] transition-all hover:scale-105 md:text-base">
       <span class="relative z-10">สมัครสมาชิกเลย <span aria-hidden="true">🚀</span></span>
-      <div class="absolute inset-0 translate-y-full bg-[#e11d2b] transition-transform duration-300 group-hover:translate-y-0"></div>
+      <div class="absolute inset-0 translate-y-full bg-[#f1509b] transition-transform duration-300 group-hover:translate-y-0"></div>
     </a>
   </div>
 
@@ -47,18 +46,18 @@ const logoAlt =
                 height={45}
                 loading="lazy"
                 decoding="async"
-                class="h-[45px] w-auto drop-shadow-[0_0_12px_rgba(248,212,65,0.6)]"
+                class="h-[45px] w-auto drop-shadow-[0_0_12px_rgba(241,80,155,0.6)]"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
               />
             ) : (
-              <p class="bg-gradient-to-b from-[#fff3ae] to-[#8a6205] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(248,212,65,0.5)]">AMB194</p>
+              <p class="bg-gradient-to-b from-[#fda3cd] to-[#8c0a3c] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(241,80,155,0.5)]">ABM96</p>
             )
           }
         </a>
-        <p class="text-sm leading-relaxed text-[#c9b784]">
-          AMB194 รวบรวมเกมสล็อตหลายรูปแบบไว้ในระบบเดียว ทั้งสล็อตคลาสสิก เกมโบนัส และเกมธีมใหม่ ๆ ตั้งแต่การสมัคร เลือกเกม ไปจนถึงการฝากถอนผ่านหน้าบัญชีของตัวเอง
-          พิจารณาเกมจากรูปแบบการเล่น ฟีเจอร์ และระดับความผันผวนได้จากหน้าเดียว รองรับการใช้งานทั้งบนมือถือและคอมพิวเตอร์ ตามเงื่อนไขที่เว็บไซต์กำหนด
+        <p class="text-sm leading-relaxed text-[#d0a8bd]">
+          ABM96 รวบรวมเกมสล็อตหลายรูปแบบไว้ในระบบเดียว ทั้งเกมคลาสสิก เกมฟีเจอร์โบนัส และเกมธีมใหม่ ๆ ตั้งแต่การสมัคร เลือกเกม ไปจนถึงการฝากถอนผ่านหน้าบัญชีของตัวเอง
+          พิจารณาเกมได้จากกติกา รูปแบบการจ่าย และระดับความผันผวนจากหน้าเดียว รองรับการใช้งานทั้งบนมือถือและคอมพิวเตอร์ ตามเงื่อนไขที่เว็บไซต์กำหนด
         </p>
 
         <div class="mt-2 flex flex-wrap gap-3">
@@ -90,65 +89,65 @@ const logoAlt =
       </div>
 
       <div class="md:col-span-6 lg:col-span-5">
-        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#f5ecd6] uppercase">
+        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#f6e3ee] uppercase">
           ลิงก์ด่วน (Quick Links)
-          <span class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#fff3ae] to-[#e11d2b] shadow-[0_0_8px_rgba(248,212,65,0.6)]"></span>
+          <span class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#fda3cd] to-[#f5c542] shadow-[0_0_8px_rgba(241,80,155,0.6)]"></span>
         </p>
 
         <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
-          <a href="/" class="group flex items-center text-[#c9b784] transition-colors hover:text-[#fff3ae]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#f8d441] transition-transform group-hover:rotate-45"></span> หน้าแรก
+          <a href="/" class="group flex items-center text-[#d0a8bd] transition-colors hover:text-[#fda3cd]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#f1509b] transition-transform group-hover:rotate-45"></span> หน้าแรก
           </a>
-          <a href="/ทดลองเล่น" class="group flex items-center text-[#c9b784] transition-colors hover:text-[#fff3ae]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#f8d441] transition-transform group-hover:rotate-45"></span> ทดลองเล่นเกมฟรี
+          <a href="/ทดลองเล่น" class="group flex items-center text-[#d0a8bd] transition-colors hover:text-[#fda3cd]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#f1509b] transition-transform group-hover:rotate-45"></span> ทดลองเล่นเกมฟรี
           </a>
-          <a href="/promotion" class="group flex items-center text-[#c9b784] transition-colors hover:text-[#fff3ae]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#f8d441] transition-transform group-hover:rotate-45"></span> โปรโมชั่นสมาชิกใหม่
+          <a href="/promotion" class="group flex items-center text-[#d0a8bd] transition-colors hover:text-[#fda3cd]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#f1509b] transition-transform group-hover:rotate-45"></span> โปรโมชั่นสมาชิกใหม่
           </a>
-          <a href="/ทางเข้า" class="group flex items-center text-[#c9b784] transition-colors hover:text-[#fff3ae]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#f8d441] transition-transform group-hover:rotate-45"></span> ทางเข้าล่าสุด
+          <a href="/ทางเข้า" class="group flex items-center text-[#d0a8bd] transition-colors hover:text-[#fda3cd]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#f1509b] transition-transform group-hover:rotate-45"></span> ทางเข้าล่าสุด
           </a>
-          <a href="/register" class="group flex items-center text-[#c9b784] transition-colors hover:text-[#fff3ae]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#f8d441] transition-transform group-hover:rotate-45"></span> สมัครสมาชิก
+          <a href="/register" class="group flex items-center text-[#d0a8bd] transition-colors hover:text-[#fda3cd]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#f1509b] transition-transform group-hover:rotate-45"></span> สมัครสมาชิก
           </a>
-          <a href="/about-us" class="group flex items-center text-[#c9b784] transition-colors hover:text-[#fff3ae]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#f8d441] transition-transform group-hover:rotate-45"></span> เกี่ยวกับเรา
+          <a href="/about-us" class="group flex items-center text-[#d0a8bd] transition-colors hover:text-[#fda3cd]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#f1509b] transition-transform group-hover:rotate-45"></span> เกี่ยวกับเรา
           </a>
-          <a href="/contact-us" class="group flex items-center text-[#c9b784] transition-colors hover:text-[#fff3ae]">
-            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#f8d441] transition-transform group-hover:rotate-45"></span> ติดต่อแอดมิน
+          <a href="/contact-us" class="group flex items-center text-[#d0a8bd] transition-colors hover:text-[#fda3cd]">
+            <span class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#f1509b] transition-transform group-hover:rotate-45"></span> ติดต่อแอดมิน
           </a>
         </div>
       </div>
 
       <div class="md:col-span-6 lg:col-span-3">
-        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#f5ecd6] uppercase">
+        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#f6e3ee] uppercase">
           ระบบการเงิน
-          <span class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#fff3ae] to-[#e11d2b] shadow-[0_0_8px_rgba(248,212,65,0.6)]"></span>
+          <span class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#fda3cd] to-[#f5c542] shadow-[0_0_8px_rgba(241,80,155,0.6)]"></span>
         </p>
 
-        <p class="mb-4 text-xs text-[#c9b784]">รองรับการฝาก-ถอนผ่านแอปธนาคารชั้นนำและ TrueMoney Wallet โดยควรใช้บัญชีชื่อเดียวกับข้อมูลที่สมัครไว้</p>
+        <p class="mb-4 text-xs text-[#d0a8bd]">รองรับการฝาก-ถอนผ่านแอปธนาคารชั้นนำและ TrueMoney Wallet โดยควรใช้บัญชีชื่อเดียวกับข้อมูลที่สมัครไว้</p>
 
         <BankStrip size={30} />
 
-        <div class="mt-3 flex h-10 items-center justify-center rounded border border-white/5 bg-[#150f05] transition-colors hover:border-[#f8d441]/50" title="ตรวจรายการย้อนหลัง">
-          <span class="flex items-center gap-1 text-xs font-bold text-[#f5ecd6]"><span aria-hidden="true" class="text-lg text-[#f8d441]">🧾</span> เก็บเลขรายการไว้ตรวจสอบได้</span>
+        <div class="mt-3 flex h-10 items-center justify-center rounded border border-white/5 bg-[#1d0512] transition-colors hover:border-[#f1509b]/50" title="ตรวจรายการย้อนหลัง">
+          <span class="flex items-center gap-1 text-xs font-bold text-[#f6e3ee]"><span aria-hidden="true" class="text-lg text-[#f1509b]">🧾</span> เก็บเลขรายการไว้ตรวจสอบได้</span>
         </div>
       </div>
     </div>
 
-    <hr class="mb-6 border-[#f8d441]/25" />
+    <hr class="mb-6 border-[#f1509b]/25" />
 
-    <div class="mb-6 hidden text-justify text-[10px] leading-relaxed text-[#9c8a5e] md:block">
-      เกมสล็อตออนไลน์ สล็อตคลาสสิก เกมโบนัส เกมธีมใหม่ ฟีเจอร์พิเศษ ระบบฝากถอน เลือกเกมตามรูปแบบการเล่น ฟีเจอร์ และระดับความผันผวน ตรวจอัตราจ่ายและเงื่อนไขก่อนเลือกเกม
-      สมัครและเข้าสู่ระบบจากหน้าเดียว รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ ทางเข้าเว็บล่าสุด สมัครสมาชิกใหม่ AMB194
+    <div class="mb-6 hidden text-justify text-[10px] leading-relaxed text-[#a9819a] md:block">
+      เกมสล็อตออนไลน์ สล็อตคลาสสิก เกมฟีเจอร์โบนัส เกมธีมใหม่ โปรทุนน้อย เครดิตตามเงื่อนไข ระบบฝากถอน เลือกเกมจากกติกา รูปแบบการจ่าย และระดับความผันผวน
+      ตรวจอัตราจ่ายและเงื่อนไขก่อนเลือกเกม สมัครและเข้าสู่ระบบจากหน้าเดียว รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ ทางเข้าเว็บล่าสุด สมัครสมาชิกใหม่ ABM96
     </div>
 
-    <div class="flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-[#9c8a5e] md:flex-row">
-      <p>&copy; {new Date().getFullYear()} <span class="font-bold tracking-wider text-[#fff3ae] uppercase">AMB194</span>. All Rights Reserved.</p>
+    <div class="flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-[#a9819a] md:flex-row">
+      <p>&copy; {new Date().getFullYear()} <span class="font-bold tracking-wider text-[#fda3cd] uppercase">ABM96</span>. All Rights Reserved.</p>
 
       <div class="flex items-center gap-6">
-        <a href="/terms/" class="transition-colors hover:text-[#f5ecd6]">เงื่อนไขและข้อตกลง</a>
-        <a href="/privacy/" class="transition-colors hover:text-[#f5ecd6]">นโยบายความเป็นส่วนตัว</a>
+        <a href="/terms/" class="transition-colors hover:text-[#f6e3ee]">เงื่อนไขและข้อตกลง</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#f6e3ee]">นโยบายความเป็นส่วนตัว</a>
 
         {/* An anchor, not a button with onclick. Smooth scrolling comes from
             `scroll-behavior` in global.css, which the reduced-motion block
@@ -157,7 +156,7 @@ const logoAlt =
             because the rest of this footer is. */}
         <a
           href="#top"
-          class="flex h-8 w-8 items-center justify-center rounded border border-white/10 bg-white/5 text-[#f5ecd6] transition-all hover:border-[#f8d441] hover:bg-[#221807] hover:shadow-[0_0_15px_rgba(248,212,65,0.5)]"
+          class="flex h-8 w-8 items-center justify-center rounded border border-white/10 bg-white/5 text-[#f6e3ee] transition-all hover:border-[#f1509b] hover:bg-[#2a0a1b] hover:shadow-[0_0_15px_rgba(241,80,155,0.5)]"
           aria-label="กลับขึ้นด้านบนสุดของหน้า">
           <span aria-hidden="true">↑</span>
         </a>

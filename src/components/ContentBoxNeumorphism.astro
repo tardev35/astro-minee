@@ -11,17 +11,17 @@ const headingSize = HeadingTag === "h1" ? "text-3xl" : "text-2xl";
 // into the slot and centers the body paragraph with it. House style is headings
 // may be centered, paragraphs are always flush left at text-base.
 //
-// The neumorphic pair is the page ground (#1a0c03) against the raised honey
-// tone (#3d1a08) so the card still reads as extruded on the deep-brown page.
+// The neumorphic pair is the page ground (#0d0207) against the raised plum tone
+// (#2a0a1b) so the card still reads as extruded on the near-black pink page.
 ---
 
 <section class="relative z-10 my-6 flex w-full justify-center px-4 font-sans">
   <div
-    class="w-full max-w-[1400px] rounded-[25px] border border-[#f7cf7e]/25 bg-[#2a1206] p-8 text-left text-base leading-relaxed text-[#fdf0d8] shadow-[10px_10px_20px_#1a0c03,-10px_-10px_20px_#3d1a08]">
+    class="w-full max-w-[1400px] rounded-[25px] border border-[#f1509b]/25 bg-[#1d0512] p-8 text-left text-base leading-relaxed text-[#f6e3ee] shadow-[10px_10px_20px_#0d0207,-10px_-10px_20px_#2a0a1b]">
     {
       title && (
-        <header class="mb-8 border-b border-[#eb9413]/25 pb-4 text-center">
-          <HeadingTag class={`bg-gradient-to-r from-[#fff1cc] via-[#f7cf7e] to-[#eb9413] bg-clip-text ${headingSize} leading-normal font-black tracking-wide text-transparent`}>{title}</HeadingTag>
+        <header class="mb-8 border-b border-[#d1176f]/25 pb-4 text-center">
+          <HeadingTag class={`bg-gradient-to-r from-[#fda3cd] via-[#f1509b] to-[#b5054f] bg-clip-text ${headingSize} leading-normal font-black tracking-wide text-transparent`}>{title}</HeadingTag>
         </header>
       )
     }

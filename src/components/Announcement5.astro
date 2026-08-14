@@ -4,27 +4,27 @@
 // สองรอบ screen reader จะอ่าน emoji ซ้ำตามไปด้วย และห้ามใส่ชื่อโดเมนลงในข้อความ
 // (verify-build.mjs จับ URL นอกโดเมนแล้วทำให้ build แดง)
 const {
-  message = "AMB194 รวมเกมสล็อตหลายรูปแบบไว้ในระบบเดียว ทั้งสล็อตคลาสสิก เกมโบนัส และเกมธีมใหม่ ๆ เลือกได้ตามรูปแบบการเล่น ฟีเจอร์ และระดับความผันผวน • ระบบฝากถอนช่วยลดขั้นตอน ทำรายการผ่านหน้าบัญชีได้เอง ควรตรวจสอบชื่อบัญชีและจำนวนเงินก่อนยืนยันทุกครั้ง • คำว่าแตกไม่อั้นเป็นคำโฆษณา ไม่ใช่การรับประกันผลลัพธ์ ควรกำหนดวงเงินก่อนเริ่มเล่น • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง",
+  message = "ABM96 รวบรวมเกมสล็อตหลายรูปแบบไว้ในระบบเดียว ทั้งเกมคลาสสิก เกมฟีเจอร์โบนัส และเกมธีมใหม่ ๆ เลือกได้จากกติกา รูปแบบการจ่าย และระดับความผันผวน • โปรโมชั่นทุนน้อยช่วยกำหนดวงเงินเริ่มต้นให้ชัดเจน ควรตรวจสอบยอดฝาก เกมที่เข้าร่วม และเงื่อนไขการถอนก่อนรับสิทธิ์ • เครดิตเพิ่มเติมของแต่ละโปรโมชั่นมีจำนวน ระยะเวลา และข้อกำหนดการนำไปใช้ต่างกัน ควรอ่านให้ครบก่อนกดรับ • คำว่าแตกง่ายไม่ใช่การรับประกันผลลัพธ์ ควรกำหนดงบประมาณก่อนเริ่มเล่นทุกครั้ง • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมบริการสมาชิกตลอด 24 ชั่วโมง",
 } = Astro.props;
 ---
 
 <div class="mx-auto w-full max-w-7xl px-4 py-3 font-sans">
-  <div class="relative overflow-hidden rounded-md border border-[#f8d441]/45 bg-[#150f05] shadow-[0_0_15px_rgba(248,212,65,0.18)]">
-    <div class="absolute top-0 -left-4 h-full w-8 -skew-x-12 bg-gradient-to-b from-[#fff3ae] to-[#8a6205]"></div>
-    <div class="absolute top-0 -right-4 h-full w-8 -skew-x-12 bg-[#e11d2b]/35"></div>
+  <div class="relative overflow-hidden rounded-md border border-[#f1509b]/45 bg-[#1d0512] shadow-[0_0_15px_rgba(241,80,155,0.18)]">
+    <div class="absolute top-0 -left-4 h-full w-8 -skew-x-12 bg-gradient-to-b from-[#fda3cd] to-[#8c0a3c]"></div>
+    <div class="absolute top-0 -right-4 h-full w-8 -skew-x-12 bg-[#f5c542]/35"></div>
 
     <div class="flex items-center">
-      <div class="relative z-10 flex w-12 shrink-0 items-center justify-center bg-gradient-to-b from-[#fff3ae] to-[#8a6205] py-2.5">
-        <span aria-hidden="true" class="animate-pulse text-lg drop-shadow-[0_0_5px_rgba(23,15,2,0.85)]">🔔</span>
+      <div class="relative z-10 flex w-12 shrink-0 items-center justify-center bg-gradient-to-b from-[#fda3cd] to-[#8c0a3c] py-2.5">
+        <span aria-hidden="true" class="animate-pulse text-lg drop-shadow-[0_0_5px_rgba(13,2,7,0.85)]">🔔</span>
       </div>
 
       <div class="marquee-container relative flex-1 overflow-hidden py-2.5 pr-6">
-        <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#150f05] to-transparent"></div>
-        <div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-12 bg-gradient-to-l from-[#150f05] to-transparent"></div>
+        <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#1d0512] to-transparent"></div>
+        <div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-12 bg-gradient-to-l from-[#1d0512] to-transparent"></div>
 
-        <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-wide whitespace-nowrap text-[#fff3ae]">
-          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#f8d441] shadow-[0_0_5px_rgba(248,212,65,0.85)]"></span>{message}</span>
-          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#f8d441] shadow-[0_0_5px_rgba(248,212,65,0.85)]"></span>{message}</span>
+        <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-wide whitespace-nowrap text-[#fda3cd]">
+          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#f5c542] shadow-[0_0_5px_rgba(245,197,66,0.85)]"></span>{message}</span>
+          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#f5c542] shadow-[0_0_5px_rgba(245,197,66,0.85)]"></span>{message}</span>
         </div>
       </div>
     </div>

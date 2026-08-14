@@ -1,19 +1,19 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/AnnouncementCyber.astro";
-import ContentBoxPremium from "../components/ContentBoxPremium.astro";
+import Announcement from "../components/Announcement5.astro";
+import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
 import ContentBox from "../components/ContentBox.astro";
-import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
-import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
+import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
+import ContentBoxTwoNeumorphism from "../components/ContentBoxTwoNeumorphism.astro";
+import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
+import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinnersCyber.astro";
+import LatestWinners from "../components/LatestWinners3.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq.astro";
+import Faq from "../components/Faq3.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
@@ -22,39 +22,41 @@ import { pageGraph } from "../lib/schema";
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
 // two of those per rebrand — both are spent here.
 //
-// slide3 prints "สมาชิกใหม่ รับโบนัส 50%", which is the promotion the โปรทุนน้อย
-// section is about; slide1 is the brand board and prints "ฝาก-ถอนออโต้ รวดเร็ว"
-// with a ระบบออโต้ badge, so it sits with the ฝากถอนออโต้ section. slide2
-// (คืนยอดเสีย 0.8%) and slide4 (แนะนำเพื่อน 10%) stay unused here and keep
-// rendering in SmoothCarousel and on /promotion.
+// slide1 prints "สมาชิกใหม่ รับโบนัส 50% / โบนัสต้อนรับสำหรับผู้เล่นใหม่", the
+// starter offer the โปรทุนน้อย section is about; slide2 prints "ฝากครั้งแรก
+// รับเพิ่ม 20%", which is credit granted against a deposit, so it sits with the
+// ลุ้นรับเครดิตเพิ่มเติม section. slide3 (แนะนำเพื่อน 10%) and slide4
+// (คืนยอดเสีย 0.8%) stay unused here and keep rendering in SmoothCarousel and
+// on /promotion.
 //
-// banner2.png is NOT imported anywhere: it is stale artwork from an older drop.
-import imgNewMemberBonus from "../assets/slide3.png";
-import imgAutoCashier from "../assets/slide1.png";
+// banner2.png is NOT imported anywhere: it predates this asset drop.
+// banner1/banner1-mobile are the hero and belong to MainLayout alone.
+import imgLowBudgetPromo from "../assets/slide1.png";
+import imgExtraCredit from "../assets/slide2.png";
 
-const pageTitle = "KIKI49 | เว็บสล็อตฝากถอนออโต้รวดเร็ว แตกง่าย โปรทุนน้อย ไม่มีขั้นต่ำ";
-const pageHeading = "KIKI49 เว็บสล็อตฝากถอนออโต้รวดเร็ว แตกง่าย โปรทุนน้อย ไม่มีขั้นต่ำ";
+const pageTitle = "ABM96 | รวมเกมสล็อตแตกง่าย เล่นสนุกจ่ายจริง โปรทุนน้อยลุ้นรับเครดิต";
+const pageHeading = "ABM96 รวมเกมสล็อตแตกง่าย เล่นสนุกจ่ายจริง โปรทุนน้อยลุ้นรับเครดิต";
 
-// The docx Meta Description, verbatim at the length it was written (129
+// The docx Meta Description, verbatim at the length it was written (148
 // characters). DESC_MIN does not apply to the home page — verify-build.mjs
 // exempts it precisely so the brand's own copy ships unpadded. Do not top it
 // up to 150.
-const pageDescription = "KIKI49 เว็บสล็อตฝากถอนออโต้รวดเร็ว โปรทุนน้อย ไม่มีขั้นต่ำตามเงื่อนไข รองรับมือถือ พร้อมเกมหลากหลายและบริการสมาชิกตลอด 24 ชั่วโมง";
+const pageDescription = "ABM96 รวมเกมสล็อตหลายแนว เล่นสนุก โปรทุนน้อยลุ้นรับเครดิตตามเงื่อนไข รองรับมือถือ พร้อมระบบใช้งานสะดวกและบริการสมาชิกตลอด 24 ชั่วโมง";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq's own default, which is always the previous brand's FAQ.
+// Faq3's own default, which is always the previous brand's FAQ.
 const faqs = [
   {
-    q: "KIKI49 เหมาะกับผู้เล่นทุนน้อยหรือไม่?",
-    a: "โปรโมชั่นบางรายการถูกออกแบบให้เริ่มต้นด้วยงบไม่สูง แต่ควรตรวจสอบยอดฝาก เงื่อนไขรับโบนัส และข้อกำหนดการถอนก่อนเลือกรับสิทธิ์ทุกครั้ง",
+    q: "ABM96 มีโปรโมชั่นสำหรับผู้เล่นทุนน้อยหรือไม่?",
+    a: "โปรโมชั่นบางรายการเหมาะกับการเริ่มต้นด้วยงบไม่สูง แต่ควรตรวจสอบยอดฝาก เงื่อนไขรับสิทธิ์ เกมที่ร่วมรายการ และข้อกำหนดการถอนก่อนเลือกทุกครั้ง",
   },
   {
-    q: "KIKI49 ฝากถอนไม่มีขั้นต่ำทุกช่องทางหรือไม่?",
-    a: "เงื่อนไขไม่มีขั้นต่ำอาจใช้เฉพาะช่องทางที่กำหนด สมาชิกควรตรวจสอบรายละเอียดล่าสุดและเงื่อนไขของโปรโมชั่นก่อนทำรายการ",
+    q: "เครดิตจากโปรโมชั่น ABM96 ได้รับอย่างไร?",
+    a: "เครดิตอาจได้รับตามยอดฝากหรือกิจกรรมที่กำหนด โดยจำนวนเครดิต วิธีรับ และเงื่อนไขการนำไปใช้จะแตกต่างกันตามแต่ละโปรโมชั่น",
   },
   {
-    q: "ระบบฝากถอนออโต้ของ KIKI49 รวดเร็วแค่ไหน?",
-    a: "ระบบออโต้ช่วยลดขั้นตอนการทำรายการ แต่ระยะเวลาอาจแตกต่างตามช่องทางชำระเงิน สถานะบัญชี และขั้นตอนตรวจสอบของระบบ",
+    q: "เกมแตกง่ายของ ABM96 รับประกันผลตอบแทนหรือไม่?",
+    a: "ไม่สามารถรับประกันผลลัพธ์หรือกำไรจากเกมสล็อตได้ ผู้เล่นควรศึกษากติกา ความผันผวน และกำหนดงบประมาณที่เหมาะสมก่อนเริ่มเล่น",
   },
 ];
 
@@ -69,30 +71,28 @@ const graph = pageGraph(Astro, {
 <MainLayout title={pageTitle} description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
-  <Announcement
-    message="KIKI49 เป็นแพลตฟอร์มเกมสล็อตออนไลน์ที่เน้นความสะดวกในการใช้งานและการจัดการธุรกรรมผ่านระบบออโต้ • ภายในมีเกมสล็อตหลายแนวทั้งแบบคลาสสิก เกมโบนัส และเกมที่มีฟีเจอร์หลากหลาย ควรพิจารณากติกา ความผันผวน และรูปแบบการจ่ายก่อนเริ่ม • โปรโมชั่นสำหรับผู้เล่นทุนน้อยมียอดเริ่มต้นและเงื่อนไขรับสิทธิ์ต่างกัน ควรเปรียบเทียบให้ครบก่อนเลือก • เงื่อนไขไม่มีขั้นต่ำใช้ได้เฉพาะช่องทางที่กำหนด • ก่อนยืนยันฝากถอนควรตรวจสอบชื่อบัญชีและจำนวนเงินให้ถูกต้อง หากรายการยังดำเนินการอยู่ควรรอผลจากระบบก่อนทำรายการซ้ำ • รองรับการใช้งานผ่านมือถือได้อย่างคล่องตัว"
-  />
+  <Announcement />
 
-  <ContentBoxPremium as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#f2e2e4]">
-      <strong class="text-[#ff5a5f]">KIKI49</strong> เป็นแพลตฟอร์มเกมสล็อตออนไลน์ที่เน้นความสะดวกในการใช้งานและการจัดการธุรกรรมผ่านระบบออโต้ รองรับผู้เล่นที่ต้องการเริ่มต้นด้วยงบประมาณไม่สูง พร้อมเงื่อนไขไม่มีขั้นต่ำในช่องทางที่กำหนด
-      ภายในมีเกมสล็อตหลายรูปแบบให้เลือก และรองรับการใช้งานผ่านมือถือได้อย่างคล่องตัว
+  <ContentBoxFloatingBadge as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#f6e3ee]">
+      <strong class="text-[#fda3cd]">ABM96</strong> เป็นแพลตฟอร์มเกมสล็อตออนไลน์ที่รวบรวมเกมหลายรูปแบบไว้ในระบบเดียว เหมาะกับผู้เล่นที่ต้องการเลือกเกมได้หลากหลาย พร้อมโปรโมชั่นทุนน้อยและเครดิตตามเงื่อนไขที่กำหนด
+      รองรับการใช้งานบนมือถือและคอมพิวเตอร์ ควรอ่านกติกา รายละเอียดโบนัส และเงื่อนไขต่าง ๆ ก่อนเริ่มใช้งานทุกครั้ง
     </p>
-  </ContentBoxPremium>
+  </ContentBoxFloatingBadge>
 
-  <ContentBox as="h2" title="เริ่มเล่นสล็อตด้วยงบที่เหมาะสมบน KIKI49">
-    <p class="text-left text-base leading-relaxed text-[#f2e2e4]">
-      ภายใน KIKI49 มีเกมสล็อตหลายแนวให้เลือกทั้งแบบคลาสสิก เกมโบนัส และเกมที่มีฟีเจอร์หลากหลาย ผู้เล่นสามารถพิจารณาจากกติกา ความผันผวน และรูปแบบการจ่ายก่อนเริ่ม
-      เพื่อเลือกเกมที่สอดคล้องกับงบประมาณและไม่จำเป็นต้องเริ่มด้วยเงินจำนวนสูง
+  <ContentBoxNeumorphism as="h2" title="รวมเกมสล็อตหลายสไตล์ให้เลือกบน ABM96">
+    <p class="text-left text-base leading-relaxed text-[#f6e3ee]">
+      ภายใน ABM96 มีทั้งเกมสล็อตคลาสสิก เกมฟีเจอร์โบนัส และเกมธีมใหม่ ๆ ให้เลือกตามความสนใจ ผู้เล่นสามารถพิจารณาจากกติกา รูปแบบการจ่าย และระดับความผันผวน
+      เพื่อเลือกเกมที่เหมาะกับงบประมาณและสไตล์การเล่นของตนเองมากขึ้น
     </p>
-  </ContentBox>
+  </ContentBoxNeumorphism>
 
   <ProviderGrid />
 
-  <ContentBoxSevenThreePremium titleright="โปรทุนน้อยช่วยให้วางแผนการเล่นได้ยืดหยุ่น">
+  <ContentBoxSevenThreeFloatingBadge title="โปรทุนน้อยช่วยให้เริ่มต้นได้ตามงบประมาณ">
     <Picture
       slot="left"
-      src={imgNewMemberBonus}
+      src={imgLowBudgetPromo}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -101,19 +101,19 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่น KIKI49 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที และปุ่ม รับโปรเลย พร้อมผู้หญิงในชุดดำแดงติดโลโก้ KIKI49 ชี้มาที่ตัวเลข มาสคอตเพนกวินโครงกระดูกสวมฮู้ดดำบนโลโก้ ตู้สล็อตเลข 777 ลูกเต๋าแดง กล่องของขวัญและเหรียญทองในห้องคาสิโนไฟนีออนแดง"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#e2131d]/40 shadow-[0_10px_30px_rgba(226,19,29,0.28)]"
+      alt="แบนเนอร์โปรโมชั่น ABM96 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่ม รับโปรเลย พร้อมผู้หญิงในชุดกีฬาครอปสีชมพู-ขาว-ดำ พิมพ์ ABM96 ชี้นิ้วขึ้น มาสคอตหมูสีชมพูสวมเสื้อยืดขาวพิมพ์ ABM96 ป้ายไฟ JACKPOT BIG WIN ตู้สล็อตเลข 777 BAR เหรียญทองและชิปคาสิโนสีชมพูในห้องคาสิโนไฟนีออนสีชมพู"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f1509b]/40 shadow-[0_10px_30px_rgba(241,80,155,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f2e2e4]">
-      โปรโมชั่นสำหรับผู้เล่นทุนน้อยอาจกำหนดยอดเริ่มต้นและเงื่อนไขรับสิทธิ์แตกต่างกัน ควรเปรียบเทียบโบนัส เกมที่เข้าร่วม และข้อกำหนดการถอนให้ครบก่อนเลือก
-      เพื่อให้โปรโมชั่นช่วยเพิ่มความคุ้มค่าโดยไม่ทำให้ต้องเพิ่มเงินเกินแผนที่ตั้งไว้
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f6e3ee]">
+      โปรโมชั่นทุนน้อยเหมาะกับผู้ที่ต้องการกำหนดวงเงินเริ่มต้นให้ชัดเจน โดยควรตรวจสอบยอดฝากที่กำหนด เกมที่เข้าร่วม และเงื่อนไขการถอนก่อนรับสิทธิ์ การเลือกโปรที่พอดีกับงบช่วยให้ใช้งานได้ยืดหยุ่น
+      โดยไม่จำเป็นต้องเพิ่มเงินเกินแผน
     </p>
-  </ContentBoxSevenThreePremium>
+  </ContentBoxSevenThreeFloatingBadge>
 
-  <ContentBoxSevenThreeCyberCut titleright="ฝากถอนออโต้รวดเร็วผ่านระบบของ KIKI49">
+  <ContentBoxSevenThreeNeumorphism titleright="ลุ้นรับเครดิตเพิ่มเติมผ่านโปรโมชั่นของ ABM96">
     <Picture
       slot="left"
-      src={imgAutoCashier}
+      src={imgExtraCredit}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -122,54 +122,81 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์ KIKI49 ข้อความ เว็บสล็อต แตกง่าย โปรคุ้มทุกวัน ฝาก-ถอนออโต้ รวดเร็ว เล่นง่าย จ่ายจริง ป้าย ระบบออโต้ โบนัสคุ้ม บริการ 24 ชม. และปุ่ม สมัครเลย พร้อมมาสคอตเพนกวินสวมชุดโครงกระดูกบนโลโก้ ผู้หญิงในชุดดำแดงติดโลโก้ KIKI49 วงล้อสล็อตเลข 777 ป้ายไฟ JACKPOT เหรียญทอง ลูกเต๋าแดงและชิปคาสิโน ในห้องคาสิโนไฟนีออนแดง"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#e2131d]/40 shadow-[0_10px_30px_rgba(226,19,29,0.28)]"
+      alt="แบนเนอร์โปรโมชั่น ABM96 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่ม ฝากเลย พร้อมแถบ ระบบออโต้ ฝาก-ถอนอัตโนมัติ 24 ชม. โบนัสคุ้ม จัดเต็มทุกโปรโมชั่น และบริการ 24 ชม. มีผู้หญิงในชุดกีฬาครอปสีชมพู-ขาว-ดำ พิมพ์ ABM96 มาสคอตหมูสีชมพูแลบลิ้น ป้ายไฟ JACKPOT BIG WIN ตู้สล็อตเลข 777 BAR ไพ่โพแดงโพดำ เหรียญทองและชิปคาสิโนสีชมพู"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f1509b]/40 shadow-[0_10px_30px_rgba(241,80,155,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f2e2e4]">
-      ระบบออโต้ของ KIKI49 ช่วยให้สมาชิกฝาก ถอน และตรวจสอบสถานะรายการผ่านหน้าบัญชีได้ด้วยตนเอง ก่อนยืนยันควรตรวจสอบชื่อบัญชี จำนวนเงิน และข้อมูลให้ถูกต้อง
-      หากรายการยังดำเนินการอยู่ควรรอผลจากระบบก่อนทำรายการซ้ำ
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f6e3ee]">
+      โปรโมชั่นบางรายการของ ABM96 อาจมีเครดิตเพิ่มเติมสำหรับสมาชิกตามยอดฝากหรือกิจกรรมที่กำหนด ก่อนรับสิทธิ์ควรตรวจสอบจำนวนเครดิต ระยะเวลา และข้อกำหนดการนำเครดิตไปใช้ให้ครบ
+      เพื่อช่วยให้เข้าใจสิทธิประโยชน์และเงื่อนไขได้ชัดเจนตั้งแต่ต้น
     </p>
-  </ContentBoxSevenThreeCyberCut>
+  </ContentBoxSevenThreeNeumorphism>
 
   <LatestWinners />
 
-  <ContentBoxSpecial as="h2" title="ไม่มีขั้นต่ำกับ KIKI49 ช่วยกำหนดยอดได้ง่ายขึ้น" iconleft="💰" iconright="🔍">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#f2e2e4]">เงื่อนไขไม่มีขั้นต่ำของ KIKI49 ช่วยให้สมาชิกเลือกจำนวนเงินตามงบของตนเองได้ยืดหยุ่นมากขึ้น</p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f2e2e4]">
-      อย่างไรก็ตาม ควรตรวจสอบช่องทางที่รองรับและเงื่อนไขโปรโมชั่นก่อนทำรายการ รวมถึงกำหนดวงเงินที่สามารถยอมรับความเสี่ยงได้
-    </p>
-  </ContentBoxSpecial>
-
-  <ContentBoxCyberCut as="h2" title="เกมแตกง่ายควรเลือกจากข้อมูลของเกมเป็นหลัก">
-    <p class="text-left text-base leading-relaxed text-[#f2e2e4]">
-      คำว่าแตกง่ายใช้สื่อถึงเกมที่มีจังหวะลุ้นรางวัลและฟีเจอร์ที่น่าสนใจ แต่ไม่สามารถรับประกันผลลัพธ์ได้ ผู้เล่นควรตรวจสอบอัตราจ่าย ความผันผวน และกติกาของเกมก่อนเริ่ม
-      พร้อมกำหนดเวลาและงบประมาณให้ชัดเจนเพื่อควบคุมการใช้งาน
-    </p>
-  </ContentBoxCyberCut>
-
-  <GameRankingBoard />
-
-  <ContentBox as="h2" title="ตรวจสอบบัญชีและรับบริการจากทีม KIKI49">
-    <p class="text-left text-base leading-relaxed text-[#f2e2e4]">
-      เมื่อพบปัญหาเกี่ยวกับบัญชี ทางเข้า โปรโมชั่น หรือสถานะธุรกรรม สมาชิกสามารถติดต่อทีมงาน KIKI49 ผ่านช่องทางที่เว็บไซต์ระบุ ควรเตรียมชื่อผู้ใช้ เวลา และรายละเอียดรายการให้ครบ
-      โดยไม่เปิดเผยรหัสผ่านหรือรหัสยืนยัน เพื่อช่วยให้ตรวจสอบได้รวดเร็วขึ้น
+  <ContentBox as="h2" title="เล่นสนุกได้มากขึ้นเมื่อเลือกเกมให้ตรงความชอบ">
+    <p class="text-left text-base leading-relaxed text-[#f6e3ee]">
+      ความสนุกของเกมสล็อตขึ้นอยู่กับหลายปัจจัย ทั้งธีม ฟีเจอร์ ความเร็ว และรูปแบบโบนัส ผู้เล่นควรทดลองหลายเกมและเลือกแบบที่เข้าใจกติกาได้ง่าย ไม่ควรยึดเฉพาะคำว่าแตกง่าย
+      เพราะผลของเกมไม่สามารถรับประกันได้ และควรกำหนดวงเงินก่อนเริ่มทุกครั้ง
     </p>
   </ContentBox>
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ KIKI49" faqs={faqs} />
+  <GameRankingBoard />
+
+  <ContentBox as="h2" title="ABM96 รองรับการเล่นผ่านมือถือได้คล่องตัว">
+    <p class="text-left text-base leading-relaxed text-[#f6e3ee]">
+      เว็บไซต์ ABM96 รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ สมาชิกสามารถเข้าสู่ระบบ เลือกเกม ตรวจสอบโปรโมชั่น และติดตามเครดิตผ่านเบราว์เซอร์ได้ ควรใช้อินเทอร์เน็ตที่เสถียร เข้าผ่านช่องทางหลัก
+      และรักษาข้อมูลบัญชีให้ปลอดภัยตลอดการใช้งาน
+    </p>
+  </ContentBox>
+
+  <ContentBoxTwoNeumorphism titleleft="ตรวจสอบสิทธิ์และรายการกับทีมงาน ABM96">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f6e3ee]">
+      หากมีข้อสงสัยเรื่องเครดิต โปรโมชั่น บัญชี หรือสถานะธุรกรรม สมาชิกสามารถติดต่อทีมงาน ABM96 ผ่านช่องทางที่เว็บไซต์กำหนด ควรเตรียมชื่อผู้ใช้ เวลา และรายละเอียดรายการให้ครบถ้วน
+      โดยไม่เปิดเผยรหัสผ่านหรือรหัสยืนยัน เพื่อช่วยให้ตรวจสอบได้ตรงประเด็น
+    </p>
+
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#f1509b]/25 bg-[#0d0207]/70 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f5c542] uppercase">
+        <span aria-hidden="true">🛟</span>
+        สิ่งที่ควรเตรียมก่อนแจ้งทีมงาน
+      </p>
+      <span class="flex items-start gap-2.5 text-sm text-[#f6e3ee]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#fda3cd]">①</span>
+        ชื่อผู้ใช้ที่ใช้เข้าสู่ระบบ
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#f6e3ee]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#fda3cd]">②</span>
+        วันและเวลาที่ทำรายการ
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#f6e3ee]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#fda3cd]">③</span>
+        รายละเอียดรายการหรือโปรโมชั่นที่ต้องการให้ตรวจสอบ
+      </span>
+      <span class="mt-1 rounded-xl border border-[#f5c542]/35 bg-[#2a0a1b]/70 px-4 py-2.5 text-xs leading-relaxed text-[#f6e3ee]/80">
+        ไม่ต้องแจ้งรหัสผ่านหรือรหัสยืนยันให้ผู้ใด แม้จะเป็นการติดต่อกับทีมงานก็ตาม
+      </span>
+      <a
+        href="/line"
+        class="mt-1 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#00B900] to-[#009900] p-3 text-sm font-bold text-white shadow-md transition-transform hover:scale-[1.02]">
+        <span aria-hidden="true">💬</span> ติดต่อทีมงานผ่าน LINE
+      </a>
+    </div>
+  </ContentBoxTwoNeumorphism>
+
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ ABM96" faqs={faqs} />
 
   <LoginRtpSection />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#ff5a5f] via-[#e2131d] to-[#a80f16] px-4 py-3 text-sm font-black whitespace-nowrap text-[#fff5f5] shadow-[0_10px_30px_rgba(226,19,29,0.32)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(226,19,29,0.48)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-[#fda3cd] via-[#f1509b] to-[#b5054f] px-4 py-3 text-sm font-black whitespace-nowrap text-[#fff5fa] shadow-[0_10px_30px_rgba(241,80,155,0.32)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_15px_40px_rgba(241,80,155,0.48)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffe08a]/70 bg-gradient-to-r from-[#ffe08a] to-[#f5c542] px-4 py-3 text-sm font-black whitespace-nowrap text-[#2a0206] shadow-[0_10px_30px_rgba(245,197,66,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe08a] hover:shadow-[0_15px_40px_rgba(245,197,66,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffe08a]/70 bg-gradient-to-r from-[#ffe08a] to-[#f5c542] px-4 py-3 text-sm font-black whitespace-nowrap text-[#2a0210] shadow-[0_10px_30px_rgba(245,197,66,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe08a] hover:shadow-[0_15px_40px_rgba(245,197,66,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>
