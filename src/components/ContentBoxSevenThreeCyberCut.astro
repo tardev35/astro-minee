@@ -10,43 +10,43 @@ const { titleleft, titleright } = Astro.props;
 // The clipped corner rules are decorative and carry -z-10 against the card's
 // `isolate`, so the slot content always paints above them without a wrapper.
 //
-// KIKI49: the headings are flat #ff5a5f rather than clip-text — a solid light
-// crimson clears contrast on the near-black card at this size, and the >_ glyph
-// beside them stays gold so the terminal motif keeps both brand hues.
+// AMBKING1234: the headings are flat #d4ea23 rather than clip-text — a solid
+// logo-lime clears contrast on the near-black card at this size, and the >_
+// glyph beside them stays gold so the terminal motif keeps both brand hues.
 ---
 
 <section class="mx-auto mb-6 w-full max-w-7xl px-4 font-sans">
   <div
-    class="relative isolate w-full border border-[#e2131d]/30 bg-[#1c0407]/92 p-8 text-[#f2e2e4] shadow-[0_10px_30px_rgba(226,19,29,0.18)] backdrop-blur-md transition-all duration-300 hover:border-[#a80f16]/60 hover:shadow-[0_15px_40px_rgba(168,15,22,0.28)]"
+    class="relative isolate w-full border border-[#8fd318]/30 bg-[#08210f]/92 p-8 text-[#e6f3dd] shadow-[0_10px_30px_rgba(143,211,24,0.18)] backdrop-blur-md transition-all duration-300 hover:border-[#1c7a2f]/60 hover:shadow-[0_15px_40px_rgba(28,122,47,0.28)]"
     style="clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);">
-    <div class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#ff5a5f] to-transparent"></div>
-    <div class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#f5c542] to-transparent"></div>
-    <div class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#ff5a5f] to-transparent"></div>
-    <div class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#f5c542] to-transparent"></div>
+    <div class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#d4ea23] to-transparent"></div>
+    <div class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#fbd503] to-transparent"></div>
+    <div class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#d4ea23] to-transparent"></div>
+    <div class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#fbd503] to-transparent"></div>
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f2e2e4]">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#e6f3dd]">
         {
           titleleft && (
-            <div class="flex items-baseline gap-2 border-b border-[#e2131d]/30 pb-2">
-              <span aria-hidden="true" class="font-mono text-[#f5c542]">
+            <div class="flex items-baseline gap-2 border-b border-[#8fd318]/30 pb-2">
+              <span aria-hidden="true" class="font-mono text-[#fbd503]">
                 &gt;_
               </span>
-              <h2 class="text-xl leading-normal font-black text-[#ff5a5f] uppercase">{titleleft}</h2>
+              <h2 class="text-xl leading-normal font-black text-[#d4ea23] uppercase">{titleleft}</h2>
             </div>
           )
         }
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f2e2e4] md:border-l md:border-[#e2131d]/30 md:pl-8">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#e6f3dd] md:border-l md:border-[#8fd318]/30 md:pl-8">
         {
           titleright && (
-            <div class="flex items-baseline gap-2 border-b border-[#e2131d]/30 pb-2">
-              <span aria-hidden="true" class="font-mono text-[#f5c542]">
+            <div class="flex items-baseline gap-2 border-b border-[#8fd318]/30 pb-2">
+              <span aria-hidden="true" class="font-mono text-[#fbd503]">
                 &gt;_
               </span>
-              <h2 class="text-xl leading-normal font-black text-[#ff5a5f] uppercase">{titleright}</h2>
+              <h2 class="text-xl leading-normal font-black text-[#d4ea23] uppercase">{titleright}</h2>
             </div>
           )
         }

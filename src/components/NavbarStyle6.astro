@@ -10,45 +10,50 @@ const currentPath = Astro.url.pathname;
 
 const isActive = (path: string) => isActivePath(currentPath, path);
 
-// Menu declared once and rendered three times (rail, mobile drawer, and the
-// hamburger nav's own state) so a future page only has to be added here.
+// เมนูชุดเดียว เรนเดอร์สองที่ (แถบด้านข้างจอใหญ่ + ลิ้นชักมือถือ) หน้าใหม่จึง
+// เพิ่มที่นี่ที่เดียว icon แยกเป็น span ของตัวเองพร้อม aria-hidden เสมอ ห้ามต่อ
+// เข้ากับ name เป็นข้อความเดียว ไม่งั้น screen reader จะอ่านว่า "house หน้าแรก"
+//
+// ลำดับเมนู: หน้าแรก · โปรโมชั่น · (สมัครสมาชิก · เข้าสู่ระบบ ถ้าเปิด cta toggle)
+// · ที่เหลือ — แบรนด์นี้ปิด cta toggle ไว้ /register กับ /login จึงเป็นปุ่มมุมขวา
+// กับปุ่มในลิ้นชักเท่านั้น ไม่ใช่รายการเมนู
 const links = [
   { name: "หน้าแรก", path: "/", icon: "🏠" },
   { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
-  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🍯" },
-  { name: "ทางเข้า", path: "/ทางเข้า", icon: "🐝" },
-  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "🏢" },
-  { name: "ติดต่อเรา", path: "/contact-us", icon: "📞" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
+  { name: "ทางเข้า", path: "/ทางเข้า", icon: "🚪" },
+  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "👑" },
+  { name: "ติดต่อเรา", path: "/contact-us", icon: "💬" },
 ];
 
-const logoAlt = "โลโก้ HONEY289 ตราวงกลมลายรังผึ้ง มีผึ้งการ์ตูนขยิบตาถือไม้จุ่มน้ำผึ้งอยู่กลาง คำว่า HONEY สีทองและเลข 289 สีชมพู ล้อมด้วยน้ำผึ้งหยดและดอกไม้";
+const logoAlt = "โลโก้ AMBKING1234 ตัวอักษร ambking สีเขียวมะนาวและเขียวเข้ม ต่อด้วยเลข 1234 สีขาวขอบเขียว";
 ---
 
 <header class="sticky top-0 z-50 w-full font-sans shadow-lg">
   <div class="pointer-events-none absolute top-0 left-0 z-50 hidden h-0 w-full items-start justify-center lg:flex">
     <div
-      class="pointer-events-auto flex h-[65px] w-[120px] items-center justify-center rounded-b-3xl border-x border-b border-[#fdbb24] bg-gradient-to-b from-[#3d1a08] to-[#1a0c03] shadow-[0_5px_15px_rgba(253,187,36,0.35)]">
-      <a href="/" class="drop-shadow-[0_0_8px_rgba(255,227,163,0.4)] transition-transform hover:scale-110">
+      class="pointer-events-auto flex h-[65px] w-[120px] items-center justify-center rounded-b-3xl border-x border-b border-[#8fd318] bg-gradient-to-b from-[#0d2f17] to-[#04140a] shadow-[0_5px_15px_rgba(143,211,24,0.35)]">
+      <a href="/" class="drop-shadow-[0_0_8px_rgba(212,234,35,0.4)] transition-transform hover:scale-110">
         <Picture src={mainLogo!} alt={logoAlt} loading="eager" fetchpriority="high" widths={[110, 220, 330]} sizes="110px" class="h-[35px] w-auto" formats={["avif", "webp"]} fallbackFormat="webp" />
       </a>
     </div>
   </div>
 
   <aside
-    class="fixed top-1/2 left-3 z-40 hidden h-[450px] w-[90px] -translate-y-1/2 flex-col items-center justify-center rounded-2xl border border-[#f2559a]/60 bg-[#2a1206]/95 p-2 shadow-[5px_0_20px_rgba(26,12,3,0.7)] backdrop-blur-md lg:flex">
+    class="fixed top-1/2 left-3 z-40 hidden h-[450px] w-[90px] -translate-y-1/2 flex-col items-center justify-center rounded-2xl border border-[#8fd318]/60 bg-[#06190d]/95 p-2 shadow-[5px_0_20px_rgba(4,20,10,0.7)] backdrop-blur-md lg:flex">
     <div class="relative flex h-full w-full flex-col gap-2 overflow-hidden rounded-xl">
       {
         links.map((link) => (
           <a
             href={link.path}
-            class={`group relative w-full h-full flex flex-col items-center justify-center rounded-lg transition-all ${isActive(link.path) ? "bg-[#3d1a08]" : "hover:bg-[#3d1a08]/70"}`}>
+            class={`group relative w-full h-full flex flex-col items-center justify-center rounded-lg transition-all ${isActive(link.path) ? "bg-[#0d2f17]" : "hover:bg-[#0d2f17]/70"}`}>
             <span aria-hidden="true" class="mb-1 text-3xl drop-shadow-md transition-transform group-hover:scale-110">
               {link.icon}
             </span>
-            <span class={`text-xs font-bold transition-colors ${isActive(link.path) ? "text-[#ffe3a3]" : "text-[#d8bd8e] group-hover:text-[#ffe3a3]"}`}>{link.name}</span>
+            <span class={`text-xs font-bold transition-colors ${isActive(link.path) ? "text-[#d4ea23]" : "text-[#b7d4a4] group-hover:text-[#d4ea23]"}`}>{link.name}</span>
             <div
               aria-hidden="true"
-              class={`absolute left-0 top-0 h-full w-[3px] bg-gradient-to-b from-[#ffe3a3] to-[#b35303] transition-transform duration-300 origin-top ${isActive(link.path) ? "scale-y-100" : "scale-y-0 group-hover:scale-y-100"}`}
+              class={`absolute left-0 top-0 h-full w-[3px] bg-gradient-to-b from-[#e4f223] to-[#1c7a2f] transition-transform duration-300 origin-top ${isActive(link.path) ? "scale-y-100" : "scale-y-0 group-hover:scale-y-100"}`}
             />
           </a>
         ))
@@ -56,11 +61,11 @@ const logoAlt = "โลโก้ HONEY289 ตราวงกลมลายร�
     </div>
   </aside>
 
-  <nav class="relative z-40 flex h-[60px] items-center justify-between border-b border-[#fdbb24]/35 bg-[#2a1206] px-3 shadow-xl lg:hidden">
+  <nav class="relative z-40 flex h-[60px] items-center justify-between border-b border-[#8fd318]/35 bg-[#06190d] px-3 shadow-xl lg:hidden">
     <button id="hamburger-btn" class="flex flex-col items-center justify-center space-y-1.5 p-2" aria-label="เปิดเมนู">
-      <span class="hamburger-line h-0.5 w-6 origin-center bg-[#ffe3a3] transition-all duration-300"></span>
-      <span class="hamburger-line h-0.5 w-6 bg-[#ffe3a3] transition-all duration-300"></span>
-      <span class="hamburger-line h-0.5 w-6 origin-center bg-[#ffe3a3] transition-all duration-300"></span>
+      <span class="hamburger-line h-0.5 w-6 origin-center bg-[#d4ea23] transition-all duration-300"></span>
+      <span class="hamburger-line h-0.5 w-6 bg-[#d4ea23] transition-all duration-300"></span>
+      <span class="hamburger-line h-0.5 w-6 origin-center bg-[#d4ea23] transition-all duration-300"></span>
     </button>
 
     <a href="/" class="flex-shrink-0 transition-transform hover:scale-105">
@@ -69,22 +74,22 @@ const logoAlt = "โลโก้ HONEY289 ตราวงกลมลายร�
 
     <a
       href="/login"
-      class="flex h-[32px] items-center justify-center rounded border border-[#fdbb24]/60 bg-gradient-to-r from-[#ffe3a3] to-[#b35303] px-4 text-xs font-bold text-[#3d1304] shadow-[0_0_12px_rgba(253,187,36,0.3)] transition-transform active:scale-95">
+      class="flex h-[32px] items-center justify-center rounded border border-[#fbd503]/60 bg-gradient-to-r from-[#ffe873] to-[#fbd503] px-4 text-xs font-bold text-[#08210f] shadow-[0_0_12px_rgba(251,213,3,0.3)] transition-transform active:scale-95">
       เข้าสู่ระบบ
     </a>
   </nav>
 
-  <div id="mobile-overlay" class="pointer-events-none fixed inset-0 z-30 bg-[#1a0c03]/85 opacity-0 backdrop-blur-sm transition-opacity duration-300 lg:hidden"></div>
+  <div id="mobile-overlay" class="pointer-events-none fixed inset-0 z-30 bg-[#04140a]/85 opacity-0 backdrop-blur-sm transition-opacity duration-300 lg:hidden"></div>
 
   <div
     id="mobile-sidebar"
-    class="fixed top-0 left-0 z-50 h-screen w-[260px] -translate-x-full transform overflow-y-auto border-r border-[#fdbb24]/30 bg-[#2a1206] shadow-[10px_0_30px_rgba(26,12,3,0.85)] transition-transform duration-300 ease-out lg:hidden">
+    class="fixed top-0 left-0 z-50 h-screen w-[260px] -translate-x-full transform overflow-y-auto border-r border-[#8fd318]/30 bg-[#06190d] shadow-[10px_0_30px_rgba(4,20,10,0.85)] transition-transform duration-300 ease-out lg:hidden">
     <div class="flex flex-col space-y-2.5 px-4 pt-16 pb-8">
       {
         links.map((link) => (
           <a
             href={link.path}
-            class={`sidebar-item flex items-center px-4 py-3 rounded-lg border transition-all ${isActive(link.path) ? "bg-[#3d1a08] border-[#fdbb24] text-[#ffe3a3] shadow-inner" : "bg-[#f2559a]/8 border-transparent text-[#d8bd8e] hover:bg-[#f2559a]/18 hover:text-[#ffe3a3]"}`}>
+            class={`sidebar-item flex items-center px-4 py-3 rounded-lg border transition-all ${isActive(link.path) ? "bg-[#0d2f17] border-[#8fd318] text-[#d4ea23] shadow-inner" : "bg-[#8fd318]/8 border-transparent text-[#b7d4a4] hover:bg-[#8fd318]/18 hover:text-[#d4ea23]"}`}>
             <span aria-hidden="true" class="mr-3 text-xl">
               {link.icon}
             </span>
@@ -93,10 +98,10 @@ const logoAlt = "โลโก้ HONEY289 ตราวงกลมลายร�
         ))
       }
 
-      <div class="mt-5 flex flex-col gap-2 border-t border-[#f2559a]/50 pt-5">
+      <div class="mt-5 flex flex-col gap-2 border-t border-[#8fd318]/50 pt-5">
         <a
           href="/register"
-          class="sidebar-item flex justify-center gap-1.5 rounded border border-[#fdbb24]/60 bg-gradient-to-r from-[#ffe3a3] via-[#fdbb24] to-[#b35303] py-3 text-sm font-bold text-[#3d1304] shadow-md transition-transform active:scale-95">
+          class="sidebar-item flex justify-center gap-1.5 rounded border border-[#fbd503]/60 bg-gradient-to-r from-[#ffe873] via-[#fbd503] to-[#c9a800] py-3 text-sm font-bold text-[#08210f] shadow-md transition-transform active:scale-95">
           <span aria-hidden="true">🔥</span> สมัครสมาชิกใหม่
         </a>
       </div>
@@ -106,12 +111,12 @@ const logoAlt = "โลโก้ HONEY289 ตราวงกลมลายร�
   <div class="fixed top-4 right-6 z-50 hidden items-center gap-3 lg:flex">
     <a
       href="/login"
-      class="group flex items-center gap-1.5 rounded border border-[#f2559a]/70 bg-[#2a1206]/90 px-6 py-2 text-sm font-bold text-[#ffe3a3] shadow-md backdrop-blur-sm transition-all hover:border-[#fdbb24] hover:bg-[#3d1a08]/90">
+      class="group flex items-center gap-1.5 rounded border border-[#8fd318]/70 bg-[#06190d]/90 px-6 py-2 text-sm font-bold text-[#d4ea23] shadow-md backdrop-blur-sm transition-all hover:border-[#e4f223] hover:bg-[#0d2f17]/90">
       <span aria-hidden="true">🔒</span> เข้าสู่ระบบ
     </a>
     <a
       href="/register"
-      class="group flex items-center gap-1.5 rounded border border-[#fdbb24]/60 bg-gradient-to-r from-[#ffe3a3] via-[#fdbb24] to-[#b35303] px-6 py-2 text-sm font-bold text-[#3d1304] shadow-[0_0_15px_rgba(253,187,36,0.32)] transition-all hover:scale-105">
+      class="group flex items-center gap-1.5 rounded border border-[#fbd503]/60 bg-gradient-to-r from-[#ffe873] via-[#fbd503] to-[#c9a800] px-6 py-2 text-sm font-bold text-[#08210f] shadow-[0_0_15px_rgba(251,213,3,0.32)] transition-all hover:scale-105">
       <span aria-hidden="true">👤</span> สมัครสมาชิก
     </a>
   </div>

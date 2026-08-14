@@ -4,19 +4,23 @@ export interface Props {
   titleright?: string;
 }
 const { titleleft, titleright } = Astro.props;
+
+// Both column titles are <h2> fed from the page (the docx), so pass only the
+// column the brief actually has a heading for. AMBKING1234: gold rules and gold
+// heading text on the deep-green card, with the divider in the deep green.
 ---
 
 <section class="relative z-10 mx-auto mb-8 w-full max-w-7xl px-4 font-sans">
   <div
-    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#e2c05f]/30 bg-[#0b1330]/92 p-8 text-[#e6e3d8] shadow-[0_10px_30px_rgba(5,9,18,0.85)] backdrop-blur-xl transition-all duration-500 hover:border-[#e2c05f]/55 hover:shadow-[0_15px_40px_rgba(226,192,95,0.24)] md:p-10">
-    <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-[#1e2f74]/45 to-transparent opacity-70"></div>
+    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#fbd503]/30 bg-[#08210f]/92 p-8 text-[#e6f3dd] shadow-[0_10px_30px_rgba(4,20,10,0.85)] backdrop-blur-xl transition-all duration-500 hover:border-[#fbd503]/55 hover:shadow-[0_15px_40px_rgba(251,213,3,0.24)] md:p-10">
+    <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-[#125c26]/45 to-transparent opacity-70"></div>
 
     <div class="grid grid-cols-1 gap-10 md:grid-cols-2">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#e6e3d8]">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#e6f3dd]">
         {
           titleleft && (
-            <h2 class="flex items-center gap-3 border-b border-[#e2c05f]/30 pb-3 text-xl leading-normal font-black tracking-widest text-[#f0d68c] uppercase">
-              <span aria-hidden="true" class="h-6 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#f7e3a4] via-[#e2c05f] to-[#c39a34] shadow-[0_0_10px_rgba(226,192,95,0.45)]" />
+            <h2 class="flex items-center gap-3 border-b border-[#fbd503]/30 pb-3 text-xl leading-normal font-black tracking-widest text-[#ffe873] uppercase">
+              <span aria-hidden="true" class="h-6 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffe873] via-[#fbd503] to-[#8fd318] shadow-[0_0_10px_rgba(251,213,3,0.45)]" />
               {titleleft}
             </h2>
           )
@@ -24,11 +28,11 @@ const { titleleft, titleright } = Astro.props;
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#e6e3d8] md:border-l md:border-[#2b3a6f] md:pl-10">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#e6f3dd] md:border-l md:border-[#1c7a2f] md:pl-10">
         {
           titleright && (
-            <h2 class="flex items-center gap-3 border-b border-[#e2c05f]/30 pb-3 text-xl leading-normal font-black tracking-widest text-[#f0d68c] uppercase">
-              <span aria-hidden="true" class="h-6 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#f7e3a4] via-[#e2c05f] to-[#c39a34] shadow-[0_0_10px_rgba(226,192,95,0.45)]" />
+            <h2 class="flex items-center gap-3 border-b border-[#fbd503]/30 pb-3 text-xl leading-normal font-black tracking-widest text-[#ffe873] uppercase">
+              <span aria-hidden="true" class="h-6 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffe873] via-[#fbd503] to-[#8fd318] shadow-[0_0_10px_rgba(251,213,3,0.45)]" />
               {titleright}
             </h2>
           )
@@ -38,4 +42,3 @@ const { titleleft, titleright } = Astro.props;
     </div>
   </div>
 </section>
-

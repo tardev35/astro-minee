@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement5.astro";
+import Announcement from "../components/AnnouncementPremium.astro";
 
 import { Picture } from "astro:assets";
 
@@ -16,14 +16,14 @@ import { pageGraph } from "../lib/schema";
 // paragraph, the four promo images and one CTA. No section headings and no
 // second paragraph — the slides already print their own offer in large type,
 // so prose underneath only re-types what the visitor can already read.
-const pageTitle = "โปรโมชั่น ABM96 รวมโบนัสและเครดิตพิเศษของสมาชิก";
+const pageTitle = "โปรโมชั่น AMBKING1234 รวมโบนัสและสิทธิพิเศษสมาชิก";
 
-// docx SUB-PAGES Meta ของหน้าโปรโมชั่น ยกถ้อยคำมาทั้งประโยค (128 ตัวอักษร)
+// docx SUB-PAGES Meta ของหน้าโปรโมชั่น ยกถ้อยคำมาทั้งประโยค (132 ตัวอักษร)
 // + วรรคปิดท้ายหนึ่งวรรคให้ผ่านเกท DESC_MIN 150 ของ tools/verify-build.mjs
 // ซึ่งยกเว้นให้เฉพาะหน้าแรกเท่านั้น นับเป็น "ตัวอักษร" ไม่ใช่ไบต์ (ไทย 3 ไบต์/ตัว)
-// — สตริงนี้วัดได้ 155 ตัวอักษร
+// — สตริงนี้วัดได้ 158 ตัวอักษร
 const pageDescription =
-  "ABM96 รวมโปรโมชั่นสล็อตทุนน้อย โบนัสและเครดิตพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจน ช่วยให้เลือกโปรได้เหมาะกับงบและรูปแบบการเล่น พร้อมทีมงานดูแลตลอด 24 ชม.";
+  "AMBKING1234 รวมโปรโมชั่นเกมสล็อต โบนัสสมาชิก และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจน ช่วยให้เลือกโปรได้เหมาะกับงบและการใช้งาน ตรวจเงื่อนไขก่อนรับสิทธิ์";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -36,26 +36,25 @@ const graph = pageGraph(Astro, {
 });
 
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#f1509b]/30 object-contain shadow-[0_10px_30px_rgba(241,80,155,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#b5054f]/55 hover:shadow-[0_15px_40px_rgba(181,5,79,0.30)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#8fd318]/30 object-contain shadow-[0_10px_30px_rgba(143,211,24,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#1c7a2f]/55 hover:shadow-[0_15px_40px_rgba(28,122,47,0.30)]";
 ---
 
-<MainLayout title="ABM96 | โปรโมชั่นสล็อตทุนน้อยและเครดิตพิเศษสำหรับสมาชิก" description={pageDescription}>
+<MainLayout title="AMBKING1234 | โปรโมชั่นเกมสล็อตยอดนิยมและสิทธิพิเศษสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#f6e3ee]">
-        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#fda3cd]">ABM96</strong> เปิดให้สมาชิกไว้ครบในที่เดียว ทั้งโบนัสสมาชิกใหม่ โบนัสฝากครั้งแรก ค่าคอมจากการแนะนำเพื่อน
-        และเครดิตคืนยอดเสียรายวัน ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว จึงอ่านจบได้ตั้งแต่ครั้งแรกที่เลื่อนดู ก่อนกดรับสิทธิ์ควรตรวจยอดฝากที่กำหนด
-        เกมที่ร่วมรายการ และเงื่อนไขการถอนของโปรนั้นให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากัน หากมีจุดใดไม่ชัดเจน สอบถามทีมงานผ่านช่องทางที่เว็บไซต์กำหนดได้ตลอด 24 ชั่วโมง
+      <p class="mb-8 text-left text-base leading-relaxed text-[#e6f3dd]">
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#d4ea23]">AMBKING1234</strong> เปิดให้สมาชิกไว้ครบในที่เดียว ทั้งโบนัสสมาชิกใหม่ โบนัสฝากครั้งแรก เครดิตคืนยอดเสียรายวัน และค่าคอมจากการแนะนำเพื่อน
+        ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ก่อนกดรับสิทธิ์ควรตรวจยอดฝากที่กำหนด เกมที่ร่วมรายการ และเงื่อนไขการถอนให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากัน
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น ABM96 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่มชมพู รับโปรเลย ตัวเลข 50% ขนาดใหญ่สีขาวขอบชมพู ด้านซ้ายเป็นผู้หญิงในชุดกีฬาครอปสีชมพู-ขาว-ดำพิมพ์คำว่า ABM96 คู่กับมาสคอตหมูสีชมพูแลบลิ้นสวมเสื้อยืดขาวพิมพ์ ABM96 รายล้อมด้วยเหรียญทองและชิปคาสิโนชมพู-ขาว มีตู้สล็อตเลข 777 BAR และป้ายไฟ JACKPOT BIG WIN ในห้องคาสิโนไฟนีออนสีชมพู"
+          alt="แบนเนอร์โปรโมชั่น AMBKING1234 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่มเขียว รับโปรเลย ตัวเลข 50% ขนาดใหญ่สีทอง ด้านขวาเป็นผู้หญิงในชุดกีฬาครอปสีเขียวพิมพ์คำว่า ambking1234 ชี้นิ้วขึ้น รายล้อมด้วยเหรียญทองและชิปคาสิโนสีเขียว-ขาว มีตู้สล็อตเลข 777 BAR ป้ายไฟ JACKPOT BIG WIN และกล่องของขวัญผูกโบว์ทอง ในห้องคาสิโนไฟนีออนสีเขียว"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -69,7 +68,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น ABM96 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่มชมพู ฝากเลย ตัวเลข 20% ขนาดใหญ่สีขาวขอบชมพู ด้านซ้ายเป็นผู้หญิงในชุดกีฬาครอปสีชมพู-ขาว-ดำพิมพ์คำว่า ABM96 คู่กับมาสคอตหมูสีชมพูสวมเสื้อยืดขาวพิมพ์ ABM96 มีไพ่โพแดงโพดำ ตู้สล็อตเลข 777 BAR เหรียญทอง และป้ายด้านล่าง ระบบออโต้ โบนัสคุ้ม บริการ 24 ชม. ในห้องคาสิโนไฟนีออนสีชมพู"
+          alt="แบนเนอร์โปรโมชั่น AMBKING1234 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่มทอง ฝากเลย ตัวเลข 20% ขนาดใหญ่สีทองขอบเขียว ด้านขวาเป็นผู้หญิงในชุดเกาะอกสีเขียว-ขาวพิมพ์คำว่า ambking1234 ชี้นิ้วขึ้น มีมงกุฎทอง วงล้อสล็อตช่อง BAR กองเหรียญทอง และชิปคาสิโนสีเขียว ในห้องคาสิโนไฟนีออนสีเขียว"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -83,7 +82,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น ABM96 ข้อความ แนะนำเพื่อน รับค่าคอม 10% ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม และปุ่มชมพู ชวนเลย ตัวเลข 10% ขนาดใหญ่สีขาวขอบชมพู มีสามขั้นตอนพร้อมไอคอน ส่งลิงก์แนะนำ เพื่อนสมัคร และรับค่าคอม ด้านซ้ายเป็นผู้หญิงในชุดกีฬาครอปสีชมพู-ขาว-ดำพิมพ์คำว่า ABM96 คู่กับมาสคอตหมูสีชมพูแลบลิ้นสวมเสื้อยืดขาวพิมพ์ ABM96 มีตู้สล็อตเลข 777 BAR ป้ายไฟ JACKPOT BIG WIN และเหรียญทอง ในห้องคาสิโนไฟนีออนสีชมพู"
+          alt="แบนเนอร์โปรโมชั่น AMBKING1234 ข้อความ คืนยอดเสีย 0.8% ทุกวัน เล่นต่อได้ทุกวัน คืนยอดเสียคุ้มค่า ไม่พลาดทุกความสนุก และปุ่มเขียว รับสิทธิ์ ตัวเลข 0.8% ขนาดใหญ่สีทองขอบเขียว ด้านขวาเป็นผู้หญิงในชุดกีฬาสีเขียว-ขาวพิมพ์คำว่า ambking1234 กำหมัดชูขึ้น มีตู้สล็อตเลข 777 BAR เหรียญทองปลิว และกองชิปคาสิโนสีเขียวกับดำ ในห้องคาสิโนไฟนีออนสีเขียว"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -97,7 +96,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น ABM96 ข้อความ คืนยอดเสียทุกวัน 0.8% เล่นต่อได้ทุกวัน คืนยอดเสียคุ้มค่า ไม่พลาดทุกความสนุก และปุ่มชมพู รับสิทธิ์ ตัวเลข 0.8% ขนาดใหญ่สีขาวขอบชมพู ด้านซ้ายเป็นผู้หญิงในชุดกีฬาครอปสีชมพู-ขาว-ดำพิมพ์คำว่า ABM96 คู่กับมาสคอตหมูสีชมพูแลบลิ้นสวมเสื้อยืดขาวพิมพ์ ABM96 มีตู้สล็อตเลข 777 BAR ป้ายไฟ JACKPOT BIG WIN กองเหรียญทอง และป้ายด้านล่าง ระบบออโต้ โบนัสคุ้ม บริการ 24 ชม. ในห้องคาสิโนไฟนีออนสีชมพู"
+          alt="แบนเนอร์โปรโมชั่น AMBKING1234 ข้อความ แนะนำเพื่อน รับค่าคอม 10% ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม รับค่าคอมง่าย และปุ่มทอง ชวนเลย ตัวเลข 10% ขนาดใหญ่สีทองขอบเขียว ด้านขวาเป็นผู้หญิงในชุดสีเขียว-ขาวพิมพ์คำว่า ambking1234 ถือโทรศัพท์ที่แสดงปุ่ม INVITE ชวนเพื่อน มีไอคอน INVITE โทรศัพท์อีกเครื่องแสดงคำว่า ชวนเพื่อน รับค่าคอม ป้ายไฟ JACKPOT วงล้อเลข 777 เหรียญทองและชิปคาสิโนสีเขียว ในห้องคาสิโนไฟนีออนสีเขียว"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -113,8 +112,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#f1509b]/60 bg-gradient-to-r from-[#fda3cd] via-[#f1509b] to-[#b5054f] px-10 py-3.5 text-lg font-black text-[#fff5fa] shadow-[0_10px_30px_rgba(241,80,155,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(241,80,155,0.40)]">
-          สมัครสมาชิก ABM96
+          class="flex items-center justify-center rounded-lg border border-[#8fd318]/60 bg-gradient-to-r from-[#e4f223] via-[#8fd318] to-[#1c7a2f] px-10 py-3.5 text-lg font-black text-[#08210f] shadow-[0_10px_30px_rgba(143,211,24,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(143,211,24,0.40)]">
+          สมัครสมาชิก AMBKING1234
         </a>
       </div>
     </div>

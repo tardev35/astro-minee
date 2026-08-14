@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle8.astro";
-import Footer from "../components/FooterStyle3.astro";
+import Navbar from "../components/NavbarStyle6.astro";
+import Footer from "../components/FooterCyber.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,11 +55,11 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "ABM96 | รวมเกมสล็อตแตกง่าย เล่นสนุกจ่ายจริง โปรทุนน้อยลุ้นรับเครดิต",
+  title = "AMBKING1234 | รวมเกมสล็อตยอดนิยม เล่นง่ายรายได้ดี ปลอดภัยมั่นคง",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings.
-  description = "ABM96 รวมเกมสล็อตหลายแนวไว้ในระบบเดียว เล่นสนุก โปรทุนน้อยลุ้นรับเครดิตตามเงื่อนไข รองรับมือถือและคอมพิวเตอร์ พร้อมบริการสมาชิกตลอด 24 ชั่วโมงทุกวัน",
+  description = "AMBKING1234 รวมเกมสล็อตยอดนิยมไว้ในระบบเดียว เล่นง่าย รองรับมือถือและคอมพิวเตอร์ ระบบใช้งานมั่นคง ปลอดภัย พร้อมโปรโมชั่นและบริการสมาชิกตลอด 24 ชั่วโมง",
   robots = "index, follow",
 } = Astro.props;
 
@@ -236,7 +236,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #0d0207;
+        background-color: #04140a;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -289,7 +289,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ ABM96 โลโก้ตัวอักษร ABM สีชมพูคู่กับเลข 96 สีขาว ข้อความ สล็อตออนไลน์ครบวงจร แตกง่าย โปรดี ฝาก-ถอนออโต้ เล่นง่าย จ่ายจริง ป้ายสามอัน ระบบออโต้ โบนัสคุ้ม บริการ 24 ชม. และปุ่มชมพู สมัครเลย ด้านซ้ายเป็นผู้หญิงในชุดกีฬาชมพูขาวพิมพ์คำว่า ABM96 ด้านขวาเป็นมาสคอตหมูสีชมพูสวมเสื้อยืดขาวพิมพ์ ABM96 รายล้อมด้วยตู้สล็อตเลข 777 ป้ายไฟ JACKPOT BIG WIN เหรียญทอง ชิปคาสิโนและไพ่ ในห้องคาสิโนไฟนีออนสีชมพู"
+          alt="แบนเนอร์ต้อนรับ AMBKING1234 โลโก้ตัวอักษร ambking สีเขียวมะนาวคู่กับเลข 1234 สีขาว ข้อความ สล็อตเว็บตรงแตกง่าย โบนัสคุ้มค่า ฝากถอนออโต้ ป้ายสี่อัน เล่นง่าย จ่ายจริง ระบบเสถียร รองรับมือถือ และปุ่มทอง สมัครเลย ด้านขวาเป็นผู้หญิงในชุดสูทครอปสีเขียวพิมพ์คำว่า ambking ชี้นิ้วขึ้น ป้ายไฟ JACKPOT ตัวเลข 999,999.99 ตู้สล็อตเลข 777 BAR ข้อความ BIG WIN กองเหรียญทอง ชิปคาสิโนสีเขียว และกล่องของขวัญ ในห้องคาสิโนไฟนีออนสีเขียว"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}
