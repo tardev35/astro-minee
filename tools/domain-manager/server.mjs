@@ -8,6 +8,12 @@
 // holds a root password and can run a root command on the server, so it must
 // never ride along with (or be hosted like) the uploader.
 //
+// Since 2026-08-13 the uploader's ส่วนที่ 7 can also deploy to this VPS, and it
+// reads THIS folder's .env rather than keeping its own copy — one file to
+// gitignore, one password to rotate. The separation that still holds is the
+// hosting rule above: neither tool may be exposed beyond localhost, and the
+// uploader must stay unhosted for exactly the reason this file was split out.
+//
 // Run:  node --env-file=tools/domain-manager/.env tools/domain-manager/server.mjs
 //       (or double-click start-domain-manager.cmd). Binds localhost only.
 
