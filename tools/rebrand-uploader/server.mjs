@@ -1978,10 +1978,11 @@ const DEPLOY_TIMEOUT_MS = 10 * 60 * 1000;
 
 const deployState = {
   status: "idle", // idle | running | done | error
+  mode: "cf", // cf | vps
   log: [],
   error: "",
   url: "", // the deployed URL wrangler reports back
-  target: null, // { name, account_id } read from wrangler.toml, shown before firing
+  target: null, // cf: { name, accountId } from wrangler.toml · vps: { domain, site } from astro.config.mjs
   startedAt: 0,
   endedAt: 0,
   child: null,
@@ -2032,13 +2033,13 @@ function runStep(bin, args) {
   });
 }
 
-async function startDeploy() {
+async function startDeploy(mode = "cf") {
   if (deployState.status === "running") throw new Error("กำลัง deploy อยู่แล้ว");
   if (isActive()) throw new Error("มี rebrand กำลังรันอยู่ — รอให้จบก่อน");
 
   Object.assign(deployState, {
-    status: "running", log: [], error: "", url: "", startedAt: Date.now(), endedAt: 0,
-    target: await deployTarget(),
+    status: "running", mode, log: [], error: "", url: "", startedAt: Date.now(), endedAt: 0,
+    target: mode === "vps" ? await vpsTarget() : await deployTarget(),
   });
 
   const timer = setTimeout(() => {
@@ -2053,6 +2054,17 @@ async function startDeploy() {
     if ((await runStep(ASTRO_BIN, ["build"])) !== 0) {
       deployState.status = "error";
       deployState.error = "build ไม่ผ่าน — ยังไม่ได้ deploy อะไรขึ้นไป";
+      return deploySnapshot();
+    }
+
+    if (mode === "vps") {
+      const failure = await shipToVps(deployState.target);
+      if (failure) {
+        deployState.status = "error";
+        deployState.error = failure;
+        return deploySnapshot();
+      }
+      deployState.status = "done";
       return deploySnapshot();
     }
 
@@ -2077,10 +2089,150 @@ function deploySnapshot() {
     status: deployState.status,
     error: deployState.error,
     url: deployState.url,
+    mode: deployState.mode,
     target: deployState.target,
     log: deployState.log.slice(-150),
     elapsedMs: deployState.startedAt ? (deployState.endedAt || Date.now()) - deployState.startedAt : 0,
   };
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// ส่วนที่ 7 (ต่อ) — the same button, pointed at the hosting VPS instead
+// ════════════════════════════════════════════════════════════════════════════
+// The Cloudflare path needs no secret because wrangler holds its own OAuth
+// token. This one runs a root command over SSH, so it does hold one — and the
+// credentials deliberately stay in tools/domain-manager/.env rather than being
+// copied here. That file is already gitignored and already the answer to "which
+// machine can reach the server"; a second copy would be a second thing to leak
+// and a second thing to rotate. If it is absent this path refuses to run and
+// says so, instead of prompting for a password the operator would then have to
+// keep somewhere.
+//
+// Domain comes from astro.config.mjs `site:` for the same reason the Cloudflare
+// path reads wrangler.toml: the rebrand writes the operator's production URL
+// there, so reading it back cannot drift from what was actually built, the way
+// a value remembered from a form field can.
+const VPS_ENV_FILE = join(ROOT, "tools", "domain-manager", ".env");
+const DIST_TAR = join(ROOT, "dist.tar.gz");
+const VPS_STEP_TIMEOUT_MS = 5 * 60 * 1000;
+
+// add-site.sh runs as root, so the domain is whitelisted before it can reach a
+// remote command line — same rule, same regex as domain-manager. Everything a
+// shell would treat as punctuation (space ; & | $ ` ' ") fails this test.
+const VPS_DOMAIN_RE = /^(?=.{1,253}$)([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,}$/;
+
+async function vpsCreds() {
+  let text;
+  try {
+    text = await readFile(VPS_ENV_FILE, "utf8");
+  } catch {
+    throw new Error("ไม่มีไฟล์ tools/domain-manager/.env — คัดลอกจาก .env.example แล้วใส่รหัสก่อน");
+  }
+  const env = {};
+  for (const line of text.split(/\r?\n/)) {
+    const m = line.match(/^\s*([A-Z_][A-Z0-9_]*)\s*=\s*(.*)$/);
+    if (m) env[m[1]] = m[2].trim().replace(/^["']|["']$/g, "");
+  }
+  if (!env.VPS_PASSWORD) throw new Error("VPS_PASSWORD ยังว่างใน tools/domain-manager/.env");
+  return { host: env.VPS_HOST || "45.32.122.181", user: env.VPS_USER || "root", password: env.VPS_PASSWORD };
+}
+
+async function vpsTarget() {
+  let site = "";
+  try {
+    site = (await readFile(join(ROOT, "astro.config.mjs"), "utf8")).match(/site:\s*["']([^"']+)["']/)?.[1] || "";
+  } catch {
+    /* handled below as a missing domain */
+  }
+  let domain = "";
+  try {
+    domain = new URL(site).hostname.toLowerCase();
+  } catch {
+    /* not a URL yet — the rebrand may not have set site: */
+  }
+  return { site, domain, valid: VPS_DOMAIN_RE.test(domain) };
+}
+
+function runCmd(bin, args) {
+  return new Promise((resolvePromise) => {
+    const child = spawn(bin, args, { cwd: ROOT, windowsHide: true, shell: false, stdio: ["ignore", "pipe", "pipe"] });
+    deployState.child = child;
+    child.stdout.setEncoding("utf8");
+    child.stderr.setEncoding("utf8");
+    child.stdout.on("data", deployLog);
+    child.stderr.on("data", deployLog);
+    child.on("error", (err) => { deployLog(err.message); resolvePromise(-1); });
+    child.on("close", (code) => { deployState.child = null; resolvePromise(code); });
+  });
+}
+
+// Everything after the build. Returns an error string, or "" when the site is up.
+async function shipToVps(target) {
+  if (!target.valid) {
+    return `astro.config.mjs site: อ่านเป็นโดเมนไม่ได้ (${target.site || "ว่าง"}) — ตั้ง URL production ให้ถูกก่อน`;
+  }
+
+  let creds;
+  try {
+    creds = await vpsCreds();
+  } catch (err) {
+    return err.message;
+  }
+
+  let NodeSSH;
+  try {
+    ({ NodeSSH } = await import("node-ssh"));
+  } catch {
+    return "โมดูล node-ssh ไม่พร้อม — รัน npm install ก่อน";
+  }
+
+  const domain = target.domain;
+  const remoteDir = `/var/www/${domain}`;
+
+  deployLog("== บีบอัด dist ==");
+  await unlink(DIST_TAR).catch(() => {});
+  if ((await runCmd("tar", ["-czf", DIST_TAR, "-C", join(ROOT, "dist"), "."])) !== 0) {
+    return "บีบอัด dist ไม่สำเร็จ — ยังไม่ได้ส่งอะไรขึ้นเซิร์ฟเวอร์";
+  }
+
+  const ssh = new NodeSSH();
+  try {
+    deployLog(`== ต่อ ${creds.user}@${creds.host} ==`);
+    await ssh.connect({ host: creds.host, username: creds.user, password: creds.password, readyTimeout: 30000 });
+
+    // add-site.sh is what creates the vhost, the dist folder and the TLS cert.
+    // Running it on a domain that already has them would be a second, pointless
+    // root command, so the directory decides — present means the site exists.
+    const seen = await ssh.execCommand(`test -d ${remoteDir} && echo yes || echo no`);
+    if (seen.stdout.trim() !== "yes") {
+      deployLog(`== ยังไม่มี ${domain} บนเซิร์ฟเวอร์ — เพิ่มให้ ==`);
+      const add = await ssh.execCommand(`./add-site.sh ${domain}`);
+      if (add.stdout) deployLog(add.stdout);
+      if (add.stderr) deployLog(add.stderr);
+      if (add.code !== 0) return `add-site.sh ไม่สำเร็จ (exit ${add.code}) — ยังไม่ได้อัปไฟล์`;
+    } else {
+      deployLog(`== มี ${domain} อยู่แล้ว — ข้าม add-site ==`);
+    }
+
+    deployLog("== อัปไฟล์ ==");
+    await ssh.putFile(DIST_TAR, `${remoteDir}/dist.tar.gz`);
+
+    deployLog("== แตกไฟล์และตั้งสิทธิ์ ==");
+    const install = await ssh.execCommand(
+      `mkdir -p ${remoteDir}/dist && rm -rf ${remoteDir}/dist/* && tar -xzf ${remoteDir}/dist.tar.gz -C ${remoteDir}/dist/ && rm ${remoteDir}/dist.tar.gz && chown -R www-data:www-data ${remoteDir} && chmod -R 755 ${remoteDir}`,
+    );
+    if (install.stdout) deployLog(install.stdout);
+    if (install.stderr) deployLog(install.stderr);
+    if (install.code !== 0) return `แตกไฟล์บนเซิร์ฟเวอร์ไม่สำเร็จ (exit ${install.code}) — เว็บอาจค้างครึ่งๆ ต้องเข้าไปดู`;
+
+    deployState.url = `https://${domain}`;
+    return "";
+  } catch (err) {
+    return `ต่อเซิร์ฟเวอร์ไม่ได้: ${err.message}`;
+  } finally {
+    ssh.dispose();
+    await unlink(DIST_TAR).catch(() => {});
+  }
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -3311,6 +3463,15 @@ const PAGE = /* html */ `<!doctype html>
         <pre id="cfLog" hidden></pre>
       </div>
 
+      <div class="field" id="dpWhereBox">
+        <div class="row"><label>ขึ้นที่ไหน</label><span class="target" id="dpWhereTarget"></span></div>
+        <div class="row modes">
+          <label><input type="radio" name="dpwhere" value="cf" checked /> Cloudflare</label>
+          <label><input type="radio" name="dpwhere" value="vps" /> VPS</label>
+        </div>
+        <span class="status" id="dpWhereHint"></span>
+      </div>
+
       <div class="field">
         <div class="row">
           <button type="button" id="dpStart" class="fire go-live" disabled>🚀 ขึ้นเว็บจริง</button>
@@ -4241,17 +4402,44 @@ const PAGE = /* html */ `<!doctype html>
   let dpTicker = null;
   let dpBusy = false;
   let dpTarget = null;
+  let dpVps = null;
+
+  const dpMode = () => document.querySelector('input[name=dpwhere]:checked').value;
+
+  // The two targets fail in different ways, so the line under the picker says
+  // which one is not ready rather than a single "cannot deploy".
+  function dpWhereSync() {
+    const vps = dpMode() === 'vps';
+    const t = document.getElementById('dpWhereTarget');
+    const hint = document.getElementById('dpWhereHint');
+    if (vps) {
+      t.textContent = dpVps?.domain || 'อ่านโดเมนไม่ได้';
+      hint.innerHTML = dpVps?.valid
+        ? 'อ่านโดเมนจาก <code>astro.config.mjs</code> → <code>site:</code> · ถ้ายังไม่มีบนเซิร์ฟเวอร์จะรัน <code>add-site.sh</code> ให้ก่อนอัตโนมัติ'
+        : '<b>ตั้ง site: ใน astro.config.mjs ให้เป็น URL production ก่อน</b> — ตอนนี้อ่านเป็นโดเมนไม่ได้';
+    } else {
+      t.textContent = dpTarget?.name || 'อ่าน wrangler.toml ไม่ได้';
+      hint.innerHTML = 'ขึ้น Cloudflare Worker ตามที่ <code>wrangler.toml</code> ตั้งไว้';
+    }
+    dpSync();
+  }
 
   function dpSync() {
     if (dpBusy) return;
     const previewed = pvPill.dataset.ok === '1';
     const ticked = pvAllChecked();
-    dpStart.disabled = !(previewed && ticked) || running();
+    const vps = dpMode() === 'vps';
+    const targetReady = vps ? !!dpVps?.valid : true;
+    dpStart.disabled = !(previewed && ticked && targetReady) || running();
     if (running()) dpHint.textContent = 'มี rebrand กำลังรันอยู่ — รอให้จบก่อน';
     else if (!previewed) dpHint.textContent = 'กด "ทดสอบหน้าเว็บ" ให้เว็บขึ้นก่อน';
     else if (!ticked) dpHint.textContent = 'ติ๊กให้ครบ 5 ข้อก่อน — ยังเหลือ ' + pvBoxes().filter((b) => !b.checked).length + ' ข้อ';
+    else if (!targetReady) dpHint.textContent = 'ยังอ่านโดเมนปลายทางไม่ได้ — ดูบรรทัดบน';
+    else if (vps) dpHint.innerHTML = 'พร้อมขึ้นเว็บจริงแล้ว → VPS <code>' + esc(dpVps.domain) + '</code>';
     else dpHint.innerHTML = 'พร้อมขึ้นเว็บจริงแล้ว' + (dpTarget?.name ? ' → Worker <code>' + esc(dpTarget.name) + '</code>' : '');
   }
+
+  document.querySelectorAll('input[name=dpwhere]').forEach((r) => r.addEventListener('change', dpWhereSync));
 
   function dpRender(d) {
     dpBox.hidden = !(d.log && d.log.length);
@@ -4259,8 +4447,10 @@ const PAGE = /* html */ `<!doctype html>
     document.getElementById('dpLog').textContent = (d.log || []).join('\\n');
     if (d.status === 'done') {
       dpPill.className = 'pill done'; dpPill.textContent = 'ขึ้นแล้ว';
-      document.getElementById('dpTitle').textContent = 'ขึ้นเว็บจริงเรียบร้อย';
-      document.getElementById('dpMsg').innerHTML = 'อาจต้องรอสักครู่กว่าเว็บจะอัปเดต — ถ้าเปิดแล้วยังเห็นของเก่า ให้ล้างแคชเบราว์เซอร์';
+      document.getElementById('dpTitle').textContent = 'ขึ้นเว็บจริงเรียบร้อย' + (d.mode === 'vps' ? ' (VPS)' : '');
+      document.getElementById('dpMsg').innerHTML =
+        (d.url ? '<a href="' + esc(d.url) + '" target="_blank" rel="noopener">' + esc(d.url) + '</a> · ' : '') +
+        'อาจต้องรอสักครู่กว่าเว็บจะอัปเดต — ถ้าเปิดแล้วยังเห็นของเก่า ให้ล้างแคชเบราว์เซอร์';
     } else if (d.status === 'error') {
       dpPill.className = 'pill bad'; dpPill.textContent = 'ไม่สำเร็จ';
       document.getElementById('dpTitle').textContent = 'ขึ้นเว็บไม่สำเร็จ';
@@ -4270,19 +4460,27 @@ const PAGE = /* html */ `<!doctype html>
 
   dpStart.addEventListener('click', async () => {
     const t = dpTarget || {};
+    const vps = dpMode() === 'vps';
     const go = await askConfirm({
       title: 'ขึ้นเว็บจริงเลยหรือไม่?',
       sub: 'คนทั่วไปจะเห็นเว็บเวอร์ชันนี้ทันทีหลังจากนี้',
       icon: '🚀',
       danger: true,
-      lines: [
-        'จะ <b>build ใหม่แล้วส่งขึ้น Cloudflare</b> ทับของเดิมที่อยู่บนเว็บตอนนี้',
-        t.name ? 'Worker ปลายทาง: <code>' + esc(t.name) + '</code>' : '<b>อ่านชื่อ Worker จาก wrangler.toml ไม่ได้</b>',
-        // The account was readable all along but never shown; a deploy into the
-        // wrong one is the mistake with no symptom until somebody looks.
-        cfAcctName(t.accountId) ? 'บัญชี: <b>' + esc(cfAcctName(t.accountId)) + '</b>' : 'บัญชี: <code>' + esc(t.accountId || 'ไม่ได้ตั้งไว้') + '</code>',
-        'ถ้าชื่อ Worker ไม่ใช่ของแบรนด์นี้ <b>เว็บของแบรนด์นั้นจะถูกทับหาย</b> — ยกเลิกแล้วไปแก้ wrangler.toml ก่อน',
-      ],
+      lines: vps
+        ? [
+            'จะ <b>build ใหม่แล้วส่งขึ้น VPS</b> ทับไฟล์เดิมใน <code>/var/www/</code> ของโดเมนนี้',
+            'โดเมนปลายทาง: <code>' + esc(dpVps?.domain || '') + '</code> (จาก <code>site:</code> ใน astro.config.mjs)',
+            'ถ้าโดเมนนี้ยังไม่มีบนเซิร์ฟเวอร์ จะรัน <b>add-site.sh</b> สร้างให้ก่อน ซึ่งเป็นคำสั่งระดับ root',
+            'ถ้าโดเมนไม่ใช่ของแบรนด์นี้ <b>เว็บของแบรนด์นั้นจะถูกทับหาย</b> — ยกเลิกแล้วไปแก้ site: ก่อน',
+          ]
+        : [
+            'จะ <b>build ใหม่แล้วส่งขึ้น Cloudflare</b> ทับของเดิมที่อยู่บนเว็บตอนนี้',
+            t.name ? 'Worker ปลายทาง: <code>' + esc(t.name) + '</code>' : '<b>อ่านชื่อ Worker จาก wrangler.toml ไม่ได้</b>',
+            // The account was readable all along but never shown; a deploy into the
+            // wrong one is the mistake with no symptom until somebody looks.
+            cfAcctName(t.accountId) ? 'บัญชี: <b>' + esc(cfAcctName(t.accountId)) + '</b>' : 'บัญชี: <code>' + esc(t.accountId || 'ไม่ได้ตั้งไว้') + '</code>',
+            'ถ้าชื่อ Worker ไม่ใช่ของแบรนด์นี้ <b>เว็บของแบรนด์นั้นจะถูกทับหาย</b> — ยกเลิกแล้วไปแก้ wrangler.toml ก่อน',
+          ],
       ok: '🚀 ขึ้นเลย',
     });
     if (!go) return;
@@ -4290,13 +4488,19 @@ const PAGE = /* html */ `<!doctype html>
     dpBusy = true;
     dpStart.disabled = true;
     dpPill.className = 'pill run'; dpPill.textContent = 'กำลังขึ้น...';
-    dpHint.textContent = 'กำลัง build แล้วส่งขึ้น Cloudflare — อย่าปิดหน้าต่างดำ';
+    dpHint.textContent = vps ? 'กำลัง build แล้วส่งขึ้น VPS — อย่าปิดหน้าต่างดำ' : 'กำลัง build แล้วส่งขึ้น Cloudflare — อย่าปิดหน้าต่างดำ';
     dpBox.hidden = true;
     const t0 = Date.now();
     clearInterval(dpTicker);
     dpTicker = setInterval(() => { dpTimer.textContent = fmtElapsed(Date.now() - t0); }, 1000);
     try {
-      const j = await (await fetch('/deploy/start', { method: 'POST' })).json();
+      const j = await (
+        await fetch('/deploy/start', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ target: vps ? 'vps' : 'cf' }),
+        })
+      ).json();
       dpRender(j.deploy || { status: 'error', error: j.error, log: [] });
     } catch (e) {
       dpRender({ status: 'error', error: 'ต่อ server ไม่ได้: ' + e.message, log: [] });
@@ -4312,9 +4516,10 @@ const PAGE = /* html */ `<!doctype html>
     try {
       const st = await (await fetch('/deploy/status')).json();
       dpTarget = st.target || null;
+      dpVps = st.vps || null;
       if (st.deploy && st.deploy.log && st.deploy.log.length) dpRender(st.deploy);
     } catch { /* server not answering */ }
-    dpSync();
+    dpWhereSync();
   })();
 
   // ── Cloudflare account ────────────────────────────────────────────────────
@@ -4962,12 +5167,13 @@ const server = http.createServer(async (req, res) => {
   // ── deploy ────────────────────────────────────────────────────────────────
   if (req.method === "GET" && url.pathname === "/deploy/status") {
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ ok: true, deploy: deploySnapshot(), target: await deployTarget() }));
+    res.end(JSON.stringify({ ok: true, deploy: deploySnapshot(), target: await deployTarget(), vps: await vpsTarget() }));
     return;
   }
   if (req.method === "POST" && url.pathname === "/deploy/start") {
     try {
-      const snap = await startDeploy();
+      const body = JSON.parse((await readBody(req)) || "{}");
+      const snap = await startDeploy(body.target === "vps" ? "vps" : "cf");
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ ok: snap.status === "done", deploy: snap }));
     } catch (err) {
