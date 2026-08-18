@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
+import Announcement from "../components/Announcement4.astro";
 
 import { Picture } from "astro:assets";
 
@@ -16,14 +16,14 @@ import { pageGraph } from "../lib/schema";
 // paragraph, the four promo images and one CTA. No section headings and no
 // second paragraph — the slides already print their own offer in large type,
 // so prose underneath only re-types what the visitor can already read.
-const pageTitle = "โปรโมชั่น AMBKING1234 รวมโบนัสและสิทธิพิเศษสมาชิก";
+const pageTitle = "โปรโมชั่น MAX56 รวมโบนัสและสิทธิพิเศษสำหรับสมาชิก";
 
-// docx SUB-PAGES Meta ของหน้าโปรโมชั่น ยกถ้อยคำมาทั้งประโยค (132 ตัวอักษร)
+// docx SUB-PAGES Meta ของหน้าโปรโมชั่น ยกถ้อยคำมาทั้งประโยค (129 ตัวอักษร)
 // + วรรคปิดท้ายหนึ่งวรรคให้ผ่านเกท DESC_MIN 150 ของ tools/verify-build.mjs
 // ซึ่งยกเว้นให้เฉพาะหน้าแรกเท่านั้น นับเป็น "ตัวอักษร" ไม่ใช่ไบต์ (ไทย 3 ไบต์/ตัว)
-// — สตริงนี้วัดได้ 158 ตัวอักษร
+// — สตริงนี้วัดได้ 155 ตัวอักษร
 const pageDescription =
-  "AMBKING1234 รวมโปรโมชั่นเกมสล็อต โบนัสสมาชิก และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจน ช่วยให้เลือกโปรได้เหมาะกับงบและการใช้งาน ตรวจเงื่อนไขก่อนรับสิทธิ์";
+  "MAX56 รวมโปรโมชั่นสล็อต โบนัสสมาชิก และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจน ช่วยให้เลือกโปรได้เหมาะกับงบและรูปแบบการใช้งาน ตรวจเงื่อนไขก่อนรับสิทธิ์";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -35,26 +35,28 @@ const graph = pageGraph(Astro, {
   primaryImagePath: pro1.src,
 });
 
+// Hover border is gold rather than the palette's deepest red: a #8c0512 edge on
+// the near-black page is invisible, so the hover state would read as no state.
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#8fd318]/30 object-contain shadow-[0_10px_30px_rgba(143,211,24,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#1c7a2f]/55 hover:shadow-[0_15px_40px_rgba(28,122,47,0.30)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#c10d1e]/30 object-contain shadow-[0_10px_30px_rgba(232,32,47,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#f5c451]/55 hover:shadow-[0_15px_40px_rgba(193,13,30,0.30)]";
 ---
 
-<MainLayout title="AMBKING1234 | โปรโมชั่นเกมสล็อตยอดนิยมและสิทธิพิเศษสมาชิก" description={pageDescription}>
+<MainLayout title="MAX56 | โปรโมชั่นสล็อตและสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#e6f3dd]">
-        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#d4ea23]">AMBKING1234</strong> เปิดให้สมาชิกไว้ครบในที่เดียว ทั้งโบนัสสมาชิกใหม่ โบนัสฝากครั้งแรก เครดิตคืนยอดเสียรายวัน และค่าคอมจากการแนะนำเพื่อน
+      <p class="mb-8 text-left text-base leading-relaxed text-[#f6e4e4]">
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#f5c451]">MAX56</strong> เปิดให้สมาชิกไว้ครบในที่เดียว ทั้งโบนัสสมาชิกใหม่ โบนัสฝากครั้งแรก ค่าคอมจากการแนะนำเพื่อน และเครดิตคืนยอดเสียรายวัน
         ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ก่อนกดรับสิทธิ์ควรตรวจยอดฝากที่กำหนด เกมที่ร่วมรายการ และเงื่อนไขการถอนให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากัน
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น AMBKING1234 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่มเขียว รับโปรเลย ตัวเลข 50% ขนาดใหญ่สีทอง ด้านขวาเป็นผู้หญิงในชุดกีฬาครอปสีเขียวพิมพ์คำว่า ambking1234 ชี้นิ้วขึ้น รายล้อมด้วยเหรียญทองและชิปคาสิโนสีเขียว-ขาว มีตู้สล็อตเลข 777 BAR ป้ายไฟ JACKPOT BIG WIN และกล่องของขวัญผูกโบว์ทอง ในห้องคาสิโนไฟนีออนสีเขียว"
+          alt="แบนเนอร์โปรโมชั่น MAX56 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่มสีแดง รับโปรเลย ตัวเลข 50% ขนาดใหญ่สีทอง มุมซ้ายบนเป็นโลโก้ MAX56 สีขาว-แดง คู่กับมาสคอตช้างสีขาว ด้านขวาเป็นผู้หญิงในชุดคล้องคอสีแดง-ขาวพิมพ์คำว่า MAX56 ชี้นิ้วขึ้น รายล้อมด้วยเหรียญทอง กล่องของขวัญ และวงล้อสล็อตเลข 7 กับช่อง BAR บนพื้นหลังสีแดงเข้ม แถบล่างระบุ ปลอดภัยมั่นใจ 100% ฝาก-ถอนเร็วภายใน 10 วินาที และบริการ 24 ชม."
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -68,7 +70,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น AMBKING1234 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่มทอง ฝากเลย ตัวเลข 20% ขนาดใหญ่สีทองขอบเขียว ด้านขวาเป็นผู้หญิงในชุดเกาะอกสีเขียว-ขาวพิมพ์คำว่า ambking1234 ชี้นิ้วขึ้น มีมงกุฎทอง วงล้อสล็อตช่อง BAR กองเหรียญทอง และชิปคาสิโนสีเขียว ในห้องคาสิโนไฟนีออนสีเขียว"
+          alt="แบนเนอร์โปรโมชั่น MAX56 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% พร้อมป้ายย่อย คุ้มตั้งแต่ฝากแรก ฝากง่ายถอนเร็ว และระบบออโต้ กับปุ่มสีแดง ฝากเลย ตัวเลข 20% ขนาดใหญ่สีทองขอบดำ มุมซ้ายบนเป็นโลโก้ MAX56 สีขาว-แดง คู่กับมาสคอตช้างสีขาว ด้านขวาเป็นผู้หญิงในชุดครอปสีแดง-ขาวพิมพ์คำว่า MAX56 ชี้นิ้วขึ้น ข้างตู้สล็อตที่มีป้าย BONUS วงล้อเลข 7 และช่อง BAR มุมล่างซ้ายเป็นกล่องของขวัญผูกโบว์แดง กองเหรียญทองและชิปคาสิโนสีแดง-ขาว บนพื้นหลังสีแดงเข้ม"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -82,7 +84,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น AMBKING1234 ข้อความ คืนยอดเสีย 0.8% ทุกวัน เล่นต่อได้ทุกวัน คืนยอดเสียคุ้มค่า ไม่พลาดทุกความสนุก และปุ่มเขียว รับสิทธิ์ ตัวเลข 0.8% ขนาดใหญ่สีทองขอบเขียว ด้านขวาเป็นผู้หญิงในชุดกีฬาสีเขียว-ขาวพิมพ์คำว่า ambking1234 กำหมัดชูขึ้น มีตู้สล็อตเลข 777 BAR เหรียญทองปลิว และกองชิปคาสิโนสีเขียวกับดำ ในห้องคาสิโนไฟนีออนสีเขียว"
+          alt="แบนเนอร์โปรโมชั่น MAX56 ข้อความ แนะนำเพื่อน รับค่าคอม 10% ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม รับค่าคอมง่าย และปุ่มสีแดง ชวนเลย ตัวเลข 10% ขนาดใหญ่สีแดงขอบทอง ด้านบนเป็นโลโก้ MAX56 สีขาว-แดง คู่กับมาสคอตช้างสีขาว ด้านซ้ายเป็นผู้หญิงในชุดสีแดงถือโทรศัพท์ที่แสดงโลโก้ MAX56 กับข้อความ ชวนเพื่อน รับค่าคอม 10% ฉากหลังเป็นวงล้อรูเล็ต ไพ่โพดำกับโพแดง ชิปคาสิโนสีแดง-ขาว และเหรียญทอง บนพื้นหลังสีแดงเข้ม"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -96,7 +98,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น AMBKING1234 ข้อความ แนะนำเพื่อน รับค่าคอม 10% ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม รับค่าคอมง่าย และปุ่มทอง ชวนเลย ตัวเลข 10% ขนาดใหญ่สีทองขอบเขียว ด้านขวาเป็นผู้หญิงในชุดสีเขียว-ขาวพิมพ์คำว่า ambking1234 ถือโทรศัพท์ที่แสดงปุ่ม INVITE ชวนเพื่อน มีไอคอน INVITE โทรศัพท์อีกเครื่องแสดงคำว่า ชวนเพื่อน รับค่าคอม ป้ายไฟ JACKPOT วงล้อเลข 777 เหรียญทองและชิปคาสิโนสีเขียว ในห้องคาสิโนไฟนีออนสีเขียว"
+          alt="แบนเนอร์โปรโมชั่น MAX56 ข้อความ คืนยอดเสีย 0.8% ทุกวัน เล่นต่อได้ทุกวัน คืนยอดเสียคุ้มค่า ไม่พลาดทุกความสนุก และปุ่มสีแดง รับสิทธิ์ ตัวเลข 0.8% ขนาดใหญ่สีแดงขอบทอง มุมซ้ายบนเป็นโลโก้ MAX56 สีขาว-แดง คู่กับมาสคอตช้างสีขาว ด้านขวาเป็นผู้หญิงในชุดครอปสีแดง-ขาวพิมพ์คำว่า MAX56 ชี้นิ้วขึ้น ด้านล่างเป็นวงล้อสล็อตเลข 777 สีทอง ชิปคาสิโนสีแดง-ขาวและเหรียญทอง ฉากหลังเป็นห้องคาสิโนไฟดวงกลมโทนแดง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -112,8 +114,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#8fd318]/60 bg-gradient-to-r from-[#e4f223] via-[#8fd318] to-[#1c7a2f] px-10 py-3.5 text-lg font-black text-[#08210f] shadow-[0_10px_30px_rgba(143,211,24,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(143,211,24,0.40)]">
-          สมัครสมาชิก AMBKING1234
+          class="flex items-center justify-center rounded-lg border border-[#f5c451]/60 bg-gradient-to-r from-[#e8202f] via-[#c10d1e] to-[#8c0512] px-10 py-3.5 text-lg font-black text-[#fff5f5] shadow-[0_10px_30px_rgba(232,32,47,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(232,32,47,0.40)]">
+          สมัครสมาชิก MAX56
         </a>
       </div>
     </div>

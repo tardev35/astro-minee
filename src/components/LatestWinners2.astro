@@ -32,19 +32,19 @@ const initialRows = Array.from({ length: 4 }, (_, i) => ({
   pending: brandFlag(Astro.site, `card-pending-${i}`),
 }));
 
-const PENDING_CLASS = "text-[#f5ecd6] bg-[#221807] animate-pulse";
-const DONE_CLASS = "text-[#170f02] bg-gradient-to-r from-[#fff3ae] via-[#f8d441] to-[#8a6205] font-black shadow-md";
+const PENDING_CLASS = "text-[#f6e4e4] bg-[#2a070d] animate-pulse";
+const DONE_CLASS = "text-[#1a0508] bg-gradient-to-r from-[#ffe9a8] via-[#f5c451] to-[#c9962c] font-black shadow-md";
 ---
 
 <div class="mx-auto w-full max-w-[1300px] p-4 font-sans">
   <section
-    aria-label="รายการถอนเงินล่าสุดของสมาชิก AMB194"
-    class="relative overflow-hidden rounded-[30px] border-2 border-[#f8d441]/30 bg-[#150f05]/92 px-4 py-8 shadow-[0_10px_30px_rgba(248,212,65,0.18)] backdrop-blur-md md:p-10">
-    <div class="pointer-events-none absolute -top-10 left-1/2 h-32 w-64 -translate-x-1/2 rounded-full bg-[#f8d441]/25 blur-[50px]"></div>
+    aria-label="รายการถอนเงินล่าสุดของสมาชิก MAX56"
+    class="relative overflow-hidden rounded-[30px] border-2 border-[#c10d1e]/35 bg-[#1a0508]/92 px-4 py-8 shadow-[0_10px_30px_rgba(232,32,47,0.18)] backdrop-blur-md md:p-10">
+    <div class="pointer-events-none absolute -top-10 left-1/2 h-32 w-64 -translate-x-1/2 rounded-full bg-[#c10d1e]/30 blur-[50px]"></div>
 
     <div class="relative z-10 mb-8 flex items-center justify-center gap-3">
       <span aria-hidden="true" class="text-2xl">🏆</span>
-      <p class="bg-gradient-to-r from-[#fff8d6] via-[#f8d441] to-[#d9a520] bg-clip-text text-xl font-black tracking-wide text-transparent md:text-3xl">รายการถอนเงินล่าสุดของสมาชิก AMB194</p>
+      <p class="bg-gradient-to-r from-[#ffe9a8] via-[#f5c451] to-[#c9962c] bg-clip-text text-xl font-black tracking-wide text-transparent md:text-3xl">รายการถอนเงินล่าสุดของสมาชิก MAX56</p>
       <span aria-hidden="true" class="text-2xl">🏆</span>
     </div>
 
@@ -52,7 +52,7 @@ const DONE_CLASS = "text-[#170f02] bg-gradient-to-r from-[#fff3ae] via-[#f8d441]
       {
         initialRows.map((row) => (
           <div data-winner-row class="winner-card transition-all duration-500 ease-out">
-            <div class="flex flex-col rounded-[20px] border border-[#f8d441]/25 bg-[#0b0806]/95 p-5 shadow-sm transition-all hover:border-[#d9a520]/50 hover:bg-[#221807]/95">
+            <div class="flex flex-col rounded-[20px] border border-[#c10d1e]/25 bg-[#0d0204]/95 p-5 shadow-sm transition-all hover:border-[#e8202f]/50 hover:bg-[#2a070d]/95">
               <div class="mb-4 flex items-start justify-between">
                 <div data-winner-bank class={`flex h-10 w-10 items-center justify-center rounded-full border border-white/10 shadow-inner ${row.bank.color}`}>
                   <img data-winner-icon src={row.bank.icon} alt="" width="24" height="24" loading="lazy" decoding="async" class="h-6 w-6 object-contain" />
@@ -68,11 +68,11 @@ const DONE_CLASS = "text-[#170f02] bg-gradient-to-r from-[#fff3ae] via-[#f8d441]
                 </div>
               </div>
               <div>
-                <div class="text-sm text-[#c9b784]">
-                  ยูสเซอร์: <span data-winner-user class="font-bold text-[#f5ecd6]">{row.user}</span>
+                <div class="text-sm text-[#f6e4e4]/70">
+                  ยูสเซอร์: <span data-winner-user class="font-bold text-[#f6e4e4]">{row.user}</span>
                 </div>
-                <div class="mt-1 text-2xl font-black text-[#f8d441]">
-                  <span data-winner-amount>{row.amount}</span> <span class="text-xs text-[#c9b784]">THB</span>
+                <div class="mt-1 text-2xl font-black text-[#f5c451]">
+                  <span data-winner-amount>{row.amount}</span> <span class="text-xs text-[#f6e4e4]/70">THB</span>
                 </div>
               </div>
             </div>
@@ -81,8 +81,8 @@ const DONE_CLASS = "text-[#170f02] bg-gradient-to-r from-[#fff3ae] via-[#f8d441]
       }
     </div>
 
-    <p class="relative z-10 mt-6 text-center text-[11px] tracking-wide text-[#c9b784]">
-      ก่อนฝากหรือถอนควรตรวจยอด ช่องทาง และชื่อบัญชีรับเงินให้ตรงกับข้อมูลสมาชิก หากรายการยังประมวลผลอยู่ไม่ควรกดซ้ำทันที
+    <p class="relative z-10 mt-6 text-center text-[11px] tracking-wide text-[#f6e4e4]/70">
+      ก่อนฝากหรือถอนควรตรวจข้อมูล Wallet จำนวนเงิน และชื่อบัญชีรับเงินให้ตรงกับข้อมูลสมาชิก หากรายการยังอยู่ระหว่างดำเนินการไม่ควรส่งรายการซ้ำทันที
     </p>
 
     <script type="application/json" data-winners-banks set:html={JSON.stringify(bankPool)} />

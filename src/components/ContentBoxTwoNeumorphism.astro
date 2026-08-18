@@ -5,33 +5,33 @@ export interface Props {
 }
 const { titleleft, titleright } = Astro.props;
 
-// Both column titles render as <h2>, not <h3>: the ABM96 docx is flat H1 + H2
+// Both column titles render as <h2>, not <h3>: the MAX56 docx is flat H1 + H2
 // with no nested sub-headings, and the page's heading inventory is diffed
 // against that brief. The text is prop-driven, so a title here is a real docx
 // section heading — a consumer that wants a headingless column simply omits the
 // prop and labels its own content with a <p>.
 //
-// The neumorphic pair is the page ground (#0d0207) against the raised plum tone
-// (#2a0a1b), matching ContentBoxNeumorphism so the two read as one system.
+// MAX56 neumorphic pair: the page ground (#0d0204) against the raised red-black
+// tone (#2a070d), matching ContentBoxNeumorphism so the two read as one system.
 ---
 
 <section class="mx-auto mb-8 w-full max-w-7xl px-4 font-sans">
   <div
-    class="w-full rounded-[25px] border border-[#f1509b]/25 bg-[#1d0512] p-8 shadow-[10px_10px_20px_#0d0207,-10px_-10px_20px_#2a0a1b] transition-all duration-300 hover:shadow-[15px_15px_30px_#050103,-15px_-15px_30px_#3a1226]">
+    class="w-full rounded-[25px] border border-[#c10d1e]/25 bg-[#1a0508] p-8 shadow-[10px_10px_20px_#0d0204,-10px_-10px_20px_#2a070d] transition-all duration-300 hover:shadow-[15px_15px_30px_#050102,-15px_-15px_30px_#3d0106]">
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f6e3ee]">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f6e4e4]">
         {
           titleleft && (
-            <h2 class="bg-gradient-to-r from-[#fda3cd] via-[#f1509b] to-[#b5054f] bg-clip-text text-2xl leading-normal font-black tracking-wide text-transparent">{titleleft}</h2>
+            <h2 class="bg-gradient-to-r from-[#ffe9a8] via-[#f5c451] to-[#c10d1e] bg-clip-text text-2xl leading-normal font-black tracking-wide text-transparent">{titleleft}</h2>
           )
         }
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f6e3ee] md:border-l md:border-[#d1176f]/25 md:pl-8">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f6e4e4] md:border-l md:border-[#c10d1e]/25 md:pl-8">
         {
           titleright && (
-            <h2 class="bg-gradient-to-r from-[#fda3cd] via-[#f1509b] to-[#b5054f] bg-clip-text text-2xl leading-normal font-black tracking-wide text-transparent">{titleright}</h2>
+            <h2 class="bg-gradient-to-r from-[#ffe9a8] via-[#f5c451] to-[#c10d1e] bg-clip-text text-2xl leading-normal font-black tracking-wide text-transparent">{titleright}</h2>
           )
         }
         <slot name="right" />

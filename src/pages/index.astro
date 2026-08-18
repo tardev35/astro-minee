@@ -1,20 +1,20 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
-import ContentBoxPremium from "../components/ContentBoxPremium.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
+import Announcement from "../components/Announcement4.astro";
+import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
+import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
+import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
 import ContentBox from "../components/ContentBox.astro";
-import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
-import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
-import ContentBoxTwoPremium from "../components/ContentBoxTwoPremium.astro";
+import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
+import ContentBoxTwoNeumorphism from "../components/ContentBoxTwoNeumorphism.astro";
+import ContentBoxTwoFloatingBadge from "../components/ContentBoxTwoFloatingBadge.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinnersPremium.astro";
+import LatestWinners from "../components/LatestWinners2.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq2.astro";
+import Faq from "../components/Faq4.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
@@ -23,41 +23,41 @@ import { pageGraph } from "../lib/schema";
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
 // two of those per rebrand — both are spent here.
 //
-// slide1 prints "สมาชิกใหม่ รับโบนัส 50% / สมัครวันนี้ รับสิทธิ์ทันที", the entry
-// point the "คัดเกมสล็อตยอดนิยมให้เลือกง่าย" section describes; slide2 prints
-// "ฝากครั้งแรก รับเพิ่ม 20% / ฝากง่าย ถอนเร็ว ระบบออโต้", which is the
-// browser-based flow the multi-device section is about. slide3 (คืนยอดเสีย 0.8%)
-// and slide4 (แนะนำเพื่อน 10%) stay unused here and keep rendering in
-// SmoothCarousel and on /promotion.
+// slide2 prints "ฝากครั้งแรก รับเพิ่ม 20% / ฝากง่าย ถอนเร็ว ระบบออโต้", which is the
+// deposit/withdraw flow the True Wallet section describes; slide1 prints
+// "สมาชิกใหม่ รับโบนัส 50% / สมัครวันนี้ รับสิทธิ์ทันที", the entry point the
+// no-minimum/budget section is about. slide3 (แนะนำเพื่อน 10%) and slide4
+// (คืนยอดเสีย 0.8%) stay unused here and keep rendering in SmoothCarousel and on
+// /promotion.
 //
 // banner2.png is NOT imported anywhere: it predates this asset drop.
 // banner1/banner1-mobile are the hero and belong to MainLayout alone.
-import imgPopularGames from "../assets/slide1.png";
-import imgMultiDevice from "../assets/slide2.png";
+import imgTrueWallet from "../assets/slide2.png";
+import imgNoMinimum from "../assets/slide1.png";
 
-const pageTitle = "AMBKING1234 | รวมเกมสล็อตยอดนิยม เล่นง่ายรายได้ดี ปลอดภัยมั่นคง";
-const pageHeading = "AMBKING1234 รวมเกมสล็อตยอดนิยม เล่นง่ายรายได้ดี ปลอดภัยมั่นคง";
+const pageTitle = "MAX56 | สล็อตฝากถอน true wallet ไม่มีขั้นต่ำ แตกง่ายจ่ายจริงทุกยอด";
+const pageHeading = "MAX56 สล็อตฝากถอน true wallet ไม่มีขั้นต่ำ แตกง่ายจ่ายจริงทุกยอด";
 
-// The docx Meta Description, verbatim at the length it was written (143
+// The docx Meta Description, verbatim at the length it was written (137
 // characters). DESC_MIN does not apply to the home page — verify-build.mjs
 // exempts it precisely so the brand's own copy ships unpadded. Do not top it
 // up to 150.
-const pageDescription = "AMBKING1234 รวมเกมสล็อตยอดนิยม เล่นง่าย รองรับมือถือ ระบบใช้งานมั่นคง ปลอดภัย พร้อมเกมหลากหลาย โปรโมชั่น และบริการสมาชิกตลอด 24 ชั่วโมง";
+const pageDescription = "MAX56 สล็อตฝากถอนผ่าน True Wallet ไม่มีขั้นต่ำตามเงื่อนไข รองรับมือถือ ระบบใช้งานสะดวก พร้อมเกมหลากหลายและตรวจสอบรายการได้ง่าย";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq2's own default, which is always the previous brand's FAQ.
+// Faq4's own default, which is always the previous brand's FAQ.
 const faqs = [
   {
-    q: "AMBKING1234 มีเกมสล็อตแบบไหนให้เลือกบ้าง?",
-    a: "ภายในระบบมีเกมสล็อตหลายแนว ทั้งแบบคลาสสิก เกมโบนัส และเกมธีมใหม่ ผู้เล่นสามารถเลือกตามกติกา ฟีเจอร์ และระดับความผันผวนที่เหมาะกับตนเอง",
+    q: "MAX56 รองรับการฝากถอนผ่าน True Wallet หรือไม่?",
+    a: "รองรับ True Wallet ตามช่องทางที่ระบบกำหนด สมาชิกควรตรวจสอบข้อมูล Wallet จำนวนเงิน และสถานะรายการทุกครั้งก่อนและหลังทำธุรกรรม",
   },
   {
-    q: "AMBKING1234 ใช้งานผ่านมือถือได้หรือไม่?",
-    a: "รองรับการใช้งานผ่านมือถือและแท็บเล็ต โดยควรใช้เบราว์เซอร์เวอร์ชันล่าสุด เชื่อมต่ออินเทอร์เน็ตที่เสถียร และเข้าใช้งานผ่านช่องทางหลัก",
+    q: "MAX56 ฝากถอนไม่มีขั้นต่ำทุกช่องทางหรือไม่?",
+    a: "เงื่อนไขไม่มีขั้นต่ำอาจใช้เฉพาะช่องทางหรือรายการที่กำหนด จึงควรตรวจสอบรายละเอียดล่าสุดและเงื่อนไขโปรโมชั่นก่อนทำรายการทุกครั้ง",
   },
   {
-    q: "เล่นเกมสล็อตกับ AMBKING1234 สามารถสร้างรายได้ดีได้หรือไม่?",
-    a: "ไม่สามารถรับประกันรายได้หรือกำไรจากเกมสล็อตได้ ผู้เล่นควรศึกษากติกา กำหนดงบประมาณ และมองการเล่นเป็นความบันเทิงมากกว่าการลงทุน",
+    q: "คำว่าจ่ายจริงทุกยอดหมายถึงรับประกันการถอนได้หรือไม่?",
+    a: "ไม่ควรตีความว่าเป็นการรับประกันทุกกรณี เพราะการถอนอาจขึ้นอยู่กับสถานะบัญชี เงื่อนไขโปรโมชั่น และการตรวจสอบของระบบ ควรอ่านข้อกำหนดก่อนใช้งาน",
   },
 ];
 
@@ -74,65 +74,17 @@ const graph = pageGraph(Astro, {
 
   <Announcement />
 
-  <ContentBoxPremium as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#e6f3dd]">
-      <strong class="text-[#d4ea23]">AMBKING1234</strong> เป็นแพลตฟอร์มเกมสล็อตออนไลน์ที่รวบรวมเกมยอดนิยมหลายรูปแบบไว้ในระบบเดียว เน้นเมนูที่เข้าใจง่าย รองรับมือถือและคอมพิวเตอร์
-      พร้อมระบบบัญชีและช่องทางบริการที่ช่วยให้ใช้งานได้เป็นขั้นตอน สมาชิกควรศึกษากติกา รูปแบบการจ่าย และกำหนดงบประมาณก่อนเริ่ม เพราะผลจากเกมสล็อตไม่สามารถรับประกันรายได้หรือกำไรได้
+  <ContentBoxNeumorphism as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#f6e4e4]">
+      <strong class="text-[#f5c451]">MAX56</strong> เป็นแพลตฟอร์มเกมสล็อตออนไลน์ที่เน้นความสะดวกด้านการทำธุรกรรมผ่าน True Wallet พร้อมเงื่อนไขไม่มีขั้นต่ำในช่องทางที่กำหนด
+      รองรับการใช้งานบนมือถือและคอมพิวเตอร์ สมาชิกสามารถเลือกเกม ตรวจสอบโปรโมชั่น และติดตามสถานะรายการได้จากบัญชีเดียว ก่อนเริ่มควรอ่านกติกาและเงื่อนไขที่เกี่ยวข้องให้ครบถ้วน
     </p>
-  </ContentBoxPremium>
+  </ContentBoxNeumorphism>
 
-  <ContentBoxSevenThreePremium titleright="คัดเกมสล็อตยอดนิยมให้เลือกง่ายบน AMBKING1234">
+  <ContentBoxSevenThreeNeumorphism titleright="ฝากถอนผ่าน True Wallet ได้สะดวกกับ MAX56">
     <Picture
       slot="left"
-      src={imgPopularGames}
-      loading="lazy"
-      fetchpriority="low"
-      widths={[300, 450, 600]}
-      sizes="(max-width: 768px) calc(100vw - 6rem), 350px"
-      decoding="async"
-      formats={["avif", "webp"]}
-      fallbackFormat="webp"
-      quality={80}
-      alt="แบนเนอร์โปรโมชั่น AMBKING1234 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่ม รับโปรเลย พร้อมผู้หญิงในชุดกีฬาครอปสีเขียวขอบเหลือง พิมพ์ ambking1234 ชี้นิ้วขึ้น ป้ายไฟ JACKPOT BIG WIN วงล้อสล็อตเลข 777 เหรียญทองปลิว ชิปคาสิโนสีเขียว-ขาว และกล่องของขวัญผูกโบว์ทองในห้องคาสิโนไฟนีออนสีเขียว"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#8fd318]/40 shadow-[0_10px_30px_rgba(143,211,24,0.28)]"
-    />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#e6f3dd]">
-      ภายใน AMBKING1234 มีทั้งสล็อตคลาสสิก เกมโบนัส และเกมธีมสมัยใหม่ให้เลือกตามความสนใจ ผู้เล่นสามารถพิจารณาจากกติกา ฟีเจอร์ และระดับความผันผวนของแต่ละเกมก่อนเริ่ม
-      เพื่อช่วยให้เลือกเกมได้ตรงกับสไตล์และงบประมาณมากกว่าการเลือกตามกระแสเพียงอย่างเดียว
-    </p>
-  </ContentBoxSevenThreePremium>
-
-  <ProviderGrid />
-
-  <ContentBoxCyberCut as="h2" title="เกมเล่นง่ายควรเริ่มจากกติกาที่เข้าใจได้เร็ว">
-    <p class="text-left text-base leading-relaxed text-[#e6f3dd]">
-      เกมสล็อตที่ใช้งานไม่ซับซ้อนช่วยให้ผู้เล่นทำความเข้าใจสัญลักษณ์ ฟีเจอร์ และรอบโบนัสได้ง่ายขึ้น ก่อนเริ่มควรอ่านตารางการจ่าย ทดลองฟีเจอร์ที่มี และกำหนดวงเงินสำหรับแต่ละรอบไว้ล่วงหน้า
-      เพื่อให้การเล่นเป็นระบบและไม่เพิ่มงบเพราะต้องการตามผลที่ผ่านมา
-    </p>
-  </ContentBoxCyberCut>
-
-  <GameRankingBoard />
-
-  <ContentBoxSpecial as="h2" title="ความปลอดภัยของ AMBKING1234 เริ่มจากการใช้งานช่องทางหลัก" iconleft="🔐" iconright="🛡️">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#e6f3dd]">
-      สมาชิก AMBKING1234 ควรเข้าสู่ระบบผ่านช่องทางที่เว็บไซต์กำหนด ตั้งรหัสผ่านที่ไม่ซ้ำกับบริการอื่น และไม่เปิดเผยรหัสยืนยันแก่บุคคลภายนอก
-    </p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#e6f3dd]">
-      หากใช้อุปกรณ์ร่วมกับผู้อื่นควรออกจากระบบทุกครั้ง รวมถึงหลีกเลี่ยงเครือข่ายสาธารณะเมื่อต้องจัดการข้อมูลบัญชี
-    </p>
-  </ContentBoxSpecial>
-
-  <ContentBox as="h2" title="รายได้ดีไม่ใช่ผลลัพธ์ที่เกมสล็อตรับประกันได้">
-    <p class="text-left text-base leading-relaxed text-[#e6f3dd]">
-      คำว่ารายได้ดีอาจใช้สื่อถึงโอกาสลุ้นรางวัลของเกม แต่เกมสล็อตมีผลลัพธ์ไม่แน่นอนและไม่ควรมองเป็นแหล่งรายได้ประจำ ผู้เล่นควรตรวจสอบอัตราจ่าย ความผันผวน และเงื่อนไขโบนัส
-      พร้อมเล่นด้วยเงินที่สามารถยอมรับการสูญเสียได้โดยไม่กระทบค่าใช้จ่ายจำเป็น
-    </p>
-  </ContentBox>
-
-  <ContentBoxSevenThreeCyberCut titleright="AMBKING1234 รองรับการใช้งานได้หลายอุปกรณ์">
-    <Picture
-      slot="left"
-      src={imgMultiDevice}
+      src={imgTrueWallet}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -141,39 +93,107 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่น AMBKING1234 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่ม ฝากเลย พร้อมผู้หญิงในชุดกีฬาสีเขียว-ขาว พิมพ์ ambking1234 ชี้นิ้วขึ้น วงล้อสล็อตคำว่า BAR มงกุฎทอง เหรียญทองปลิว และชิปคาสิโนสีเขียวบนพื้นหลังไฟนีออนสีเขียว"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#8fd318]/40 shadow-[0_10px_30px_rgba(143,211,24,0.28)]"
+      alt="แบนเนอร์โปรโมชั่น MAX56 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% พร้อมป้าย คุ้มตั้งแต่ฝากแรก ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่มสีแดง ฝากเลย พร้อมโลโก้ MAX56 ช้างเผือกสามมิติ ผู้หญิงในชุดกีฬาสีแดง-ขาวพิมพ์ MAX56 ชี้นิ้วขึ้น วงล้อสล็อตเลข 77 ป้าย BONUS และคำว่า BAR เหรียญทองปลิว ชิปคาสิโนสีแดง-ขาว-ดำ และกล่องของขวัญผูกโบว์แดงบนพื้นหลังคาสิโนโทนแดงเข้ม"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#c10d1e]/40 shadow-[0_10px_30px_rgba(232,32,47,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#e6f3dd]">
-      เว็บไซต์ AMBKING1234 รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ สมาชิกจึงสามารถเลือกเกม ตรวจสอบโปรโมชั่น และดูข้อมูลบัญชีผ่านเบราว์เซอร์ได้ ควรใช้อินเทอร์เน็ตที่เสถียร
-      อัปเดตเบราว์เซอร์เป็นประจำ และตรวจสอบช่องทางเข้าก่อนกรอกข้อมูลทุกครั้ง
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f6e4e4]">
+      การรองรับ True Wallet ของ MAX56 ช่วยให้สมาชิกจัดการรายการผ่านมือถือได้สะดวกขึ้น ก่อนยืนยันควรตรวจสอบเบอร์หรือข้อมูล Wallet จำนวนเงิน และรายละเอียดบัญชีให้ตรงกันทุกครั้ง
+      รวมถึงรอให้ระบบแสดงสถานะสำเร็จก่อนทำรายการใหม่ เพื่อลดความคลาดเคลื่อน
     </p>
-  </ContentBoxSevenThreeCyberCut>
+  </ContentBoxSevenThreeNeumorphism>
 
-  <ContentBoxTwoPremium titleleft="ดูแลปัญหาการใช้งานผ่านทีมงาน AMBKING1234">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#e6f3dd]">
-      หากพบปัญหาเกี่ยวกับบัญชี ทางเข้า โปรโมชั่น หรือสถานะรายการ สมาชิกสามารถติดต่อทีมงาน AMBKING1234 ผ่านช่องทางบริการที่เว็บไซต์ระบุ ควรเตรียมชื่อผู้ใช้ เวลา และรายละเอียดปัญหาให้ครบ
-      โดยไม่เปิดเผยรหัสผ่านหรือรหัสยืนยัน เพื่อช่วยให้ตรวจสอบได้รวดเร็วขึ้น
+  <ContentBoxSevenThreeFloatingBadge title="ไม่มีขั้นต่ำช่วยให้กำหนดงบได้ยืดหยุ่นขึ้น">
+    <Picture
+      slot="left"
+      src={imgNoMinimum}
+      loading="lazy"
+      fetchpriority="low"
+      widths={[300, 450, 600]}
+      sizes="(max-width: 768px) calc(100vw - 6rem), 350px"
+      decoding="async"
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      quality={80}
+      alt="แบนเนอร์โปรโมชั่น MAX56 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่มสีแดง รับโปรเลย พร้อมโลโก้ MAX56 ช้างเผือกสามมิติสวมสายสะพาย ผู้หญิงในชุดเดรสสีแดง-ขาวพิมพ์ MAX56 ชี้นิ้วขึ้น วงล้อสล็อตเลข 777 และคำว่า BAR เหรียญทองปั๊มโลโก้ MAX56 กล่องของขวัญผูกโบว์แดง และแถบข้อความ ปลอดภัยมั่นใจ 100% ฝาก-ถอนเร็วภายใน 10 วินาที บริการ 24 ชม."
+      class="mx-auto h-auto w-full rounded-2xl border border-[#c10d1e]/40 shadow-[0_10px_30px_rgba(232,32,47,0.28)]"
+    />
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f6e4e4]">
+      เงื่อนไขไม่มีขั้นต่ำช่วยให้ผู้เล่นเลือกจำนวนเงินตามงบประมาณของตนเองได้ง่ายขึ้น แต่ควรตรวจสอบว่าช่องทางใดรองรับ รวมถึงอ่านข้อกำหนดของโปรโมชั่นก่อนทำรายการ
+      การกำหนดวงเงินไว้ล่วงหน้าจะช่วยให้ควบคุมค่าใช้จ่ายได้เป็นระบบมากขึ้น
+    </p>
+  </ContentBoxSevenThreeFloatingBadge>
+
+  <ContentBox as="h2" title="เลือกเกมสล็อตหลายแนวได้บน MAX56">
+    <p class="text-left text-base leading-relaxed text-[#f6e4e4]">
+      ภายใน MAX56 มีเกมสล็อตหลายรูปแบบ ทั้งเกมคลาสสิก เกมโบนัส และเกมธีมใหม่ ผู้เล่นสามารถพิจารณาจากกติกา ความผันผวน และรูปแบบการจ่ายก่อนเลือกเล่น
+      เพื่อช่วยให้ได้เกมที่เหมาะกับสไตล์และงบของตนเองมากกว่าการเลือกจากคำโฆษณาเพียงอย่างเดียว
+    </p>
+  </ContentBox>
+
+  <ProviderGrid />
+
+  <ContentBoxFloatingBadge as="h2" title="คำว่าแตกง่ายควรดูควบคู่กับข้อมูลของเกม">
+    <p class="text-left text-base leading-relaxed text-[#f6e4e4]">
+      เกมที่ถูกนำเสนอว่าแตกง่ายอาจมีฟีเจอร์หรือจังหวะลุ้นรางวัลที่น่าสนใจ แต่ไม่ได้หมายความว่าจะได้ผลลัพธ์ตามคาดทุกครั้ง ผู้เล่นควรตรวจสอบอัตราจ่าย ความผันผวน และเงื่อนไขโบนัส
+      พร้อมกำหนดวงเงินและระยะเวลาในการเล่นให้ชัดเจน
+    </p>
+  </ContentBoxFloatingBadge>
+
+  <GameRankingBoard />
+
+  <ContentBoxTwoNeumorphism titleleft="ตรวจสอบสถานะรายการผ่านระบบ MAX56">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f6e4e4]">
+      สมาชิก MAX56 สามารถติดตามยอดฝาก ถอน และสถานะธุรกรรมผ่านหน้าบัญชีได้ หากพบว่ารายการยังอยู่ระหว่างดำเนินการควรรอผลจากระบบก่อนส่งรายการซ้ำ และควรเก็บข้อมูลอ้างอิง เวลา
+      และจำนวนเงินไว้จนกว่าธุรกรรมจะเสร็จสมบูรณ์
     </p>
 
-    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#8fd318]/25 bg-[#04140a]/70 p-5">
-      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#fbd503] uppercase">
-        <span aria-hidden="true">🛟</span>
-        สิ่งที่ควรเตรียมก่อนแจ้งทีมงาน
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#c10d1e]/25 bg-[#0d0204]/70 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f5c451] uppercase">
+        <span aria-hidden="true">🧭</span>
+        ข้อมูลที่ควรเก็บไว้จนรายการเสร็จสมบูรณ์
       </p>
-      <span class="flex items-start gap-2.5 text-sm text-[#e6f3dd]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#d4ea23]">①</span>
+      <span class="flex items-start gap-2.5 text-sm text-[#f6e4e4]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5a66]">①</span>
+        ข้อมูลอ้างอิงของรายการฝากหรือถอน
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#f6e4e4]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5a66]">②</span>
+        เวลาที่ทำรายการและช่องทางที่ใช้
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#f6e4e4]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5a66]">③</span>
+        จำนวนเงินและสถานะล่าสุดที่ระบบแสดง
+      </span>
+      <span class="mt-1 rounded-xl border border-[#f5c451]/35 bg-[#2a070d]/70 px-4 py-2.5 text-xs leading-relaxed text-[#f6e4e4]/80">
+        ระหว่างที่รายการยังอยู่ระหว่างดำเนินการ ควรรอผลจากระบบก่อน ไม่ควรส่งรายการซ้ำทันที
+      </span>
+    </div>
+  </ContentBoxTwoNeumorphism>
+
+  <ContentBoxTwoFloatingBadge titleleft="ดูแลบัญชีและข้อมูลการใช้งานกับทีม MAX56">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f6e4e4]">
+      หากมีข้อสงสัยเกี่ยวกับบัญชี โปรโมชั่น ทางเข้า หรือสถานะรายการ สามารถติดต่อทีมงาน MAX56 ผ่านช่องทางที่เว็บไซต์กำหนด ควรแจ้งชื่อผู้ใช้ เวลา และรายละเอียดปัญหาให้ครบ
+      โดยไม่เปิดเผยรหัสผ่านหรือรหัสยืนยัน เพื่อช่วยให้ตรวจสอบได้ตรงจุด
+    </p>
+
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#c10d1e]/25 bg-[#0d0204]/70 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f5c451] uppercase">
+        <span aria-hidden="true">🛟</span>
+        สิ่งที่ควรเตรียมก่อนติดต่อทีมงาน
+      </p>
+      <span class="flex items-start gap-2.5 text-sm text-[#f6e4e4]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5a66]">①</span>
         ชื่อผู้ใช้ที่ใช้เข้าสู่ระบบ
       </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#e6f3dd]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#d4ea23]">②</span>
+      <span class="flex items-start gap-2.5 text-sm text-[#f6e4e4]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5a66]">②</span>
         วันและเวลาที่พบปัญหา
       </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#e6f3dd]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#d4ea23]">③</span>
-        รายละเอียดปัญหาของบัญชี ทางเข้า โปรโมชั่น หรือสถานะรายการ
+      <span class="flex items-start gap-2.5 text-sm text-[#f6e4e4]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5a66]">③</span>
+        รายละเอียดปัญหาของบัญชี โปรโมชั่น ทางเข้า หรือสถานะรายการ
       </span>
-      <span class="mt-1 rounded-xl border border-[#fbd503]/35 bg-[#0d2f17]/70 px-4 py-2.5 text-xs leading-relaxed text-[#e6f3dd]/80">
+      <span class="mt-1 rounded-xl border border-[#f5c451]/35 bg-[#2a070d]/70 px-4 py-2.5 text-xs leading-relaxed text-[#f6e4e4]/80">
         ไม่ต้องแจ้งรหัสผ่านหรือรหัสยืนยันให้ผู้ใด แม้จะเป็นการติดต่อกับทีมงานก็ตาม
       </span>
       <a
@@ -182,9 +202,9 @@ const graph = pageGraph(Astro, {
         <span aria-hidden="true">💬</span> ติดต่อทีมงานผ่าน LINE
       </a>
     </div>
-  </ContentBoxTwoPremium>
+  </ContentBoxTwoFloatingBadge>
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ AMBKING1234" faqs={faqs} />
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ MAX56" faqs={faqs} />
 
   <LoginRtpSection />
 
@@ -193,13 +213,13 @@ const graph = pageGraph(Astro, {
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#8fd318]/60 bg-gradient-to-r from-[#1c7a2f] via-[#125c26] to-[#0a3d1c] px-4 py-3 text-sm font-black whitespace-nowrap text-[#f2fbe8] shadow-[0_10px_30px_rgba(28,122,47,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#8fd318] hover:shadow-[0_15px_40px_rgba(143,211,24,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#e8202f]/60 bg-gradient-to-r from-[#c10d1e] via-[#8c0512] to-[#5a0209] px-4 py-3 text-sm font-black whitespace-nowrap text-[#fff5f5] shadow-[0_10px_30px_rgba(193,13,30,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ff5a66] hover:shadow-[0_15px_40px_rgba(232,32,47,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffe873]/70 bg-gradient-to-r from-[#ffe873] to-[#fbd503] px-4 py-3 text-sm font-black whitespace-nowrap text-[#08210f] shadow-[0_10px_30px_rgba(251,213,3,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe873] hover:shadow-[0_15px_40px_rgba(251,213,3,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffe9a8]/70 bg-gradient-to-r from-[#ffe9a8] to-[#f5c451] px-4 py-3 text-sm font-black whitespace-nowrap text-[#1a0508] shadow-[0_10px_30px_rgba(245,196,81,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe9a8] hover:shadow-[0_15px_40px_rgba(245,196,81,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>
