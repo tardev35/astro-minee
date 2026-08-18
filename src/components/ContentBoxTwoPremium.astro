@@ -1,9 +1,11 @@
 ---
 export interface Props {
+  title?: string;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   titleleft?: string;
   titleright?: string;
 }
-const { titleleft, titleright } = Astro.props;
+const { title, as: HeadingTag = "h2", titleleft, titleright } = Astro.props;
 
 // Both column titles are <h2> fed from the page (the docx), so pass only the
 // column the brief actually has a heading for. เฮงเฮง888: gold rules and gold
@@ -13,7 +15,16 @@ const { titleleft, titleright } = Astro.props;
 <section class="relative z-10 mx-auto mb-8 w-full max-w-7xl px-4 font-sans">
   <div
     class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#f5c518]/30 bg-[#072b14]/92 p-8 text-[#e8f3e0] shadow-[0_10px_30px_rgba(3,23,12,0.85)] backdrop-blur-xl transition-all duration-500 hover:border-[#f5c518]/55 hover:shadow-[0_15px_40px_rgba(245,197,24,0.24)] md:p-10">
-    <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-[#05461f]/45 to-transparent opacity-70"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-[#05461f]/45 to-transparent opacity-70"></div>
+
+    {
+      title && (
+        <header class="mb-8 flex items-center gap-4 border-b border-[#f5c518]/30 pb-4">
+          <span aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffdf7a] via-[#f5c518] to-[#9fcf3a] shadow-[0_0_10px_rgba(245,197,24,0.5)]" />
+          <HeadingTag class="bg-gradient-to-r from-[#ffdf7a] via-[#f5c518] to-[#9fcf3a] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
+        </header>
+      )
+    }
 
     <div class="grid grid-cols-1 gap-10 md:grid-cols-2">
       <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#e8f3e0]">

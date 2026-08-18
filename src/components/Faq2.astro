@@ -56,15 +56,6 @@ const { title, faqs = [] } = Astro.props;
 </section>
 
 <style>
-  /* <details> instead of a button + max-height script. The open/close state,
-     the keyboard handling and the expanded/collapsed announcement all come
-     from the element, so there is no JS to get wrong and nothing for a rebrand
-     to break by restyling.
-     What it fixed: the badge and the arrow were not aria-hidden, so the
-     accessible name of every question was "? <คำถาม> ▼". The panel was closed
-     with max-h-0, which leaves it in the accessibility tree and reachable by
-     keyboard while invisible. And aria-expanded was set without an
-     aria-controls to point at. */
   .faq-item > summary {
     list-style: none;
   }

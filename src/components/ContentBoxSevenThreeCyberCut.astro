@@ -2,8 +2,9 @@
 export interface Props {
   titleleft?: string;
   titleright?: string;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
-const { titleleft, titleright } = Astro.props;
+const { titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
 
 // Both column titles are <h2> receiving their text from the page (the docx), so
 // pass only the column the brief actually has a heading for.
@@ -19,10 +20,10 @@ const { titleleft, titleright } = Astro.props;
   <div
     class="relative isolate w-full border border-[#12a34f]/30 bg-[#072b14]/92 p-8 text-[#e8f3e0] shadow-[0_10px_30px_rgba(18,163,79,0.18)] backdrop-blur-md transition-all duration-300 hover:border-[#1fc465]/60 hover:shadow-[0_15px_40px_rgba(31,196,101,0.28)]"
     style="clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);">
-    <div class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#9fcf3a] to-transparent"></div>
-    <div class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#f5c518] to-transparent"></div>
-    <div class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#9fcf3a] to-transparent"></div>
-    <div class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#f5c518] to-transparent"></div>
+    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#9fcf3a] to-transparent"></div>
+    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#f5c518] to-transparent"></div>
+    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#9fcf3a] to-transparent"></div>
+    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#f5c518] to-transparent"></div>
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
       <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#e8f3e0]">
@@ -32,7 +33,7 @@ const { titleleft, titleright } = Astro.props;
               <span aria-hidden="true" class="font-mono text-[#f5c518]">
                 &gt;_
               </span>
-              <h2 class="text-xl leading-normal font-black text-[#9fcf3a] uppercase">{titleleft}</h2>
+              <HeadingTag class="text-xl leading-normal font-black text-[#9fcf3a] uppercase">{titleleft}</HeadingTag>
             </div>
           )
         }
@@ -46,7 +47,7 @@ const { titleleft, titleright } = Astro.props;
               <span aria-hidden="true" class="font-mono text-[#f5c518]">
                 &gt;_
               </span>
-              <h2 class="text-xl leading-normal font-black text-[#9fcf3a] uppercase">{titleright}</h2>
+              <HeadingTag class="text-xl leading-normal font-black text-[#9fcf3a] uppercase">{titleright}</HeadingTag>
             </div>
           )
         }

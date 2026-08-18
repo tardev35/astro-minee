@@ -3,44 +3,27 @@ export interface Props {
   title?: string;
   titleleft?: string;
   titleright?: string;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
-const { title, titleleft, titleright } = Astro.props;
-
-// Column titles render as <h2>, not <h3>: the MAX56 docx is flat H1 + H2 with no
-// nested sub-headings, and the page's heading inventory is diffed against that
-// brief. They were <h3> here while every sibling ContentBox* used <h2>, which
-// put a stray h3 on any page that passed one.
-//
-// Badge clearance (only relevant when `title` is passed — the badge is
-// `absolute -top-6`, so its bottom edge sits at (badge height - 24px) from the
-// card top): text-base/sm:text-xl/md:text-2xl in a w-[92%] max-w-2xl pill, so a
-// full-sentence Thai H2 takes 2 mobile lines -> 3-line budget 3 x 27 + py-2.5
-// (20px) + 2px borders = 105px -> 81px below the card top, vs pt-32 (128px).
-// md, 1 line -> 2-line budget 96px -> 72px, vs md:pt-28 (112px). Do not trim
-// that padding and do not re-add `whitespace-nowrap` to the badge.
-//
-// The reserved top padding is tied to the badge existing. MAX56 renders this box
-// with `titleleft` and no `title`, and an unconditional pt-32 with no badge in
-// it is 128px of empty card, not clearance. Passing `title` restores the exact
-// values the arithmetic above was done against.
-const cardPad = title ? "p-8 pt-32 md:pt-28" : "p-8";
+const { title, titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
 ---
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
   <div
-    class={`relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#c10d1e]/35 bg-gradient-to-b from-[#2a070d] to-[#0d0204] ${cardPad} shadow-[0_10px_40px_rgba(0,0,0,0.5)]`}>
-    <div class="pointer-events-none absolute -top-14 -right-12 -z-10 h-40 w-40 rounded-full bg-[#c10d1e]/25 blur-[60px]"></div>
+    class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#ffd400]/25 bg-gradient-to-b from-[#170733]/95 to-[#0d0320]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(255,212,0,0.16)] md:pt-28">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#ff4fd8]/30 blur-[60px]"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#ffd400]/25 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#c10d1e]/50 bg-[#0d0204] px-4 py-2.5 text-center shadow-[0_5px_15px_rgba(232,32,47,0.25)] sm:px-8">
-          <span aria-hidden="true" class="shrink-0 text-[#f5c451]">
+        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#ffd400]/35 bg-[#170733] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(255,212,0,0.22)] sm:px-8">
+          <span aria-hidden="true" class="shrink-0 text-[#ff4fd8]">
             ✦
           </span>
-          <h2 class="bg-gradient-to-r from-[#ffe9a8] via-[#f5c451] to-[#c9962c] bg-clip-text text-base leading-normal font-black tracking-tighter text-transparent uppercase sm:text-xl md:text-2xl">
+          <HeadingTag class="min-w-0 bg-gradient-to-r from-[#ffe94d] via-[#ffd400] to-[#ff4fd8] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
             {title}
-          </h2>
-          <span aria-hidden="true" class="shrink-0 text-[#f5c451]">
+          </HeadingTag>
+          <span aria-hidden="true" class="shrink-0 text-[#ff4fd8]">
             ✦
           </span>
         </div>
@@ -48,13 +31,13 @@ const cardPad = title ? "p-8 pt-32 md:pt-28" : "p-8";
     }
 
     <div class="grid grid-cols-1 gap-10 md:grid-cols-2">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f6e4e4]">
-        {titleleft && <h2 class="text-2xl leading-normal font-bold text-[#f5c451] drop-shadow-[0_0_5px_rgba(245,196,81,0.3)]">{titleleft}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#ece2fb]">
+        {titleleft && <p class="text-2xl leading-normal font-bold text-[#ffd400]">{titleleft}</p>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f6e4e4] md:border-l md:border-[#c10d1e]/30 md:pl-10">
-        {titleright && <h2 class="text-2xl leading-normal font-bold text-[#f5c451] drop-shadow-[0_0_5px_rgba(245,196,81,0.3)]">{titleright}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#ece2fb] md:border-l md:border-[#ffd400]/25 md:pl-10">
+        {titleright && <p class="text-2xl leading-normal font-bold text-[#ffd400]">{titleright}</p>}
         <slot name="right" />
       </article>
     </div>

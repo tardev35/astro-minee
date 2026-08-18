@@ -47,11 +47,6 @@ const { title, faqs = [] } = Astro.props;
 </div>
 
 <style>
-  /* State comes from the [open] attribute now, not from an `active` class a
-     script toggles. Note the old rule was `.is-open { transform: rotate(45deg) }`
-     — a hand-written class whose name collides with nothing, but which sat one
-     grep away from Tailwind's rotate-45 utility. Keying off [open] removes the
-     ambiguity along with the script. */
   .faq-item > summary {
     list-style: none;
   }

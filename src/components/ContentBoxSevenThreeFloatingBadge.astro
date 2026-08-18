@@ -3,52 +3,35 @@ export interface Props {
   title?: string;
   titleleft?: string;
   titleright?: string;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
-const { title, titleleft, titleright } = Astro.props;
-
-// Same badge arithmetic as ContentBoxFloatingBadge, re-measured against this
-// brand's real docx H2 ("ไม่มีขั้นต่ำช่วยให้กำหนดงบได้ยืดหยุ่นขึ้น", 40 chars):
-// `absolute -top-6` puts the badge's bottom edge at (badge height - 24px) below
-// the card top.
-//   mobile  375px viewport -> card 343px wide, badge w-[92%] = ~316px; minus
-//           px-4 the text box is ~284px, so the title wraps to 2 lines.
-//           text-lg 18px x 1.5 = 27px/line. Budget 3 lines: 81 + py-2.5 (20px)
-//           + 2px borders = 105px  ->  81px below the card top, vs pt-32
-//           (128px). 47px of daylight.
-//   md      text-2xl 24px x 1.5 = 36px/line; badge max-w-2xl leaves a ~608px
-//           text box, so the title fits on 1 line. Budget 2 lines: 72 + 20 + 4
-//           = 96px  ->  72px below the card top, vs md:pt-28 (112px). 40px of
-//           daylight.
-// The badge is width-capped (w-[92%] max-w-2xl) and centered, never
-// `whitespace-nowrap`. Do not trim the padding and do not re-add nowrap.
-//
-// titleleft/titleright are <h2> like the badge: the MAX56 docx is flat H1 + H2.
+const { title, titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
 ---
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#c10d1e]/30 bg-gradient-to-b from-[#2a070d]/95 to-[#0d0204]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(193,13,30,0.18)] md:pt-28">
-    <div class="pointer-events-none absolute -right-10 -bottom-16 -z-10 h-40 w-40 rounded-full bg-[#c10d1e]/25 blur-[60px]"></div>
-    <div class="pointer-events-none absolute -top-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#ff5a66]/25 blur-[60px]"></div>
+    class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#ffd400]/25 bg-gradient-to-b from-[#170733]/95 to-[#0d0320]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(255,212,0,0.16)] md:pt-28">
+    <div aria-hidden="true" class="pointer-events-none absolute -right-10 -bottom-16 -z-10 h-40 w-40 rounded-full bg-[#ff4fd8]/30 blur-[60px]"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#ffd400]/25 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 w-[92%] max-w-2xl -translate-x-1/2 rounded-lg border-2 border-[#c10d1e]/45 bg-[#0d0204] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(232,32,47,0.22)] sm:px-8">
-          <h2 class="bg-gradient-to-r from-[#ffe9a8] via-[#f5c451] to-[#c10d1e] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
+        <div class="absolute -top-6 left-1/2 w-[92%] max-w-2xl -translate-x-1/2 rounded-lg border-2 border-[#ffd400]/35 bg-[#170733] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(255,212,0,0.22)] sm:px-8">
+          <HeadingTag class="bg-gradient-to-r from-[#ffe94d] via-[#ffd400] to-[#ff4fd8] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
             {title}
-          </h2>
+          </HeadingTag>
         </div>
       )
     }
 
     <div class="grid grid-cols-1 gap-10 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f6e4e4]">
-        {titleleft && <h2 class="text-2xl leading-normal font-bold text-[#f5c451]">{titleleft}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#ece2fb]">
+        {titleleft && <p class="text-2xl leading-normal font-bold text-[#ffd400]">{titleleft}</p>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f6e4e4] md:border-l md:border-[#c10d1e]/25 md:pl-10">
-        {titleright && <h2 class="text-2xl leading-normal font-bold text-[#f5c451]">{titleright}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#ece2fb] md:border-l md:border-[#ffd400]/25 md:pl-10">
+        {titleright && <p class="text-2xl leading-normal font-bold text-[#ffd400]">{titleright}</p>}
         <slot name="right" />
       </article>
     </div>

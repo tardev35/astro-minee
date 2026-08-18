@@ -1,5 +1,5 @@
 // Local-only rebrand console.
-// Run with: npm run rebrand:upload   (opens http://localhost:5555)
+// Run with: npm run rebrand:upload   (opens http://localhost:4444)
 //
 // Four jobs, in the order an operator does them:
 //   1. STAGE (ส่วนที่ 1-5) — copy a new brand's files into src/assets and public
@@ -40,7 +40,7 @@ const CONFIG = join(ROOT, "astro.config.mjs");
 // bypassPermissions. Anyone who can reach this port can therefore run arbitrary
 // code on this machine. HOST=0.0.0.0 is FORBIDDEN until real auth + HTTPS exist
 // (see the rebrand web-UI plan); the default keeps a bare run safe.
-const PORT = Number(process.env.PORT) || 5555;
+const PORT = Number(process.env.PORT) || 4444;
 const HOST = process.env.HOST || "127.0.0.1";
 
 const IMAGE_EXTS = ["png", "webp", "jpg", "jpeg", "avif", "gif", "svg"];
@@ -1923,7 +1923,7 @@ async function startPreview() {
   });
 
   // Poll the address it is actually bound to; hand the operator the name they
-  // are used to typing (localhost, same as :8888 and :5555).
+  // are used to typing (localhost, same as :8888 and :4444).
   const url = "http://localhost:" + PREVIEW_PORT + "/";
   try {
     await waitForPreview("http://127.0.0.1:" + PREVIEW_PORT + "/", PREVIEW_READY_TIMEOUT_MS);
@@ -3114,7 +3114,7 @@ const PAGE = /* html */ `<!doctype html>
 <body>
 <header>
   <div class="head-inner">
-    <h1><span class="mark">📦</span> <span class="grad-text">Minee Uploader</span></h1>
+    <h1><span class="mark">📦</span> <span class="grad-text">Rebrand Asset Uploader</span></h1>
   </div>
 </header>
 <main>
@@ -4175,7 +4175,7 @@ const PAGE = /* html */ `<!doctype html>
   // ── confirm dialog ────────────────────────────────────────────────────────
   // Replaces window.confirm(), which could not show the one thing that matters
   // most here — the exact prompt about to be fired — as anything but a wall of
-  // unstyled text, and which browsers label with "localhost:5555 says".
+  // unstyled text, and which browsers label with "localhost:4444 says".
   const cfDlg = document.getElementById('confirmDlg');
   function askConfirm({ title, sub = '', lines = [], code = '', ok = 'ตกลง', icon = '▶', danger = false }) {
     document.getElementById('cfTitle').textContent = title;
@@ -4422,29 +4422,30 @@ const PAGE = /* html */ `<!doctype html>
     return h;
   }
 
-  function dpStaleNote() {
+  function dpPendingHost() {
     const typed = dpBareHost(rbUrl.value);
     if (!typed) return '';
-    const live = dpBareHost(dpVps && dpVps.site);
-    if (!live || live === typed) return '';
-    return '<br><b class="stale">ยังไม่ตรงกับ URL production ที่กรอกไว้ (' + esc(typed) +
-      ') — ที่จะขึ้นจริงตอนนี้คือ ' + esc(live) + ' ต้องรัน Rebrand ก่อน ค่าถึงจะเปลี่ยน</b>';
+    return dpBareHost(dpVps && dpVps.site) === typed ? '' : typed;
   }
 
   function dpWhereSync() {
     const vps = dpMode() === 'vps';
     const t = document.getElementById('dpWhereTarget');
     const hint = document.getElementById('dpWhereHint');
-    const stale = dpStaleNote();
-    t.classList.toggle('stale', !!stale);
-    if (vps) {
+    const pending = dpPendingHost();
+    t.classList.toggle('stale', !!pending);
+    if (pending) {
+      t.textContent = pending + ' · รอ Rebrand';
+      hint.innerHTML = '<b class="stale">ยังไม่ได้เขียน ' + esc(pending) +
+        ' ลง astro.config.mjs</b> — กด <b>เริ่ม Rebrand</b> ก่อน ช่องนี้จะเปลี่ยนให้เอง · ถ้าจะขึ้นแบรนด์เดิม ให้ล้างช่อง URL production ในส่วนที่ 1';
+    } else if (vps) {
       t.textContent = dpVps?.domain || 'อ่านโดเมนไม่ได้';
-      hint.innerHTML = (dpVps?.valid
+      hint.innerHTML = dpVps?.valid
         ? 'อ่านโดเมนจาก <code>astro.config.mjs</code> → <code>site:</code> · ถ้ายังไม่มีบนเซิร์ฟเวอร์จะรัน <code>add-site.sh</code> ให้ก่อนอัตโนมัติ'
-        : '<b>ตั้ง site: ใน astro.config.mjs ให้เป็น URL production ก่อน</b> — ตอนนี้อ่านเป็นโดเมนไม่ได้') + stale;
+        : '<b>ตั้ง site: ใน astro.config.mjs ให้เป็น URL production ก่อน</b> — ตอนนี้อ่านเป็นโดเมนไม่ได้';
     } else {
       t.textContent = dpTarget?.name || 'อ่าน wrangler.toml ไม่ได้';
-      hint.innerHTML = 'ขึ้น Cloudflare Worker ตามที่ <code>wrangler.toml</code> ตั้งไว้' + stale;
+      hint.innerHTML = 'ขึ้น Cloudflare Worker ตามที่ <code>wrangler.toml</code> ตั้งไว้';
     }
     dpSync();
   }
@@ -4454,9 +4455,11 @@ const PAGE = /* html */ `<!doctype html>
     const previewed = pvPill.dataset.ok === '1';
     const ticked = pvAllChecked();
     const vps = dpMode() === 'vps';
-    const targetReady = vps ? !!dpVps?.valid : true;
+    const pending = dpPendingHost();
+    const targetReady = !pending && (vps ? !!dpVps?.valid : true);
     dpStart.disabled = !(previewed && ticked && targetReady) || running();
     if (running()) dpHint.textContent = 'มี rebrand กำลังรันอยู่ — รอให้จบก่อน';
+    else if (pending) dpHint.innerHTML = 'ยังไม่ได้รัน Rebrand ให้ <code>' + esc(pending) + '</code> — ถ้าขึ้นตอนนี้จะไปทับแบรนด์เดิม';
     else if (!previewed) dpHint.textContent = 'กด "ทดสอบหน้าเว็บ" ให้เว็บขึ้นก่อน';
     else if (!ticked) dpHint.textContent = 'ติ๊กให้ครบ 5 ข้อก่อน — ยังเหลือ ' + pvBoxes().filter((b) => !b.checked).length + ' ข้อ';
     else if (!targetReady) dpHint.textContent = 'ยังอ่านโดเมนปลายทางไม่ได้ — ดูบรรทัดบน';

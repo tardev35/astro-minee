@@ -27,7 +27,7 @@ const { title, as: HeadingTag = "h2", iconleft = "💰", iconright = "🔍" } = 
     {
       title && (
         <header class="mb-8 flex items-center gap-4 border-b border-[#12a34f]/25 pb-4">
-          <div class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffdf7a] to-[#05461f] shadow-[0_0_10px_rgba(245,197,24,0.45)]" />
+          <div aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffdf7a] to-[#05461f] shadow-[0_0_10px_rgba(245,197,24,0.45)]" />
           <HeadingTag class="bg-gradient-to-r from-[#ffdf7a] via-[#f5c518] to-[#9fcf3a] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">
             {title}
           </HeadingTag>

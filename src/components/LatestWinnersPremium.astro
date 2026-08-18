@@ -12,20 +12,6 @@ const bankPool = [
   { name: "KTB", color: "bg-[#0ea5e9]", icon: ktbLogo.src },
 ];
 
-// Ported off `<script define:vars={{ bankPool }}>` — see src/lib/winnersFeed.ts.
-//
-// This is the only variant with a second row state that depends on the row's
-// own amount rather than a coin flip: over BIG_WIN it gets the gold treatment.
-// Every element that changes carries data-winner-big plus the two class lists
-// and the two strings it wants, so the shared module never learns this brand's
-// palette or wording.
-//
-// The HUD totals are server-rendered and the module continues from them via
-// data-seed — otherwise the figures would visibly reset to zero the moment JS
-// ran, then climb again.
-//
-// Values come from the domain hash, never Math.random(): frontmatter runs at
-// build time, and the gate fails the build on a random call there.
 const BIG_WIN = 40000;
 const pick = (salt: string, n: number) => brandPick(Astro.site, salt, n);
 const digits = (salt: string, n: number) => Array.from({ length: n }, (_, d) => pick(`${salt}-${d}`, 10)).join("");
@@ -121,8 +107,8 @@ const STATUS_BIG = "text-[#fbd503] font-black";
                 <span data-winner-big data-normal-text="✓" data-big-text="🔥" aria-hidden="true">
                   {row.big ? "🔥" : "✓"}
                 </span>{" "}
-                <span data-winner-big data-normal-text="ถอนสำเร็จ" data-big-text="ถอนยอดใหญ่สำเร็จ">
-                  {row.big ? "ถอนยอดใหญ่สำเร็จ" : "ถอนสำเร็จ"}
+                <span data-winner-big data-normal-text="จ่ายเต็มไม่มีหัก" data-big-text="ยอดใหญ่ จ่ายเต็มไม่มีหัก">
+                  {row.big ? "ยอดใหญ่ จ่ายเต็มไม่มีหัก" : "จ่ายเต็มไม่มีหัก"}
                 </span>
               </div>
               <div class="bg-gradient-to-r from-[#ffe873] to-[#fbd503] bg-clip-text text-right font-mono text-base font-black text-transparent sm:text-lg">

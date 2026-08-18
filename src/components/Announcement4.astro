@@ -1,22 +1,18 @@
 ---
-// The default IS the brand's copy: every sub-page renders <Announcement /> bare,
-// so a default left over from a previous brand ships sitewide while index.astro
-// looks correct. No leading emoji — the message is a plain text prop, so there
-// is no element to hang aria-hidden on, and the marquee renders it twice.
 const {
-  message = "MAX56 สล็อตออนไลน์ที่เน้นความสะดวกด้านการทำธุรกรรมผ่าน True Wallet พร้อมเงื่อนไขไม่มีขั้นต่ำในช่องทางที่กำหนด • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ เลือกเกม ตรวจสอบโปรโมชั่น และติดตามสถานะรายการได้จากบัญชีเดียว • คำว่าแตกง่ายและจ่ายจริงไม่ใช่การรับประกันผลลัพธ์ ควรตรวจสอบอัตราจ่าย ความผันผวน และเงื่อนไขโบนัสก่อนเริ่มเล่นทุกครั้ง",
+  message = "YOK789 สล็อตเว็บตรง รวมสล็อตกว่า 40 ค่าย เกมกว่า 4,000 รายการ คาสิโนสด หวย และกีฬา ไว้ในบัญชีเดียว • ฝากถอนออโต้ไวระดับ 1 วินาที ตรวจประวัติรายการได้เองทุกยอด • คืนยอดเสียสูงสุด 8% อ่านฐานคำนวณ รอบรับสิทธิ์ จำนวนเทิร์น และเพดานถอนก่อนกดรับทุกครั้ง • ตรวจชื่อเว็บและ HTTPS ให้ตรงก่อนล็อกอินที่ yok789-brand.com",
 } = Astro.props;
 ---
 
 <div class="mx-auto mt-6 max-w-[900px] px-2 md:px-0">
-  <div class="relative flex h-[40px] items-center rounded-sm border-b-2 border-[#c10d1e] bg-[#0d0204] shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-    <div class="absolute -top-3 left-4 flex items-center gap-1.5 rounded-sm bg-gradient-to-r from-[#c9962c] to-[#ffe9a8] px-3 py-0.5 shadow-[0_4px_10px_rgba(245,196,81,0.5)]">
-      <div class="h-2 w-2 animate-pulse rounded-full bg-[#5a0209]"></div>
-      <span class="text-[10px] font-black tracking-widest text-[#3d0106] md:text-xs">LIVE UPDATE</span>
+  <div class="relative flex h-[40px] items-center rounded-sm border-b-2 border-[#12b84f] bg-[#040a06] shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+    <div class="absolute -top-3 left-4 flex items-center gap-1.5 rounded-sm bg-gradient-to-r from-[#0a6b2f] to-[#5cff9b] px-3 py-0.5 shadow-[0_4px_10px_rgba(18,184,79,0.5)]">
+      <div aria-hidden="true" class="h-2 w-2 animate-pulse rounded-full bg-[#04140a]"></div>
+      <span class="text-[10px] font-black tracking-widest text-[#04140a] md:text-xs">LIVE UPDATE</span>
     </div>
 
     <div class="ml-32 flex-1 overflow-hidden md:ml-40">
-      <div class="marquee flex w-max animate-[scroll_22s_linear_infinite] gap-12 text-sm font-medium whitespace-nowrap text-[#f6e4e4]/90">
+      <div class="ticker-track flex w-max gap-12 text-sm font-medium whitespace-nowrap text-[#d5f0dd]">
         <span>{message}</span>
         <span>{message}</span>
       </div>
@@ -34,8 +30,12 @@ const {
     }
   }
 
+  .ticker-track {
+    animation: scroll 26s linear infinite;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .marquee {
+    .ticker-track {
       animation: none;
     }
   }

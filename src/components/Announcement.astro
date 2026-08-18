@@ -1,12 +1,13 @@
 ---
-// 1. กำหนด Props ให้รับค่า message และ variant
 export interface Props {
   message?: string;
   variant?: "red" | "gold" | "pink" | "dark";
 }
 
-// 2. ตั้งค่าเริ่มต้น (ถ้าไม่ใส่ variant มา จะดึงสี red มาใช้เป็นค่าตั้งต้น)
-const { message = "⚡ LAPDEE88 สมัครด้วยเบอร์โทร ฝากขั้นต่ำ 1 บาท ระบบออโต้ รองรับธนาคารและ TrueMoney Wallet", variant = "gold" } = Astro.props;
+const {
+  message = "YIMSIAM88 สล็อตเว็บตรงไทยแท้ โบนัสแรงแตกบ่อยตามระบบ RNG มาตรฐานโลก • จ่ายเต็มไม่มีหัก ถอนหลักร้อยถึงหลักล้านก็โอนครบทุกบาท • ฝากถอนออโต้ไม่มีขั้นต่ำ เติมผ่านวอเล็ทก็ได้ • ทีมงานคนไทยแท้ ตอบเองไม่ใช้บอท ตลอด 24 ชม.",
+  variant = "gold",
+} = Astro.props;
 ---
 
 <div class="gxt1-container mx-auto max-w-[900px]" data-variant={variant} role="region" aria-label="ประกาศ">
@@ -35,12 +36,12 @@ const { message = "⚡ LAPDEE88 สมัครด้วยเบอร์โท
 
   /* 🌟 สไตล์ที่ 2: สีทอง VIP (Gold) */
   .gxt1-container[data-variant="gold"] {
-    --bg1: #0b0906;
-    --bg2: #241a09;
-    --border: #e0bd72;
-    --label-bg: rgba(212, 175, 90, 0.18);
-    --label-shadow: rgba(212, 175, 90, 0.45);
-    --text-color: #f6e4b4;
+    --bg1: #160604;
+    --bg2: #2a0f06;
+    --border: #f6c475;
+    --label-bg: rgba(255, 122, 24, 0.22);
+    --label-shadow: rgba(255, 122, 24, 0.5);
+    --text-color: #ffd98a;
   }
 
   /* 🌟 สไตล์ที่ 3: สีชมพู ABM96 (Pink) */

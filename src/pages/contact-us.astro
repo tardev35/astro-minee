@@ -43,15 +43,6 @@ const graph = pageGraph(Astro, {
       {
         contactType: "customer service",
         availableLanguage: ["Thai", "English"],
-        // Point at this site's own /line hop, not the short link behind it.
-        // This page is indexed, and structured data is read and stored by
-        // Google directly — so a shortener host here is the group's most
-        // exposed shared identifier. /line forwards to the same place and
-        // that redirect page is noindex.
-        //
-        // `contactOption: "TollFree"` used to be here. That enum describes a
-        // freephone NUMBER; on a chat link it is simply false, and a
-        // ContactPoint Google rejects takes the rest of the node with it.
         path: "/line",
         description: "ติดต่อแอดมินผ่าน LINE Official",
       },

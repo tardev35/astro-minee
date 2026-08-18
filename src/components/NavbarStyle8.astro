@@ -10,28 +10,17 @@ const currentPath = Astro.url.pathname;
 
 const isActive = (path: string) => isActivePath(currentPath, path);
 
-// เมนูชุดเดียว ใช้ทั้งแถบบนจอใหญ่และ sidebar บนมือถือ — เดิมไฟล์นี้เขียนลิงก์ซ้ำ
-// สองชุด (จอใหญ่ไม่มีไอคอน มือถือมี) ซึ่งแปลว่าคนถัดไปแก้ชุดเดียวแล้วอีกชุดค้าง
-// icon แยกเป็น span ของตัวเองเสมอ ไม่เชื่อมกับ name เพราะถ้าต่อกันเป็นข้อความ
-// เดียว screen reader จะอ่านว่า "house หน้าแรก"
-//
-// ลำดับเมนู: หน้าแรก · โปรโมชั่น · (สมัครสมาชิก · เข้าสู่ระบบ ถ้าเปิด toggle) ·
-// ที่เหลือ — แบรนด์นี้ปิด cta toggle ไว้ /register กับ /login จึงเป็นปุ่มมุมขวา
-// อย่างเดียว ไม่ใช่รายการเมนู
 const links = [
   { name: "หน้าแรก", path: "/", icon: "🏠" },
   { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
   { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
-  { name: "ทางเข้า", path: "/ทางเข้า", icon: "🚪" },
-  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "ℹ️" },
-  { name: "ติดต่อเรา", path: "/contact-us", icon: "💬" },
+  { name: "ทางเข้า", path: "/ทางเข้า", icon: "🌐" },
+  { name: "ติดต่อเรา", path: "/contact-us", icon: "📞" },
 ];
-
-const logoAlt = "โลโก้ ABM96 ตัวอักษร ABM สีชมพูและเลข 96 สีขาวขอบดำ ด้านขวาเป็นมาสคอตหมูสีชมพูแลบลิ้นสวมเสื้อยืดสีขาวพิมพ์คำว่า ABM96 นั่งอยู่";
 ---
 
 <header class="sticky top-0 z-50 w-full font-sans">
-  <nav class="relative z-40 w-full bg-[#0d0207]/95 shadow-[0_4px_20px_rgba(0,0,0,0.6)] backdrop-blur-lg">
+  <nav class="relative z-40 w-full bg-[#0a0714]/95 shadow-[0_4px_20px_rgba(0,0,0,0.6)] backdrop-blur-lg">
     <div class="bg-theme-oklab absolute bottom-0 left-0 h-[2px] w-full opacity-80"></div>
 
     <div class="flex h-[65px] w-full items-center justify-between px-3 md:px-6 lg:h-[80px]">
@@ -41,17 +30,15 @@ const logoAlt = "โลโก้ ABM96 ตัวอักษร ABM สีชม
             mainLogo ? (
               <Picture
                 src={mainLogo}
-                alt={logoAlt}
+                alt="PAY69 โลโก้"
                 loading="eager"
                 fetchpriority="high"
-                widths={[130, 260, 390]}
-                sizes="130px"
-                class="h-[35px] w-auto drop-shadow-[0_0_10px_rgba(253,163,205,0.55)] lg:h-[45px]"
+                class="h-[35px] w-auto drop-shadow-[0_0_10px_rgba(212,162,74,0.45)] lg:h-[45px]"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
               />
             ) : (
-              <span class="bg-gradient-to-b from-[#fda3cd] to-[#b5054f] bg-clip-text text-2xl font-black tracking-widest text-transparent">ABM96</span>
+              <span class="bg-gradient-to-b from-[#f7e3bd] to-[#b8823a] bg-clip-text text-2xl font-black tracking-widest text-transparent">PAY69</span>
             )
           }
         </a>
@@ -60,17 +47,13 @@ const logoAlt = "โลโก้ ABM96 ตัวอักษร ABM สีชม
       <div class="hidden h-full items-center justify-center gap-8 lg:flex xl:gap-10">
         {
           links.map((link) => (
-            <a href={link.path} class="group relative flex h-full items-center gap-2 text-sm font-bold transition-all xl:text-base">
-              <span class="absolute left-0 -ml-3 text-[#fda3cd] opacity-0 transition-all duration-300 group-hover:-ml-4 group-hover:opacity-100">[</span>
-              <span aria-hidden="true" class="text-base leading-none">
-                {link.icon}
-              </span>
-              <span
-                class={`transition-colors duration-300 ${isActive(link.path) ? "text-[#fda3cd] drop-shadow-[0_0_8px_rgba(253,163,205,0.7)]" : "text-[#e7c3d6]/80 group-hover:text-[#ffd0e6]"}`}>
+            <a href={link.path} class="group relative flex h-full items-center text-sm font-bold transition-all xl:text-base">
+              <span class={`absolute left-0 -ml-3 text-amber-300 opacity-0 transition-all duration-300 group-hover:-ml-4 group-hover:opacity-100`}>[</span>
+              <span class={`transition-colors duration-300 ${isActive(link.path) ? "text-amber-300 drop-shadow-[0_0_8px_rgba(212,162,74,0.7)]" : "text-violet-100/80 group-hover:text-amber-200"}`}>
                 {link.name}
               </span>
-              <span class="absolute right-0 -mr-3 text-[#fda3cd] opacity-0 transition-all duration-300 group-hover:-mr-4 group-hover:opacity-100">]</span>
-              {isActive(link.path) && <div class="absolute bottom-0 left-0 h-[3px] w-full rounded-t-md bg-[#fda3cd] shadow-[0_-2px_10px_rgba(253,163,205,0.9)]" />}
+              <span class={`absolute right-0 -mr-3 text-amber-300 opacity-0 transition-all duration-300 group-hover:-mr-4 group-hover:opacity-100`}>]</span>
+              {isActive(link.path) && <div class="absolute bottom-0 left-0 h-[3px] w-full rounded-t-md bg-amber-300 shadow-[0_-2px_10px_rgba(212,162,74,0.9)]" />}
             </a>
           ))
         }
@@ -79,23 +62,25 @@ const logoAlt = "โลโก้ ABM96 ตัวอักษร ABM สีชม
       <div class="z-50 flex items-center gap-2 md:gap-4">
         <a
           href="/login"
-          class="hidden items-center justify-center rounded border border-[#f1509b]/70 px-6 py-2 text-sm font-bold text-[#ffd0e6] transition-all hover:bg-[#f1509b]/20 hover:shadow-[0_0_15px_rgba(241,80,155,0.45)] lg:flex">
+          class="hidden items-center justify-center rounded border border-violet-500/70 px-6 py-2 text-sm font-bold text-amber-200 transition-all hover:bg-violet-600/20 hover:shadow-[0_0_15px_rgba(124,58,237,0.4)] lg:flex">
           เข้าสู่ระบบ
         </a>
         <a
           href="/register"
-          class="bg-theme-oklab hidden items-center justify-center rounded px-6 py-2 text-sm font-extrabold text-[#2a0210] shadow-[0_0_20px_rgba(253,163,205,0.5)] transition-all hover:brightness-110 lg:flex">
+          class="bg-theme-oklab hidden items-center justify-center rounded px-6 py-2 text-sm font-extrabold text-[#1a1130] shadow-[0_0_20px_rgba(212,162,74,0.5)] transition-all hover:brightness-110 lg:flex">
           สมัครสมาชิก
         </a>
 
         <div class="flex items-center gap-2 lg:hidden">
-          <a href="/register" class="bg-theme-oklab flex items-center justify-center rounded px-3 py-1.5 text-[11px] font-bold text-[#2a0210] shadow-[0_0_10px_rgba(253,163,205,0.5)] md:px-4 md:text-xs">
+          <a
+            href="/register"
+            class="bg-theme-oklab flex items-center justify-center rounded px-3 py-1.5 text-[11px] font-bold text-[#1a1130] shadow-[0_0_10px_rgba(212,162,74,0.5)] md:px-4 md:text-xs">
             สมัครสมาชิก
           </a>
-          <button id="hamburger-btn" class="flex flex-col items-center justify-center space-y-1.5 rounded border border-[#f1509b]/40 bg-[#f1509b]/10 p-1.5" aria-label="Menu">
-            <span class="hamburger-line h-[2px] w-5 origin-center rounded-full bg-[#fda3cd] transition-all duration-300"></span>
-            <span class="hamburger-line h-[2px] w-5 rounded-full bg-[#fda3cd] transition-all duration-300"></span>
-            <span class="hamburger-line h-[2px] w-5 origin-center rounded-full bg-[#fda3cd] transition-all duration-300"></span>
+          <button id="hamburger-btn" class="flex flex-col items-center justify-center space-y-1.5 rounded border border-violet-500/40 bg-violet-600/10 p-1.5" aria-label="Menu">
+            <span class="hamburger-line h-[2px] w-5 origin-center rounded-full bg-amber-300 transition-all duration-300"></span>
+            <span class="hamburger-line h-[2px] w-5 rounded-full bg-amber-300 transition-all duration-300"></span>
+            <span class="hamburger-line h-[2px] w-5 origin-center rounded-full bg-amber-300 transition-all duration-300"></span>
           </button>
         </div>
       </div>
@@ -106,10 +91,10 @@ const logoAlt = "โลโก้ ABM96 ตัวอักษร ABM สีชม
 
   <div
     id="mobile-sidebar"
-    class="fixed top-0 right-0 z-50 h-screen w-[260px] translate-x-full transform overflow-y-auto border-l border-[#f1509b]/40 bg-[#0d0207] shadow-[-10px_0_30px_rgba(0,0,0,0.9)] transition-transform duration-400 ease-[cubic-bezier(0.3,1,0.3,1)] lg:hidden">
+    class="fixed top-0 right-0 z-50 h-screen w-[260px] translate-x-full transform overflow-y-auto border-l border-violet-500/40 bg-[#0a0714] shadow-[-10px_0_30px_rgba(0,0,0,0.9)] transition-transform duration-400 ease-[cubic-bezier(0.3,1,0.3,1)] lg:hidden">
     <div class="flex items-center justify-between border-b border-white/5 px-5 py-5">
       <span class="text-sm font-extrabold tracking-wider text-white">MENU</span>
-      <button id="close-sidebar-btn" class="p-1 text-xl text-[#fda3cd] hover:text-white" aria-label="ปิดเมนู">✕</button>
+      <button id="close-sidebar-btn" class="p-1 text-xl text-amber-300 hover:text-white">✕</button>
     </div>
 
     <div class="flex flex-col space-y-2 px-4 pt-4 pb-8">
@@ -117,19 +102,19 @@ const logoAlt = "โลโก้ ABM96 ตัวอักษร ABM สีชม
         links.map((link) => (
           <a
             href={link.path}
-            class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive(link.path) ? "bg-[#f1509b]/20 border-[#f1509b]/60 text-[#fda3cd]" : "bg-white/5 border-transparent text-[#e7c3d6]/80 hover:bg-white/10"}`}>
+            class={`sidebar-item flex items-center rounded-lg border px-4 py-3.5 transition-all ${isActive(link.path) ? "border-violet-500/60 bg-violet-600/20 text-amber-300" : "border-transparent bg-white/5 text-violet-100/80 hover:bg-white/10"}`}>
             <span aria-hidden="true" class="mr-3 text-xl">
-              {link.icon}
+              {link.icon ?? "🔗"}
             </span>
             <span class="text-sm font-bold">{link.name}</span>
           </a>
         ))
       }
 
-      <div class="mt-6 flex flex-col gap-3 border-t border-[#f1509b]/40 pt-6">
+      <div class="mt-6 flex flex-col gap-3 border-t border-violet-500/40 pt-6">
         <a
           href="/login"
-          class="sidebar-item hover:bg-theme-oklab flex items-center justify-center gap-2 rounded-lg border border-[#fda3cd]/70 bg-transparent py-3.5 text-sm font-bold text-[#ffd0e6] transition-colors hover:border-transparent hover:text-[#2a0210]">
+          class="sidebar-item hover:bg-theme-oklab flex justify-center rounded-lg border border-amber-400/70 bg-transparent py-3.5 text-sm font-bold text-amber-200 transition-colors hover:border-transparent hover:text-[#1a1130]">
           <span aria-hidden="true">🔒</span> เข้าสู่ระบบ
         </a>
       </div>
@@ -139,7 +124,7 @@ const logoAlt = "โลโก้ ABM96 ตัวอักษร ABM สีชม
 
 <style is:global>
   .bg-theme-oklab {
-    background-image: linear-gradient(in oklab to right, #b5054f, #f1509b, #fda3cd);
+    background-image: linear-gradient(in oklab to right, #b8823a, #e0b877, #f7e3bd);
   }
 
   /* อนิเมชั่น Hamburger เปลี่ยนเป็น X */
@@ -180,14 +165,6 @@ const logoAlt = "โลโก้ ABM96 ตัวอักษร ABM สีชม
   }
   .sidebar-item:nth-child(6) {
     transition-delay: 0.35s;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .sidebar-item {
-      transition: none;
-      opacity: 1;
-      transform: none;
-    }
   }
 </style>
 
