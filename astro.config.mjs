@@ -33,7 +33,7 @@ export default defineConfig({
     "/line": "https://tinyurl.com/tog191",
   },
 
-  site: "https://max56-auto.net",
+  site: "https://เฮงเฮง-888.com",
   integrations: [
     sitemap({
       // /login, /register and /line are forwarding pages that all ship

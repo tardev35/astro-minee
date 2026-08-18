@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle10.astro";
-import Footer from "../components/FooterPremium.astro";
+import Navbar from "../components/NavbarStyle9.astro";
+import Footer from "../components/FooterStyle2.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,11 +55,11 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "MAX56 | สล็อตฝากถอน true wallet ไม่มีขั้นต่ำ แตกง่ายจ่ายจริงทุกยอด",
+  title = "เฮงเฮง888 |เกมสล็อตแตกหนักวันนี้ ไม่กำหนดขั้นต่ำ โปรโมชั่นดี จ่ายไว",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings.
-  description = "MAX56 สล็อตออนไลน์ฝากถอนผ่าน True Wallet ไม่มีขั้นต่ำตามเงื่อนไข รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมเกมหลากหลายและระบบตรวจสอบรายการที่ใช้งานได้ง่าย",
+  description = "เฮงเฮง888 รวมเกมสล็อตหลายแนวไว้ในระบบเดียว ไม่กำหนดขั้นต่ำตามเงื่อนไข รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมโปรโมชั่นหลากหลายและระบบตรวจสอบรายการที่ใช้งานง่าย",
   robots = "index, follow",
 } = Astro.props;
 
@@ -236,7 +236,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #0d0204;
+        background-color: #03170c;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -289,7 +289,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ MAX56 โลโก้ตัวอักษร MAX บนพื้นแดงและเลข 56 สีแดงบนพื้นขาว คู่กับมาสคอตช้างสีขาวสวมถุงเท้าลายแดง-ดำ ข้อความ สล็อตเว็บตรงแตกง่าย โบนัสคุ้มค่า ฝาก-ถอนออโต้ ป้ายสี่อัน เล่นง่าย จ่ายจริง ระบบเสถียร รองรับมือถือ ด้านขวาเป็นผู้หญิงในชุดครอปสีขาว-แดงพิมพ์คำว่า MAX56 ป้ายไฟ JACKPOT ตู้สล็อตเลข 777 BAR ยอด JACKPOT 1,568,000 กองเหรียญทอง ชิปคาสิโนสีแดง-ขาว และปุ่มแดง สมัครเลย ในห้องคาสิโนไฟนีออนสีแดง"
+          alt="แบนเนอร์ต้อนรับ เฮงเฮง888 โลโก้ตัวอักษรไทย เฮงเฮง สีขาวขอบเขียวเข้ม วางบนเลข 888 สีเขียวมะนาว ข้อความ สล็อตเว็บตรงแตกง่าย และ โปรโมชั่นคุ้มค่า ฝาก-ถอนออโต้ ป้ายสี่อัน เล่นง่าย จ่ายจริง ระบบเสถียร รองรับมือถือ ด้านขวาเป็นผู้หญิงในชุดครอปสีขาว-เขียวพิมพ์คำว่า เฮงเฮง888 ป้ายไฟ JACKPOT ตู้สล็อตเลข 888 ป้าย BIG WIN กองเหรียญทอง ชิปคาสิโนสีเขียว-ขาว และปุ่มเขียวมะนาว สมัครเลย ในห้องคาสิโนไฟนีออนสีเขียว"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

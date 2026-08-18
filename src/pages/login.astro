@@ -9,8 +9,12 @@ const targetUrl = "https://yoalink.com/q83b";
 // default while the rest of the site does not — hence the @font-face rules in
 // the first <style> block below.
 //
-// Oswald is the only face left that needs a CDN: the two display headings use
-// it and it is not self-hosted.
+// Oswald is the only face left that needs a CDN: the Latin status heading uses
+// it and it is not self-hosted. The brand wordmark does NOT — this brand's name
+// is Thai, and Oswald has no Thai glyphs, so .brand-identity draws in
+// var(--font-sans) instead. Setting it back to Oswald would split the wordmark
+// between two faces: "888" in Oswald and "เฮงเฮง" in whatever sans-serif the
+// browser falls back to.
 //
 // The old value asked Google for "Kanit:wght@300;400;600" even though the site
 // self-hosts Kanit: a third-party request for weights nothing here draws (300
@@ -25,18 +29,18 @@ const fontHref = usesGoogleFonts
 <html lang="th" style={`--font-sans: ${fontStack};`}>
   <head>
     <meta charset="utf-8" />
-    <title>MAX56 | เข้าสู่ระบบสล็อตผ่านช่องทางหลักอย่างสะดวก</title>
+    <title>เฮงเฮง888 | เข้าสู่ระบบสล็อตผ่านช่องทางหลัก</title>
 
     {
       /* Title and description are the docx SUB-PAGES row for เข้าสู่ระบบ,
-        carried VERBATIM at the length the brief supplies (121 characters).
+        carried VERBATIM at the length the brief supplies (117 characters).
         verify-build.mjs SKIPS the description length check on this file — the
         gate sits after `if (!indexable) continue;` and this stub is noindex
         (see the robots meta below) — so there is nothing here to pad up to the
         150–160 window and no reason to reword the brand's own sentence.
         Count CHARACTERS, not bytes: Thai is 3 bytes per character. */
     }
-    <meta name="description" content="MAX56 เข้าสู่ระบบผ่านช่องทางหลัก รองรับมือถือและคอมพิวเตอร์ พร้อมตรวจสอบบัญชี เลือกเกม ดูโปรโมชั่น และจัดการรายการได้ง่าย" />
+    <meta name="description" content="เฮงเฮง888 เข้าสู่ระบบผ่านช่องทางหลัก รองรับมือถือและคอมพิวเตอร์ พร้อมเลือกเกม ตรวจสอบโปรโมชั่น และจัดการบัญชีได้สะดวก" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {
@@ -76,38 +80,37 @@ const fontHref = usesGoogleFonts
     </style>
 
     <style>
-      /* MAX56 is crimson on near-black — a glossy red-and-white slot hall, with
-         a white 3D elephant as the mascot and the reels and JACKPOT marquee lit
-         in the same red — with gold as the second colour (the coins, the 777
-         reels and the percentage numerals) and white for the wordmark itself,
-         which is how the logo is drawn.
-         The gold is the accent on ONE element here (the counter-rotating inner
-         ring); everything else is crimson, so it stays a red page.
+      /* เฮงเฮง888 is deep forest green on near-black green — Chinese-lucky
+         prosperity rather than neon: gold coins as the second colour (the
+         "money" accent, here on the counter-rotating inner ring) and an
+         olive-lime "888" as the third, which is how the logo is drawn — white
+         Thai letters over a lime numeral.
          Every variable below is NAMED FOR THE COLOUR IT HOLDS, which previous
          brands stopped doing: this block once declared `--brand-gold` on brands
          with no gold in them and `--brand-red` on a blue one, so the next editor
-         reused it by name and shipped the wrong hue. The names here were also
-         inherited straight from the outgoing lime-green brand, whose hues are
-         not in this palette at all. Rename with the value. */
+         reused it by name and shipped the wrong hue. The names arriving here
+         were the previous brand's, and so were the hues behind them — neither
+         belongs to this palette. Rename with the value. */
       :root {
-        --ink: #0d0204;
-        --panel: rgba(26, 5, 8, 0.94);
-        --crimson: #c10d1e;
-        --crimson-light: #e8202f;
-        --crimson-deep: #8c0512;
-        --crimson-darkest: #5a0209;
-        --gold: #f5c451;
+        --ink: #03170c;
+        --panel: rgba(7, 43, 20, 0.94);
+        --green: #12a34f;
+        --green-light: #1fc465;
+        --green-deep: #05461f;
+        --green-darkest: #05230f;
+        --gold: #f5c518;
+        --lime: #9fcf3a;
         --silver: #e9edf2;
-        --text-red: #f6e4e4;
-        --text-red-dim: #c9a8a8;
+        --text-green: #e8f3e0;
+        --text-green-dim: #a7c295;
       }
 
       body {
         margin: 0;
         font-family: var(--font-sans);
-        color: var(--text-red);
+        color: var(--text-green);
 
-        background: radial-gradient(circle at 50% 10%, rgba(232, 32, 47, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(61, 1, 6, 0.18) 0%, transparent 55%), var(--ink);
+        background: radial-gradient(circle at 50% 10%, rgba(18, 163, 79, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(5, 70, 31, 0.28) 0%, transparent 55%), var(--ink);
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -121,26 +124,26 @@ const fontHref = usesGoogleFonts
         max-width: 450px;
         padding: 3.5rem;
         background: var(--panel);
-        border: 1px solid rgba(232, 32, 47, 0.4);
+        border: 1px solid rgba(18, 163, 79, 0.4);
         border-radius: 2rem;
         box-shadow:
-          0 1rem 3rem rgba(232, 32, 47, 0.2),
-          0 0 2rem rgba(61, 1, 6, 0.22);
+          0 1rem 3rem rgba(18, 163, 79, 0.2),
+          0 0 2rem rgba(5, 70, 31, 0.28);
         text-align: center;
         backdrop-filter: blur(10px);
       }
 
       .brand-identity {
-        font-family: "Oswald", sans-serif;
+        font-family: var(--font-sans);
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(180deg, var(--silver) 0%, var(--silver) 42%, var(--crimson) 74%, var(--crimson-deep) 100%);
+        background: linear-gradient(180deg, var(--silver) 0%, var(--silver) 42%, var(--lime) 74%, var(--green-deep) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        letter-spacing: 0.3em;
+        letter-spacing: 0.12em;
         margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 2px rgba(232, 32, 47, 0.35));
+        filter: drop-shadow(0 1px 2px rgba(18, 163, 79, 0.35));
       }
 
       .sophisticated-loader {
@@ -156,23 +159,23 @@ const fontHref = usesGoogleFonts
       .orb {
         width: 40px;
         height: 40px;
-        background: radial-gradient(circle, var(--crimson-light) 0%, var(--crimson) 45%, var(--crimson-darkest) 100%);
+        background: radial-gradient(circle, var(--green-light) 0%, var(--green) 45%, var(--green-darkest) 100%);
         border-radius: 50%;
-        box-shadow: 0 0 2rem rgba(232, 32, 47, 0.35);
+        box-shadow: 0 0 2rem rgba(18, 163, 79, 0.35);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .ring {
         position: absolute;
         border-radius: 50%;
-        border: 3px solid rgba(232, 32, 47, 0.2);
+        border: 3px solid rgba(18, 163, 79, 0.2);
         animation: spin linear infinite;
       }
 
       .ring-1 {
         width: 100%;
         height: 100%;
-        border-top-color: var(--crimson);
+        border-top-color: var(--green);
         animation-duration: 4s;
       }
 
@@ -196,11 +199,11 @@ const fontHref = usesGoogleFonts
         0%,
         100% {
           transform: scale(1);
-          box-shadow: 0 0 2rem rgba(232, 32, 47, 0.35);
+          box-shadow: 0 0 2rem rgba(18, 163, 79, 0.35);
         }
         50% {
           transform: scale(1.15);
-          box-shadow: 0 0 3rem rgba(232, 32, 47, 0.5);
+          box-shadow: 0 0 3rem rgba(31, 196, 101, 0.5);
         }
       }
 
@@ -210,13 +213,13 @@ const fontHref = usesGoogleFonts
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--text-red);
-        text-shadow: 0 1px 1px rgba(232, 32, 47, 0.25);
+        color: var(--text-green);
+        text-shadow: 0 1px 1px rgba(18, 163, 79, 0.25);
         margin: 0;
       }
       .status-text .p {
         font-size: 0.875rem;
-        color: var(--text-red-dim);
+        color: var(--text-green-dim);
         line-height: 1.6;
         margin: 1rem 0 0 0;
       }
@@ -224,7 +227,7 @@ const fontHref = usesGoogleFonts
   </head>
   <body>
     <div class="premium-loading-container">
-      <div class="brand-identity">MAX56</div>
+      <div class="brand-identity">เฮงเฮง888</div>
 
       <div class="sophisticated-loader">
         <div class="orb"></div>
@@ -234,7 +237,7 @@ const fontHref = usesGoogleFonts
 
       <div class="status-text">
         <h1 class="h1">AUTHENTICATING SECURE ACCESS...</h1>
-        <p class="p">กำลังพาไปหน้าเข้าสู่ระบบ MAX56 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
+        <p class="p">กำลังพาไปหน้าเข้าสู่ระบบ เฮงเฮง888 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
       </div>
     </div>
 

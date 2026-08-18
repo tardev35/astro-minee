@@ -1,6 +1,7 @@
 ---
 import { isActivePath } from "../lib/nav";
 import { Picture } from "astro:assets";
+import { BRAND_NAME } from "../lib/brandProfile";
 const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
 
 const imagePaths = Object.keys(images);
@@ -18,26 +19,25 @@ const isActive = (path: string) => isActivePath(currentPath, path);
 // ต่อท้าย แบรนด์นี้ปิด cta toggle (login/register ยังเป็นหน้า interstitial)
 // จึงไม่มีเมนู สมัครสมาชิก/เข้าสู่ระบบ และ ทางเข้า ยังอยู่ในเมนูตามปกติ
 //
-// ไอคอนเลือกให้ตรงแนวคาสิโน/กีฬาของ AMB194 (ไม่ใช่แบรนด์หวย)
+// ไอคอนเลือกให้ตรงแนวสล็อต/คาสิโนของ เฮงเฮง888 (ไม่ใช่แบรนด์หวย)
 const links = [
   { name: "หน้าแรก", path: "/", icon: "🏠" },
   { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
   { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
-  { name: "ทางเข้า", path: "/ทางเข้า", icon: "🌐" },
+  { name: "ทางเข้า", path: "/ทางเข้า", icon: "🚪" },
   { name: "เกี่ยวกับเรา", path: "/about-us", icon: "🏢" },
-  { name: "ติดต่อเรา", path: "/contact-us", icon: "📞" },
+  { name: "ติดต่อเรา", path: "/contact-us", icon: "💬" },
 ];
 
-const logoAlt =
-  "โลโก้ AMB194 ตัวอักษร AMB สีทองและเลข 194 แบบโครงร่างสีเงิน ข้างหน้าเป็นตราโพดำสีดำขอบทองที่มีดาวสีแดงและอักษร M อยู่ตรงกลาง ใต้ชื่อมีคำว่า CASINO ONLINE & SPORT BETTING";
+const logoAlt = "โลโก้ เฮงเฮง888 ตัวอักษรไทย เฮงเฮง สีขาวขอบเขียวเข้ม วางซ้อนบนเลข 888 สีเขียวมะนาวไล่เฉด มีประกายสีเขียวอ่อนขนาบสองข้าง";
 ---
 
 <header class="sticky top-0 z-50 w-full font-sans">
-  <nav class="relative z-50 w-full border-b border-[#f8d441]/30 bg-gradient-to-r from-[#0b0806] via-[#221807] to-[#0b0806] shadow-[0_4px_25px_rgba(0,0,0,0.75)]">
+  <nav class="relative z-50 w-full border-b border-[#f5c518]/30 bg-gradient-to-r from-[#03170c] via-[#072b14] to-[#03170c] shadow-[0_4px_25px_rgba(3,23,12,0.75)]" aria-label={`เมนูหลัก ${BRAND_NAME}`}>
     <div class="mx-auto flex h-[70px] w-full max-w-[1600px] items-center justify-between px-4 lg:h-[85px] lg:px-8">
       <div class="flex items-center">
         <a href="/" class="relative flex-shrink-0 transition-transform hover:scale-105">
-          <div class="absolute inset-0 rounded-full bg-[#f8d441]/20 blur-xl"></div>
+          <div class="absolute inset-0 rounded-full bg-[#f5c518]/20 blur-xl"></div>
           <Picture
             src={mainLogo!}
             alt={logoAlt}
@@ -45,7 +45,7 @@ const logoAlt =
             fetchpriority="high"
             widths={[120, 240, 360]}
             sizes="120px"
-            class="relative h-[40px] w-auto drop-shadow-[0_0_8px_rgba(248,212,65,0.45)] lg:h-[50px]"
+            class="relative h-[40px] w-auto drop-shadow-[0_0_8px_rgba(245,197,24,0.45)] lg:h-[50px]"
             formats={["avif", "webp"]}
             fallbackFormat="webp"
           />
@@ -57,16 +57,16 @@ const logoAlt =
           links.map((link) => (
             <a
               href={link.path}
-              class={`group relative flex h-full items-center gap-1.5 px-3 text-sm font-bold transition-all duration-300 xl:px-5 xl:text-base ${isActive(link.path) ? "text-[#fff3ae]" : "text-[#c9b784]/85 hover:text-[#f8d441]"}`}>
+              class={`group relative flex h-full items-center gap-1.5 px-3 text-sm font-bold transition-all duration-300 xl:px-5 xl:text-base ${isActive(link.path) ? "text-[#ffdf7a]" : "text-[#a7c295]/85 hover:text-[#f5c518]"}`}>
               <div
                 aria-hidden="true"
-                class={`absolute inset-0 bg-gradient-to-b from-transparent to-[#f8d441]/12 transition-opacity duration-300 ${isActive(link.path) ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+                class={`absolute inset-0 bg-gradient-to-b from-transparent to-[#f5c518]/12 transition-opacity duration-300 ${isActive(link.path) ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
               />
               <span aria-hidden="true" class="relative z-10 text-base">
                 {link.icon}
               </span>
               <span class="relative z-10">{link.name}</span>
-              <div class={`absolute bottom-0 left-1/2 h-[3px] -translate-x-1/2 bg-[#f8d441] transition-all duration-300 ${isActive(link.path) ? "w-full" : "w-0 group-hover:w-full"}`} />
+              <div class={`absolute bottom-0 left-1/2 h-[3px] -translate-x-1/2 bg-[#f5c518] transition-all duration-300 ${isActive(link.path) ? "w-full" : "w-0 group-hover:w-full"}`} />
             </a>
           ))
         }
@@ -75,37 +75,37 @@ const logoAlt =
       <div class="flex items-center gap-3 md:gap-4">
         <a
           href="/login"
-          class="hidden items-center justify-center rounded-full border border-[#f8d441]/70 px-6 py-2.5 text-sm font-bold text-[#f8d441] shadow-[0_0_10px_rgba(248,212,65,0.2)] transition-all hover:bg-[#f8d441] hover:text-[#170f02] lg:flex">
+          class="hidden items-center justify-center rounded-full border border-[#f5c518]/70 px-6 py-2.5 text-sm font-bold text-[#f5c518] shadow-[0_0_10px_rgba(245,197,24,0.2)] transition-all hover:bg-[#f5c518] hover:text-[#05230f] lg:flex">
           เข้าสู่ระบบ
         </a>
         <a
           href="/register"
-          class="hidden items-center justify-center rounded-full bg-gradient-to-r from-[#fff3ae] via-[#f8d441] to-[#d9a520] px-6 py-2.5 text-sm font-extrabold text-[#170f02] shadow-[0_0_20px_rgba(248,212,65,0.4)] transition-all hover:scale-105 hover:brightness-110 lg:flex">
+          class="hidden items-center justify-center rounded-full bg-gradient-to-r from-[#ffdf7a] via-[#f5c518] to-[#b8860b] px-6 py-2.5 text-sm font-extrabold text-[#05230f] shadow-[0_0_20px_rgba(245,197,24,0.4)] transition-all hover:scale-105 hover:brightness-110 lg:flex">
           สมัครสมาชิก
         </a>
 
         <button
           id="hamburger-btn"
-          class="relative z-[60] flex h-10 w-10 flex-col items-center justify-center overflow-hidden rounded-full border-2 border-[#e11d2b]/70 bg-gradient-to-tr from-[#e11d2b] to-[#f8d441] shadow-[0_0_15px_rgba(248,212,65,0.5)] lg:hidden"
+          class="relative z-[60] flex h-10 w-10 flex-col items-center justify-center overflow-hidden rounded-full border-2 border-[#12a34f]/70 bg-gradient-to-tr from-[#12a34f] to-[#9fcf3a] shadow-[0_0_15px_rgba(245,197,24,0.5)] lg:hidden"
           aria-label="เปิดเมนู">
-          <span class="hamburger-line absolute h-[2px] w-5 -translate-y-1.5 transform rounded-full bg-[#0b0806] transition-all duration-300"></span>
-          <span class="hamburger-line absolute h-[2px] w-5 rounded-full bg-[#0b0806] transition-all duration-300"></span>
-          <span class="hamburger-line absolute h-[2px] w-5 translate-y-1.5 transform rounded-full bg-[#0b0806] transition-all duration-300"></span>
+          <span class="hamburger-line absolute h-[2px] w-5 -translate-y-1.5 transform rounded-full bg-[#03170c] transition-all duration-300"></span>
+          <span class="hamburger-line absolute h-[2px] w-5 rounded-full bg-[#03170c] transition-all duration-300"></span>
+          <span class="hamburger-line absolute h-[2px] w-5 translate-y-1.5 transform rounded-full bg-[#03170c] transition-all duration-300"></span>
         </button>
       </div>
     </div>
   </nav>
 
-  <div id="mobile-circular-menu" class="pointer-events-none fixed inset-0 z-40 flex flex-col items-center justify-center bg-[#0b0806]/98 backdrop-blur-2xl lg:hidden">
+  <div id="mobile-circular-menu" class="pointer-events-none fixed inset-0 z-40 flex flex-col items-center justify-center bg-[#03170c]/98 backdrop-blur-2xl lg:hidden">
     <div class="flex w-full flex-col items-center space-y-5 px-6">
       <Picture
         src={mainLogo!}
-        alt={logoAlt}
+        alt=""
         widths={[150, 300]}
         sizes="150px"
         loading="lazy"
         decoding="async"
-        class="menu-item mb-4 h-[50px] w-auto opacity-0 drop-shadow-[0_0_15px_rgba(248,212,65,0.5)]"
+        class="menu-item mb-4 h-[50px] w-auto opacity-0 drop-shadow-[0_0_15px_rgba(245,197,24,0.5)]"
         formats={["avif", "webp"]}
         fallbackFormat="webp"
       />
@@ -114,20 +114,20 @@ const logoAlt =
         links.map((link) => (
           <a
             href={link.path}
-            class={`menu-item flex items-center gap-3 text-2xl font-black tracking-wider uppercase opacity-0 transition-all duration-300 ${isActive(link.path) ? "text-[#fff3ae] drop-shadow-[0_0_8px_rgba(248,212,65,0.8)]" : "text-[#c9b784]/85 hover:text-white"}`}>
+            class={`menu-item flex items-center gap-3 text-2xl font-black tracking-wider uppercase opacity-0 transition-all duration-300 ${isActive(link.path) ? "text-[#ffdf7a] drop-shadow-[0_0_8px_rgba(245,197,24,0.8)]" : "text-[#a7c295]/85 hover:text-white"}`}>
             <span aria-hidden="true">{link.icon}</span>
             <span>{link.name}</span>
           </a>
         ))
       }
 
-      <div class="menu-item mt-4 flex w-full max-w-[280px] flex-col gap-4 border-t border-[#e11d2b]/60 pt-8 opacity-0">
+      <div class="menu-item mt-4 flex w-full max-w-[280px] flex-col gap-4 border-t border-[#12a34f]/60 pt-8 opacity-0">
         <a
           href="/register"
-          class="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#fff3ae] via-[#f8d441] to-[#d9a520] py-3.5 text-lg font-extrabold text-[#170f02] shadow-[0_0_20px_rgba(248,212,65,0.4)]">
+          class="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#ffdf7a] via-[#f5c518] to-[#b8860b] py-3.5 text-lg font-extrabold text-[#05230f] shadow-[0_0_20px_rgba(245,197,24,0.4)]">
           <span aria-hidden="true">🔥</span> สมัครสมาชิก
         </a>
-        <a href="/login" class="flex w-full items-center justify-center rounded-full border border-[#f8d441]/50 py-3.5 text-lg font-bold text-[#f8d441] hover:bg-[#f8d441]/10">เข้าสู่ระบบ</a>
+        <a href="/login" class="flex w-full items-center justify-center rounded-full border border-[#f5c518]/50 py-3.5 text-lg font-bold text-[#f5c518] hover:bg-[#f5c518]/10">เข้าสู่ระบบ</a>
       </div>
     </div>
   </div>

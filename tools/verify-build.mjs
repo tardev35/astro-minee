@@ -754,7 +754,14 @@ scanAstroFrontmatter(path.join("src", "layouts"));
 if (fs.existsSync("wrangler.toml")) {
   const wrangler = fs.readFileSync("wrangler.toml", "utf8");
   const name = (wrangler.match(/^\s*name\s*=\s*"([^"]+)"/m) || [])[1];
-  const slug = SITE.hostname.replace(/^www\./i, "").split(/[-.]/)[0];
+  // An internationalised domain arrives here already punycoded, and its first
+  // label is one inseparable token — `xn---888-zeoa5yb3nc` for เฮงเฮง-888.com.
+  // Splitting that on "-" yields "xn", which is the same expected slug for
+  // EVERY IDN brand, i.e. exactly the collision this check exists to prevent.
+  // Take the whole label instead: it is unique per domain and still derived
+  // from the domain, so a name copied from another brand still fails.
+  const host = SITE.hostname.replace(/^www\./i, "");
+  const slug = host.startsWith("xn--") ? host.split(".")[0] : host.split(/[-.]/)[0];
   if (name && slug && name.toLowerCase() !== slug.toLowerCase()) {
     error("wrangler.toml", `name = "${name}" but the site is ${SITE.hostname} (expected "${slug}") — ` + `deploying now would overwrite the "${name}" brand's live worker`);
   }

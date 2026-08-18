@@ -1,20 +1,20 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/Announcement4.astro";
-import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
-import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
-import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
-import ContentBox from "../components/ContentBox.astro";
-import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
-import ContentBoxTwoNeumorphism from "../components/ContentBoxTwoNeumorphism.astro";
-import ContentBoxTwoFloatingBadge from "../components/ContentBoxTwoFloatingBadge.astro";
+import Announcement from "../components/Announcement5.astro";
+import ContentBoxPremium from "../components/ContentBoxPremium.astro";
+import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
+import ContentBoxTwoPremium from "../components/ContentBoxTwoPremium.astro";
+import ContentBoxTwoCyberCut from "../components/ContentBoxTwoCyberCut.astro";
+import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
+import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
+import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinners2.astro";
+import LatestWinners from "../components/LatestWinners3.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq4.astro";
+import Faq from "../components/Faq2.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
@@ -23,41 +23,41 @@ import { pageGraph } from "../lib/schema";
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
 // two of those per rebrand — both are spent here.
 //
-// slide2 prints "ฝากครั้งแรก รับเพิ่ม 20% / ฝากง่าย ถอนเร็ว ระบบออโต้", which is the
-// deposit/withdraw flow the True Wallet section describes; slide1 prints
-// "สมาชิกใหม่ รับโบนัส 50% / สมัครวันนี้ รับสิทธิ์ทันที", the entry point the
-// no-minimum/budget section is about. slide3 (แนะนำเพื่อน 10%) and slide4
+// slide1 prints "สมาชิกใหม่ รับโบนัส 50% / สมัครวันนี้ รับสิทธิ์ทันที", which is
+// the promotion the docx's promotions section is about; slide2 prints
+// "ฝากครั้งแรก รับเพิ่ม 20% / ฝากง่าย ถอนเร็ว ระบบออโต้", the deposit/withdraw
+// flow the จ่ายไว section describes. slide3 (แนะนำเพื่อน 10%) and slide4
 // (คืนยอดเสีย 0.8%) stay unused here and keep rendering in SmoothCarousel and on
 // /promotion.
 //
 // banner2.png is NOT imported anywhere: it predates this asset drop.
 // banner1/banner1-mobile are the hero and belong to MainLayout alone.
-import imgTrueWallet from "../assets/slide2.png";
-import imgNoMinimum from "../assets/slide1.png";
+import imgPromotion from "../assets/slide1.png";
+import imgPayout from "../assets/slide2.png";
 
-const pageTitle = "MAX56 | สล็อตฝากถอน true wallet ไม่มีขั้นต่ำ แตกง่ายจ่ายจริงทุกยอด";
-const pageHeading = "MAX56 สล็อตฝากถอน true wallet ไม่มีขั้นต่ำ แตกง่ายจ่ายจริงทุกยอด";
+const pageTitle = "เฮงเฮง888 |เกมสล็อตแตกหนักวันนี้ ไม่กำหนดขั้นต่ำ โปรโมชั่นดี จ่ายไว";
+const pageHeading = "เฮงเฮง888เกมสล็อตแตกหนักวันนี้ ไม่กำหนดขั้นต่ำ โปรโมชั่นดี จ่ายไว";
 
-// The docx Meta Description, verbatim at the length it was written (137
+// The docx Meta Description, verbatim at the length it was written (139
 // characters). DESC_MIN does not apply to the home page — verify-build.mjs
 // exempts it precisely so the brand's own copy ships unpadded. Do not top it
 // up to 150.
-const pageDescription = "MAX56 สล็อตฝากถอนผ่าน True Wallet ไม่มีขั้นต่ำตามเงื่อนไข รองรับมือถือ ระบบใช้งานสะดวก พร้อมเกมหลากหลายและตรวจสอบรายการได้ง่าย";
+const pageDescription = "เฮงเฮง888 รวมเกมสล็อตหลายแนว ไม่กำหนดขั้นต่ำตามเงื่อนไข โปรโมชั่นหลากหลาย รองรับมือถือ พร้อมระบบใช้งานสะดวกและตรวจสอบรายการได้ง่าย";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq4's own default, which is always the previous brand's FAQ.
+// Faq2's own default, which is always the previous brand's FAQ.
 const faqs = [
   {
-    q: "MAX56 รองรับการฝากถอนผ่าน True Wallet หรือไม่?",
-    a: "รองรับ True Wallet ตามช่องทางที่ระบบกำหนด สมาชิกควรตรวจสอบข้อมูล Wallet จำนวนเงิน และสถานะรายการทุกครั้งก่อนและหลังทำธุรกรรม",
+    q: "เฮงเฮง888 มีขั้นต่ำในการฝากหรือถอนไหม?",
+    a: "บางช่องทางอาจรองรับเงื่อนไขไม่กำหนดขั้นต่ำ แต่สมาชิกควรตรวจสอบรายละเอียดของแต่ละช่องทางและโปรโมชั่นก่อนทำรายการทุกครั้ง",
   },
   {
-    q: "MAX56 ฝากถอนไม่มีขั้นต่ำทุกช่องทางหรือไม่?",
-    a: "เงื่อนไขไม่มีขั้นต่ำอาจใช้เฉพาะช่องทางหรือรายการที่กำหนด จึงควรตรวจสอบรายละเอียดล่าสุดและเงื่อนไขโปรโมชั่นก่อนทำรายการทุกครั้ง",
+    q: "โปรโมชั่นของ เฮงเฮง888 เหมาะกับผู้เล่นทุนน้อยหรือไม่?",
+    a: "โปรโมชั่นแต่ละแบบมีเงื่อนไขต่างกัน ผู้เล่นควรดูยอดเริ่มต้น โบนัส และข้อกำหนดการถอน เพื่อเลือกโปรที่เหมาะกับงบของตนเองมากที่สุด",
   },
   {
-    q: "คำว่าจ่ายจริงทุกยอดหมายถึงรับประกันการถอนได้หรือไม่?",
-    a: "ไม่ควรตีความว่าเป็นการรับประกันทุกกรณี เพราะการถอนอาจขึ้นอยู่กับสถานะบัญชี เงื่อนไขโปรโมชั่น และการตรวจสอบของระบบ ควรอ่านข้อกำหนดก่อนใช้งาน",
+    q: "เกมสล็อตแตกหนักรับประกันว่าจะได้กำไรหรือไม่?",
+    a: "ไม่สามารถรับประกันผลลัพธ์หรือกำไรจากเกมสล็อตได้ ผู้เล่นควรศึกษากติกา ความผันผวน และกำหนดงบประมาณก่อนเริ่มเล่นทุกครั้ง",
   },
 ];
 
@@ -74,17 +74,55 @@ const graph = pageGraph(Astro, {
 
   <Announcement />
 
-  <ContentBoxNeumorphism as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#f6e4e4]">
-      <strong class="text-[#f5c451]">MAX56</strong> เป็นแพลตฟอร์มเกมสล็อตออนไลน์ที่เน้นความสะดวกด้านการทำธุรกรรมผ่าน True Wallet พร้อมเงื่อนไขไม่มีขั้นต่ำในช่องทางที่กำหนด
-      รองรับการใช้งานบนมือถือและคอมพิวเตอร์ สมาชิกสามารถเลือกเกม ตรวจสอบโปรโมชั่น และติดตามสถานะรายการได้จากบัญชีเดียว ก่อนเริ่มควรอ่านกติกาและเงื่อนไขที่เกี่ยวข้องให้ครบถ้วน
+  <ContentBoxPremium as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#e8f3e0]">
+      <strong class="text-[#f5c518]">เฮงเฮง888</strong> เป็นแพลตฟอร์มเกมสล็อตออนไลน์ที่รวมเกมหลายรูปแบบไว้ในระบบเดียว เน้นการใช้งานที่เข้าใจง่าย รองรับทั้งมือถือและคอมพิวเตอร์
+      พร้อมโปรโมชั่นหลากหลายและเงื่อนไขการทำรายการที่ยืดหยุ่น ผู้เล่นควรตรวจสอบกติกา รายละเอียดโปรโมชั่น และข้อกำหนดต่าง ๆ ก่อนเริ่มใช้งานทุกครั้ง
     </p>
-  </ContentBoxNeumorphism>
+  </ContentBoxPremium>
 
-  <ContentBoxSevenThreeNeumorphism titleright="ฝากถอนผ่าน True Wallet ได้สะดวกกับ MAX56">
+  <ContentBoxCyberCut as="h2" title="เลือกเกมสล็อตหลายสไตล์ได้ง่ายบน เฮงเฮง888">
+    <p class="text-left text-base leading-relaxed text-[#e8f3e0]">
+      ภายใน เฮงเฮง888 มีทั้งสล็อตคลาสสิก เกมฟีเจอร์โบนัส และเกมธีมสมัยใหม่ให้เลือกตามความสนใจ ผู้เล่นสามารถพิจารณาจากกติกา รูปแบบการจ่าย และความผันผวนของแต่ละเกม
+      เพื่อเลือกเกมให้เหมาะกับสไตล์และงบประมาณของตนเอง
+    </p>
+  </ContentBoxCyberCut>
+
+  <ProviderGrid />
+
+  <ContentBoxTwoPremium titleleft="ไม่กำหนดขั้นต่ำช่วยให้วางงบได้ยืดหยุ่นขึ้น">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#e8f3e0]">
+      เงื่อนไขไม่กำหนดขั้นต่ำในบางช่องทางช่วยให้ผู้เล่นเลือกจำนวนเงินตามงบของตนเองได้สะดวกขึ้น อย่างไรก็ตาม ควรตรวจสอบข้อกำหนดของช่องทางฝากถอนและโปรโมชั่นแต่ละรายการให้ครบ
+      เพื่อให้เข้าใจเงื่อนไขก่อนทำธุรกรรมจริง
+    </p>
+
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#12a34f]/30 bg-[#03170c]/70 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f5c518] uppercase">
+        <span aria-hidden="true">🧾</span>
+        จุดที่ควรตรวจก่อนทำธุรกรรมจริง
+      </p>
+      <span class="flex items-start gap-2.5 text-sm text-[#e8f3e0]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9fcf3a]">①</span>
+        ช่องทางฝากถอนที่รองรับเงื่อนไขไม่กำหนดขั้นต่ำ
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#e8f3e0]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9fcf3a]">②</span>
+        ข้อกำหนดของโปรโมชั่นแต่ละรายการที่จะใช้ร่วมด้วย
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#e8f3e0]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9fcf3a]">③</span>
+        จำนวนเงินที่วางไว้ตามงบของตนเองในแต่ละรอบ
+      </span>
+      <span class="mt-1 rounded-xl border border-[#f5c518]/35 bg-[#072b14]/80 px-4 py-2.5 text-xs leading-relaxed text-[#a7c295]">
+        เงื่อนไขไม่กำหนดขั้นต่ำใช้ได้เฉพาะบางช่องทาง ควรอ่านข้อกำหนดให้ครบก่อนทำรายการทุกครั้ง
+      </span>
+    </div>
+  </ContentBoxTwoPremium>
+
+  <ContentBoxSevenThreePremium titleright="โปรโมชั่นของ เฮงเฮง888 ควรเลือกจากเงื่อนไขที่เหมาะกับตัวเอง">
     <Picture
       slot="left"
-      src={imgTrueWallet}
+      src={imgPromotion}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -93,19 +131,26 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่น MAX56 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% พร้อมป้าย คุ้มตั้งแต่ฝากแรก ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่มสีแดง ฝากเลย พร้อมโลโก้ MAX56 ช้างเผือกสามมิติ ผู้หญิงในชุดกีฬาสีแดง-ขาวพิมพ์ MAX56 ชี้นิ้วขึ้น วงล้อสล็อตเลข 77 ป้าย BONUS และคำว่า BAR เหรียญทองปลิว ชิปคาสิโนสีแดง-ขาว-ดำ และกล่องของขวัญผูกโบว์แดงบนพื้นหลังคาสิโนโทนแดงเข้ม"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#c10d1e]/40 shadow-[0_10px_30px_rgba(232,32,47,0.28)]"
+      alt="แบนเนอร์โปรโมชั่น เฮงเฮง888 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่มสีเขียว รับโปรเลย พร้อมโลโก้ เฮงเฮง888 ตัวอักษรไทยสีขาวเหนือเลข 888 สีเขียวมะนาว ผู้หญิงในชุดเกาะอกและกระโปรงสีเขียว-ขาวพิมพ์ เฮงเฮง888 ชี้นิ้วขึ้น วงล้อสล็อตเลข 777 กองเหรียญทองและเหรียญที่ปลิวอยู่ในห้องคาสิโนโทนเขียวเข้ม"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#12a34f]/40 shadow-[0_10px_30px_rgba(18,163,79,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f6e4e4]">
-      การรองรับ True Wallet ของ MAX56 ช่วยให้สมาชิกจัดการรายการผ่านมือถือได้สะดวกขึ้น ก่อนยืนยันควรตรวจสอบเบอร์หรือข้อมูล Wallet จำนวนเงิน และรายละเอียดบัญชีให้ตรงกันทุกครั้ง
-      รวมถึงรอให้ระบบแสดงสถานะสำเร็จก่อนทำรายการใหม่ เพื่อลดความคลาดเคลื่อน
+    <p slot="right" class="text-left text-base leading-relaxed text-[#e8f3e0]">
+      โปรโมชั่นของ เฮงเฮง888 อาจมีทั้งโบนัสสำหรับสมาชิกใหม่ สิทธิพิเศษตามยอดฝาก หรือกิจกรรมตามช่วงเวลา ก่อนเลือกรับควรดูยอดที่กำหนด เกมที่เข้าร่วม และเงื่อนไขการถอนร่วมกัน
+      เพื่อเลือกโปรที่สอดคล้องกับงบมากที่สุด
     </p>
-  </ContentBoxSevenThreeNeumorphism>
+  </ContentBoxSevenThreePremium>
 
-  <ContentBoxSevenThreeFloatingBadge title="ไม่มีขั้นต่ำช่วยให้กำหนดงบได้ยืดหยุ่นขึ้น">
+  <ContentBoxSpecial as="h2" title="เกมแตกหนักวันนี้ไม่ได้หมายถึงผลลัพธ์ที่แน่นอน" iconleft="🎰" iconright="🔍">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#e8f3e0]">คำว่าแตกหนักวันนี้มักใช้สื่อถึงความตื่นเต้นหรือโอกาสลุ้นรางวัลของเกมสล็อต แต่ไม่สามารถรับประกันผลได้</p>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#e8f3e0]">ผู้เล่นควรตรวจสอบข้อมูลเกม ความผันผวน และอัตราจ่ายก่อนเริ่ม พร้อมกำหนดวงเงินที่สามารถยอมรับความเสี่ยงได้</p>
+  </ContentBoxSpecial>
+
+  <GameRankingBoard />
+
+  <ContentBoxSevenThreeCyberCut titleright="ตรวจสอบสถานะจ่ายไวผ่านระบบ เฮงเฮง888">
     <Picture
       slot="left"
-      src={imgNoMinimum}
+      src={imgPayout}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -114,87 +159,39 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่น MAX56 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่มสีแดง รับโปรเลย พร้อมโลโก้ MAX56 ช้างเผือกสามมิติสวมสายสะพาย ผู้หญิงในชุดเดรสสีแดง-ขาวพิมพ์ MAX56 ชี้นิ้วขึ้น วงล้อสล็อตเลข 777 และคำว่า BAR เหรียญทองปั๊มโลโก้ MAX56 กล่องของขวัญผูกโบว์แดง และแถบข้อความ ปลอดภัยมั่นใจ 100% ฝาก-ถอนเร็วภายใน 10 วินาที บริการ 24 ชม."
-      class="mx-auto h-auto w-full rounded-2xl border border-[#c10d1e]/40 shadow-[0_10px_30px_rgba(232,32,47,0.28)]"
+      alt="แบนเนอร์โปรโมชั่น เฮงเฮง888 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก พร้อมป้าย ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่มสีเขียว ฝากเลย พร้อมโลโก้ เฮงเฮง888 ตัวอักษรไทยสีขาวเหนือเลข 888 สีเขียวมะนาว ผู้หญิงในชุดครอปและกระโปรงสีเขียว-ขาวพิมพ์ เฮงเฮง888 ชี้นิ้วไปทางข้อความ ป้าย JACKPOT ตู้สล็อตเลข 77 ชิปคาสิโนสีเขียว-ขาว และกองเหรียญทองในห้องคาสิโนโทนเขียวเข้ม"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#12a34f]/40 shadow-[0_10px_30px_rgba(18,163,79,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f6e4e4]">
-      เงื่อนไขไม่มีขั้นต่ำช่วยให้ผู้เล่นเลือกจำนวนเงินตามงบประมาณของตนเองได้ง่ายขึ้น แต่ควรตรวจสอบว่าช่องทางใดรองรับ รวมถึงอ่านข้อกำหนดของโปรโมชั่นก่อนทำรายการ
-      การกำหนดวงเงินไว้ล่วงหน้าจะช่วยให้ควบคุมค่าใช้จ่ายได้เป็นระบบมากขึ้น
+    <p slot="right" class="text-left text-base leading-relaxed text-[#e8f3e0]">
+      สมาชิก เฮงเฮง888 สามารถติดตามสถานะรายการผ่านหน้าบัญชีได้ ก่อนส่งคำขอถอนควรตรวจสอบยอดคงเหลือ ข้อมูลบัญชี และเงื่อนไขโปรโมชั่น หากรายการยังดำเนินการอยู่ควรรอผลจากระบบก่อนส่งรายการใหม่
     </p>
-  </ContentBoxSevenThreeFloatingBadge>
+  </ContentBoxSevenThreeCyberCut>
 
-  <ContentBox as="h2" title="เลือกเกมสล็อตหลายแนวได้บน MAX56">
-    <p class="text-left text-base leading-relaxed text-[#f6e4e4]">
-      ภายใน MAX56 มีเกมสล็อตหลายรูปแบบ ทั้งเกมคลาสสิก เกมโบนัส และเกมธีมใหม่ ผู้เล่นสามารถพิจารณาจากกติกา ความผันผวน และรูปแบบการจ่ายก่อนเลือกเล่น
-      เพื่อช่วยให้ได้เกมที่เหมาะกับสไตล์และงบของตนเองมากกว่าการเลือกจากคำโฆษณาเพียงอย่างเดียว
-    </p>
-  </ContentBox>
-
-  <ProviderGrid />
-
-  <ContentBoxFloatingBadge as="h2" title="คำว่าแตกง่ายควรดูควบคู่กับข้อมูลของเกม">
-    <p class="text-left text-base leading-relaxed text-[#f6e4e4]">
-      เกมที่ถูกนำเสนอว่าแตกง่ายอาจมีฟีเจอร์หรือจังหวะลุ้นรางวัลที่น่าสนใจ แต่ไม่ได้หมายความว่าจะได้ผลลัพธ์ตามคาดทุกครั้ง ผู้เล่นควรตรวจสอบอัตราจ่าย ความผันผวน และเงื่อนไขโบนัส
-      พร้อมกำหนดวงเงินและระยะเวลาในการเล่นให้ชัดเจน
-    </p>
-  </ContentBoxFloatingBadge>
-
-  <GameRankingBoard />
-
-  <ContentBoxTwoNeumorphism titleleft="ตรวจสอบสถานะรายการผ่านระบบ MAX56">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#f6e4e4]">
-      สมาชิก MAX56 สามารถติดตามยอดฝาก ถอน และสถานะธุรกรรมผ่านหน้าบัญชีได้ หากพบว่ารายการยังอยู่ระหว่างดำเนินการควรรอผลจากระบบก่อนส่งรายการซ้ำ และควรเก็บข้อมูลอ้างอิง เวลา
-      และจำนวนเงินไว้จนกว่าธุรกรรมจะเสร็จสมบูรณ์
+  <ContentBoxTwoCyberCut titleleft="ใช้งาน เฮงเฮง888 ให้เป็นระบบด้วยการกำหนดขอบเขต">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#e8f3e0]">
+      การใช้งาน เฮงเฮง888 ควรเริ่มจากการกำหนดงบและระยะเวลาไว้ล่วงหน้า เลือกเกมที่เข้าใจกติกา และหลีกเลี่ยงการเพิ่มเงินเพื่อตามคืนยอดที่เสียไป
+      วิธีนี้ช่วยให้ควบคุมค่าใช้จ่ายและรักษาการเล่นให้อยู่ในกรอบความบันเทิงมากขึ้น
     </p>
 
-    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#c10d1e]/25 bg-[#0d0204]/70 p-5">
-      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f5c451] uppercase">
-        <span aria-hidden="true">🧭</span>
-        ข้อมูลที่ควรเก็บไว้จนรายการเสร็จสมบูรณ์
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#12a34f]/30 bg-[#03170c]/70 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f5c518] uppercase">
+        <span aria-hidden="true">🛡️</span>
+        ขอบเขตที่ควรกำหนดไว้ล่วงหน้า
       </p>
-      <span class="flex items-start gap-2.5 text-sm text-[#f6e4e4]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5a66]">①</span>
-        ข้อมูลอ้างอิงของรายการฝากหรือถอน
+      <span class="flex items-start gap-2.5 text-sm text-[#e8f3e0]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9fcf3a]">①</span>
+        งบประมาณและระยะเวลาที่ตั้งใจใช้ในแต่ละครั้ง
       </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f6e4e4]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5a66]">②</span>
-        เวลาที่ทำรายการและช่องทางที่ใช้
+      <span class="flex items-start gap-2.5 text-sm text-[#e8f3e0]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9fcf3a]">②</span>
+        เกมที่เข้าใจกติกาและรูปแบบการจ่ายแล้วจริง
       </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f6e4e4]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5a66]">③</span>
-        จำนวนเงินและสถานะล่าสุดที่ระบบแสดง
+      <span class="flex items-start gap-2.5 text-sm text-[#e8f3e0]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9fcf3a]">③</span>
+        ข้อตกลงกับตัวเองว่าจะไม่เพิ่มเงินเพื่อตามคืนยอดที่เสียไป
       </span>
-      <span class="mt-1 rounded-xl border border-[#f5c451]/35 bg-[#2a070d]/70 px-4 py-2.5 text-xs leading-relaxed text-[#f6e4e4]/80">
-        ระหว่างที่รายการยังอยู่ระหว่างดำเนินการ ควรรอผลจากระบบก่อน ไม่ควรส่งรายการซ้ำทันที
-      </span>
-    </div>
-  </ContentBoxTwoNeumorphism>
-
-  <ContentBoxTwoFloatingBadge titleleft="ดูแลบัญชีและข้อมูลการใช้งานกับทีม MAX56">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#f6e4e4]">
-      หากมีข้อสงสัยเกี่ยวกับบัญชี โปรโมชั่น ทางเข้า หรือสถานะรายการ สามารถติดต่อทีมงาน MAX56 ผ่านช่องทางที่เว็บไซต์กำหนด ควรแจ้งชื่อผู้ใช้ เวลา และรายละเอียดปัญหาให้ครบ
-      โดยไม่เปิดเผยรหัสผ่านหรือรหัสยืนยัน เพื่อช่วยให้ตรวจสอบได้ตรงจุด
-    </p>
-
-    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#c10d1e]/25 bg-[#0d0204]/70 p-5">
-      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f5c451] uppercase">
-        <span aria-hidden="true">🛟</span>
-        สิ่งที่ควรเตรียมก่อนติดต่อทีมงาน
-      </p>
-      <span class="flex items-start gap-2.5 text-sm text-[#f6e4e4]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5a66]">①</span>
-        ชื่อผู้ใช้ที่ใช้เข้าสู่ระบบ
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f6e4e4]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5a66]">②</span>
-        วันและเวลาที่พบปัญหา
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f6e4e4]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5a66]">③</span>
-        รายละเอียดปัญหาของบัญชี โปรโมชั่น ทางเข้า หรือสถานะรายการ
-      </span>
-      <span class="mt-1 rounded-xl border border-[#f5c451]/35 bg-[#2a070d]/70 px-4 py-2.5 text-xs leading-relaxed text-[#f6e4e4]/80">
-        ไม่ต้องแจ้งรหัสผ่านหรือรหัสยืนยันให้ผู้ใด แม้จะเป็นการติดต่อกับทีมงานก็ตาม
+      <span class="mt-1 rounded-xl border border-[#f5c518]/35 bg-[#072b14]/80 px-4 py-2.5 text-xs leading-relaxed text-[#a7c295]">
+        การกำหนดขอบเขตไว้ก่อนช่วยให้ควบคุมค่าใช้จ่ายและรักษาการเล่นให้อยู่ในกรอบความบันเทิงมากขึ้น
       </span>
       <a
         href="/line"
@@ -202,9 +199,9 @@ const graph = pageGraph(Astro, {
         <span aria-hidden="true">💬</span> ติดต่อทีมงานผ่าน LINE
       </a>
     </div>
-  </ContentBoxTwoFloatingBadge>
+  </ContentBoxTwoCyberCut>
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ MAX56" faqs={faqs} />
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ เฮงเฮง888" faqs={faqs} />
 
   <LoginRtpSection />
 
@@ -213,13 +210,13 @@ const graph = pageGraph(Astro, {
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#e8202f]/60 bg-gradient-to-r from-[#c10d1e] via-[#8c0512] to-[#5a0209] px-4 py-3 text-sm font-black whitespace-nowrap text-[#fff5f5] shadow-[0_10px_30px_rgba(193,13,30,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ff5a66] hover:shadow-[0_15px_40px_rgba(232,32,47,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#1fc465]/60 bg-gradient-to-r from-[#12a34f] via-[#05461f] to-[#03170c] px-4 py-3 text-sm font-black whitespace-nowrap text-[#e8f3e0] shadow-[0_10px_30px_rgba(18,163,79,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#9fcf3a] hover:shadow-[0_15px_40px_rgba(31,196,101,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffe9a8]/70 bg-gradient-to-r from-[#ffe9a8] to-[#f5c451] px-4 py-3 text-sm font-black whitespace-nowrap text-[#1a0508] shadow-[0_10px_30px_rgba(245,196,81,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe9a8] hover:shadow-[0_15px_40px_rgba(245,196,81,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffdf7a]/70 bg-gradient-to-r from-[#ffdf7a] to-[#f5c518] px-4 py-3 text-sm font-black whitespace-nowrap text-[#05230f] shadow-[0_10px_30px_rgba(245,197,24,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffdf7a] hover:shadow-[0_15px_40px_rgba(245,197,24,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>

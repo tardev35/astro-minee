@@ -3,80 +3,81 @@ import ContentBoxTwo from "./ContentBoxTwo.astro";
 
 // Reference table, not article content — every label below renders as <p>/<span>
 // inside ContentBoxTwo, whose section carries the aria-label. Copy follows the
-// MAX56 brief: ฝากถอนผ่าน True Wallet, เงื่อนไขไม่มีขั้นต่ำเฉพาะช่องทางที่กำหนด,
-// เกมคลาสสิก/เกมโบนัส/เกมธีมใหม่, แตกง่ายต้องดูคู่กับอัตราจ่ายและความผันผวน,
-// ติดตามสถานะรายการจากหน้าบัญชี, แจ้งทีมงานโดยไม่เปิดเผยรหัสผ่านหรือรหัสยืนยัน.
+// เฮงเฮง888 brief: เงื่อนไขไม่กำหนดขั้นต่ำเฉพาะบางช่องทาง, โปรโมชั่นเลือกจาก
+// เงื่อนไขที่เหมาะกับตัวเอง, สล็อตคลาสสิก/เกมฟีเจอร์โบนัส/เกมธีมสมัยใหม่,
+// แตกหนักวันนี้ไม่ใช่การรับประกันผล, ติดตามสถานะรายการจากหน้าบัญชี,
+// กำหนดงบและระยะเวลาไว้ล่วงหน้า.
 const menus = [
-  { icon: "💳", name: "ฝากถอนผ่าน True Wallet", detail: "ตรวจเบอร์หรือข้อมูล Wallet จำนวนเงิน และรายละเอียดบัญชีให้ตรงกันก่อนยืนยันทุกครั้ง", tag: "ตรวจข้อมูลก่อนยืนยัน" },
-  { icon: "🧾", name: "เงื่อนไขไม่มีขั้นต่ำ", detail: "ใช้ได้ตามช่องทางที่ระบบกำหนด ควรอ่านข้อกำหนดของโปรโมชั่นก่อนทำรายการ", tag: "ดูช่องทางที่รองรับ" },
-  { icon: "🎰", name: "เกมสล็อตหลายรูปแบบ", detail: "เกมคลาสสิก เกมโบนัส และเกมธีมใหม่ เลือกได้จากบัญชีเดียว", tag: "เลือกตามสไตล์" },
-  { icon: "📊", name: "อัตราจ่ายและความผันผวน", detail: "คำว่าแตกง่ายควรดูควบคู่กับอัตราจ่าย ความผันผวน และเงื่อนไขโบนัสของเกมนั้น", tag: "อย่าดูจากคำโฆษณา" },
-  { icon: "🧭", name: "สถานะรายการฝากถอน", detail: "ติดตามยอดฝาก ถอน และสถานะธุรกรรมได้จากหน้าบัญชี ระหว่างรอผลไม่ควรส่งรายการซ้ำ", tag: "รอผลก่อนส่งซ้ำ" },
-  { icon: "📱", name: "รองรับมือถือและคอมพิวเตอร์", detail: "จัดการรายการผ่านมือถือได้สะดวก ใช้บัญชีเดียวกันกับตอนเปิดบนคอมพิวเตอร์", tag: "ใช้ได้ทุกจอ" },
-  { icon: "🛟", name: "แจ้งปัญหากับทีมงาน", detail: "แจ้งชื่อผู้ใช้ เวลา และรายละเอียดปัญหาให้ครบ โดยไม่เปิดเผยรหัสผ่าน", tag: "ไม่บอกรหัสยืนยัน" },
+  { icon: "🧾", name: "เงื่อนไขไม่กำหนดขั้นต่ำ", detail: "บางช่องทางรองรับเงื่อนไขนี้ ควรตรวจข้อกำหนดของช่องทางฝากถอนให้ครบก่อนทำธุรกรรมจริง", tag: "ดูช่องทางที่รองรับ" },
+  { icon: "🎁", name: "โปรโมชั่นและเงื่อนไขการถอน", detail: "ดูยอดที่กำหนด เกมที่เข้าร่วม และเงื่อนไขการถอนร่วมกัน ก่อนเลือกรับโปรแต่ละรายการ", tag: "อ่านก่อนกดรับ" },
+  { icon: "🎰", name: "เกมสล็อตหลายสไตล์", detail: "สล็อตคลาสสิก เกมฟีเจอร์โบนัส และเกมธีมสมัยใหม่ เลือกได้จากบัญชีเดียว", tag: "เลือกตามสไตล์" },
+  { icon: "📊", name: "อัตราจ่ายและความผันผวน", detail: "คำว่าแตกหนักวันนี้ไม่ใช่การรับประกันผล ควรดูข้อมูลเกมและอัตราจ่ายก่อนเริ่ม", tag: "ไม่ใช่การรับประกัน" },
+  { icon: "🧭", name: "สถานะรายการฝากถอน", detail: "ติดตามสถานะรายการได้จากหน้าบัญชี หากยังดำเนินการอยู่ควรรอผลก่อนส่งรายการใหม่", tag: "รอผลก่อนส่งซ้ำ" },
+  { icon: "📱", name: "รองรับมือถือและคอมพิวเตอร์", detail: "เปิดใช้งานผ่านมือถือ แท็บเล็ต และคอมพิวเตอร์ด้วยบัญชีเดียวกัน", tag: "ใช้ได้ทุกจอ" },
+  { icon: "🛡️", name: "กำหนดงบและระยะเวลา", detail: "ตั้งงบและเวลาเล่นไว้ล่วงหน้า และหลีกเลี่ยงการเพิ่มเงินเพื่อตามคืนยอดที่เสียไป", tag: "เล่นอยู่ในกรอบ" },
 ];
 
-const chips = ["True Wallet", "ไม่มีขั้นต่ำตามเงื่อนไข", "เกมคลาสสิก", "เกมโบนัส", "เกมธีมใหม่", "ดูอัตราจ่าย", "เช็กสถานะรายการ", "รองรับมือถือ"];
+const chips = ["ไม่กำหนดขั้นต่ำตามเงื่อนไข", "สล็อตคลาสสิก", "เกมฟีเจอร์โบนัส", "เกมธีมสมัยใหม่", "ดูอัตราจ่าย", "เช็กความผันผวน", "เช็กสถานะรายการ", "รองรับมือถือ"];
 ---
 
 <ContentBoxTwo
-  titleleft="เข้าสู่ระบบ MAX56"
-  titleright="ช่องทางฝากถอนและสิ่งที่ควรตรวจก่อนทำรายการ"
-  label="เข้าสู่ระบบ MAX56 และช่องทางฝากถอนผ่าน True Wallet ที่ควรตรวจก่อนทำรายการ">
+  titleleft="เข้าสู่ระบบ เฮงเฮง888"
+  titleright="ช่องทางในระบบและสิ่งที่ควรตรวจก่อนทำรายการ"
+  label="เข้าสู่ระบบ เฮงเฮง888 และตารางอ้างอิงช่องทางในระบบที่ควรตรวจก่อนทำรายการ">
   <div slot="left" class="flex h-full flex-col gap-4">
-    <div class="relative overflow-hidden rounded-2xl border border-[#c10d1e]/30 bg-[#1a0508]/92 p-6 shadow-[0_10px_30px_rgba(232,32,47,0.2)] backdrop-blur-md">
-      <div class="pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#3d0106]/60 blur-[50px]"></div>
+    <div class="relative overflow-hidden rounded-2xl border border-[#12a34f]/30 bg-[#072b14]/92 p-6 shadow-[0_10px_30px_rgba(18,163,79,0.2)] backdrop-blur-md">
+      <div class="pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#05461f]/60 blur-[50px]"></div>
 
       <div class="relative z-10 mb-5 flex items-center gap-3">
         <span
           aria-hidden="true"
-          class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#f5c451]/40 bg-gradient-to-br from-[#ffe9a8] via-[#f5c451] to-[#8c0512] text-xl text-[#1a0508] shadow-inner">
-          🐘
+          class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#f5c518]/40 bg-gradient-to-br from-[#ffdf7a] via-[#f5c518] to-[#b8860b] text-xl text-[#05230f] shadow-inner">
+          🍀
         </span>
         <div class="flex flex-col">
-          <p class="text-base font-black text-[#ff5a66]">ยินดีต้อนรับกลับ</p>
-          <span class="text-[11px] text-[#f6e4e4]/65">บัญชีเดียวใช้เลือกเกม ตรวจสอบโปรโมชั่น และติดตามสถานะรายการฝากถอนของ MAX56 ได้จากหน้าเดียว</span>
+          <p class="text-base font-black text-[#9fcf3a]">ยินดีต้อนรับกลับ</p>
+          <span class="text-[11px] text-[#a7c295]">บัญชีเดียวใช้เลือกเกม ตรวจสอบรายละเอียดโปรโมชั่น และติดตามสถานะรายการฝากถอนของ เฮงเฮง888 ได้จากหน้าเดียว</span>
         </div>
       </div>
 
       <div class="relative z-10 flex flex-col gap-3.5">
         <div class="relative">
-          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#ff5a66]">👤</span>
+          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#9fcf3a]">👤</span>
           <input
             type="text"
             aria-label="เบอร์โทรศัพท์หรือยูสเซอร์เนม"
             placeholder="เบอร์โทรศัพท์ / ยูสเซอร์เนม"
-            class="w-full rounded-xl border border-[#c10d1e]/35 bg-[#0d0204]/95 py-3 pr-4 pl-12 text-[#f6e4e4] transition-all outline-none placeholder:text-[#f6e4e4]/50 focus:border-[#e8202f] focus:ring-1 focus:ring-[#e8202f]/50"
+            class="w-full rounded-xl border border-[#12a34f]/35 bg-[#03170c]/95 py-3 pr-4 pl-12 text-[#e8f3e0] transition-all outline-none placeholder:text-[#a7c295] focus:border-[#1fc465] focus:ring-1 focus:ring-[#1fc465]/50"
           />
         </div>
         <div class="relative">
-          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#ff5a66]">🔑</span>
+          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#9fcf3a]">🔑</span>
           <input
             type="password"
             aria-label="รหัสผ่านของบัญชี"
             placeholder="รหัสผ่านของบัญชี"
-            class="w-full rounded-xl border border-[#c10d1e]/35 bg-[#0d0204]/95 py-3 pr-4 pl-12 text-[#f6e4e4] transition-all outline-none placeholder:text-[#f6e4e4]/50 focus:border-[#e8202f] focus:ring-1 focus:ring-[#e8202f]/50"
+            class="w-full rounded-xl border border-[#12a34f]/35 bg-[#03170c]/95 py-3 pr-4 pl-12 text-[#e8f3e0] transition-all outline-none placeholder:text-[#a7c295] focus:border-[#1fc465] focus:ring-1 focus:ring-[#1fc465]/50"
           />
         </div>
 
         <div class="flex items-center justify-between px-1 text-xs">
-          <label class="flex items-center gap-2 text-[#f6e4e4]/70">
-            <input type="checkbox" class="h-3.5 w-3.5 rounded border-[#c10d1e]/40 bg-[#0d0204] accent-[#c10d1e]" />
+          <label class="flex items-center gap-2 text-[#a7c295]">
+            <input type="checkbox" class="h-3.5 w-3.5 rounded border-[#12a34f]/40 bg-[#03170c] accent-[#12a34f]" />
             จดจำฉันไว้
           </label>
-          <a href="/login" class="text-[#f6e4e4]/70 transition-colors hover:text-[#ff5a66]">ลืมรหัสผ่าน?</a>
+          <a href="/login" class="text-[#a7c295] transition-colors hover:text-[#c3e558]">ลืมรหัสผ่าน?</a>
         </div>
 
         <a
           href="/login"
-          class="mt-1 block w-full rounded-xl border border-[#f5c451]/40 bg-gradient-to-r from-[#ffe9a8] via-[#f5c451] to-[#c9962c] p-3.5 text-center font-black text-[#1a0508] shadow-[0_10px_30px_rgba(245,196,81,0.28)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(245,196,81,0.4)]">
+          class="mt-1 block w-full rounded-xl border border-[#f5c518]/40 bg-gradient-to-r from-[#ffdf7a] via-[#f5c518] to-[#b8860b] p-3.5 text-center font-black text-[#05230f] shadow-[0_10px_30px_rgba(245,197,24,0.28)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(245,197,24,0.4)]">
           เข้าสู่ระบบ
         </a>
 
-        <div class="flex items-center gap-3 py-1 text-[11px] text-[#f6e4e4]/55">
-          <span class="h-px flex-1 bg-[#c10d1e]/35"></span>
+        <div class="flex items-center gap-3 py-1 text-[11px] text-[#a7c295]">
+          <span class="h-px flex-1 bg-[#12a34f]/35"></span>
           หรือ
-          <span class="h-px flex-1 bg-[#c10d1e]/35"></span>
+          <span class="h-px flex-1 bg-[#12a34f]/35"></span>
         </div>
 
         <a
@@ -87,21 +88,21 @@ const chips = ["True Wallet", "ไม่มีขั้นต่ำตามเ�
 
         <div class="mt-1 flex items-center justify-between px-1">
           <div class="flex gap-2">
-            <span class="rounded-full border border-[#c10d1e]/30 bg-[#0d0204] px-2.5 py-1 text-[10px] font-bold text-[#ff5a66]"><span aria-hidden="true">🔒</span> HTTPS + SSL</span>
-            <span class="rounded-full border border-[#3d0106]/80 bg-[#0d0204]/80 px-2.5 py-1 text-[10px] font-bold text-[#f6e4e4]"><span aria-hidden="true">🕐</span> ดูแลสมาชิก 24 ชั่วโมง</span>
+            <span class="rounded-full border border-[#12a34f]/30 bg-[#03170c] px-2.5 py-1 text-[10px] font-bold text-[#9fcf3a]"><span aria-hidden="true">🔒</span> HTTPS + SSL</span>
+            <span class="rounded-full border border-[#05461f] bg-[#03170c]/80 px-2.5 py-1 text-[10px] font-bold text-[#e8f3e0]"><span aria-hidden="true">🕐</span> ดูแลสมาชิก 24 ชั่วโมง</span>
           </div>
-          <a href="/register" class="text-xs font-bold text-[#f5c451] transition-colors hover:text-[#ffe9a8]">สมัครสมาชิกใหม่</a>
+          <a href="/register" class="text-xs font-bold text-[#f5c518] transition-colors hover:text-[#ffdf7a]">สมัครสมาชิกใหม่</a>
         </div>
       </div>
     </div>
   </div>
 
   <div slot="right" class="h-full">
-    <div class="flex h-full flex-col rounded-2xl border border-[#c10d1e]/30 bg-[#1a0508]/92 p-5 shadow-[0_10px_30px_rgba(232,32,47,0.2)] backdrop-blur-md">
+    <div class="flex h-full flex-col rounded-2xl border border-[#12a34f]/30 bg-[#072b14]/92 p-5 shadow-[0_10px_30px_rgba(18,163,79,0.2)] backdrop-blur-md">
       <div class="mb-5 flex items-center justify-between gap-3">
         <div>
-          <span class="text-xs font-bold tracking-wide text-[#f6e4e4]/70">ตารางอ้างอิงช่องทางฝากถอนและสิ่งที่ควรตรวจก่อนทำรายการ</span>
-          <div class="bg-gradient-to-r from-[#ffe9a8] via-[#f5c451] to-[#ff5a66] bg-clip-text text-3xl font-black text-transparent sm:text-4xl">True Wallet • ไม่มีขั้นต่ำตามเงื่อนไข</div>
+          <span class="text-xs font-bold tracking-wide text-[#a7c295]">ตารางอ้างอิงช่องทางในระบบและสิ่งที่ควรตรวจก่อนทำรายการ</span>
+          <div class="bg-gradient-to-r from-[#ffdf7a] via-[#f5c518] to-[#9fcf3a] bg-clip-text text-3xl font-black text-transparent sm:text-4xl">ไม่กำหนดขั้นต่ำตามเงื่อนไข</div>
         </div>
         <span class="flex items-center gap-1.5 self-start rounded-full border border-green-500/40 bg-green-900/40 px-2.5 py-1">
           <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.7)]"></span>
@@ -109,7 +110,7 @@ const chips = ["True Wallet", "ไม่มีขั้นต่ำตามเ�
         </span>
       </div>
 
-      <div class="mb-2 flex items-center justify-between text-[11px] font-bold tracking-widest text-[#f6e4e4]/55 uppercase">
+      <div class="mb-2 flex items-center justify-between text-[11px] font-bold tracking-widest text-[#a7c295] uppercase">
         <span>ช่องทาง / บริการในระบบ</span>
         <span>จุดที่ต้องดู</span>
       </div>
@@ -117,28 +118,28 @@ const chips = ["True Wallet", "ไม่มีขั้นต่ำตามเ�
       <div class="flex flex-1 flex-col gap-2.5">
         {
           menus.map((m) => (
-            <div class="rounded-xl border border-[#c10d1e]/25 bg-[#0d0204]/95 px-3.5 py-2.5 transition-colors hover:border-[#e8202f]/60 hover:bg-[#2a070d]">
+            <div class="rounded-xl border border-[#12a34f]/25 bg-[#03170c]/95 px-3.5 py-2.5 transition-colors hover:border-[#1fc465]/60 hover:bg-[#0b3d1d]">
               <div class="flex items-center justify-between gap-2 text-sm">
-                <span class="flex min-w-0 items-center gap-2 font-bold text-[#f6e4e4]">
+                <span class="flex min-w-0 items-center gap-2 font-bold text-[#e8f3e0]">
                   <span aria-hidden="true" class="w-5 shrink-0 text-center">
                     {m.icon}
                   </span>{" "}
                   <span class="truncate">{m.name}</span>
                 </span>
-                <span class="shrink-0 rounded-full border border-[#f5c451]/45 bg-[#0d0204] px-2.5 py-0.5 text-[10px] font-bold text-[#f5c451]">{m.tag}</span>
+                <span class="shrink-0 rounded-full border border-[#f5c518]/45 bg-[#03170c] px-2.5 py-0.5 text-[10px] font-bold text-[#f5c518]">{m.tag}</span>
               </div>
-              <div class="mt-1.5 text-[11px] tracking-wide text-[#f6e4e4]/65">{m.detail}</div>
+              <div class="mt-1.5 text-[11px] tracking-wide text-[#a7c295]">{m.detail}</div>
             </div>
           ))
         }
       </div>
 
       <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
-        {chips.map((c) => <span class="rounded-full border border-[#c10d1e]/30 bg-[#0d0204] px-3 py-1 text-[10px] font-bold text-[#ff5a66]">{c}</span>)}
+        {chips.map((c) => <span class="rounded-full border border-[#12a34f]/30 bg-[#03170c] px-3 py-1 text-[10px] font-bold text-[#9fcf3a]">{c}</span>)}
       </div>
 
-      <div class="mt-3 text-center text-[10px] tracking-wide text-[#f6e4e4]/55">
-        ข้อมูลในตารางใช้เพื่ออ้างอิงเท่านั้น ควรตรวจสอบช่องทางที่รองรับ เงื่อนไขไม่มีขั้นต่ำ อัตราจ่าย ความผันผวน และเงื่อนไขโบนัสจากหน้าเว็บไซต์จริงก่อนทำรายการทุกครั้ง เพราะคำว่าจ่ายจริงทุกยอดไม่ใช่การรับประกันการถอนในทุกกรณี
+      <div class="mt-3 text-center text-[10px] tracking-wide text-[#a7c295]">
+        ข้อมูลในตารางใช้เพื่ออ้างอิงเท่านั้น ควรตรวจสอบช่องทางที่รองรับเงื่อนไขไม่กำหนดขั้นต่ำ รายละเอียดโปรโมชั่น อัตราจ่าย และความผันผวนจากหน้าเว็บไซต์จริงก่อนทำรายการทุกครั้ง เพราะคำว่าแตกหนักวันนี้ไม่ใช่การรับประกันผลลัพธ์
       </div>
     </div>
   </div>

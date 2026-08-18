@@ -42,14 +42,14 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
 
 <div class="mx-auto w-full max-w-[900px] p-4 font-sans">
   <section
-    aria-label="ประวัติการถอนเงินล่าสุดของสมาชิก ABM96"
-    class="relative overflow-hidden rounded-[30px] border-2 border-[#f1509b]/40 bg-[#0d0207]/90 px-4 py-8 shadow-[0_10px_30px_rgba(241,80,155,0.2)] backdrop-blur-md md:p-10">
-    <div class="pointer-events-none absolute -top-16 -right-10 h-40 w-40 rounded-full bg-[#f1509b]/25 blur-[60px]"></div>
-    <div class="pointer-events-none absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-[#5c0428]/55 blur-[60px]"></div>
+    aria-label="ประวัติการถอนเงินล่าสุดของสมาชิก เฮงเฮง888"
+    class="relative overflow-hidden rounded-[30px] border-2 border-[#12a34f]/45 bg-[#03170c]/90 px-4 py-8 shadow-[0_10px_30px_rgba(18,163,79,0.22)] backdrop-blur-md md:p-10">
+    <div class="pointer-events-none absolute -top-16 -right-10 h-40 w-40 rounded-full bg-[#12a34f]/25 blur-[60px]"></div>
+    <div class="pointer-events-none absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-[#05461f]/55 blur-[60px]"></div>
 
     <div class="relative z-10 mb-8 text-center">
-      <p class="bg-gradient-to-b from-[#fda3cd] to-[#f1509b] bg-clip-text text-xl font-black text-transparent md:text-3xl">ประวัติการถอนเงินของสมาชิก ABM96 แบบเรียลไทม์</p>
-      <p class="mt-2 text-base leading-relaxed text-[#d0a8bd]">ตัวเลขด้านล่างเป็นข้อมูลตัวอย่างสำหรับแสดงรูปแบบรายการเท่านั้น ไม่ใช่การรับประกันผลลัพธ์ของเกมหรือจำนวนเครดิตที่จะได้รับ</p>
+      <p class="bg-gradient-to-b from-[#ffdf7a] to-[#f5c518] bg-clip-text text-xl font-black text-transparent md:text-3xl">ประวัติการถอนเงินของสมาชิก เฮงเฮง888 แบบเรียลไทม์</p>
+      <p class="mt-2 text-base leading-relaxed text-[#a7c295]">ตัวเลขด้านล่างเป็นข้อมูลตัวอย่างสำหรับแสดงรูปแบบรายการเท่านั้น ไม่ใช่การรับประกันผลลัพธ์ของเกมหรือจำนวนเครดิตที่จะได้รับ</p>
     </div>
 
     <div
@@ -61,22 +61,22 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
       data-pending-chance="0.4"
       data-user-style="letters"
       data-user-digits="4"
-      class="relative z-10 ml-4 border-l-2 border-[#f1509b]/50 pl-6 md:ml-8 md:pl-8">
+      class="relative z-10 ml-4 border-l-2 border-[#12a34f]/50 pl-6 md:ml-8 md:pl-8">
       {
         initialRows.map((row) => (
           <div data-winner-row class="winner-row relative mb-6 transition-all duration-500 ease-out">
-            <div class="absolute top-2 -left-[35px] h-4 w-4 rounded-full border-2 border-[#0d0207] bg-[#f1509b] shadow-[0_0_10px_rgba(241,80,155,0.8)] md:-left-[43px]" />
+            <div class="absolute top-2 -left-[35px] h-4 w-4 rounded-full border-2 border-[#03170c] bg-[#9fcf3a] shadow-[0_0_10px_rgba(159,207,58,0.8)] md:-left-[43px]" />
 
-            <div class="flex items-center gap-4 rounded-[20px] bg-gradient-to-r from-[#2a0a1b]/60 to-transparent p-4 transition-colors hover:from-[#2a0a1b]/90">
+            <div class="flex items-center gap-4 rounded-[20px] bg-gradient-to-r from-[#072b14]/70 to-transparent p-4 transition-colors hover:from-[#0b3d1d]/90">
               <div data-winner-bank class={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${row.bank.color}`}>
                 <img data-winner-icon src={row.bank.icon} alt="" width="24" height="24" loading="lazy" decoding="async" class="h-6 w-6 object-contain" />
               </div>
 
               <div class="min-w-0 flex-1">
-                <div class="text-sm text-[#d0a8bd]">
-                  ยูสเซอร์: <span data-winner-user class="font-bold text-[#f6e3ee]">{row.user}</span>
+                <div class="text-sm text-[#a7c295]">
+                  ยูสเซอร์: <span data-winner-user class="font-bold text-[#e8f3e0]">{row.user}</span>
                 </div>
-                <div class="text-xl font-black text-[#fda3cd]">
+                <div class="text-xl font-black text-[#ffdf7a]">
                   <span data-winner-amount>{row.amount}</span> THB
                 </div>
               </div>
@@ -111,11 +111,11 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
 <style>
   /* The two status colours are classes rather than inline strings so the JS in
      src/lib/winnersFeed.ts never has to know what this brand's palette is.
-     Pending is the brand pink; verified keeps the semantic success green,
-     which is not part of the brand swap. */
+     Pending is the brand's coin gold; verified keeps the semantic success
+     green, which is not part of the brand swap. */
   .winner-status.is-pending {
-    color: #fda3cd;
-    border-color: #f1509b;
+    color: #f5c518;
+    border-color: #b8860b;
   }
   .winner-status.is-verified {
     color: oklch(79.2% 0.209 151.711);
