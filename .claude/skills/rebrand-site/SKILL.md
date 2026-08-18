@@ -121,7 +121,7 @@ collision; when in doubt, widen P1 and shrink the fan-out.
 
 **How this rebrand was likely triggered.** The `tools/rebrand-uploader` tool
 (launch by double-clicking `tools/rebrand-uploader/start-uploader.cmd` — no VS
-Code needed — or `npm run rebrand:upload`, opens `localhost:4444`) is where the
+Code needed — or `npm run rebrand:upload`, opens `localhost:5555`) is where the
 operator stages the brand files first. Its **"ส่วนที่ 6 — สร้างคำสั่ง Rebrand"**
 card produces the very prompt that starts you, in the form
 `rebrand and retheme to "<BRAND>" then real url is "<URL>" ทำแบบขนานตาม

@@ -26,7 +26,7 @@
 | repo ที่คุณทำงาน                 | `gitlab.com/tardev-group/astro-<ชื่อคุณ>` (คนละอันต่อคน)                     |
 | branch ที่ทำงาน                  | `main`                                                                       |
 | หน้าเว็บ dev                     | http://localhost:8888                                                        |
-| หน้า uploader                    | http://localhost:4444                                                        |
+| หน้า uploader                    | http://localhost:5555                                                        |
 | หน้า preview หลังรีแบรนด์        | http://localhost:4321                                                        |
 
 ---
@@ -38,7 +38,7 @@
 | ส่วน                  | ทำอะไร                                           | ต้องติดตั้งอะไร              |
 | --------------------- | ------------------------------------------------ | ---------------------------- |
 | เว็บ Astro            | ตัวเว็บลูกค้า                                    | Node.js                      |
-| Rebrand Uploader      | หน้า UI ที่ `localhost:4444` รับไฟล์ + ยิงคำสั่ง | Node.js (ใช้ `sharp` ย่อรูป) |
+| Rebrand Uploader      | หน้า UI ที่ `localhost:5555` รับไฟล์ + ยิงคำสั่ง | Node.js (ใช้ `sharp` ย่อรูป) |
 | Claude Code CLI       | ตัวที่ลงมือรีแบรนด์จริงตอนกดปุ่ม                 | **Claude CLI + login**       |
 | Cloudflare (wrangler) | ปุ่มขึ้นเว็บจริง + ปุ่มสลับบัญชี                 | **`wrangler login`**         |
 
@@ -666,7 +666,7 @@ npm run dev
 npm run rebrand:upload
 ```
 
-เปิด http://localhost:4444 ต้องเห็นการ์ด 1-7
+เปิด http://localhost:5555 ต้องเห็นการ์ด 1-7
 (หรือดับเบิลคลิก `tools\rebrand-uploader\start-uploader.cmd` ก็ได้ ไม่ต้องเปิด VS Code)
 
 **3) uploader ต่อกับ Claude ได้ไหม** ⭐ ข้อที่ตัดสินว่าติดตั้งสำเร็จหรือไม่
@@ -748,16 +748,16 @@ git branch --show-current
 
 ## พอร์ตชนกับโปรแกรมอื่น — อย่าแก้ไฟล์
 
-ถ้า `4444` ถูกโปรแกรมอื่นในเครื่องใช้อยู่ **อย่าไปแก้ `package.json` หรือ `server.mjs`**
+repo นี้ตั้งพอร์ตเริ่มต้นเป็น `5555` ไว้แล้ว ถ้ายังชนอีก **อย่าไปแก้ `package.json` หรือ `server.mjs`**
 เพราะการแก้ไฟล์จะไหลกลับเข้าต้นแบบแล้วลากทุกคนย้ายพอร์ตตาม ทั้งที่ปัญหาอยู่ที่เครื่องคุณคนเดียว
 
 สั่งพอร์ตเฉพาะครั้งนั้นแทน — `server.mjs` อ่าน `process.env.PORT` อยู่แล้ว:
 
 ```powershell
-$env:PORT=5555; npm run rebrand:upload
+$env:PORT=6666; npm run rebrand:upload
 ```
 
-แล้วเปิด `http://localhost:5555` ปิดหน้าต่างเมื่อไหร่ค่าก็หายไป ไม่มีอะไรค้างในโค้ด
+แล้วเปิด `http://localhost:6666` ปิดหน้าต่างเมื่อไหร่ค่าก็หายไป ไม่มีอะไรค้างในโค้ด
 
 ---
 
@@ -778,7 +778,7 @@ $env:PORT=5555; npm run rebrand:upload
 | ปุ่ม "ขึ้นเว็บจริง" กดไม่ได้                                                          | ยังไม่ได้ทดสอบหน้าเว็บ / ติ๊กไม่ครบ 5 ข้อ                                  | กดทดสอบหน้าเว็บก่อน แล้วติ๊กให้ครบ                                                                         |
 | `wrangler` บอกว่าไม่ได้ login                                                         | ยังไม่ทำ B6 หรือเพิ่งกดสลับบัญชีแล้วยกเลิก                                 | `npx wrangler login` ใหม่                                                                                  |
 | deploy สำเร็จแต่เปิดเว็บไม่ได้                                                        | DNS ค้าง / ยังไม่ผูก Custom Domain                                         | [`DEPLOY-CLOUDFLARE.md`](DEPLOY-CLOUDFLARE.md) ขั้นที่ 0 และปัญหา ⑤                                        |
-| พอร์ต 4444 ถูกโปรแกรมอื่นใช้อยู่                                                      | ชนกับของในเครื่องคุณเอง                                                    | `$env:PORT=5555; npm run rebrand:upload` — **อย่าแก้ไฟล์** (ภาค D)                                         |
+| พอร์ต 5555 ถูกโปรแกรมอื่นใช้อยู่                                                      | ชนกับของในเครื่องคุณเอง                                                    | `$env:PORT=6666; npm run rebrand:upload` — **อย่าแก้ไฟล์** (ภาค D)                                         |
 | `git push` ขึ้น `Updates were rejected`                                               | ปลายทางมี commit ที่ต้นแบบไม่มี                                            | ดู **A4** — ดึงกลับเข้าต้นแบบด้วย **A5** ก่อน **ห้าม `--force`**                                           |
 | ทำงานอยู่ดีๆ แล้ว conflict เต็มไปหมด                                                  | ไม่ได้ `git pull` มานาน ห่างจากต้นแบบไปไกล                                 | ภาค D — `git switch main && git pull` ก่อนเริ่มงานทุกครั้ง                                                 |
 | แก้บั๊กแล้วแต่ repo อื่นยังพังอยู่                                                    | หยุดที่ repo ตัวเอง ไม่ได้ส่งกลับต้นแบบ                                    | **A5** ดึงเข้าต้นแบบ แล้ว **A4** กระจายออกทุก repo                                                         |
@@ -831,7 +831,7 @@ npx wrangler whoami
 
 # ═══ B7 ═══ ทดสอบว่าพร้อม ต้องผ่านครบ 4 ข้อ
 npm run dev              # 1) เปิด localhost:8888 → Ctrl+C
-npm run rebrand:upload   # 2) เปิด localhost:4444
+npm run rebrand:upload   # 2) เปิด localhost:5555
                          # 3) การ์ด 6 → กด 🧪 ทดสอบท่อ → ต้องเขียว
                          # 4) การ์ด 7 → แถวบัญชี Cloudflare ต้องขึ้นอีเมล
 ```

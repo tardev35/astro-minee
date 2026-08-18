@@ -1,5 +1,5 @@
 // Local-only rebrand console.
-// Run with: npm run rebrand:upload   (opens http://localhost:4444)
+// Run with: npm run rebrand:upload   (opens http://localhost:5555)
 //
 // Four jobs, in the order an operator does them:
 //   1. STAGE (ส่วนที่ 1-5) — copy a new brand's files into src/assets and public
@@ -40,7 +40,7 @@ const CONFIG = join(ROOT, "astro.config.mjs");
 // bypassPermissions. Anyone who can reach this port can therefore run arbitrary
 // code on this machine. HOST=0.0.0.0 is FORBIDDEN until real auth + HTTPS exist
 // (see the rebrand web-UI plan); the default keeps a bare run safe.
-const PORT = Number(process.env.PORT) || 4444;
+const PORT = Number(process.env.PORT) || 5555;
 const HOST = process.env.HOST || "127.0.0.1";
 
 const IMAGE_EXTS = ["png", "webp", "jpg", "jpeg", "avif", "gif", "svg"];
@@ -1923,7 +1923,7 @@ async function startPreview() {
   });
 
   // Poll the address it is actually bound to; hand the operator the name they
-  // are used to typing (localhost, same as :8888 and :4444).
+  // are used to typing (localhost, same as :8888 and :5555).
   const url = "http://localhost:" + PREVIEW_PORT + "/";
   try {
     await waitForPreview("http://127.0.0.1:" + PREVIEW_PORT + "/", PREVIEW_READY_TIMEOUT_MS);
@@ -3114,7 +3114,7 @@ const PAGE = /* html */ `<!doctype html>
 <body>
 <header>
   <div class="head-inner">
-    <h1><span class="mark">📦</span> <span class="grad-text">Rebrand Asset Uploader</span></h1>
+    <h1><span class="mark">📦</span> <span class="grad-text">Minee Uploader</span></h1>
   </div>
 </header>
 <main>
@@ -4175,7 +4175,7 @@ const PAGE = /* html */ `<!doctype html>
   // ── confirm dialog ────────────────────────────────────────────────────────
   // Replaces window.confirm(), which could not show the one thing that matters
   // most here — the exact prompt about to be fired — as anything but a wall of
-  // unstyled text, and which browsers label with "localhost:4444 says".
+  // unstyled text, and which browsers label with "localhost:5555 says".
   const cfDlg = document.getElementById('confirmDlg');
   function askConfirm({ title, sub = '', lines = [], code = '', ok = 'ตกลง', icon = '▶', danger = false }) {
     document.getElementById('cfTitle').textContent = title;
