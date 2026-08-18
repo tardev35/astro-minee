@@ -2831,6 +2831,10 @@ const PAGE = /* html */ `<!doctype html>
     background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2);
     padding: 2px 8px; border-radius: 6px;
   }
+  .field .target.stale {
+    color: var(--err); background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.35);
+  }
+  .field .status b.stale { color: var(--err); }
   .field .opt {
     font-size: 10px; color: var(--faint); font-weight: 600; text-transform: uppercase; letter-spacing: .05em;
     background: rgba(148,163,184,0.1); padding: 2px 7px; border-radius: 999px;
@@ -4138,6 +4142,7 @@ const PAGE = /* html */ `<!doctype html>
           : 'งานไม่จบสมบูรณ์ — repo อาจถูกแก้ค้างไว้ ตรวจด้วย <code>git status</code> / ย้อนด้วย <code>git checkout .</code> ก่อนยิงใหม่';
         addLog('rebrand: ' + ev.status, okRun);
         gtRefresh();
+        dpRefreshTarget();
         break;
       }
     }
@@ -4408,18 +4413,38 @@ const PAGE = /* html */ `<!doctype html>
 
   // The two targets fail in different ways, so the line under the picker says
   // which one is not ready rather than a single "cannot deploy".
+  function dpBareHost(v) {
+    if (!v) return '';
+    let h = String(v).trim().toLowerCase();
+    if (h.indexOf('://') < 0) h = 'https://' + h;
+    try { h = new URL(h).hostname.toLowerCase(); } catch { return ''; }
+    if (h.indexOf('www.') === 0) h = h.slice(4);
+    return h;
+  }
+
+  function dpStaleNote() {
+    const typed = dpBareHost(rbUrl.value);
+    if (!typed) return '';
+    const live = dpBareHost(dpVps && dpVps.site);
+    if (!live || live === typed) return '';
+    return '<br><b class="stale">ยังไม่ตรงกับ URL production ที่กรอกไว้ (' + esc(typed) +
+      ') — ที่จะขึ้นจริงตอนนี้คือ ' + esc(live) + ' ต้องรัน Rebrand ก่อน ค่าถึงจะเปลี่ยน</b>';
+  }
+
   function dpWhereSync() {
     const vps = dpMode() === 'vps';
     const t = document.getElementById('dpWhereTarget');
     const hint = document.getElementById('dpWhereHint');
+    const stale = dpStaleNote();
+    t.classList.toggle('stale', !!stale);
     if (vps) {
       t.textContent = dpVps?.domain || 'อ่านโดเมนไม่ได้';
-      hint.innerHTML = dpVps?.valid
+      hint.innerHTML = (dpVps?.valid
         ? 'อ่านโดเมนจาก <code>astro.config.mjs</code> → <code>site:</code> · ถ้ายังไม่มีบนเซิร์ฟเวอร์จะรัน <code>add-site.sh</code> ให้ก่อนอัตโนมัติ'
-        : '<b>ตั้ง site: ใน astro.config.mjs ให้เป็น URL production ก่อน</b> — ตอนนี้อ่านเป็นโดเมนไม่ได้';
+        : '<b>ตั้ง site: ใน astro.config.mjs ให้เป็น URL production ก่อน</b> — ตอนนี้อ่านเป็นโดเมนไม่ได้') + stale;
     } else {
       t.textContent = dpTarget?.name || 'อ่าน wrangler.toml ไม่ได้';
-      hint.innerHTML = 'ขึ้น Cloudflare Worker ตามที่ <code>wrangler.toml</code> ตั้งไว้';
+      hint.innerHTML = 'ขึ้น Cloudflare Worker ตามที่ <code>wrangler.toml</code> ตั้งไว้' + stale;
     }
     dpSync();
   }
@@ -4512,15 +4537,21 @@ const PAGE = /* html */ `<!doctype html>
     }
   });
 
-  (async () => {
+  let dpFirstLoad = true;
+  async function dpRefreshTarget() {
     try {
       const st = await (await fetch('/deploy/status')).json();
       dpTarget = st.target || null;
       dpVps = st.vps || null;
-      if (st.deploy && st.deploy.log && st.deploy.log.length) dpRender(st.deploy);
+      if (dpFirstLoad && st.deploy && st.deploy.log && st.deploy.log.length) dpRender(st.deploy);
     } catch { /* server not answering */ }
+    dpFirstLoad = false;
     dpWhereSync();
-  })();
+  }
+  dpRefreshTarget();
+  setInterval(() => { if (!document.hidden && !dpBusy) dpRefreshTarget(); }, 4000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) dpRefreshTarget(); });
+  rbUrl.addEventListener('input', () => dpWhereSync());
 
   // ── Cloudflare account ────────────────────────────────────────────────────
   // Two separate things have to agree before a deploy lands where it should:
