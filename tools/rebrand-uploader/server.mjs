@@ -4422,29 +4422,30 @@ const PAGE = /* html */ `<!doctype html>
     return h;
   }
 
-  function dpStaleNote() {
+  function dpPendingHost() {
     const typed = dpBareHost(rbUrl.value);
     if (!typed) return '';
-    const live = dpBareHost(dpVps && dpVps.site);
-    if (!live || live === typed) return '';
-    return '<br><b class="stale">ยังไม่ตรงกับ URL production ที่กรอกไว้ (' + esc(typed) +
-      ') — ที่จะขึ้นจริงตอนนี้คือ ' + esc(live) + ' ต้องรัน Rebrand ก่อน ค่าถึงจะเปลี่ยน</b>';
+    return dpBareHost(dpVps && dpVps.site) === typed ? '' : typed;
   }
 
   function dpWhereSync() {
     const vps = dpMode() === 'vps';
     const t = document.getElementById('dpWhereTarget');
     const hint = document.getElementById('dpWhereHint');
-    const stale = dpStaleNote();
-    t.classList.toggle('stale', !!stale);
-    if (vps) {
+    const pending = dpPendingHost();
+    t.classList.toggle('stale', !!pending);
+    if (pending) {
+      t.textContent = pending + ' · รอ Rebrand';
+      hint.innerHTML = '<b class="stale">ยังไม่ได้เขียน ' + esc(pending) +
+        ' ลง astro.config.mjs</b> — กด <b>เริ่ม Rebrand</b> ก่อน ช่องนี้จะเปลี่ยนให้เอง · ถ้าจะขึ้นแบรนด์เดิม ให้ล้างช่อง URL production ในส่วนที่ 1';
+    } else if (vps) {
       t.textContent = dpVps?.domain || 'อ่านโดเมนไม่ได้';
-      hint.innerHTML = (dpVps?.valid
+      hint.innerHTML = dpVps?.valid
         ? 'อ่านโดเมนจาก <code>astro.config.mjs</code> → <code>site:</code> · ถ้ายังไม่มีบนเซิร์ฟเวอร์จะรัน <code>add-site.sh</code> ให้ก่อนอัตโนมัติ'
-        : '<b>ตั้ง site: ใน astro.config.mjs ให้เป็น URL production ก่อน</b> — ตอนนี้อ่านเป็นโดเมนไม่ได้') + stale;
+        : '<b>ตั้ง site: ใน astro.config.mjs ให้เป็น URL production ก่อน</b> — ตอนนี้อ่านเป็นโดเมนไม่ได้';
     } else {
       t.textContent = dpTarget?.name || 'อ่าน wrangler.toml ไม่ได้';
-      hint.innerHTML = 'ขึ้น Cloudflare Worker ตามที่ <code>wrangler.toml</code> ตั้งไว้' + stale;
+      hint.innerHTML = 'ขึ้น Cloudflare Worker ตามที่ <code>wrangler.toml</code> ตั้งไว้';
     }
     dpSync();
   }
@@ -4454,9 +4455,11 @@ const PAGE = /* html */ `<!doctype html>
     const previewed = pvPill.dataset.ok === '1';
     const ticked = pvAllChecked();
     const vps = dpMode() === 'vps';
-    const targetReady = vps ? !!dpVps?.valid : true;
+    const pending = dpPendingHost();
+    const targetReady = !pending && (vps ? !!dpVps?.valid : true);
     dpStart.disabled = !(previewed && ticked && targetReady) || running();
     if (running()) dpHint.textContent = 'มี rebrand กำลังรันอยู่ — รอให้จบก่อน';
+    else if (pending) dpHint.innerHTML = 'ยังไม่ได้รัน Rebrand ให้ <code>' + esc(pending) + '</code> — ถ้าขึ้นตอนนี้จะไปทับแบรนด์เดิม';
     else if (!previewed) dpHint.textContent = 'กด "ทดสอบหน้าเว็บ" ให้เว็บขึ้นก่อน';
     else if (!ticked) dpHint.textContent = 'ติ๊กให้ครบ 5 ข้อก่อน — ยังเหลือ ' + pvBoxes().filter((b) => !b.checked).length + ' ข้อ';
     else if (!targetReady) dpHint.textContent = 'ยังอ่านโดเมนปลายทางไม่ได้ — ดูบรรทัดบน';
