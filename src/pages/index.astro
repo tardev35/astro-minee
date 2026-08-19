@@ -1,20 +1,19 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/Announcement5.astro";
-import ContentBoxPremium from "../components/ContentBoxPremium.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ContentBoxTwoPremium from "../components/ContentBoxTwoPremium.astro";
-import ContentBoxTwoCyberCut from "../components/ContentBoxTwoCyberCut.astro";
-import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
-import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
-import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
+import Announcement from "../components/AnnouncementCyber.astro";
+import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
+import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
+import ContentBoxTwo from "../components/ContentBoxTwo.astro";
+import ContentBoxTwoNeumorphism from "../components/ContentBoxTwoNeumorphism.astro";
+import ContentBoxSevenThree from "../components/ContentBoxSevenThree.astro";
+import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinners3.astro";
+import LatestWinners from "../components/LatestWinnersCyber.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq2.astro";
+import Faq from "../components/Faq4.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
@@ -23,41 +22,48 @@ import { pageGraph } from "../lib/schema";
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
 // two of those per rebrand — both are spent here.
 //
-// slide1 prints "สมาชิกใหม่ รับโบนัส 50% / สมัครวันนี้ รับสิทธิ์ทันที", which is
-// the promotion the docx's promotions section is about; slide2 prints
-// "ฝากครั้งแรก รับเพิ่ม 20% / ฝากง่าย ถอนเร็ว ระบบออโต้", the deposit/withdraw
-// flow the จ่ายไว section describes. slide3 (แนะนำเพื่อน 10%) and slide4
-// (คืนยอดเสีย 0.8%) stay unused here and keep rendering in SmoothCarousel and on
-// /promotion.
+// slide2 prints "ฝากครั้งแรก รับเพิ่ม 20% / คุ้มตั้งแต่ฝากแรก" with the
+// ฝากง่าย/ถอนเร็ว/ระบบออโต้ icon row, which is exactly the deposit flow the
+// docx's ระบบออโต้ฝากเงิน section describes; slide4 prints "สมาชิกใหม่ รับโบนัส
+// 50% / สมัครวันนี้ รับสิทธิ์ทันที", the promo whose conditions the closing
+// เลือกเกมและโปรให้เหมาะ section says to compare before claiming. slide1
+// (แนะนำเพื่อน 10%) and slide3 (คืนยอดเสีย 0.8%) stay unused here and keep
+// rendering in SmoothCarousel and on /promotion.
 //
 // banner2.png is NOT imported anywhere: it predates this asset drop.
 // banner1/banner1-mobile are the hero and belong to MainLayout alone.
-import imgPromotion from "../assets/slide1.png";
-import imgPayout from "../assets/slide2.png";
+import imgAutoDeposit from "../assets/slide2.png";
+import imgBonusChoice from "../assets/slide4.png";
 
-const pageTitle = "เฮงเฮง888 |เกมสล็อตแตกหนักวันนี้ ไม่กำหนดขั้นต่ำ โปรโมชั่นดี จ่ายไว";
-const pageHeading = "เฮงเฮง888เกมสล็อตแตกหนักวันนี้ ไม่กำหนดขั้นต่ำ โปรโมชั่นดี จ่ายไว";
+const pageTitle = "BMK289 | เว็บสล็อตรวมเกมยอดนิยม ระบบออโต้ฝากง่าย ถอนไว จ่ายจริง";
+const pageHeading = "BMK289 เว็บสล็อตรวมเกมยอดนิยม ระบบออโต้ฝากง่าย ถอนไว จ่ายจริง";
 
-// The docx Meta Description, verbatim at the length it was written (139
+// The docx Meta Description, verbatim at the length it was written (129
 // characters). DESC_MIN does not apply to the home page — verify-build.mjs
 // exempts it precisely so the brand's own copy ships unpadded. Do not top it
 // up to 150.
-const pageDescription = "เฮงเฮง888 รวมเกมสล็อตหลายแนว ไม่กำหนดขั้นต่ำตามเงื่อนไข โปรโมชั่นหลากหลาย รองรับมือถือ พร้อมระบบใช้งานสะดวกและตรวจสอบรายการได้ง่าย";
+const pageDescription = "BMK289 เว็บสล็อตรวมเกมยอดนิยม ระบบออโต้ฝากง่าย ถอนไวตามเงื่อนไข รองรับมือถือ พร้อมระบบใช้งานสะดวกและตรวจสอบรายการได้ง่าย";
+
+const altAutoDeposit =
+  "แบนเนอร์โปรโมชั่น BMK289 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก พร้อมไอคอนสามช่อง ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่ม ฝากเลย พร้อมโลโก้ BMK289 ตัวอักษรโครมสีฟ้า-ขาวเหนือบรรทัด BMK289.COM FUTURE GAME AND SPORTS ผู้หญิงในชุดครอปและกระโปรงสีน้ำเงิน-ขาวพิมพ์ BMK289 ชี้นิ้วขึ้น ป้าย JACKPOT 1,286,000.00 ตู้สล็อตสัญลักษณ์ BAR และเลข 7 ไพ่เอซ และกองเหรียญทองในห้องคาสิโนโทนน้ำเงินนีออน";
+
+const altBonusChoice =
+  "แบนเนอร์โปรโมชั่น BMK289 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่ม รับโปรเลย พร้อมโลโก้ BMK289 ตัวอักษรโครมสีฟ้า-ขาวเหนือบรรทัด BMK289.COM FUTURE GAME AND SPORTS ผู้หญิงในชุดครอปและกางเกงสีน้ำเงิน-ขาวพิมพ์ BMK289 กำหมัดและชี้นิ้ว ป้าย JACKPOT 1,286,000.00 ตู้สล็อตสัญลักษณ์ BAR และเลข 7 ไพ่เอซ และกองเหรียญทองในห้องคาสิโนโทนน้ำเงินนีออน";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq2's own default, which is always the previous brand's FAQ.
+// Faq4's own default, which is always the previous brand's FAQ.
 const faqs = [
   {
-    q: "เฮงเฮง888 มีขั้นต่ำในการฝากหรือถอนไหม?",
-    a: "บางช่องทางอาจรองรับเงื่อนไขไม่กำหนดขั้นต่ำ แต่สมาชิกควรตรวจสอบรายละเอียดของแต่ละช่องทางและโปรโมชั่นก่อนทำรายการทุกครั้ง",
+    q: "BMK289 มีเกมสล็อตประเภทใดให้เลือกบ้าง?",
+    a: "ภายในระบบมีเกมสล็อตหลายแนว ทั้งเกมคลาสสิก เกมโบนัส และเกมธีมสมัยใหม่ ผู้เล่นสามารถเลือกตามกติกา ฟีเจอร์ และงบประมาณของตนเอง",
   },
   {
-    q: "โปรโมชั่นของ เฮงเฮง888 เหมาะกับผู้เล่นทุนน้อยหรือไม่?",
-    a: "โปรโมชั่นแต่ละแบบมีเงื่อนไขต่างกัน ผู้เล่นควรดูยอดเริ่มต้น โบนัส และข้อกำหนดการถอน เพื่อเลือกโปรที่เหมาะกับงบของตนเองมากที่สุด",
+    q: "ระบบฝากถอนออโต้ของ BMK289 ช่วยอะไร?",
+    a: "ระบบออโต้ช่วยลดขั้นตอนการทำธุรกรรมและให้สมาชิกติดตามสถานะผ่านหน้าบัญชีได้ โดยระยะเวลาดำเนินการอาจแตกต่างตามช่องทางและสถานะรายการ",
   },
   {
-    q: "เกมสล็อตแตกหนักรับประกันว่าจะได้กำไรหรือไม่?",
-    a: "ไม่สามารถรับประกันผลลัพธ์หรือกำไรจากเกมสล็อตได้ ผู้เล่นควรศึกษากติกา ความผันผวน และกำหนดงบประมาณก่อนเริ่มเล่นทุกครั้ง",
+    q: "คำว่าจ่ายจริงหมายถึงรับประกันการถอนทุกยอดหรือไม่?",
+    a: "ไม่ควรตีความว่าเป็นการรับประกันทุกกรณี เพราะการถอนอาจขึ้นอยู่กับสถานะบัญชี เงื่อนไขโปรโมชั่น และขั้นตอนตรวจสอบของระบบ ควรอ่านข้อกำหนดก่อนใช้งาน",
   },
 ];
 
@@ -74,55 +80,26 @@ const graph = pageGraph(Astro, {
 
   <Announcement />
 
-  <ContentBoxPremium as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#e8f3e0]">
-      <strong class="text-[#f5c518]">เฮงเฮง888</strong> เป็นแพลตฟอร์มเกมสล็อตออนไลน์ที่รวมเกมหลายรูปแบบไว้ในระบบเดียว เน้นการใช้งานที่เข้าใจง่าย รองรับทั้งมือถือและคอมพิวเตอร์
-      พร้อมโปรโมชั่นหลากหลายและเงื่อนไขการทำรายการที่ยืดหยุ่น ผู้เล่นควรตรวจสอบกติกา รายละเอียดโปรโมชั่น และข้อกำหนดต่าง ๆ ก่อนเริ่มใช้งานทุกครั้ง
+  <ContentBoxNeumorphism as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#dbe9fb]">
+      <strong class="text-[#ffcc33]">BMK289</strong> เป็นแพลตฟอร์มเกมสล็อตออนไลน์ที่รวบรวมเกมยอดนิยมหลายรูปแบบไว้ในระบบเดียว พร้อมระบบออโต้ที่ช่วยลดขั้นตอนการฝากและถอน รองรับการใช้งานผ่านมือถือและคอมพิวเตอร์
+      สมาชิกสามารถเลือกเกม ตรวจสอบโปรโมชั่น และติดตามสถานะรายการได้สะดวก โดยควรอ่านกติกาและเงื่อนไขก่อนทำรายการทุกครั้ง
     </p>
-  </ContentBoxPremium>
+  </ContentBoxNeumorphism>
 
-  <ContentBoxCyberCut as="h2" title="เลือกเกมสล็อตหลายสไตล์ได้ง่ายบน เฮงเฮง888">
-    <p class="text-left text-base leading-relaxed text-[#e8f3e0]">
-      ภายใน เฮงเฮง888 มีทั้งสล็อตคลาสสิก เกมฟีเจอร์โบนัส และเกมธีมสมัยใหม่ให้เลือกตามความสนใจ ผู้เล่นสามารถพิจารณาจากกติกา รูปแบบการจ่าย และความผันผวนของแต่ละเกม
-      เพื่อเลือกเกมให้เหมาะกับสไตล์และงบประมาณของตนเอง
+  <ContentBoxFloatingBadge as="h2" title="ค้นหาเกมยอดนิยมที่เข้ากับสไตล์ได้บน BMK289">
+    <p class="text-left text-base leading-relaxed text-[#dbe9fb]">
+      ภายใน BMK289 มีเกมสล็อตหลายแนวทั้งแบบคลาสสิก เกมโบนัส และเกมธีมใหม่ ผู้เล่นสามารถเลือกจากรูปแบบการเล่น ฟีเจอร์ ความผันผวน และกติกาของแต่ละเกม
+      เพื่อให้ได้ตัวเลือกที่เหมาะกับงบประมาณและความชอบของตนเองมากขึ้น
     </p>
-  </ContentBoxCyberCut>
+  </ContentBoxFloatingBadge>
 
   <ProviderGrid />
 
-  <ContentBoxTwoPremium titleleft="ไม่กำหนดขั้นต่ำช่วยให้วางงบได้ยืดหยุ่นขึ้น">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#e8f3e0]">
-      เงื่อนไขไม่กำหนดขั้นต่ำในบางช่องทางช่วยให้ผู้เล่นเลือกจำนวนเงินตามงบของตนเองได้สะดวกขึ้น อย่างไรก็ตาม ควรตรวจสอบข้อกำหนดของช่องทางฝากถอนและโปรโมชั่นแต่ละรายการให้ครบ
-      เพื่อให้เข้าใจเงื่อนไขก่อนทำธุรกรรมจริง
-    </p>
-
-    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#12a34f]/30 bg-[#03170c]/70 p-5">
-      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f5c518] uppercase">
-        <span aria-hidden="true">🧾</span>
-        จุดที่ควรตรวจก่อนทำธุรกรรมจริง
-      </p>
-      <span class="flex items-start gap-2.5 text-sm text-[#e8f3e0]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9fcf3a]">①</span>
-        ช่องทางฝากถอนที่รองรับเงื่อนไขไม่กำหนดขั้นต่ำ
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#e8f3e0]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9fcf3a]">②</span>
-        ข้อกำหนดของโปรโมชั่นแต่ละรายการที่จะใช้ร่วมด้วย
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#e8f3e0]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9fcf3a]">③</span>
-        จำนวนเงินที่วางไว้ตามงบของตนเองในแต่ละรอบ
-      </span>
-      <span class="mt-1 rounded-xl border border-[#f5c518]/35 bg-[#072b14]/80 px-4 py-2.5 text-xs leading-relaxed text-[#a7c295]">
-        เงื่อนไขไม่กำหนดขั้นต่ำใช้ได้เฉพาะบางช่องทาง ควรอ่านข้อกำหนดให้ครบก่อนทำรายการทุกครั้ง
-      </span>
-    </div>
-  </ContentBoxTwoPremium>
-
-  <ContentBoxSevenThreePremium titleright="โปรโมชั่นของ เฮงเฮง888 ควรเลือกจากเงื่อนไขที่เหมาะกับตัวเอง">
+  <ContentBoxSevenThreeNeumorphism titleright="ระบบออโต้ช่วยให้ขั้นตอนฝากเงินกระชับขึ้น">
     <Picture
       slot="left"
-      src={imgPromotion}
+      src={imgAutoDeposit}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -131,26 +108,87 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่น เฮงเฮง888 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่มสีเขียว รับโปรเลย พร้อมโลโก้ เฮงเฮง888 ตัวอักษรไทยสีขาวเหนือเลข 888 สีเขียวมะนาว ผู้หญิงในชุดเกาะอกและกระโปรงสีเขียว-ขาวพิมพ์ เฮงเฮง888 ชี้นิ้วขึ้น วงล้อสล็อตเลข 777 กองเหรียญทองและเหรียญที่ปลิวอยู่ในห้องคาสิโนโทนเขียวเข้ม"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#12a34f]/40 shadow-[0_10px_30px_rgba(18,163,79,0.28)]"
+      alt={altAutoDeposit}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#2b8cff]/40 shadow-[0_10px_30px_rgba(43,140,255,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#e8f3e0]">
-      โปรโมชั่นของ เฮงเฮง888 อาจมีทั้งโบนัสสำหรับสมาชิกใหม่ สิทธิพิเศษตามยอดฝาก หรือกิจกรรมตามช่วงเวลา ก่อนเลือกรับควรดูยอดที่กำหนด เกมที่เข้าร่วม และเงื่อนไขการถอนร่วมกัน
-      เพื่อเลือกโปรที่สอดคล้องกับงบมากที่สุด
+    <p slot="right" class="text-left text-base leading-relaxed text-[#dbe9fb]">
+      ระบบฝากแบบออโต้ช่วยลดขั้นตอนการส่งข้อมูลซ้ำ สมาชิกควรตรวจสอบชื่อบัญชี จำนวนเงิน และช่องทางที่ใช้ก่อนยืนยันทุกครั้ง รวมถึงรอให้ระบบแสดงสถานะสำเร็จก่อนทำรายการใหม่
+      เพื่อช่วยลดความคลาดเคลื่อนและทำให้ตรวจสอบย้อนหลังได้ง่าย
     </p>
-  </ContentBoxSevenThreePremium>
+  </ContentBoxSevenThreeNeumorphism>
 
-  <ContentBoxSpecial as="h2" title="เกมแตกหนักวันนี้ไม่ได้หมายถึงผลลัพธ์ที่แน่นอน" iconleft="🎰" iconright="🔍">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#e8f3e0]">คำว่าแตกหนักวันนี้มักใช้สื่อถึงความตื่นเต้นหรือโอกาสลุ้นรางวัลของเกมสล็อต แต่ไม่สามารถรับประกันผลได้</p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#e8f3e0]">ผู้เล่นควรตรวจสอบข้อมูลเกม ความผันผวน และอัตราจ่ายก่อนเริ่ม พร้อมกำหนดวงเงินที่สามารถยอมรับความเสี่ยงได้</p>
-  </ContentBoxSpecial>
+  <ContentBoxTwo as="h2" titleleft="ทำรายการถอนกับ BMK289 ได้อย่างเป็นขั้นตอน" iconleft="💳">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#dbe9fb]">
+      สมาชิก BMK289 สามารถส่งคำขอถอนและตรวจสอบสถานะผ่านหน้าบัญชีได้โดยตรง ก่อนยืนยันควรตรวจสอบยอดคงเหลือ ข้อมูลรับเงิน และเงื่อนไขโปรโมชั่นให้ครบ หากรายการยังดำเนินการอยู่ควรรอผลจากระบบก่อนส่งคำขอซ้ำ
+    </p>
+
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#2b8cff]/30 bg-[#08152f]/70 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#ffcc33] uppercase">
+        <span aria-hidden="true">🧾</span>
+        ลำดับที่ควรตรวจก่อนกดยืนยันถอน
+      </p>
+      <span class="flex items-start gap-2.5 text-sm text-[#dbe9fb]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9dcef0]">①</span>
+        ยอดคงเหลือในบัญชีตรงกับจำนวนที่ตั้งใจถอน
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#dbe9fb]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9dcef0]">②</span>
+        ข้อมูลรับเงินถูกต้องครบถ้วนตามที่ผูกไว้กับบัญชี
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#dbe9fb]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9dcef0]">③</span>
+        เงื่อนไขโปรโมชั่นที่ใช้อยู่ครบตามข้อกำหนดแล้ว
+      </span>
+      <span class="mt-1 rounded-xl border border-[#ffcc33]/35 bg-[#02081c]/80 px-4 py-2.5 text-xs leading-relaxed text-[#96abcb]">
+        หากรายการยังดำเนินการอยู่ ควรรอผลจากระบบก่อนส่งคำขอซ้ำ เพราะระยะเวลาดำเนินการอาจแตกต่างตามช่องทางและสถานะรายการ
+      </span>
+    </div>
+  </ContentBoxTwo>
+
+  <ContentBoxNeumorphism as="h2" title="เกมยอดนิยมไม่ได้หมายความว่าจะเหมาะกับทุกคน">
+    <p class="text-left text-base leading-relaxed text-[#dbe9fb]">
+      ความนิยมของเกมช่วยบอกได้ว่าเกมใดได้รับความสนใจ แต่ไม่ได้หมายความว่าเหมาะกับผู้เล่นทุกคน ควรศึกษาความผันผวน รูปแบบโบนัส และจำนวนเงินต่อรอบก่อนเลือก
+      พร้อมกำหนดวงเงินไว้ล่วงหน้าเพื่อควบคุมค่าใช้จ่ายให้เหมาะสม
+    </p>
+  </ContentBoxNeumorphism>
 
   <GameRankingBoard />
 
-  <ContentBoxSevenThreeCyberCut titleright="ตรวจสอบสถานะจ่ายไวผ่านระบบ เฮงเฮง888">
+  <ContentBoxTwoNeumorphism titleleft="ตรวจสอบสถานะธุรกรรมได้ง่ายผ่าน BMK289">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#dbe9fb]">
+      หน้าบัญชีของ BMK289 ช่วยให้สมาชิกติดตามรายการฝาก ถอน และข้อมูลที่เกี่ยวข้องได้สะดวก หากพบรายการผิดปกติควรเก็บเวลา จำนวนเงิน และข้อมูลอ้างอิงไว้สำหรับการตรวจสอบ
+      และไม่ควรเปิดเผยรหัสผ่านหรือรหัสยืนยันแก่บุคคลอื่น
+    </p>
+
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#2b8cff]/30 bg-[#02081c]/70 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#ffcc33] uppercase">
+        <span aria-hidden="true">🧭</span>
+        ข้อมูลที่ควรเก็บไว้เมื่อพบรายการผิดปกติ
+      </p>
+      <span class="flex items-start gap-2.5 text-sm text-[#dbe9fb]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9dcef0]">①</span>
+        เวลาที่ทำรายการและเวลาที่สถานะเปลี่ยน
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#dbe9fb]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9dcef0]">②</span>
+        จำนวนเงินของรายการนั้นตามที่ระบบแสดง
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#dbe9fb]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9dcef0]">③</span>
+        ข้อมูลอ้างอิงของรายการไว้สำหรับการตรวจสอบ
+      </span>
+      <span class="mt-1 rounded-xl border border-[#ffcc33]/35 bg-[#08152f]/80 px-4 py-2.5 text-xs leading-relaxed text-[#96abcb]">
+        ไม่ควรเปิดเผยรหัสผ่านหรือรหัสยืนยันแก่บุคคลอื่นไม่ว่ากรณีใด แม้จะเป็นการแจ้งปัญหาของรายการก็ตาม
+      </span>
+    </div>
+  </ContentBoxTwoNeumorphism>
+
+  <LatestWinners />
+
+  <ContentBoxSevenThree titleright="ใช้งาน BMK289 ให้คุ้มด้วยการเลือกเกมและโปรให้เหมาะ">
     <Picture
       slot="left"
-      src={imgPayout}
+      src={imgBonusChoice}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -159,64 +197,29 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt="แบนเนอร์โปรโมชั่น เฮงเฮง888 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก พร้อมป้าย ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่มสีเขียว ฝากเลย พร้อมโลโก้ เฮงเฮง888 ตัวอักษรไทยสีขาวเหนือเลข 888 สีเขียวมะนาว ผู้หญิงในชุดครอปและกระโปรงสีเขียว-ขาวพิมพ์ เฮงเฮง888 ชี้นิ้วไปทางข้อความ ป้าย JACKPOT ตู้สล็อตเลข 77 ชิปคาสิโนสีเขียว-ขาว และกองเหรียญทองในห้องคาสิโนโทนเขียวเข้ม"
-      class="mx-auto h-auto w-full rounded-2xl border border-[#12a34f]/40 shadow-[0_10px_30px_rgba(18,163,79,0.28)]"
+      alt={altBonusChoice}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#2b8cff]/40 shadow-[0_10px_30px_rgba(43,140,255,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#e8f3e0]">
-      สมาชิก เฮงเฮง888 สามารถติดตามสถานะรายการผ่านหน้าบัญชีได้ ก่อนส่งคำขอถอนควรตรวจสอบยอดคงเหลือ ข้อมูลบัญชี และเงื่อนไขโปรโมชั่น หากรายการยังดำเนินการอยู่ควรรอผลจากระบบก่อนส่งรายการใหม่
+    <p slot="right" class="text-left text-base leading-relaxed text-[#dbe9fb]">
+      การใช้งาน BMK289 ให้คุ้มควรเริ่มจากการกำหนดงบ เลือกเกมที่เข้าใจกติกา และเปรียบเทียบเงื่อนไขโปรโมชั่นก่อนรับสิทธิ์ ไม่ควรเพิ่มเงินเพื่อไล่ตามผลที่เสียไป
+      เพราะเกมสล็อตมีความไม่แน่นอนและไม่สามารถรับประกันผลตอบแทนได้
     </p>
-  </ContentBoxSevenThreeCyberCut>
+  </ContentBoxSevenThree>
 
-  <ContentBoxTwoCyberCut titleleft="ใช้งาน เฮงเฮง888 ให้เป็นระบบด้วยการกำหนดขอบเขต">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#e8f3e0]">
-      การใช้งาน เฮงเฮง888 ควรเริ่มจากการกำหนดงบและระยะเวลาไว้ล่วงหน้า เลือกเกมที่เข้าใจกติกา และหลีกเลี่ยงการเพิ่มเงินเพื่อตามคืนยอดที่เสียไป
-      วิธีนี้ช่วยให้ควบคุมค่าใช้จ่ายและรักษาการเล่นให้อยู่ในกรอบความบันเทิงมากขึ้น
-    </p>
-
-    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#12a34f]/30 bg-[#03170c]/70 p-5">
-      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f5c518] uppercase">
-        <span aria-hidden="true">🛡️</span>
-        ขอบเขตที่ควรกำหนดไว้ล่วงหน้า
-      </p>
-      <span class="flex items-start gap-2.5 text-sm text-[#e8f3e0]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9fcf3a]">①</span>
-        งบประมาณและระยะเวลาที่ตั้งใจใช้ในแต่ละครั้ง
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#e8f3e0]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9fcf3a]">②</span>
-        เกมที่เข้าใจกติกาและรูปแบบการจ่ายแล้วจริง
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#e8f3e0]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9fcf3a]">③</span>
-        ข้อตกลงกับตัวเองว่าจะไม่เพิ่มเงินเพื่อตามคืนยอดที่เสียไป
-      </span>
-      <span class="mt-1 rounded-xl border border-[#f5c518]/35 bg-[#072b14]/80 px-4 py-2.5 text-xs leading-relaxed text-[#a7c295]">
-        การกำหนดขอบเขตไว้ก่อนช่วยให้ควบคุมค่าใช้จ่ายและรักษาการเล่นให้อยู่ในกรอบความบันเทิงมากขึ้น
-      </span>
-      <a
-        href="/line"
-        class="mt-1 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#00B900] to-[#009900] p-3 text-sm font-bold text-white shadow-md transition-transform hover:scale-[1.02]">
-        <span aria-hidden="true">💬</span> ติดต่อทีมงานผ่าน LINE
-      </a>
-    </div>
-  </ContentBoxTwoCyberCut>
-
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ เฮงเฮง888" faqs={faqs} />
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ BMK289" faqs={faqs} />
 
   <LoginRtpSection />
-
-  <LatestWinners />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#1fc465]/60 bg-gradient-to-r from-[#12a34f] via-[#05461f] to-[#03170c] px-4 py-3 text-sm font-black whitespace-nowrap text-[#e8f3e0] shadow-[0_10px_30px_rgba(18,163,79,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#9fcf3a] hover:shadow-[0_15px_40px_rgba(31,196,101,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#5eb0ff]/60 bg-gradient-to-r from-[#2b8cff] via-[#0d2350] to-[#02081c] px-4 py-3 text-sm font-black whitespace-nowrap text-[#dbe9fb] shadow-[0_10px_30px_rgba(43,140,255,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#9dcef0] hover:shadow-[0_15px_40px_rgba(94,176,255,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffdf7a]/70 bg-gradient-to-r from-[#ffdf7a] to-[#f5c518] px-4 py-3 text-sm font-black whitespace-nowrap text-[#05230f] shadow-[0_10px_30px_rgba(245,197,24,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffdf7a] hover:shadow-[0_15px_40px_rgba(245,197,24,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffe488]/70 bg-gradient-to-r from-[#ffe488] to-[#ffcc33] px-4 py-3 text-sm font-black whitespace-nowrap text-[#05132e] shadow-[0_10px_30px_rgba(255,204,51,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe488] hover:shadow-[0_15px_40px_rgba(255,204,51,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>

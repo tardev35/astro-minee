@@ -3,41 +3,50 @@ export interface Props {
   titleleft?: string;
   titleright?: string;
   label?: string;
+  iconleft?: string;
+  iconright?: string;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
 }
-const { titleleft, titleright, label } = Astro.props;
+const { titleleft, titleright, label, iconleft = "🔐", iconright = "🎰", as: TitleTag = "p" } = Astro.props;
 
 const sectionLabel = label ?? titleleft ?? titleright ?? "ข้อมูลประกอบ";
+
+// `as` defaults to "p" because this box is reused as a widget shell
+// (LoginRtpSection), and chrome may not take a heading tag — the region's
+// accessible name comes from the section's aria-label instead. A page that
+// feeds it a real docx section heading passes as="h2" and gets a proper <h2>
+// with identical classes.
 ---
 
 <section aria-label={sectionLabel} class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
-    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f7e6d4]">
+    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#dbe9fb]">
       {
         titleleft && (
-          <p class="flex items-center gap-3 border-b border-[#ff7a18]/25 pb-3 text-xl leading-normal font-black tracking-widest text-[#ff7a18] uppercase">
+          <div class="flex items-center gap-3 border-b border-[#2b8cff]/25 pb-3">
             <span
               aria-hidden="true"
-              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#ff7a18]/40 bg-gradient-to-br from-[#ffa347] via-[#ff7a18] to-[#8d2b09] text-sm text-[#160604] shadow-[0_5px_15px_rgba(255,122,24,0.3)]">
-              🔐
+              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#2b8cff]/40 bg-gradient-to-br from-[#5eb0ff] via-[#2b8cff] to-[#0d2350] text-sm text-[#05132e] shadow-[0_5px_15px_rgba(43,140,255,0.3)]">
+              {iconleft}
             </span>
-            {titleleft}
-          </p>
+            <TitleTag class="text-xl leading-normal font-black tracking-widest text-[#5eb0ff] uppercase">{titleleft}</TitleTag>
+          </div>
         )
       }
       <slot name="left" />
     </article>
 
-    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f7e6d4]">
+    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#dbe9fb]">
       {
         titleright && (
-          <p class="flex items-center gap-3 border-b border-[#ff7a18]/25 pb-3 text-xl leading-normal font-black tracking-widest text-[#ff7a18] uppercase">
+          <div class="flex items-center gap-3 border-b border-[#2b8cff]/25 pb-3">
             <span
               aria-hidden="true"
-              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#f6c475]/60 bg-gradient-to-br from-[#ffd98a] via-[#f6c475] to-[#8d2b09] text-sm text-[#160604] shadow-[0_5px_15px_rgba(246,196,117,0.35)]">
-              🎰
+              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#ffcc33]/60 bg-gradient-to-br from-[#ffe488] via-[#ffcc33] to-[#0d2350] text-sm text-[#05132e] shadow-[0_5px_15px_rgba(255,204,51,0.35)]">
+              {iconright}
             </span>
-            {titleright}
-          </p>
+            <TitleTag class="text-xl leading-normal font-black tracking-widest text-[#5eb0ff] uppercase">{titleright}</TitleTag>
+          </div>
         )
       }
       <slot name="right" />

@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement5.astro";
+import Announcement from "../components/AnnouncementCyber.astro";
 
 import { Picture } from "astro:assets";
 
@@ -16,14 +16,14 @@ import { pageGraph } from "../lib/schema";
 // paragraph, the four promo images and one CTA. No section headings and no
 // second paragraph — the slides already print their own offer in large type,
 // so prose underneath only re-types what the visitor can already read.
-const pageTitle = "โปรโมชั่น เฮงเฮง888 รวมโบนัสและสิทธิพิเศษสำหรับสมาชิก";
+const pageTitle = "โปรโมชั่น BMK289 รวมโบนัสและสิทธิพิเศษสำหรับสมาชิก";
 
-// docx SUB-PAGES Meta ของหน้าโปรโมชั่น ยกถ้อยคำมาทั้งประโยค (125 ตัวอักษร)
+// docx SUB-PAGES Meta ของหน้าโปรโมชั่น ยกถ้อยคำมาทั้งประโยค (124 ตัวอักษร)
 // + วรรคปิดท้ายหนึ่งวรรคให้ผ่านเกท DESC_MIN 150 ของ tools/verify-build.mjs
 // ซึ่งยกเว้นให้เฉพาะหน้าแรกเท่านั้น นับเป็น "ตัวอักษร" ไม่ใช่ไบต์ (ไทย 3 ไบต์/ตัว)
-// — สตริงนี้วัดได้ 159 ตัวอักษร
+// — สตริงนี้วัดได้ 158 ตัวอักษร
 const pageDescription =
-  "เฮงเฮง888 รวมโปรโมชั่นสล็อต โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจน ช่วยให้เลือกโปรได้เหมาะกับงบและรูปแบบการเล่น ตรวจเงื่อนไขก่อนรับสิทธิ์ทุกครั้ง";
+  "BMK289 รวมโปรโมชั่นสล็อต โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจน ช่วยให้เลือกโปรได้เหมาะกับงบและรูปแบบการใช้งาน ตรวจเงื่อนไขก่อนรับสิทธิ์ทุกครั้ง";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -35,29 +35,29 @@ const graph = pageGraph(Astro, {
   primaryImagePath: pro1.src,
 });
 
-// Hover border is gold rather than the palette's deepest green: a #05461f edge
-// on the near-black green page is invisible, so the hover state would read as
-// no state at all.
+// Hover border is gold rather than the palette's deepest navy: a #0d2350 edge on
+// the near-black navy page is invisible, so the hover state would read as no
+// state at all.
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#12a34f]/35 object-contain shadow-[0_10px_30px_rgba(18,163,79,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#f5c518]/55 hover:shadow-[0_15px_40px_rgba(159,207,58,0.30)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#2b8cff]/35 object-contain shadow-[0_10px_30px_rgba(43,140,255,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#ffcc33]/55 hover:shadow-[0_15px_40px_rgba(157,206,240,0.30)]";
 ---
 
-<MainLayout title="เฮงเฮง888 | โปรโมชั่นสล็อตและสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
+<MainLayout title="BMK289 | โปรโมชั่นสล็อตและสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#e8f3e0]">
-        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#f5c518]">เฮงเฮง888</strong> เปิดให้สมาชิกไว้ครบในที่เดียว ทั้งโบนัสสมาชิกใหม่ โบนัสฝากครั้งแรก ค่าคอมจากการแนะนำเพื่อน และเครดิตคืนยอดเสียรายวัน
+      <p class="mb-8 text-left text-base leading-relaxed text-[#dbe9fb]">
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#ffcc33]">BMK289</strong> เปิดให้สมาชิกไว้ครบในที่เดียว ทั้งโบนัสสมาชิกใหม่ โบนัสฝากครั้งแรก ค่าคอมจากการแนะนำเพื่อน และเครดิตคืนยอดเสียรายวัน
         ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ก่อนกดรับสิทธิ์ควรตรวจยอดฝากที่กำหนด เกมที่ร่วมรายการ และเงื่อนไขการถอนให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากัน
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น เฮงเฮง888 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที พร้อมบรรทัด โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่มสีเขียว รับโปรเลย ตัวเลข 50% ขนาดใหญ่สีขาวขอบทอง มุมซ้ายบนเป็นโลโก้ เฮงเฮง888 ตัวอักษรสีขาววางบนเลข 888 สีเขียวมะนาว ด้านขวาเป็นผู้หญิงในชุดครอปสีเขียว-ขาวพิมพ์คำว่า เฮงเฮง888 ชี้นิ้วขึ้น มุมล่างซ้ายเป็นวงล้อสล็อตเลข 777 กับกองเหรียญทอง บนพื้นหลังสีเขียวเข้ม"
+          alt="แบนเนอร์โปรโมชั่น BMK289 ข้อความ แนะนำเพื่อน รับค่าคอม 10% พร้อมบรรทัด ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม และแผนภาพสามขั้นตอน ส่งลิงก์ เพื่อนสมัคร รับค่าคอม กับปุ่ม ชวนเลย ด้านบนเป็นโลโก้ BMK289 สีฟ้าโครเมียมและบรรทัด BMK289.COM FUTURE GAME AND SPORTS ด้านขวาเป็นผู้หญิงในชุดครอปสีน้ำเงิน-ขาวพิมพ์คำว่า BMK289 ชี้นิ้วขึ้น มุมขวาบนเป็นป้าย JACKPOT 1,286,000.00 ฉากหลังเป็นเมืองนีออนสีน้ำเงิน วงล้อสล็อตเลข 777 และกองเหรียญทอง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -71,7 +71,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น เฮงเฮง888 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% พร้อมบรรทัด คุ้มตั้งแต่ฝากแรก และป้ายย่อย ฝากง่าย ถอนเร็ว ระบบออโต้ กับปุ่มสีเขียว ฝากเลย ตัวเลข 20% ขนาดใหญ่สีขาวขอบทอง ด้านบนเป็นโลโก้ เฮงเฮง888 ตัวอักษรสีขาววางบนเลข 888 สีเขียวมะนาว ด้านซ้ายเป็นผู้หญิงในชุดครอปสีเขียว-ขาวพิมพ์คำว่า เฮงเฮง888 ชี้นิ้วมาทางข้อความ ฉากหลังเป็นตู้สล็อตป้าย JACKPOT วงล้อเลข 7 ชิปคาสิโนสีเขียวและกองเหรียญทอง"
+          alt="แบนเนอร์โปรโมชั่น BMK289 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% พร้อมบรรทัด คุ้มตั้งแต่ฝากแรก และไอคอนสามช่อง ฝากง่าย ถอนเร็ว ระบบออโต้ กับปุ่ม ฝากเลย ตัวเลข 20% ขนาดใหญ่สีทอง ด้านบนเป็นโลโก้ BMK289 สีฟ้าโครเมียม ด้านขวาเป็นผู้หญิงในชุดครอปสีน้ำเงิน-ขาวพิมพ์คำว่า BMK289 ชูนิ้วชี้ขึ้น ฉากหลังมีป้าย JACKPOT 1,286,000.00 วงล้อสล็อตเลข 7 ไพ่เอซ และกองเหรียญทอง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -85,7 +85,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น เฮงเฮง888 ข้อความ แนะนำเพื่อน รับค่าคอม 10% พร้อมบรรทัด ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม และแผนภาพสามขั้นตอน ส่งลิงก์แนะนำ เพื่อนสมัคร รับค่าคอม กับปุ่มสีเขียว ชวนเลย ตัวเลข 10% ขนาดใหญ่สีทอง ด้านบนเป็นโลโก้ เฮงเฮง888 ตัวอักษรสีขาววางบนเลข 888 สีเขียวมะนาว ด้านขวาเป็นผู้หญิงในชุดกีฬาสีเขียว-ขาวพิมพ์คำว่า เฮงเฮง888 ชี้นิ้วขึ้น แถบล่างระบุ มั่นคงปลอดภัย เชื่อถือได้ 100% บริการตลอด 24 ชม. และถอนง่ายจ่ายไวไม่ต้องรอนาน"
+          alt="แบนเนอร์โปรโมชั่น BMK289 ข้อความ คืนยอดเสีย 0.8% ทุกวัน พร้อมบรรทัด เล่นต่อได้ทุกวัน คุ้มค่าทุกความสนุก ป้ายบนสุด เว็บตรงแตกง่าย ป้ายย่อย โบนัสคุ้ม ระบบเสถียร บริการ 24 ชม. และปุ่ม รับสิทธิ์ ตัวเลข 0.8% ขนาดใหญ่สีขาวเงิน ด้านบนเป็นโลโก้ BMK289 สีฟ้าโครเมียม ด้านขวาเป็นผู้หญิงในชุดครอปสีน้ำเงิน-ขาวพิมพ์คำว่า BMK289 ชี้นิ้วมาทางข้อความ ฉากหลังเป็นเมืองนีออนสีน้ำเงิน วงล้อสล็อตเลข 77 และกองเหรียญทอง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -99,7 +99,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น เฮงเฮง888 ข้อความ คืนยอดเสียทุกวัน 0.8% พร้อมบรรทัด เล่นต่อได้ทุกวัน และ คืนยอดเสียคุ้มค่า ไม่พลาดทุกความสนุก กับป้ายย่อย ระบบออโต้ โบนัสคุ้ม บริการ 24 ชม. และปุ่มสีเขียว รับสิทธิ์ ตัวเลข 0.8% ขนาดใหญ่สีขาวขอบทอง ด้านบนเป็นโลโก้ เฮงเฮง888 ตัวอักษรสีขาววางบนเลข 888 สีเขียวมะนาว ด้านขวาเป็นผู้หญิงในชุดครอปสีเขียว-ขาวพิมพ์คำว่า เฮงเฮง888 ชี้นิ้วขึ้น ฉากหลังเป็นตู้สล็อตเลข 777 ชิปคาสิโนสีเขียว กล่องของขวัญผูกโบว์ทอง และกองเหรียญทอง"
+          alt="แบนเนอร์โปรโมชั่น BMK289 ข้อความ สมาชิกใหม่ รับโบนัส 50% พร้อมบรรทัด สมัครวันนี้ รับสิทธิ์ทันที และ โบนัสต้อนรับสำหรับผู้เล่นใหม่ กับปุ่ม รับโปรเลย ตัวเลข 50% ขนาดใหญ่สีขาวเงิน ด้านบนเป็นโลโก้ BMK289 สีฟ้าโครเมียมและบรรทัด BMK289.COM FUTURE GAME AND SPORTS ด้านขวาเป็นผู้หญิงในชุดครอปสีน้ำเงิน-ขาวพิมพ์คำว่า BMK289 กำมือชูขึ้น ฉากหลังมีป้าย JACKPOT 1,286,000.00 วงล้อสล็อตเลข 7 ไพ่เอซ และกองเหรียญทอง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -115,8 +115,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#f5c518]/60 bg-gradient-to-r from-[#1fc465] via-[#12a34f] to-[#05461f] px-10 py-3.5 text-lg font-black text-[#e8f3e0] shadow-[0_10px_30px_rgba(18,163,79,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(159,207,58,0.40)]">
-          สมัครสมาชิก เฮงเฮง888
+          class="flex items-center justify-center rounded-lg border border-[#ffcc33]/60 bg-gradient-to-r from-[#5eb0ff] via-[#2b8cff] to-[#0d2350] px-10 py-3.5 text-lg font-black text-[#dbe9fb] shadow-[0_10px_30px_rgba(43,140,255,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(157,206,240,0.40)]">
+          สมัครสมาชิก BMK289
         </a>
       </div>
     </div>

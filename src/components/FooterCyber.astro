@@ -1,18 +1,19 @@
 ---
 import { Picture } from "astro:assets";
 import BankStrip from "./BankStrip.astro";
+import { BRAND_ADDRESS, BRAND_NAME } from "../lib/brandProfile";
 const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
 const imagePaths = Object.keys(images);
 const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 ---
 
 <footer
-  class="relative mt-10 w-full overflow-hidden border-t border-[#d4a017]/35 bg-[#0a1207] pt-16 pb-8 font-sans text-[#dfeacf]"
+  class="relative mt-10 w-full overflow-hidden border-t border-[#2b8cff]/40 bg-[#02081c] pt-16 pb-8 font-sans text-[#dbe9fb]"
   style="clip-path: polygon(0 30px, 50vw 0, 100% 30px, 100% 100%, 0 100%);">
   <div
     aria-hidden="true"
-    class="pointer-events-none absolute inset-0 opacity-[0.12]"
-    style="background-image: linear-gradient(#4d7c0f 1px, transparent 1px), linear-gradient(90deg, #9a7112 1px, transparent 1px); background-size: 30px 30px;">
+    class="pointer-events-none absolute inset-0 opacity-[0.14]"
+    style="background-image: linear-gradient(#2b8cff 1px, transparent 1px), linear-gradient(90deg, #02528c 1px, transparent 1px); background-size: 30px 30px;">
   </div>
 
   <div class="relative z-10 mx-auto w-full max-w-[1200px] px-6">
@@ -23,44 +24,45 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
             mainLogo ? (
               <Picture
                 src={mainLogo}
-                alt="โลโก้ WINSIAM88 ตัวอักษรทองสลักลายไทยพร้อมมาสคอตยักษ์สีเขียว"
+                alt="โลโก้ BMK289 ตัวอักษร BMK289 สีฟ้าโครเมียม พร้อมข้อความ BMK289.COM FUTURE GAME AND SPORTS"
                 widths={[160, 320, 480]}
                 sizes="160px"
                 loading="lazy"
-                class="h-[60px] w-auto drop-shadow-[0_4px_12px_rgba(163,230,53,0.35)]"
+                class="h-[60px] w-auto drop-shadow-[0_4px_12px_rgba(43,140,255,0.4)]"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
               />
             ) : (
-              <span class="text-3xl font-black tracking-widest text-[#f5cf4d]">WINSIAM88</span>
+              <span class="text-3xl font-black tracking-widest text-[#9dcef0]">{BRAND_NAME}</span>
             )
           }
         </a>
-        <p class="border-l-2 border-[#d4a017] pl-4 text-sm leading-relaxed text-[#dfeacf]/80">
-          WINSIAM88 เว็บหลักที่รวมสล็อต คาสิโนสด บาคาร่า กีฬา และเกมจากผู้ให้บริการกว่า 13 ค่ายไว้ในบัญชีเดียว ใช้ระบบกระเป๋าเดียว ฝากถอนออโต้ตลอด 24 ชั่วโมง และตรวจประวัติรายการได้จากจุดเดียว
+        <p class="border-l-2 border-[#2b8cff] pl-4 text-sm leading-relaxed text-[#dbe9fb]/80">
+          BMK289 แพลตฟอร์มเกมสล็อตออนไลน์ที่รวมเกมยอดนิยมหลายรูปแบบไว้ในระบบเดียว พร้อมระบบออโต้ที่ช่วยลดขั้นตอนการฝากและถอน รองรับทั้งมือถือและคอมพิวเตอร์
+          เลือกเกม ตรวจสอบโปรโมชั่น และติดตามสถานะรายการได้จากบัญชีเดียว โดยควรอ่านกติกาและเงื่อนไขก่อนทำรายการทุกครั้ง
         </p>
         <div class="mt-4 flex gap-3">
-          <span class="border border-[#d4a017]/45 bg-[#0b1408] px-3 py-1 font-mono text-xs text-[#f5cf4d]">ONE_WALLET</span>
-          <span class="border border-[#a3e635]/45 bg-[#0b1408] px-3 py-1 font-mono text-xs text-[#a3e635]">AUTO_24H</span>
+          <span class="border border-[#2b8cff]/50 bg-[#08152f] px-3 py-1 font-mono text-xs text-[#9dcef0]">AUTO_SYSTEM</span>
+          <span class="border border-[#ffcc33]/50 bg-[#08152f] px-3 py-1 font-mono text-xs text-[#ffcc33]">SUPPORT_24H</span>
         </div>
       </div>
 
-      <nav class="flex flex-col gap-4 md:col-span-3 lg:pl-8">
-        <p class="text-lg font-black tracking-widest text-[#f5cf4d] uppercase">/// DIRECTORY</p>
-        <ul class="flex flex-col gap-3 font-mono text-sm text-[#dfeacf]/80">
-          <li><a href="/" class="transition-colors hover:text-[#a3e635]">&gt; หน้าแรก</a></li>
-          <li><a href="/promotion" class="transition-colors hover:text-[#a3e635]">&gt; โปรโมชั่น</a></li>
-          <li><a href="/ทดลองเล่น" class="transition-colors hover:text-[#a3e635]">&gt; ทดลองเล่น</a></li>
-          <li><a href="/ทางเข้า" class="transition-colors hover:text-[#a3e635]">&gt; ทางเข้า</a></li>
-          <li><a href="/contact-us" class="transition-colors hover:text-[#a3e635]">&gt; ติดต่อเรา</a></li>
-          <li><a href="/register" class="transition-colors hover:text-[#a3e635]">&gt; สมัครสมาชิก</a></li>
-          <li><a href="/login" class="transition-colors hover:text-[#a3e635]">&gt; เข้าสู่ระบบ</a></li>
-          <li><a href="/about-us" class="transition-colors hover:text-[#a3e635]">เกี่ยวกับเรา</a></li>
+      <nav class="flex flex-col gap-4 md:col-span-3 lg:pl-8" aria-label="ลิงก์หน้าเว็บ">
+        <p class="text-lg font-black tracking-widest text-[#9dcef0] uppercase">/// DIRECTORY</p>
+        <ul class="flex flex-col gap-3 font-mono text-sm text-[#dbe9fb]/80">
+          <li><a href="/" class="transition-colors hover:text-[#ffcc33]">&gt; หน้าแรก</a></li>
+          <li><a href="/promotion" class="transition-colors hover:text-[#ffcc33]">&gt; โปรโมชั่น</a></li>
+          <li><a href="/ทดลองเล่น" class="transition-colors hover:text-[#ffcc33]">&gt; ทดลองเล่น</a></li>
+          <li><a href="/ทางเข้า" class="transition-colors hover:text-[#ffcc33]">&gt; ทางเข้า</a></li>
+          <li><a href="/about-us" class="transition-colors hover:text-[#ffcc33]">&gt; เกี่ยวกับเรา</a></li>
+          <li><a href="/contact-us" class="transition-colors hover:text-[#ffcc33]">&gt; ติดต่อเรา</a></li>
+          <li><a href="/register" class="transition-colors hover:text-[#ffcc33]">&gt; สมัครสมาชิก</a></li>
+          <li><a href="/login" class="transition-colors hover:text-[#ffcc33]">&gt; เข้าสู่ระบบ</a></li>
         </ul>
       </nav>
 
       <div class="flex flex-col gap-5 md:col-span-4">
-        <p class="text-lg font-black tracking-widest text-[#f5cf4d] uppercase">/// SUPPORT_LINK</p>
+        <p class="text-lg font-black tracking-widest text-[#9dcef0] uppercase">/// SUPPORT_LINK</p>
 
         <a
           href="/line"
@@ -69,23 +71,43 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
           LINE CONNECT
         </a>
 
+        {
+          BRAND_ADDRESS.lines.length > 0 && (
+            <address aria-label={BRAND_ADDRESS.label} class="mt-2 rounded-xl border border-white/15 bg-black/20 p-4 text-xs leading-relaxed not-italic opacity-90">
+              <p class="mb-2 flex items-center gap-2 text-[11px] font-bold tracking-wider uppercase opacity-80">
+                <span aria-hidden="true" class="text-sm">📍</span>
+                {BRAND_ADDRESS.label}
+              </p>
+              {BRAND_ADDRESS.lines.map((line) => (
+                <span class="block">{line}</span>
+              ))}
+              {BRAND_ADDRESS.email && (
+                <a href={`mailto:${BRAND_ADDRESS.email}`} class="mt-3 inline-flex items-center gap-2 font-bold underline decoration-current/40 underline-offset-4 opacity-90 transition-opacity hover:opacity-100">
+                  <span aria-hidden="true" class="text-sm">✉️</span>
+                  {BRAND_ADDRESS.email}
+                </a>
+              )}
+            </address>
+          )
+        }
+
         <a
           href="#top"
-          class="flex w-full items-center justify-center gap-2 border border-[#a3e635]/60 bg-transparent py-3 font-bold text-[#a3e635] transition-all hover:bg-[#1f3a08]/50"
+          class="flex w-full items-center justify-center gap-2 border border-[#2b8cff]/60 bg-transparent py-3 font-bold text-[#9dcef0] transition-all hover:bg-[#0d2350]/60"
           style="clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);">
           <span aria-hidden="true">↑</span> กลับขึ้นบน
         </a>
 
-        <div class="mt-2 font-mono text-xs text-[#dfeacf]/60">ACCEPTED_PAYMENTS</div>
+        <div class="mt-2 font-mono text-xs text-[#dbe9fb]/60">ACCEPTED_PAYMENTS</div>
         <BankStrip size={28} />
       </div>
     </div>
 
-    <div class="flex flex-col items-center justify-between border-t border-[#d4a017]/25 pt-6 font-mono text-xs text-[#dfeacf]/60 md:flex-row">
-      <p>SYSTEM_COPYRIGHT &copy; {new Date().getFullYear()} WINSIAM88</p>
+    <div class="flex flex-col items-center justify-between border-t border-[#2b8cff]/25 pt-6 font-mono text-xs text-[#dbe9fb]/60 md:flex-row">
+      <p>SYSTEM_COPYRIGHT &copy; {new Date().getFullYear()} {BRAND_NAME}</p>
       <div class="mt-4 flex gap-4 md:mt-0">
-        <a href="/terms/" class="hover:text-[#a3e635]">TERMS_OF_SERVICE</a>
-        <a href="/privacy/" class="hover:text-[#a3e635]">PRIVACY_POLICY</a>
+        <a href="/terms/" class="hover:text-[#ffcc33]">TERMS_OF_SERVICE</a>
+        <a href="/privacy/" class="hover:text-[#ffcc33]">PRIVACY_POLICY</a>
       </div>
     </div>
   </div>

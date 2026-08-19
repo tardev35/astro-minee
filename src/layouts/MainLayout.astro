@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle9.astro";
-import Footer from "../components/FooterStyle2.astro";
+import Navbar from "../components/NavbarStyle6.astro";
+import Footer from "../components/FooterCyber.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,11 +55,11 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "เฮงเฮง888 |เกมสล็อตแตกหนักวันนี้ ไม่กำหนดขั้นต่ำ โปรโมชั่นดี จ่ายไว",
+  title = "BMK289 | เว็บสล็อตรวมเกมยอดนิยม ระบบออโต้ฝากง่าย ถอนไว จ่ายจริง",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings.
-  description = "เฮงเฮง888 รวมเกมสล็อตหลายแนวไว้ในระบบเดียว ไม่กำหนดขั้นต่ำตามเงื่อนไข รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมโปรโมชั่นหลากหลายและระบบตรวจสอบรายการที่ใช้งานง่าย",
+  description = "BMK289 รวมเกมสล็อตยอดนิยมหลายรูปแบบไว้ในระบบเดียว ระบบออโต้ช่วยลดขั้นตอนฝากถอนตามเงื่อนไข รองรับมือถือและคอมพิวเตอร์ พร้อมหน้าบัญชีที่ตรวจสอบรายการได้ง่าย",
   robots = "index, follow",
 } = Astro.props;
 
@@ -236,7 +236,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #03170c;
+        background-color: #02081c;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -289,7 +289,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ เฮงเฮง888 โลโก้ตัวอักษรไทย เฮงเฮง สีขาวขอบเขียวเข้ม วางบนเลข 888 สีเขียวมะนาว ข้อความ สล็อตเว็บตรงแตกง่าย และ โปรโมชั่นคุ้มค่า ฝาก-ถอนออโต้ ป้ายสี่อัน เล่นง่าย จ่ายจริง ระบบเสถียร รองรับมือถือ ด้านขวาเป็นผู้หญิงในชุดครอปสีขาว-เขียวพิมพ์คำว่า เฮงเฮง888 ป้ายไฟ JACKPOT ตู้สล็อตเลข 888 ป้าย BIG WIN กองเหรียญทอง ชิปคาสิโนสีเขียว-ขาว และปุ่มเขียวมะนาว สมัครเลย ในห้องคาสิโนไฟนีออนสีเขียว"
+          alt="แบนเนอร์ต้อนรับ BMK289 โลโก้ตัวอักษร BMK289 สีฟ้าโครเมียม พร้อมข้อความ BMK289.COM FUTURE GAME AND SPORTS และ สุดยอดเว็บสล็อต และ คาสิโน อันดับ 1 ข้อความ BMK289 เว็บตรงแตกง่าย ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย จ่ายจริง ป้ายสามอัน เล่นง่าย ระบบเสถียร รองรับมือถือ ด้านขวาเป็นผู้หญิงในชุดครอปและกระโปรงสีน้ำเงิน-ขาวพิมพ์คำว่า BMK289 ป้ายไฟ JACKPOT 1,286,000.00 ตู้สล็อตเลข 777 ไพ่โพดำและโพแดง กองเหรียญทอง ชิปคาสิโนสีน้ำเงิน และปุ่มสีฟ้า สมัครเลย ในเมืองไฟนีออนสีน้ำเงิน"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}
