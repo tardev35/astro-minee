@@ -16,39 +16,44 @@ const { title, faqs = [] } = Astro.props;
 // H1 + H2, and the page's heading inventory is diffed against that checklist
 // every rebrand. <details>/<summary> already exposes each question as a
 // disclosure control, so nothing is lost by dropping the tag.
+//
+// LASVEGAS889: the clipped card runs a gold→royal-blue hairline over a
+// royal-navy panel. The "?" tile keeps a gold-only fill so its near-black ink
+// stays readable end to end — a gold→navy fade would have put #050b24 on a dark
+// blue at the bottom.
 ---
 
 <section class="mx-auto max-w-[950px] space-y-6 px-4 py-6 font-sans">
   {
     title && (
       <header class="mb-8 text-center">
-        <h2 class="bg-gradient-to-r from-[#ffdf7a] via-[#f5c518] to-[#9fcf3a] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase drop-shadow-sm md:text-3xl">
+        <h2 class="bg-gradient-to-r from-[#ffdd7a] via-[#f2b829] to-[#3fdcff] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase drop-shadow-sm md:text-3xl">
           {title}
         </h2>
-        <div class="mx-auto mt-3 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#9fcf3a] to-transparent" />
+        <div class="mx-auto mt-3 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#3fdcff] to-transparent" />
       </header>
     )
   }
 
   {
     faqs.map((faq) => (
-      <div class="group relative bg-[#0b3d1d] p-[1px] [clip-path:polygon(0_0,calc(100%-20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%-20px))]">
-        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] via-[#12a34f] to-transparent opacity-40 transition-opacity group-hover:opacity-100" />
+      <div class="group relative bg-[#122a63] p-[1px] [clip-path:polygon(0_0,calc(100%-20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%-20px))]">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#f2b829] via-[#1f5ce0] to-transparent opacity-40 transition-opacity group-hover:opacity-100" />
 
-        <details class="faq-item relative bg-[#072b14] p-4 [clip-path:polygon(0_0,calc(100%-19px)_0,100%_19px,100%_100%,19px_100%,0_calc(100%-19px))]">
+        <details class="faq-item relative bg-[#0b1740] p-4 [clip-path:polygon(0_0,calc(100%-19px)_0,100%_19px,100%_100%,19px_100%,0_calc(100%-19px))]">
           <summary class="flex w-full cursor-pointer items-center gap-4 text-left">
             <span
               aria-hidden="true"
-              class="flex h-10 w-10 shrink-0 items-center justify-center bg-gradient-to-br from-[#ffdf7a] to-[#05461f] font-black text-[#05230f] italic [clip-path:polygon(20%_0,100%_0,80%_100%,0_100%)]">
+              class="flex h-10 w-10 shrink-0 items-center justify-center bg-gradient-to-br from-[#ffdd7a] to-[#a8760d] font-black text-[#050b24] italic [clip-path:polygon(20%_0,100%_0,80%_100%,0_100%)]">
               ?
             </span>
-            <span class="flex-1 text-base leading-normal font-bold tracking-tight text-[#e8f3e0]">{faq.q}</span>
-            <span aria-hidden="true" class="faq-arrow shrink-0 text-[#f5c518] transition-transform duration-300">
+            <span class="flex-1 text-base leading-normal font-bold tracking-tight text-[#e8eefb]">{faq.q}</span>
+            <span aria-hidden="true" class="faq-arrow shrink-0 text-[#f2b829] transition-transform duration-300">
               ▼
             </span>
           </summary>
 
-          <p class="faq-answer mt-4 border-l-2 border-[#12a34f]/70 pl-4 text-left text-base leading-relaxed text-[#e8f3e0]/90">{faq.a}</p>
+          <p class="faq-answer mt-4 border-l-2 border-[#1f5ce0]/70 pl-4 text-left text-base leading-relaxed text-[#cddcf7]/90">{faq.a}</p>
         </details>
       </div>
     ))

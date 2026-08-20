@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle6.astro";
-import Footer from "../components/FooterCyber.astro";
+import Navbar from "../components/NavbarPremium.astro";
+import Footer from "../components/FooterPremium.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,11 +55,12 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "BMK289 | เว็บสล็อตรวมเกมยอดนิยม ระบบออโต้ฝากง่าย ถอนไว จ่ายจริง",
+  title = "LASVEGAS889 | สล็อตบาคาร่ายอดฮิตอันดับ 1 ฝากถอน True wallet",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
-  // default has to be in-window too, not just the per-page strings.
-  description = "BMK289 รวมเกมสล็อตยอดนิยมหลายรูปแบบไว้ในระบบเดียว ระบบออโต้ช่วยลดขั้นตอนฝากถอนตามเงื่อนไข รองรับมือถือและคอมพิวเตอร์ พร้อมหน้าบัญชีที่ตรวจสอบรายการได้ง่าย",
+  // default has to be in-window too, not just the per-page strings. This one is
+  // 155 (count CHARACTERS, not bytes — Thai is 3 bytes per character).
+  description = "LASVEGAS889 รวมสล็อตบาคาร่ายอดนิยมไว้ในระบบเดียว ฝากถอนผ่าน True Wallet รองรับมือถือและคอมพิวเตอร์ พร้อมระบบใช้งานสะดวก เกมหลากหลาย และตรวจสอบรายการได้ง่าย",
   robots = "index, follow",
 } = Astro.props;
 
@@ -236,7 +237,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #02081c;
+        background-color: #050b24;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -289,7 +290,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ BMK289 โลโก้ตัวอักษร BMK289 สีฟ้าโครเมียม พร้อมข้อความ BMK289.COM FUTURE GAME AND SPORTS และ สุดยอดเว็บสล็อต และ คาสิโน อันดับ 1 ข้อความ BMK289 เว็บตรงแตกง่าย ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย จ่ายจริง ป้ายสามอัน เล่นง่าย ระบบเสถียร รองรับมือถือ ด้านขวาเป็นผู้หญิงในชุดครอปและกระโปรงสีน้ำเงิน-ขาวพิมพ์คำว่า BMK289 ป้ายไฟ JACKPOT 1,286,000.00 ตู้สล็อตเลข 777 ไพ่โพดำและโพแดง กองเหรียญทอง ชิปคาสิโนสีน้ำเงิน และปุ่มสีฟ้า สมัครเลย ในเมืองไฟนีออนสีน้ำเงิน"
+          alt="แบนเนอร์ต้อนรับ LASVEGAS889 ตัวอักษร LASVEGAS สีทองต่อด้วยเลข 889 สีเงินโครเมียม เหนือข้อความ สล็อตเว็บตรง แตกง่าย และแถบ ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย จ่ายจริง พร้อมปุ่มทอง สมัครเลย ด้านขวาเป็นผู้หญิงในชุดครอปและกระโปรงสีน้ำเงิน-ขาวพิมพ์คำว่า LASVEGAS 889 ป้ายไฟ WELCOME TO FABULOUS LAS VEGAS NEVADA ตู้สล็อต JACKPOT เลข 777 ป้าย BIG WIN ชิปคาสิโนสีน้ำเงินและกองเหรียญทอง ฉากหลังเป็นเส้นขอบฟ้าเมืองลาสเวกัสสีฟ้านีออน มีหอไอเฟลและหอคอยสตราโตสเฟียร์"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

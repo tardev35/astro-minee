@@ -11,43 +11,44 @@ const { titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
 // The clipped corner rules are decorative and carry -z-10 against the card's
 // `isolate`, so the slot content always paints above them without a wrapper.
 //
-// เฮงเฮง888: the headings are flat #9fcf3a rather than clip-text — a solid logo
-// lime clears contrast on the near-black green card at this size, and the >_
-// glyph beside them stays coin gold so the terminal motif keeps both accents.
+// LASVEGAS889: the headings are flat #3fdcff rather than clip-text — the solid
+// neon cyan clears contrast on the royal-navy card at this size, and the >_
+// glyph beside them stays wordmark gold so the terminal motif keeps both
+// accents.
 ---
 
 <section class="mx-auto mb-6 w-full max-w-7xl px-4 font-sans">
   <div
-    class="relative isolate w-full border border-[#12a34f]/30 bg-[#072b14]/92 p-8 text-[#e8f3e0] shadow-[0_10px_30px_rgba(18,163,79,0.18)] backdrop-blur-md transition-all duration-300 hover:border-[#1fc465]/60 hover:shadow-[0_15px_40px_rgba(31,196,101,0.28)]"
+    class="relative isolate w-full border border-[#1f5ce0]/30 bg-[#0b1740]/92 p-8 text-[#cddcf7] shadow-[0_10px_30px_rgba(31,92,224,0.22)] backdrop-blur-md transition-all duration-300 hover:border-[#3fdcff]/60 hover:shadow-[0_15px_40px_rgba(63,220,255,0.28)]"
     style="clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);">
-    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#9fcf3a] to-transparent"></div>
-    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#f5c518] to-transparent"></div>
-    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#9fcf3a] to-transparent"></div>
-    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#f5c518] to-transparent"></div>
+    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#3fdcff] to-transparent"></div>
+    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#f2b829] to-transparent"></div>
+    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#3fdcff] to-transparent"></div>
+    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#f2b829] to-transparent"></div>
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#e8f3e0]">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#cddcf7]">
         {
           titleleft && (
-            <div class="flex items-baseline gap-2 border-b border-[#12a34f]/30 pb-2">
-              <span aria-hidden="true" class="font-mono text-[#f5c518]">
+            <div class="flex items-baseline gap-2 border-b border-[#1f5ce0]/30 pb-2">
+              <span aria-hidden="true" class="font-mono text-[#f2b829]">
                 &gt;_
               </span>
-              <HeadingTag class="text-xl leading-normal font-black text-[#9fcf3a] uppercase">{titleleft}</HeadingTag>
+              <HeadingTag class="text-xl leading-normal font-black text-[#3fdcff] uppercase">{titleleft}</HeadingTag>
             </div>
           )
         }
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#e8f3e0] md:border-l md:border-[#12a34f]/30 md:pl-8">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#cddcf7] md:border-l md:border-[#1f5ce0]/30 md:pl-8">
         {
           titleright && (
-            <div class="flex items-baseline gap-2 border-b border-[#12a34f]/30 pb-2">
-              <span aria-hidden="true" class="font-mono text-[#f5c518]">
+            <div class="flex items-baseline gap-2 border-b border-[#1f5ce0]/30 pb-2">
+              <span aria-hidden="true" class="font-mono text-[#f2b829]">
                 &gt;_
               </span>
-              <HeadingTag class="text-xl leading-normal font-black text-[#9fcf3a] uppercase">{titleright}</HeadingTag>
+              <HeadingTag class="text-xl leading-normal font-black text-[#3fdcff] uppercase">{titleright}</HeadingTag>
             </div>
           )
         }

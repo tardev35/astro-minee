@@ -7,16 +7,16 @@ import img4 from "../assets/providers/game4.avif";
 import img5 from "../assets/providers/game5.avif";
 import img6 from "../assets/providers/game6.avif";
 
-// Chrome for the "เกมยอดนิยมไม่ได้หมายความว่าจะเหมาะกับทุกคน" section: the board
-// exists to show that a ranking is a reference, not a promise, so every row
-// names what to read first (ความผันผวน / รูปแบบโบนัส / จำนวนเงินต่อรอบ) rather
+// Chrome for the "ความนิยมของ LASVEGAS889 ควรดูควบคู่กับข้อมูลเกม" section: the
+// board exists to show that a ranking is a marketing signal, not a promise, so
+// every row names what to read first (กติกา / อัตราจ่าย / ความเสี่ยง) rather
 // than a payout.
 const games = [
   { rank: 1, name: "สล็อตฟีเจอร์ฟรีสปิน", type: "เกมสล็อตออนไลน์ • รอบโบนัสหลายชั้น ควรอ่านเงื่อนไขการเข้าฟีเจอร์ก่อน", menus: ["ยอดนิยม", "เล่นล่าสุด"], players: 5124, img: img6 },
-  { rank: 2, name: "สล็อตแจ็กพอตสะสม", type: "เกมสล็อตออนไลน์ • รางวัลสะสมจากผู้เล่นหลายคน ความผันผวนสูง", menus: ["ยอดนิยม", "รายการโปรด"], players: 3842, img: img3 },
-  { rank: 3, name: "สล็อตวงล้อคลาสสิก", type: "เกมสล็อตออนไลน์ • กติกาสั้น เข้าใจได้เร็ว เหมาะกับการเริ่มต้น", menus: ["ยอดนิยม", "รายการโปรด"], players: 3517, img: img1 },
-  { rank: 4, name: "สล็อตธีมใหม่หลายเส้นจ่าย", type: "เกมสล็อตออนไลน์ • เส้นจ่ายจำนวนมาก ควรอ่านรูปแบบการจ่ายก่อนเริ่ม", menus: ["เกมใหม่", "เล่นล่าสุด"], players: 2905, img: img2 },
-  { rank: 5, name: "สล็อตธีมผลไม้", type: "เกมสล็อตออนไลน์ • สัญลักษณ์เข้าใจง่าย จังหวะเกมไม่ซับซ้อน", menus: ["เกมใหม่", "รายการโปรด"], players: 2431, img: img4 },
+  { rank: 2, name: "บาคาร่าห้องสด", type: "บาคาร่าออนไลน์ • กติกาชัดเจน มีตัวเลือกการเดิมพันหลายแบบให้พิจารณา", menus: ["ยอดนิยม", "รายการโปรด"], players: 3842, img: img3 },
+  { rank: 3, name: "สล็อตแจ็กพอตสะสม", type: "เกมสล็อตออนไลน์ • รางวัลสะสมจากผู้เล่นหลายคน ความผันผวนสูง", menus: ["ยอดนิยม", "รายการโปรด"], players: 3517, img: img1 },
+  { rank: 4, name: "บาคาร่าวงเงินต่อตาต่ำ", type: "บาคาร่าออนไลน์ • เดิมพันต่อตาไม่สูง เหมาะกับการกำหนดงบไว้ล่วงหน้า", menus: ["เกมใหม่", "เล่นล่าสุด"], players: 2905, img: img2 },
+  { rank: 5, name: "สล็อตวงล้อคลาสสิก", type: "เกมสล็อตออนไลน์ • กติกาสั้น เข้าใจได้เร็ว เหมาะกับการเริ่มต้น", menus: ["เกมใหม่", "รายการโปรด"], players: 2431, img: img4 },
   { rank: 6, name: "สล็อตซื้อฟีเจอร์โบนัส", type: "เกมสล็อตออนไลน์ • มีเงื่อนไขราคาซื้อฟีเจอร์ ควรกำหนดวงเงินต่อรอบก่อน", menus: ["เกมใหม่", "เล่นล่าสุด"], players: 2108, img: img5 },
 ];
 
@@ -26,15 +26,15 @@ const games = [
 const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : null);
 ---
 
-<section aria-label="อันดับเกมสล็อตยอดนิยมบน BMK289" class="mx-auto w-full max-w-[1300px] px-4 py-8 font-sans">
+<section aria-label="อันดับเกมสล็อตและบาคาร่ายอดนิยมบน LASVEGAS889" class="mx-auto w-full max-w-[1300px] px-4 py-8 font-sans">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
     <span aria-hidden="true" class="text-2xl">🏆</span>
-    <p class="bg-gradient-to-r from-[#ffe488] via-[#ffcc33] to-[#9dcef0] bg-clip-text text-2xl font-black tracking-widest text-transparent uppercase">อันดับเกมสล็อตยอดนิยมบน BMK289</p>
-    <p class="max-w-3xl text-base leading-relaxed text-[#96abcb]">
-      รายชื่อด้านล่างใช้เพื่ออ้างอิงความนิยมเท่านั้น ความนิยมช่วยบอกได้ว่าเกมใดได้รับความสนใจ แต่ไม่ได้แปลว่าเกมนั้นเหมาะกับผู้เล่นทุกคน ก่อนเลือกควรศึกษาความผันผวน รูปแบบโบนัส และจำนวนเงินต่อรอบ
-      พร้อมกำหนดวงเงินไว้ล่วงหน้า เพราะรายชื่อในแต่ละหมวดเปลี่ยนแปลงได้ตามช่วงเวลา
+    <p class="bg-gradient-to-r from-[#ffdd7a] via-[#f2b829] to-[#3fdcff] bg-clip-text text-2xl font-black tracking-widest text-transparent uppercase">อันดับเกมสล็อตและบาคาร่ายอดนิยมบน LASVEGAS889</p>
+    <p class="max-w-3xl text-base leading-relaxed text-[#7f96c4]">
+      รายชื่อด้านล่างใช้เพื่ออ้างอิงความนิยมเท่านั้น คำว่าอันดับ 1 เป็นถ้อยคำทางการตลาด ไม่ได้ยืนยันว่าเกมจะให้ผลลัพธ์ที่ดีกว่าสำหรับทุกคน ก่อนเลือกควรพิจารณากติกา อัตราจ่าย ความเสี่ยง
+      และงบประมาณของตนเองร่วมกัน เพราะรายชื่อในแต่ละหมวดเปลี่ยนแปลงได้ตามช่วงเวลา
     </p>
-    <div class="mt-2 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#2b8cff] to-transparent"></div>
+    <div class="mt-2 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#3fdcff] to-transparent"></div>
   </div>
 
   <div class="flex flex-col gap-3">
@@ -45,10 +45,10 @@ const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : ran
           <article
             class={`group relative flex items-center gap-3 overflow-hidden rounded-2xl border p-3 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 sm:gap-5 sm:p-4 ${
               top
-                ? "border-[#5eb0ff]/60 bg-gradient-to-r from-[#123061]/95 via-[#08152f]/92 to-[#08152f]/92 shadow-[0_15px_40px_rgba(43,140,255,0.28)]"
-                : "border-[#2b8cff]/25 bg-[#08152f]/92 shadow-[0_10px_30px_rgba(43,140,255,0.18)] hover:border-[#5eb0ff]/60 hover:shadow-[0_15px_40px_rgba(43,140,255,0.26)]"
+                ? "border-[#3fdcff]/60 bg-gradient-to-r from-[#122a63]/95 via-[#0b1740]/92 to-[#0b1740]/92 shadow-[0_15px_40px_rgba(63,220,255,0.28)]"
+                : "border-[#1f5ce0]/25 bg-[#0b1740]/92 shadow-[0_10px_30px_rgba(31,92,224,0.18)] hover:border-[#3fdcff]/60 hover:shadow-[0_15px_40px_rgba(63,220,255,0.26)]"
             }`}>
-            <div class="pointer-events-none absolute top-1/2 -left-10 h-24 w-24 -translate-y-1/2 rounded-full bg-[#2b8cff]/30 blur-[40px] transition-all duration-500 group-hover:bg-[#0d2350]/55" />
+            <div class="pointer-events-none absolute top-1/2 -left-10 h-24 w-24 -translate-y-1/2 rounded-full bg-[#1f5ce0]/30 blur-[40px] transition-all duration-500 group-hover:bg-[#3fdcff]/30" />
 
             <div class="relative z-10 flex w-8 shrink-0 flex-col items-center justify-center sm:w-12">
               {medal(g.rank) ? (
@@ -57,14 +57,14 @@ const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : ran
                   <span class="sr-only">อันดับ {g.rank}</span>
                 </span>
               ) : (
-                <span class="text-xl font-black text-[#ffcc33] sm:text-2xl">#{g.rank}</span>
+                <span class="text-xl font-black text-[#f2b829] sm:text-2xl">#{g.rank}</span>
               )}
             </div>
 
-            <div class={`relative z-10 h-14 w-14 shrink-0 overflow-hidden rounded-xl border sm:h-16 sm:w-16 ${top ? "border-[#5eb0ff]/60" : "border-[#2b8cff]/25"}`}>
+            <div class={`relative z-10 h-14 w-14 shrink-0 overflow-hidden rounded-xl border sm:h-16 sm:w-16 ${top ? "border-[#3fdcff]/60" : "border-[#1f5ce0]/25"}`}>
               <Picture
                 src={g.img}
-                alt={`ภาพหน้าปกเกม ${g.name} ในอันดับเกมสล็อตยอดนิยมของ BMK289`}
+                alt={`ภาพหน้าปกเกม ${g.name} ในอันดับเกมยอดนิยมของ LASVEGAS889`}
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
                 loading="lazy"
@@ -78,22 +78,22 @@ const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : ran
 
             <div class="relative z-10 min-w-0 flex-1">
               <div class="flex items-center gap-2">
-                <p class="truncate text-base font-black text-[#dbe9fb] sm:text-lg">{g.name}</p>
+                <p class="truncate text-base font-black text-[#cddcf7] sm:text-lg">{g.name}</p>
                 {top && (
-                  <span class="hidden shrink-0 rounded-full border border-[#ffcc33]/70 bg-[#02081c] px-2 py-0.5 text-[9px] font-black tracking-wider text-[#ffcc33] sm:inline">ยอดนิยมสูงสุด</span>
+                  <span class="hidden shrink-0 rounded-full border border-[#f2b829]/70 bg-[#050b24] px-2 py-0.5 text-[9px] font-black tracking-wider text-[#f2b829] sm:inline">ยอดนิยมสูงสุด</span>
                 )}
               </div>
-              <p class="truncate text-[11px] text-[#96abcb] sm:text-xs">{g.type}</p>
+              <p class="truncate text-[11px] text-[#7f96c4] sm:text-xs">{g.type}</p>
 
               <div class="mt-2 flex flex-wrap items-center gap-1.5">
                 {g.menus.map((m) => (
-                  <span class="rounded-full border border-[#2b8cff]/30 bg-[#02081c] px-2.5 py-0.5 text-[10px] font-bold text-[#9dcef0]">{m}</span>
+                  <span class="rounded-full border border-[#1f5ce0]/30 bg-[#050b24] px-2.5 py-0.5 text-[10px] font-bold text-[#3fdcff]">{m}</span>
                 ))}
               </div>
             </div>
 
             <div class="relative z-10 hidden shrink-0 flex-col items-end gap-1 sm:flex">
-              <span class="flex items-center gap-1.5 text-[11px] text-[#96abcb]">
+              <span class="flex items-center gap-1.5 text-[11px] text-[#7f96c4]">
                 <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500 shadow-[0_0_6px_rgba(34,197,94,0.6)]" />
                 <span class="tabular-nums" data-players data-base={g.players}>
                   {g.players.toLocaleString("en-US")}
@@ -104,8 +104,8 @@ const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : ran
                 href="/register"
                 class={`rounded-full px-4 py-1.5 text-xs font-black transition-transform hover:scale-105 ${
                   top
-                    ? "bg-gradient-to-r from-[#ffe488] via-[#ffcc33] to-[#c9931a] text-[#05132e] shadow-[0_10px_30px_rgba(255,204,51,0.28)]"
-                    : "border border-[#2b8cff]/60 bg-[#02081c] text-[#9dcef0] hover:border-[#ffcc33] hover:bg-[#123061]"
+                    ? "bg-gradient-to-r from-[#ffdd7a] via-[#f2b829] to-[#a8760d] text-[#050b24] shadow-[0_10px_30px_rgba(242,184,41,0.28)]"
+                    : "border border-[#1f5ce0]/60 bg-[#050b24] text-[#3fdcff] hover:border-[#f2b829] hover:bg-[#122a63]"
                 }`}>
                 เข้าดูเกม
               </a>

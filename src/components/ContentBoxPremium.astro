@@ -6,26 +6,26 @@ export interface Props {
 const { title, as: HeadingTag = "h1" } = Astro.props;
 const headingSize = HeadingTag === "h1" ? "text-3xl" : "text-2xl";
 
-// เฮงเฮง888 palette: deep-forest card on near-black green, with the logo lime and
-// the coin gold kept for the heading and one of the two aura blobs, so the box
-// carries both brand hues without the title ever sitting on a bright fill
-// (gold-on-green text, never dark-on-lime).
+// LASVEGAS889 palette: royal-navy card on the near-black night sky, with the
+// wordmark gold carrying the heading and one aura blob while the neon cyan of
+// the skyline takes the other. Gold-on-navy text only — the title never sits on
+// a bright fill.
 // `isolate` on the card + `-z-10` on the blobs is what lets the slot content
 // paint above the decoration with no wrapper <div>. Keep both.
 ---
 
 <section class="relative z-10 my-8 flex w-full justify-center px-4 font-sans">
   <div
-    class="group relative isolate w-full max-w-[1400px] overflow-hidden rounded-3xl border border-[#12a34f]/35 bg-gradient-to-br from-[#072b14]/92 to-[#03170c]/88 p-8 text-left text-base leading-relaxed text-[#e8f3e0] shadow-[0_10px_30px_rgba(18,163,79,0.18)] backdrop-blur-xl transition-all duration-500 hover:border-[#1fc465]/65 hover:shadow-[0_15px_40px_rgba(18,163,79,0.3)] md:p-10">
-    <div aria-hidden="true" class="pointer-events-none absolute -top-20 -left-20 -z-10 h-40 w-40 rounded-full bg-[#12a34f]/28 blur-[55px] transition-all duration-500 group-hover:bg-[#9fcf3a]/35"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute -right-20 -bottom-20 -z-10 h-40 w-40 rounded-full bg-[#05461f]/55 blur-[55px] transition-all duration-500 group-hover:bg-[#f5c518]/25"></div>
+    class="group relative isolate w-full max-w-[1400px] overflow-hidden rounded-3xl border border-[#1f5ce0]/35 bg-gradient-to-br from-[#0b1740]/92 to-[#050b24]/88 p-8 text-left text-base leading-relaxed text-[#cddcf7] shadow-[0_10px_30px_rgba(31,92,224,0.22)] backdrop-blur-xl transition-all duration-500 hover:border-[#3fdcff]/65 hover:shadow-[0_15px_40px_rgba(63,220,255,0.3)] md:p-10">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-20 -left-20 -z-10 h-40 w-40 rounded-full bg-[#1f5ce0]/32 blur-[55px] transition-all duration-500 group-hover:bg-[#3fdcff]/35"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -right-20 -bottom-20 -z-10 h-40 w-40 rounded-full bg-[#0a1a45]/60 blur-[55px] transition-all duration-500 group-hover:bg-[#f2b829]/25"></div>
 
     {
       title && (
-        <header class="mb-8 flex items-center gap-4 border-b border-[#12a34f]/30 pb-4">
-          <div aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffdf7a] via-[#f5c518] to-[#05461f] shadow-[0_0_10px_rgba(245,197,24,0.5)]" />
+        <header class="mb-8 flex items-center gap-4 border-b border-[#1f5ce0]/30 pb-4">
+          <div aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffdd7a] via-[#f2b829] to-[#0a1a45] shadow-[0_0_10px_rgba(242,184,41,0.5)]" />
           <HeadingTag
-            class={`bg-gradient-to-r from-[#ffdf7a] via-[#f5c518] to-[#9fcf3a] bg-clip-text ${headingSize} leading-normal font-black tracking-widest text-transparent uppercase`}>
+            class={`bg-gradient-to-r from-[#ffdd7a] via-[#f2b829] to-[#3fdcff] bg-clip-text ${headingSize} leading-normal font-black tracking-widest text-transparent uppercase`}>
             {title}
           </HeadingTag>
         </header>

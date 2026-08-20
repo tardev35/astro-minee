@@ -2,25 +2,29 @@
 // Sub-pages call <Announcement /> with no props, so this default IS the copy
 // that ships on every page except the homepage — it has to be the current
 // brand's, never left as whatever the previous brand wrote.
+//
+// No leading emoji in the string: the marquee renders `message` twice, so an
+// emoji baked into the text is announced twice and cannot be marked
+// aria-hidden. The decorative 💎 lives in its own span in the label below.
 const {
-  message = "AMBKING1234 รวมเกมสล็อตยอดนิยมหลายรูปแบบไว้ในระบบเดียว เมนูเข้าใจง่าย เลือกเกมได้ตามความสนใจ • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ ใช้งานผ่านเบราว์เซอร์ได้ทันที ควรใช้อินเทอร์เน็ตที่เสถียรและเข้าผ่านช่องทางหลักทุกครั้ง • ทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง ควรศึกษากติกา รูปแบบการจ่าย และกำหนดงบประมาณก่อนเริ่มเล่น",
+  message = "LASVEGAS889 รวมเกมสล็อตและบาคาร่าไว้ในระบบเดียว เลือกเกมได้ตามกติกา ฟีเจอร์ และระดับความเสี่ยงที่เหมาะกับตนเอง • รองรับการฝากถอนผ่าน True Wallet และใช้งานบนมือถือ แท็บเล็ต หรือคอมพิวเตอร์ ควรตรวจข้อมูล Wallet จำนวนเงิน และชื่อบัญชีก่อนยืนยันทุกครั้ง • ตรวจสอบบัญชี โปรโมชั่น และสถานะธุรกรรมได้จากระบบ ควรศึกษากติกาและกำหนดวงเงินไว้ล่วงหน้าก่อนเริ่มเล่น",
 } = Astro.props;
 ---
 
 <div class="mx-auto w-full max-w-7xl px-4 py-4 font-sans">
   <div
-    class="relative flex overflow-hidden rounded-full border border-[#8fd318]/40 bg-[#06190d]/92 shadow-[0_8px_20px_rgba(143,211,24,0.18)] backdrop-blur-lg transition-shadow duration-300 hover:shadow-[0_8px_25px_rgba(143,211,24,0.30)]">
+    class="relative flex overflow-hidden rounded-full border border-[#f2b829]/40 bg-[#0b1740]/92 shadow-[0_8px_20px_rgba(31,92,224,0.22)] backdrop-blur-lg transition-shadow duration-300 hover:shadow-[0_8px_25px_rgba(63,220,255,0.32)]">
     <div
-      class="relative z-10 flex shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#e4f223] via-[#8fd318] to-[#1c7a2f] px-8 py-2.5 font-black text-[#04140a] shadow-[4px_0_15px_rgba(143,211,24,0.25)]">
+      class="relative z-10 flex shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#ffdd7a] via-[#f2b829] to-[#a8760d] px-8 py-2.5 font-black text-[#050b24] shadow-[4px_0_15px_rgba(242,184,41,0.3)]">
       <span aria-hidden="true" class="mr-2 text-lg">💎</span> ประกาศ
     </div>
 
     <div class="marquee-container relative flex-1 overflow-hidden py-2.5 pr-6">
-      <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-12 bg-gradient-to-r from-[#06190d] to-transparent"></div>
+      <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-12 bg-gradient-to-r from-[#0b1740] to-transparent"></div>
 
-      <div class="marquee-content inline-block pl-4 text-sm font-medium tracking-wide whitespace-nowrap text-[#e6f3dd]">
-        <span class="mr-10 inline-flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-[#fbd503] shadow-[0_0_8px_rgba(251,213,3,0.6)]"></span>{message}</span>
-        <span class="mr-10 inline-flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-[#fbd503] shadow-[0_0_8px_rgba(251,213,3,0.6)]"></span>{message}</span>
+      <div class="marquee-content inline-block pl-4 text-sm font-medium tracking-wide whitespace-nowrap text-[#cddcf7]">
+        <span class="mr-10 inline-flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-[#3fdcff] shadow-[0_0_8px_rgba(63,220,255,0.7)]"></span>{message}</span>
+        <span class="mr-10 inline-flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-[#3fdcff] shadow-[0_0_8px_rgba(63,220,255,0.7)]"></span>{message}</span>
       </div>
     </div>
   </div>

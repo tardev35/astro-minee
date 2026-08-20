@@ -1,19 +1,20 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/AnnouncementCyber.astro";
-import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
-import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
-import ContentBoxTwo from "../components/ContentBoxTwo.astro";
-import ContentBoxTwoNeumorphism from "../components/ContentBoxTwoNeumorphism.astro";
-import ContentBoxSevenThree from "../components/ContentBoxSevenThree.astro";
-import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
+import Announcement from "../components/AnnouncementPremium.astro";
+import ContentBoxPremium from "../components/ContentBoxPremium.astro";
+import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
+import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
+import ContentBoxTwoPremium from "../components/ContentBoxTwoPremium.astro";
+import ContentBoxTwoCyberCut from "../components/ContentBoxTwoCyberCut.astro";
+import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
+import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinnersCyber.astro";
+import LatestWinners from "../components/LatestWinnersPremium.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq4.astro";
+import Faq from "../components/Faq2.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
@@ -22,48 +23,54 @@ import { pageGraph } from "../lib/schema";
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
 // two of those per rebrand — both are spent here.
 //
-// slide2 prints "ฝากครั้งแรก รับเพิ่ม 20% / คุ้มตั้งแต่ฝากแรก" with the
-// ฝากง่าย/ถอนเร็ว/ระบบออโต้ icon row, which is exactly the deposit flow the
-// docx's ระบบออโต้ฝากเงิน section describes; slide4 prints "สมาชิกใหม่ รับโบนัส
-// 50% / สมัครวันนี้ รับสิทธิ์ทันที", the promo whose conditions the closing
-// เลือกเกมและโปรให้เหมาะ section says to compare before claiming. slide1
-// (แนะนำเพื่อน 10%) and slide3 (คืนยอดเสีย 0.8%) stay unused here and keep
-// rendering in SmoothCarousel and on /promotion.
+// slide4 prints "คาสิโนออนไลน์ครบวงจร / เล่นง่าย ฝาก-ถอนออโต้ จ่ายจริง" with the
+// four guarantee chips, which is the "everything in one system" claim docx
+// section 2 makes; slide2 prints "ฝากครั้งแรก รับเพิ่ม 20% / คุ้มตั้งแต่ฝากแรก"
+// with the ฝากง่าย/ถอนเร็ว/ระบบออโต้ icon row and a ฝากเลย button, which is the
+// deposit/withdraw flow section 4 describes step by step. slide1 (สมาชิกใหม่
+// รับโบนัส 50%) and slide3 (คืนยอดเสีย 0.8%) stay unused here and keep rendering
+// in SmoothCarousel and on /promotion.
 //
 // banner2.png is NOT imported anywhere: it predates this asset drop.
 // banner1/banner1-mobile are the hero and belong to MainLayout alone.
-import imgAutoDeposit from "../assets/slide2.png";
-import imgBonusChoice from "../assets/slide4.png";
+import imgAllInOne from "../assets/slide4.png";
+import imgFirstDeposit from "../assets/slide2.png";
 
-const pageTitle = "BMK289 | เว็บสล็อตรวมเกมยอดนิยม ระบบออโต้ฝากง่าย ถอนไว จ่ายจริง";
-const pageHeading = "BMK289 เว็บสล็อตรวมเกมยอดนิยม ระบบออโต้ฝากง่าย ถอนไว จ่ายจริง";
+const pageTitle = "LASVEGAS889 | สล็อตบาคาร่ายอดฮิตอันดับ 1 ฝากถอน True wallet";
+const pageHeading = "LASVEGAS889 สล็อตบาคาร่ายอดฮิตอันดับ 1 ฝากถอน True wallet";
 
-// The docx Meta Description, verbatim at the length it was written (129
-// characters). DESC_MIN does not apply to the home page — verify-build.mjs
-// exempts it precisely so the brand's own copy ships unpadded. Do not top it
-// up to 150.
-const pageDescription = "BMK289 เว็บสล็อตรวมเกมยอดนิยม ระบบออโต้ฝากง่าย ถอนไวตามเงื่อนไข รองรับมือถือ พร้อมระบบใช้งานสะดวกและตรวจสอบรายการได้ง่าย";
+// The docx Main SEO Meta Description, verbatim at the length it was written
+// (127 characters). DESC_MIN does not apply to the home page — verify-build.mjs
+// exempts it precisely so the brand's own copy ships unpadded. Do not top it up
+// to 150.
+const pageDescription = "LASVEGAS889 รวมสล็อตบาคาร่ายอดนิยม ฝากถอนผ่าน True Wallet รองรับมือถือ พร้อมระบบใช้งานสะดวก เกมหลากหลาย และตรวจสอบรายการได้ง่าย";
 
-const altAutoDeposit =
-  "แบนเนอร์โปรโมชั่น BMK289 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก พร้อมไอคอนสามช่อง ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่ม ฝากเลย พร้อมโลโก้ BMK289 ตัวอักษรโครมสีฟ้า-ขาวเหนือบรรทัด BMK289.COM FUTURE GAME AND SPORTS ผู้หญิงในชุดครอปและกระโปรงสีน้ำเงิน-ขาวพิมพ์ BMK289 ชี้นิ้วขึ้น ป้าย JACKPOT 1,286,000.00 ตู้สล็อตสัญลักษณ์ BAR และเลข 7 ไพ่เอซ และกองเหรียญทองในห้องคาสิโนโทนน้ำเงินนีออน";
+// The ticker default in AnnouncementPremium is what sub-pages get; the home page
+// always passes its own copy so the two never drift apart silently. No leading
+// emoji — the marquee renders the string twice.
+const announcement =
+  "LASVEGAS889 รวมสล็อตและบาคาร่าไว้ในระบบเดียว เลือกเกมได้จากกติกา ฟีเจอร์ ระดับความเสี่ยง และรูปแบบการจ่าย • ฝากถอนผ่าน True Wallet บนมือถือได้สะดวก ควรตรวจข้อมูล Wallet จำนวนเงิน และชื่อบัญชีให้ถูกต้องก่อนยืนยันทุกครั้ง • ตรวจสอบบัญชี โปรโมชั่น และสถานะธุรกรรมได้จากระบบ พร้อมกำหนดวงเงินไว้ล่วงหน้าก่อนเริ่มเล่น";
 
-const altBonusChoice =
-  "แบนเนอร์โปรโมชั่น BMK289 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่ม รับโปรเลย พร้อมโลโก้ BMK289 ตัวอักษรโครมสีฟ้า-ขาวเหนือบรรทัด BMK289.COM FUTURE GAME AND SPORTS ผู้หญิงในชุดครอปและกางเกงสีน้ำเงิน-ขาวพิมพ์ BMK289 กำหมัดและชี้นิ้ว ป้าย JACKPOT 1,286,000.00 ตู้สล็อตสัญลักษณ์ BAR และเลข 7 ไพ่เอซ และกองเหรียญทองในห้องคาสิโนโทนน้ำเงินนีออน";
+const altAllInOne =
+  "แบนเนอร์โปรโมชั่น LASVEGAS889 ข้อความ คาสิโนออนไลน์ครบวงจร เล่นง่าย ฝาก-ถอนออโต้ จ่ายจริง พร้อมการันตีสี่ข้อ ปลอดภัย มั่นคง 100% ฝาก-ถอน ออโต้ จ่ายจริง ไม่มีโกง และ บริการ 24 ชม. ตลอดทุกวัน ปุ่ม สมัครเลย และแถบล่าง รองรับทุกอุปกรณ์ ระบบทันสมัย ปลอดภัย รองรับทุกธนาคาร พร้อมโลโก้ LASVEGAS สีทองและเลข 889 สีโครมเงิน ป้าย Welcome to Fabulous LAS VEGAS NEVADA เหนือเส้นขอบฟ้าเมืองลาสเวกัสสีฟ้านีออน ผู้หญิงในชุดสีขาว-น้ำเงิน-ทองพิมพ์ LASVEGAS 889 ตู้สล็อตเลข 777 และกองเหรียญทองบนพื้นหลังสีน้ำเงินเข้ม";
+
+const altFirstDeposit =
+  "แบนเนอร์โปรโมชั่น LASVEGAS889 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก พร้อมไอคอนสามช่อง ฝากง่าย ถอนเร็ว ระบบออโต้ ป้าย VIP และปุ่ม ฝากเลย พร้อมโลโก้ LASVEGAS สีทองและเลข 889 สีโครมเงินเหนือเส้นขอบฟ้าเมืองลาสเวกัสสีฟ้านีออน ผู้หญิงในชุดครอปสีขาว-น้ำเงิน-ทองพิมพ์ LASVEGAS 889 ตู้สล็อตสัญลักษณ์ BAR และเลข 7 ชิปคาสิโนสีน้ำเงินและกองเหรียญทองบนพื้นหลังสีน้ำเงินเข้ม";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq4's own default, which is always the previous brand's FAQ.
+// Faq2's own default, which is always the previous brand's FAQ.
 const faqs = [
   {
-    q: "BMK289 มีเกมสล็อตประเภทใดให้เลือกบ้าง?",
-    a: "ภายในระบบมีเกมสล็อตหลายแนว ทั้งเกมคลาสสิก เกมโบนัส และเกมธีมสมัยใหม่ ผู้เล่นสามารถเลือกตามกติกา ฟีเจอร์ และงบประมาณของตนเอง",
+    q: "LASVEGAS889 มีทั้งสล็อตและบาคาร่าให้เล่นหรือไม่?",
+    a: "ภายในระบบมีทั้งเกมสล็อตและบาคาร่าในหลายรูปแบบ ผู้เล่นสามารถเลือกตามกติกา ความชอบ ระดับความเสี่ยง และงบประมาณของตนเอง",
   },
   {
-    q: "ระบบฝากถอนออโต้ของ BMK289 ช่วยอะไร?",
-    a: "ระบบออโต้ช่วยลดขั้นตอนการทำธุรกรรมและให้สมาชิกติดตามสถานะผ่านหน้าบัญชีได้ โดยระยะเวลาดำเนินการอาจแตกต่างตามช่องทางและสถานะรายการ",
+    q: "LASVEGAS889 รองรับการฝากถอนผ่าน True Wallet หรือไม่?",
+    a: "รองรับ True Wallet ตามช่องทางที่ระบบกำหนด สมาชิกควรตรวจสอบข้อมูลบัญชี จำนวนเงิน และสถานะรายการทุกครั้งก่อนและหลังทำธุรกรรม",
   },
   {
-    q: "คำว่าจ่ายจริงหมายถึงรับประกันการถอนทุกยอดหรือไม่?",
-    a: "ไม่ควรตีความว่าเป็นการรับประกันทุกกรณี เพราะการถอนอาจขึ้นอยู่กับสถานะบัญชี เงื่อนไขโปรโมชั่น และขั้นตอนตรวจสอบของระบบ ควรอ่านข้อกำหนดก่อนใช้งาน",
+    q: "สล็อตบาคาร่ายอดฮิตอันดับ 1 รับประกันผลลัพธ์ได้หรือไม่?",
+    a: "ไม่สามารถรับประกันผลลัพธ์หรือกำไรจากสล็อตและบาคาร่าได้ ความนิยมไม่ได้เป็นตัวกำหนดผลของเกม ผู้เล่นควรศึกษากติกาและกำหนดงบก่อนเริ่มทุกครั้ง",
   },
 ];
 
@@ -78,28 +85,19 @@ const graph = pageGraph(Astro, {
 <MainLayout title={pageTitle} description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
-  <Announcement />
+  <Announcement message={announcement} />
 
-  <ContentBoxNeumorphism as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#dbe9fb]">
-      <strong class="text-[#ffcc33]">BMK289</strong> เป็นแพลตฟอร์มเกมสล็อตออนไลน์ที่รวบรวมเกมยอดนิยมหลายรูปแบบไว้ในระบบเดียว พร้อมระบบออโต้ที่ช่วยลดขั้นตอนการฝากและถอน รองรับการใช้งานผ่านมือถือและคอมพิวเตอร์
-      สมาชิกสามารถเลือกเกม ตรวจสอบโปรโมชั่น และติดตามสถานะรายการได้สะดวก โดยควรอ่านกติกาและเงื่อนไขก่อนทำรายการทุกครั้ง
+  <ContentBoxPremium as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#cddcf7]">
+      <strong class="text-[#f2b829]">LASVEGAS889</strong> เป็นแพลตฟอร์มเกมออนไลน์ที่รวมทั้งเกมสล็อตและบาคาร่าไว้ในระบบเดียว รองรับการฝากถอนผ่าน True Wallet และการใช้งานบนมือถือ
+      สมาชิกสามารถเลือกเกม ตรวจสอบโปรโมชั่น และจัดการบัญชีได้สะดวกจากช่องทางเดียว โดยควรศึกษากติกา รูปแบบเดิมพัน และเงื่อนไขต่าง ๆ ก่อนเริ่มใช้งานทุกครั้ง
     </p>
-  </ContentBoxNeumorphism>
+  </ContentBoxPremium>
 
-  <ContentBoxFloatingBadge as="h2" title="ค้นหาเกมยอดนิยมที่เข้ากับสไตล์ได้บน BMK289">
-    <p class="text-left text-base leading-relaxed text-[#dbe9fb]">
-      ภายใน BMK289 มีเกมสล็อตหลายแนวทั้งแบบคลาสสิก เกมโบนัส และเกมธีมใหม่ ผู้เล่นสามารถเลือกจากรูปแบบการเล่น ฟีเจอร์ ความผันผวน และกติกาของแต่ละเกม
-      เพื่อให้ได้ตัวเลือกที่เหมาะกับงบประมาณและความชอบของตนเองมากขึ้น
-    </p>
-  </ContentBoxFloatingBadge>
-
-  <ProviderGrid />
-
-  <ContentBoxSevenThreeNeumorphism titleright="ระบบออโต้ช่วยให้ขั้นตอนฝากเงินกระชับขึ้น">
+  <ContentBoxSevenThreePremium titleright="รวมสล็อตและบาคาร่าไว้ครบใน LASVEGAS889">
     <Picture
       slot="left"
-      src={imgAutoDeposit}
+      src={imgAllInOne}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -108,87 +106,50 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt={altAutoDeposit}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#2b8cff]/40 shadow-[0_10px_30px_rgba(43,140,255,0.28)]"
+      alt={altAllInOne}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#1f5ce0]/40 shadow-[0_10px_30px_rgba(31,92,224,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#dbe9fb]">
-      ระบบฝากแบบออโต้ช่วยลดขั้นตอนการส่งข้อมูลซ้ำ สมาชิกควรตรวจสอบชื่อบัญชี จำนวนเงิน และช่องทางที่ใช้ก่อนยืนยันทุกครั้ง รวมถึงรอให้ระบบแสดงสถานะสำเร็จก่อนทำรายการใหม่
-      เพื่อช่วยลดความคลาดเคลื่อนและทำให้ตรวจสอบย้อนหลังได้ง่าย
+    <p slot="right" class="text-left text-base leading-relaxed text-[#cddcf7]">
+      ภายใน LASVEGAS889 มีทั้งเกมสล็อตหลายแนวและบาคาร่าในรูปแบบต่าง ๆ ให้เลือกตามความสนใจ ผู้เล่นสามารถพิจารณาจากกติกา ฟีเจอร์ ระดับความเสี่ยง และรูปแบบการจ่าย
+      เพื่อเลือกเกมที่เหมาะกับสไตล์ของตนเองมากกว่าการเลือกตามกระแสเพียงอย่างเดียว
     </p>
-  </ContentBoxSevenThreeNeumorphism>
+  </ContentBoxSevenThreePremium>
 
-  <ContentBoxTwo as="h2" titleleft="ทำรายการถอนกับ BMK289 ได้อย่างเป็นขั้นตอน" iconleft="💳">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#dbe9fb]">
-      สมาชิก BMK289 สามารถส่งคำขอถอนและตรวจสอบสถานะผ่านหน้าบัญชีได้โดยตรง ก่อนยืนยันควรตรวจสอบยอดคงเหลือ ข้อมูลรับเงิน และเงื่อนไขโปรโมชั่นให้ครบ หากรายการยังดำเนินการอยู่ควรรอผลจากระบบก่อนส่งคำขอซ้ำ
+  <ProviderGrid />
+
+  <ContentBoxTwoPremium titleleft="True Wallet ช่วยให้จัดการธุรกรรมผ่านมือถือได้สะดวก">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#cddcf7]">
+      การใช้ True Wallet ช่วยลดขั้นตอนในการฝากและถอนผ่านอุปกรณ์มือถือ ก่อนยืนยันรายการควรตรวจสอบข้อมูล Wallet จำนวนเงิน และชื่อบัญชีให้ถูกต้อง รวมถึงรอให้ระบบแสดงสถานะสำเร็จก่อนทำรายการใหม่
+      เพื่อลดความคลาดเคลื่อนในการตรวจสอบ
     </p>
 
-    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#2b8cff]/30 bg-[#08152f]/70 p-5">
-      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#ffcc33] uppercase">
-        <span aria-hidden="true">🧾</span>
-        ลำดับที่ควรตรวจก่อนกดยืนยันถอน
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#1f5ce0]/30 bg-[#0b1740]/70 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f2b829] uppercase">
+        <span aria-hidden="true">👛</span>
+        สิ่งที่ควรตรวจก่อนยืนยันรายการบน Wallet
       </p>
-      <span class="flex items-start gap-2.5 text-sm text-[#dbe9fb]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9dcef0]">①</span>
-        ยอดคงเหลือในบัญชีตรงกับจำนวนที่ตั้งใจถอน
+      <span class="flex items-start gap-2.5 text-sm text-[#cddcf7]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#3fdcff]">①</span>
+        ข้อมูล Wallet ที่ผูกไว้ตรงกับบัญชีที่ใช้งานอยู่
       </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#dbe9fb]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9dcef0]">②</span>
-        ข้อมูลรับเงินถูกต้องครบถ้วนตามที่ผูกไว้กับบัญชี
+      <span class="flex items-start gap-2.5 text-sm text-[#cddcf7]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#3fdcff]">②</span>
+        จำนวนเงินในรายการตรงกับที่ตั้งใจฝากหรือถอน
       </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#dbe9fb]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9dcef0]">③</span>
-        เงื่อนไขโปรโมชั่นที่ใช้อยู่ครบตามข้อกำหนดแล้ว
+      <span class="flex items-start gap-2.5 text-sm text-[#cddcf7]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#3fdcff]">③</span>
+        ชื่อบัญชีถูกต้องครบถ้วนก่อนกดยืนยันทุกครั้ง
       </span>
-      <span class="mt-1 rounded-xl border border-[#ffcc33]/35 bg-[#02081c]/80 px-4 py-2.5 text-xs leading-relaxed text-[#96abcb]">
-        หากรายการยังดำเนินการอยู่ ควรรอผลจากระบบก่อนส่งคำขอซ้ำ เพราะระยะเวลาดำเนินการอาจแตกต่างตามช่องทางและสถานะรายการ
+      <span class="mt-1 rounded-xl border border-[#f2b829]/35 bg-[#050b24]/80 px-4 py-2.5 text-xs leading-relaxed text-[#7f96c4]">
+        รอให้ระบบแสดงสถานะสำเร็จก่อนทำรายการใหม่ เพื่อลดความคลาดเคลื่อนในการตรวจสอบย้อนหลัง
       </span>
     </div>
-  </ContentBoxTwo>
+  </ContentBoxTwoPremium>
 
-  <ContentBoxNeumorphism as="h2" title="เกมยอดนิยมไม่ได้หมายความว่าจะเหมาะกับทุกคน">
-    <p class="text-left text-base leading-relaxed text-[#dbe9fb]">
-      ความนิยมของเกมช่วยบอกได้ว่าเกมใดได้รับความสนใจ แต่ไม่ได้หมายความว่าเหมาะกับผู้เล่นทุกคน ควรศึกษาความผันผวน รูปแบบโบนัส และจำนวนเงินต่อรอบก่อนเลือก
-      พร้อมกำหนดวงเงินไว้ล่วงหน้าเพื่อควบคุมค่าใช้จ่ายให้เหมาะสม
-    </p>
-  </ContentBoxNeumorphism>
-
-  <GameRankingBoard />
-
-  <ContentBoxTwoNeumorphism titleleft="ตรวจสอบสถานะธุรกรรมได้ง่ายผ่าน BMK289">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#dbe9fb]">
-      หน้าบัญชีของ BMK289 ช่วยให้สมาชิกติดตามรายการฝาก ถอน และข้อมูลที่เกี่ยวข้องได้สะดวก หากพบรายการผิดปกติควรเก็บเวลา จำนวนเงิน และข้อมูลอ้างอิงไว้สำหรับการตรวจสอบ
-      และไม่ควรเปิดเผยรหัสผ่านหรือรหัสยืนยันแก่บุคคลอื่น
-    </p>
-
-    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#2b8cff]/30 bg-[#02081c]/70 p-5">
-      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#ffcc33] uppercase">
-        <span aria-hidden="true">🧭</span>
-        ข้อมูลที่ควรเก็บไว้เมื่อพบรายการผิดปกติ
-      </p>
-      <span class="flex items-start gap-2.5 text-sm text-[#dbe9fb]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9dcef0]">①</span>
-        เวลาที่ทำรายการและเวลาที่สถานะเปลี่ยน
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#dbe9fb]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9dcef0]">②</span>
-        จำนวนเงินของรายการนั้นตามที่ระบบแสดง
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#dbe9fb]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#9dcef0]">③</span>
-        ข้อมูลอ้างอิงของรายการไว้สำหรับการตรวจสอบ
-      </span>
-      <span class="mt-1 rounded-xl border border-[#ffcc33]/35 bg-[#08152f]/80 px-4 py-2.5 text-xs leading-relaxed text-[#96abcb]">
-        ไม่ควรเปิดเผยรหัสผ่านหรือรหัสยืนยันแก่บุคคลอื่นไม่ว่ากรณีใด แม้จะเป็นการแจ้งปัญหาของรายการก็ตาม
-      </span>
-    </div>
-  </ContentBoxTwoNeumorphism>
-
-  <LatestWinners />
-
-  <ContentBoxSevenThree titleright="ใช้งาน BMK289 ให้คุ้มด้วยการเลือกเกมและโปรให้เหมาะ">
+  <ContentBoxSevenThreeCyberCut titleright="ฝากถอนผ่าน LASVEGAS889 ได้อย่างเป็นขั้นตอน">
     <Picture
       slot="left"
-      src={imgBonusChoice}
+      src={imgFirstDeposit}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -197,29 +158,76 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt={altBonusChoice}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#2b8cff]/40 shadow-[0_10px_30px_rgba(43,140,255,0.28)]"
+      alt={altFirstDeposit}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#1f5ce0]/40 shadow-[0_10px_30px_rgba(31,92,224,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#dbe9fb]">
-      การใช้งาน BMK289 ให้คุ้มควรเริ่มจากการกำหนดงบ เลือกเกมที่เข้าใจกติกา และเปรียบเทียบเงื่อนไขโปรโมชั่นก่อนรับสิทธิ์ ไม่ควรเพิ่มเงินเพื่อไล่ตามผลที่เสียไป
-      เพราะเกมสล็อตมีความไม่แน่นอนและไม่สามารถรับประกันผลตอบแทนได้
+    <p slot="right" class="text-left text-base leading-relaxed text-[#cddcf7]">
+      สมาชิก LASVEGAS889 สามารถส่งรายการฝากหรือถอนและติดตามสถานะผ่านหน้าบัญชีได้โดยตรง ควรตรวจสอบยอดคงเหลือ ข้อมูลรับเงิน และเงื่อนไขโปรโมชั่นให้ครบก่อนยืนยัน
+      หากรายการยังอยู่ระหว่างดำเนินการควรรอผลจากระบบก่อนส่งซ้ำ
     </p>
-  </ContentBoxSevenThree>
+  </ContentBoxSevenThreeCyberCut>
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ BMK289" faqs={faqs} />
+  <ContentBoxSpecial title="สล็อตกับบาคาร่าเหมาะกับสไตล์การเล่นที่ต่างกัน" iconleft="🎰" iconright="🃏">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#cddcf7]">เกมสล็อตมีฟีเจอร์ ความผันผวน และรูปแบบโบนัสที่แตกต่างกัน</p>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#cddcf7]">
+      ส่วนบาคาร่าเน้นกติกาและตัวเลือกการเดิมพันที่ชัดเจน ผู้เล่นควรทำความเข้าใจทั้งสองประเภทก่อนเลือก และกำหนดวงเงินไว้ล่วงหน้าเพื่อควบคุมการใช้งานให้เหมาะสม
+    </p>
+  </ContentBoxSpecial>
+
+  <ContentBoxCyberCut as="h2" title="ความนิยมของ LASVEGAS889 ควรดูควบคู่กับข้อมูลเกม">
+    <p class="text-left text-base leading-relaxed text-[#cddcf7]">
+      คำว่าอันดับ 1 เป็นถ้อยคำทางการตลาดที่สื่อถึงความนิยม แต่ไม่สามารถยืนยันได้ว่าเกมจะให้ผลลัพธ์ที่ดีกว่าสำหรับทุกคน ผู้ใช้ LASVEGAS889 ควรพิจารณากติกา อัตราจ่าย ความเสี่ยง
+      และงบประมาณของตนเองร่วมกันก่อนเริ่มเล่น
+    </p>
+  </ContentBoxCyberCut>
+
+  <GameRankingBoard />
+
+  <ContentBoxTwoCyberCut titleleft="ตรวจสอบบัญชีและรายการได้ผ่านระบบ LASVEGAS889">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#cddcf7]">
+      สมาชิก LASVEGAS889 สามารถดูข้อมูลบัญชี โปรโมชั่น และสถานะธุรกรรมผ่านระบบได้ หากพบรายการผิดปกติควรเก็บเวลา จำนวนเงิน และข้อมูลอ้างอิงไว้สำหรับตรวจสอบ
+      พร้อมหลีกเลี่ยงการเปิดเผยรหัสผ่านหรือรหัสยืนยันแก่บุคคลอื่น
+    </p>
+
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#1f5ce0]/30 bg-[#050b24]/70 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f2b829] uppercase">
+        <span aria-hidden="true">🧭</span>
+        ข้อมูลที่ควรเก็บไว้เมื่อพบรายการผิดปกติ
+      </p>
+      <span class="flex items-start gap-2.5 text-sm text-[#cddcf7]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#3fdcff]">①</span>
+        เวลาที่ทำรายการและเวลาที่สถานะเปลี่ยน
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#cddcf7]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#3fdcff]">②</span>
+        จำนวนเงินของรายการนั้นตามที่ระบบแสดง
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#cddcf7]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#3fdcff]">③</span>
+        ข้อมูลอ้างอิงของรายการไว้สำหรับการตรวจสอบ
+      </span>
+      <span class="mt-1 rounded-xl border border-[#f2b829]/35 bg-[#0b1740]/80 px-4 py-2.5 text-xs leading-relaxed text-[#7f96c4]">
+        ไม่ควรเปิดเผยรหัสผ่านหรือรหัสยืนยันแก่บุคคลอื่นไม่ว่ากรณีใด แม้จะเป็นการแจ้งปัญหาของรายการก็ตาม
+      </span>
+    </div>
+  </ContentBoxTwoCyberCut>
+
+  <LatestWinners />
+
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ LASVEGAS889" faqs={faqs} />
 
   <LoginRtpSection />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#5eb0ff]/60 bg-gradient-to-r from-[#2b8cff] via-[#0d2350] to-[#02081c] px-4 py-3 text-sm font-black whitespace-nowrap text-[#dbe9fb] shadow-[0_10px_30px_rgba(43,140,255,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#9dcef0] hover:shadow-[0_15px_40px_rgba(94,176,255,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#4d8dff]/60 bg-gradient-to-r from-[#1f5ce0] via-[#122a63] to-[#050b24] px-4 py-3 text-sm font-black whitespace-nowrap text-[#e8eefb] shadow-[0_10px_30px_rgba(31,92,224,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#3fdcff] hover:shadow-[0_15px_40px_rgba(63,220,255,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffe488]/70 bg-gradient-to-r from-[#ffe488] to-[#ffcc33] px-4 py-3 text-sm font-black whitespace-nowrap text-[#05132e] shadow-[0_10px_30px_rgba(255,204,51,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe488] hover:shadow-[0_15px_40px_rgba(255,204,51,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffdd7a]/70 bg-gradient-to-r from-[#ffdd7a] to-[#f2b829] px-4 py-3 text-sm font-black whitespace-nowrap text-[#050b24] shadow-[0_10px_30px_rgba(242,184,41,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffdd7a] hover:shadow-[0_15px_40px_rgba(242,184,41,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>

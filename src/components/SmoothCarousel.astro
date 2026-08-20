@@ -7,26 +7,30 @@ import slide3 from "../assets/slide3.png";
 import slide4 from "../assets/slide4.png";
 
 // Each alt is the text actually printed on that slide, read off the artwork,
-// plus the scene it sits in. All four share the BMK289 wordmark (ตัวอักษรโครม
-// สีฟ้า-ขาว BMK289 เหนือบรรทัด BMK289.COM FUTURE GAME AND SPORTS) beside a model
-// in a blue-and-white outfit printed BMK289, in a neon-blue casino hall with
-// gold coins and blue casino chips.
+// plus the scene it sits in. All four share the LASVEGAS889 wordmark (LASVEGAS
+// สีทอง + เลข 889 สีโครมเงิน) over a neon-cyan Las Vegas skyline on a deep
+// royal-blue night background, with a model in a white/royal-blue/gold outfit
+// printed LASVEGAS 889, gold coins and blue casino chips.
+//
+// This is a pure-CSS marquee — no Swiper, no JavaScript at all. It duplicates
+// the four images three times so the loop has no seam; the duplicate copies are
+// alt="" + aria-hidden so a screen reader hears each promotion once.
 const images = [
   {
     src: slide1,
-    alt: "แบนเนอร์โปรโมชั่น BMK289 ข้อความ แนะนำเพื่อน รับค่าคอม 10% ชวนเพื่อน ยิ่งชวนยิ่งคุ้ม พร้อมแผนภาพสามขั้นตอน 1 ส่งลิงก์ 2 เพื่อนสมัคร 3 รับค่าคอม และปุ่ม ชวนเลย พร้อมโลโก้ BMK289 ตัวอักษรโครมสีฟ้า-ขาวเหนือบรรทัด BMK289.COM FUTURE GAME AND SPORTS ผู้หญิงในชุดครอปและกระโปรงสีน้ำเงิน-ขาวพิมพ์ BMK289 ชี้นิ้ว ป้าย JACKPOT 1,286,000.00 วงล้อสล็อตเลข 777 ไพ่โพดำ ชิปคาสิโนสีน้ำเงิน กองเหรียญทอง และแถบข้อความ มั่นคง ปลอดภัย ระบบเสถียร บริการตลอด 24 ชม. ในห้องคาสิโนโทนน้ำเงินนีออน",
+    alt: "แบนเนอร์โปรโมชั่น LASVEGAS889 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที และปุ่ม รับโปรเลย พร้อมแถบ มั่นคง ปลอดภัย เชื่อถือได้ 100% บริการตลอด 24 ชม. รวดเร็ว ทันใจ และ ฝาก-ถอน ออโต้ ไม่ต้องรอนาน พร้อมโลโก้ LASVEGAS สีทองและเลข 889 สีโครมเงินเหนือเส้นขอบฟ้าเมืองลาสเวกัสสีฟ้านีออน ผู้หญิงในชุดครอปสีขาว-น้ำเงิน-ทองพิมพ์ LASVEGAS 889 ชิปคาสิโนสีน้ำเงินและกองเหรียญทองบนพื้นหลังสีน้ำเงินเข้ม",
   },
   {
     src: slide2,
-    alt: "แบนเนอร์โปรโมชั่น BMK289 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก พร้อมไอคอนสามช่อง ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่ม ฝากเลย พร้อมโลโก้ BMK289 ตัวอักษรโครมสีฟ้า-ขาวเหนือบรรทัด BMK289.COM FUTURE GAME AND SPORTS ผู้หญิงในชุดครอปและกระโปรงสีน้ำเงิน-ขาวพิมพ์ BMK289 ชี้นิ้วขึ้น ป้าย JACKPOT 1,286,000.00 ตู้สล็อตสัญลักษณ์ BAR และเลข 7 ไพ่เอซ และกองเหรียญทองในห้องคาสิโนโทนน้ำเงินนีออน",
+    alt: "แบนเนอร์โปรโมชั่น LASVEGAS889 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก พร้อมไอคอนสามช่อง ฝากง่าย ถอนเร็ว ระบบออโต้ ป้าย VIP และปุ่ม ฝากเลย พร้อมโลโก้ LASVEGAS สีทองและเลข 889 สีโครมเงินเหนือเส้นขอบฟ้าเมืองลาสเวกัสสีฟ้านีออน ผู้หญิงในชุดครอปสีขาว-น้ำเงิน-ทองพิมพ์ LASVEGAS 889 ตู้สล็อตสัญลักษณ์ BAR และเลข 7 ชิปคาสิโนสีน้ำเงินและกองเหรียญทองบนพื้นหลังสีน้ำเงินเข้ม",
   },
   {
     src: slide3,
-    alt: "แบนเนอร์โปรโมชั่น BMK289 ข้อความ เว็บตรงแตกง่าย คืนยอดเสีย 0.8% ทุกวัน เล่นต่อได้ทุกวัน คุ้มค่าทุกความสนุก พร้อมป้าย โบนัสคุ้ม ระบบเสถียร บริการ 24 ชม. และปุ่ม รับสิทธิ์ พร้อมโลโก้ BMK289 ตัวอักษรโครมสีฟ้า-ขาวเหนือบรรทัด BMK289.COM FUTURE GAME AND SPORTS ผู้หญิงในชุดครอปและกางเกงสีน้ำเงิน-ขาวพิมพ์ BMK289 ชี้นิ้วไปทางข้อความ ตู้สล็อตสัญลักษณ์ BAR ไพ่เอซ ชิปคาสิโนสีน้ำเงิน และกองเหรียญทองในห้องคาสิโนโทนน้ำเงินนีออน",
+    alt: "แบนเนอร์โปรโมชั่น LASVEGAS889 ข้อความ คืนยอดเสีย 0.8% ทุกวัน เล่นต่อได้ทุกวัน คืนยอดเสียคุ้มค่า ไม่พลาดทุกความสนุก และปุ่ม รับสิทธิ์ พร้อมโลโก้ LASVEGAS สีทองและเลข 889 สีโครมเงินเหนือเส้นขอบฟ้าเมืองลาสเวกัสสีฟ้านีออน ผู้หญิงในชุดเดรสสีขาว-น้ำเงิน-ทองพิมพ์ LASVEGAS 889 ตู้สล็อต JACKPOT เลข 777 ชิปคาสิโนพิมพ์ 889 และกองเหรียญทองบนพื้นหลังสีน้ำเงินเข้ม",
   },
   {
     src: slide4,
-    alt: "แบนเนอร์โปรโมชั่น BMK289 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที โบนัสต้อนรับสำหรับผู้เล่นใหม่ และปุ่ม รับโปรเลย พร้อมโลโก้ BMK289 ตัวอักษรโครมสีฟ้า-ขาวเหนือบรรทัด BMK289.COM FUTURE GAME AND SPORTS ผู้หญิงในชุดครอปและกางเกงสีน้ำเงิน-ขาวพิมพ์ BMK289 กำหมัดและชี้นิ้ว ป้าย JACKPOT 1,286,000.00 ตู้สล็อตสัญลักษณ์ BAR และเลข 7 ไพ่เอซ และกองเหรียญทองในห้องคาสิโนโทนน้ำเงินนีออน",
+    alt: "แบนเนอร์โปรโมชั่น LASVEGAS889 ข้อความ คาสิโนออนไลน์ครบวงจร เล่นง่าย ฝาก-ถอนออโต้ จ่ายจริง พร้อมการันตีสี่ข้อ ปลอดภัย มั่นคง 100% ฝาก-ถอน ออโต้ จ่ายจริง ไม่มีโกง และ บริการ 24 ชม. ตลอดทุกวัน ปุ่ม สมัครเลย และแถบล่าง รองรับทุกอุปกรณ์ ระบบทันสมัย ปลอดภัย รองรับทุกธนาคาร พร้อมโลโก้ LASVEGAS สีทองและเลข 889 สีโครมเงิน ป้าย Welcome to Fabulous LAS VEGAS NEVADA เหนือเส้นขอบฟ้าเมืองลาสเวกัสสีฟ้านีออน ผู้หญิงในชุดสีขาว-น้ำเงิน-ทองพิมพ์ LASVEGAS 889 ตู้สล็อตเลข 777 และกองเหรียญทองบนพื้นหลังสีน้ำเงินเข้ม",
   },
 ];
 
@@ -38,7 +42,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
   <input id="carousel-pause" type="checkbox" class="peer sr-only" />
   <label
     for="carousel-pause"
-    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#2b8cff]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#9dcef0]">
+    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#3fdcff]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#3fdcff]">
     หยุด / เล่นสไลด์ภาพ
   </label>
 
@@ -51,7 +55,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
             <Picture
               src={slide.src}
               alt={isDuplicate ? "" : slide.alt}
-              class="block w-full rounded-xl border border-[#2b8cff]/45 object-cover shadow-[0_10px_30px_rgba(43,140,255,0.25)]"
+              class="block w-full rounded-xl border border-[#1f5ce0]/45 object-cover shadow-[0_10px_30px_rgba(31,92,224,0.25)]"
               width={slide.src.width}
               height={slide.src.height}
               loading="lazy"
