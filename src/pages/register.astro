@@ -10,19 +10,20 @@ const targetUrl = "https://yoalink.com/q83b";
 // the first <style> block below. Kanit stays declared even on a Google Sans
 // brand: it is the Thai fallback inside that stack.
 //
-// This brand is on Kanit (BRAND_FONT flipped from google-sans), so
-// usesGoogleFonts is false and fontHref resolves to the Oswald-only URL below.
-// Oswald is the only face left that needs a CDN: the Latin status heading uses
-// it and it is not self-hosted. The brand wordmark does NOT — .brand-identity
-// draws LASVEGAS889 in var(--font-sans), the same face the rest of the site
-// uses, so the wordmark here matches the navbar logotype instead of introducing
-// a third typeface on a screen that is on display for 1.5 seconds.
+// This brand is on Google Sans (BRAND_FONT flipped from kanit), so
+// usesGoogleFonts is true and fontHref resolves to the Google Sans + Oswald URL
+// below. Oswald is the only face that always needs a CDN: the Latin status
+// heading uses it and it is not self-hosted. The brand wordmark does NOT —
+// .brand-identity draws LOTTO77 in var(--font-sans), the same face the rest of
+// the site uses, so the wordmark here matches the navbar logotype instead of
+// introducing a third typeface on a screen that is on display for 1.5 seconds.
 //
-// The old value asked Google for "Kanit:wght@300;400;600" even though the site
-// self-hosts Kanit: a third-party request for weights nothing here draws (300
-// and 600 are used zero times), and a query string byte-identical on every
-// Kanit brand in the portfolio — the shared signature BRAND_FONT exists to
-// break up.
+// On a Kanit brand this ternary takes the other branch and asks Google for
+// Oswald alone. It used to request "Kanit:wght@300;400;600" there even though
+// the site self-hosts Kanit: a third-party request for weights nothing here
+// draws (300 and 600 are used zero times), and a query string byte-identical on
+// every Kanit brand in the portfolio — the shared signature BRAND_FONT exists
+// to break up. Do not put Kanit back into either branch.
 const fontHref = usesGoogleFonts
   ? "https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Oswald:wght@700&display=swap"
   : "https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap";
@@ -31,21 +32,21 @@ const fontHref = usesGoogleFonts
 <html lang="th" style={`--font-sans: ${fontStack};`}>
   <head>
     <meta charset="utf-8" />
-    <title>LASVEGAS889 | สมัครสมาชิกสล็อตบาคาร่าอย่างสะดวก</title>
+    <title>LOTTO77 | สมัครสมาชิกเว็บซื้อหวยออนไลน์</title>
 
     {
-      /* The docx SUB-PAGES table has no สมัครสมาชิก row, so unlike /login these
-        two strings are written here rather than carried over from the brief.
-        They mirror the เข้าสู่ระบบ row in register wording — they say what THIS
-        page is: registering. The previous wording opened "ทางเข้าเล่นและสมัคร
-        สมาชิก", which described /ทางเข้า instead and gave two routes the same
-        promise. This stub is noindex, so verify-build.mjs skips the 150–160
-        window on it (the check sits after `if (!indexable) continue;`) — the
-        sentence ships at the same unpadded length as /login's, 125 characters,
-        rather than being topped up with a clause the brief never wrote.
+      /* Title and description are the docx SUB-PAGES row for สมัครสมาชิก,
+        carried verbatim — they say what THIS page is: registering. An earlier
+        brand opened this sentence with "ทางเข้าเล่นและสมัครสมาชิก", which
+        described /ทางเข้า instead and gave two routes the same promise.
+        This stub is noindex, so verify-build.mjs skips the 150–160 window on it
+        (the check sits after `if (!indexable) continue;`).
         Count CHARACTERS, not bytes: Thai is 3 bytes per character. */
     }
-    <meta name="description" content="LASVEGAS889 สมัครสมาชิกผ่านช่องทางหลัก รองรับมือถือและคอมพิวเตอร์ พร้อมเลือกสล็อต บาคาร่า ตรวจสอบบัญชี และดูโปรโมชั่นได้สะดวก" />
+    <meta
+      name="description"
+      content="LOTTO77 สมัครสมาชิกเพื่อเข้าใช้งานระบบซื้อหวยออนไลน์ เลือกประเภทหวย บันทึกโพย ตรวจผลรางวัล และติดตามสถานะรายการได้จากบัญชีเดียว รองรับมือถือและคอมพิวเตอร์"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {
@@ -66,8 +67,9 @@ const fontHref = usesGoogleFonts
     <style>
       /* Self-hosted Kanit. This page has its own <head> and does not import
          global.css, so the @font-face rules there never reach it — which is why
-         it used to pull Kanit from Google instead. Only the weights this page
-         actually draws are declared. */
+         it used to pull Kanit from Google instead. Kanit is the Thai fallback
+         inside the Google Sans stack too, so these stay on either brand font.
+         Only the weights this page actually draws are declared. */
       @font-face {
         font-family: "Kanit";
         font-style: normal;
@@ -85,37 +87,34 @@ const fontHref = usesGoogleFonts
     </style>
 
     <style>
-      /* LASVEGAS889 is a Las Vegas night strip: deep royal-navy sky, a neon-cyan
-         skyline as the accent, rich gold for the wordmark and silver chrome for
-         the numerals. The previous brand here was a colder electric blue with an
-         icy pale accent — every hue below moved, not just the name.
+      /* LOTTO77 is Chinese-lucky crimson and gold: a near-black maroon page, a
+         crimson primary for the orb and rings, and gold for the wordmark and
+         highlights. The previous brand here was a royal-navy Las Vegas strip
+         with a neon-cyan accent — every hue below moved, not just the name.
          Every variable is NAMED FOR THE COLOUR IT HOLDS, which previous brands
          stopped doing: this block once declared `--brand-gold` on brands with no
          gold in them and `--brand-red` on a blue one, so the next editor reused
-         it by name and shipped the wrong hue. `--ice` went the same way — it was
-         holding this palette's neon cyan, which is not an ice blue — so it is
-         `--cyan` now. Rename with the value. */
+         it by name and shipped the wrong hue. Rename with the value. */
       :root {
-        --ink: #050b24;
-        --panel: rgba(11, 23, 64, 0.94);
-        --blue: #1f5ce0;
-        --blue-light: #4d8dff;
-        --blue-deep: #122a63;
-        --blue-darkest: #0a1a45;
-        --gold: #f2b829;
-        --gold-light: #ffdd7a;
-        --cyan: #3fdcff;
-        --silver: #e8eefb;
-        --text-blue: #cddcf7;
-        --text-blue-dim: #7f96c4;
+        --ink: #150202;
+        --panel: rgba(42, 5, 7, 0.94);
+        --red: #d81220;
+        --red-bright: #ff3d3d;
+        --red-deep: #7d0000;
+        --maroon: #3f070a;
+        --gold: #f5c451;
+        --gold-bright: #ffe08a;
+        --gold-deep: #b8860b;
+        --text: #f3ded7;
+        --text-dim: #c9a49c;
       }
 
       body {
         margin: 0;
         font-family: var(--font-sans);
-        color: var(--text-blue);
+        color: var(--text);
 
-        background: radial-gradient(circle at 50% 10%, rgba(31, 92, 224, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(18, 42, 99, 0.28) 0%, transparent 55%), var(--ink);
+        background: radial-gradient(circle at 50% 10%, rgba(216, 18, 32, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(125, 0, 0, 0.3) 0%, transparent 55%), var(--ink);
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -129,11 +128,11 @@ const fontHref = usesGoogleFonts
         max-width: 450px;
         padding: 3.5rem;
         background: var(--panel);
-        border: 1px solid rgba(31, 92, 224, 0.4);
+        border: 1px solid rgba(216, 18, 32, 0.4);
         border-radius: 2rem;
         box-shadow:
-          0 1rem 3rem rgba(31, 92, 224, 0.2),
-          0 0 2rem rgba(18, 42, 99, 0.28);
+          0 1rem 3rem rgba(216, 18, 32, 0.2),
+          0 0 2rem rgba(125, 0, 0, 0.3);
         text-align: center;
         backdrop-filter: blur(10px);
       }
@@ -142,13 +141,13 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 30%, var(--silver) 58%, var(--cyan) 80%, var(--blue-deep) 100%);
+        background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 30%, var(--gold-deep) 55%, var(--red-bright) 80%, var(--red-deep) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         letter-spacing: 0.12em;
         margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 2px rgba(31, 92, 224, 0.35));
+        filter: drop-shadow(0 1px 2px rgba(216, 18, 32, 0.35));
       }
 
       .sophisticated-loader {
@@ -164,23 +163,23 @@ const fontHref = usesGoogleFonts
       .orb {
         width: 40px;
         height: 40px;
-        background: radial-gradient(circle, var(--blue-light) 0%, var(--blue) 45%, var(--blue-darkest) 100%);
+        background: radial-gradient(circle, var(--red-bright) 0%, var(--red) 45%, var(--red-deep) 100%);
         border-radius: 50%;
-        box-shadow: 0 0 2rem rgba(31, 92, 224, 0.35);
+        box-shadow: 0 0 2rem rgba(216, 18, 32, 0.35);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .ring {
         position: absolute;
         border-radius: 50%;
-        border: 3px solid rgba(31, 92, 224, 0.2);
+        border: 3px solid rgba(216, 18, 32, 0.2);
         animation: spin linear infinite;
       }
 
       .ring-1 {
         width: 100%;
         height: 100%;
-        border-top-color: var(--blue);
+        border-top-color: var(--red);
         animation-duration: 4s;
       }
 
@@ -204,11 +203,11 @@ const fontHref = usesGoogleFonts
         0%,
         100% {
           transform: scale(1);
-          box-shadow: 0 0 2rem rgba(31, 92, 224, 0.35);
+          box-shadow: 0 0 2rem rgba(216, 18, 32, 0.35);
         }
         50% {
           transform: scale(1.15);
-          box-shadow: 0 0 3rem rgba(77, 141, 255, 0.5);
+          box-shadow: 0 0 3rem rgba(255, 61, 61, 0.5);
         }
       }
 
@@ -218,13 +217,13 @@ const fontHref = usesGoogleFonts
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--text-blue);
-        text-shadow: 0 1px 1px rgba(31, 92, 224, 0.25);
+        color: var(--text);
+        text-shadow: 0 1px 1px rgba(216, 18, 32, 0.25);
         margin: 0;
       }
       .status-text .p {
         font-size: 0.875rem;
-        color: var(--text-blue-dim);
+        color: var(--text-dim);
         line-height: 1.6;
         margin: 1rem 0 0 0;
       }
@@ -232,7 +231,7 @@ const fontHref = usesGoogleFonts
   </head>
   <body>
     <div class="premium-loading-container">
-      <div class="brand-identity">LASVEGAS889</div>
+      <div class="brand-identity">LOTTO77</div>
 
       <div class="sophisticated-loader">
         <div class="orb"></div>
@@ -242,7 +241,7 @@ const fontHref = usesGoogleFonts
 
       <div class="status-text">
         <h1 class="h1">CREATING SECURE ACCOUNT SESSION...</h1>
-        <p class="p">กำลังพาไปหน้าสมัครสมาชิก LASVEGAS889 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
+        <p class="p">กำลังพาไปหน้าสมัครสมาชิก LOTTO77 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
       </div>
     </div>
 

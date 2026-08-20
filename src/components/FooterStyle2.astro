@@ -1,5 +1,5 @@
 ---
-import { BRAND_ADDRESS } from "../lib/brandProfile";
+import { BRAND_ADDRESS, BRAND_NAME } from "../lib/brandProfile";
 import { Picture } from "astro:assets";
 import BankStrip from "./BankStrip.astro";
 
@@ -7,12 +7,36 @@ const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png
 const imagePaths = Object.keys(images);
 const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 
-const logoAlt = "โลโก้ เฮงเฮง888 ตัวอักษรไทย เฮงเฮง สีขาวขอบเขียวเข้ม วางซ้อนบนเลข 888 สีเขียวมะนาวไล่เฉด มีประกายสีเขียวอ่อนขนาบสองข้าง";
+const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร 77Lotto สีขาวแบบลายมือ วางบนแถบโค้งสีแดงไล่เฉดจากแดงสดถึงแดงเลือดหมู ขอบแถบเป็นเส้นสีทอง`;
+
+// Every column heading here is a <p>, not a heading tag: the footer renders on
+// every page, so one <h2> in it is an <h2> sitewide that no docx section backs.
+// The <nav>/<section> aria-label carries the accessible name instead.
+const mainLinks = [
+  { name: "หน้าแรก", path: "/" },
+  { name: "โปรโมชั่น", path: "/promotion" },
+  { name: "ตรวจหวย", path: "/ตรวจหวย" },
+  { name: "แนวทาง", path: "/แนวทาง" },
+  { name: "ทางเข้า", path: "/ทางเข้า" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น" },
+  { name: "เกี่ยวกับเรา", path: "/about-us" },
+  { name: "ติดต่อเรา", path: "/contact-us" },
+];
+
+// Lottery markets, not slot categories — this brand sells หวย. The เวลาปิดรับ
+// shown in LottoGrid is the detail; here it is only a category list.
+const markets = [
+  { name: "หวยรัฐบาลไทย", path: "/register" },
+  { name: "หวยลาวพัฒนา", path: "/register" },
+  { name: "หวยฮานอย", path: "/register" },
+  { name: "หวยยี่กี (รอบละ 15 นาที)", path: "/register" },
+  { name: "ทดลองใช้งานระบบก่อนซื้อจริง", path: "/ทดลองเล่น" },
+];
 ---
 
-<footer class="relative w-full overflow-hidden border-t-[3px] border-[#f5c518] bg-[#03170c] pt-16 pb-8 font-sans text-white shadow-[0_-10px_30px_rgba(245,197,24,0.18)]">
-  <div class="pointer-events-none absolute top-0 right-0 h-96 w-96 rounded-full bg-[#f5c518]/10 blur-[100px]"></div>
-  <div class="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full bg-[#12a34f]/30 blur-[100px]"></div>
+<footer class="relative w-full overflow-hidden border-t-[3px] border-[#f5c451] bg-[#150202] pt-16 pb-8 font-sans text-white shadow-[0_-10px_30px_rgba(245,196,81,0.18)]">
+  <div class="pointer-events-none absolute top-0 right-0 h-96 w-96 rounded-full bg-[#f5c451]/10 blur-[100px]"></div>
+  <div class="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full bg-[#d81220]/30 blur-[100px]"></div>
 
   <div class="relative z-10 mx-auto w-full max-w-[1200px] px-6">
     <div class="mb-12 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
@@ -20,43 +44,36 @@ const logoAlt = "โลโก้ เฮงเฮง888 ตัวอักษร�
         <a href="/" class="inline-block origin-left transition-transform hover:scale-105">
           {
             mainLogo ? (
-              <Picture src={mainLogo} alt={logoAlt} widths={[160, 320, 480]} sizes="160px" class="h-[50px] w-auto drop-shadow-[0_0_15px_rgba(245,197,24,0.45)]" formats={["avif", "webp"]} fallbackFormat="webp" />
+              <Picture src={mainLogo} alt={logoAlt} widths={[160, 320, 480]} sizes="160px" class="h-[50px] w-auto drop-shadow-[0_0_15px_rgba(245,196,81,0.45)]" formats={["avif", "webp"]} fallbackFormat="webp" />
             ) : (
-              <span class="bg-gradient-to-b from-[#ffdf7a] to-[#b8860b] bg-clip-text text-4xl font-black text-transparent drop-shadow-[0_0_10px_rgba(245,197,24,0.4)]">เฮงเฮง888</span>
+              <span class="bg-gradient-to-b from-[#ffe08a] to-[#b8860b] bg-clip-text text-4xl font-black text-transparent drop-shadow-[0_0_10px_rgba(245,196,81,0.4)]">{BRAND_NAME}</span>
             )
           }
         </a>
-        <p class="text-base leading-relaxed text-[#a7c295]">
-          เฮงเฮง888 รวมเกมสล็อตหลายรูปแบบไว้ในระบบเดียว ทั้งสล็อตคลาสสิก เกมฟีเจอร์โบนัส และเกมธีมสมัยใหม่ เน้นเมนูที่เข้าใจง่าย รองรับทั้งมือถือและคอมพิวเตอร์
-          สมาชิกเลือกเกมจากกติกา รูปแบบการจ่าย และความผันผวน ตรวจสอบโปรโมชั่น และติดตามสถานะรายการได้จากบัญชีเดียวตามเงื่อนไขที่เว็บไซต์กำหนด
+        <p class="text-base leading-relaxed text-[#c9a49c]">
+          {BRAND_NAME} เป็นแพลตฟอร์มหวยออนไลน์ที่รวมการเลือกประเภทหวย กรอกตัวเลข และตรวจสอบโพยไว้ในระบบเดียว รองรับทั้งมือถือและคอมพิวเตอร์
+          สมาชิกตรวจอัตราจ่าย เวลาเปิดปิดรับเดิมพัน สถานะรายการ และผลรางวัลได้จากบัญชีเดียวตามเงื่อนไขที่เว็บไซต์กำหนด
         </p>
         <div class="mt-2 flex items-center gap-3">
-          <div class="flex items-center gap-1.5 rounded border border-[#f5c518]/50 bg-[#f5c518]/10 px-3 py-1.5 text-xs font-bold text-[#ffdf7a] shadow-[0_0_10px_rgba(245,197,24,0.22)]">
+          <div class="flex items-center gap-1.5 rounded border border-[#f5c451]/50 bg-[#f5c451]/10 px-3 py-1.5 text-xs font-bold text-[#ffe08a] shadow-[0_0_10px_rgba(245,196,81,0.22)]">
             <span aria-hidden="true" class="text-base">🛡️</span> SSL/TLS 256-BIT
           </div>
-          <div class="flex items-center gap-1.5 rounded border border-[#12a34f]/60 bg-[#072b14]/50 px-3 py-1.5 text-xs font-bold text-[#a7c295]">
+          <div class="flex items-center gap-1.5 rounded border border-[#d81220]/60 bg-[#3f070a]/50 px-3 py-1.5 text-xs font-bold text-[#c9a49c]">
             <span aria-hidden="true" class="text-base">⚡</span> AUTO 24H
           </div>
         </div>
       </div>
 
       <nav aria-label="เมนูหลัก" class="flex flex-col gap-4 lg:pl-8">
-        <p class="flex items-center gap-2 text-lg font-extrabold text-[#ffdf7a]">
-          <span aria-hidden="true" class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#ffdf7a] to-[#b8860b]"></span> เมนูหลัก
+        <p class="flex items-center gap-2 text-lg font-extrabold text-[#ffe08a]">
+          <span aria-hidden="true" class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#ffe08a] to-[#b8860b]"></span> เมนูหลัก
         </p>
         <ul class="flex flex-col gap-3 text-sm">
           {
-            [
-              { name: "หน้าแรก", path: "/" },
-              { name: "โปรโมชั่น", path: "/promotion" },
-              { name: "ทางเข้า", path: "/ทางเข้า" },
-              { name: "ทดลองเล่น", path: "/ทดลองเล่น" },
-              { name: "เกี่ยวกับเรา", path: "/about-us" },
-              { name: "ติดต่อเรา", path: "/contact-us" },
-            ].map((link) => (
+            mainLinks.map((link) => (
               <li>
-                <a href={link.path} class="group flex items-center text-[#a7c295] transition-all hover:text-[#ffdf7a]">
-                  <span aria-hidden="true" class="mr-2 -ml-4 text-[#f5c518] opacity-0 transition-all group-hover:ml-0 group-hover:opacity-100">
+                <a href={link.path} class="group flex items-center text-[#c9a49c] transition-all hover:text-[#ffe08a]">
+                  <span aria-hidden="true" class="mr-2 -ml-4 text-[#f5c451] opacity-0 transition-all group-hover:ml-0 group-hover:opacity-100">
                     ➤
                   </span>
                   {link.name}
@@ -67,23 +84,17 @@ const logoAlt = "โลโก้ เฮงเฮง888 ตัวอักษร�
         </ul>
       </nav>
 
-      <nav aria-label="หมวดหมู่เกมสล็อต" class="flex flex-col gap-4">
-        <p class="flex items-center gap-2 text-lg font-extrabold text-[#ffdf7a]">
-          <span aria-hidden="true" class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#ffdf7a] to-[#b8860b]"></span> หมวดหมู่เกมสล็อต
+      <nav aria-label="ประเภทหวยที่ระบบเปิดรับ" class="flex flex-col gap-4">
+        <p class="flex items-center gap-2 text-lg font-extrabold text-[#ffe08a]">
+          <span aria-hidden="true" class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#ffe08a] to-[#b8860b]"></span> ประเภทหวยที่เปิดรับ
         </p>
         <ul class="flex flex-col gap-3 text-sm">
           {
-            [
-              { name: "สล็อตคลาสสิก (Classic Slot)", path: "/register" },
-              { name: "เกมฟีเจอร์โบนัส (Bonus Buy)", path: "/register" },
-              { name: "เกมธีมสมัยใหม่ (Video Slot)", path: "/register" },
-              { name: "สล็อตแจ็กพอต (Jackpot)", path: "/register" },
-              { name: "ทดลองเล่นสล็อตก่อนเล่นจริง", path: "/ทดลองเล่น" },
-            ].map((game) => (
+            markets.map((market) => (
               <li>
-                <a href={game.path} class="group flex items-center text-[#a7c295] transition-all hover:text-[#ffdf7a]">
-                  <span aria-hidden="true" class="mr-3 h-1.5 w-1.5 rounded-full bg-[#9fcf3a] transition-colors group-hover:bg-[#f5c518] group-hover:shadow-[0_0_8px_rgba(245,197,24,0.8)]" />
-                  {game.name}
+                <a href={market.path} class="group flex items-center text-[#c9a49c] transition-all hover:text-[#ffe08a]">
+                  <span aria-hidden="true" class="mr-3 h-1.5 w-1.5 rounded-full bg-[#ff3d3d] transition-colors group-hover:bg-[#f5c451] group-hover:shadow-[0_0_8px_rgba(245,196,81,0.8)]" />
+                  {market.name}
                 </a>
               </li>
             ))
@@ -92,8 +103,8 @@ const logoAlt = "โลโก้ เฮงเฮง888 ตัวอักษร�
       </nav>
 
       <div class="flex flex-col gap-5">
-        <p class="flex items-center gap-2 text-lg font-extrabold text-[#ffdf7a]">
-          <span aria-hidden="true" class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#ffdf7a] to-[#b8860b]"></span> บริการลูกค้า
+        <p class="flex items-center gap-2 text-lg font-extrabold text-[#ffe08a]">
+          <span aria-hidden="true" class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#ffe08a] to-[#b8860b]"></span> บริการลูกค้า
         </p>
 
         <a
@@ -123,25 +134,25 @@ const logoAlt = "โลโก้ เฮงเฮง888 ตัวอักษร�
         }
 
         <div class="mt-2">
-          <p class="mb-3 text-xs font-bold tracking-wider text-[#f5c518]/90 uppercase">รองรับทุกธนาคาร & True Wallet</p>
+          <p class="mb-3 text-xs font-bold tracking-wider text-[#f5c451]/90 uppercase">รองรับทุกธนาคาร & True Wallet</p>
           <BankStrip size={26} />
         </div>
       </div>
     </div>
 
-    <div class="mb-6 flex flex-wrap justify-center gap-4 border-y border-[#f5c518]/25 py-6 opacity-60 grayscale transition-all duration-500 hover:opacity-100 hover:grayscale-0 md:gap-8">
-      <span class="text-lg font-black text-[#e8f3e0] italic md:text-2xl">PG<span class="text-[#f5c518]">SOFT</span></span>
-      <span class="text-lg font-black text-[#e8f3e0] italic md:text-2xl">PRAGMATIC<span class="text-[#f5c518]">PLAY</span></span>
-      <span class="text-lg font-black text-[#e8f3e0] italic md:text-2xl">EVO<span class="text-[#f5c518]">LUTION</span></span>
-      <span class="text-lg font-black text-[#e8f3e0] italic md:text-2xl">JILI<span class="text-[#f5c518]">GAMES</span></span>
-      <span class="text-lg font-black text-[#e8f3e0] italic md:text-2xl">MICRO<span class="text-[#f5c518]">GAMING</span></span>
-    </div>
+    <section aria-label="ตลาดหวยที่ระบบเปิดรับ" class="mb-6 flex flex-wrap justify-center gap-4 border-y border-[#f5c451]/25 py-6 opacity-60 grayscale transition-all duration-500 hover:opacity-100 hover:grayscale-0 md:gap-8">
+      <span class="text-lg font-black text-[#f3ded7] italic md:text-2xl">หวย<span class="text-[#f5c451]">รัฐบาล</span></span>
+      <span class="text-lg font-black text-[#f3ded7] italic md:text-2xl">หวย<span class="text-[#f5c451]">ลาว</span></span>
+      <span class="text-lg font-black text-[#f3ded7] italic md:text-2xl">หวย<span class="text-[#f5c451]">ฮานอย</span></span>
+      <span class="text-lg font-black text-[#f3ded7] italic md:text-2xl">หวย<span class="text-[#f5c451]">ยี่กี</span></span>
+      <span class="text-lg font-black text-[#f3ded7] italic md:text-2xl">หวย<span class="text-[#f5c451]">หุ้น</span></span>
+    </section>
 
-    <div class="flex flex-col items-center justify-between gap-4 text-xs text-[#a7c295] md:flex-row">
-      <p>&copy; {new Date().getFullYear()} <span class="font-bold text-[#ffdf7a]">เฮงเฮง888</span>. All rights reserved. เกมสล็อตหลายแนว ไม่กำหนดขั้นต่ำตามเงื่อนไข ฝาก-ถอนออโต้</p>
+    <div class="flex flex-col items-center justify-between gap-4 text-xs text-[#c9a49c] md:flex-row">
+      <p>&copy; {new Date().getFullYear()} <span class="font-bold text-[#ffe08a]">{BRAND_NAME}</span>. All rights reserved. เว็บซื้อหวยออนไลน์ ตรวจโพยและผลรางวัลได้จากระบบ</p>
       <div class="flex gap-4">
-        <a href="/terms/" class="transition-colors hover:text-[#ffdf7a]">เงื่อนไขการให้บริการ</a>
-        <a href="/privacy/" class="transition-colors hover:text-[#ffdf7a]">นโยบายความเป็นส่วนตัว</a>
+        <a href="/terms/" class="transition-colors hover:text-[#ffe08a]">เงื่อนไขการให้บริการ</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#ffe08a]">นโยบายความเป็นส่วนตัว</a>
       </div>
     </div>
   </div>
@@ -150,8 +161,5 @@ const logoAlt = "โลโก้ เฮงเฮง888 ตัวอักษร�
 <style>
   footer a {
     text-decoration: none;
-  }
-  footer {
-    font-family: var(--font-sans);
   }
 </style>

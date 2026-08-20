@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
+import Announcement from "../components/Announcement3.astro";
 
 import { Picture } from "astro:assets";
 
@@ -18,17 +18,17 @@ import { pageGraph } from "../lib/schema";
 // so prose underneath only re-types what the visitor can already read.
 //
 // Every alt below was written by opening the file with the Read tool and
-// transcribing the Thai printed on the artwork — the LASVEGAS889 wordmark, the
-// offer, the guarantee strip and the scene. This asset drop is new artwork, so
-// nothing here carries over from the previous brand's alt text.
-const pageTitle = "โปรโมชั่น LASVEGAS889 รวมโบนัสและสิทธิพิเศษสำหรับสมาชิก";
+// transcribing the Thai printed on the artwork — the offer, the sub-line, the
+// button and the scene. The wordmark drawn on the artwork reads "77Lotto";
+// the brand name in copy and alt text is LOTTO77, so the alt names the logo by
+// the brand, not by the lettering.
+const pageTitle = "โปรโมชั่น LOTTO77 รวมสิทธิพิเศษสำหรับสมาชิกสายหวย";
 
-// docx SUB-PAGES Meta ของหน้าโปรโมชั่น ยกถ้อยคำมาทั้งประโยค (131 ตัวอักษร)
-// + วรรคปิดท้ายหนึ่งวรรคให้ผ่านเกท DESC_MIN 150 ของ tools/verify-build.mjs
-// ซึ่งยกเว้นให้เฉพาะหน้าแรกเท่านั้น นับเป็น "ตัวอักษร" ไม่ใช่ไบต์ (ไทย 3 ไบต์/ตัว)
-// — สตริงนี้วัดได้ 157 ตัวอักษร
+// docx SUB-PAGES Meta ของหน้าโปรโมชั่น + วรรคปิดท้ายหนึ่งวรรคให้ผ่านเกท
+// DESC_MIN 150 ของ tools/verify-build.mjs ซึ่งยกเว้นให้เฉพาะหน้าแรกเท่านั้น
+// นับเป็น "ตัวอักษร" ไม่ใช่ไบต์ (ไทย 3 ไบต์/ตัว) — สตริงนี้วัดได้ 159 ตัวอักษร
 const pageDescription =
-  "LASVEGAS889 รวมโปรโมชั่นสล็อตบาคาร่า โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจน ช่วยให้เลือกโปรได้เหมาะกับรูปแบบการใช้งาน ตรวจเงื่อนไขก่อนรับสิทธิ์";
+  "LOTTO77 รวมโปรโมชั่นหวยออนไลน์ โบนัสและสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจน ช่วยให้เลือกโปรได้เหมาะกับงบและรูปแบบการซื้อหวย ควรอ่านเงื่อนไขก่อนรับสิทธิ์";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -40,29 +40,29 @@ const graph = pageGraph(Astro, {
   primaryImagePath: pro1.src,
 });
 
-// Hover border is gold rather than the palette's deepest navy: a #122a63 edge on
-// the near-black royal-navy page is invisible, so the hover state would read as
-// no state at all.
+// Hover border is gold rather than the palette's deep red: a #7d0000 edge on
+// the near-black maroon page is invisible, so the hover state would read as no
+// state at all.
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#1f5ce0]/35 object-contain shadow-[0_10px_30px_rgba(31,92,224,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#f2b829]/55 hover:shadow-[0_15px_40px_rgba(63,220,255,0.30)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#d81220]/35 object-contain shadow-[0_10px_30px_rgba(216,18,32,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#f5c451]/55 hover:shadow-[0_15px_40px_rgba(245,196,81,0.30)]";
 ---
 
-<MainLayout title="LASVEGAS889 | โปรโมชั่นสล็อตบาคาร่าและสิทธิพิเศษสมาชิก" description={pageDescription}>
+<MainLayout title="LOTTO77 | โปรโมชั่นหวยออนไลน์และสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#cddcf7]">
-        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#f2b829]">LASVEGAS889</strong> เปิดให้สมาชิกไว้ในที่เดียว ทั้งโบนัสสมาชิกใหม่ โบนัสฝากครั้งแรก และเครดิตคืนยอดเสียรายวัน ใช้ได้กับทั้งเกมสล็อตและบาคาร่า
-        ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ก่อนกดรับสิทธิ์ควรตรวจยอดฝากขั้นต่ำ เกมที่ร่วมรายการ และเงื่อนไขการถอนให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากัน
+      <p class="mb-8 text-left text-base leading-relaxed text-[#f3ded7]">
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#f5c451]">LOTTO77</strong> เปิดให้สมาชิกไว้ในที่เดียว ทั้งเครดิตฟรีสำหรับสมาชิกใหม่ ส่วนลดช่วงนาทีทอง วงล้อเลขนำโชค และเครดิตคืนตามยอดซื้อในแต่ละงวด
+        ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ก่อนกดรับสิทธิ์ควรตรวจยอดซื้อขั้นต่ำ ช่วงเวลาที่กำหนด และเงื่อนไขการรับเครดิตให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากัน
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น LASVEGAS889 ข้อความ สมาชิกใหม่ รับโบนัส 50% โดยตัวเลข 50% เป็นตัวทองขนาดใหญ่ พร้อมบรรทัด สมัครวันนี้ รับสิทธิ์ทันที และปุ่มทอง รับโปรเลย ด้านบนเป็นโลโก้คำว่า LASVEGAS สีทองคู่กับเลข 889 สีเงินโครเมียม บนเส้นขอบฟ้าเมืองลาสเวกัสสีฟ้านีออน ด้านขวาเป็นผู้หญิงในชุดครอปสีน้ำเงิน-ขาวขลิบทองพิมพ์คำว่า LASVEGAS 889 สวมโช้กเกอร์เลข 889 แถบล่างมีสามข้อความ มั่นคง ปลอดภัย เชื่อถือได้ 100% บริการตลอด 24 ชม. รวดเร็วทันใจ และ ฝาก-ถอน ออโต้ ไม่ต้องรอนาน ฉากหลังมีเหรียญทองและชิปคาสิโนสีน้ำเงิน"
+          alt="แบนเนอร์โปรโมชั่น LOTTO77 ข้อความ สมาชิกใหม่ รับเครดิตฟรีซื้อหวย โดยตัวเลข 50 บาท เป็นตัวทองขนาดใหญ่ พร้อมสองบรรทัดในกรอบ สมัครวันนี้ รับสิทธิ์ทันที และ โปรต้อนรับสำหรับสายหวย กับปุ่มแดงขอบทองคำว่า รับโปรเลย ด้านบนเป็นโลโก้ LOTTO77 ตัวอักษรขาวบนป้ายสีแดง ด้านขวาเป็นผู้หญิงในชุดกี่เพ้าสีแดงเลื่อมถือสลากกินแบ่งรัฐบาลคลี่เป็นพัด ด้านซ้ายล่างเป็นตารางเลขยี่กี ด้านขวาล่างเป็นตารางเลขหวยรัฐบาล ฉากหลังสีแดงเข้มมีลูกบอลหวยเลข 77 เลข 3 เลข 1 เลข 9 และเหรียญทองกระจายอยู่"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -76,7 +76,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น LASVEGAS889 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% โดยตัวเลข 20% เป็นตัวทองขนาดใหญ่ พร้อมบรรทัด คุ้มตั้งแต่ฝากแรก ไอคอนสามช่อง ฝากง่าย ถอนเร็ว ระบบออโต้ และปุ่มทอง ฝากเลย ด้านบนเป็นโลโก้คำว่า LASVEGAS สีทองคู่กับเลข 889 สีเงินโครเมียม บนเส้นขอบฟ้าเมืองลาสเวกัสสีฟ้านีออน ด้านขวาเป็นผู้หญิงในชุดเกาะอกสีน้ำเงิน-ขาวขลิบทองพิมพ์คำว่า LASVEGAS 889 มุมขวาบนเป็นวงล้อสล็อตเลข 7 และคำว่า BAR ฉากหลังมีวงล้อรูเล็ต กล่องของขวัญ ป้าย VIP กองเหรียญทอง และชิปคาสิโนสีน้ำเงิน"
+          alt="แบนเนอร์โปรโมชั่น LOTTO77 ข้อความ นาทีทอง 19:00 ถึง 21:00 ซื้อหวยรับส่วนลด โดยตัวเลข 10% เป็นตัวทองขนาดใหญ่ พร้อมบรรทัด เฉพาะช่วงเวลาที่กำหนด และปุ่มแดงขอบทองคำว่า ร่วมโปรเลย ด้านบนเป็นโลโก้ LOTTO77 ตัวอักษรขาวบนป้ายสีแดง ฉากหลังเป็นหน้าปัดนาฬิกาสีทองและริบบิ้นทองพลิ้วบนพื้นสีแดงเข้ม ด้านขวาเป็นผู้หญิงในชุดกี่เพ้าสีแดงเลื่อมถือสลากกินแบ่งรัฐบาลคลี่เป็นพัด ด้านล่างมีลูกบอลหวยเลข 77 และเลข 7 กับกองเหรียญทอง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -90,7 +90,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น LASVEGAS889 ข้อความ คืนยอดเสีย 0.8% ทุกวัน โดยตัวเลข 0.8% เป็นตัวทองขนาดใหญ่ พร้อมบรรทัด เล่นต่อได้ทุกวัน คืนยอดเสียคุ้มค่า ไม่พลาดทุกความสนุก และปุ่มทอง รับสิทธิ์ ด้านบนเป็นโลโก้คำว่า LASVEGAS สีทองคู่กับเลข 889 สีเงินโครเมียม บนเส้นขอบฟ้าเมืองลาสเวกัสสีฟ้านีออน ด้านขวาเป็นผู้หญิงในชุดยาวสีน้ำเงิน-ขาวขลิบทองพิมพ์คำว่า LASVEGAS 889 ชูนิ้วชี้ขึ้น ข้างกันมีตู้สล็อตเลข 777 ป้าย JACKPOT ชิปคาสิโนสีน้ำเงินพิมพ์ LASVEGAS 889 และกองเหรียญทอง"
+          alt="แบนเนอร์โปรโมชั่น LOTTO77 ข้อความ วงล้อเลขนำโชค ลุ้นเครดิตซื้อหวยสูงสุด โดยตัวเลข 888 บาท เป็นตัวทองขนาดใหญ่ พร้อมบรรทัด หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่มแดงขอบทองคำว่า หมุนเลย ด้านบนเป็นโลโก้ LOTTO77 ตัวอักษรขาวบนป้ายสีแดง ด้านขวาเป็นวงล้อเสี่ยงโชคขนาดใหญ่ขอบไฟทอง แบ่งเป็นช่องสีเขียว ม่วง ส้ม และครีม มีเลข 77 99 24 38 17 89 45 และ 16 เรียงรอบดุมกลางที่มีโลโก้แบรนด์ ข้างวงล้อเป็นผู้หญิงในชุดกี่เพ้าสีแดงเลื่อมยกมือชี้ไปที่วงล้อ ด้านล่างเป็นสลากกินแบ่งรัฐบาลสองใบ ลูกบอลหวยเลข 77 เลข 11 เลข 8 เลข 3 และเหรียญทอง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -104,7 +104,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น LASVEGAS889 ข้อความ คาสิโนออนไลน์ครบวงจร พร้อมบรรทัด เล่นง่าย ฝาก-ถอนออโต้ จ่ายจริง และการันตีสี่ช่อง ปลอดภัย มั่นคง 100% ฝาก-ถอน ออโต้ จ่ายจริง ไม่มีโกง และ บริการ 24 ชม. ตลอดทุกวัน กับปุ่มทอง สมัครเลย ด้านบนเป็นโลโก้คำว่า LASVEGAS สีทองคู่กับเลข 889 สีเงินโครเมียม บนเส้นขอบฟ้าเมืองลาสเวกัสสีฟ้านีออน ด้านซ้ายเป็นตู้สล็อตเลข 777 มุมขวาบนเป็นป้าย Welcome to Fabulous LAS VEGAS NEVADA และผู้หญิงในชุดสีน้ำเงิน-ขาวขลิบทองพิมพ์คำว่า LASVEGAS 889 แถบล่างระบุ รองรับทุกอุปกรณ์ ระบบทันสมัย ปลอดภัย และรองรับทุกธนาคาร"
+          alt="แบนเนอร์โปรโมชั่น LOTTO77 ข้อความ ซื้อหวยครบ 300 บาท รับคืน 5% ทุกงวด โดยตัวเลข 300 และ 5% เป็นตัวทองขนาดใหญ่ พร้อมบรรทัด ยิ่งซื้อ ยิ่งคุ้ม และปุ่มแดงขอบทองคำว่า รับสิทธิ์ ด้านบนเป็นโลโก้ LOTTO77 ตัวอักษรขาวบนป้ายสีแดง ด้านขวาเป็นผู้หญิงในชุดกี่เพ้าสีแดงเลื่อมถือสลากกินแบ่งรัฐบาลคลี่เป็นพัด สองมุมล่างเป็นตารางเลขหวย ฉากหลังสีแดงเข้มมีลูกบอลหวยเลข 7 เลข 3 เลข 8 และเหรียญทองกระจายอยู่"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -120,8 +120,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#f2b829]/60 bg-gradient-to-r from-[#4d8dff] via-[#1f5ce0] to-[#0a1a45] px-10 py-3.5 text-lg font-black text-[#cddcf7] shadow-[0_10px_30px_rgba(31,92,224,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(63,220,255,0.40)]">
-          สมัครสมาชิก LASVEGAS889
+          class="flex items-center justify-center rounded-lg border border-[#f5c451]/60 bg-gradient-to-r from-[#ff3d3d] via-[#d81220] to-[#7d0000] px-10 py-3.5 text-lg font-black text-[#ffe08a] shadow-[0_10px_30px_rgba(216,18,32,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(245,196,81,0.40)]">
+          สมัครสมาชิก LOTTO77
         </a>
       </div>
     </div>

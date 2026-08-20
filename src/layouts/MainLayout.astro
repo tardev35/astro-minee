@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarPremium.astro";
-import Footer from "../components/FooterPremium.astro";
+import Navbar from "../components/NavbarStyle10.astro";
+import Footer from "../components/FooterStyle2.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,12 +55,12 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "LASVEGAS889 | สล็อตบาคาร่ายอดฮิตอันดับ 1 ฝากถอน True wallet",
+  title = "LOTTO77 | เว็บซื้อหวยออนไลน์อันดับ 1 ซื้อง่ายสะดวกจ่ายไว เลขอั้นน้อย",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings. This one is
-  // 155 (count CHARACTERS, not bytes — Thai is 3 bytes per character).
-  description = "LASVEGAS889 รวมสล็อตบาคาร่ายอดนิยมไว้ในระบบเดียว ฝากถอนผ่าน True Wallet รองรับมือถือและคอมพิวเตอร์ พร้อมระบบใช้งานสะดวก เกมหลากหลาย และตรวจสอบรายการได้ง่าย",
+  // 153 (count CHARACTERS, not bytes — Thai is 3 bytes per character).
+  description = "LOTTO77 เว็บซื้อหวยออนไลน์ เลือกประเภทหวย กรอกเลข และตรวจโพยได้ในระบบเดียว รองรับมือถือและคอมพิวเตอร์ พร้อมอัตราจ่าย เวลาเปิดรับ และผลรางวัลที่ตรวจสอบได้",
   robots = "index, follow",
 } = Astro.props;
 
@@ -237,7 +237,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #050b24;
+        background-color: #150202;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -290,7 +290,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ LASVEGAS889 ตัวอักษร LASVEGAS สีทองต่อด้วยเลข 889 สีเงินโครเมียม เหนือข้อความ สล็อตเว็บตรง แตกง่าย และแถบ ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย จ่ายจริง พร้อมปุ่มทอง สมัครเลย ด้านขวาเป็นผู้หญิงในชุดครอปและกระโปรงสีน้ำเงิน-ขาวพิมพ์คำว่า LASVEGAS 889 ป้ายไฟ WELCOME TO FABULOUS LAS VEGAS NEVADA ตู้สล็อต JACKPOT เลข 777 ป้าย BIG WIN ชิปคาสิโนสีน้ำเงินและกองเหรียญทอง ฉากหลังเป็นเส้นขอบฟ้าเมืองลาสเวกัสสีฟ้านีออน มีหอไอเฟลและหอคอยสตราโตสเฟียร์"
+          alt="แบนเนอร์ต้อนรับ LOTTO77 โลโก้ 77Lotto สีขาวบนแถบแดงขอบทอง เหนือข้อความ 77Lotto เว็บหวยออนไลน์ครบวงจร และ ซื้อหวยง่าย ลุ้นได้ทุกงวด จ่ายจริง ถัดลงมาเป็นแถบ ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย และป้ายตลาดหวยสี่ป้าย หวยรัฐบาล หวยลาว หวยฮานอย หวยยี่กี พร้อมปุ่มแดง สมัครเลย ด้านขวาเป็นผู้หญิงในชุดกี่เพ้าสีแดงถือสลากกินแบ่งเป็นพัด ฉากหลังสีแดงเข้มมีเครื่องออกรางวัลลูกบอลหวย เงาปราสาทวัดไทย ตารางเลขยี่กี ลูกบอลหวยเลข 77 3 และ 8 กับกองเหรียญทอง"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

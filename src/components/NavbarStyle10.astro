@@ -12,40 +12,45 @@ const isActive = (path: string) => isActivePath(currentPath, path);
 // file used to declare the menu inline in BOTH places, which is how a nav ends
 // up with an entry on desktop that the phone menu does not have.
 //
-// Order: หน้าแรก first, โปรโมชั่น second, then the informational pages. This
-// brand's เข้าสู่ระบบ/สมัครสมาชิก are not menu entries — they are the CTA pair
-// pinned in the corner — so the "conversion actions come third and fourth" rule
-// has nothing to place here.
+// Order: หน้าแรก first, โปรโมชั่น second, then the lottery tools and the
+// informational pages. This brand's เข้าสู่ระบบ/สมัครสมาชิก are not menu
+// entries — they are the CTA pair pinned in the corner — so the "conversion
+// actions come third and fourth" rule has nothing to place here.
+//
+// ตรวจหวย and แนวทาง are menu entries because LOTTO77 is a lottery brand and
+// both routes ship. A slot brand parks those pages and drops these two rows.
 //
 // The icon is a separate aria-hidden <span>, never concatenated into `name`:
 // an emoji inside the label puts "house" into the accessible name of the link.
 const links = [
   { name: "หน้าแรก", path: "/", icon: "🏠" },
   { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
-  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
+  { name: "ตรวจหวย", path: "/ตรวจหวย", icon: "🔍" },
+  { name: "แนวทาง", path: "/แนวทาง", icon: "📊" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎫" },
   { name: "ทางเข้า", path: "/ทางเข้า", icon: "🚪" },
-  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "🐘" },
+  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "🏢" },
   { name: "ติดต่อเรา", path: "/contact-us", icon: "💬" },
 ];
 
-const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร MAX สีขาวบนแถบสีแดง ต่อด้วยเลข 56 สีแดงบนพื้นขาว ด้านขวาเป็นมาสคอตช้างสีขาวยิ้มกว้าง สวมถุงเท้าลายแดง-ขาว-ดำ และเสื้อพิมพ์คำว่า MAX56`;
+const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร 77Lotto สีขาวแบบลายมือ วางบนแถบโค้งสีแดงไล่เฉดจากแดงสดถึงแดงเลือดหมู ขอบแถบเป็นเส้นสีทอง`;
 ---
 
-<div class="hidden w-full border-b border-[#c10d1e]/35 bg-gradient-to-r from-[#0d0204] via-[#4a0209] to-[#0d0204] px-4 py-1.5 font-sans text-xs font-bold text-[#f6e4e4]/80 lg:block">
+<div class="hidden w-full border-b border-[#d81220]/35 bg-gradient-to-r from-[#150202] via-[#5a0308] to-[#150202] px-4 py-1.5 font-sans text-xs font-bold text-[#f3ded7]/80 lg:block">
   <div class="mx-auto flex max-w-7xl justify-between">
     <div class="flex gap-4">
-      <span class="flex items-center gap-1"><span aria-hidden="true" class="text-[#f5c451]">👑</span> {BRAND_NAME} สล็อตเว็บตรงฝากถอนผ่าน True Wallet</span>
-      <span class="flex items-center gap-1 text-[#f5c451]"><span aria-hidden="true" class="text-[#ffe9a8]">✔</span> ฝาก-ถอน ออโต้ ไม่มีขั้นต่ำตามเงื่อนไข 24 ชม.</span>
+      <span class="flex items-center gap-1"><span aria-hidden="true" class="text-[#f5c451]">🎯</span> {BRAND_NAME} เว็บซื้อหวยออนไลน์ ครบทุกตลาดที่ระบบเปิดรับ</span>
+      <span class="flex items-center gap-1 text-[#f5c451]"><span aria-hidden="true" class="text-[#ffe08a]">✔</span> ตรวจโพยและสถานะรายการได้จากหน้าบัญชีตลอด 24 ชม.</span>
     </div>
     <div class="flex gap-4">
-      <a href="/line" class="flex items-center gap-1 transition-colors hover:text-white"><span aria-hidden="true" class="text-[#ff5a66]">💬</span> ติดต่อแอดมินผ่าน LINE</a>
+      <a href="/line" class="flex items-center gap-1 transition-colors hover:text-white"><span aria-hidden="true" class="text-[#ff3d3d]">💬</span> ติดต่อแอดมินผ่าน LINE</a>
     </div>
   </div>
 </div>
 
 <header class="sticky top-2 z-50 mt-2 w-full px-2 font-sans md:px-4">
   <nav
-    class="relative mx-auto flex h-[75px] w-full max-w-7xl items-center justify-between rounded-[20px] border border-[#c10d1e]/45 bg-[#0d0204]/90 px-4 shadow-[0_10px_30px_rgba(193,13,30,0.22)] backdrop-blur-lg xl:px-8"
+    class="relative mx-auto flex h-[75px] w-full max-w-7xl items-center justify-between rounded-[20px] border border-[#d81220]/45 bg-[#150202]/90 px-4 shadow-[0_10px_30px_rgba(216,18,32,0.22)] backdrop-blur-lg xl:px-8"
     aria-label={`เมนูหลัก ${BRAND_NAME}`}>
     <a href="/" class="z-50 flex-shrink-0 transition-transform hover:scale-105">
       {
@@ -57,28 +62,28 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร MAX ส�
             fetchpriority="high"
             widths={[130, 260, 390]}
             sizes="130px"
-            class="h-[40px] w-auto drop-shadow-[0_0_10px_rgba(232,32,47,0.55)] xl:h-[45px]"
+            class="h-[40px] w-auto drop-shadow-[0_0_10px_rgba(255,61,61,0.55)] xl:h-[45px]"
             formats={["avif", "webp"]}
             fallbackFormat="webp"
           />
         ) : (
-          <span class="bg-gradient-to-b from-[#ff5a66] to-[#8c0512] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(232,32,47,0.45)]">{BRAND_NAME}</span>
+          <span class="bg-gradient-to-b from-[#ff3d3d] to-[#7d0000] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(255,61,61,0.45)]">{BRAND_NAME}</span>
         )
       }
     </a>
 
-    <div class="hidden h-full items-center gap-6 lg:flex xl:gap-8">
+    <div class="hidden h-full items-center gap-4 lg:flex xl:gap-6">
       {
         links.map((item) => (
           <a
             href={item.path}
-            class={`group relative flex h-full items-center gap-1.5 text-sm font-bold tracking-wide uppercase transition-colors xl:text-base ${isActive(item.path) ? "text-[#f5c451] drop-shadow-[0_0_8px_rgba(245,196,81,0.45)]" : "text-[#f6e4e4]/75 hover:text-[#f5c451]"}`}>
+            class={`group relative flex h-full items-center gap-1.5 text-sm font-bold tracking-wide uppercase transition-colors xl:text-base ${isActive(item.path) ? "text-[#f5c451] drop-shadow-[0_0_8px_rgba(245,196,81,0.45)]" : "text-[#f3ded7]/75 hover:text-[#f5c451]"}`}>
             <span aria-hidden="true" class="text-base leading-none">
               {item.icon}
             </span>
             <span>{item.name}</span>
             <div
-              class={`absolute bottom-[18px] left-0 h-[2px] w-full origin-center bg-gradient-to-r from-[#f5c451] to-[#c10d1e] shadow-[0_0_8px_rgba(245,196,81,0.7)] transition-transform duration-300 ${isActive(item.path) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+              class={`absolute bottom-[18px] left-0 h-[2px] w-full origin-center bg-gradient-to-r from-[#f5c451] to-[#d81220] shadow-[0_0_8px_rgba(245,196,81,0.7)] transition-transform duration-300 ${isActive(item.path) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
             />
           </a>
         ))
@@ -88,18 +93,18 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร MAX ส�
     <div class="z-50 flex items-center gap-3">
       <a
         href="/login"
-        class="hidden items-center justify-center rounded-full border border-[#c10d1e]/60 bg-[#2a070d] px-6 py-2 text-sm font-bold text-[#ff5a66] shadow-sm transition-all hover:bg-[#c10d1e]/25 hover:text-[#fff5f5] lg:flex">
+        class="hidden items-center justify-center rounded-full border border-[#d81220]/60 bg-[#3f070a] px-6 py-2 text-sm font-bold text-[#ff3d3d] shadow-sm transition-all hover:bg-[#d81220]/25 hover:text-[#fff5f5] lg:flex">
         เข้าสู่ระบบ
       </a>
       <a
         href="/register"
-        class="hidden items-center justify-center rounded-full bg-gradient-to-r from-[#e8202f] via-[#c10d1e] to-[#8c0512] px-6 py-2 text-sm font-black text-[#fff5f5] shadow-[0_0_15px_rgba(193,13,30,0.5)] transition-all hover:scale-105 lg:flex">
+        class="hidden items-center justify-center rounded-full bg-gradient-to-r from-[#ff3d3d] via-[#d81220] to-[#7d0000] px-6 py-2 text-sm font-black text-[#fff5f5] shadow-[0_0_15px_rgba(216,18,32,0.5)] transition-all hover:scale-105 lg:flex">
         สมัครสมาชิก
       </a>
 
       <button
         id="hamburger-btn"
-        class="relative flex h-[42px] w-[42px] flex-col items-center justify-center gap-[5px] rounded-full border border-[#c10d1e]/40 bg-gradient-to-b from-[#2a070d] to-[#0d0204] shadow-sm lg:hidden"
+        class="relative flex h-[42px] w-[42px] flex-col items-center justify-center gap-[5px] rounded-full border border-[#d81220]/40 bg-gradient-to-b from-[#3f070a] to-[#150202] shadow-sm lg:hidden"
         aria-label="เปิดเมนู">
         <span class="line-1 h-[2px] w-5 origin-center rounded-full bg-[#f5c451] transition-all duration-300"></span>
         <span class="line-2 h-[2px] w-5 origin-center rounded-full bg-[#f5c451] transition-all duration-300"></span>
@@ -108,13 +113,13 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร MAX ส�
     </div>
   </nav>
 
-  <div id="fullscreen-menu" class="pointer-events-none fixed inset-0 z-[40] flex flex-col items-center justify-center bg-[#0d0204]/98 opacity-0 backdrop-blur-xl transition-opacity duration-500">
-    <div class="flex w-full flex-col items-center space-y-5 px-6">
+  <div id="fullscreen-menu" class="pointer-events-none fixed inset-0 z-[40] flex flex-col items-center justify-center overflow-y-auto bg-[#150202]/98 opacity-0 backdrop-blur-xl transition-opacity duration-500">
+    <div class="flex w-full flex-col items-center space-y-4 px-6 py-10">
       {
         links.map((item) => (
           <a
             href={item.path}
-            class={`fs-item flex items-center gap-3 text-2xl font-black tracking-widest uppercase transition-all duration-300 ${isActive(item.path) ? "text-[#f5c451] drop-shadow-[0_0_10px_rgba(245,196,81,0.6)]" : "text-[#f6e4e4]/85 hover:text-[#fff5f5]"}`}>
+            class={`fs-item flex items-center gap-3 text-xl font-black tracking-widest uppercase transition-all duration-300 ${isActive(item.path) ? "text-[#f5c451] drop-shadow-[0_0_10px_rgba(245,196,81,0.6)]" : "text-[#f3ded7]/85 hover:text-[#fff5f5]"}`}>
             <span aria-hidden="true" class="text-2xl leading-none">
               {item.icon}
             </span>
@@ -125,12 +130,12 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร MAX ส�
       <div class="fs-item mt-4 flex w-full max-w-[280px] flex-col gap-4 pt-6">
         <a
           href="/register"
-          class="flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#e8202f] to-[#8c0512] py-3.5 text-lg font-black text-[#fff5f5] shadow-[0_0_20px_rgba(193,13,30,0.55)]">
+          class="flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#ff3d3d] to-[#7d0000] py-3.5 text-lg font-black text-[#fff5f5] shadow-[0_0_20px_rgba(216,18,32,0.55)]">
           สมัครสมาชิกใหม่
         </a>
         <a
           href="/login"
-          class="flex w-full items-center justify-center rounded-full border-2 border-[#c10d1e]/60 bg-[#2a070d] py-3.5 text-lg font-bold text-[#ff5a66] transition-colors hover:bg-[#c10d1e]/25">
+          class="flex w-full items-center justify-center rounded-full border-2 border-[#d81220]/60 bg-[#3f070a] py-3.5 text-lg font-bold text-[#ff3d3d] transition-colors hover:bg-[#d81220]/25">
           เข้าสู่ระบบ
         </a>
       </div>
@@ -159,25 +164,31 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร MAX ส�
     transform: translateY(0);
   }
   .fs-item:nth-child(1) {
-    transition-delay: 0.1s;
+    transition-delay: 0.06s;
   }
   .fs-item:nth-child(2) {
-    transition-delay: 0.15s;
+    transition-delay: 0.1s;
   }
   .fs-item:nth-child(3) {
-    transition-delay: 0.2s;
+    transition-delay: 0.14s;
   }
   .fs-item:nth-child(4) {
-    transition-delay: 0.25s;
+    transition-delay: 0.18s;
   }
   .fs-item:nth-child(5) {
-    transition-delay: 0.3s;
+    transition-delay: 0.22s;
   }
   .fs-item:nth-child(6) {
-    transition-delay: 0.35s;
+    transition-delay: 0.26s;
   }
   .fs-item:nth-child(7) {
-    transition-delay: 0.4s;
+    transition-delay: 0.3s;
+  }
+  .fs-item:nth-child(8) {
+    transition-delay: 0.34s;
+  }
+  .fs-item:nth-child(9) {
+    transition-delay: 0.38s;
   }
 
   @media (prefers-reduced-motion: reduce) {

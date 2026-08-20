@@ -11,18 +11,19 @@ const headingSize = HeadingTag === "h1" ? "text-3xl" : "text-2xl";
 // into the slot and centers the body paragraph with it. House style is headings
 // may be centered, paragraphs are always flush left at text-base.
 //
-// BMK289 neumorphic pair: the page ground (#02081c) against the raised navy
-// tone (#0d2350), so the card still reads as extruded on the near-black navy
-// page. Matches ContentBoxSevenThreeNeumorphism and ContentBoxTwoNeumorphism.
+// LOTTO77 neumorphic pair: the page ground (#0a0101, a shade under the layout's
+// #150202) against the raised maroon tone (#3f070a), so the card still reads as
+// extruded on the near-black crimson page. Matches
+// ContentBoxSevenThreeNeumorphism and ContentBoxTwoNeumorphism.
 ---
 
 <section class="relative z-10 my-6 flex w-full justify-center px-4 font-sans">
   <div
-    class="w-full max-w-[1400px] rounded-[25px] border border-[#2b8cff]/25 bg-[#08152f] p-8 text-left text-base leading-relaxed text-[#dbe9fb] shadow-[10px_10px_20px_#02081c,-10px_-10px_20px_#0d2350]">
+    class="w-full max-w-[1400px] rounded-[25px] border border-[#d81220]/30 bg-[#2a0507] p-8 text-left text-base leading-relaxed text-[#f3ded7] shadow-[10px_10px_20px_#0a0101,-10px_-10px_20px_#3f070a]">
     {
       title && (
-        <header class="mb-8 border-b border-[#2b8cff]/25 pb-4 text-center">
-          <HeadingTag class={`bg-gradient-to-r from-[#ffe488] via-[#ffcc33] to-[#2b8cff] bg-clip-text ${headingSize} leading-normal font-black tracking-wide text-transparent`}>{title}</HeadingTag>
+        <header class="mb-8 border-b border-[#d81220]/30 pb-4 text-center">
+          <HeadingTag class={`bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#d81220] bg-clip-text ${headingSize} leading-normal font-black tracking-wide text-transparent`}>{title}</HeadingTag>
         </header>
       )
     }

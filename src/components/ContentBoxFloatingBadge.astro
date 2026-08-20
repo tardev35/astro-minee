@@ -10,26 +10,35 @@ const headingSize = HeadingTag === "h1" ? "text-xl sm:text-2xl md:text-3xl" : "t
 // bearing and must survive any restyle: the width cap (w-[92%] max-w-2xl) plus
 // text-center, which lets a full docx sentence wrap instead of blowing past the
 // viewport, and the card's pt-32/md:pt-28, which reserves clearance for that
-// wrapped badge. A two-line mobile badge measures roughly 78px tall and its
-// bottom edge lands ~54px into the card, well inside the padding.
+// wrapped badge.
+//
+// Re-measured for LOTTO77's H2-3 title, which is the longest one this brand
+// feeds it ("เลขอั้นน้อยบน LOTTO77 ควรตรวจสถานะเลขก่อนยืนยัน", 46 chars).
+// Mobile: text-lg at leading-normal = 27px a line; the badge's usable text
+// width inside w-[92%] of a 375px viewport, minus px-4 and the two ✦ spans, is
+// ~240px, so the title wraps to 3 lines at worst. 3×27 + 20 (py-2.5) + 4
+// (border-2) = 105px tall, bottom edge at 105 − 24 = 81px into the card, well
+// inside pt-32 (128px). Desktop: text-2xl at 36px a line over ~560px of usable
+// width wraps to 2 lines = 96px tall, bottom edge at 72px, inside md:pt-28
+// (112px). Do not shrink either padding.
 ---
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#ffcc33]/25 bg-gradient-to-b from-[#08152f]/95 to-[#02081c]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#dbe9fb] shadow-[0_10px_30px_rgba(255,204,51,0.16)] md:pt-28">
-    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#ffcc33]/25 blur-[60px]"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#2b8cff]/30 blur-[60px]"></div>
+    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#f5c451]/30 bg-gradient-to-b from-[#2a0507]/95 to-[#150202]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#f3ded7] shadow-[0_10px_30px_rgba(245,196,81,0.16)] md:pt-28">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#f5c451]/25 blur-[60px]"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#d81220]/35 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#ffcc33]/35 bg-[#08152f] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(255,204,51,0.22)] sm:px-8">
-          <span aria-hidden="true" class="shrink-0 text-[#2b8cff]">
+        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#f5c451]/40 bg-[#2a0507] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(245,196,81,0.22)] sm:px-8">
+          <span aria-hidden="true" class="shrink-0 text-[#d81220]">
             ✦
           </span>
-          <HeadingTag class={`min-w-0 bg-gradient-to-r from-[#ffe488] via-[#ffcc33] to-[#5eb0ff] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
+          <HeadingTag class={`min-w-0 bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#ff3d3d] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
             {title}
           </HeadingTag>
-          <span aria-hidden="true" class="shrink-0 text-[#2b8cff]">
+          <span aria-hidden="true" class="shrink-0 text-[#d81220]">
             ✦
           </span>
         </div>

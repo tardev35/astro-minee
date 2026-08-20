@@ -1,20 +1,18 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
-import ContentBoxPremium from "../components/ContentBoxPremium.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
-import ContentBoxTwoPremium from "../components/ContentBoxTwoPremium.astro";
-import ContentBoxTwoCyberCut from "../components/ContentBoxTwoCyberCut.astro";
-import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
-import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
-import ProviderGrid from "../components/ProviderGrid.astro";
-import GameRankingBoard from "../components/GameRankingBoard.astro";
+import Announcement from "../components/Announcement3.astro";
+import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
+import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
+import ContentBoxSevenThree from "../components/ContentBoxSevenThree.astro";
+import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
+import ContentBoxTwoNeumorphism from "../components/ContentBoxTwoNeumorphism.astro";
+import ContentBoxTwoFloatingBadge from "../components/ContentBoxTwoFloatingBadge.astro";
+import LottoGrid from "../components/LottoGrid.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinnersPremium.astro";
+import LatestWinners from "../components/LatestWinners2.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq2.astro";
+import Faq from "../components/Faq3.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
@@ -23,54 +21,54 @@ import { pageGraph } from "../lib/schema";
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
 // two of those per rebrand — both are spent here.
 //
-// slide4 prints "คาสิโนออนไลน์ครบวงจร / เล่นง่าย ฝาก-ถอนออโต้ จ่ายจริง" with the
-// four guarantee chips, which is the "everything in one system" claim docx
-// section 2 makes; slide2 prints "ฝากครั้งแรก รับเพิ่ม 20% / คุ้มตั้งแต่ฝากแรก"
-// with the ฝากง่าย/ถอนเร็ว/ระบบออโต้ icon row and a ฝากเลย button, which is the
-// deposit/withdraw flow section 4 describes step by step. slide1 (สมาชิกใหม่
-// รับโบนัส 50%) and slide3 (คืนยอดเสีย 0.8%) stay unused here and keep rendering
-// in SmoothCarousel and on /promotion.
+// slide3 prints "วงล้อเลขนำโชค" with a wheel of numbers around the logo, which
+// is the "pick a lottery type and enter your numbers" idea of docx section H2-1;
+// slide4 prints "ซื้อหวยครบ 300 บาท / รับคืน 5% ทุกงวด", i.e. a rate expressed
+// per งวด, which is what the H2-2 payout-rate section is about. slide1
+// (เครดิตฟรี 50 บาท) and slide2 (นาทีทอง 19:00–21:00) stay unused here and keep
+// rendering in SmoothCarousel and on /promotion.
 //
 // banner2.png is NOT imported anywhere: it predates this asset drop.
 // banner1/banner1-mobile are the hero and belong to MainLayout alone.
-import imgAllInOne from "../assets/slide4.png";
-import imgFirstDeposit from "../assets/slide2.png";
+import imgLuckyWheel from "../assets/slide3.png";
+import imgRebate from "../assets/slide4.png";
 
-const pageTitle = "LASVEGAS889 | สล็อตบาคาร่ายอดฮิตอันดับ 1 ฝากถอน True wallet";
-const pageHeading = "LASVEGAS889 สล็อตบาคาร่ายอดฮิตอันดับ 1 ฝากถอน True wallet";
+const pageTitle = "LOTTO77 | เว็บซื้อหวยออนไลน์อันดับ 1 ซื้อง่ายสะดวกจ่ายไว เลขอั้นน้อย";
+const pageHeading = "LOTTO77 เว็บซื้อหวยออนไลน์อันดับ 1 ซื้อง่ายสะดวกจ่ายไว เลขอั้นน้อย";
 
 // The docx Main SEO Meta Description, verbatim at the length it was written
-// (127 characters). DESC_MIN does not apply to the home page — verify-build.mjs
+// (120 characters). DESC_MIN does not apply to the home page — verify-build.mjs
 // exempts it precisely so the brand's own copy ships unpadded. Do not top it up
 // to 150.
-const pageDescription = "LASVEGAS889 รวมสล็อตบาคาร่ายอดนิยม ฝากถอนผ่าน True Wallet รองรับมือถือ พร้อมระบบใช้งานสะดวก เกมหลากหลาย และตรวจสอบรายการได้ง่าย";
+const pageDescription = "LOTTO77 เว็บซื้อหวยออนไลน์ เลือกเลขง่าย รองรับมือถือ เลขอั้นน้อยตามเงื่อนไข พร้อมตรวจโพย ผลรางวัล และสถานะรายการได้สะดวก";
 
-// The ticker default in AnnouncementPremium is what sub-pages get; the home page
+// The ticker default in Announcement3 is what sub-pages get; the home page
 // always passes its own copy so the two never drift apart silently. No leading
 // emoji — the marquee renders the string twice.
 const announcement =
-  "LASVEGAS889 รวมสล็อตและบาคาร่าไว้ในระบบเดียว เลือกเกมได้จากกติกา ฟีเจอร์ ระดับความเสี่ยง และรูปแบบการจ่าย • ฝากถอนผ่าน True Wallet บนมือถือได้สะดวก ควรตรวจข้อมูล Wallet จำนวนเงิน และชื่อบัญชีให้ถูกต้องก่อนยืนยันทุกครั้ง • ตรวจสอบบัญชี โปรโมชั่น และสถานะธุรกรรมได้จากระบบ พร้อมกำหนดวงเงินไว้ล่วงหน้าก่อนเริ่มเล่น";
+  "LOTTO77 รวมทุกขั้นตอนของการซื้อหวยไว้ในระบบเดียว เลือกประเภทหวย กรอกตัวเลข และตรวจสอบโพยได้จากหน้าเดียว • ควรตรวจวันออกรางวัล เวลาเปิดรับ และอัตราจ่ายของแต่ละตลาดก่อนกรอกเลขทุกครั้ง • เลขอั้นน้อยพิจารณาตามสถานะที่ระบบแสดงในแต่ละงวด จึงควรเช็กสถานะเลขก่อนกดยืนยันโพย • ผลการออกรางวัลคาดเดาไม่ได้ ควรกำหนดวงเงินต่อหนึ่งงวดและใช้เฉพาะเงินที่ไม่กระทบค่าใช้จ่ายจำเป็น";
 
-const altAllInOne =
-  "แบนเนอร์โปรโมชั่น LASVEGAS889 ข้อความ คาสิโนออนไลน์ครบวงจร เล่นง่าย ฝาก-ถอนออโต้ จ่ายจริง พร้อมการันตีสี่ข้อ ปลอดภัย มั่นคง 100% ฝาก-ถอน ออโต้ จ่ายจริง ไม่มีโกง และ บริการ 24 ชม. ตลอดทุกวัน ปุ่ม สมัครเลย และแถบล่าง รองรับทุกอุปกรณ์ ระบบทันสมัย ปลอดภัย รองรับทุกธนาคาร พร้อมโลโก้ LASVEGAS สีทองและเลข 889 สีโครมเงิน ป้าย Welcome to Fabulous LAS VEGAS NEVADA เหนือเส้นขอบฟ้าเมืองลาสเวกัสสีฟ้านีออน ผู้หญิงในชุดสีขาว-น้ำเงิน-ทองพิมพ์ LASVEGAS 889 ตู้สล็อตเลข 777 และกองเหรียญทองบนพื้นหลังสีน้ำเงินเข้ม";
+const altLuckyWheel =
+  "แบนเนอร์โปรโมชั่น LOTTO77 ข้อความ วงล้อเลขนำโชค ลุ้นเครดิตซื้อหวยสูงสุด 888 บาท พร้อมป้าย หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่ม หมุนเลย ภาพวงล้อเสี่ยงโชคขนาดใหญ่สีแดง-ทองมีตัวเลข 77 99 24 38 17 89 45 16 เรียงรอบโลโก้ LOTTO77 ตรงกลาง ล้อมด้วยใบสลากกินแบ่งรัฐบาลและกองเหรียญทองบนพื้นหลังสีแดงเข้ม";
 
-const altFirstDeposit =
-  "แบนเนอร์โปรโมชั่น LASVEGAS889 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก พร้อมไอคอนสามช่อง ฝากง่าย ถอนเร็ว ระบบออโต้ ป้าย VIP และปุ่ม ฝากเลย พร้อมโลโก้ LASVEGAS สีทองและเลข 889 สีโครมเงินเหนือเส้นขอบฟ้าเมืองลาสเวกัสสีฟ้านีออน ผู้หญิงในชุดครอปสีขาว-น้ำเงิน-ทองพิมพ์ LASVEGAS 889 ตู้สล็อตสัญลักษณ์ BAR และเลข 7 ชิปคาสิโนสีน้ำเงินและกองเหรียญทองบนพื้นหลังสีน้ำเงินเข้ม";
+const altRebate =
+  "แบนเนอร์โปรโมชั่น LOTTO77 ข้อความ ซื้อหวยครบ 300 บาท รับคืน 5% ทุกงวด พร้อมป้าย ยิ่งซื้อ ยิ่งคุ้ม และปุ่ม รับสิทธิ์ ภาพผู้หญิงในชุดสีแดงถือใบสลากกินแบ่งรัฐบาลคลี่เป็นรูปพัด ตารางเลขหวย เหรียญสีแดง-ทอง และลูกบอลหวยเลข 7 3 8 บนพื้นหลังสีแดงเข้ม";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq2's own default, which is always the previous brand's FAQ.
+// Faq3's own default, so the rendered markup and the FAQ JSON-LD below come out
+// of the same array.
 const faqs = [
   {
-    q: "LASVEGAS889 มีทั้งสล็อตและบาคาร่าให้เล่นหรือไม่?",
-    a: "ภายในระบบมีทั้งเกมสล็อตและบาคาร่าในหลายรูปแบบ ผู้เล่นสามารถเลือกตามกติกา ความชอบ ระดับความเสี่ยง และงบประมาณของตนเอง",
+    q: "LOTTO77 ซื้อหวยออนไลน์ผ่านมือถือได้หรือไม่?",
+    a: "ระบบสามารถรองรับการใช้งานผ่านมือถือได้ตามช่องทางที่เว็บไซต์กำหนด สมาชิกควรตรวจประเภทหวย งวด เลข และจำนวนเงินให้ครบก่อนยืนยันโพย",
   },
   {
-    q: "LASVEGAS889 รองรับการฝากถอนผ่าน True Wallet หรือไม่?",
-    a: "รองรับ True Wallet ตามช่องทางที่ระบบกำหนด สมาชิกควรตรวจสอบข้อมูลบัญชี จำนวนเงิน และสถานะรายการทุกครั้งก่อนและหลังทำธุรกรรม",
+    q: "เลขอั้นน้อยของ LOTTO77 หมายถึงไม่มีเลขอั้นเลยหรือไม่?",
+    a: "ไม่ได้หมายความว่าไม่มีข้อจำกัดทุกเลข สถานะเลขอั้น ราคา และวงเงินรับอาจแตกต่างกันในแต่ละงวด จึงควรตรวจข้อมูลล่าสุดจากระบบก่อนซื้อ",
   },
   {
-    q: "สล็อตบาคาร่ายอดฮิตอันดับ 1 รับประกันผลลัพธ์ได้หรือไม่?",
-    a: "ไม่สามารถรับประกันผลลัพธ์หรือกำไรจากสล็อตและบาคาร่าได้ ความนิยมไม่ได้เป็นตัวกำหนดผลของเกม ผู้เล่นควรศึกษากติกาและกำหนดงบก่อนเริ่มทุกครั้ง",
+    q: "LOTTO77 จ่ายไวทุกโพยหรือไม่?",
+    a: "ระยะเวลาการตรวจผลและสถานะรายการอาจขึ้นอยู่กับประเภทหวย การประกาศผล และขั้นตอนของระบบ จึงควรตรวจสถานะจากบัญชีและเงื่อนไขที่เกี่ยวข้องเป็นหลัก",
   },
 ];
 
@@ -87,17 +85,17 @@ const graph = pageGraph(Astro, {
 
   <Announcement message={announcement} />
 
-  <ContentBoxPremium as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#cddcf7]">
-      <strong class="text-[#f2b829]">LASVEGAS889</strong> เป็นแพลตฟอร์มเกมออนไลน์ที่รวมทั้งเกมสล็อตและบาคาร่าไว้ในระบบเดียว รองรับการฝากถอนผ่าน True Wallet และการใช้งานบนมือถือ
-      สมาชิกสามารถเลือกเกม ตรวจสอบโปรโมชั่น และจัดการบัญชีได้สะดวกจากช่องทางเดียว โดยควรศึกษากติกา รูปแบบเดิมพัน และเงื่อนไขต่าง ๆ ก่อนเริ่มใช้งานทุกครั้ง
+  <ContentBoxNeumorphism as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#f3ded7]">
+      <strong class="text-[#f5c451]">LOTTO77</strong> เป็นแพลตฟอร์มหวยออนไลน์ที่ช่วยให้สมาชิกเลือกประเภทหวย กรอกตัวเลข และตรวจสอบโพยได้ผ่านระบบเดียว รองรับการใช้งานทั้งมือถือและคอมพิวเตอร์ พร้อมข้อมูลอัตราจ่าย
+      เวลาเปิดปิดรับเดิมพัน และสถานะรายการที่ตรวจสอบได้ก่อนยืนยัน ผู้เล่นควรกำหนดงบประมาณและตรวจรายละเอียดของหวยแต่ละประเภทก่อนซื้อทุกครั้ง
     </p>
-  </ContentBoxPremium>
+  </ContentBoxNeumorphism>
 
-  <ContentBoxSevenThreePremium titleright="รวมสล็อตและบาคาร่าไว้ครบใน LASVEGAS889">
+  <ContentBoxSevenThree titleright="เลือกประเภทหวยและกรอกเลขได้ง่ายบน LOTTO77">
     <Picture
       slot="left"
-      src={imgAllInOne}
+      src={imgLuckyWheel}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -106,128 +104,130 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt={altAllInOne}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#1f5ce0]/40 shadow-[0_10px_30px_rgba(31,92,224,0.28)]"
+      alt={altLuckyWheel}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f5c451]/40 shadow-[0_10px_30px_rgba(216,18,32,0.3)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#cddcf7]">
-      ภายใน LASVEGAS889 มีทั้งเกมสล็อตหลายแนวและบาคาร่าในรูปแบบต่าง ๆ ให้เลือกตามความสนใจ ผู้เล่นสามารถพิจารณาจากกติกา ฟีเจอร์ ระดับความเสี่ยง และรูปแบบการจ่าย
-      เพื่อเลือกเกมที่เหมาะกับสไตล์ของตนเองมากกว่าการเลือกตามกระแสเพียงอย่างเดียว
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f3ded7]">
+      ภายใน LOTTO77 สามารถจัดหมวดหวยให้ค้นหาได้สะดวก ไม่ว่าจะเป็นหวยรัฐบาล หวยรายวัน หรือประเภทอื่นที่ระบบรองรับ สมาชิกควรตรวจสอบวันออกรางวัล เวลาเปิดรับ และกติกาของแต่ละรายการก่อนกรอกเลข
+      เพื่อป้องกันการเลือกงวดหรือประเภทการเดิมพันผิด
     </p>
-  </ContentBoxSevenThreePremium>
+  </ContentBoxSevenThree>
 
-  <ProviderGrid />
+  <LottoGrid />
 
-  <ContentBoxTwoPremium titleleft="True Wallet ช่วยให้จัดการธุรกรรมผ่านมือถือได้สะดวก">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#cddcf7]">
-      การใช้ True Wallet ช่วยลดขั้นตอนในการฝากและถอนผ่านอุปกรณ์มือถือ ก่อนยืนยันรายการควรตรวจสอบข้อมูล Wallet จำนวนเงิน และชื่อบัญชีให้ถูกต้อง รวมถึงรอให้ระบบแสดงสถานะสำเร็จก่อนทำรายการใหม่
-      เพื่อลดความคลาดเคลื่อนในการตรวจสอบ
-    </p>
-
-    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#1f5ce0]/30 bg-[#0b1740]/70 p-5">
-      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f2b829] uppercase">
-        <span aria-hidden="true">👛</span>
-        สิ่งที่ควรตรวจก่อนยืนยันรายการบน Wallet
-      </p>
-      <span class="flex items-start gap-2.5 text-sm text-[#cddcf7]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#3fdcff]">①</span>
-        ข้อมูล Wallet ที่ผูกไว้ตรงกับบัญชีที่ใช้งานอยู่
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#cddcf7]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#3fdcff]">②</span>
-        จำนวนเงินในรายการตรงกับที่ตั้งใจฝากหรือถอน
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#cddcf7]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#3fdcff]">③</span>
-        ชื่อบัญชีถูกต้องครบถ้วนก่อนกดยืนยันทุกครั้ง
-      </span>
-      <span class="mt-1 rounded-xl border border-[#f2b829]/35 bg-[#050b24]/80 px-4 py-2.5 text-xs leading-relaxed text-[#7f96c4]">
-        รอให้ระบบแสดงสถานะสำเร็จก่อนทำรายการใหม่ เพื่อลดความคลาดเคลื่อนในการตรวจสอบย้อนหลัง
-      </span>
-    </div>
-  </ContentBoxTwoPremium>
-
-  <ContentBoxSevenThreeCyberCut titleright="ฝากถอนผ่าน LASVEGAS889 ได้อย่างเป็นขั้นตอน">
+  <ContentBoxSevenThreeNeumorphism titleright="ตรวจอัตราจ่ายก่อนซื้อ ช่วยให้เข้าใจโพยมากขึ้น">
     <Picture
       slot="left"
-      src={imgFirstDeposit}
+      src={imgRebate}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
-      sizes="(max-width: 768px) calc(100vw - 6rem), 350px"
+      sizes="(max-width: 768px) calc(100vw - 6rem), 380px"
       decoding="async"
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt={altFirstDeposit}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#1f5ce0]/40 shadow-[0_10px_30px_rgba(31,92,224,0.28)]"
+      alt={altRebate}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f5c451]/40 shadow-[0_10px_30px_rgba(216,18,32,0.3)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#cddcf7]">
-      สมาชิก LASVEGAS889 สามารถส่งรายการฝากหรือถอนและติดตามสถานะผ่านหน้าบัญชีได้โดยตรง ควรตรวจสอบยอดคงเหลือ ข้อมูลรับเงิน และเงื่อนไขโปรโมชั่นให้ครบก่อนยืนยัน
-      หากรายการยังอยู่ระหว่างดำเนินการควรรอผลจากระบบก่อนส่งซ้ำ
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f3ded7]">
+      อัตราจ่ายของเลข 2 ตัว 3 ตัว วิ่ง หรือรูปแบบการเดิมพันอื่นอาจแตกต่างกัน ผู้เล่นควรตรวจราคาที่แสดงในระบบก่อนยืนยันโพยทุกครั้ง เพราะอัตราจ่ายและเงื่อนไขอาจเปลี่ยนตามประเภทหวย งวด หรือเลขที่เลือก
+      การตรวจข้อมูลก่อนซื้อช่วยลดความเข้าใจคลาดเคลื่อนภายหลัง
     </p>
-  </ContentBoxSevenThreeCyberCut>
+  </ContentBoxSevenThreeNeumorphism>
 
-  <ContentBoxSpecial title="สล็อตกับบาคาร่าเหมาะกับสไตล์การเล่นที่ต่างกัน" iconleft="🎰" iconright="🃏">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#cddcf7]">เกมสล็อตมีฟีเจอร์ ความผันผวน และรูปแบบโบนัสที่แตกต่างกัน</p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#cddcf7]">
-      ส่วนบาคาร่าเน้นกติกาและตัวเลือกการเดิมพันที่ชัดเจน ผู้เล่นควรทำความเข้าใจทั้งสองประเภทก่อนเลือก และกำหนดวงเงินไว้ล่วงหน้าเพื่อควบคุมการใช้งานให้เหมาะสม
+  <ContentBoxFloatingBadge as="h2" title="เลขอั้นน้อยบน LOTTO77 ควรตรวจสถานะเลขก่อนยืนยัน">
+    <p class="text-left text-base leading-relaxed text-[#f3ded7]">
+      คำว่าเลขอั้นน้อยของ LOTTO77 ควรพิจารณาตามสถานะที่ระบบแสดงในแต่ละงวด เพราะเลขบางชุดอาจมีข้อจำกัด ราคาเปลี่ยน หรือหยุดรับเมื่อยอดถึงระดับที่กำหนด
+      สมาชิกจึงควรตรวจสถานะเลขและอัตราจ่ายล่าสุดก่อนกดยืนยันโพยทุกครั้ง
     </p>
-  </ContentBoxSpecial>
+  </ContentBoxFloatingBadge>
 
-  <ContentBoxCyberCut as="h2" title="ความนิยมของ LASVEGAS889 ควรดูควบคู่กับข้อมูลเกม">
-    <p class="text-left text-base leading-relaxed text-[#cddcf7]">
-      คำว่าอันดับ 1 เป็นถ้อยคำทางการตลาดที่สื่อถึงความนิยม แต่ไม่สามารถยืนยันได้ว่าเกมจะให้ผลลัพธ์ที่ดีกว่าสำหรับทุกคน ผู้ใช้ LASVEGAS889 ควรพิจารณากติกา อัตราจ่าย ความเสี่ยง
-      และงบประมาณของตนเองร่วมกันก่อนเริ่มเล่น
-    </p>
-  </ContentBoxCyberCut>
-
-  <GameRankingBoard />
-
-  <ContentBoxTwoCyberCut titleleft="ตรวจสอบบัญชีและรายการได้ผ่านระบบ LASVEGAS889">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#cddcf7]">
-      สมาชิก LASVEGAS889 สามารถดูข้อมูลบัญชี โปรโมชั่น และสถานะธุรกรรมผ่านระบบได้ หากพบรายการผิดปกติควรเก็บเวลา จำนวนเงิน และข้อมูลอ้างอิงไว้สำหรับตรวจสอบ
-      พร้อมหลีกเลี่ยงการเปิดเผยรหัสผ่านหรือรหัสยืนยันแก่บุคคลอื่น
+  <ContentBoxTwoNeumorphism titleleft="จัดโพยหวยให้เป็นระเบียบก่อนส่งรายการ">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f3ded7]">
+      ก่อนยืนยันควรตรวจตัวเลข ประเภทเดิมพัน จำนวนเงิน และยอดรวมของโพยอีกครั้ง โดยเฉพาะกรณีซื้อหลายเลขพร้อมกัน การแบ่งโพยเป็นชุดและตรวจทีละรายการช่วยลดความผิดพลาดจากการกรอกเลขสลับ
+      และควรเก็บเลขอ้างอิงของโพยไว้จนกว่าจะประกาศผลรางวัล
     </p>
 
-    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#1f5ce0]/30 bg-[#050b24]/70 p-5">
-      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f2b829] uppercase">
-        <span aria-hidden="true">🧭</span>
-        ข้อมูลที่ควรเก็บไว้เมื่อพบรายการผิดปกติ
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#d81220]/35 bg-[#150202]/75 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f5c451] uppercase">
+        <span aria-hidden="true">🧾</span>
+        สี่จุดที่ควรไล่ตรวจก่อนกดยืนยันโพย
       </p>
-      <span class="flex items-start gap-2.5 text-sm text-[#cddcf7]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#3fdcff]">①</span>
-        เวลาที่ทำรายการและเวลาที่สถานะเปลี่ยน
+      <span class="flex items-start gap-2.5 text-sm text-[#f3ded7]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff3d3d]">①</span>
+        ตัวเลขของทุกรายการตรงกับที่ตั้งใจกรอกไว้
       </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#cddcf7]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#3fdcff]">②</span>
-        จำนวนเงินของรายการนั้นตามที่ระบบแสดง
+      <span class="flex items-start gap-2.5 text-sm text-[#f3ded7]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff3d3d]">②</span>
+        ประเภทเดิมพันของแต่ละเลขถูกต้องตามที่เลือก
       </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#cddcf7]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#3fdcff]">③</span>
-        ข้อมูลอ้างอิงของรายการไว้สำหรับการตรวจสอบ
+      <span class="flex items-start gap-2.5 text-sm text-[#f3ded7]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff3d3d]">③</span>
+        จำนวนเงินต่อรายการตรงกับที่ตั้งใจซื้อ
       </span>
-      <span class="mt-1 rounded-xl border border-[#f2b829]/35 bg-[#0b1740]/80 px-4 py-2.5 text-xs leading-relaxed text-[#7f96c4]">
-        ไม่ควรเปิดเผยรหัสผ่านหรือรหัสยืนยันแก่บุคคลอื่นไม่ว่ากรณีใด แม้จะเป็นการแจ้งปัญหาของรายการก็ตาม
+      <span class="flex items-start gap-2.5 text-sm text-[#f3ded7]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff3d3d]">④</span>
+        ยอดรวมของโพยทั้งชุดตรงกับงบที่กำหนดไว้
+      </span>
+      <span class="mt-1 rounded-xl border border-[#f5c451]/35 bg-[#2a0507]/80 px-4 py-2.5 text-xs leading-relaxed text-[#c9a49c]">
+        ซื้อหลายเลขพร้อมกันควรแบ่งโพยเป็นชุดแล้วตรวจทีละรายการ และเก็บเลขอ้างอิงของโพยไว้จนกว่าจะประกาศผลรางวัล
       </span>
     </div>
-  </ContentBoxTwoCyberCut>
+  </ContentBoxTwoNeumorphism>
+
+  <ContentBoxTwoFloatingBadge as="h2" title="LOTTO77 ช่วยให้ติดตามโพยและผลรางวัลได้สะดวก">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f3ded7]">
+      สมาชิก LOTTO77 สามารถใช้หน้าบัญชีเพื่อตรวจสอบโพยที่ส่งแล้ว สถานะรายการ และข้อมูลผลรางวัลตามที่ระบบแสดง การเช็กข้อมูลจากหน้าประวัติช่วยให้ตรวจสอบย้อนหลังได้ง่ายขึ้น
+      และควรหลีกเลี่ยงการยึดเฉพาะภาพหน้าจอหรือข้อความที่ส่งต่อจากแหล่งที่ไม่ชัดเจน
+    </p>
+
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#d81220]/35 bg-[#150202]/75 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f5c451] uppercase">
+        <span aria-hidden="true">🔎</span>
+        ข้อมูลที่ดูได้จากหน้าบัญชีสมาชิก
+      </p>
+      <span class="flex items-start gap-2.5 text-sm text-[#f3ded7]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff3d3d]">①</span>
+        โพยที่ส่งแล้วในแต่ละงวด พร้อมเลขอ้างอิงของรายการ
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#f3ded7]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff3d3d]">②</span>
+        สถานะรายการว่ายังตรวจสอบอยู่หรือดำเนินการเสร็จแล้ว
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#f3ded7]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff3d3d]">③</span>
+        ข้อมูลผลรางวัลของงวดนั้นตามที่ระบบแสดง
+      </span>
+      <span class="mt-1 rounded-xl border border-[#f5c451]/35 bg-[#2a0507]/80 px-4 py-2.5 text-xs leading-relaxed text-[#c9a49c]">
+        ควรยึดข้อมูลจากหน้าประวัติของบัญชีตนเองเป็นหลัก แทนการเชื่อภาพหน้าจอหรือข้อความที่ส่งต่อกันมาจากแหล่งที่ไม่ชัดเจน
+      </span>
+    </div>
+  </ContentBoxTwoFloatingBadge>
 
   <LatestWinners />
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ LASVEGAS889" faqs={faqs} />
+  <ContentBoxNeumorphism as="h2" title="ซื้อง่ายไม่ได้หมายถึงควรเพิ่มยอดเกินงบ">
+    <p class="text-left text-base leading-relaxed text-[#f3ded7]">
+      แม้ระบบหวยออนไลน์จะช่วยลดขั้นตอนในการเลือกเลขและส่งโพย แต่ผลการออกรางวัลไม่สามารถคาดเดาหรือรับประกันได้ ผู้ใช้ <strong class="text-[#f5c451]">LOTTO77</strong> ควรกำหนดวงเงินต่อหนึ่งงวด ไม่เพิ่มยอดเพื่อชดเชยการเสียจากงวดก่อน
+      และใช้เฉพาะเงินที่ไม่กระทบค่าใช้จ่ายจำเป็น
+    </p>
+  </ContentBoxNeumorphism>
+
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ LOTTO77" faqs={faqs} />
 
   <LoginRtpSection />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#4d8dff]/60 bg-gradient-to-r from-[#1f5ce0] via-[#122a63] to-[#050b24] px-4 py-3 text-sm font-black whitespace-nowrap text-[#e8eefb] shadow-[0_10px_30px_rgba(31,92,224,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#3fdcff] hover:shadow-[0_15px_40px_rgba(63,220,255,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ff3d3d]/60 bg-gradient-to-r from-[#d81220] via-[#7d0000] to-[#150202] px-4 py-3 text-sm font-black whitespace-nowrap text-[#f3ded7] shadow-[0_10px_30px_rgba(216,18,32,0.38)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#f5c451] hover:shadow-[0_15px_40px_rgba(245,196,81,0.42)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffdd7a]/70 bg-gradient-to-r from-[#ffdd7a] to-[#f2b829] px-4 py-3 text-sm font-black whitespace-nowrap text-[#050b24] shadow-[0_10px_30px_rgba(242,184,41,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffdd7a] hover:shadow-[0_15px_40px_rgba(242,184,41,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffe08a]/70 bg-gradient-to-r from-[#ffe08a] to-[#f5c451] px-4 py-3 text-sm font-black whitespace-nowrap text-[#150202] shadow-[0_10px_30px_rgba(245,196,81,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe08a] hover:shadow-[0_15px_40px_rgba(245,196,81,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>

@@ -2,22 +2,21 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
+import Announcement from "../components/Announcement3.astro";
 import { pageGraph } from "../lib/schema";
 
 // Button page, not an article: the whole body is the <h1> plus the two-button
 // grid. The docx SUB-PAGES block gives this page a Title and a Meta and never
 // a body, so no section heading and no prose belong here. The h1 names what it IS
 // rather than previewing a section that does not exist.
-const pageTitle = "ทางเข้า LASVEGAS889 เว็บหลัก";
+const pageTitle = "ทางเข้า LOTTO77 เว็บหลัก";
 
-// docx SUB-PAGES Meta for ทางเข้าเล่น carried VERBATIM as the opening sentence
-// (123 characters) plus one closing clause, because tools/verify-build.mjs
-// errors below DESC_MIN=150 characters on every indexable page and exempts only
-// the home page.
-// 158 CHARACTERS (count characters, not bytes — Thai is 3 bytes per character).
+// docx SUB-PAGES Meta for ทางเข้า, extended by one closing clause because
+// tools/verify-build.mjs errors below DESC_MIN=150 characters on every
+// indexable page and exempts only the home page.
+// 151 CHARACTERS (count characters, not bytes — Thai is 3 bytes per character).
 const pageDescription =
-  "LASVEGAS889 ทางเข้าเล่นสล็อตบาคาร่า รองรับมือถือและ True Wallet พร้อมรวมเกมยอดนิยม โปรโมชั่น และระบบสมาชิกไว้ในช่องทางเดียว เข้าใช้งานผ่านช่องทางหลักได้ทุกวัน";
+  "LOTTO77 ทางเข้าเว็บหวยออนไลน์ รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมเลือกประเภทหวย ตรวจโพย โปรโมชั่น และข้อมูลสมาชิกในที่เดียว ใช้งานได้ตลอด 24 ชม.";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -29,7 +28,7 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="LASVEGAS889 | ทางเข้าเล่นสล็อตบาคาร่า รองรับ True Wallet" description={pageDescription}>
+<MainLayout title="LOTTO77 | ทางเข้าเว็บซื้อหวยออนไลน์รองรับมือถือ" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
@@ -39,12 +38,12 @@ const graph = pageGraph(Astro, {
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/login"
-          aria-label="เข้าสู่ระบบ LASVEGAS889"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#1f5ce0]/60 bg-[#050b24] px-6 py-4 shadow-[0_10px_30px_rgba(31,92,224,0.22)] transition-all duration-300 hover:scale-105 hover:border-[#4d8dff] hover:bg-[#122a63] hover:shadow-[0_15px_40px_rgba(63,220,255,0.32)]">
-          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#1f5ce0]/25 to-transparent"></div>
+          aria-label="เข้าสู่ระบบ LOTTO77"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#d81220]/60 bg-[#150202] px-6 py-4 shadow-[0_10px_30px_rgba(216,18,32,0.22)] transition-all duration-300 hover:scale-105 hover:border-[#ff3d3d] hover:bg-[#3f070a] hover:shadow-[0_15px_40px_rgba(245,196,81,0.32)]">
+          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#d81220]/25 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#f2b829]"
+            class="relative z-10 h-9 w-9 text-[#f5c451]"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -55,19 +54,19 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#f2b829]">เข้าสู่ระบบ</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#f5c451]">เข้าสู่ระบบ</span>
         </a>
       </div>
 
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/register"
-          aria-label="สมัครสมาชิก LASVEGAS889"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#ffdd7a]/60 bg-gradient-to-r from-[#ffdd7a] via-[#f2b829] to-[#a8760d] px-6 py-4 shadow-[0_10px_30px_rgba(242,184,41,0.28)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(242,184,41,0.40)]">
+          aria-label="สมัครสมาชิก LOTTO77"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#ffe08a]/60 bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#b8860b] px-6 py-4 shadow-[0_10px_30px_rgba(245,196,81,0.28)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(245,196,81,0.40)]">
           <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/25 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#0a1a45]"
+            class="relative z-10 h-9 w-9 text-[#150202]"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -78,7 +77,7 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#0a1a45]">สมัครสมาชิก</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#150202]">สมัครสมาชิก</span>
         </a>
       </div>
     </div>

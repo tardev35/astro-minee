@@ -7,24 +7,27 @@
 // emoji baked into a text prop cannot be marked aria-hidden, so a screen reader
 // reads it out on every repeat. The 📢 badge beside the track is separate markup
 // and is hidden properly.
+//
+// No domain name in the copy either — verify-build.mjs fails the build on an
+// off-domain URL found in a component.
 const {
-  message = "HONEY289 รวบรวมเกมเดิมพันหลายรูปแบบไว้ในแพลตฟอร์มเดียว เน้นการเข้าถึงเกมง่าย ระบบฝากสะดวก และการถอนผ่านระบบออโต้ • ควรตรวจสอบกติกา วิธีคิดผล และอัตราจ่ายของแต่ละเกมก่อนเริ่ม เพื่อช่วยให้ตัดสินใจได้จากข้อมูลมากกว่าความนิยมเพียงอย่างเดียว • ก่อนยืนยันรายการฝากควรตรวจสอบชื่อบัญชี จำนวนเงิน และช่องทางที่เลือกให้ถูกต้อง • หากรายการถอนอยู่ระหว่างดำเนินการควรรอผลจากระบบ ไม่ควรส่งรายการซ้ำ • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมทีมงานดูแลสมาชิกตลอด 24 ชั่วโมง",
+  message = "LOTTO77 รวมการเลือกประเภทหวย กรอกตัวเลข และตรวจสอบโพยไว้ในระบบเดียว รองรับทั้งมือถือและคอมพิวเตอร์ • ควรตรวจวันออกรางวัล เวลาเปิดรับ และกติกาของแต่ละรายการก่อนกรอกเลขทุกครั้ง • อัตราจ่ายของเลข 2 ตัว 3 ตัว และวิ่ง อาจต่างกันตามประเภทหวยและงวด ควรตรวจราคาที่ระบบแสดงก่อนยืนยันโพย • เลขอั้นน้อยพิจารณาตามสถานะที่ระบบแสดงในแต่ละงวด ไม่ได้แปลว่าไม่มีข้อจำกัดทุกเลข • ผลการออกรางวัลคาดเดาไม่ได้ ควรกำหนดวงเงินต่อหนึ่งงวดไว้ล่วงหน้าก่อนเริ่มซื้อ",
 } = Astro.props;
 ---
 
 <div class="mx-auto mt-4 max-w-[900px] px-4 md:px-0">
   <div
-    class="relative flex h-[46px] items-center rounded-r-full border border-[#f7cf7e]/35 bg-gradient-to-r from-[#33170a]/70 to-[#170b02] py-2 pr-4 pl-12 shadow-[0_0_20px_rgba(253,187,36,0.16)] backdrop-blur-md">
-    <div class="absolute top-1/2 -left-2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border-[3px] border-[#f7cf7e] bg-[#170b02] shadow-[0_0_15px_rgba(253,187,36,0.55)]">
+    class="relative flex h-[46px] items-center rounded-r-full border border-[#f5c451]/35 bg-gradient-to-r from-[#5a0308]/70 to-[#150202] py-2 pr-4 pl-12 shadow-[0_0_20px_rgba(245,196,81,0.16)] backdrop-blur-md">
+    <div class="absolute top-1/2 -left-2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border-[3px] border-[#f5c451] bg-[#150202] shadow-[0_0_15px_rgba(245,196,81,0.55)]">
       <span aria-hidden="true" class="animate-pulse text-xl">📢</span>
     </div>
 
-    <div class="mr-4 h-full w-[1px] bg-[#f7cf7e]/30"></div>
+    <div class="mr-4 h-full w-[1px] bg-[#f5c451]/30"></div>
 
     <div class="flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent_0%,#000_5%,#000_95%,transparent_100%)]">
-      <div class="flex w-max animate-[scroll_25s_linear_infinite] gap-12 text-sm font-bold whitespace-nowrap text-[#f7cf7e]">
-        <span class="drop-shadow-[0_0_5px_rgba(253,187,36,0.5)]">{message}</span>
-        <span class="drop-shadow-[0_0_5px_rgba(253,187,36,0.5)]">{message}</span>
+      <div class="flex w-max animate-[scroll_25s_linear_infinite] gap-12 text-sm font-bold whitespace-nowrap text-[#f5c451]">
+        <span class="drop-shadow-[0_0_5px_rgba(245,196,81,0.5)]">{message}</span>
+        <span class="drop-shadow-[0_0_5px_rgba(245,196,81,0.5)]">{message}</span>
       </div>
     </div>
   </div>
@@ -37,6 +40,12 @@ const {
     }
     to {
       transform: translateX(calc(-50% - 24px));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-\[scroll_25s_linear_infinite\] {
+      animation: none;
     }
   }
 </style>

@@ -7,25 +7,25 @@ export interface Props {
 const { title, titleleft, titleright } = Astro.props;
 const rightHeading = titleright ?? title;
 
-// BMK289 neumorphic pair: the page ground (#02081c) against the raised navy
-// tone (#0d2350), matching ContentBoxNeumorphism and ContentBoxTwoNeumorphism so
-// the three read as one extruded system on the near-black navy page.
+// LOTTO77 neumorphic pair: the page ground (#0a0101) against the raised maroon
+// tone (#3f070a), matching ContentBoxNeumorphism and ContentBoxTwoNeumorphism so
+// the three read as one extruded system on the near-black crimson page.
 //
-// Both column titles are <h2>: the BMK289 docx is flat H1 + H2 with no nested
+// Both column titles are <h2>: the LOTTO77 docx is flat H1 + H2 with no nested
 // sub-headings, and the page's heading inventory is diffed against that brief.
 ---
 
 <section class="relative z-10 mx-auto mb-8 w-full max-w-[1400px] px-4 font-sans">
   <div
-    class="w-full rounded-[25px] border border-[#2b8cff]/25 bg-[#08152f] p-8 shadow-[10px_10px_20px_#02081c,-10px_-10px_20px_#0d2350] transition-all duration-300 hover:shadow-[15px_15px_30px_#000000,-15px_-15px_30px_#123061]">
+    class="w-full rounded-[25px] border border-[#d81220]/30 bg-[#2a0507] p-8 shadow-[10px_10px_20px_#0a0101,-10px_-10px_20px_#3f070a] transition-all duration-300 hover:shadow-[15px_15px_30px_#000000,-15px_-15px_30px_#570a0e]">
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#dbe9fb]">
-        {titleleft && <h2 class="text-2xl leading-normal font-black text-[#ffcc33]">{titleleft}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f3ded7]">
+        {titleleft && <h2 class="text-2xl leading-normal font-black text-[#f5c451]">{titleleft}</h2>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#dbe9fb] md:border-l md:border-[#2b8cff]/30 md:pl-8">
-        {rightHeading && <h2 class="text-2xl leading-normal font-black text-[#ffcc33]">{rightHeading}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f3ded7] md:border-l md:border-[#d81220]/35 md:pl-8">
+        {rightHeading && <h2 class="text-2xl leading-normal font-black text-[#f5c451]">{rightHeading}</h2>}
         <slot name="right" />
       </article>
     </div>

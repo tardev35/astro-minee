@@ -33,7 +33,7 @@ export default defineConfig({
     "/line": "https://tinyurl.com/tog191",
   },
 
-  site: "https://lasvegas889vip.net",
+  site: "https://lotto77vip.net",
   integrations: [
     sitemap({
       // /login, /register and /line are forwarding pages that all ship
