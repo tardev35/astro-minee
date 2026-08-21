@@ -10,6 +10,10 @@ import img6 from "../assets/providers/game6.avif";
 // The widget title renders as <p>, not <h2>: it is chrome, and the page's
 // heading inventory is diffed against the docx on every rebrand. The
 // accessible name for the region lives on the <section>'s aria-label.
+//
+// VEGUS1: crimson card frames and gold badges on the near-black ground. The
+// "HOT" pill is a gold fill with dark ink rather than another red one, so it
+// still reads as a flag against a card that is already crimson.
 const providers = [
   { alt: "PG Soft", users: "4,592", isHot: true, img: img1 },
   { alt: "Joker Gaming", users: "2,184", isHot: true, img: img2 },
@@ -20,23 +24,24 @@ const providers = [
 ];
 ---
 
-<section aria-label="ค่ายเกมและผู้ให้บริการโต๊ะบาคาร่าบน KOHKAE789" class="mx-auto w-full max-w-[1300px] px-4 py-8 font-sans sm:px-6 lg:px-8">
+<section aria-label="ค่ายเกมและหมวดเกมเดิมพันที่เปิดให้เลือกบน VEGUS1" class="mx-auto w-full max-w-[1300px] px-4 py-8 font-sans sm:px-6 lg:px-8">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
-    <span aria-hidden="true" class="text-2xl drop-shadow-[0_0_10px_rgba(41,171,227,0.8)]">🃏</span>
-    <p class="bg-gradient-to-r from-[#e8f6ff] via-[#7fdcff] to-[#29abe3] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase drop-shadow-sm">ค่ายเกมที่ให้บริการ</p>
-    <p class="max-w-3xl text-base leading-relaxed text-[#cfe6f7]/75">
-      รายชื่อค่ายเกมด้านล่างใช้เพื่ออ้างอิงเท่านั้น จำนวนผู้ใช้งานและโต๊ะที่เปิดให้บริการเปลี่ยนแปลงได้ตามช่วงเวลา ควรตรวจสอบกติกาและอัตราจ่ายของแต่ละโต๊ะจากหน้าเว็บไซต์จริงก่อนเริ่มเดิมพัน
+    <span aria-hidden="true" class="text-2xl drop-shadow-[0_0_10px_rgba(245,196,81,0.8)]">🃏</span>
+    <p class="bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#ff3a33] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase drop-shadow-sm">ค่ายเกมที่ให้บริการ</p>
+    <p class="max-w-3xl text-base leading-relaxed text-[#d8b48f]">
+      รายชื่อค่ายเกมด้านล่างใช้เพื่ออ้างอิงเท่านั้น จำนวนผู้ใช้งานและเกมที่เปิดให้บริการเปลี่ยนแปลงได้ตามช่วงเวลา ควรตรวจสอบกติกา อัตราจ่าย
+      และระดับความเสี่ยงของแต่ละเกมจากหน้าเว็บไซต์จริงก่อนเริ่มเดิมพัน
     </p>
-    <div class="mt-2 h-[2px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#1573e6] to-transparent"></div>
+    <div class="mt-2 h-[2px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#d81f26] to-transparent"></div>
   </div>
 
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6 lg:gap-6">
     {
       providers.map((p) => (
-        <div class="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0a1424] shadow-[0_5px_15px_rgba(0,0,0,0.4)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_35px_rgba(21,115,230,0.3)]">
-          <div class="pointer-events-none absolute inset-0 z-20 rounded-2xl border border-[#1573e6]/50 transition-all duration-500 group-hover:border-[#29abe3]/60 group-hover:shadow-[inset_0_0_20px_rgba(41,171,227,0.15)]" />
+        <div class="group relative flex flex-col overflow-hidden rounded-2xl bg-[#2b0808] shadow-[0_5px_15px_rgba(21,4,4,0.55)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_35px_rgba(216,31,38,0.3)]">
+          <div class="pointer-events-none absolute inset-0 z-20 rounded-2xl border border-[#d81f26]/50 transition-all duration-500 group-hover:border-[#f5c451]/60 group-hover:shadow-[inset_0_0_20px_rgba(245,196,81,0.18)]" />
 
-          <div class="absolute top-0 left-0 z-10 flex items-center gap-1.5 rounded-br-xl border-r border-b border-[#1573e6]/50 bg-[#050c1a]/80 px-3 py-1.5 text-[10px] font-medium text-[#bfe9ff] backdrop-blur-md transition-colors group-hover:text-[#7fdcff]">
+          <div class="absolute top-0 left-0 z-10 flex items-center gap-1.5 rounded-br-xl border-r border-b border-[#d81f26]/50 bg-[#150404]/85 px-3 py-1.5 text-[10px] font-medium text-[#f7e3c8] backdrop-blur-md transition-colors group-hover:text-[#f5c451]">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
             </svg>
@@ -44,7 +49,7 @@ const providers = [
           </div>
 
           {p.isHot && (
-            <div class="absolute top-0 right-0 z-10 flex items-center gap-1 rounded-bl-xl border-b border-l border-red-400/50 bg-gradient-to-r from-red-600 to-orange-500 px-3 py-1.5 text-[10px] font-black tracking-wide text-white shadow-md">
+            <div class="absolute top-0 right-0 z-10 flex items-center gap-1 rounded-bl-xl border-b border-l border-[#ffe08a]/50 bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#c9931a] px-3 py-1.5 text-[10px] font-black tracking-wide text-[#2a0606] shadow-md">
               <span aria-hidden="true" class="animate-pulse">
                 🔥
               </span>{" "}
@@ -54,7 +59,7 @@ const providers = [
 
           <Picture
             src={p.img}
-            alt={`ภาพหน้าปกค่ายเกม ${p.alt} ที่เปิดให้เลือกเล่นบน KOHKAE789`}
+            alt={`ภาพหน้าปกค่ายเกม ${p.alt} ที่เปิดให้เลือกเล่นบน VEGUS1`}
             formats={["avif", "webp"]}
             fallbackFormat="webp"
             loading="lazy"
@@ -65,7 +70,10 @@ const providers = [
             class="block aspect-square w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-100"
           />
 
-          <div aria-hidden="true" class="pointer-events-none absolute -bottom-10 left-0 h-20 w-full bg-gradient-to-t from-[#1573e6]/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          <div
+            aria-hidden="true"
+            class="pointer-events-none absolute -bottom-10 left-0 h-20 w-full bg-gradient-to-t from-[#d81f26]/45 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          />
         </div>
       ))
     }

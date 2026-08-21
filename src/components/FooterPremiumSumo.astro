@@ -1,25 +1,41 @@
 ---
 import { Picture } from "astro:assets";
 import BankStrip from "./BankStrip.astro";
-import { BRAND_ADDRESS } from "../lib/brandProfile";
+import { BRAND_ADDRESS, BRAND_NAME } from "../lib/brandProfile";
 const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
 const imagePaths = Object.keys(images);
 const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
+
+// Column labels are <p>, never headings: this footer renders on every page, so
+// one <h2> here would be an <h2> sitewide and would show up in the heading
+// inventory that gets diffed against the docx.
+//
+// No /ตรวจหวย or /แนวทาง rows — VEGUS1 is a casino/sports-betting brand and
+// both pages are parked in src/pages-disabled/ this round. A link to a route
+// that does not exist fails the build.
+const quickLinks = [
+  { name: "หน้าหลัก", path: "/" },
+  { name: "โปรโมชั่น", path: "/promotion" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น" },
+  { name: "ทางเข้า", path: "/ทางเข้า" },
+  { name: "เกี่ยวกับเรา", path: "/about-us" },
+  { name: "ติดต่อเรา", path: "/contact-us" },
+];
 ---
 
-<footer class="relative mt-16 w-full overflow-hidden rounded-t-[3rem] border-t border-[#f6931e]/60 bg-[#080503] pt-16 pb-8 font-sans text-[#f2dfc4] shadow-[0_-15px_40px_rgba(246,147,30,0.25)]">
-  <div class="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-[250px] w-full max-w-4xl rounded-full bg-[#f6931e]/20 blur-[100px]"></div>
-  <div class="pointer-events-none absolute inset-x-0 -bottom-24 mx-auto h-[220px] w-full max-w-2xl rounded-full bg-[#8f4b06]/25 blur-[100px]"></div>
+<footer class="relative mt-16 w-full overflow-hidden rounded-t-[3rem] border-t border-[#d81f26]/60 bg-[#150404] pt-16 pb-8 font-sans text-[#f7e3c8] shadow-[0_-15px_40px_rgba(216,31,38,0.28)]">
+  <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-[250px] w-full max-w-4xl rounded-full bg-[#d81f26]/22 blur-[100px]"></div>
+  <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 -bottom-24 mx-auto h-[220px] w-full max-w-2xl rounded-full bg-[#6d0d10]/30 blur-[100px]"></div>
 
   <div class="relative z-10 mx-auto w-full max-w-[1200px] px-6">
     <div class="mb-12 grid grid-cols-1 gap-12 md:grid-cols-12">
       <div class="flex flex-col gap-5 md:col-span-5">
-        <a href="/" class="inline-block max-w-max rounded-xl border border-[#f6931e]/30 bg-[#161009] px-4 py-2 transition-transform duration-300 hover:scale-105">
+        <a href="/" class="inline-block max-w-max rounded-xl border border-[#d81f26]/35 bg-[#2b0808] px-4 py-2 transition-transform duration-300 hover:scale-105">
           {
             mainLogo ? (
               <Picture
                 src={mainLogo}
-                alt="โลโก้ WIN666 ตัวอักษรสีส้มขอบดำ คู่กับตราวงกลมรูปตัว W สีขาวบนพื้นส้ม"
+                alt={`โลโก้ ${BRAND_NAME} ตัวอักษร Vegus1 สีแดงเงาโลหะแบบลายมือ ด้านบนเป็นไพ่เอซสี่ใบ ด้านล่างเป็นริบบิ้นสีแดงข้อความ BEST BETTING AND CASINO ONLINE`}
                 widths={[130, 260, 390]}
                 sizes="130px"
                 class="h-[50px] w-auto object-contain"
@@ -27,38 +43,31 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
                 fallbackFormat="webp"
               />
             ) : (
-              <span class="text-3xl font-black tracking-widest text-[#f2dfc4]">
-                WIN<span class="text-[#f6931e]">666</span>
-              </span>
+              <span class="text-3xl font-black tracking-widest text-[#f5c451]">{BRAND_NAME}</span>
             )
           }
         </a>
-        <p class="border-l-2 border-[#f6931e]/50 pl-4 text-sm leading-relaxed text-[#c4a882]">
-          WIN666 คาสิโนออนไลน์ระบบใหม่ รวมเกมสล็อต บาคาร่า เกมไพ่ และเกมรูปแบบอื่น ๆ ไว้ในบัญชีเดียว รองรับการฝากถอนผ่านระบบออโต้จากหน้าบัญชีของสมาชิกเอง
-          พร้อมรายละเอียดเงื่อนไขของแต่ละโปรโมชั่นให้อ่านก่อนกดรับสิทธิ์
+        <p class="border-l-2 border-[#d81f26]/60 pl-4 text-sm leading-relaxed text-[#d8b48f]">
+          {BRAND_NAME} เว็บพนันออนไลน์ครบวงจรที่รวมเกมหลายประเภทไว้ในบัญชีเดียว ทั้งสล็อต บาคาร่า และเกมรูปแบบอื่นที่ระบบรองรับ พร้อมช่องทางฝากถอนผ่าน True Wallet
+          สมาชิกดูยอดคงเหลือ ประวัติธุรกรรม และเงื่อนไขของแต่ละโปรโมชั่นได้จากหน้าบัญชีของตนเอง โดยควรศึกษากติกาและอัตราจ่ายก่อนเริ่มเดิมพันทุกครั้ง
         </p>
         <div class="mt-4 flex flex-wrap gap-3">
-          <span class="rounded-full border border-[#f6931e]/30 bg-[#161009] px-4 py-1 text-xs font-medium text-[#f6931e] backdrop-blur-sm">โบนัสสมาชิกใหม่ 100%</span>
-          <span class="rounded-full border border-[#8f4b06]/50 bg-[#241a0e] px-4 py-1 text-xs font-medium text-[#ffb35c] backdrop-blur-sm">คืนยอดเสียทุกวัน 10%</span>
+          <span class="rounded-full border border-[#d81f26]/40 bg-[#2b0808] px-4 py-1 text-xs font-medium text-[#f5c451] backdrop-blur-sm">สมาชิกใหม่ รับโบนัส 50%</span>
+          <span class="rounded-full border border-[#6d0d10]/70 bg-[#4a0a0d] px-4 py-1 text-xs font-medium text-[#ffe08a] backdrop-blur-sm">ฝากครั้งแรก รับเพิ่ม 20%</span>
         </div>
       </div>
 
-      <nav class="flex flex-col gap-4 md:col-span-3 lg:pl-8">
-        <p class="text-lg font-black tracking-widest text-[#f2dfc4] uppercase drop-shadow-sm">ทางลัด</p>
-        <div class="h-[1px] w-12 bg-[#f6931e]"></div>
-        <ul class="flex flex-col gap-3 text-sm font-medium text-[#c4a882]">
-          <li><a href="/" class="transition-colors hover:text-[#f6931e]">หน้าหลัก</a></li>
-          <li><a href="/promotion" class="transition-colors hover:text-[#f6931e]">โปรโมชั่น</a></li>
-          <li><a href="/ทดลองเล่น" class="transition-colors hover:text-[#f6931e]">ทดลองเล่น</a></li>
-          <li><a href="/ทางเข้า" class="transition-colors hover:text-[#f6931e]">ทางเข้า</a></li>
-          <li><a href="/about-us" class="transition-colors hover:text-[#f6931e]">เกี่ยวกับเรา</a></li>
-          <li><a href="/contact-us" class="transition-colors hover:text-[#f6931e]">ติดต่อเรา</a></li>
+      <nav class="flex flex-col gap-4 md:col-span-3 lg:pl-8" aria-label="ลิงก์หน้าเว็บ">
+        <p class="text-lg font-black tracking-widest text-[#f5c451] uppercase drop-shadow-sm">ทางลัด</p>
+        <div aria-hidden="true" class="h-[1px] w-12 bg-[#d81f26]"></div>
+        <ul class="flex flex-col gap-3 text-sm font-medium text-[#d8b48f]">
+          {quickLinks.map((link) => <li><a href={link.path} class="transition-colors hover:text-[#f5c451]">{link.name}</a></li>)}
         </ul>
       </nav>
 
       <div class="flex flex-col gap-5 md:col-span-4">
-        <p class="text-lg font-black tracking-widest text-[#f2dfc4] uppercase drop-shadow-sm">บริการลูกค้า 24 ชม.</p>
-        <div class="h-[1px] w-12 bg-[#f6931e]"></div>
+        <p class="text-lg font-black tracking-widest text-[#f5c451] uppercase drop-shadow-sm">บริการลูกค้า 24 ชม.</p>
+        <div aria-hidden="true" class="h-[1px] w-12 bg-[#d81f26]"></div>
 
         <a
           href="/line"
@@ -92,16 +101,23 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
           )
         }
 
-        <div class="mt-4 text-xs font-medium tracking-widest text-[#c4a882] uppercase">Supported Payments</div>
+        <a
+          href="#top"
+          class="flex w-full items-center justify-center gap-2 rounded-xl border border-[#d81f26]/60 py-3 text-sm font-bold text-[#f5c451] transition-all hover:bg-[#4a0a0d]/70"
+          aria-label="กลับขึ้นด้านบนสุดของหน้า">
+          <span aria-hidden="true">↑</span> กลับขึ้นบน
+        </a>
+
+        <div class="mt-4 text-xs font-medium tracking-widest text-[#d8b48f] uppercase">Supported Payments</div>
         <BankStrip size={30} />
       </div>
     </div>
 
-    <div class="flex flex-col items-center justify-between border-t border-[#8f4b06]/60 pt-8 text-xs font-medium tracking-wide text-[#c4a882] md:flex-row">
-      <p>COPYRIGHT &copy; {new Date().getFullYear()} WIN6666-AUTO.COM. ALL RIGHTS RESERVED.</p>
+    <div class="flex flex-col items-center justify-between border-t border-[#6d0d10]/70 pt-8 text-xs font-medium tracking-wide text-[#d8b48f] md:flex-row">
+      <p>COPYRIGHT &copy; {new Date().getFullYear()} <span class="font-bold text-[#f5c451]">{BRAND_NAME}</span>. ALL RIGHTS RESERVED.</p>
       <div class="mt-4 flex gap-4 md:mt-0">
-        <a href="/terms/" class="transition-colors hover:text-[#f6931e]">เงื่อนไขข้อตกลง</a>
-        <a href="/privacy/" class="transition-colors hover:text-[#f6931e]">นโยบายความเป็นส่วนตัว</a>
+        <a href="/terms/" class="transition-colors hover:text-[#f5c451]">เงื่อนไขข้อตกลง</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#f5c451]">นโยบายความเป็นส่วนตัว</a>
       </div>
     </div>
   </div>

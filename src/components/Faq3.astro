@@ -14,19 +14,19 @@ export interface Props {
 // that also emit FAQ JSON-LD still pass an explicit `faqs` prop, so the markup
 // and the structured data come from the same array.
 const {
-  title = "คำถามที่พบบ่อยเกี่ยวกับ LOTTO77",
+  title = "คำถามที่พบบ่อยเกี่ยวกับ VEGUS1",
   faqs = [
     {
-      q: "LOTTO77 ซื้อหวยออนไลน์ผ่านมือถือได้หรือไม่?",
-      a: "ระบบสามารถรองรับการใช้งานผ่านมือถือได้ตามช่องทางที่เว็บไซต์กำหนด สมาชิกควรตรวจประเภทหวย งวด เลข และจำนวนเงินให้ครบก่อนยืนยันโพย",
+      q: "VEGUS1 รองรับการเดิมพันประเภทใดบ้าง?",
+      a: "ระบบสามารถรวมเกมเดิมพันหลายประเภทตามหมวดที่เว็บไซต์กำหนด ผู้เล่นควรตรวจสอบกติกา อัตราจ่าย และระดับความเสี่ยงของเกมที่สนใจก่อนเริ่มทุกครั้ง",
     },
     {
-      q: "เลขอั้นน้อยของ LOTTO77 หมายถึงไม่มีเลขอั้นเลยหรือไม่?",
-      a: "ไม่ได้หมายความว่าไม่มีข้อจำกัดทุกเลข สถานะเลขอั้น ราคา และวงเงินรับอาจแตกต่างกันในแต่ละงวด จึงควรตรวจข้อมูลล่าสุดจากระบบก่อนซื้อ",
+      q: "VEGUS1 รองรับ True Wallet หรือไม่?",
+      a: "รองรับ True Wallet ตามช่องทางที่ระบบกำหนด สมาชิกควรตรวจสอบข้อมูลบัญชี จำนวนเงิน และสถานะรายการให้ครบก่อนและหลังยืนยันธุรกรรม",
     },
     {
-      q: "LOTTO77 จ่ายไวทุกโพยหรือไม่?",
-      a: "ระยะเวลาการตรวจผลและสถานะรายการอาจขึ้นอยู่กับประเภทหวย การประกาศผล และขั้นตอนของระบบ จึงควรตรวจสถานะจากบัญชีและเงื่อนไขที่เกี่ยวข้องเป็นหลัก",
+      q: "คำว่ามั่นคงหมายถึงรับประกันความปลอดภัยทุกกรณีหรือไม่?",
+      a: "ไม่ควรตีความว่าเป็นการรับประกันทั้งหมด ความปลอดภัยยังขึ้นอยู่กับระบบ เว็บไซต์ และพฤติกรรมของผู้ใช้ จึงควรตรวจสอบข้อมูลและดูแลบัญชีของตนเองร่วมด้วย",
     },
   ],
 } = Astro.props;
@@ -41,7 +41,7 @@ const {
   {
     title && (
       <header class="mb-8 text-center">
-        <h2 class="bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#d81220] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase drop-shadow-sm md:text-3xl">
+        <h2 class="bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#ff3a33] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase drop-shadow-sm md:text-3xl">
           {title}
         </h2>
         <div class="mx-auto mt-3 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#f5c451] to-transparent" />
@@ -52,8 +52,8 @@ const {
   <div class="space-y-3">
     {
       faqs.map((faq) => (
-        <details class="faq-item rounded-3xl border border-[#d81220]/35 bg-[#2a0507]/90 p-2 shadow-[0_10px_30px_rgba(216,18,32,0.18)] backdrop-blur-xl transition-all hover:border-[#f5c451]/60 hover:bg-[#3f070a]/90">
-          <summary class="flex w-full cursor-pointer items-center justify-between gap-4 p-4 text-left text-[#f3ded7] transition-colors hover:text-[#f5c451]">
+        <details class="faq-item rounded-3xl border border-[#d81f26]/35 bg-[#2b0808]/90 p-2 shadow-[0_10px_30px_rgba(216,31,38,0.18)] backdrop-blur-xl transition-all hover:border-[#f5c451]/60 hover:bg-[#4a0a0d]/90">
+          <summary class="flex w-full cursor-pointer items-center justify-between gap-4 p-4 text-left text-[#f7e3c8] transition-colors hover:text-[#f5c451]">
             <span class="text-left text-sm leading-normal font-bold md:text-base">{faq.q}</span>
             <span aria-hidden="true" class="faq-icon ml-4 flex h-6 w-6 shrink-0 items-center justify-center text-2xl transition-transform duration-300 ease-in-out">
               +
@@ -61,7 +61,7 @@ const {
           </summary>
 
           <div class="faq-answer overflow-hidden">
-            <p class="px-4 pb-4 text-left text-base leading-relaxed text-[#f3ded7]/85">{faq.a}</p>
+            <p class="px-4 pb-4 text-left text-base leading-relaxed text-[#f7e3c8]/85">{faq.a}</p>
           </div>
         </details>
       ))

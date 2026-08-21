@@ -11,6 +11,10 @@ import { brandFlag, brandPick } from "../lib/brandProfile";
 // Math.random() in frontmatter runs at BUILD time and makes two builds of the
 // same domain differ. Keep the data-winner-* hooks and the data-* config on the
 // feed element; that is the whole interface the shared module reads.
+//
+// VEGUS1: crimson card on the near-black maroon ground, gold for the amount and
+// for the "สำเร็จ" pill, bright crimson for the pill that is still pending. The
+// bank badge colours below are the real banks' own and stay as they are.
 const bankPool = [
   { name: "KBank", color: "bg-[#1155cc]", icon: kbankLogo.src },
   { name: "SCB", color: "bg-[#4e1c80]", icon: scbLogo.src },
@@ -19,8 +23,8 @@ const bankPool = [
   { name: "TTB", color: "bg-[#ca8a04]", icon: ttbLogo.src },
 ];
 
-// Same market names LottoGrid and LoginRtpSection print.
-const marketPool = ["หวยรัฐบาลไทย", "หวยฮานอย", "หวยลาวพัฒนา", "หวยยี่กี 88 รอบ", "หวยมาเลย์", "หวยหุ้นไทย"];
+// The same game categories LoginRtpSection's reference table prints.
+const marketPool = ["สล็อตออนไลน์", "บาคาร่า", "รูเล็ต", "เสือมังกร", "ยิงปลา", "เกมไพ่"];
 
 const LETTERS = "abcdefghijklmnopqrstuvwxyz";
 const pick = (salt: string, n: number) => brandPick(Astro.site, salt, n);
@@ -35,19 +39,19 @@ const initialRows = Array.from({ length: 4 }, (_, i) => ({
   pending: brandFlag(Astro.site, `card-pending-${i}`),
 }));
 
-const PENDING_CLASS = "text-[#ff3d3d] bg-[#3f070a] border border-[#ff3d3d]/45 animate-pulse";
-const DONE_CLASS = "text-[#150202] bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#b8860b] border border-[#f5c451]/45 font-black shadow-md";
+const PENDING_CLASS = "text-[#ff3a33] bg-[#4a0a0d] border border-[#ff3a33]/45 animate-pulse";
+const DONE_CLASS = "text-[#2a0606] bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#c9931a] border border-[#f5c451]/45 font-black shadow-md";
 ---
 
 <div class="mx-auto w-full max-w-[1300px] p-4 font-sans">
   <section
-    aria-label="รายการถอนรางวัลหวยล่าสุดของสมาชิก LOTTO77"
-    class="relative overflow-hidden rounded-[30px] border-2 border-[#f5c451]/30 bg-[#2a0507]/92 px-4 py-8 shadow-[0_10px_30px_rgba(245,196,81,0.18)] backdrop-blur-md md:p-10">
-    <div aria-hidden="true" class="pointer-events-none absolute -top-10 left-1/2 h-32 w-64 -translate-x-1/2 rounded-full bg-[#d81220]/35 blur-[50px]"></div>
+    aria-label="รายการถอนเงินล่าสุดของสมาชิก VEGUS1"
+    class="relative overflow-hidden rounded-[30px] border-2 border-[#f5c451]/30 bg-[#2b0808]/92 px-4 py-8 shadow-[0_10px_30px_rgba(245,196,81,0.18)] backdrop-blur-md md:p-10">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-10 left-1/2 h-32 w-64 -translate-x-1/2 rounded-full bg-[#d81f26]/35 blur-[50px]"></div>
 
     <div class="relative z-10 mb-8 flex items-center justify-center gap-3">
       <span aria-hidden="true" class="text-2xl">🏆</span>
-      <p class="bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#ff3d3d] bg-clip-text text-xl font-black tracking-wide text-transparent md:text-3xl">รายการถอนรางวัลหวยล่าสุดของสมาชิก LOTTO77</p>
+      <p class="bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#ff3a33] bg-clip-text text-xl font-black tracking-wide text-transparent md:text-3xl">รายการถอนเงินล่าสุดของสมาชิก VEGUS1</p>
       <span aria-hidden="true" class="text-2xl">🏆</span>
     </div>
 
@@ -64,38 +68,38 @@ const DONE_CLASS = "text-[#150202] bg-gradient-to-r from-[#ffe08a] via-[#f5c451]
       {
         initialRows.map((row) => (
           <div data-winner-row class="winner-card transition-all duration-500 ease-out">
-            <div class="flex flex-col rounded-[20px] border border-[#3f070a] bg-[#150202]/95 p-5 shadow-sm transition-all hover:border-[#f5c451]/50 hover:bg-[#3f070a]/95">
+            <div class="flex flex-col rounded-[20px] border border-[#4a0a0d] bg-[#150404]/95 p-5 shadow-sm transition-all hover:border-[#f5c451]/50 hover:bg-[#4a0a0d]/95">
               <div class="mb-4 flex items-start justify-between">
                 <div data-winner-bank class={`flex h-10 w-10 items-center justify-center rounded-full border border-white/10 shadow-inner ${row.bank.color}`}>
                   <img data-winner-icon src={row.bank.icon} alt="" width="24" height="24" loading="lazy" decoding="async" class="h-6 w-6 object-contain" />
                 </div>
                 <div
                   data-winner-status
-                  data-pending-text="กำลังตรวจสอบโพย"
-                  data-done-text="ถอนรางวัลสำเร็จ"
+                  data-pending-text="กำลังตรวจสอบรายการ"
+                  data-done-text="ถอนเงินสำเร็จ"
                   data-pending-class={PENDING_CLASS}
                   data-done-class={DONE_CLASS}
                   class={`rounded-full px-3 py-1 text-[10px] ${row.pending ? PENDING_CLASS : DONE_CLASS}`}>
-                  {row.pending ? "กำลังตรวจสอบโพย" : "ถอนรางวัลสำเร็จ"}
+                  {row.pending ? "กำลังตรวจสอบรายการ" : "ถอนเงินสำเร็จ"}
                 </div>
               </div>
               <div>
-                <div class="text-sm text-[#c9a49c]">
+                <div class="text-sm text-[#d8b48f]">
                   ยูสเซอร์:{" "}
-                  <span data-winner-user class="font-bold text-[#f3ded7]">
+                  <span data-winner-user class="font-bold text-[#f7e3c8]">
                     {row.user}
                   </span>
                 </div>
                 <div class="mt-1 text-2xl font-black text-[#f5c451]">
-                  <span data-winner-amount>{row.amount}</span> <span class="text-xs text-[#c9a49c]">THB</span>
+                  <span data-winner-amount>{row.amount}</span> <span class="text-xs text-[#d8b48f]">THB</span>
                 </div>
-                <div class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-[#c9a49c]">
-                  <span class="rounded-full border border-[#d81220]/35 bg-[#2a0507] px-2.5 py-0.5 font-bold text-[#ff3d3d]">
+                <div class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-[#d8b48f]">
+                  <span class="rounded-full border border-[#d81f26]/35 bg-[#2b0808] px-2.5 py-0.5 font-bold text-[#ff3a33]">
                     <span data-winner-market>{row.market}</span>
                   </span>
                   <span>
-                    เลขอ้างอิงโพย:{" "}
-                    <span data-winner-ref data-ref-length="8" class="font-mono text-[#f3ded7]">
+                    เลขอ้างอิงรายการ:{" "}
+                    <span data-winner-ref data-ref-length="8" class="font-mono text-[#f7e3c8]">
                       {row.ref}
                     </span>
                   </span>
@@ -107,8 +111,8 @@ const DONE_CLASS = "text-[#150202] bg-gradient-to-r from-[#ffe08a] via-[#f5c451]
       }
     </div>
 
-    <p class="relative z-10 mt-6 text-center text-[11px] tracking-wide text-[#c9a49c]">
-      รายการด้านบนเป็นตัวอย่างการแสดงผลของระบบ สมาชิกควรตรวจสถานะโพยและประวัติผลรางวัลจากหน้าบัญชีของตนเองเป็นหลัก และเก็บเลขอ้างอิงของโพยไว้จนกว่าจะประกาศผลรางวัล
+    <p class="relative z-10 mt-6 text-center text-[11px] tracking-wide text-[#d8b48f]">
+      รายการด้านบนเป็นตัวอย่างการแสดงผลของระบบ สมาชิกควรตรวจสถานะฝากถอนและประวัติธุรกรรมจากหน้าบัญชีของตนเองเป็นหลัก และเก็บเลขอ้างอิงรายการไว้จนกว่าระบบจะแสดงสถานะสำเร็จ
     </p>
 
     <script type="application/json" data-winners-banks set:html={JSON.stringify(bankPool)} />

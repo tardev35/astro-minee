@@ -10,15 +10,16 @@ const targetUrl = "https://yoalink.com/q83b";
 // the first <style> block below. Kanit stays declared on either brand font: it
 // is also the Thai fallback inside the Google Sans stack.
 //
-// This brand is on Kanit (BRAND_FONT flipped back from google-sans), so
-// usesGoogleFonts is false and fontHref takes the second branch and asks Google
-// for Oswald ALONE. Oswald is the only face that always needs a CDN: the Latin
-// status heading uses it and it is not self-hosted. The brand wordmark does NOT
-// — .brand-identity draws the name in var(--font-sans), the same face the rest
-// of the site uses, so the wordmark here matches the navbar logotype instead of
-// introducing a third typeface on a screen that is on display for 1.5 seconds.
+// This brand is on Kanit (BRAND_FONT rotated off google-sans), so
+// usesGoogleFonts is false and fontHref takes the SECOND branch, asking Google
+// for Oswald and nothing else. Oswald is the only face that always needs a CDN:
+// the Latin status heading uses it and it is not self-hosted. The brand wordmark
+// does NOT — .brand-identity draws the name in var(--font-sans), the same face
+// the rest of the site uses, so the wordmark here matches the navbar logotype
+// instead of introducing a third typeface on a screen that is on display for
+// 1.5 seconds.
 //
-// That branch used to request "Kanit:wght@300;400;600" too, even though the
+// The kanit branch used to request "Kanit:wght@300;400;600" too, even though the
 // site self-hosts Kanit: a third-party request for weights nothing here draws
 // (300 and 600 are used zero times), and a query string byte-identical on every
 // Kanit brand in the portfolio — the shared signature BRAND_FONT exists to
@@ -31,7 +32,7 @@ const fontHref = usesGoogleFonts
 <html lang="th" style={`--font-sans: ${fontStack};`}>
   <head>
     <meta charset="utf-8" />
-    <title>CHICKYLUCKY | สมัครสมาชิกสล็อตผ่านช่องทางหลัก</title>
+    <title>VEGUS1 | สมัครสมาชิกพนันออนไลน์ผ่านช่องทางหลัก</title>
 
     {
       /* The docx has no SUB-PAGES row for สมัครสมาชิก, so this pair mirrors the
@@ -40,10 +41,10 @@ const fontHref = usesGoogleFonts
         "ทางเข้าเล่นและสมัครสมาชิก", which described /ทางเข้า instead and gave
         two routes the same promise.
         This stub is noindex, so verify-build.mjs skips the 150–160 window on it
-        (the check sits after `if (!indexable) continue;`).
+        (the check sits after `if (!indexable) continue;`); 120 characters here.
         Count CHARACTERS, not bytes: Thai is 3 bytes per character. */
     }
-    <meta name="description" content="CHICKYLUCKY สมัครสมาชิกผ่านช่องทางหลัก รองรับมือถือและคอมพิวเตอร์ พร้อมเลือกเกม ตรวจสอบโปรโมชั่น และจัดการบัญชีได้สะดวก" />
+    <meta name="description" content="VEGUS1 สมัครสมาชิกผ่านช่องทางหลัก รองรับมือถือและคอมพิวเตอร์ พร้อมเลือกเกม ตรวจสอบบัญชี โปรโมชั่น และสถานะรายการได้สะดวก" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {
@@ -84,29 +85,28 @@ const fontHref = usesGoogleFonts
     </style>
 
     <style>
-      /* CHICKYLUCKY is crimson red and bright chick-yellow: a near-black
-         red-brown page, a crimson primary for the orb and rings, and the logo's
-         yellow for the wordmark and highlights. The outgoing brand here was
-         also red, but a duskier crimson with a champagne gold — every hue below
-         moved, not just the name. Note the accent is now YELLOW, not gold: the
-         only gold left is --gold-deep, the coin shade the wordmark gradient
-         passes through on its way to red.
+      /* VEGUS1 is Las-Vegas casino luxury: crimson red and gold on a near-black
+         maroon page — a crimson orb inside gold rings, and a gold wordmark that
+         falls into red at its base, the way the logo's script does. The outgoing
+         brand here was banana yellow on dark brown, so the primary moved from
+         YELLOW to CRIMSON and the support colour from brown to MAROON; every hue
+         below changed, not just the name.
          Every variable is NAMED FOR THE COLOUR IT HOLDS, which previous brands
          stopped doing: this block once declared `--brand-gold` on brands with no
          gold in them and `--brand-red` on a blue one, so the next editor reused
          it by name and shipped the wrong hue. Rename with the value. */
       :root {
-        --ink: #1c0100;
-        --panel: rgba(58, 8, 6, 0.94);
-        --red: #e01b24;
-        --red-bright: #ff5252;
-        --red-deep: #6d0202;
-        --maroon: #540101;
-        --yellow: #fde41a;
-        --yellow-bright: #fff17a;
-        --gold-deep: #f0b429;
-        --text: #fdf3d8;
-        --text-dim: #e0bfa8;
+        --ink: #150404;
+        --panel: rgba(43, 8, 8, 0.94);
+        --crimson: #d81f26;
+        --crimson-bright: #ff3a33;
+        --maroon: #4a0a0d;
+        --maroon-deep: #2a0606;
+        --gold: #f5c451;
+        --gold-light: #ffe08a;
+        --gold-deep: #c9931a;
+        --text: #f7e3c8;
+        --text-dim: #d8b48f;
       }
 
       body {
@@ -114,7 +114,7 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         color: var(--text);
 
-        background: radial-gradient(circle at 50% 10%, rgba(224, 27, 36, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(109, 2, 2, 0.3) 0%, transparent 55%), var(--ink);
+        background: radial-gradient(circle at 50% 10%, rgba(216, 31, 38, 0.18) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(74, 10, 13, 0.45) 0%, transparent 55%), var(--ink);
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -128,11 +128,11 @@ const fontHref = usesGoogleFonts
         max-width: 450px;
         padding: 3.5rem;
         background: var(--panel);
-        border: 1px solid rgba(224, 27, 36, 0.4);
+        border: 1px solid rgba(216, 31, 38, 0.45);
         border-radius: 2rem;
         box-shadow:
-          0 1rem 3rem rgba(224, 27, 36, 0.2),
-          0 0 2rem rgba(109, 2, 2, 0.3);
+          0 1rem 3rem rgba(216, 31, 38, 0.24),
+          0 0 2rem rgba(74, 10, 13, 0.45);
         text-align: center;
         backdrop-filter: blur(10px);
       }
@@ -141,13 +141,13 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(180deg, var(--yellow-bright) 0%, var(--yellow) 30%, var(--gold-deep) 55%, var(--red-bright) 80%, var(--red-deep) 100%);
+        background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 35%, var(--gold-deep) 65%, var(--crimson-bright) 85%, var(--crimson) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         letter-spacing: 0.12em;
         margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 2px rgba(224, 27, 36, 0.35));
+        filter: drop-shadow(0 1px 2px rgba(21, 4, 4, 0.6));
       }
 
       .sophisticated-loader {
@@ -163,30 +163,30 @@ const fontHref = usesGoogleFonts
       .orb {
         width: 40px;
         height: 40px;
-        background: radial-gradient(circle, var(--red-bright) 0%, var(--red) 45%, var(--red-deep) 100%);
+        background: radial-gradient(circle, var(--crimson-bright) 0%, var(--crimson) 45%, var(--maroon) 100%);
         border-radius: 50%;
-        box-shadow: 0 0 2rem rgba(224, 27, 36, 0.38);
+        box-shadow: 0 0 2rem rgba(216, 31, 38, 0.45);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .ring {
         position: absolute;
         border-radius: 50%;
-        border: 3px solid rgba(224, 27, 36, 0.2);
+        border: 3px solid rgba(245, 196, 81, 0.2);
         animation: spin linear infinite;
       }
 
       .ring-1 {
         width: 100%;
         height: 100%;
-        border-top-color: var(--red);
+        border-top-color: var(--gold);
         animation-duration: 4s;
       }
 
       .ring-2 {
         width: 80%;
         height: 80%;
-        border-bottom-color: var(--yellow);
+        border-bottom-color: var(--crimson-bright);
         animation-duration: 6s;
         animation-direction: reverse;
       }
@@ -203,11 +203,11 @@ const fontHref = usesGoogleFonts
         0%,
         100% {
           transform: scale(1);
-          box-shadow: 0 0 2rem rgba(224, 27, 36, 0.38);
+          box-shadow: 0 0 2rem rgba(216, 31, 38, 0.45);
         }
         50% {
           transform: scale(1.15);
-          box-shadow: 0 0 3rem rgba(255, 82, 82, 0.5);
+          box-shadow: 0 0 3rem rgba(255, 58, 51, 0.55);
         }
       }
 
@@ -218,7 +218,7 @@ const fontHref = usesGoogleFonts
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text);
-        text-shadow: 0 1px 1px rgba(224, 27, 36, 0.25);
+        text-shadow: 0 1px 1px rgba(42, 6, 6, 0.6);
         margin: 0;
       }
       .status-text .p {
@@ -231,7 +231,7 @@ const fontHref = usesGoogleFonts
   </head>
   <body>
     <div class="premium-loading-container">
-      <div class="brand-identity">CHICKYLUCKY</div>
+      <div class="brand-identity">VEGUS1</div>
 
       <div class="sophisticated-loader">
         <div class="orb"></div>
@@ -241,7 +241,7 @@ const fontHref = usesGoogleFonts
 
       <div class="status-text">
         <h1 class="h1">CREATING SECURE ACCOUNT SESSION...</h1>
-        <p class="p">กำลังพาไปหน้าสมัครสมาชิก CHICKYLUCKY อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
+        <p class="p">กำลังพาไปหน้าสมัครสมาชิก VEGUS1 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
       </div>
     </div>
 

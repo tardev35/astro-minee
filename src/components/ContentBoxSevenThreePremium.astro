@@ -12,22 +12,24 @@ const rightHeading = titleright ?? title;
 // actually has a heading for — passing both invents a heading the docx does not
 // contain, and the page's inventory is diffed against the brief every rebrand.
 //
-// CHICKYLUCKY: deep maroon card, chick-yellow aura on one corner and the mid
-// red on the other so both brand accents appear without a second bright fill
-// behind text.
+// VEGUS1: deep maroon card, a gold aura on one corner and the mid crimson on
+// the other so both brand accents appear without a second bright fill behind
+// text.
 ---
 
 <section class="relative z-10 mx-auto mb-8 w-full max-w-7xl px-4 font-sans">
   <div
-    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#e01b24]/30 bg-gradient-to-br from-[#3a0806]/92 to-[#1c0100]/88 p-8 text-[#fdf3d8] shadow-[0_10px_30px_rgba(224,27,36,0.22)] backdrop-blur-xl transition-all duration-500 hover:border-[#fde41a]/60 hover:shadow-[0_15px_40px_rgba(253,228,26,0.3)] md:p-10">
-    <div aria-hidden="true" class="pointer-events-none absolute -top-24 -left-24 -z-10 h-48 w-48 rounded-full bg-[#fde41a]/20 blur-[60px] transition-all duration-500 group-hover:bg-[#fff17a]/28"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute -right-24 -bottom-24 -z-10 h-48 w-48 rounded-full bg-[#540101]/60 blur-[60px] transition-all duration-500 group-hover:bg-[#e01b24]/40"></div>
+    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#d81f26]/30 bg-gradient-to-br from-[#2b0808]/92 to-[#150404]/88 p-8 text-[#f7e3c8] shadow-[0_10px_30px_rgba(216,31,38,0.22)] backdrop-blur-xl transition-all duration-500 hover:border-[#f5c451]/60 hover:shadow-[0_15px_40px_rgba(245,196,81,0.3)] md:p-10">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-24 -left-24 -z-10 h-48 w-48 rounded-full bg-[#f5c451]/20 blur-[60px] transition-all duration-500 group-hover:bg-[#ffe08a]/28">
+    </div>
+    <div aria-hidden="true" class="pointer-events-none absolute -right-24 -bottom-24 -z-10 h-48 w-48 rounded-full bg-[#4a0a0d]/60 blur-[60px] transition-all duration-500 group-hover:bg-[#d81f26]/40">
+    </div>
 
     <div class="grid grid-cols-1 gap-10 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdf3d8]">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f7e3c8]">
         {
           titleleft && (
-            <h2 class="bg-gradient-to-r from-[#fff17a] via-[#fde41a] to-[#ff5252] bg-clip-text text-center text-xl leading-normal font-black tracking-widest text-transparent uppercase md:text-left">
+            <h2 class="bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#ff3a33] bg-clip-text text-center text-xl leading-normal font-black tracking-widest text-transparent uppercase md:text-left">
               {titleleft}
             </h2>
           )
@@ -35,12 +37,10 @@ const rightHeading = titleright ?? title;
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdf3d8] md:border-l md:border-[#e01b24]/30 md:pl-10">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f7e3c8] md:border-l md:border-[#d81f26]/30 md:pl-10">
         {
           rightHeading && (
-            <h2 class="mb-2 bg-gradient-to-r from-[#fff17a] via-[#fde41a] to-[#ff5252] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">
-              {rightHeading}
-            </h2>
+            <h2 class="mb-2 bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#ff3a33] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{rightHeading}</h2>
           )
         }
         <slot name="right" />

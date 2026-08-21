@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle7.astro";
-import Footer from "../components/FooterStyle3.astro";
+import Navbar from "../components/NavbarStyle6.astro";
+import Footer from "../components/FooterPremiumSumo.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,12 +55,12 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "CHICKYLUCKY | สล็อตเกมลิขสิทธิ์แท้ API ตรง แตกง่ายจ่ายไวปลอดภัย",
+  title = "VEGUS1 | เว็บพนันออนไลน์ครบวงจร ฝากถอนง่ายรับ true wallet มั่นคง",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings. This one is
-  // 155 (count CHARACTERS, not bytes — Thai is 3 bytes per character).
-  description = "CHICKYLUCKY รวมเกมสล็อตลิขสิทธิ์จากหลายผู้ให้บริการไว้ในระบบเดียว เชื่อมต่อผ่าน API ตรง รองรับมือถือและคอมพิวเตอร์ พร้อมโปรโมชั่นและสถานะรายการที่ตรวจสอบได้",
+  // 159 (count CHARACTERS, not bytes — Thai is 3 bytes per character).
+  description = "VEGUS1 เว็บพนันออนไลน์ครบวงจรที่รวมเกมหลายประเภทไว้ในบัญชีเดียว รองรับฝากถอนผ่าน True Wallet ทั้งบนมือถือและคอมพิวเตอร์ พร้อมระบบสมาชิกและการตรวจสอบสถานะรายการ",
   robots = "index, follow",
 } = Astro.props;
 
@@ -237,7 +237,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #1c0100;
+        background-color: #150404;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -290,7 +290,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ CHICKYLUCKY ข้อความ CHICKY LUCKY เว็บตรงแตกง่าย ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย จ่ายจริง พร้อมปุ่ม สมัครเลย ด้านซ้ายเป็นไก่สีขาวสวมผ้าคลุมสีแดงยืนบนวงกลมสีทอง ข้างตู้สล็อต JACKPOT เลข 777 ด้านขวาเป็นผู้หญิงในชุดสีแดง-เหลืองชี้นิ้วขึ้น ล้อมด้วยเหรียญทองและชิปคาสิโนบนพื้นหลังสีแดงเข้ม"
+          alt="แบนเนอร์ต้อนรับ VEGUS1 ข้อความ Vegus1 เว็บตรงแตกง่าย ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย จ่ายจริง พร้อมป้ายสามช่อง ระบบออโต้ รวดเร็วทันใจ รองรับมือถือ เล่นง่ายทุกระบบ มั่นคงปลอดภัย มาตรฐานสากล และปุ่ม สมัครเลย ด้านซ้ายบนเป็นโลโก้ Vegus1 ตัวอักษรแดงคู่กับไพ่และริบบิ้นข้อความ BEST BETTING AND CASINO ONLINE ด้านขวาเป็นผู้หญิงในชุดผ้าซาตินสีแดงถือไพ่โพแดงเอซ ข้างหลังเป็นตู้สล็อต JACKPOT เลข 777 ชิปคาสิโนสีแดงทอง และกองเหรียญทองบนพื้นหลังสีแดงเข้ม"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

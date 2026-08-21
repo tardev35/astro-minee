@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement5.astro";
+import Announcement from "../components/AnnouncementPremium.astro";
 
 import { Picture } from "astro:assets";
 
@@ -15,22 +15,23 @@ import { pageGraph } from "../lib/schema";
 // IMAGE PAGE, not an article: the whole body is the h1, one short intro
 // paragraph, the four promo images and one CTA. Zero section headings and no
 // second paragraph — the slides already print their own offer in large type, so
-// prose underneath only re-types what the visitor can already read. The
-// outgoing version had grown three section headings with a paragraph each; the
-// docx gives this route a Title and a Meta and never a body, so every one of
-// them was invented by an earlier rebrand. They were deleted, not translated.
+// prose underneath only re-types what the visitor can already read. The docx
+// gives this route a Title and a Meta and never a body, so any heading or extra
+// paragraph found here was invented by an earlier rebrand and gets deleted, not
+// translated.
 //
-// The alt text below is verbatim from the brand spec §4 — the alt IS the Thai
+// The alt text below is verbatim from the brand spec §5 — the alt IS the Thai
 // printed on the artwork (the offer, the sub-line, the button and the scene).
-// The wordmark drawn on the slides reads "CHICKY LUCKY" as two words; the brand
-// name in copy is CHICKYLUCKY, so the alt names the logo by the brand.
-const pageTitle = "โปรโมชั่น CHICKYLUCKY รวมสิทธิพิเศษสำหรับสมาชิกสายสล็อต";
+// slide1-4 are all .png in this drop; banner2.png is stale inventory from a
+// previous brand and is deliberately NOT imported here.
+const pageTitle = "โปรโมชั่น VEGUS1 รวมสิทธิพิเศษสำหรับสมาชิก";
 
-// docx SUB-PAGES Meta ของหน้าโปรโมชั่น (130 ตัวอักษร) + วรรคปิดท้ายหนึ่งวรรค
-// ให้ผ่านเกท DESC_MIN 150 ของ tools/verify-build.mjs ซึ่งยกเว้นให้เฉพาะหน้าแรก
-// เท่านั้น นับเป็น "ตัวอักษร" ไม่ใช่ไบต์ (ไทย 3 ไบต์/ตัว) — สตริงนี้วัดได้ 159 ตัวอักษร
+// Title/Meta come from the brand spec §6 verbatim — length-checked against
+// tools/verify-build.mjs (DESC_MIN 150 / DESC_MAX 160), which counts
+// CHARACTERS not bytes (Thai is 3 bytes/char) and exempts only the home page.
+// Measured at 159 characters. Do not re-word, pad or trim it.
 const pageDescription =
-  "CHICKYLUCKY รวมโปรโมชั่นสล็อตเกมลิขสิทธิ์ โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจน ช่วยให้เลือกโปรได้เหมาะกับการใช้งาน ควรอ่านเงื่อนไขก่อนรับสิทธิ์";
+  "VEGUS1 รวมโปรโมชั่นเดิมพันออนไลน์ โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจน ช่วยให้เลือกโปรได้เหมาะกับงบและรูปแบบการใช้งาน อ่านเงื่อนไขก่อนรับสิทธิ์";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -42,29 +43,30 @@ const graph = pageGraph(Astro, {
   primaryImagePath: pro1.src,
 });
 
-// Hover border is the chick-yellow accent rather than the palette's deep red: a
-// #6d0202 edge on the near-black maroon page is invisible, so the hover state
-// would read as no state at all.
+// Crimson carries the surfaces here (border, rule, glow) and gold carries the
+// text — the same two-tone split the artwork uses. A #4a0a0d edge on the
+// near-black maroon page would read as no border at all, so the resting border
+// is the primary crimson accent rather than the mid surface.
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#e01b24]/35 object-contain shadow-[0_10px_30px_rgba(224,27,36,0.20)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#fde41a]/55 hover:shadow-[0_15px_40px_rgba(253,228,26,0.30)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#d81f26]/40 object-contain shadow-[0_10px_30px_rgba(216,31,38,0.24)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#ff3a33]/65 hover:shadow-[0_15px_40px_rgba(245,196,81,0.26)]";
 ---
 
-<MainLayout title="CHICKYLUCKY | โปรโมชั่นสล็อตเกมแท้และสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
+<MainLayout title="VEGUS1 | โปรโมชั่นเดิมพันออนไลน์และสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#fdf3d8]">
-        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#fde41a]">CHICKYLUCKY</strong> เปิดให้สมาชิกไว้ในที่เดียว ทั้งโบนัสต้อนรับสมาชิกใหม่ โบนัสฝากครั้งแรก โปรช่วงนาทีทอง และวงล้อไก่นำโชคที่ลุ้นเครดิตฟรีได้ทุกวัน
+      <p class="mb-8 text-left text-base leading-relaxed text-[#f7e3c8]">
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#f5c451]">VEGUS1</strong> เปิดให้สมาชิกไว้ในที่เดียว ทั้งโบนัสต้อนรับสมาชิกใหม่ โบนัสฝากครั้งแรก โปรช่วงนาทีทอง และวงล้อโชคดีที่ลุ้นเครดิตฟรีได้ทุกวัน
         ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ก่อนกดรับสิทธิ์ควรตรวจยอดฝากขั้นต่ำ ช่วงเวลาที่กำหนด และเงื่อนไขการถอนให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากันและปรับได้ตามรอบ
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น CHICKYLUCKY ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที และปุ่ม รับโปรเลย ใต้ปุ่มเขียนว่า โปรต้อนรับสำหรับสมาชิกใหม่ ภาพผู้หญิงในชุดกีฬาสีแดง-เหลืองชี้นิ้วขึ้น ข้างซ้ายเป็นตู้สล็อต JACKPOT เลข 777 กองเหรียญทอง ชิปคาสิโน และไก่สวมผ้าคลุมสีแดงโลโก้ CHICKY LUCKY บนพื้นหลังสีแดงเข้ม"
+          alt="แบนเนอร์โปรโมชั่น VEGUS1 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที ป้ายกำกับ โปรต้อนรับสำหรับสมาชิกใหม่ และปุ่ม รับโปรเลย ภาพผู้หญิงในชุดซาตินสีแดงสลับทองชี้มือไปทางขวา กองเหรียญทอง ชิปคาสิโนสีแดง ตู้สล็อต JACKPOT เลข 777 และไพ่ บนพื้นหลังสีแดงเข้มสลับทอง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -78,7 +80,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น CHICKYLUCKY ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก และปุ่ม ฝากเลย ภาพผู้หญิงในชุดสีแดง-เหลืองยืนกอดอก ข้างหลังเป็นตู้สล็อต JACKPOT 777 มีไก่สวมผ้าคลุมสีแดง กองเหรียญทอง ชิปคาสิโน และไพ่ A กับ K บนพื้นหลังสีแดงเข้ม"
+          alt="แบนเนอร์โปรโมชั่น VEGUS1 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ป้ายกำกับ ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย และปุ่ม ฝากเลย ภาพผู้หญิงในชุดซาตินสีแดงสลับทอง ตู้สล็อต JACKPOT 777 กองเหรียญทอง ชิปคาสิโนสีแดงและทอง และไพ่เอซ บนพื้นหลังสีแดงเข้ม"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -92,7 +94,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น CHICKYLUCKY ข้อความ นาทีทอง 12:00 - 14:00 รับเพิ่ม 15% เฉพาะช่วงเวลาที่กำหนด และปุ่ม ร่วมโปรเลย ภาพนาฬิกาเรือนทองด้านหลังตัวเลข ผู้หญิงในชุดสีแดง-เหลือง ตู้สล็อต JACKPOT 777 ไก่สวมผ้าคลุมสีแดง ชิปคาสิโนและกองเหรียญทองบนพื้นหลังสีแดงเข้ม"
+          alt="แบนเนอร์โปรโมชั่น VEGUS1 ข้อความ นาทีทอง 21:00 - 23:00 รับเพิ่ม 15% เฉพาะช่วงเวลาที่กำหนด และปุ่ม ร่วมโปรเลย ภาพหน้าปัดนาฬิกาสีทองขนาดใหญ่พร้อมเลขโรมัน ผู้หญิงในชุดซาตินสีแดงสลับทองยกมือประกอบ ตู้สล็อต JACKPOT 777 ชิปคาสิโน Vegus1 และกองเหรียญทอง บนพื้นหลังสีแดงเข้มสลับทอง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -106,7 +108,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น CHICKYLUCKY ข้อความ วงล้อไก่นำโชค ลุ้นเครดิตฟรีสูงสุด 888 บาท หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่ม หมุนเลย ภาพวงล้อเสี่ยงโชคสีแดง-ครีมมีตัวเลข 888 200 100 50 30 20 และรูปไก่ตรงกลาง ข้างขวาเป็นผู้หญิงในชุดสีแดง-เหลืองชี้นิ้วขึ้น ล้อมด้วยเหรียญทองและชิปคาสิโนบนพื้นหลังสีแดงเข้ม"
+          alt="แบนเนอร์โปรโมชั่น VEGUS1 ข้อความ วงล้อโชคดี ลุ้นเครดิตฟรี 888 บาท หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่ม หมุนเลย ภาพวงล้อเสี่ยงโชคสีแดงสลับทองแบ่งช่องเป็น 500 888 188 288 80 100 50 และ 300 บาท มีคำว่า ลุ้นเลย อยู่กลางวงล้อ ข้างวงล้อเป็นผู้หญิงในชุดซาตินสีแดงสลับทอง ตู้สล็อต JACKPOT 777 กองเหรียญทองและชิปคาสิโน บนพื้นหลังสีแดงเข้ม"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -122,8 +124,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#fde41a]/60 bg-gradient-to-r from-[#ff5252] via-[#e01b24] to-[#6d0202] px-10 py-3.5 text-lg font-black text-[#fff17a] shadow-[0_10px_30px_rgba(224,27,36,0.28)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(253,228,26,0.40)]">
-          สมัครสมาชิก CHICKYLUCKY
+          class="flex items-center justify-center rounded-lg border border-[#f5c451]/60 bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#c9931a] px-10 py-3.5 text-lg font-black text-[#2a0606] shadow-[0_10px_30px_rgba(245,196,81,0.32)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(216,31,38,0.40)]">
+          สมัครสมาชิก VEGUS1
         </a>
       </div>
     </div>

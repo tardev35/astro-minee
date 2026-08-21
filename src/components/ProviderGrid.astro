@@ -4,51 +4,52 @@
 // the brief. The accessible name for the region lives on the section's
 // aria-label instead.
 //
-// Copy follows the CHICKYLUCKY brief, docx section 2: จัดหมวดเกมตามผู้ให้บริการ
-// ธีม หรือรูปแบบฟีเจอร์, ก่อนเลือกควรตรวจกติกา ตารางการจ่าย และระดับความผันผวน
-// ของแต่ละเกม เพื่อให้เหมาะกับงบและสไตล์การเล่นของตนเอง. The tiles describe the
-// ways a game can be filtered and what to read before picking one — no game
-// studio is named, because nothing in the brief states which studios are on the
-// system and an invented list is a claim the site cannot back.
-const providers = [
-  { name: "จัดตามผู้ให้บริการ", desc: "รวมเกมของแต่ละค่ายไว้เป็นหมวด เปิดดูรายชื่อเกมทั้งค่ายได้ในคลิกเดียว", tag: "เลือกตามค่าย", icon: "🏷️" },
-  { name: "จัดตามธีมของเกม", desc: "ธีมสัตว์นำโชค ผลไม้คลาสสิก ตำนาน หรือแนวสมัยใหม่ เลือกตามที่ชอบ", tag: "เลือกตามธีม", icon: "🎨" },
-  { name: "จัดตามรูปแบบฟีเจอร์", desc: "ฟรีสปิน ตัวคูณ สัญลักษณ์พิเศษ หรือรอบโบนัส แยกหมวดให้หาง่าย", tag: "เลือกตามฟีเจอร์", icon: "✨" },
-  { name: "กติกาของแต่ละเกม", desc: "อ่านสัญลักษณ์ เส้นจ่าย และเงื่อนไขรอบพิเศษให้เข้าใจก่อนเริ่มเล่น", tag: "เริ่มจากกติกา", icon: "📘" },
-  { name: "ตารางการจ่าย", desc: "อัตราจ่ายของแต่ละสัญลักษณ์ไม่เท่ากัน ควรเปิดดูตารางก่อนตัดสินใจ", tag: "ดูตารางจ่าย", icon: "📊" },
-  { name: "ระดับความผันผวน", desc: "เกมที่จ่ายย่อยถี่กับเกมที่ต้องรอรอบใหญ่ เหมาะกับงบคนละแบบ", tag: "เทียบความผันผวน", icon: "📈" },
+// Copy follows the BANANAV3 brief, docx section 2: ผู้ใช้งานสามารถเลือกทั้ง
+// บาคาร่าและหวยตามความสนใจ โดยแต่ละประเภทมีรูปแบบเดิมพัน ความเสี่ยง และวิธีคิด
+// ผลแตกต่างกัน ควรตรวจสอบกติกา อัตราจ่าย และช่วงเวลารับรายการก่อนเริ่ม. The
+// tiles name the two categories the brief names and the things it says to read
+// before starting — no game studio and no lottery office is named, because
+// nothing in the brief states which are on the system and an invented list is a
+// claim the site cannot back.
+const categories = [
+  { name: "หมวดบาคาร่า", desc: "โต๊ะบาคาร่าแยกเป็นหมวดให้เลือกตามรูปแบบเดิมพันและเงื่อนไขของโต๊ะ", tag: "เลือกโต๊ะ", icon: "🎴" },
+  { name: "หมวดหวยออนไลน์", desc: "ประเภทหวยและงวดที่ยังเปิดรับรายการอยู่ ดูได้จากหน้าเดียว", tag: "เลือกประเภทหวย", icon: "🎟️" },
+  { name: "รูปแบบเดิมพัน", desc: "แต่ละประเภทมีตัวเลือกเดิมพันไม่เหมือนกัน ควรอ่านให้ครบก่อนกดยืนยัน", tag: "ดูรูปแบบเดิมพัน", icon: "🧭" },
+  { name: "กติกาของแต่ละประเภท", desc: "วิธีตัดสินผลของบาคาร่ากับการคิดผลรางวัลหวยใช้เกณฑ์คนละแบบ", tag: "เริ่มจากกติกา", icon: "📘" },
+  { name: "อัตราจ่ายอ้างอิง", desc: "อัตราจ่ายของแต่ละตัวเลือกไม่เท่ากัน ควรเทียบก่อนตัดสินใจลงเดิมพัน", tag: "เทียบอัตราจ่าย", icon: "📊" },
+  { name: "ช่วงเวลารับรายการ", desc: "หวยมีเวลาปิดรับต่องวด ส่วนโต๊ะบาคาร่าเปิดตามรอบที่ระบบแสดง", tag: "ดูเวลารับรายการ", icon: "⏱️" },
   { name: "รองรับหลายอุปกรณ์", desc: "เปิดผ่านเบราว์เซอร์บนมือถือ แท็บเล็ต และคอมพิวเตอร์ด้วยบัญชีเดียว", tag: "ใช้ได้ทุกจอ", icon: "📱" },
 ];
 ---
 
-<section aria-label="เลือกเกมสล็อตบน CHICKYLUCKY ตามค่าย ธีม และรูปแบบฟีเจอร์" class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
+<section aria-label="เลือกบาคาร่าและหวยบน BANANAV3 พร้อมกติกา อัตราจ่าย และช่วงเวลารับรายการของแต่ละประเภท" class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
-    <p class="bg-gradient-to-r from-[#fff17a] via-[#fde41a] to-[#ff5252] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
-      เลือกเกมสล็อตบน <span class="text-[#fdf3d8]">CHICKYLUCKY</span> ได้จากหน้าเดียว
+    <p class="bg-gradient-to-r from-[#ffe97a] via-[#fed624] to-[#e8a317] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
+      เลือกบาคาร่าและหวยบน <span class="text-[#fdf1b3]">BANANAV3</span> ได้จากหน้าเดียว
     </p>
-    <div class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#fde41a] to-transparent"></div>
+    <div class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#fed624] to-transparent"></div>
   </div>
 
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5 xl:grid-cols-7">
     {
-      providers.map((provider) => (
+      categories.map((category) => (
         <a
           href="/register"
-          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#e01b24]/30 bg-[#3a0806]/92 p-5 shadow-[0_10px_30px_rgba(224,27,36,0.2)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#fde41a]/60 hover:bg-[#540101]/95 hover:shadow-[0_15px_40px_rgba(253,228,26,0.34)]">
-          <div class="pointer-events-none absolute inset-0 bg-[#540101]/35 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#e8a317]/30 bg-[#2e1a05]/92 p-5 shadow-[0_10px_30px_rgba(232,163,23,0.2)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#fed624]/60 hover:bg-[#241303]/95 hover:shadow-[0_15px_40px_rgba(254,214,36,0.34)]">
+          <div class="pointer-events-none absolute inset-0 bg-[#5b3304]/35 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#fff17a] via-[#fde41a] to-[#f0b429] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#1c0100] shadow-sm transition-transform duration-300 group-hover:scale-110">
-            {provider.tag}
+          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#ffe97a] via-[#fed624] to-[#e8a317] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#140b02] shadow-sm transition-transform duration-300 group-hover:scale-110">
+            {category.tag}
           </div>
 
           <div aria-hidden="true" class="mb-3 text-4xl transition-transform duration-300 group-hover:scale-125 group-hover:rotate-3">
-            {provider.icon}
+            {category.icon}
           </div>
-          <p class="text-center text-sm font-black text-[#fdf3d8] transition-colors group-hover:text-[#fde41a]">{provider.name}</p>
-          <p class="mt-1 text-center text-[10px] text-[#e0bfa8]">{provider.desc}</p>
+          <p class="text-center text-sm font-black text-[#fdf1b3] transition-colors group-hover:text-[#fed624]">{category.name}</p>
+          <p class="mt-1 text-center text-[10px] text-[#d9bd82]">{category.desc}</p>
 
-          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#e01b24]/30 bg-[#1c0100] py-1.5 text-center text-[11px] font-bold text-[#fde41a] shadow-inner transition-colors duration-300 group-hover:border-[#fde41a]/60 group-hover:bg-gradient-to-r group-hover:from-[#fff17a] group-hover:via-[#fde41a] group-hover:to-[#f0b429] group-hover:text-[#1c0100]">
-            เข้าดูเกม
+          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#e8a317]/30 bg-[#140b02] py-1.5 text-center text-[11px] font-bold text-[#fed624] shadow-inner transition-colors duration-300 group-hover:border-[#fed624]/60 group-hover:bg-gradient-to-r group-hover:from-[#ffe97a] group-hover:via-[#fed624] group-hover:to-[#e8a317] group-hover:text-[#140b02]">
+            เข้าดูหมวดนี้
           </span>
         </a>
       ))
