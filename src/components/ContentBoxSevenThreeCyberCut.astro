@@ -6,49 +6,48 @@ export interface Props {
 }
 const { titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
 
-// Both column titles are <h2> receiving their text from the page (the docx), so
-// pass only the column the brief actually has a heading for.
+// Both column titles receive their text from the page (the docx), so pass only
+// the column the brief actually has a heading for.
 // The clipped corner rules are decorative and carry -z-10 against the card's
 // `isolate`, so the slot content always paints above them without a wrapper.
 //
-// LASVEGAS889: the headings are flat #3fdcff rather than clip-text — the solid
-// neon cyan clears contrast on the royal-navy card at this size, and the >_
-// glyph beside them stays wordmark gold so the terminal motif keeps both
-// accents.
+// CHICKYLUCKY: the headings are flat #fde41a rather than clip-text — the solid
+// chick-yellow clears contrast on the maroon card at this size, and the >_
+// glyph beside them stays bright red so the terminal motif keeps both accents.
 ---
 
 <section class="mx-auto mb-6 w-full max-w-7xl px-4 font-sans">
   <div
-    class="relative isolate w-full border border-[#1f5ce0]/30 bg-[#0b1740]/92 p-8 text-[#cddcf7] shadow-[0_10px_30px_rgba(31,92,224,0.22)] backdrop-blur-md transition-all duration-300 hover:border-[#3fdcff]/60 hover:shadow-[0_15px_40px_rgba(63,220,255,0.28)]"
+    class="relative isolate w-full border border-[#e01b24]/30 bg-[#3a0806]/92 p-8 text-[#fdf3d8] shadow-[0_10px_30px_rgba(224,27,36,0.22)] backdrop-blur-md transition-all duration-300 hover:border-[#fde41a]/60 hover:shadow-[0_15px_40px_rgba(253,228,26,0.28)]"
     style="clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);">
-    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#3fdcff] to-transparent"></div>
-    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#f2b829] to-transparent"></div>
-    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#3fdcff] to-transparent"></div>
-    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#f2b829] to-transparent"></div>
+    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#fde41a] to-transparent"></div>
+    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#ff5252] to-transparent"></div>
+    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#fde41a] to-transparent"></div>
+    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#ff5252] to-transparent"></div>
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#cddcf7]">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdf3d8]">
         {
           titleleft && (
-            <div class="flex items-baseline gap-2 border-b border-[#1f5ce0]/30 pb-2">
-              <span aria-hidden="true" class="font-mono text-[#f2b829]">
+            <div class="flex items-baseline gap-2 border-b border-[#e01b24]/30 pb-2">
+              <span aria-hidden="true" class="font-mono text-[#ff5252]">
                 &gt;_
               </span>
-              <HeadingTag class="text-xl leading-normal font-black text-[#3fdcff] uppercase">{titleleft}</HeadingTag>
+              <HeadingTag class="text-xl leading-normal font-black text-[#fde41a] uppercase">{titleleft}</HeadingTag>
             </div>
           )
         }
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#cddcf7] md:border-l md:border-[#1f5ce0]/30 md:pl-8">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdf3d8] md:border-l md:border-[#e01b24]/30 md:pl-8">
         {
           titleright && (
-            <div class="flex items-baseline gap-2 border-b border-[#1f5ce0]/30 pb-2">
-              <span aria-hidden="true" class="font-mono text-[#f2b829]">
+            <div class="flex items-baseline gap-2 border-b border-[#e01b24]/30 pb-2">
+              <span aria-hidden="true" class="font-mono text-[#ff5252]">
                 &gt;_
               </span>
-              <HeadingTag class="text-xl leading-normal font-black text-[#3fdcff] uppercase">{titleright}</HeadingTag>
+              <HeadingTag class="text-xl leading-normal font-black text-[#fde41a] uppercase">{titleright}</HeadingTag>
             </div>
           )
         }

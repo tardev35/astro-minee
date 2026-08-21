@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle10.astro";
-import Footer from "../components/FooterStyle2.astro";
+import Navbar from "../components/NavbarStyle7.astro";
+import Footer from "../components/FooterStyle3.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,12 +55,12 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "LOTTO77 | เว็บซื้อหวยออนไลน์อันดับ 1 ซื้อง่ายสะดวกจ่ายไว เลขอั้นน้อย",
+  title = "CHICKYLUCKY | สล็อตเกมลิขสิทธิ์แท้ API ตรง แตกง่ายจ่ายไวปลอดภัย",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings. This one is
-  // 153 (count CHARACTERS, not bytes — Thai is 3 bytes per character).
-  description = "LOTTO77 เว็บซื้อหวยออนไลน์ เลือกประเภทหวย กรอกเลข และตรวจโพยได้ในระบบเดียว รองรับมือถือและคอมพิวเตอร์ พร้อมอัตราจ่าย เวลาเปิดรับ และผลรางวัลที่ตรวจสอบได้",
+  // 155 (count CHARACTERS, not bytes — Thai is 3 bytes per character).
+  description = "CHICKYLUCKY รวมเกมสล็อตลิขสิทธิ์จากหลายผู้ให้บริการไว้ในระบบเดียว เชื่อมต่อผ่าน API ตรง รองรับมือถือและคอมพิวเตอร์ พร้อมโปรโมชั่นและสถานะรายการที่ตรวจสอบได้",
   robots = "index, follow",
 } = Astro.props;
 
@@ -237,7 +237,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #150202;
+        background-color: #1c0100;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -290,7 +290,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ LOTTO77 โลโก้ 77Lotto สีขาวบนแถบแดงขอบทอง เหนือข้อความ 77Lotto เว็บหวยออนไลน์ครบวงจร และ ซื้อหวยง่าย ลุ้นได้ทุกงวด จ่ายจริง ถัดลงมาเป็นแถบ ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย และป้ายตลาดหวยสี่ป้าย หวยรัฐบาล หวยลาว หวยฮานอย หวยยี่กี พร้อมปุ่มแดง สมัครเลย ด้านขวาเป็นผู้หญิงในชุดกี่เพ้าสีแดงถือสลากกินแบ่งเป็นพัด ฉากหลังสีแดงเข้มมีเครื่องออกรางวัลลูกบอลหวย เงาปราสาทวัดไทย ตารางเลขยี่กี ลูกบอลหวยเลข 77 3 และ 8 กับกองเหรียญทอง"
+          alt="แบนเนอร์ต้อนรับ CHICKYLUCKY ข้อความ CHICKY LUCKY เว็บตรงแตกง่าย ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย จ่ายจริง พร้อมปุ่ม สมัครเลย ด้านซ้ายเป็นไก่สีขาวสวมผ้าคลุมสีแดงยืนบนวงกลมสีทอง ข้างตู้สล็อต JACKPOT เลข 777 ด้านขวาเป็นผู้หญิงในชุดสีแดง-เหลืองชี้นิ้วขึ้น ล้อมด้วยเหรียญทองและชิปคาสิโนบนพื้นหลังสีแดงเข้ม"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

@@ -7,7 +7,7 @@ export interface Props {
   iconright?: string;
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
 }
-const { titleleft, titleright, label, iconleft = "🔐", iconright = "🎫", as: TitleTag = "p" } = Astro.props;
+const { titleleft, titleright, label, iconleft = "🔐", iconright = "🎰", as: TitleTag = "p" } = Astro.props;
 
 const sectionLabel = label ?? titleleft ?? titleright ?? "ข้อมูลประกอบ";
 
@@ -17,38 +17,40 @@ const sectionLabel = label ?? titleleft ?? titleright ?? "ข้อมูลป�
 // feeds it a real docx section heading passes as="h2" and gets a proper <h2>
 // with identical classes.
 //
-// LOTTO77: the left tile carries the brand crimson, the right tile the lucky
-// gold, and both put near-black maroon ink on their bright fill.
+// CHICKYLUCKY: the left tile carries the brand crimson, the right tile the
+// chick-yellow, and both put near-black maroon ink on their bright fill. Both
+// gradients stay in the bright half of their ramp on purpose — a fill that
+// fades to a deep shade would leave #1c0100 ink unreadable at the bottom.
 ---
 
 <section aria-label={sectionLabel} class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
-    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f3ded7]">
+    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdf3d8]">
       {
         titleleft && (
-          <div class="flex items-center gap-3 border-b border-[#d81220]/30 pb-3">
+          <div class="flex items-center gap-3 border-b border-[#e01b24]/30 pb-3">
             <span
               aria-hidden="true"
-              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#ff3d3d]/45 bg-gradient-to-br from-[#ff7b7b] via-[#ff3d3d] to-[#7d0000] text-sm text-[#150202] shadow-[0_5px_15px_rgba(216,18,32,0.35)]">
+              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#ff5252]/45 bg-gradient-to-br from-[#ff8a8a] via-[#ff5252] to-[#e01b24] text-sm text-[#1c0100] shadow-[0_5px_15px_rgba(224,27,36,0.35)]">
               {iconleft}
             </span>
-            <TitleTag class="text-xl leading-normal font-black tracking-widest text-[#f5c451] uppercase">{titleleft}</TitleTag>
+            <TitleTag class="text-xl leading-normal font-black tracking-widest text-[#fde41a] uppercase">{titleleft}</TitleTag>
           </div>
         )
       }
       <slot name="left" />
     </article>
 
-    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f3ded7]">
+    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdf3d8]">
       {
         titleright && (
-          <div class="flex items-center gap-3 border-b border-[#d81220]/30 pb-3">
+          <div class="flex items-center gap-3 border-b border-[#e01b24]/30 pb-3">
             <span
               aria-hidden="true"
-              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#f5c451]/60 bg-gradient-to-br from-[#ffe08a] via-[#f5c451] to-[#b8860b] text-sm text-[#150202] shadow-[0_5px_15px_rgba(245,196,81,0.35)]">
+              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#fde41a]/60 bg-gradient-to-br from-[#fff17a] via-[#fde41a] to-[#f0b429] text-sm text-[#1c0100] shadow-[0_5px_15px_rgba(253,228,26,0.35)]">
               {iconright}
             </span>
-            <TitleTag class="text-xl leading-normal font-black tracking-widest text-[#f5c451] uppercase">{titleright}</TitleTag>
+            <TitleTag class="text-xl leading-normal font-black tracking-widest text-[#fde41a] uppercase">{titleright}</TitleTag>
           </div>
         )
       }

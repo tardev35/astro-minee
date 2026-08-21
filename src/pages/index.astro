@@ -1,18 +1,19 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/Announcement3.astro";
-import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
-import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
-import ContentBoxSevenThree from "../components/ContentBoxSevenThree.astro";
-import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
-import ContentBoxTwoNeumorphism from "../components/ContentBoxTwoNeumorphism.astro";
-import ContentBoxTwoFloatingBadge from "../components/ContentBoxTwoFloatingBadge.astro";
-import LottoGrid from "../components/LottoGrid.astro";
+import Announcement from "../components/Announcement5.astro";
+import ContentBoxPremium from "../components/ContentBoxPremium.astro";
+import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
+import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
+import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
+import ContentBoxTwo from "../components/ContentBoxTwo.astro";
+import ContentBoxTwoPremium from "../components/ContentBoxTwoPremium.astro";
+import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
+import ProviderGrid from "../components/ProviderGrid.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
+import LatestWinners from "../components/LatestWinners4.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
-import LatestWinners from "../components/LatestWinners2.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
-import Faq from "../components/Faq3.astro";
+import Faq from "../components/Faq2.astro";
 import Navfoot from "../components/Navfoot.astro";
 
 import { Picture } from "astro:assets";
@@ -21,54 +22,55 @@ import { pageGraph } from "../lib/schema";
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
 // two of those per rebrand — both are spent here.
 //
-// slide3 prints "วงล้อเลขนำโชค" with a wheel of numbers around the logo, which
-// is the "pick a lottery type and enter your numbers" idea of docx section H2-1;
-// slide4 prints "ซื้อหวยครบ 300 บาท / รับคืน 5% ทุกงวด", i.e. a rate expressed
-// per งวด, which is what the H2-2 payout-rate section is about. slide1
-// (เครดิตฟรี 50 บาท) and slide2 (นาทีทอง 19:00–21:00) stay unused here and keep
-// rendering in SmoothCarousel and on /promotion.
+// slide4 prints "วงล้อไก่นำโชค" with a wheel of prizes around the rooster, i.e.
+// "pick something from a spread of options", which is the choose-a-game-by-
+// provider idea of docx H2-1; slide2 prints "ฝากครั้งแรก รับเพิ่ม 20%", a
+// deposit transaction, which is what the H2-5 transaction-status section is
+// about. slide1 (สมาชิกใหม่ รับโบนัส 50%) and slide3 (นาทีทอง 12:00–14:00) stay
+// unused here and keep rendering in SmoothCarousel and on /promotion.
 //
 // banner2.png is NOT imported anywhere: it predates this asset drop.
-// banner1/banner1-mobile are the hero and belong to MainLayout alone.
-import imgLuckyWheel from "../assets/slide3.png";
-import imgRebate from "../assets/slide4.png";
+// banner1/banner1-mobile/og.png are the hero and the share card, and belong to
+// MainLayout alone.
+import imgLuckyWheel from "../assets/slide4.png";
+import imgFirstDeposit from "../assets/slide2.png";
 
-const pageTitle = "LOTTO77 | เว็บซื้อหวยออนไลน์อันดับ 1 ซื้อง่ายสะดวกจ่ายไว เลขอั้นน้อย";
-const pageHeading = "LOTTO77 เว็บซื้อหวยออนไลน์อันดับ 1 ซื้อง่ายสะดวกจ่ายไว เลขอั้นน้อย";
+const pageTitle = "CHICKYLUCKY | สล็อตเกมลิขสิทธิ์แท้ API ตรง แตกง่ายจ่ายไวปลอดภัย";
+const pageHeading = "CHICKYLUCKY สล็อตเกมลิขสิทธิ์แท้ API ตรง แตกง่ายจ่ายไวปลอดภัย";
 
 // The docx Main SEO Meta Description, verbatim at the length it was written
-// (120 characters). DESC_MIN does not apply to the home page — verify-build.mjs
+// (122 characters). DESC_MIN does not apply to the home page — verify-build.mjs
 // exempts it precisely so the brand's own copy ships unpadded. Do not top it up
 // to 150.
-const pageDescription = "LOTTO77 เว็บซื้อหวยออนไลน์ เลือกเลขง่าย รองรับมือถือ เลขอั้นน้อยตามเงื่อนไข พร้อมตรวจโพย ผลรางวัล และสถานะรายการได้สะดวก";
+const pageDescription = "CHICKYLUCKY สล็อตเกมลิขสิทธิ์แท้ 100% API ตรง รองรับมือถือ ระบบใช้งานสะดวก ปลอดภัย พร้อมเกมหลากหลายและตรวจสอบรายการได้ง่าย";
 
-// The ticker default in Announcement3 is what sub-pages get; the home page
+// The ticker default in Announcement5 is what sub-pages get; the home page
 // always passes its own copy so the two never drift apart silently. No leading
 // emoji — the marquee renders the string twice.
 const announcement =
-  "LOTTO77 รวมทุกขั้นตอนของการซื้อหวยไว้ในระบบเดียว เลือกประเภทหวย กรอกตัวเลข และตรวจสอบโพยได้จากหน้าเดียว • ควรตรวจวันออกรางวัล เวลาเปิดรับ และอัตราจ่ายของแต่ละตลาดก่อนกรอกเลขทุกครั้ง • เลขอั้นน้อยพิจารณาตามสถานะที่ระบบแสดงในแต่ละงวด จึงควรเช็กสถานะเลขก่อนกดยืนยันโพย • ผลการออกรางวัลคาดเดาไม่ได้ ควรกำหนดวงเงินต่อหนึ่งงวดและใช้เฉพาะเงินที่ไม่กระทบค่าใช้จ่ายจำเป็น";
+  "CHICKYLUCKY รวมเกมสล็อตจากผู้ให้บริการหลายรายไว้ในระบบเดียว เชื่อมต่อผ่าน API ตรง เลือกเกมตามค่าย ธีม หรือรูปแบบฟีเจอร์ได้จากหน้าเดียว • ก่อนเลือกเกมควรตรวจกติกา ตารางการจ่าย และระดับความผันผวนให้เหมาะกับงบและสไตล์การเล่น • คำว่าเกมลิขสิทธิ์แท้ควรพิจารณาจากชื่อผู้ให้บริการและรายละเอียดที่ระบบแสดง ไม่ใช่จากข้อความโฆษณาเพียงอย่างเดียว • ควรตรวจยอดคงเหลือ ประวัติฝากถอน และสถานะรายการจากหน้าบัญชีทุกครั้ง และหลีกเลี่ยงการส่งคำขอซ้ำขณะรายการเดิมยังดำเนินการอยู่ • แตกง่ายจ่ายไวไม่ใช่การรับประกันผล ควรกำหนดวงเงินก่อนเริ่มเล่นทุกครั้ง";
 
 const altLuckyWheel =
-  "แบนเนอร์โปรโมชั่น LOTTO77 ข้อความ วงล้อเลขนำโชค ลุ้นเครดิตซื้อหวยสูงสุด 888 บาท พร้อมป้าย หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่ม หมุนเลย ภาพวงล้อเสี่ยงโชคขนาดใหญ่สีแดง-ทองมีตัวเลข 77 99 24 38 17 89 45 16 เรียงรอบโลโก้ LOTTO77 ตรงกลาง ล้อมด้วยใบสลากกินแบ่งรัฐบาลและกองเหรียญทองบนพื้นหลังสีแดงเข้ม";
+  "แบนเนอร์โปรโมชั่น CHICKYLUCKY ข้อความ วงล้อไก่นำโชค ลุ้นเครดิตฟรีสูงสุด 888 บาท หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่ม หมุนเลย ภาพวงล้อเสี่ยงโชคสีแดง-ครีมมีตัวเลข 888 200 100 50 30 20 และรูปไก่ตรงกลาง ข้างขวาเป็นผู้หญิงในชุดสีแดง-เหลืองชี้นิ้วขึ้น ล้อมด้วยเหรียญทองและชิปคาสิโนบนพื้นหลังสีแดงเข้ม";
 
-const altRebate =
-  "แบนเนอร์โปรโมชั่น LOTTO77 ข้อความ ซื้อหวยครบ 300 บาท รับคืน 5% ทุกงวด พร้อมป้าย ยิ่งซื้อ ยิ่งคุ้ม และปุ่ม รับสิทธิ์ ภาพผู้หญิงในชุดสีแดงถือใบสลากกินแบ่งรัฐบาลคลี่เป็นรูปพัด ตารางเลขหวย เหรียญสีแดง-ทอง และลูกบอลหวยเลข 7 3 8 บนพื้นหลังสีแดงเข้ม";
+const altFirstDeposit =
+  "แบนเนอร์โปรโมชั่น CHICKYLUCKY ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก และปุ่ม ฝากเลย ภาพผู้หญิงในชุดสีแดง-เหลืองยืนกอดอก ข้างหลังเป็นตู้สล็อต JACKPOT 777 มีไก่สวมผ้าคลุมสีแดง กองเหรียญทอง ชิปคาสิโน และไพ่ A กับ K บนพื้นหลังสีแดงเข้ม";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq3's own default, so the rendered markup and the FAQ JSON-LD below come out
+// Faq2's own default, so the rendered markup and the FAQ JSON-LD below come out
 // of the same array.
 const faqs = [
   {
-    q: "LOTTO77 ซื้อหวยออนไลน์ผ่านมือถือได้หรือไม่?",
-    a: "ระบบสามารถรองรับการใช้งานผ่านมือถือได้ตามช่องทางที่เว็บไซต์กำหนด สมาชิกควรตรวจประเภทหวย งวด เลข และจำนวนเงินให้ครบก่อนยืนยันโพย",
+    q: "CHICKYLUCKY ใช้ระบบ API ตรงหมายความว่าอย่างไร?",
+    a: "โดยทั่วไปหมายถึงการเชื่อมต่อระบบเว็บไซต์กับผู้ให้บริการเกมผ่าน API โดยตรง แต่ผู้ใช้งานควรตรวจสอบข้อมูลผู้ให้บริการและรายละเอียดที่เว็บไซต์แสดงประกอบด้วย",
   },
   {
-    q: "เลขอั้นน้อยของ LOTTO77 หมายถึงไม่มีเลขอั้นเลยหรือไม่?",
-    a: "ไม่ได้หมายความว่าไม่มีข้อจำกัดทุกเลข สถานะเลขอั้น ราคา และวงเงินรับอาจแตกต่างกันในแต่ละงวด จึงควรตรวจข้อมูลล่าสุดจากระบบก่อนซื้อ",
+    q: "เกมลิขสิทธิ์แท้ของ CHICKYLUCKY ตรวจสอบได้อย่างไร?",
+    a: "ควรดูชื่อผู้ให้บริการเกม ข้อมูลที่แสดงในหน้าเกม และรายละเอียดจากช่องทางหลักของเว็บไซต์ ไม่ควรตัดสินจากข้อความโฆษณาเพียงอย่างเดียว",
   },
   {
-    q: "LOTTO77 จ่ายไวทุกโพยหรือไม่?",
-    a: "ระยะเวลาการตรวจผลและสถานะรายการอาจขึ้นอยู่กับประเภทหวย การประกาศผล และขั้นตอนของระบบ จึงควรตรวจสถานะจากบัญชีและเงื่อนไขที่เกี่ยวข้องเป็นหลัก",
+    q: "คำว่าแตกง่ายจ่ายไวรับประกันผลหรือไม่?",
+    a: "ไม่สามารถรับประกันผลของเกมสล็อตหรือระยะเวลาธุรกรรมทุกกรณีได้ ผลลัพธ์ขึ้นอยู่กับเกม สถานะระบบ บัญชี และเงื่อนไขที่เกี่ยวข้อง",
   },
 ];
 
@@ -85,14 +87,14 @@ const graph = pageGraph(Astro, {
 
   <Announcement message={announcement} />
 
-  <ContentBoxNeumorphism as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#f3ded7]">
-      <strong class="text-[#f5c451]">LOTTO77</strong> เป็นแพลตฟอร์มหวยออนไลน์ที่ช่วยให้สมาชิกเลือกประเภทหวย กรอกตัวเลข และตรวจสอบโพยได้ผ่านระบบเดียว รองรับการใช้งานทั้งมือถือและคอมพิวเตอร์ พร้อมข้อมูลอัตราจ่าย
-      เวลาเปิดปิดรับเดิมพัน และสถานะรายการที่ตรวจสอบได้ก่อนยืนยัน ผู้เล่นควรกำหนดงบประมาณและตรวจรายละเอียดของหวยแต่ละประเภทก่อนซื้อทุกครั้ง
+  <ContentBoxPremium as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#fdf3d8]">
+      <strong class="text-[#fde41a]">CHICKYLUCKY</strong> เป็นแพลตฟอร์มเกมสล็อตออนไลน์ที่เน้นการเชื่อมต่อเกมผ่านระบบ API ตรงและการเข้าถึงเกมจากผู้ให้บริการหลายรูปแบบ รองรับทั้งมือถือและคอมพิวเตอร์ พร้อมระบบบัญชี
+      โปรโมชั่น และธุรกรรมที่จัดการจากหน้าเดียว ผู้ใช้งานควรตรวจสอบข้อมูลเกม กติกา และเงื่อนไขต่าง ๆ ก่อนเริ่มทุกครั้ง
     </p>
-  </ContentBoxNeumorphism>
+  </ContentBoxPremium>
 
-  <ContentBoxSevenThree titleright="เลือกประเภทหวยและกรอกเลขได้ง่ายบน LOTTO77">
+  <ContentBoxSevenThreePremium titleright="เลือกเกมสล็อตจากผู้ให้บริการได้ง่ายบน CHICKYLUCKY">
     <Picture
       slot="left"
       src={imgLuckyWheel}
@@ -105,20 +107,95 @@ const graph = pageGraph(Astro, {
       fallbackFormat="webp"
       quality={80}
       alt={altLuckyWheel}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#f5c451]/40 shadow-[0_10px_30px_rgba(216,18,32,0.3)]"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#fde41a]/40 shadow-[0_10px_30px_rgba(224,27,36,0.3)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f3ded7]">
-      ภายใน LOTTO77 สามารถจัดหมวดหวยให้ค้นหาได้สะดวก ไม่ว่าจะเป็นหวยรัฐบาล หวยรายวัน หรือประเภทอื่นที่ระบบรองรับ สมาชิกควรตรวจสอบวันออกรางวัล เวลาเปิดรับ และกติกาของแต่ละรายการก่อนกรอกเลข
-      เพื่อป้องกันการเลือกงวดหรือประเภทการเดิมพันผิด
+    <p slot="right" class="text-left text-base leading-relaxed text-[#fdf3d8]">
+      ภายใน CHICKYLUCKY สามารถจัดหมวดเกมตามผู้ให้บริการ ธีม หรือรูปแบบฟีเจอร์ ช่วยให้ผู้เล่นค้นหาเกมที่สนใจได้สะดวกขึ้น ก่อนเลือกควรตรวจสอบกติกา ตารางการจ่าย และระดับความผันผวนของแต่ละเกม
+      เพื่อให้เหมาะกับงบและสไตล์การเล่นของตนเอง
     </p>
-  </ContentBoxSevenThree>
+  </ContentBoxSevenThreePremium>
 
-  <LottoGrid />
+  <ProviderGrid />
 
-  <ContentBoxSevenThreeNeumorphism titleright="ตรวจอัตราจ่ายก่อนซื้อ ช่วยให้เข้าใจโพยมากขึ้น">
+  <ContentBoxTwo as="h2" titleleft="API ตรงช่วยให้การเชื่อมต่อเกมเป็นระบบมากขึ้น" iconleft="🔌">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#fdf3d8]">
+      การเชื่อมต่อผ่าน API ช่วยส่งข้อมูลระหว่างหน้าเว็บไซต์กับระบบเกมโดยตรงในเชิงเทคนิค ทำให้การเปิดเกมและอัปเดตสถานะต่าง ๆ เป็นขั้นตอนเดียวกัน อย่างไรก็ตาม ความเสถียรจริงอาจขึ้นอยู่กับผู้ให้บริการเกม
+      เครือข่าย และระบบของเว็บไซต์ในช่วงเวลานั้นด้วย
+    </p>
+
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#e01b24]/35 bg-[#1c0100]/75 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#fde41a] uppercase">
+        <span aria-hidden="true">📶</span>
+        สี่จุดที่ควรไล่ดูเมื่อเกมเปิดไม่ขึ้น
+      </p>
+      <span class="flex items-start gap-2.5 text-sm text-[#fdf3d8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5252]">①</span>
+        ตรวจสัญญาณอินเทอร์เน็ต แล้วลองสลับระหว่าง Wi-Fi กับเน็ตมือถือดูหนึ่งรอบ
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#fdf3d8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5252]">②</span>
+        ปิดเกมแล้วเปิดใหม่จากหน้ารวมเกม แทนการกดซ้ำค้างไว้ในหน้าเดิม
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#fdf3d8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5252]">③</span>
+        ตรวจว่าเบราว์เซอร์ที่ใช้อยู่เป็นเวอร์ชันล่าสุดและเปิดจากช่องทางหลักของเว็บไซต์
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#fdf3d8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5252]">④</span>
+        ถ้ายังเปิดไม่ขึ้น ให้เก็บชื่อเกม เวลา และอาการที่พบไว้แจ้งทีมงาน
+      </span>
+      <span class="mt-1 rounded-xl border border-[#fde41a]/35 bg-[#3a0806]/80 px-4 py-2.5 text-xs leading-relaxed text-[#e0bfa8]">
+        ความเสถียรของการเชื่อมต่อขึ้นอยู่กับผู้ให้บริการเกม เครือข่าย และระบบของเว็บไซต์ในช่วงเวลานั้น จึงอาจไม่เท่ากันในแต่ละช่วงเวลาและแต่ละเกม
+      </span>
+    </div>
+  </ContentBoxTwo>
+
+  <ContentBoxCyberCut as="h2" title="ตรวจสอบแหล่งที่มาของเกมบน CHICKYLUCKY ก่อนเริ่มเล่น">
+    <p class="text-left text-base leading-relaxed text-[#fdf3d8]">
+      หาก CHICKYLUCKY ระบุว่าเป็นเกมลิขสิทธิ์แท้ 100% ผู้ใช้งานควรพิจารณาข้อมูลผู้ให้บริการ ชื่อเกม และรายละเอียดที่แสดงในระบบประกอบ ไม่ควรอาศัยคำโฆษณาเพียงอย่างเดียว
+      การมีข้อมูลที่ตรวจสอบได้ช่วยให้ตัดสินใจเลือกเกมได้อย่างรอบคอบมากขึ้น
+    </p>
+  </ContentBoxCyberCut>
+
+  <ContentBoxTwoPremium as="h2" title="แตกง่ายควรพิจารณาควบคู่กับความผันผวนของเกม">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#fdf3d8]">
+      คำว่าแตกง่ายมักใช้สื่อถึงเกมที่มีฟีเจอร์โบนัสหรือจังหวะลุ้นรางวัลน่าสนใจ แต่ไม่ได้หมายความว่าจะได้ผลลัพธ์ตามคาดทุกครั้ง ผู้เล่นควรตรวจสอบอัตราจ่าย ความผันผวน และเงื่อนไขของเกม
+      พร้อมกำหนดวงเงินก่อนเริ่มเล่น
+    </p>
+
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#fde41a]/30 bg-[#1c0100]/75 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#fde41a] uppercase">
+        <span aria-hidden="true">🎯</span>
+        สี่ข้อที่ควรชั่งก่อนกดเดิมพันรอบแรก
+      </p>
+      <span class="flex items-start gap-2.5 text-sm text-[#fdf3d8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5252]">①</span>
+        อัตราจ่ายที่เกมระบุไว้เป็นค่าเฉลี่ยระยะยาว ไม่ใช่ผลของรอบใดรอบหนึ่ง
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#fdf3d8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5252]">②</span>
+        ความผันผวนต่ำจ่ายย่อยถี่ ส่วนความผันผวนสูงต้องรอรอบใหญ่และใช้เงินทุนต่างกัน
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#fdf3d8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5252]">③</span>
+        อ่านเงื่อนไขของรอบโบนัสและตัวคูณให้จบก่อนปรับเงินเดิมพันต่อรอบ
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#fdf3d8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5252]">④</span>
+        กำหนดวงเงินต่อรอบและวงเงินรวมไว้ล่วงหน้า แล้วหยุดเมื่อถึงเพดานที่ตั้งไว้
+      </span>
+      <span class="mt-1 rounded-xl border border-[#fde41a]/35 bg-[#3a0806]/80 px-4 py-2.5 text-xs leading-relaxed text-[#e0bfa8]">
+        คำว่าแตกง่ายจ่ายไวไม่ใช่การรับประกันผล ผลลัพธ์ขึ้นอยู่กับเกม สถานะระบบ บัญชี และเงื่อนไขที่เกี่ยวข้องในแต่ละกรณี
+      </span>
+    </div>
+  </ContentBoxTwoPremium>
+
+  <LoginRtpSection />
+
+  <ContentBoxSevenThreeCyberCut titleright="ติดตามสถานะธุรกรรมผ่านระบบของ CHICKYLUCKY">
     <Picture
       slot="left"
-      src={imgRebate}
+      src={imgFirstDeposit}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -127,107 +204,60 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt={altRebate}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#f5c451]/40 shadow-[0_10px_30px_rgba(216,18,32,0.3)]"
+      alt={altFirstDeposit}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#fde41a]/40 shadow-[0_10px_30px_rgba(224,27,36,0.3)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f3ded7]">
-      อัตราจ่ายของเลข 2 ตัว 3 ตัว วิ่ง หรือรูปแบบการเดิมพันอื่นอาจแตกต่างกัน ผู้เล่นควรตรวจราคาที่แสดงในระบบก่อนยืนยันโพยทุกครั้ง เพราะอัตราจ่ายและเงื่อนไขอาจเปลี่ยนตามประเภทหวย งวด หรือเลขที่เลือก
-      การตรวจข้อมูลก่อนซื้อช่วยลดความเข้าใจคลาดเคลื่อนภายหลัง
+    <p slot="right" class="text-left text-base leading-relaxed text-[#fdf3d8]">
+      สมาชิก CHICKYLUCKY ควรตรวจสอบยอดคงเหลือ ประวัติฝากถอน และสถานะรายการผ่านหน้าบัญชีทุกครั้ง หากพบรายการล่าช้าควรเก็บเวลา จำนวนเงิน และข้อมูลอ้างอิงไว้สำหรับตรวจสอบ
+      โดยหลีกเลี่ยงการส่งคำขอซ้ำขณะที่รายการเดิมยังดำเนินการอยู่
     </p>
-  </ContentBoxSevenThreeNeumorphism>
-
-  <ContentBoxFloatingBadge as="h2" title="เลขอั้นน้อยบน LOTTO77 ควรตรวจสถานะเลขก่อนยืนยัน">
-    <p class="text-left text-base leading-relaxed text-[#f3ded7]">
-      คำว่าเลขอั้นน้อยของ LOTTO77 ควรพิจารณาตามสถานะที่ระบบแสดงในแต่ละงวด เพราะเลขบางชุดอาจมีข้อจำกัด ราคาเปลี่ยน หรือหยุดรับเมื่อยอดถึงระดับที่กำหนด
-      สมาชิกจึงควรตรวจสถานะเลขและอัตราจ่ายล่าสุดก่อนกดยืนยันโพยทุกครั้ง
-    </p>
-  </ContentBoxFloatingBadge>
-
-  <ContentBoxTwoNeumorphism titleleft="จัดโพยหวยให้เป็นระเบียบก่อนส่งรายการ">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#f3ded7]">
-      ก่อนยืนยันควรตรวจตัวเลข ประเภทเดิมพัน จำนวนเงิน และยอดรวมของโพยอีกครั้ง โดยเฉพาะกรณีซื้อหลายเลขพร้อมกัน การแบ่งโพยเป็นชุดและตรวจทีละรายการช่วยลดความผิดพลาดจากการกรอกเลขสลับ
-      และควรเก็บเลขอ้างอิงของโพยไว้จนกว่าจะประกาศผลรางวัล
-    </p>
-
-    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#d81220]/35 bg-[#150202]/75 p-5">
-      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f5c451] uppercase">
-        <span aria-hidden="true">🧾</span>
-        สี่จุดที่ควรไล่ตรวจก่อนกดยืนยันโพย
-      </p>
-      <span class="flex items-start gap-2.5 text-sm text-[#f3ded7]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff3d3d]">①</span>
-        ตัวเลขของทุกรายการตรงกับที่ตั้งใจกรอกไว้
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f3ded7]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff3d3d]">②</span>
-        ประเภทเดิมพันของแต่ละเลขถูกต้องตามที่เลือก
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f3ded7]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff3d3d]">③</span>
-        จำนวนเงินต่อรายการตรงกับที่ตั้งใจซื้อ
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f3ded7]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff3d3d]">④</span>
-        ยอดรวมของโพยทั้งชุดตรงกับงบที่กำหนดไว้
-      </span>
-      <span class="mt-1 rounded-xl border border-[#f5c451]/35 bg-[#2a0507]/80 px-4 py-2.5 text-xs leading-relaxed text-[#c9a49c]">
-        ซื้อหลายเลขพร้อมกันควรแบ่งโพยเป็นชุดแล้วตรวจทีละรายการ และเก็บเลขอ้างอิงของโพยไว้จนกว่าจะประกาศผลรางวัล
-      </span>
-    </div>
-  </ContentBoxTwoNeumorphism>
-
-  <ContentBoxTwoFloatingBadge as="h2" title="LOTTO77 ช่วยให้ติดตามโพยและผลรางวัลได้สะดวก">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#f3ded7]">
-      สมาชิก LOTTO77 สามารถใช้หน้าบัญชีเพื่อตรวจสอบโพยที่ส่งแล้ว สถานะรายการ และข้อมูลผลรางวัลตามที่ระบบแสดง การเช็กข้อมูลจากหน้าประวัติช่วยให้ตรวจสอบย้อนหลังได้ง่ายขึ้น
-      และควรหลีกเลี่ยงการยึดเฉพาะภาพหน้าจอหรือข้อความที่ส่งต่อจากแหล่งที่ไม่ชัดเจน
-    </p>
-
-    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#d81220]/35 bg-[#150202]/75 p-5">
-      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f5c451] uppercase">
-        <span aria-hidden="true">🔎</span>
-        ข้อมูลที่ดูได้จากหน้าบัญชีสมาชิก
-      </p>
-      <span class="flex items-start gap-2.5 text-sm text-[#f3ded7]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff3d3d]">①</span>
-        โพยที่ส่งแล้วในแต่ละงวด พร้อมเลขอ้างอิงของรายการ
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f3ded7]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff3d3d]">②</span>
-        สถานะรายการว่ายังตรวจสอบอยู่หรือดำเนินการเสร็จแล้ว
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f3ded7]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff3d3d]">③</span>
-        ข้อมูลผลรางวัลของงวดนั้นตามที่ระบบแสดง
-      </span>
-      <span class="mt-1 rounded-xl border border-[#f5c451]/35 bg-[#2a0507]/80 px-4 py-2.5 text-xs leading-relaxed text-[#c9a49c]">
-        ควรยึดข้อมูลจากหน้าประวัติของบัญชีตนเองเป็นหลัก แทนการเชื่อภาพหน้าจอหรือข้อความที่ส่งต่อกันมาจากแหล่งที่ไม่ชัดเจน
-      </span>
-    </div>
-  </ContentBoxTwoFloatingBadge>
+  </ContentBoxSevenThreeCyberCut>
 
   <LatestWinners />
 
-  <ContentBoxNeumorphism as="h2" title="ซื้อง่ายไม่ได้หมายถึงควรเพิ่มยอดเกินงบ">
-    <p class="text-left text-base leading-relaxed text-[#f3ded7]">
-      แม้ระบบหวยออนไลน์จะช่วยลดขั้นตอนในการเลือกเลขและส่งโพย แต่ผลการออกรางวัลไม่สามารถคาดเดาหรือรับประกันได้ ผู้ใช้ <strong class="text-[#f5c451]">LOTTO77</strong> ควรกำหนดวงเงินต่อหนึ่งงวด ไม่เพิ่มยอดเพื่อชดเชยการเสียจากงวดก่อน
-      และใช้เฉพาะเงินที่ไม่กระทบค่าใช้จ่ายจำเป็น
+  <ContentBoxSpecial as="h2" title="ใช้งาน CHICKYLUCKY อย่างปลอดภัยด้วยการดูแลบัญชี" iconleft="🔐" iconright="🛡️">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#fdf3d8]">
+      การใช้งาน CHICKYLUCKY ควรเริ่มจากช่องทางหลัก ตั้งรหัสผ่านที่ไม่ซ้ำกับบริการอื่น และไม่เปิดเผยรหัสยืนยันแก่บุคคลภายนอก ควรหลีกเลี่ยง Wi-Fi สาธารณะเมื่อต้องทำธุรกรรม
+      และออกจากระบบทุกครั้งเมื่อใช้อุปกรณ์ที่ไม่ใช่ของตนเอง
     </p>
-  </ContentBoxNeumorphism>
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ LOTTO77" faqs={faqs} />
+    <div slot="right" class="flex flex-col gap-2.5">
+      <p class="text-sm font-black tracking-widest text-[#fde41a] uppercase">ห้าจุดที่ควรทำเป็นนิสัยทุกครั้งที่เข้าใช้งาน</p>
+      <span class="flex items-start gap-2.5 text-sm text-[#fdf3d8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5252]">①</span>
+        เข้าใช้งานจากช่องทางหลักของเว็บไซต์เท่านั้น
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#fdf3d8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5252]">②</span>
+        ตั้งรหัสผ่านที่ไม่ซ้ำกับบริการอื่นที่ใช้อยู่
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#fdf3d8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5252]">③</span>
+        ไม่เปิดเผยรหัสยืนยันแก่บุคคลภายนอกไม่ว่ากรณีใด
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#fdf3d8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5252]">④</span>
+        หลีกเลี่ยง Wi-Fi สาธารณะเมื่อต้องทำธุรกรรม
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#fdf3d8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff5252]">⑤</span>
+        ออกจากระบบทุกครั้งเมื่อใช้อุปกรณ์ที่ไม่ใช่ของตนเอง
+      </span>
+    </div>
+  </ContentBoxSpecial>
 
-  <LoginRtpSection />
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ CHICKYLUCKY" faqs={faqs} />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ff3d3d]/60 bg-gradient-to-r from-[#d81220] via-[#7d0000] to-[#150202] px-4 py-3 text-sm font-black whitespace-nowrap text-[#f3ded7] shadow-[0_10px_30px_rgba(216,18,32,0.38)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#f5c451] hover:shadow-[0_15px_40px_rgba(245,196,81,0.42)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ff5252]/60 bg-gradient-to-r from-[#e01b24] via-[#6d0202] to-[#1c0100] px-4 py-3 text-sm font-black whitespace-nowrap text-[#fdf3d8] shadow-[0_10px_30px_rgba(224,27,36,0.38)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#fde41a] hover:shadow-[0_15px_40px_rgba(253,228,26,0.42)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffe08a]/70 bg-gradient-to-r from-[#ffe08a] to-[#f5c451] px-4 py-3 text-sm font-black whitespace-nowrap text-[#150202] shadow-[0_10px_30px_rgba(245,196,81,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe08a] hover:shadow-[0_15px_40px_rgba(245,196,81,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#fff17a]/70 bg-gradient-to-r from-[#fff17a] to-[#fde41a] px-4 py-3 text-sm font-black whitespace-nowrap text-[#1c0100] shadow-[0_10px_30px_rgba(253,228,26,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#fff17a] hover:shadow-[0_15px_40px_rgba(253,228,26,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>

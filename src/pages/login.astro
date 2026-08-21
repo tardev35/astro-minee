@@ -7,23 +7,22 @@ const targetUrl = "https://yoalink.com/q83b";
 // neither the @theme fallback for --font-sans nor the self-hosted Kanit
 // @font-face. Both have to be supplied here or the page renders in the browser
 // default while the rest of the site does not — hence the @font-face rules in
-// the first <style> block below. Kanit stays declared even on a Google Sans
-// brand: it is the Thai fallback inside that stack.
+// the first <style> block below. Kanit stays declared on either brand font: it
+// is also the Thai fallback inside the Google Sans stack.
 //
-// This brand is on Google Sans (BRAND_FONT flipped from kanit), so
-// usesGoogleFonts is true and fontHref resolves to the Google Sans + Oswald URL
-// below. Oswald is the only face that always needs a CDN: the Latin status
-// heading uses it and it is not self-hosted. The brand wordmark does NOT —
-// .brand-identity draws LOTTO77 in var(--font-sans), the same face the rest of
-// the site uses, so the wordmark here matches the navbar logotype instead of
+// This brand is on Kanit (BRAND_FONT flipped back from google-sans), so
+// usesGoogleFonts is false and fontHref takes the second branch and asks Google
+// for Oswald ALONE. Oswald is the only face that always needs a CDN: the Latin
+// status heading uses it and it is not self-hosted. The brand wordmark does NOT
+// — .brand-identity draws the name in var(--font-sans), the same face the rest
+// of the site uses, so the wordmark here matches the navbar logotype instead of
 // introducing a third typeface on a screen that is on display for 1.5 seconds.
 //
-// On a Kanit brand this ternary takes the other branch and asks Google for
-// Oswald alone. It used to request "Kanit:wght@300;400;600" there even though
-// the site self-hosts Kanit: a third-party request for weights nothing here
-// draws (300 and 600 are used zero times), and a query string byte-identical on
-// every Kanit brand in the portfolio — the shared signature BRAND_FONT exists
-// to break up. Do not put Kanit back into either branch.
+// That branch used to request "Kanit:wght@300;400;600" too, even though the
+// site self-hosts Kanit: a third-party request for weights nothing here draws
+// (300 and 600 are used zero times), and a query string byte-identical on every
+// Kanit brand in the portfolio — the shared signature BRAND_FONT exists to
+// break up. Do not put Kanit back into either branch.
 const fontHref = usesGoogleFonts
   ? "https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Oswald:wght@700&display=swap"
   : "https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap";
@@ -32,18 +31,18 @@ const fontHref = usesGoogleFonts
 <html lang="th" style={`--font-sans: ${fontStack};`}>
   <head>
     <meta charset="utf-8" />
-    <title>LOTTO77 | เข้าสู่ระบบซื้อหวยออนไลน์ผ่านช่องทางหลัก</title>
+    <title>CHICKYLUCKY | เข้าสู่ระบบสล็อตผ่านช่องทางหลัก</title>
 
     {
       /* Title and description are the docx SUB-PAGES row for เข้าสู่ระบบ,
-        carried VERBATIM at the length the brief supplies (122 characters).
+        carried VERBATIM at the length the brief supplies (119 characters).
         verify-build.mjs SKIPS the description length check on this file — the
         gate sits after `if (!indexable) continue;` and this stub is noindex
         (see the robots meta below) — so there is nothing here to pad up to the
         150–160 window and no reason to reword the brand's own sentence.
         Count CHARACTERS, not bytes: Thai is 3 bytes per character. */
     }
-    <meta name="description" content="LOTTO77 เข้าสู่ระบบผ่านช่องทางหลัก รองรับมือถือและคอมพิวเตอร์ พร้อมเลือกหวย ตรวจโพย ดูผลรางวัล และจัดการบัญชีได้อย่างสะดวก" />
+    <meta name="description" content="CHICKYLUCKY เข้าสู่ระบบผ่านช่องทางหลัก รองรับมือถือและคอมพิวเตอร์ พร้อมเลือกเกม ตรวจสอบโปรโมชั่น และจัดการบัญชีได้สะดวก" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {
@@ -84,26 +83,29 @@ const fontHref = usesGoogleFonts
     </style>
 
     <style>
-      /* LOTTO77 is Chinese-lucky crimson and gold: a near-black maroon page, a
-         crimson primary for the orb and rings, and gold for the wordmark and
-         highlights. The previous brand here was a royal-navy Las Vegas strip
-         with a neon-cyan accent — every hue below moved, not just the name.
+      /* CHICKYLUCKY is crimson red and bright chick-yellow: a near-black
+         red-brown page, a crimson primary for the orb and rings, and the logo's
+         yellow for the wordmark and highlights. The outgoing brand here was
+         also red, but a duskier crimson with a champagne gold — every hue below
+         moved, not just the name. Note the accent is now YELLOW, not gold: the
+         only gold left is --gold-deep, the coin shade the wordmark gradient
+         passes through on its way to red.
          Every variable is NAMED FOR THE COLOUR IT HOLDS, which previous brands
          stopped doing: this block once declared `--brand-gold` on brands with no
          gold in them and `--brand-red` on a blue one, so the next editor reused
          it by name and shipped the wrong hue. Rename with the value. */
       :root {
-        --ink: #150202;
-        --panel: rgba(42, 5, 7, 0.94);
-        --red: #d81220;
-        --red-bright: #ff3d3d;
-        --red-deep: #7d0000;
-        --maroon: #3f070a;
-        --gold: #f5c451;
-        --gold-bright: #ffe08a;
-        --gold-deep: #b8860b;
-        --text: #f3ded7;
-        --text-dim: #c9a49c;
+        --ink: #1c0100;
+        --panel: rgba(58, 8, 6, 0.94);
+        --red: #e01b24;
+        --red-bright: #ff5252;
+        --red-deep: #6d0202;
+        --maroon: #540101;
+        --yellow: #fde41a;
+        --yellow-bright: #fff17a;
+        --gold-deep: #f0b429;
+        --text: #fdf3d8;
+        --text-dim: #e0bfa8;
       }
 
       body {
@@ -111,7 +113,7 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         color: var(--text);
 
-        background: radial-gradient(circle at 50% 10%, rgba(216, 18, 32, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(125, 0, 0, 0.3) 0%, transparent 55%), var(--ink);
+        background: radial-gradient(circle at 50% 10%, rgba(224, 27, 36, 0.2) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(109, 2, 2, 0.3) 0%, transparent 55%), var(--ink);
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -125,11 +127,11 @@ const fontHref = usesGoogleFonts
         max-width: 450px;
         padding: 3.5rem;
         background: var(--panel);
-        border: 1px solid rgba(216, 18, 32, 0.4);
+        border: 1px solid rgba(224, 27, 36, 0.4);
         border-radius: 2rem;
         box-shadow:
-          0 1rem 3rem rgba(216, 18, 32, 0.2),
-          0 0 2rem rgba(125, 0, 0, 0.3);
+          0 1rem 3rem rgba(224, 27, 36, 0.2),
+          0 0 2rem rgba(109, 2, 2, 0.3);
         text-align: center;
         backdrop-filter: blur(10px);
       }
@@ -138,13 +140,13 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 30%, var(--gold-deep) 55%, var(--red-bright) 80%, var(--red-deep) 100%);
+        background: linear-gradient(180deg, var(--yellow-bright) 0%, var(--yellow) 30%, var(--gold-deep) 55%, var(--red-bright) 80%, var(--red-deep) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         letter-spacing: 0.12em;
         margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 2px rgba(216, 18, 32, 0.35));
+        filter: drop-shadow(0 1px 2px rgba(224, 27, 36, 0.35));
       }
 
       .sophisticated-loader {
@@ -162,14 +164,14 @@ const fontHref = usesGoogleFonts
         height: 40px;
         background: radial-gradient(circle, var(--red-bright) 0%, var(--red) 45%, var(--red-deep) 100%);
         border-radius: 50%;
-        box-shadow: 0 0 2rem rgba(216, 18, 32, 0.35);
+        box-shadow: 0 0 2rem rgba(224, 27, 36, 0.38);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .ring {
         position: absolute;
         border-radius: 50%;
-        border: 3px solid rgba(216, 18, 32, 0.2);
+        border: 3px solid rgba(224, 27, 36, 0.2);
         animation: spin linear infinite;
       }
 
@@ -183,7 +185,7 @@ const fontHref = usesGoogleFonts
       .ring-2 {
         width: 80%;
         height: 80%;
-        border-bottom-color: var(--gold);
+        border-bottom-color: var(--yellow);
         animation-duration: 6s;
         animation-direction: reverse;
       }
@@ -200,11 +202,11 @@ const fontHref = usesGoogleFonts
         0%,
         100% {
           transform: scale(1);
-          box-shadow: 0 0 2rem rgba(216, 18, 32, 0.35);
+          box-shadow: 0 0 2rem rgba(224, 27, 36, 0.38);
         }
         50% {
           transform: scale(1.15);
-          box-shadow: 0 0 3rem rgba(255, 61, 61, 0.5);
+          box-shadow: 0 0 3rem rgba(255, 82, 82, 0.5);
         }
       }
 
@@ -215,7 +217,7 @@ const fontHref = usesGoogleFonts
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text);
-        text-shadow: 0 1px 1px rgba(216, 18, 32, 0.25);
+        text-shadow: 0 1px 1px rgba(224, 27, 36, 0.25);
         margin: 0;
       }
       .status-text .p {
@@ -228,7 +230,7 @@ const fontHref = usesGoogleFonts
   </head>
   <body>
     <div class="premium-loading-container">
-      <div class="brand-identity">LOTTO77</div>
+      <div class="brand-identity">CHICKYLUCKY</div>
 
       <div class="sophisticated-loader">
         <div class="orb"></div>
@@ -238,7 +240,7 @@ const fontHref = usesGoogleFonts
 
       <div class="status-text">
         <h1 class="h1">AUTHENTICATING SECURE ACCESS...</h1>
-        <p class="p">กำลังพาไปหน้าเข้าสู่ระบบ LOTTO77 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
+        <p class="p">กำลังพาไปหน้าเข้าสู่ระบบ CHICKYLUCKY อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
       </div>
     </div>
 

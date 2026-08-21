@@ -4,27 +4,27 @@
 // สองรอบ screen reader จะอ่าน emoji ซ้ำตามไปด้วย และห้ามใส่ชื่อโดเมนลงในข้อความ
 // (verify-build.mjs จับ URL นอกโดเมนแล้วทำให้ build แดง)
 const {
-  message = "เฮงเฮง888 รวมเกมสล็อตหลายรูปแบบไว้ในระบบเดียว ทั้งสล็อตคลาสสิก เกมฟีเจอร์โบนัส และเกมธีมสมัยใหม่ เลือกได้จากกติกา รูปแบบการจ่าย และความผันผวนของแต่ละเกม • เงื่อนไขไม่กำหนดขั้นต่ำใช้ได้เฉพาะบางช่องทาง ควรตรวจสอบข้อกำหนดของช่องทางฝากถอนก่อนทำรายการทุกครั้ง • โปรโมชั่นแต่ละรายการกำหนดยอด เกมที่เข้าร่วม และเงื่อนไขการถอนไม่เท่ากัน ควรอ่านให้ครบก่อนกดรับสิทธิ์ • คำว่าแตกหนักวันนี้ไม่ใช่การรับประกันผลลัพธ์ ควรกำหนดวงเงินที่ยอมรับความเสี่ยงได้ก่อนเริ่มเล่น • รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ ตรวจสอบสถานะรายการได้จากหน้าบัญชีเดียว",
+  message = "CHICKYLUCKY รวมเกมสล็อตจากผู้ให้บริการหลายรายไว้ในระบบเดียว เชื่อมต่อผ่าน API ตรง เลือกเกมตามค่าย ธีม หรือรูปแบบฟีเจอร์ได้จากหน้าเดียว • ก่อนเลือกเกมควรตรวจกติกา ตารางการจ่าย และระดับความผันผวนให้เหมาะกับงบและสไตล์การเล่น • คำว่าเกมลิขสิทธิ์แท้ควรพิจารณาจากชื่อผู้ให้บริการและรายละเอียดที่ระบบแสดง ไม่ใช่จากข้อความโฆษณาเพียงอย่างเดียว • ควรตรวจยอดคงเหลือ ประวัติฝากถอน และสถานะรายการจากหน้าบัญชีทุกครั้ง และหลีกเลี่ยงการส่งคำขอซ้ำขณะรายการเดิมยังดำเนินการอยู่ • แตกง่ายจ่ายไวไม่ใช่การรับประกันผล ควรกำหนดวงเงินก่อนเริ่มเล่นทุกครั้ง",
 } = Astro.props;
 ---
 
 <div class="mx-auto w-full max-w-7xl px-4 py-3 font-sans">
-  <div class="relative overflow-hidden rounded-md border border-[#f5c518]/45 bg-[#072b14] shadow-[0_0_15px_rgba(245,197,24,0.18)]">
-    <div class="absolute top-0 -left-4 h-full w-8 -skew-x-12 bg-gradient-to-b from-[#9fcf3a] to-[#05461f]"></div>
-    <div class="absolute top-0 -right-4 h-full w-8 -skew-x-12 bg-[#f5c518]/35"></div>
+  <div class="relative overflow-hidden rounded-md border border-[#fde41a]/45 bg-[#3a0806] shadow-[0_0_15px_rgba(253,228,26,0.18)]">
+    <div class="absolute top-0 -left-4 h-full w-8 -skew-x-12 bg-gradient-to-b from-[#e01b24] to-[#6d0202]"></div>
+    <div class="absolute top-0 -right-4 h-full w-8 -skew-x-12 bg-[#fde41a]/35"></div>
 
     <div class="flex items-center">
-      <div class="relative z-10 flex w-12 shrink-0 items-center justify-center bg-gradient-to-b from-[#9fcf3a] to-[#05461f] py-2.5">
-        <span aria-hidden="true" class="animate-pulse text-lg drop-shadow-[0_0_5px_rgba(3,23,12,0.85)]">🔔</span>
+      <div class="relative z-10 flex w-12 shrink-0 items-center justify-center bg-gradient-to-b from-[#e01b24] to-[#6d0202] py-2.5">
+        <span aria-hidden="true" class="animate-pulse text-lg drop-shadow-[0_0_5px_rgba(28,1,0,0.85)]">🔔</span>
       </div>
 
       <div class="marquee-container relative flex-1 overflow-hidden py-2.5 pr-6">
-        <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#072b14] to-transparent"></div>
-        <div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-12 bg-gradient-to-l from-[#072b14] to-transparent"></div>
+        <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#3a0806] to-transparent"></div>
+        <div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-12 bg-gradient-to-l from-[#3a0806] to-transparent"></div>
 
-        <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-wide whitespace-nowrap text-[#e8f3e0]">
-          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#f5c518] shadow-[0_0_5px_rgba(245,197,24,0.85)]"></span>{message}</span>
-          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#f5c518] shadow-[0_0_5px_rgba(245,197,24,0.85)]"></span>{message}</span>
+        <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-wide whitespace-nowrap text-[#fdf3d8]">
+          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#fde41a] shadow-[0_0_5px_rgba(253,228,26,0.85)]"></span>{message}</span>
+          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#fde41a] shadow-[0_0_5px_rgba(253,228,26,0.85)]"></span>{message}</span>
         </div>
       </div>
     </div>

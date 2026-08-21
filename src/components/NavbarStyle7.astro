@@ -10,24 +10,34 @@ const currentPath = Astro.url.pathname;
 
 const isActive = (path: string) => isActivePath(currentPath, path);
 
+// One array, rendered twice (desktop rail + mobile bottom sheet). The icon sits
+// next to the label here so it can render as a SIBLING <span aria-hidden>, never
+// concatenated into the accessible name.
+//
+// /login and /register are NOT menu entries on this brand: the uploader's cta
+// toggles are off, so both are noindex forwarding interstitials reached from the
+// pinned buttons and from /ทางเข้า, which keeps its place in the menu.
+//
+// CHICKYLUCKY is a slot brand, so there are no /ตรวจหวย or /แนวทาง entries —
+// both pages are parked in src/pages-disabled/ this round.
 const links = [
   { name: "หน้าแรก", path: "/", icon: "🏠" },
   { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
   { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
-  { name: "ทางเข้า", path: "/ทางเข้า", icon: "🌐" },
+  { name: "ทางเข้า", path: "/ทางเข้า", icon: "🐔" },
   { name: "เกี่ยวกับเรา", path: "/about-us", icon: "📘" },
   { name: "ติดต่อเรา", path: "/contact-us", icon: "📞" },
 ];
 ---
 
 <header class="sticky top-0 z-50 w-full font-sans">
-  <nav class="relative z-40 w-full border-b border-[#ffd400]/35 bg-[#170733]/95 shadow-[0_5px_25px_rgba(255,212,0,0.22)] backdrop-blur-xl">
+  <nav class="relative z-40 w-full border-b border-[#fde41a]/35 bg-[#3a0806]/95 shadow-[0_5px_25px_rgba(253,228,26,0.22)] backdrop-blur-xl">
     <div class="mx-auto flex h-[70px] max-w-7xl items-center justify-between px-4 lg:h-[80px] xl:px-8">
       <div class="flex items-center gap-4">
         <button id="hamburger-btn" class="flex flex-col items-center justify-center space-y-1.5 p-2 lg:hidden" aria-label="Menu">
-          <span class="hamburger-line h-[2px] w-6 origin-center rounded-full bg-[#ffd400] shadow-[0_0_5px_rgba(255,212,0,0.5)] transition-all duration-300"></span>
-          <span class="hamburger-line h-[2px] w-6 rounded-full bg-[#ffd400] shadow-[0_0_5px_rgba(255,212,0,0.5)] transition-all duration-300"></span>
-          <span class="hamburger-line h-[2px] w-6 origin-center rounded-full bg-[#ffd400] shadow-[0_0_5px_rgba(255,212,0,0.5)] transition-all duration-300"></span>
+          <span class="hamburger-line h-[2px] w-6 origin-center rounded-full bg-[#fde41a] shadow-[0_0_5px_rgba(253,228,26,0.5)] transition-all duration-300"></span>
+          <span class="hamburger-line h-[2px] w-6 rounded-full bg-[#fde41a] shadow-[0_0_5px_rgba(253,228,26,0.5)] transition-all duration-300"></span>
+          <span class="hamburger-line h-[2px] w-6 origin-center rounded-full bg-[#fde41a] shadow-[0_0_5px_rgba(253,228,26,0.5)] transition-all duration-300"></span>
         </button>
 
         <a href="/" class="flex-shrink-0 transition-transform hover:scale-105">
@@ -35,17 +45,17 @@ const links = [
             mainLogo ? (
               <Picture
                 src={mainLogo}
-                alt="โลโก้ OKG777 ตัวอักษร OKG สีเหลืองทองและเลข 777 สีชมพูนีออนบนพื้นม่วงเข้ม"
+                alt="โลโก้ CHICKYLUCKY ตัวอักษร CHICKY LUCKY สีขาวขอบแดงวางเฉียงบนวงกลมสีเหลือง ด้านขวาเป็นไก่สีขาวสวมผ้าคลุมสีแดงติดเข็มกลัดเพชร"
                 widths={[110, 220, 330]}
                 sizes="110px"
                 loading="eager"
                 fetchpriority="high"
-                class="h-[35px] w-auto drop-shadow-[0_0_10px_rgba(255,79,216,0.45)] lg:h-[50px]"
+                class="h-[35px] w-auto drop-shadow-[0_0_10px_rgba(224,27,36,0.45)] lg:h-[50px]"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
               />
             ) : (
-              <span class="bg-gradient-to-b from-[#ffe94d] to-[#b8860a] bg-clip-text text-2xl font-black text-transparent drop-shadow-[0_0_8px_rgba(255,212,0,0.5)] lg:text-3xl">OKG777</span>
+              <span class="bg-gradient-to-b from-[#fff17a] to-[#f0b429] bg-clip-text text-2xl font-black text-transparent drop-shadow-[0_0_8px_rgba(253,228,26,0.5)] lg:text-3xl">CHICKYLUCKY</span>
             )
           }
         </a>
@@ -59,11 +69,11 @@ const links = [
                 <span aria-hidden="true" class="text-base leading-none">
                   {link.icon}
                 </span>
-                <span class={`transition-colors duration-300 ${isActive(link.path) ? "text-[#ffd400] drop-shadow-[0_0_8px_rgba(255,212,0,0.5)]" : "text-[#ece2fb]/70 group-hover:text-[#ffe94d]"}`}>{link.name}</span>
+                <span class={`transition-colors duration-300 ${isActive(link.path) ? "text-[#fde41a] drop-shadow-[0_0_8px_rgba(253,228,26,0.5)]" : "text-[#fdf3d8]/70 group-hover:text-[#fff17a]"}`}>{link.name}</span>
               </span>
               <div
                 aria-hidden="true"
-                class={`absolute bottom-4 w-1.5 h-1.5 rounded-full bg-[#ffd400] transition-all duration-300 ${isActive(link.path) ? "opacity-100 scale-100 shadow-[0_0_10px_rgba(255,212,0,1)]" : "opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100"}`}
+                class={`absolute bottom-4 w-1.5 h-1.5 rounded-full bg-[#fde41a] transition-all duration-300 ${isActive(link.path) ? "opacity-100 scale-100 shadow-[0_0_10px_rgba(253,228,26,1)]" : "opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100"}`}
               />
             </a>
           ))
@@ -73,13 +83,13 @@ const links = [
       <div class="flex items-center gap-3">
         <a
           href="/login"
-          class="hidden items-center justify-center rounded-full border border-[#ff4fd8]/45 bg-[#231045]/60 px-6 py-2.5 text-sm font-bold text-[#ff4fd8] transition-all hover:bg-[#2e1550] hover:text-[#ffe94d] md:flex">
+          class="hidden items-center justify-center rounded-full border border-[#e01b24]/55 bg-[#540101]/60 px-6 py-2.5 text-sm font-bold text-[#ff5252] transition-all hover:bg-[#6d0202] hover:text-[#fff17a] md:flex">
           เข้าสู่ระบบ
         </a>
         <a
           href="/register"
-          style="background-image: linear-gradient(in oklab to right, #8f1080, #ff4fd8, #8f1080);"
-          class="flex items-center justify-center rounded-full px-5 py-2 text-xs font-extrabold text-white shadow-[0_0_20px_rgba(255,79,216,0.3)] transition-all hover:shadow-[0_0_25px_rgba(255,79,216,0.5)] hover:brightness-110 lg:px-7 lg:py-2.5 lg:text-sm">
+          style="background-image: linear-gradient(in oklab to right, #8f0d13, #e01b24, #8f0d13);"
+          class="flex items-center justify-center rounded-full px-5 py-2 text-xs font-extrabold text-white shadow-[0_0_20px_rgba(224,27,36,0.3)] transition-all hover:shadow-[0_0_25px_rgba(224,27,36,0.5)] hover:brightness-110 lg:px-7 lg:py-2.5 lg:text-sm">
           สมัครสมาชิก
         </a>
       </div>
@@ -90,9 +100,9 @@ const links = [
 
   <div
     id="mobile-bottom-sheet"
-    class="pb-safe fixed bottom-0 left-0 z-[60] w-full translate-y-full transform rounded-t-3xl border-t border-[#ffd400]/35 bg-[#170733] shadow-[0_-10px_40px_rgba(0,0,0,0.8)] transition-transform duration-400 ease-[cubic-bezier(0.3,1,0.3,1)] lg:hidden">
+    class="pb-safe fixed bottom-0 left-0 z-[60] w-full translate-y-full transform rounded-t-3xl border-t border-[#fde41a]/35 bg-[#3a0806] shadow-[0_-10px_40px_rgba(0,0,0,0.8)] transition-transform duration-400 ease-[cubic-bezier(0.3,1,0.3,1)] lg:hidden">
     <div class="flex w-full cursor-pointer justify-center pt-3 pb-2" id="close-sheet-btn">
-      <div class="h-1.5 w-12 rounded-full bg-[#ffd400]/40"></div>
+      <div class="h-1.5 w-12 rounded-full bg-[#fde41a]/40"></div>
     </div>
 
     <div class="flex flex-col space-y-2 px-6 pt-2 pb-8">
@@ -100,24 +110,24 @@ const links = [
         links.map((link) => (
           <a
             href={link.path}
-            class={`sheet-item flex items-center justify-between px-5 py-4 rounded-2xl transition-all ${isActive(link.path) ? "bg-gradient-to-r from-[#ffd400]/20 to-transparent border border-[#ffd400]/35 text-[#ffd400]" : "bg-white/5 border-transparent text-[#ece2fb]/60"}`}>
+            class={`sheet-item flex items-center justify-between px-5 py-4 rounded-2xl transition-all ${isActive(link.path) ? "bg-gradient-to-r from-[#fde41a]/20 to-transparent border border-[#fde41a]/35 text-[#fde41a]" : "bg-white/5 border-transparent text-[#fdf3d8]/60"}`}>
             <span class="flex items-center gap-4">
               <span aria-hidden="true" class="text-2xl drop-shadow-lg">
                 {link.icon}
               </span>
               <span class="text-base font-bold tracking-wide">{link.name}</span>
             </span>
-            {isActive(link.path) && <span aria-hidden="true" class="h-2 w-2 rounded-full bg-[#ffd400] shadow-[0_0_8px_rgba(255,212,0,1)]" />}
+            {isActive(link.path) && <span aria-hidden="true" class="h-2 w-2 rounded-full bg-[#fde41a] shadow-[0_0_8px_rgba(253,228,26,1)]" />}
           </a>
         ))
       }
 
       <div class="mt-2 grid grid-cols-2 gap-3 border-t border-white/5 pt-4">
-        <a href="/login" class="flex items-center justify-center rounded-xl border border-[#ff4fd8]/35 bg-[#ff4fd8]/10 py-3.5 text-sm font-bold text-[#ff4fd8]">เข้าสู่ระบบ</a>
+        <a href="/login" class="flex items-center justify-center rounded-xl border border-[#e01b24]/45 bg-[#e01b24]/10 py-3.5 text-sm font-bold text-[#ff5252]">เข้าสู่ระบบ</a>
         <a
           href="/register"
-          style="background-image: linear-gradient(in oklab to right, #8f1080, #ff4fd8, #8f1080);"
-          class="flex items-center justify-center rounded-xl py-3.5 text-sm font-extrabold text-white shadow-[0_0_15px_rgba(255,79,216,0.4)]">
+          style="background-image: linear-gradient(in oklab to right, #8f0d13, #e01b24, #8f0d13);"
+          class="flex items-center justify-center rounded-xl py-3.5 text-sm font-extrabold text-white shadow-[0_0_15px_rgba(224,27,36,0.4)]">
           สมัครสมาชิก
         </a>
       </div>
