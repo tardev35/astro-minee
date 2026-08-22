@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
+import Announcement from "../components/Announcement6.astro";
 
 import { Picture } from "astro:assets";
 
@@ -20,18 +20,22 @@ import { pageGraph } from "../lib/schema";
 // paragraph found here was invented by an earlier rebrand and gets deleted, not
 // translated.
 //
-// The alt text below is verbatim from the brand spec §5 — the alt IS the Thai
+// The alt text below was written by reading each PNG — the alt IS the Thai
 // printed on the artwork (the offer, the sub-line, the button and the scene).
-// slide1-4 are all .png in this drop; banner2.png is stale inventory from a
-// previous brand and is deliberately NOT imported here.
-const pageTitle = "โปรโมชั่น VEGUS1 รวมสิทธิพิเศษสำหรับสมาชิก";
+// slide1-4 are all .png in this drop (checked on disk); banner2.png is stale
+// inventory from a previous brand and is deliberately NOT imported here.
+//
+// <Announcement /> is bare on purpose: Announcement6's default message already
+// carries this brand's copy, so the ticker matches index.astro with no second
+// string to keep in sync here.
+const pageTitle = "โปรโมชั่น HOT189 รวมสิทธิพิเศษสำหรับสมาชิก";
 
-// Title/Meta come from the brand spec §6 verbatim — length-checked against
-// tools/verify-build.mjs (DESC_MIN 150 / DESC_MAX 160), which counts
-// CHARACTERS not bytes (Thai is 3 bytes/char) and exempts only the home page.
-// Measured at 159 characters. Do not re-word, pad or trim it.
-const pageDescription =
-  "VEGUS1 รวมโปรโมชั่นเดิมพันออนไลน์ โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจน ช่วยให้เลือกโปรได้เหมาะกับงบและรูปแบบการใช้งาน อ่านเงื่อนไขก่อนรับสิทธิ์";
+// Title/Meta come from the brand spec §6. The docx sentence runs 127 characters,
+// under the DESC_MIN=150 floor tools/verify-build.mjs enforces on every page but
+// the home page, so it opens the description and one clause closes it. Counted
+// in CHARACTERS, not bytes (Thai is 3 bytes/char). Measured at 153 characters,
+// inside the 150–160 window. Do not re-word, pad or trim it.
+const pageDescription = "HOT189 รวมโปรโมชั่นบาคาร่า โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจน ช่วยให้เลือกโปรได้เหมาะกับงบและรูปแบบการเดิมพัน อ่านเงื่อนไขก่อนรับสิทธิ์";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -43,30 +47,30 @@ const graph = pageGraph(Astro, {
   primaryImagePath: pro1.src,
 });
 
-// Crimson carries the surfaces here (border, rule, glow) and gold carries the
-// text — the same two-tone split the artwork uses. A #4a0a0d edge on the
-// near-black maroon page would read as no border at all, so the resting border
-// is the primary crimson accent rather than the mid surface.
+// Flame red carries the surfaces here (border, rule, glow) and gold carries the
+// type — the same two-tone split the artwork uses. A #2e100a edge on the
+// near-black ember page would read as no border at all, so the resting border is
+// the primary flame accent rather than the mid surface.
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#d81f26]/40 object-contain shadow-[0_10px_30px_rgba(216,31,38,0.24)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#ff3a33]/65 hover:shadow-[0_15px_40px_rgba(245,196,81,0.26)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#ef2b09]/40 object-contain shadow-[0_10px_30px_rgba(239,43,9,0.24)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#ff7a18]/65 hover:shadow-[0_15px_40px_rgba(252,211,4,0.26)]";
 ---
 
-<MainLayout title="VEGUS1 | โปรโมชั่นเดิมพันออนไลน์และสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
+<MainLayout title="HOT189 | โปรโมชั่นบาคาร่าและสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#f7e3c8]">
-        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#f5c451]">VEGUS1</strong> เปิดให้สมาชิกไว้ในที่เดียว ทั้งโบนัสต้อนรับสมาชิกใหม่ โบนัสฝากครั้งแรก โปรช่วงนาทีทอง และวงล้อโชคดีที่ลุ้นเครดิตฟรีได้ทุกวัน
+      <p class="mb-8 text-left text-base leading-relaxed text-[#ffe9cf]">
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#fcd304]">HOT189</strong> เปิดให้สมาชิกไว้ในที่เดียว ทั้งโบนัสต้อนรับสมาชิกใหม่ โบนัสฝากครั้งแรก โปรช่วงนาทีทอง และวงล้อโชคดีที่ลุ้นเครดิตฟรีได้ทุกวัน
         ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ก่อนกดรับสิทธิ์ควรตรวจยอดฝากขั้นต่ำ ช่วงเวลาที่กำหนด และเงื่อนไขการถอนให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากันและปรับได้ตามรอบ
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น VEGUS1 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที ป้ายกำกับ โปรต้อนรับสำหรับสมาชิกใหม่ และปุ่ม รับโปรเลย ภาพผู้หญิงในชุดซาตินสีแดงสลับทองชี้มือไปทางขวา กองเหรียญทอง ชิปคาสิโนสีแดง ตู้สล็อต JACKPOT เลข 777 และไพ่ บนพื้นหลังสีแดงเข้มสลับทอง"
+          alt="แบนเนอร์โปรโมชั่น HOT189 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที ป้ายกำกับ โปรต้อนรับสำหรับสมาชิกใหม่ และปุ่ม รับโปรเลย ภาพผู้หญิงในชุดซาตินสีแดงสลับทองชี้มือไปทางซ้าย เหรียญทองลอย ชิปคาสิโนเลข 189 ตู้สล็อต 777 BAR และไพ่เอซ บนพื้นหลังเปลวไฟสีส้มแดง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -80,7 +84,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น VEGUS1 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ป้ายกำกับ ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย และปุ่ม ฝากเลย ภาพผู้หญิงในชุดซาตินสีแดงสลับทอง ตู้สล็อต JACKPOT 777 กองเหรียญทอง ชิปคาสิโนสีแดงและทอง และไพ่เอซ บนพื้นหลังสีแดงเข้ม"
+          alt="แบนเนอร์โปรโมชั่น HOT189 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ป้ายกำกับ ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย และปุ่ม ฝากเลย ภาพผู้หญิงในชุดซาตินสีแดงสลับทองถือชิปคาสิโน ตู้สล็อต 777 BAR กองเหรียญทอง ชิปเลข 189 และไพ่เอซ บนพื้นหลังเปลวไฟสีส้มแดง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -94,7 +98,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น VEGUS1 ข้อความ นาทีทอง 21:00 - 23:00 รับเพิ่ม 15% เฉพาะช่วงเวลาที่กำหนด และปุ่ม ร่วมโปรเลย ภาพหน้าปัดนาฬิกาสีทองขนาดใหญ่พร้อมเลขโรมัน ผู้หญิงในชุดซาตินสีแดงสลับทองยกมือประกอบ ตู้สล็อต JACKPOT 777 ชิปคาสิโน Vegus1 และกองเหรียญทอง บนพื้นหลังสีแดงเข้มสลับทอง"
+          alt="แบนเนอร์โปรโมชั่น HOT189 ข้อความ นาทีทอง 19:00 - 21:00 รับเพิ่ม 15% เฉพาะช่วงเวลาที่กำหนด และปุ่ม ร่วมโปรเลย ภาพหน้าปัดนาฬิกาเลขโรมันสีทองขนาดใหญ่ ผู้หญิงในชุดซาตินสีแดงสลับทองชี้มือลงมาที่ตัวเลข ตู้สล็อต 777 BAR ชิปคาสิโนเลข 189 และเหรียญทอง บนพื้นหลังเปลวไฟสีส้มแดง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -108,7 +112,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น VEGUS1 ข้อความ วงล้อโชคดี ลุ้นเครดิตฟรี 888 บาท หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่ม หมุนเลย ภาพวงล้อเสี่ยงโชคสีแดงสลับทองแบ่งช่องเป็น 500 888 188 288 80 100 50 และ 300 บาท มีคำว่า ลุ้นเลย อยู่กลางวงล้อ ข้างวงล้อเป็นผู้หญิงในชุดซาตินสีแดงสลับทอง ตู้สล็อต JACKPOT 777 กองเหรียญทองและชิปคาสิโน บนพื้นหลังสีแดงเข้ม"
+          alt="แบนเนอร์โปรโมชั่น HOT189 ข้อความ วงล้อโชคดี ลุ้นเครดิตฟรี 888 บาท หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่ม หมุนเลย ภาพวงล้อเสี่ยงโชคสีดำสลับทองมีโลโก้ HOT189 อยู่กลางวง แบ่งช่องเป็น 888 บาท 1330 บาท แจกเครดิตฟรี 50 บาท 88 บาท และ 288 บาท ข้างวงล้อเป็นผู้หญิงในชุดซาตินสีแดงสลับทองแบมือรองรับ ตู้สล็อต 777 BAR ไพ่เอซ ชิปคาสิโนเลข 189 และเหรียญทอง บนพื้นหลังเปลวไฟสีส้มแดง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -124,8 +128,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#f5c451]/60 bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#c9931a] px-10 py-3.5 text-lg font-black text-[#2a0606] shadow-[0_10px_30px_rgba(245,196,81,0.32)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(216,31,38,0.40)]">
-          สมัครสมาชิก VEGUS1
+          class="flex items-center justify-center rounded-lg border border-[#fcd304]/60 bg-gradient-to-r from-[#ffe86b] via-[#fcd304] to-[#c99400] px-10 py-3.5 text-lg font-black text-[#2b0a02] shadow-[0_10px_30px_rgba(252,211,4,0.32)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(239,43,9,0.40)]">
+          สมัครสมาชิก HOT189
         </a>
       </div>
     </div>

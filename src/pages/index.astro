@@ -1,17 +1,17 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
-import ContentBoxTwoPremium from "../components/ContentBoxTwoPremium.astro";
-import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
-import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
-import ContentBox3ThreePremium from "../components/ContentBox3ThreePremium.astro";
-import ContentBoxPremium from "../components/ContentBoxPremium.astro";
-import ProviderGrid from "../components/ProviderGridPremium.astro";
-import LatestWinners from "../components/LatestWinners2.astro";
+import Announcement from "../components/Announcement6.astro";
+import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
+import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
+import ContentBox3ThreeNeumorphism from "../components/ContentBox3ThreeNeumorphism.astro";
+import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
+import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
+import ContentBoxTwoNeumorphism from "../components/ContentBoxTwoNeumorphism.astro";
+import ContentBox from "../components/ContentBox.astro";
+import ProviderGrid from "../components/ProviderGrid.astro";
+import LatestWinners from "../components/LatestWinners.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
-import Faq from "../components/Faq3.astro";
+import Faq from "../components/Faq.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
 import Navfoot from "../components/Navfoot.astro";
@@ -22,11 +22,12 @@ import { pageGraph } from "../lib/schema";
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
 // two of those per rebrand — both are spent here.
 //
-// slide4 prints "วงล้อโชคดี" with a wheel of eight different prize amounts,
-// i.e. "one spread, many options to pick from", which is the หลายรูปแบบให้เลือก
-// idea of docx H2-2; slide2 prints "ฝากครั้งแรก รับเพิ่ม 20% / ฝาก-ถอนออโต้",
-// which is exactly what the H2-4 ฝากถอน section is about.
-// slide1 (สมาชิกใหม่ รับโบนัส 50%) and slide3 (นาทีทอง 21:00 - 23:00) stay
+// slide4 prints "วงล้อโชคดี" with a wheel split into eight different prize
+// segments, i.e. one spread with several options to pick from, which is the
+// "เลือกโต๊ะให้เหมาะกับสไตล์" idea of docx H2-2; slide2 prints "ฝากครั้งแรก รับ
+// เพิ่ม 20%" with the ฝาก-ถอนออโต้ badge on it, which is exactly what the H2-4
+// ฝากถอนออโต้ section is about.
+// slide1 (สมาชิกใหม่ รับโบนัส 50%) and slide3 (นาทีทอง 19:00 - 21:00) stay
 // unused here and keep rendering in SmoothCarousel and on /promotion.
 //
 // banner2.png is NOT imported anywhere: it predates this asset drop.
@@ -35,42 +36,43 @@ import { pageGraph } from "../lib/schema";
 import imgPrizeWheel from "../assets/slide4.png";
 import imgFirstDeposit from "../assets/slide2.png";
 
-const pageTitle = "VEGUS1 | เว็บพนันออนไลน์ครบวงจร ฝากถอนง่ายรับ true wallet มั่นคง";
-const pageHeading = "VEGUS1 เว็บพนันออนไลน์ครบวงจร ฝากถอนง่ายรับ true wallet มั่นคง";
+const pageTitle = "HOT189 | บาคาร่าเว็บตรงแตกง่าย มั่นคงปลอดภัย ระบบฝากถอนออโต้";
+const pageHeading = "HOT189 บาคาร่าเว็บตรงแตกง่าย มั่นคงปลอดภัย ระบบฝากถอนออโต้";
 
 // The docx Main SEO Meta Description, verbatim at the length it was written
 // (127 characters). DESC_MIN does not apply to the home page — verify-build.mjs
 // exempts it precisely so the brand's own copy ships unpadded. Do not top it up
 // to 150.
-const pageDescription = "VEGUS1 เว็บพนันออนไลน์ครบวงจร ฝากถอนผ่าน True Wallet รองรับมือถือ ใช้งานสะดวก พร้อมเกมหลายประเภทและระบบตรวจสอบรายการเป็นขั้นตอน";
+const pageDescription = "HOT189 บาคาร่าเว็บตรง ระบบฝากถอนออโต้ รองรับมือถือ ใช้งานสะดวก พร้อมข้อมูลโต๊ะ อัตราจ่าย โปรโมชั่น และสถานะรายการตรวจสอบได้ง่าย";
 
-// The ticker default in AnnouncementPremium is what sub-pages get; the home page
-// always passes its own copy so the two never drift apart silently. No leading
-// emoji — the marquee renders the string twice.
+// Byte-identical to Announcement6's own default, which is what every sub-page
+// calling <Announcement /> bare lands on. Passing it explicitly here keeps the
+// home page and the rest of the site from drifting apart silently. No leading
+// emoji — the marquee renders the string three times.
 const announcement =
-  "VEGUS1 รวมเกมเดิมพันหลายประเภทไว้ในบัญชีเดียว ตั้งแต่สล็อต บาคาร่า ไปจนถึงเกมรูปแบบอื่นที่ระบบรองรับ ควรเปรียบเทียบกติกา อัตราจ่าย และระดับความเสี่ยงของแต่ละประเภทก่อนเริ่ม • รองรับฝากถอนผ่าน True Wallet ผ่านโทรศัพท์มือถือ ก่อนยืนยันควรตรวจข้อมูลบัญชี จำนวนเงิน และช่องทางรับเงินให้ถูกต้องทุกครั้ง • จัดการรายการฝากถอนได้จากหน้าบัญชีโดยตรง หากรายการยังอยู่ระหว่างดำเนินการควรรอผลจากระบบก่อนส่งคำขอซ้ำ เพื่อไม่ให้เกิดรายการซ้อนกัน • คำว่ามั่นคงควรดูจากขั้นตอนใช้งาน ประวัติธุรกรรม ช่องทางติดต่อ และการดูแลข้อมูลบัญชีร่วมกัน • กำหนดวงเงินและระยะเวลาไว้ก่อนเริ่มเดิมพันทุกครั้ง";
+  "HOT189 บาคาร่าเว็บตรง รวมโต๊ะหลายระดับวงเงินไว้ในบัญชีเดียว ควรตรวจขั้นต่ำของโต๊ะ ตัวเลือกเดิมพัน และอัตราจ่ายก่อนเริ่มทุกครั้ง • ตัวเลือก Banker Player และ Tie มีอัตราจ่ายและความน่าจะเป็นต่างกัน ควรเข้าใจวิธีคิดผลและค่าคอมมิชชันก่อนลงเดิมพัน • ระบบฝากถอนออโต้จัดการได้จากหน้าบัญชีโดยตรง ก่อนยืนยันควรตรวจชื่อบัญชี จำนวนเงิน และข้อมูลรับเงินให้ครบ • หากรายการเดิมยังดำเนินการอยู่ ควรรอผลจากระบบก่อนส่งรายการใหม่ • คำว่าแตกง่ายเป็นถ้อยคำทางการตลาด ไม่ใช่การรับประกันผล กำหนดวงเงินและเวลาไว้ก่อนเริ่มทุกครั้ง";
 
 const altPrizeWheel =
-  "แบนเนอร์โปรโมชั่น VEGUS1 ข้อความ วงล้อโชคดี ลุ้นเครดิตฟรี 888 บาท หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่ม หมุนเลย ด้านซ้ายบนเป็นโลโก้ Vegus1 ภาพวงล้อเสี่ยงโชคสีแดง-ทองแบ่งช่องเป็นเงินรางวัล 500 888 188 288 80 100 50 และ 300 บาท มีคำว่า ลุ้นเลย ตรงดุมวงล้อ ข้างขวาเป็นผู้หญิงในชุดผ้าซาตินสีแดง-ทอง ตู้สล็อต JACKPOT 777 กองเหรียญทองและชิปคาสิโนบนพื้นหลังสีแดงเข้ม";
+  "แบนเนอร์โปรโมชั่น HOT189 ข้อความ วงล้อโชคดี ลุ้นเครดิตฟรี 888 บาท หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่ม หมุนเลย ด้านซ้ายบนเป็นโลโก้ไฟ HOT189 พร้อมคำว่า SPORT BETTING AND CASINO ONLINE ข้างขวาเป็นวงล้อเสี่ยงโชคสีแดง-ทองแบ่งช่องเป็นเงินรางวัล 888 บาท 1330 บาท 288 บาท 88 บาท 50 บาท และช่อง ลุ้นเครดิตฟรี มีคำว่า HOT189 อยู่ตรงดุมวงล้อ ถัดไปเป็นผู้หญิงในชุดสีแดง-ทองแบมือ ด้านล่างเป็นตู้สล็อตเลข 777 ไพ่เอซ และชิปคาสิโนสลักเลข 189 บนพื้นหลังสีดำแดงมีเปลวไฟ";
 
 const altFirstDeposit =
-  "แบนเนอร์โปรโมชั่น VEGUS1 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย และปุ่ม ฝากเลย ด้านซ้ายบนเป็นโลโก้ Vegus1 ภาพผู้หญิงในชุดผ้าซาตินสีแดง-ทอง ข้างหลังเป็นตู้สล็อต JACKPOT 777 ไพ่เอซ กองเหรียญทอง และชิปคาสิโนสีแดง-ทองบนพื้นหลังสีแดงเข้ม";
+  "แบนเนอร์โปรโมชั่น HOT189 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ป้ายเล็กสามอันเขียนว่า ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย และปุ่ม ฝากเลย ด้านซ้ายบนเป็นโลโก้ไฟ HOT189 พร้อมคำว่า SPORT BETTING AND CASINO ONLINE ข้างขวาเป็นผู้หญิงในชุดสีแดง-ทองถือชิปคาสิโน ข้างหลังเป็นวงล้อสล็อตเลข 777 กองเหรียญทอง ไพ่เอซ และชิปสลักเลข 189 บนพื้นหลังสีดำแดงมีเปลวไฟ";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq3's own default, so the rendered markup and the FAQ JSON-LD below come out
+// Faq's own default, so the rendered markup and the FAQ JSON-LD below come out
 // of the same array.
 const faqs = [
   {
-    q: "VEGUS1 รองรับการเดิมพันประเภทใดบ้าง?",
-    a: "ระบบสามารถรวมเกมเดิมพันหลายประเภทตามหมวดที่เว็บไซต์กำหนด ผู้เล่นควรตรวจสอบกติกา อัตราจ่าย และระดับความเสี่ยงของเกมที่สนใจก่อนเริ่มทุกครั้ง",
+    q: "HOT189 มีบาคาร่าแบบไหนให้เลือกบ้าง?",
+    a: "ระบบสามารถมีโต๊ะบาคาร่าในหลายระดับวงเงินและรูปแบบตามที่เว็บไซต์กำหนด ผู้เล่นควรตรวจขั้นต่ำ อัตราจ่าย และกติกาของโต๊ะก่อนเริ่มทุกครั้ง",
   },
   {
-    q: "VEGUS1 รองรับ True Wallet หรือไม่?",
-    a: "รองรับ True Wallet ตามช่องทางที่ระบบกำหนด สมาชิกควรตรวจสอบข้อมูลบัญชี จำนวนเงิน และสถานะรายการให้ครบก่อนและหลังยืนยันธุรกรรม",
+    q: "HOT189 ฝากถอนผ่านระบบออโต้หรือไม่?",
+    a: "ระบบรองรับการฝากถอนออโต้ตามช่องทางที่กำหนด สมาชิกควรตรวจสอบข้อมูลบัญชี จำนวนเงิน และสถานะรายการก่อนและหลังยืนยันธุรกรรม",
   },
   {
-    q: "คำว่ามั่นคงหมายถึงรับประกันความปลอดภัยทุกกรณีหรือไม่?",
-    a: "ไม่ควรตีความว่าเป็นการรับประกันทั้งหมด ความปลอดภัยยังขึ้นอยู่กับระบบ เว็บไซต์ และพฤติกรรมของผู้ใช้ จึงควรตรวจสอบข้อมูลและดูแลบัญชีของตนเองร่วมด้วย",
+    q: "บาคาร่าแตกง่ายสามารถรับประกันกำไรได้หรือไม่?",
+    a: "ไม่สามารถรับประกันผลลัพธ์หรือกำไรจากบาคาร่าได้ ผู้เล่นควรเข้าใจกติกา อัตราจ่าย กำหนดวงเงิน และเล่นด้วยงบที่ยอมรับความเสี่ยงได้",
   },
 ];
 
@@ -87,14 +89,14 @@ const graph = pageGraph(Astro, {
 
   <Announcement message={announcement} />
 
-  <ContentBoxCyberCut as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#f7e3c8]">
-      <strong class="text-[#f5c451]">VEGUS1</strong> เป็นแพลตฟอร์มเดิมพันออนไลน์ที่รวมเกมหลายประเภทไว้ในบัญชีเดียว พร้อมช่องทางฝากถอนผ่าน True Wallet และระบบสำหรับตรวจสอบรายการ รองรับการใช้งานทั้งมือถือและคอมพิวเตอร์
-      สมาชิกสามารถเลือกเกม ดูโปรโมชั่น และจัดการข้อมูลบัญชีได้สะดวก โดยควรศึกษากติกา อัตราจ่าย และเงื่อนไขก่อนเริ่มเดิมพันทุกครั้ง
+  <ContentBoxNeumorphism as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#ffe9cf]">
+      <strong class="text-[#fcd304]">HOT189</strong> เป็นแพลตฟอร์มบาคาร่าออนไลน์ที่เน้นการใช้งานผ่านระบบเว็บตรง พร้อมระบบฝากถอนออโต้และการจัดการบัญชีจากหน้าเดียว รองรับมือถือและคอมพิวเตอร์ สมาชิกสามารถเลือกโต๊ะ
+      ตรวจสอบอัตราจ่าย ดูโปรโมชั่น และติดตามสถานะรายการได้สะดวก ก่อนเริ่มควรศึกษากติกาและกำหนดงบประมาณให้เหมาะกับตนเอง
     </p>
-  </ContentBoxCyberCut>
+  </ContentBoxNeumorphism>
 
-  <ContentBoxSevenThreePremium titleright="รวมการเดิมพันหลายรูปแบบไว้ให้เลือกบน VEGUS1">
+  <ContentBoxSevenThreeNeumorphism titleright="เลือกโต๊ะบาคาร่าให้เหมาะกับสไตล์ได้บน HOT189">
     <Picture
       slot="left"
       src={imgPrizeWheel}
@@ -107,50 +109,28 @@ const graph = pageGraph(Astro, {
       fallbackFormat="webp"
       quality={80}
       alt={altPrizeWheel}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#f5c451]/40 shadow-[0_10px_30px_rgba(216,31,38,0.3)]"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#fcd304]/40 shadow-[0_10px_30px_rgba(239,43,9,0.3)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f7e3c8]">
-      ภายใน VEGUS1 สามารถจัดหมวดเกมเดิมพันหลายประเภทไว้ให้เลือกตามความสนใจ ตั้งแต่สล็อต บาคาร่า ไปจนถึงเกมรูปแบบอื่นที่ระบบรองรับ ผู้เล่นควรเปรียบเทียบกติกา อัตราจ่าย
-      และระดับความเสี่ยงของแต่ละประเภทก่อนเริ่ม เพื่อเลือกเกมให้เหมาะกับงบและสไตล์ของตนเอง
+    <p slot="right" class="text-left text-base leading-relaxed text-[#ffe9cf]">
+      ภายใน HOT189 สามารถเลือกโต๊ะบาคาร่าได้หลายรูปแบบตามวงเงินและความเร็วของเกม ผู้เล่นควรพิจารณาขั้นต่ำของโต๊ะ ตัวเลือกเดิมพัน และอัตราจ่ายก่อนเริ่ม
+      เพื่อให้เลือกรูปแบบที่เหมาะกับงบและไม่ต้องปรับวงเงินระหว่างเล่นบ่อยเกินไป
     </p>
-  </ContentBoxSevenThreePremium>
+  </ContentBoxSevenThreeNeumorphism>
 
   <ProviderGrid />
 
-  <ContentBoxTwoPremium as="h2" title="True Wallet ช่วยให้จัดการเงินผ่านมือถือได้คล่องตัว">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#f7e3c8]">
-      การรองรับ True Wallet ช่วยลดขั้นตอนในการฝากและถอนผ่านโทรศัพท์มือถือ ก่อนยืนยันควรตรวจสอบข้อมูลบัญชี จำนวนเงิน และช่องทางรับเงินให้ถูกต้อง รวมถึงรอให้ระบบแสดงสถานะสำเร็จก่อนทำรายการใหม่
-      เพื่อช่วยลดความผิดพลาดในการตรวจสอบย้อนหลัง
-    </p>
+  <ContentBox3ThreeNeumorphism
+    as="h2"
+    title="เข้าใจกติกา Banker Player และ Tie ก่อนลงเดิมพัน"
+    titleleft="กติกาหลักไม่ซับซ้อน"
+    titlecenter="วิธีคิดผลและค่าคอมมิชชัน"
+    titleright="ไม่ตัดสินจากผลย้อนหลัง">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#ffe9cf]">บาคาร่าเป็นเกมที่มีกติกาหลักไม่ซับซ้อน แต่ตัวเลือก Banker, Player และ Tie มีอัตราจ่ายและความน่าจะเป็นต่างกัน</p>
+    <p slot="center" class="text-left text-base leading-relaxed text-[#ffe9cf]">ผู้เล่นควรทำความเข้าใจวิธีคิดผลและค่าคอมมิชชันที่อาจเกี่ยวข้องก่อนเดิมพัน</p>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#ffe9cf]">เพื่อหลีกเลี่ยงการตัดสินใจจากรูปแบบผลย้อนหลังเพียงอย่างเดียว</p>
+  </ContentBox3ThreeNeumorphism>
 
-    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#d81f26]/35 bg-[#150404]/75 p-5">
-      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#f5c451] uppercase">
-        <span aria-hidden="true">🎯</span>
-        สี่จุดที่ควรตรวจก่อนกดยืนยันรายการ
-      </p>
-      <span class="flex items-start gap-2.5 text-sm text-[#f7e3c8]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffe08a]">①</span>
-        ตรวจข้อมูลบัญชีที่ผูกไว้กับ True Wallet ให้ตรงกับที่ใช้งานอยู่จริง
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f7e3c8]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffe08a]">②</span>
-        ตรวจจำนวนเงินที่กรอกอีกครั้งก่อนกดยืนยัน ไม่ว่าจะเป็นรายการฝากหรือถอน
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f7e3c8]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffe08a]">③</span>
-        ตรวจช่องทางรับเงินให้ถูกต้องตามที่ตั้งใจไว้ก่อนส่งรายการ
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f7e3c8]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffe08a]">④</span>
-        รอให้ระบบแสดงสถานะสำเร็จก่อน แล้วค่อยเริ่มทำรายการใหม่
-      </span>
-      <span class="mt-1 rounded-xl border border-[#f5c451]/35 bg-[#2b0808]/80 px-4 py-2.5 text-xs leading-relaxed text-[#d8b48f]">
-        การรอสถานะจากระบบก่อนเริ่มรายการถัดไปคือสิ่งที่ช่วยลดความผิดพลาดในการตรวจสอบย้อนหลังได้มากที่สุด เพราะทุกรายการจะมีเลขอ้างอิงของตัวเองแยกจากกัน
-      </span>
-    </div>
-  </ContentBoxTwoPremium>
-
-  <ContentBoxSevenThreeCyberCut titleright="ฝากถอนกับ VEGUS1 ควรตรวจรายละเอียดก่อนยืนยัน">
+  <ContentBoxSevenThreeFloatingBadge as="h2" title="ระบบฝากถอนออโต้ของ HOT189 ช่วยลดขั้นตอนการทำรายการ">
     <Picture
       slot="left"
       src={imgFirstDeposit}
@@ -163,53 +143,77 @@ const graph = pageGraph(Astro, {
       fallbackFormat="webp"
       quality={80}
       alt={altFirstDeposit}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#f5c451]/40 shadow-[0_10px_30px_rgba(216,31,38,0.3)]"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#fcd304]/40 shadow-[0_10px_30px_rgba(239,43,9,0.3)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f7e3c8]">
-      สมาชิก VEGUS1 สามารถจัดการรายการฝากถอนผ่านหน้าบัญชีได้โดยตรง ก่อนยืนยันควรดูยอดคงเหลือ ข้อมูลรับเงิน และเงื่อนไขโปรโมชั่นให้ครบ หากรายการยังอยู่ระหว่างดำเนินการควรรอผลจากระบบก่อนส่งคำขอซ้ำ
-      เพื่อไม่ให้เกิดรายการซ้อนกัน
+    <p slot="right" class="text-left text-base leading-relaxed text-[#ffe9cf]">
+      สมาชิก HOT189 สามารถจัดการฝาก ถอน และตรวจสอบสถานะธุรกรรมผ่านหน้าบัญชีได้โดยตรง ก่อนยืนยันควรตรวจสอบชื่อบัญชี จำนวนเงิน และข้อมูลรับเงินให้ครบ
+      หากรายการเดิมยังดำเนินการอยู่ควรรอผลจากระบบก่อนส่งรายการใหม่
     </p>
-  </ContentBoxSevenThreeCyberCut>
-
-  <ContentBoxSpecial as="h2" title="เว็บครบวงจรช่วยลดการสลับหลายระบบระหว่างใช้งาน" iconleft="🗂️" iconright="🔍">
-    <div slot="left">
-      <p class="text-left text-base leading-relaxed text-[#f7e3c8]">การมีทั้งเกม บัญชี โปรโมชั่น และข้อมูลธุรกรรมอยู่ในแพลตฟอร์มเดียวช่วยให้สมาชิกติดตามการใช้งานได้ง่ายขึ้น</p>
-    </div>
-
-    <div slot="right">
-      <p class="text-left text-base leading-relaxed text-[#f7e3c8]">อย่างไรก็ตาม ควรตรวจสอบข้อมูลของแต่ละเกมแยกกัน เพราะกติกา อัตราจ่าย และความเสี่ยงอาจแตกต่างกัน แม้จะอยู่ภายในระบบเดียวกันก็ตาม</p>
-    </div>
-  </ContentBoxSpecial>
-
-  <ContentBox3ThreePremium as="h2" title="ความมั่นคงของ VEGUS1 ควรดูจากระบบที่ตรวจสอบได้">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#f7e3c8]">การประเมิน VEGUS1 ควรพิจารณาจากความชัดเจนของขั้นตอนใช้งาน ประวัติธุรกรรม ช่องทางติดต่อ และการดูแลข้อมูลบัญชีร่วมกัน</p>
-    <p slot="center" class="text-left text-base leading-relaxed text-[#f7e3c8]">ผู้ใช้ควรตั้งรหัสผ่านที่รัดกุม ไม่เปิดเผยรหัสยืนยัน</p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f7e3c8]">และเข้าเว็บไซต์ผ่านช่องทางหลักทุกครั้ง</p>
-  </ContentBox3ThreePremium>
+  </ContentBoxSevenThreeFloatingBadge>
 
   <LatestWinners />
 
-  <ContentBoxPremium as="h2" title="วางงบก่อนใช้งาน VEGUS1 เพื่อควบคุมการเดิมพันได้ง่ายขึ้น">
-    <p class="text-left text-base leading-relaxed text-[#f7e3c8]">
-      ผู้ใช้ VEGUS1 ควรกำหนดวงเงินและระยะเวลาไว้ก่อนเริ่มเดิมพัน เลือกเกมที่เข้าใจกติกา และหยุดเมื่อถึงขีดจำกัดที่ตั้งไว้ ไม่ควรเพิ่มเงินเพื่อหวังตามคืนยอดเสีย
-      เพราะผลของเกมมีความไม่แน่นอนและไม่สามารถรับประกันกำไรได้
+  <ContentBoxFloatingBadge as="h2" title="เว็บตรงควรดูจากความชัดเจนของระบบและข้อมูลที่แสดง">
+    <p class="text-left text-base leading-relaxed text-[#ffe9cf]">
+      คำว่าเว็บตรงควรพิจารณาจากรายละเอียดที่สามารถตรวจสอบได้ เช่น ช่องทางเข้า ข้อมูลเกม ขั้นตอนธุรกรรม และการจัดการบัญชี ผู้ใช้งานไม่ควรตัดสินจากคำโฆษณาเพียงอย่างเดียว แต่ควรตรวจสอบเงื่อนไขต่าง ๆ
+      ให้ครบก่อนเริ่มใช้งานจริง
     </p>
-  </ContentBoxPremium>
+  </ContentBoxFloatingBadge>
 
   <LoginRtpSection />
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ VEGUS1" faqs={faqs} />
+  <ContentBoxTwoNeumorphism titleleft="ความปลอดภัยของ HOT189 เริ่มจากการป้องกันบัญชี">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#ffe9cf]">
+      การใช้งาน HOT189 อย่างปลอดภัยควรตั้งรหัสผ่านที่ไม่ซ้ำกับบริการอื่น เข้าใช้งานผ่านช่องทางหลัก และไม่ส่งรหัสยืนยันให้บุคคลภายนอก ควรตรวจสอบประวัติการเข้าสู่ระบบและธุรกรรมเป็นระยะ
+      รวมถึงหลีกเลี่ยงเครือข่ายสาธารณะเมื่อต้องทำรายการทางการเงิน
+    </p>
+
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#ef2b09]/35 bg-[#0d0402]/75 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#fcd304] uppercase">
+        <span aria-hidden="true">🛡️</span>
+        สี่จุดที่ควรตรวจเพื่อดูแลบัญชีของตัวเอง
+      </p>
+      <span class="flex items-start gap-2.5 text-sm text-[#ffe9cf]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff7a18]">①</span>
+        ตั้งรหัสผ่านของบัญชีให้ไม่ซ้ำกับรหัสที่ใช้อยู่กับบริการอื่น
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#ffe9cf]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff7a18]">②</span>
+        เข้าใช้งานผ่านช่องทางหลัก และไม่ส่งรหัสยืนยันให้บุคคลภายนอก
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#ffe9cf]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff7a18]">③</span>
+        เปิดดูประวัติการเข้าสู่ระบบและประวัติธุรกรรมของบัญชีเป็นระยะ
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#ffe9cf]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff7a18]">④</span>
+        เลี่ยงเครือข่ายสาธารณะทุกครั้งที่ต้องทำรายการทางการเงิน
+      </span>
+      <span class="mt-1 rounded-xl border border-[#fcd304]/35 bg-[#2e100a]/80 px-4 py-2.5 text-xs leading-relaxed text-[#d9ac86]">
+        การไล่ดูประวัติการเข้าสู่ระบบและประวัติธุรกรรมเป็นระยะคือสิ่งที่ทำให้เห็นรายการผิดปกติได้เร็วที่สุด เพราะทุกรายการมีเลขอ้างอิงและเวลาของตัวเองแยกจากกัน
+      </span>
+    </div>
+  </ContentBoxTwoNeumorphism>
+
+  <ContentBox as="h2" title="คำว่าแตกง่ายไม่ใช่การรับประกันผลบาคาร่า">
+    <p class="text-left text-base leading-relaxed text-[#ffe9cf]">
+      คำว่าแตกง่ายเป็นถ้อยคำทางการตลาดที่สื่อถึงความน่าสนใจของการเล่น แต่ผลบาคาร่าไม่สามารถรับประกันได้ ผู้ใช้ HOT189 ควรเลือกวงเงินที่เหมาะสม กำหนดเวลาการเล่น และไม่เพิ่มเดิมพันเพื่อตามคืนยอดเสีย
+      เพราะแต่ละรอบเป็นผลลัพธ์ที่ไม่แน่นอน
+    </p>
+  </ContentBox>
+
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ HOT189" faqs={faqs} />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#f5c451]/60 bg-gradient-to-r from-[#d81f26] via-[#6d0d10] to-[#150404] px-4 py-3 text-sm font-black whitespace-nowrap text-[#f7e3c8] shadow-[0_10px_30px_rgba(216,31,38,0.38)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#f5c451] hover:shadow-[0_15px_40px_rgba(245,196,81,0.42)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#fcd304]/60 bg-gradient-to-r from-[#ef2b09] via-[#8f1505] to-[#0d0402] px-4 py-3 text-sm font-black whitespace-nowrap text-[#ffe9cf] shadow-[0_10px_30px_rgba(239,43,9,0.4)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#fcd304] hover:shadow-[0_15px_40px_rgba(252,211,4,0.42)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffe08a]/70 bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#c9931a] px-4 py-3 text-sm font-black whitespace-nowrap text-[#2a0606] shadow-[0_10px_30px_rgba(245,196,81,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe08a] hover:shadow-[0_15px_40px_rgba(245,196,81,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffe86b]/70 bg-gradient-to-r from-[#ffe86b] via-[#fcd304] to-[#c99400] px-4 py-3 text-sm font-black whitespace-nowrap text-[#2b0a02] shadow-[0_10px_30px_rgba(252,211,4,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe86b] hover:shadow-[0_15px_40px_rgba(252,211,4,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>

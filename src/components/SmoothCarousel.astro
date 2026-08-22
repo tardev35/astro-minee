@@ -7,10 +7,11 @@ import slide3 from "../assets/slide3.png";
 import slide4 from "../assets/slide4.png";
 
 // Each alt is the text actually printed on that slide, read off the artwork,
-// plus the scene it sits in. All four share the VEGUS1 look: crimson and gold
-// on a dark red ground, the Vegus1 wordmark, a JACKPOT 777 slot cabinet, stacks
-// of gold coins and red-gold casino chips, playing cards, and a woman in a
-// red-gold satin dress.
+// plus the scene it sits in. All four share the HOT189 look: the flaming
+// orange-gold HOT189 wordmark with "SPORT BETTING AND CASINO ONLINE" under it,
+// a woman in a red-and-gold outfit, a 777 slot cabinet, ace playing cards,
+// stacks of gold coins and red-gold casino chips stamped 189, on an ember-black
+// background streaked with fire.
 //
 // This is a pure-CSS marquee — no Swiper, no JavaScript at all. It duplicates
 // the four images three times so the loop has no seam; the duplicate copies are
@@ -18,19 +19,19 @@ import slide4 from "../assets/slide4.png";
 const images = [
   {
     src: slide1,
-    alt: "แบนเนอร์โปรโมชั่น VEGUS1 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที ใต้ปุ่มเขียนว่า โปรต้อนรับสำหรับสมาชิกใหม่ และปุ่ม รับโปรเลย ด้านซ้ายบนเป็นโลโก้ Vegus1 ภาพผู้หญิงในชุดผ้าซาตินสีแดง-ทองชี้นิ้วไปทางขวา ข้างหลังเป็นตู้สล็อต JACKPOT เลข 777 ไพ่ กองเหรียญทอง และชิปคาสิโนสีแดงบนพื้นหลังสีแดงเข้ม-ทอง",
+    alt: "แบนเนอร์โปรโมชั่น HOT189 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที ใต้ลงมาเขียนว่า โปรต้อนรับสำหรับสมาชิกใหม่ และปุ่ม รับโปรเลย ด้านซ้ายบนเป็นโลโก้ไฟ HOT189 พร้อมคำว่า SPORT BETTING AND CASINO ONLINE ข้างขวาเป็นผู้หญิงในชุดสีแดง-ทองชี้นิ้วมาทางซ้าย ข้างหลังเป็นวงล้อสล็อตเลข 77 ไพ่เอซ กองเหรียญทอง และชิปคาสิโนสีแดง-ทองสลักเลข 189 บนพื้นหลังสีดำแดงมีเปลวไฟ",
   },
   {
     src: slide2,
-    alt: "แบนเนอร์โปรโมชั่น VEGUS1 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย และปุ่ม ฝากเลย ด้านซ้ายบนเป็นโลโก้ Vegus1 ภาพผู้หญิงในชุดผ้าซาตินสีแดง-ทอง ข้างหลังเป็นตู้สล็อต JACKPOT 777 ไพ่เอซ กองเหรียญทอง และชิปคาสิโนสีแดง-ทองบนพื้นหลังสีแดงเข้ม",
+    alt: "แบนเนอร์โปรโมชั่น HOT189 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ป้ายเล็กสามอันเขียนว่า ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย และปุ่ม ฝากเลย ด้านซ้ายบนเป็นโลโก้ไฟ HOT189 พร้อมคำว่า SPORT BETTING AND CASINO ONLINE ข้างขวาเป็นผู้หญิงในชุดสีแดง-ทองถือชิปคาสิโน ข้างหลังเป็นวงล้อสล็อตเลข 777 กองเหรียญทอง ไพ่เอซ และชิปสลักเลข 189 บนพื้นหลังสีดำแดงมีเปลวไฟ",
   },
   {
     src: slide3,
-    alt: "แบนเนอร์โปรโมชั่น VEGUS1 ข้อความ นาทีทอง 21:00 - 23:00 รับเพิ่ม 15% เฉพาะช่วงเวลาที่กำหนด และปุ่ม ร่วมโปรเลย ด้านซ้ายบนเป็นโลโก้ Vegus1 ภาพหน้าปัดนาฬิกาสีทองเลขโรมันขนาดใหญ่ ผู้หญิงในชุดผ้าซาตินสีแดง-ทองยกมือ ตู้สล็อต JACKPOT 777 ชิปคาสิโน Vegus1 และกองเหรียญทองบนพื้นหลังสีแดงเข้ม-ทอง",
+    alt: "แบนเนอร์โปรโมชั่น HOT189 ข้อความ นาทีทอง 19:00 - 21:00 รับเพิ่ม 15% เฉพาะช่วงเวลาที่กำหนด และปุ่ม ร่วมโปรเลย ด้านซ้ายบนเป็นโลโก้ไฟ HOT189 พร้อมคำว่า SPORT BETTING AND CASINO ONLINE ข้างหลังเป็นหน้าปัดนาฬิกาสีทองเลขโรมันขนาดใหญ่ ข้างขวาเป็นผู้หญิงในชุดสีแดง-ทองชี้นิ้วมาทางซ้าย ล้อมด้วยชิปคาสิโนสลักเลข 189 เหรียญทอง และวงล้อสล็อต BAR 777 บนพื้นหลังสีดำแดงมีเปลวไฟ",
   },
   {
     src: slide4,
-    alt: "แบนเนอร์โปรโมชั่น VEGUS1 ข้อความ วงล้อโชคดี ลุ้นเครดิตฟรี 888 บาท หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่ม หมุนเลย ด้านซ้ายบนเป็นโลโก้ Vegus1 ภาพวงล้อเสี่ยงโชคสีแดง-ทองแบ่งช่องเป็นเงินรางวัล 500 888 188 288 80 100 50 และ 300 บาท มีคำว่า ลุ้นเลย ตรงดุมวงล้อ ข้างขวาเป็นผู้หญิงในชุดผ้าซาตินสีแดง-ทอง ตู้สล็อต JACKPOT 777 กองเหรียญทองและชิปคาสิโนบนพื้นหลังสีแดงเข้ม",
+    alt: "แบนเนอร์โปรโมชั่น HOT189 ข้อความ วงล้อโชคดี ลุ้นเครดิตฟรี 888 บาท หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่ม หมุนเลย ด้านซ้ายบนเป็นโลโก้ไฟ HOT189 พร้อมคำว่า SPORT BETTING AND CASINO ONLINE ข้างขวาเป็นวงล้อเสี่ยงโชคสีแดง-ทองแบ่งช่องเป็นเงินรางวัล 888 บาท 1330 บาท 288 บาท 88 บาท 50 บาท และช่อง ลุ้นเครดิตฟรี มีคำว่า HOT189 อยู่ตรงดุมวงล้อ ถัดไปเป็นผู้หญิงในชุดสีแดง-ทองแบมือ ด้านล่างเป็นตู้สล็อตเลข 777 ไพ่เอซ และชิปคาสิโนสลักเลข 189 บนพื้นหลังสีดำแดงมีเปลวไฟ",
   },
 ];
 
@@ -42,7 +43,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
   <input id="carousel-pause" type="checkbox" class="peer sr-only" />
   <label
     for="carousel-pause"
-    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#f5c451]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#f5c451]">
+    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#fcd304]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#fcd304]">
     หยุด / เล่นสไลด์ภาพ
   </label>
 
@@ -55,7 +56,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
             <Picture
               src={slide.src}
               alt={isDuplicate ? "" : slide.alt}
-              class="block w-full rounded-xl border border-[#d81f26]/50 object-cover shadow-[0_10px_30px_rgba(216,31,38,0.28)]"
+              class="block w-full rounded-xl border border-[#ef2b09]/50 object-cover shadow-[0_10px_30px_rgba(239,43,9,0.28)]"
               width={slide.src.width}
               height={slide.src.height}
               loading="lazy"

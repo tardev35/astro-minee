@@ -2,21 +2,24 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
+import Announcement from "../components/Announcement6.astro";
 import { pageGraph } from "../lib/schema";
 
 // Button page, not an article: the whole body is the <h1> plus the two-button
 // grid. The docx SUB-PAGES block gives this page a Title and a Meta and never
 // a body, so no section heading and no prose belong here. The h1 names what it IS
 // rather than previewing a section that does not exist.
-const pageTitle = "ทางเข้า VEGUS1 เว็บหลัก";
+const pageTitle = "ทางเข้า HOT189 เว็บหลัก";
 
-// Title and Meta are the brand spec §6 row for /ทางเข้า, verbatim and already
-// length-checked against tools/verify-build.mjs, which errors below DESC_MIN=150
-// characters on every indexable page and exempts only the home page.
-// 159 CHARACTERS (count characters, not bytes — Thai is 3 bytes/char).
-const pageDescription =
-  "VEGUS1 ทางเข้าเดิมพันออนไลน์ รองรับมือถือและ True Wallet พร้อมรวมเกม โปรโมชั่น ระบบสมาชิก และข้อมูลธุรกรรมไว้ในช่องทางเดียว เข้าสู่ระบบหรือสมัครสมาชิกได้ที่นี่";
+// <Announcement /> is called bare on purpose — Announcement6's default message
+// is this brand's copy, set once in the component so every sub-page ticker and
+// index.astro's explicit prop can never drift apart.
+
+// Title and Meta are the brand spec §6 row for /ทางเข้า. The docx sentence is
+// 125 characters, under the DESC_MIN=150 floor tools/verify-build.mjs enforces
+// on every indexable page, so it opens the description and one clause closes it.
+// 158 CHARACTERS (count characters, not bytes — Thai is 3 bytes/char).
+const pageDescription = "HOT189 ทางเข้าเล่นบาคาร่าเว็บตรง รองรับมือถือ แท็บเล็ต และคอมพิวเตอร์ พร้อมระบบสมาชิก โปรโมชั่น และข้อมูลธุรกรรมไว้ในที่เดียว เข้าสู่ระบบหรือสมัครสมาชิกได้เลย";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -28,7 +31,7 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="VEGUS1 | ทางเข้าเว็บพนันออนไลน์รองรับ True Wallet" description={pageDescription}>
+<MainLayout title="HOT189 | ทางเข้าเล่นบาคาร่าเว็บตรงรองรับทุกอุปกรณ์" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
@@ -38,12 +41,12 @@ const graph = pageGraph(Astro, {
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/login"
-          aria-label="เข้าสู่ระบบ VEGUS1"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#ff3a33]/65 bg-[#4a0a0d] px-6 py-4 shadow-[0_10px_30px_rgba(216,31,38,0.32)] transition-all duration-300 hover:scale-105 hover:border-[#f5c451] hover:bg-[#6d0d10] hover:shadow-[0_15px_40px_rgba(245,196,81,0.32)]">
-          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#d81f26]/30 to-transparent"></div>
+          aria-label="เข้าสู่ระบบ HOT189"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#ff7a18]/65 bg-[#2e100a] px-6 py-4 shadow-[0_10px_30px_rgba(239,43,9,0.32)] transition-all duration-300 hover:scale-105 hover:border-[#fcd304] hover:bg-[#8f1505] hover:shadow-[0_15px_40px_rgba(252,211,4,0.32)]">
+          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#ef2b09]/30 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#f5c451]"
+            class="relative z-10 h-9 w-9 text-[#fcd304]"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -54,19 +57,19 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#f5c451]">เข้าสู่ระบบ</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#fcd304]">เข้าสู่ระบบ</span>
         </a>
       </div>
 
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/register"
-          aria-label="สมัครสมาชิก VEGUS1"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#f5c451]/60 bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#c9931a] px-6 py-4 shadow-[0_10px_30px_rgba(245,196,81,0.30)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(245,196,81,0.44)]">
+          aria-label="สมัครสมาชิก HOT189"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#fcd304]/60 bg-gradient-to-r from-[#ffe86b] via-[#fcd304] to-[#c99400] px-6 py-4 shadow-[0_10px_30px_rgba(252,211,4,0.30)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(252,211,4,0.44)]">
           <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/25 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#2a0606]"
+            class="relative z-10 h-9 w-9 text-[#2b0a02]"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -77,7 +80,7 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#2a0606]">สมัครสมาชิก</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#2b0a02]">สมัครสมาชิก</span>
         </a>
       </div>
     </div>

@@ -14,32 +14,29 @@ const { title, faqs = [] } = Astro.props;
 // The questions render as <span>, not <h3> — the docx for this template is flat
 // H1+H2 and the page's heading inventory is diffed against it. That is the whole
 // reason this plain variant is the one picked when the brief has no H3s.
+//
+// HOT189: the panel runs surface → ink so the open state's flame glow reads
+// against it, and the + marker is gold on a flame ring.
 ---
 
 <div class="mx-auto max-w-[1000px] px-4 py-10 font-sans">
-  {
-    title && (
-      <h2 class="mb-8 bg-gradient-to-b from-[#ffe08a] to-[#f5c542] bg-clip-text text-center text-2xl font-black tracking-tight text-transparent uppercase md:text-4xl">
-        {title}
-      </h2>
-    )
-  }
+  {title && <h2 class="mb-8 bg-gradient-to-b from-[#ffe86b] to-[#c99400] bg-clip-text text-center text-2xl font-black tracking-tight text-transparent uppercase md:text-4xl">{title}</h2>}
 
   <div class="space-y-4">
     {
       faqs.map((faq) => (
         // `name` makes this an exclusive accordion natively — opening one closes
         // the rest, which is what the removed script did by hand.
-        <details name="faq-plain" class="faq-item group overflow-hidden rounded-xl border border-[#e2131d]/30 bg-gradient-to-br from-[#1c0407] to-[#100205] transition-all hover:border-[#e2131d]/60">
+        <details name="faq-plain" class="faq-item group overflow-hidden rounded-xl border border-[#ef2b09]/30 bg-gradient-to-br from-[#1c0705] to-[#0d0402] transition-all hover:border-[#ef2b09]/60">
           <summary class="flex w-full cursor-pointer items-center justify-between p-5 text-left transition-all">
-            <span class="text-base font-bold text-[#f2e2e4] md:text-lg">{faq.q}</span>
+            <span class="text-base font-bold text-[#ffe9cf] md:text-lg">{faq.q}</span>
             <span
               aria-hidden="true"
-              class="faq-icon ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#f5c542]/40 text-lg leading-none font-black text-[#f5c542] transition-transform duration-300">
+              class="faq-icon ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#fcd304]/40 text-lg leading-none font-black text-[#fcd304] transition-transform duration-300">
               +
             </span>
           </summary>
-          <div class="faq-answer border-t border-[#3a060b] p-5 pt-0 text-left text-base leading-relaxed text-[#f2e2e4]/80">{faq.a}</div>
+          <div class="faq-answer border-t border-[#2e100a] p-5 pt-0 text-left text-base leading-relaxed text-[#ffe9cf]/80">{faq.a}</div>
         </details>
       ))
     }
@@ -54,13 +51,13 @@ const { title, faqs = [] } = Astro.props;
     display: none;
   }
   .faq-item[open] {
-    border-color: rgba(245, 197, 66, 0.6);
-    box-shadow: 0 0 20px rgba(226, 19, 29, 0.35);
+    border-color: rgba(252, 211, 4, 0.6);
+    box-shadow: 0 0 20px rgba(239, 43, 9, 0.35);
   }
   .faq-item[open] .faq-icon {
     transform: rotate(45deg);
-    border-color: #f5c542;
-    color: #ffe08a;
+    border-color: #fcd304;
+    color: #ffe86b;
   }
   .faq-item[open] .faq-answer {
     animation: faq-reveal 0.25s ease-out;

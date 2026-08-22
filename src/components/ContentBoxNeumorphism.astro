@@ -11,19 +11,23 @@ const headingSize = HeadingTag === "h1" ? "text-3xl" : "text-2xl";
 // into the slot and centers the body paragraph with it. House style is headings
 // may be centered, paragraphs are always flush left at text-base.
 //
-// BANANAV3 neumorphic pair: the page ground (#0a0501, a shade under the layout's
-// #140b02) against the raised brown tone (#402508), so the card still reads as
-// extruded on the near-black brown page. Matches
-// ContentBoxSevenThreeNeumorphism and ContentBoxTwoNeumorphism.
+// HOT189 neumorphic pair: the page ground (#0d0402, the layout's own ink) casts
+// the dark side of the extrusion, the panel tone (#2e100a) the lit side, so the
+// card reads as raised off the ember-black page. Matches
+// ContentBoxSevenThreeNeumorphism, ContentBox3ThreeNeumorphism and
+// ContentBoxTwoNeumorphism so the four read as one system.
+//
+// Two-tone split held across every box this brand renders: flame red carries the
+// surfaces (border, rules, glows), gold carries the type.
 ---
 
 <section class="relative z-10 my-6 flex w-full justify-center px-4 font-sans">
   <div
-    class="w-full max-w-[1400px] rounded-[25px] border border-[#e8a317]/30 bg-[#2e1a05] p-8 text-left text-base leading-relaxed text-[#fdf1b3] shadow-[10px_10px_20px_#0a0501,-10px_-10px_20px_#402508]">
+    class="w-full max-w-[1400px] rounded-[25px] border border-[#ef2b09]/35 bg-[#1c0705] p-8 text-left text-base leading-relaxed text-[#ffe9cf] shadow-[10px_10px_20px_#0d0402,-10px_-10px_20px_#2e100a]">
     {
       title && (
-        <header class="mb-8 border-b border-[#e8a317]/30 pb-4 text-center">
-          <HeadingTag class={`bg-gradient-to-r from-[#ffe97a] via-[#fed624] to-[#e8a317] bg-clip-text ${headingSize} leading-normal font-black tracking-wide text-transparent`}>{title}</HeadingTag>
+        <header class="mb-8 border-b border-[#ef2b09]/35 pb-4 text-center">
+          <HeadingTag class={`bg-gradient-to-r from-[#ffe86b] via-[#fcd304] to-[#c99400] bg-clip-text ${headingSize} leading-normal font-black tracking-wide text-transparent`}>{title}</HeadingTag>
         </header>
       )
     }

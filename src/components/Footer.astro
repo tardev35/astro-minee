@@ -1,67 +1,77 @@
 ---
 import { Picture } from "astro:assets";
 import BankStrip from "./BankStrip.astro";
+import { BRAND_ADDRESS } from "../lib/brandProfile";
 
 const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.*", { eager: true });
 const imagePaths = Object.keys(images);
 const targetPath = imagePaths.find((path) => path.endsWith(".webp")) || imagePaths.find((path) => path.endsWith(".png")) || (imagePaths.length > 0 ? imagePaths[0] : null);
 const mainLogo = targetPath ? images[targetPath].default : null;
+
+// The contact block below is deliberately colourless — border-white/15,
+// bg-black/20 and opacity over the footer's inherited text colour land
+// correctly on every footer variant in the library, which are all dark.
+// Its label is a <p>, never a heading: this footer renders on every page, so
+// one <h2> here would be an <h2> sitewide.
 ---
 
 <footer
-  class="relative mt-12 w-full overflow-hidden rounded-t-[3rem] border-t-2 border-[#ff3d9a] bg-[#100309] pt-16 pb-8 font-sans text-[#fdeaf4] shadow-[0_-10px_30px_rgba(255,61,154,0.20)]">
-  <div class="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-[200px] w-full max-w-4xl rounded-full bg-[#ff3d9a]/12 blur-[80px]"></div>
+  class="relative mt-12 w-full overflow-hidden rounded-t-[3rem] border-t-2 border-[#ef2b09] bg-[#0d0402] pt-16 pb-8 font-sans text-[#ffe9cf] shadow-[0_-10px_30px_rgba(239,43,9,0.22)]">
+  <div class="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-[200px] w-full max-w-4xl rounded-full bg-[#ef2b09]/12 blur-[80px]"></div>
 
   <div class="relative z-10 mx-auto w-full max-w-[1400px] px-6">
     <div class="mb-12 grid grid-cols-1 gap-12 md:grid-cols-12">
       <div class="flex flex-col gap-4 md:col-span-5">
-        <a href="/" class="inline-block max-w-max rounded-xl border border-[#ff3d9a]/35 bg-white px-4 py-2 transition-transform duration-300 hover:scale-105">
+        <a href="/" class="inline-block max-w-max rounded-xl border border-[#ef2b09]/35 bg-[#1c0705] px-4 py-2 transition-transform duration-300 hover:scale-105">
           {
             mainLogo ? (
               <Picture
                 src={mainLogo}
-                alt="โลโก้ ตังค์มา168 TUNGMA168 ตัวอักษรไทยสีฟ้าเทอร์ควอยซ์ พร้อมชื่อ Tungma168 สีชมพู"
+                alt="โลโก้ HOT189 ตัวอักษร HOT สีทองลายไฟลุกบนขอบแดง ต่อด้วยเลข 189 มีไพ่เอซสามใบติดไฟอยู่ด้านบน และข้อความ SPORT BETTING AND CASINO ONLINE อยู่ด้านล่าง"
                 class="h-[50px] w-auto object-contain"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
               />
             ) : (
-              <span class="text-3xl font-black tracking-widest text-[#0a0a0a]">
-                TUNGMA<span class="text-[#ff3d9a]">168</span>
+              <span class="text-3xl font-black tracking-widest text-[#ffe86b]">
+                HOT<span class="text-[#ef2b09]">189</span>
               </span>
             )
           }
         </a>
-        <p class="mt-2 border-l-2 border-[#ff3d9a] pl-4 text-sm leading-relaxed text-[#d9a7c4]">
-          TUNGMA168 หรือ ตังค์มา168 รวมสล็อตหลายค่าย คาสิโนสด และระบบสมาชิกไว้ในบัญชีเดียว พร้อมโบนัสบิลแรก เครดิตฟรีสำหรับสมาชิกใหม่ และระบบฝากถอนออโต้ตลอด 24 ชั่วโมง
+        <p class="mt-2 border-l-2 border-[#ef2b09] pl-4 text-sm leading-relaxed text-[#d9ac86]">
+          HOT189 แพลตฟอร์มบาคาร่าออนไลน์ผ่านระบบเว็บตรง รวมโต๊ะหลายระดับวงเงิน โปรโมชั่น และการจัดการบัญชีไว้ในหน้าเดียว พร้อมระบบฝากถอนออโต้ที่ตรวจสอบสถานะรายการได้เอง
         </p>
         <div class="mt-2 flex gap-3">
-          <span class="rounded-sm border border-[#ff3d9a]/35 bg-[#7d0f46]/40 px-3 py-1 text-[10px] font-bold text-[#ffa6d2]">HTTPS / SSL</span>
-          <span class="rounded-sm border border-[#22d3ee]/30 bg-[#22d3ee]/10 px-3 py-1 text-[10px] font-bold text-[#8fe8f2]">AUTO 24 HR</span>
+          <span class="rounded-sm border border-[#ef2b09]/35 bg-[#8f1505]/40 px-3 py-1 text-[10px] font-bold text-[#ffb27a]">HTTPS / SSL</span>
+          <span class="rounded-sm border border-[#fcd304]/30 bg-[#fcd304]/10 px-3 py-1 text-[10px] font-bold text-[#ffe86b]">AUTO 24 HR</span>
         </div>
       </div>
 
       <nav class="flex flex-col gap-4 md:col-span-3 lg:pl-12">
-        <p class="border-b border-[#ff3d9a]/30 pb-2 text-base font-black tracking-widest text-[#fdeaf4] uppercase">ทางลัด</p>
-        <ul class="flex flex-col gap-3 text-sm font-medium text-[#d9a7c4]">
-          <li><a href="/" class="flex items-center gap-2 transition-colors hover:text-[#ff8ec4]"><span aria-hidden="true" class="text-[#ff3d9a]">▸</span> หน้าแรก</a></li>
+        <p class="border-b border-[#ef2b09]/30 pb-2 text-base font-black tracking-widest text-[#ffe9cf] uppercase">ทางลัด</p>
+        <ul class="flex flex-col gap-3 text-sm font-medium text-[#d9ac86]">
+          <li><a href="/" class="flex items-center gap-2 transition-colors hover:text-[#ff7a18]"><span aria-hidden="true" class="text-[#ef2b09]">▸</span> หน้าแรก</a></li>
           <li>
-            <a href="/ทดลองเล่น" class="flex items-center gap-2 transition-colors hover:text-[#ff8ec4]"><span aria-hidden="true" class="text-[#ff3d9a]">▸</span> ทดลองเล่น</a>
+            <a href="/ทดลองเล่น" class="flex items-center gap-2 transition-colors hover:text-[#ff7a18]"><span aria-hidden="true" class="text-[#ef2b09]">▸</span> ทดลองเล่น</a>
           </li>
           <li>
-            <a href="/promotion" class="flex items-center gap-2 transition-colors hover:text-[#ff8ec4]"><span aria-hidden="true" class="text-[#ff3d9a]">▸</span> โปรโมชั่น</a>
+            <a href="/promotion" class="flex items-center gap-2 transition-colors hover:text-[#ff7a18]"><span aria-hidden="true" class="text-[#ef2b09]">▸</span> โปรโมชั่น</a>
           </li>
           <li>
-            <a href="/ทางเข้า" class="flex items-center gap-2 transition-colors hover:text-[#ff8ec4]"><span aria-hidden="true" class="text-[#ff3d9a]">▸</span> ทางเข้า</a>
+            <a href="/ทางเข้า" class="flex items-center gap-2 transition-colors hover:text-[#ff7a18]"><span aria-hidden="true" class="text-[#ef2b09]">▸</span> ทางเข้า</a>
           </li>
           <li>
-            <a href="/register" class="flex items-center gap-2 transition-colors hover:text-[#ff8ec4]"><span aria-hidden="true" class="text-[#ff3d9a]">▸</span> สมัครสมาชิก</a>
+            <a href="/about-us" class="flex items-center gap-2 transition-colors hover:text-[#ff7a18]"><span aria-hidden="true" class="text-[#ef2b09]">▸</span> เกี่ยวกับเรา</a>
+          </li>
+          <li>
+            <a href="/register" class="flex items-center gap-2 transition-colors hover:text-[#ff7a18]"><span aria-hidden="true" class="text-[#ef2b09]">▸</span> สมัครสมาชิก</a>
           </li>
         </ul>
       </nav>
 
       <div class="flex flex-col gap-4 md:col-span-4">
-        <p class="border-b border-[#ff3d9a]/30 pb-2 text-base font-black tracking-widest text-[#fdeaf4] uppercase">บริการลูกค้า 24 ชม.</p>
+        <p class="border-b border-[#ef2b09]/30 pb-2 text-base font-black tracking-widest text-[#ffe9cf] uppercase">บริการลูกค้า 24 ชม.</p>
 
         <a
           href="/line"
@@ -69,16 +79,36 @@ const mainLogo = targetPath ? images[targetPath].default : null;
           <span aria-hidden="true">💬</span> ติดต่อแอดมิน (LINE)
         </a>
 
-        <div class="mt-2 text-xs font-bold text-[#a97b96]">รองรับทุกธนาคารและทรูมันนี่วอเลท:</div>
+        {
+          BRAND_ADDRESS.lines.length > 0 && (
+            <address aria-label={BRAND_ADDRESS.label} class="mt-2 rounded-xl border border-white/15 bg-black/20 p-4 text-xs leading-relaxed not-italic opacity-90">
+              <p class="mb-2 flex items-center gap-2 text-[11px] font-bold tracking-wider uppercase opacity-80">
+                <span aria-hidden="true" class="text-sm">📍</span>
+                {BRAND_ADDRESS.label}
+              </p>
+              {BRAND_ADDRESS.lines.map((line) => (
+                <span class="block">{line}</span>
+              ))}
+              {BRAND_ADDRESS.email && (
+                <a href={`mailto:${BRAND_ADDRESS.email}`} class="mt-3 inline-flex items-center gap-2 font-bold underline decoration-current/40 underline-offset-4 opacity-90 transition-opacity hover:opacity-100">
+                  <span aria-hidden="true" class="text-sm">✉️</span>
+                  {BRAND_ADDRESS.email}
+                </a>
+              )}
+            </address>
+          )
+        }
+
+        <div class="mt-2 text-xs font-bold text-[#d9ac86]">รองรับทุกธนาคารและทรูมันนี่วอเลท:</div>
         <BankStrip size={32} />
       </div>
     </div>
 
-    <div class="flex flex-col items-center justify-between border-t border-[#ff3d9a]/15 pt-6 text-xs font-medium text-[#a97b96] md:flex-row">
-      <p>COPYRIGHT &copy; {new Date().getFullYear()} TUNGMA168-BRAND.COM. ALL RIGHTS RESERVED.</p>
+    <div class="flex flex-col items-center justify-between border-t border-[#ef2b09]/15 pt-6 text-xs font-medium text-[#d9ac86] md:flex-row">
+      <p>COPYRIGHT &copy; {new Date().getFullYear()} HOT189AUTO.COM. ALL RIGHTS RESERVED.</p>
       <div class="mt-3 flex gap-4 md:mt-0">
-        <a href="/terms/" class="transition-colors hover:text-[#fdeaf4]">เงื่อนไขข้อตกลง</a>
-        <a href="/privacy/" class="transition-colors hover:text-[#fdeaf4]">นโยบายความเป็นส่วนตัว</a>
+        <a href="/terms/" class="transition-colors hover:text-[#ffe9cf]">เงื่อนไขข้อตกลง</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#ffe9cf]">นโยบายความเป็นส่วนตัว</a>
       </div>
     </div>
   </div>

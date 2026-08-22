@@ -7,11 +7,12 @@ export interface Props {
 const { title, titleleft, titleright } = Astro.props;
 const rightHeading = titleright ?? title;
 
-// BANANAV3 neumorphic pair: the page ground (#0a0501) against the raised brown
-// tone (#402508), matching ContentBoxNeumorphism and ContentBoxTwoNeumorphism so
-// the three read as one extruded system on the near-black brown page.
+// HOT189 neumorphic pair: the page ground (#0d0402) casts the dark side of the
+// extrusion and the panel tone (#2e100a) the lit side, matching
+// ContentBoxNeumorphism, ContentBox3ThreeNeumorphism and ContentBoxTwoNeumorphism
+// so the four read as one raised system on the ember-black page.
 //
-// Both column titles are <h2>: the BANANAV3 docx is flat H1 + H2 with no nested
+// Both column titles are <h2>: the HOT189 docx is flat H1 + H2 with no nested
 // sub-headings, and the page's heading inventory is diffed against that brief.
 // A column that carries no docx heading simply omits its prop — index.astro
 // passes only titleright here, so the image column stays headingless.
@@ -19,15 +20,15 @@ const rightHeading = titleright ?? title;
 
 <section class="relative z-10 mx-auto mb-8 w-full max-w-[1400px] px-4 font-sans">
   <div
-    class="w-full rounded-[25px] border border-[#e8a317]/30 bg-[#2e1a05] p-8 shadow-[10px_10px_20px_#0a0501,-10px_-10px_20px_#402508] transition-all duration-300 hover:shadow-[15px_15px_30px_#000000,-15px_-15px_30px_#563310]">
+    class="w-full rounded-[25px] border border-[#ef2b09]/35 bg-[#1c0705] p-8 shadow-[10px_10px_20px_#0d0402,-10px_-10px_20px_#2e100a] transition-all duration-300 hover:shadow-[15px_15px_30px_#000000,-15px_-15px_30px_#8f1505]">
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdf1b3]">
-        {titleleft && <h2 class="text-2xl leading-normal font-black text-[#fed624]">{titleleft}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#ffe9cf]">
+        {titleleft && <h2 class="text-2xl leading-normal font-black text-[#fcd304]">{titleleft}</h2>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdf1b3] md:border-l md:border-[#e8a317]/35 md:pl-8">
-        {rightHeading && <h2 class="text-2xl leading-normal font-black text-[#fed624]">{rightHeading}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#ffe9cf] md:border-l md:border-[#ef2b09]/35 md:pl-8">
+        {rightHeading && <h2 class="text-2xl leading-normal font-black text-[#fcd304]">{rightHeading}</h2>}
         <slot name="right" />
       </article>
     </div>

@@ -8,38 +8,47 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 
 const currentPath = Astro.url.pathname;
 
+// Never hand-roll this: Astro.url.pathname is percent-encoded, so a literal
+// comparison highlights nothing on /ทดลองเล่น or /ทางเข้า.
 const isActive = (path: string) => isActivePath(currentPath, path);
 
+// One array feeds both the desktop bar and the mobile drawer, so the two can
+// never disagree. Every item carries its own icon, rendered as a sibling span
+// of the label rather than inside its text.
+//
+// /login and /register are noindex forwarding stubs on this brand, so they get
+// no menu entries — which also makes the "สมัครสมาชิก/เข้าสู่ระบบ sit right
+// after โปรโมชั่น" ordering rule a no-op here.
 const links = [
   { name: "หน้าแรก", path: "/", icon: "🏠" },
   { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
-  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🃏" },
   { name: "ทางเข้า", path: "/ทางเข้า", icon: "🌐" },
   { name: "เกี่ยวกับเรา", path: "/about-us", icon: "💎" },
   { name: "ติดต่อเรา", path: "/contact-us", icon: "📞" },
 ];
 ---
 
-<nav class="sticky top-0 z-50 w-full border-b border-[#12b84f]/50 bg-[#040a06] shadow-[0_0_20px_rgba(18,184,79,0.25)]">
+<nav class="sticky top-0 z-50 w-full border-b border-[#ef2b09]/50 bg-[#0d0402] shadow-[0_0_20px_rgba(239,43,9,0.28)]">
   <div class="flex h-[75px] w-full items-center justify-between px-4 xl:px-8">
     <div class="z-50 flex items-center">
       <a href="/" class="group relative flex items-center">
-        <div aria-hidden="true" class="absolute inset-0 scale-0 rounded-full bg-[#12b84f]/25 blur-xl transition-transform duration-500 group-hover:scale-150"></div>
+        <div aria-hidden="true" class="absolute inset-0 scale-0 rounded-full bg-[#ef2b09]/25 blur-xl transition-transform duration-500 group-hover:scale-150"></div>
         {
           mainLogo ? (
             <Picture
               src={mainLogo}
-              alt="โลโก้ YOK789 สล็อตเว็บตรง คาสิโน หวย กีฬา"
+              alt="โลโก้ HOT189 ตัวอักษร HOT สีทองลายไฟลุกบนขอบแดง ต่อด้วยเลข 189 มีไพ่เอซสามใบติดไฟอยู่ด้านบน และข้อความ SPORT BETTING AND CASINO ONLINE อยู่ด้านล่าง"
               loading="eager"
               fetchpriority="high"
               widths={[110, 220, 330]}
               sizes="110px"
-              class="relative h-[40px] w-auto drop-shadow-[0_0_10px_rgba(92,255,155,0.35)] transition-transform group-hover:scale-105 xl:h-[45px]"
+              class="relative h-[40px] w-auto drop-shadow-[0_0_10px_rgba(255,122,24,0.4)] transition-transform group-hover:scale-105 xl:h-[45px]"
               formats={["avif", "webp"]}
               fallbackFormat="webp"
             />
           ) : (
-            <span class="relative bg-gradient-to-b from-[#5cff9b] to-[#0a6b2f] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_10px_rgba(18,184,79,0.45)]">YOK789</span>
+            <span class="relative bg-gradient-to-b from-[#ffe86b] to-[#ef2b09] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_10px_rgba(252,211,4,0.45)]">HOT189</span>
           )
         }
       </a>
@@ -50,12 +59,12 @@ const links = [
         links.map((link) => (
           <a
             href={link.path}
-            class={`group relative px-5 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive(link.path) ? "bg-[#12b84f]/20 border-[#5cff9b] shadow-[0_0_15px_rgba(18,184,79,0.45)]" : "bg-white/5 border-white/10 hover:border-[#12b84f]/60"}`}>
+            class={`group relative px-5 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive(link.path) ? "bg-[#ef2b09]/20 border-[#fcd304] shadow-[0_0_15px_rgba(239,43,9,0.45)]" : "bg-white/5 border-white/10 hover:border-[#ff7a18]/60"}`}>
             <div
               aria-hidden="true"
-              class={`absolute inset-0 bg-gradient-to-r from-[#0a6b2f] to-[#12b84f] translate-y-full transition-transform duration-300 ${isActive(link.path) ? "translate-y-0 opacity-25" : "group-hover:translate-y-0 opacity-40"}`}
+              class={`absolute inset-0 bg-gradient-to-r from-[#8f1505] to-[#ef2b09] translate-y-full transition-transform duration-300 ${isActive(link.path) ? "translate-y-0 opacity-25" : "group-hover:translate-y-0 opacity-40"}`}
             />
-            <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive(link.path) ? "text-[#ffd94a]" : "text-[#c3d8c9] group-hover:text-white"}`}>
+            <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive(link.path) ? "text-[#fcd304]" : "text-[#d9ac86] group-hover:text-white"}`}>
               <span aria-hidden="true" class="mr-1">
                 {link.icon}
               </span>
@@ -69,7 +78,7 @@ const links = [
     <div class="z-50 flex items-center gap-2">
       <button
         id="hamburger-btn"
-        class="relative flex h-[45px] w-[45px] flex-col items-center justify-center space-y-1.5 rounded-md border border-[#12b84f]/40 bg-[#0a6b2f]/25 p-2 transition-all hover:bg-[#0a6b2f]/45 xl:hidden"
+        class="relative flex h-[45px] w-[45px] flex-col items-center justify-center space-y-1.5 rounded-md border border-[#ef2b09]/40 bg-[#8f1505]/25 p-2 transition-all hover:bg-[#8f1505]/45 xl:hidden"
         aria-label="Toggle menu">
         <span class="hamburger-line h-[2px] w-6 origin-center bg-white transition-all duration-300"></span>
         <span class="hamburger-line h-[2px] w-6 bg-white transition-all duration-300"></span>
@@ -82,13 +91,13 @@ const links = [
 
   <div
     id="mobile-sidebar"
-    class="fixed top-0 right-0 z-40 h-screen w-[280px] translate-x-full transform overflow-y-auto border-l border-[#12b84f]/50 bg-[#040a06] shadow-[-10px_0_30px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out xl:hidden">
+    class="fixed top-0 right-0 z-40 h-screen w-[280px] translate-x-full transform overflow-y-auto border-l border-[#ef2b09]/50 bg-[#0d0402] shadow-[-10px_0_30px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out xl:hidden">
     <div class="flex flex-col space-y-3 px-6 pt-24 pb-10">
       {
         links.map((link) => (
           <a
             href={link.path}
-            class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive(link.path) ? "bg-[#12b84f]/20 border-[#5cff9b] text-[#ffd94a] shadow-[inset_4px_0_0_rgba(18,184,79,1)]" : "bg-white/5 border-transparent text-[#c3d8c9] hover:bg-white/10 hover:text-white"}`}>
+            class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive(link.path) ? "bg-[#ef2b09]/20 border-[#fcd304] text-[#fcd304] shadow-[inset_4px_0_0_rgba(239,43,9,1)]" : "bg-white/5 border-transparent text-[#d9ac86] hover:bg-white/10 hover:text-white"}`}>
             <span aria-hidden="true" class="mr-3 text-xl">
               {link.icon}
             </span>

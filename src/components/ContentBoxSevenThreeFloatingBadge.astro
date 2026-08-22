@@ -12,28 +12,30 @@ const { title, titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
 // sentence has to wrap rather than blow past the viewport, and the wrapped badge
 // has to clear the grid below it.
 //
-// Measured against BANANAV3's H2-3 title ("ตรวจโพยหวยและผลรางวัลผ่าน BANANAV3
-// ให้ครบก่อนสรุปยอด", 51 chars). Mobile: text-lg at leading-normal = 27px a
-// line over ~290px of usable badge width (no ✦ spans in this variant) wraps to
-// 3 lines at worst → 3×27 + 20 (py-2.5) + 4 (border-2) = 105px tall, bottom
-// edge at 105 − 24 = 81px into the card, inside pt-32 (128px). Desktop:
-// text-2xl at 36px a line over ~608px wraps to 2 lines → 96px tall, bottom edge
-// at 72px, inside md:pt-28 (112px). Do not shrink either padding.
+// Re-measured against HOT189's H2-4 title, the one this brand feeds it
+// ("ระบบฝากถอนออโต้ของ HOT189 ช่วยลดขั้นตอนการทำรายการ", 50 chars). Mobile at a
+// 375px viewport: the card is 343px inside the section's px-4, the badge is
+// w-[92%] = 315px, and after px-4 (32px) and border-2 (4px) about 279px is left
+// (this variant has no ✦ spans eating width). text-lg wraps that title to 3
+// lines at worst; leading-normal on 18px = 27px a line, so 3×27 + 20 (py-2.5)
+// + 4 (border-2) = 105px tall, bottom edge at 105 − 24 = 81px into the card —
+// clear of pt-32 (128px). Desktop: text-2xl at 36px a line over ~604px of usable
+// width inside max-w-2xl wraps to 2 lines = 96px tall, bottom edge at 72px,
+// inside md:pt-28 (112px). Both clear as they stand; do not shrink either.
 //
 // titleleft/titleright are <p>, not headings: the column labels here are
 // supporting chrome. The one docx heading this box carries is `title`.
 ---
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
-  <div
-    class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#fed624]/25 bg-gradient-to-b from-[#2e1a05]/95 to-[#241303]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(254,214,36,0.16)] md:pt-28">
-    <div aria-hidden="true" class="pointer-events-none absolute -right-10 -bottom-16 -z-10 h-40 w-40 rounded-full bg-[#e8a317]/30 blur-[60px]"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#fed624]/25 blur-[60px]"></div>
+  <div class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#ef2b09]/35 bg-gradient-to-b from-[#1c0705]/95 to-[#0d0402]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(239,43,9,0.2)] md:pt-28">
+    <div aria-hidden="true" class="pointer-events-none absolute -right-10 -bottom-16 -z-10 h-40 w-40 rounded-full bg-[#ff7a18]/25 blur-[60px]"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#ef2b09]/30 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 w-[92%] max-w-2xl -translate-x-1/2 rounded-lg border-2 border-[#fed624]/35 bg-[#2e1a05] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(254,214,36,0.22)] sm:px-8">
-          <HeadingTag class="bg-gradient-to-r from-[#ffe97a] via-[#fed624] to-[#e8a317] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
+        <div class="absolute -top-6 left-1/2 w-[92%] max-w-2xl -translate-x-1/2 rounded-lg border-2 border-[#ef2b09]/45 bg-[#2e100a] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(252,211,4,0.2)] sm:px-8">
+          <HeadingTag class="bg-gradient-to-r from-[#ffe86b] via-[#fcd304] to-[#c99400] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
             {title}
           </HeadingTag>
         </div>
@@ -41,13 +43,13 @@ const { title, titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
     }
 
     <div class="grid grid-cols-1 gap-10 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdf1b3]">
-        {titleleft && <p class="text-2xl leading-normal font-bold text-[#fed624]">{titleleft}</p>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#ffe9cf]">
+        {titleleft && <p class="text-2xl leading-normal font-bold text-[#fcd304]">{titleleft}</p>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdf1b3] md:border-l md:border-[#fed624]/25 md:pl-10">
-        {titleright && <p class="text-2xl leading-normal font-bold text-[#fed624]">{titleright}</p>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#ffe9cf] md:border-l md:border-[#ef2b09]/30 md:pl-10">
+        {titleright && <p class="text-2xl leading-normal font-bold text-[#fcd304]">{titleright}</p>}
         <slot name="right" />
       </article>
     </div>

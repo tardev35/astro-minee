@@ -4,30 +4,29 @@
 // the brief. The accessible name for the region lives on the section's
 // aria-label instead.
 //
-// Copy follows the BANANAV3 brief, docx section 2: ผู้ใช้งานสามารถเลือกทั้ง
-// บาคาร่าและหวยตามความสนใจ โดยแต่ละประเภทมีรูปแบบเดิมพัน ความเสี่ยง และวิธีคิด
-// ผลแตกต่างกัน ควรตรวจสอบกติกา อัตราจ่าย และช่วงเวลารับรายการก่อนเริ่ม. The
-// tiles name the two categories the brief names and the things it says to read
-// before starting — no game studio and no lottery office is named, because
-// nothing in the brief states which are on the system and an invented list is a
-// claim the site cannot back.
+// Copy follows the HOT189 brief, docx section 2: ภายใน HOT189 สามารถเลือกโต๊ะ
+// บาคาร่าได้หลายรูปแบบตามวงเงินและความเร็วของเกม ผู้เล่นควรพิจารณาขั้นต่ำของโต๊ะ
+// ตัวเลือกเดิมพัน และอัตราจ่ายก่อนเริ่ม. The tiles name the things the brief
+// says to read before starting and nothing else — no game studio and no live
+// dealer provider is named, because the brief never states which are on the
+// system and an invented list is a claim the site cannot back.
 const categories = [
-  { name: "หมวดบาคาร่า", desc: "โต๊ะบาคาร่าแยกเป็นหมวดให้เลือกตามรูปแบบเดิมพันและเงื่อนไขของโต๊ะ", tag: "เลือกโต๊ะ", icon: "🎴" },
-  { name: "หมวดหวยออนไลน์", desc: "ประเภทหวยและงวดที่ยังเปิดรับรายการอยู่ ดูได้จากหน้าเดียว", tag: "เลือกประเภทหวย", icon: "🎟️" },
-  { name: "รูปแบบเดิมพัน", desc: "แต่ละประเภทมีตัวเลือกเดิมพันไม่เหมือนกัน ควรอ่านให้ครบก่อนกดยืนยัน", tag: "ดูรูปแบบเดิมพัน", icon: "🧭" },
-  { name: "กติกาของแต่ละประเภท", desc: "วิธีตัดสินผลของบาคาร่ากับการคิดผลรางวัลหวยใช้เกณฑ์คนละแบบ", tag: "เริ่มจากกติกา", icon: "📘" },
-  { name: "อัตราจ่ายอ้างอิง", desc: "อัตราจ่ายของแต่ละตัวเลือกไม่เท่ากัน ควรเทียบก่อนตัดสินใจลงเดิมพัน", tag: "เทียบอัตราจ่าย", icon: "📊" },
-  { name: "ช่วงเวลารับรายการ", desc: "หวยมีเวลาปิดรับต่องวด ส่วนโต๊ะบาคาร่าเปิดตามรอบที่ระบบแสดง", tag: "ดูเวลารับรายการ", icon: "⏱️" },
+  { name: "โต๊ะบาคาร่าหลายรูปแบบ", desc: "โต๊ะแยกตามวงเงินและความเร็วของเกมให้เลือกตามสไตล์การเล่น", tag: "เลือกโต๊ะ", icon: "🎴" },
+  { name: "ขั้นต่ำของโต๊ะ", desc: "แต่ละโต๊ะกำหนดขั้นต่ำไม่เท่ากัน ควรดูให้ตรงกับงบที่วางไว้", tag: "ดูขั้นต่ำก่อน", icon: "💵" },
+  { name: "ตัวเลือกเดิมพัน", desc: "Banker Player และ Tie เป็นคนละตัวเลือก เงื่อนไขจึงต่างกัน", tag: "ดูตัวเลือก", icon: "🧭" },
+  { name: "อัตราจ่ายอ้างอิง", desc: "อัตราจ่ายของแต่ละตัวเลือกไม่เท่ากัน ควรเทียบก่อนลงเดิมพัน", tag: "เทียบอัตราจ่าย", icon: "📊" },
+  { name: "กติกาและวิธีคิดผล", desc: "ควรเข้าใจวิธีตัดสินผลของแต่ละตาก่อน ไม่ตัดสินจากผลย้อนหลัง", tag: "เริ่มจากกติกา", icon: "📘" },
+  { name: "ค่าคอมมิชชันที่เกี่ยวข้อง", desc: "บางตัวเลือกมีค่าคอมมิชชันตามเงื่อนไขที่โต๊ะกำหนดไว้", tag: "อ่านเงื่อนไข", icon: "🧾" },
   { name: "รองรับหลายอุปกรณ์", desc: "เปิดผ่านเบราว์เซอร์บนมือถือ แท็บเล็ต และคอมพิวเตอร์ด้วยบัญชีเดียว", tag: "ใช้ได้ทุกจอ", icon: "📱" },
 ];
 ---
 
-<section aria-label="เลือกบาคาร่าและหวยบน BANANAV3 พร้อมกติกา อัตราจ่าย และช่วงเวลารับรายการของแต่ละประเภท" class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
+<section aria-label="เลือกโต๊ะบาคาร่าบน HOT189 พร้อมขั้นต่ำของโต๊ะ ตัวเลือกเดิมพัน และอัตราจ่ายที่ควรดูก่อนเริ่ม" class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
-    <p class="bg-gradient-to-r from-[#ffe97a] via-[#fed624] to-[#e8a317] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
-      เลือกบาคาร่าและหวยบน <span class="text-[#fdf1b3]">BANANAV3</span> ได้จากหน้าเดียว
+    <p class="bg-gradient-to-r from-[#ffe86b] via-[#fcd304] to-[#c99400] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
+      เลือกโต๊ะบาคาร่าบน <span class="text-[#ffe9cf]">HOT189</span> ได้จากหน้าเดียว
     </p>
-    <div class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#fed624] to-transparent"></div>
+    <div class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#ef2b09] to-transparent"></div>
   </div>
 
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5 xl:grid-cols-7">
@@ -35,20 +34,20 @@ const categories = [
       categories.map((category) => (
         <a
           href="/register"
-          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#e8a317]/30 bg-[#2e1a05]/92 p-5 shadow-[0_10px_30px_rgba(232,163,23,0.2)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#fed624]/60 hover:bg-[#241303]/95 hover:shadow-[0_15px_40px_rgba(254,214,36,0.34)]">
-          <div class="pointer-events-none absolute inset-0 bg-[#5b3304]/35 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#ef2b09]/35 bg-[#1c0705]/92 p-5 shadow-[0_10px_30px_rgba(239,43,9,0.22)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#fcd304]/60 hover:bg-[#2e100a]/95 hover:shadow-[0_15px_40px_rgba(252,211,4,0.3)]">
+          <div class="pointer-events-none absolute inset-0 bg-[#8f1505]/35 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#ffe97a] via-[#fed624] to-[#e8a317] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#140b02] shadow-sm transition-transform duration-300 group-hover:scale-110">
+          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#ffe86b] via-[#fcd304] to-[#c99400] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#2b0a02] shadow-sm transition-transform duration-300 group-hover:scale-110">
             {category.tag}
           </div>
 
           <div aria-hidden="true" class="mb-3 text-4xl transition-transform duration-300 group-hover:scale-125 group-hover:rotate-3">
             {category.icon}
           </div>
-          <p class="text-center text-sm font-black text-[#fdf1b3] transition-colors group-hover:text-[#fed624]">{category.name}</p>
-          <p class="mt-1 text-center text-[10px] text-[#d9bd82]">{category.desc}</p>
+          <p class="text-center text-sm font-black text-[#ffe9cf] transition-colors group-hover:text-[#fcd304]">{category.name}</p>
+          <p class="mt-1 text-center text-[10px] text-[#d9ac86]">{category.desc}</p>
 
-          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#e8a317]/30 bg-[#140b02] py-1.5 text-center text-[11px] font-bold text-[#fed624] shadow-inner transition-colors duration-300 group-hover:border-[#fed624]/60 group-hover:bg-gradient-to-r group-hover:from-[#ffe97a] group-hover:via-[#fed624] group-hover:to-[#e8a317] group-hover:text-[#140b02]">
+          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#ef2b09]/35 bg-[#0d0402] py-1.5 text-center text-[11px] font-bold text-[#fcd304] shadow-inner transition-colors duration-300 group-hover:border-[#fcd304]/60 group-hover:bg-gradient-to-r group-hover:from-[#ffe86b] group-hover:via-[#fcd304] group-hover:to-[#c99400] group-hover:text-[#2b0a02]">
             เข้าดูหมวดนี้
           </span>
         </a>

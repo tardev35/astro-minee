@@ -5,6 +5,8 @@ import krungsriLogo from "../assets/banks/krungsri.png";
 import ktbLogo from "../assets/banks/ktb.png";
 import { brandFlag, brandPick } from "../lib/brandProfile";
 
+// The four bank badge colours are the banks' own brand colours and stay as they
+// are — they identify the bank, they are not this brand's hue.
 const bankPool = [
   { name: "KBank", color: "bg-[#1155cc]", icon: kbankLogo.src },
   { name: "SCB", color: "bg-[#4e1c80]", icon: scbLogo.src },
@@ -12,11 +14,13 @@ const bankPool = [
   { name: "KTB", color: "bg-[#0ea5e9]", icon: ktbLogo.src },
 ];
 
+// brandPick/brandFlag, never Math.random(): this frontmatter runs at build time,
+// so a random call here makes two builds of the same domain differ. The rows are
+// server-rendered and winnersFeed.ts only takes over the rotation afterwards.
 const LETTERS = "abcdefghijklmnopqrstuvwxyz";
 const pad = (n: number) => String(n).padStart(2, "0");
 const pick = (salt: string, n: number) => brandPick(Astro.site, salt, n);
-const digits = (salt: string, n: number) =>
-  Array.from({ length: n }, (_, d) => pick(`${salt}-${d}`, 10)).join("");
+const digits = (salt: string, n: number) => Array.from({ length: n }, (_, d) => pick(`${salt}-${d}`, 10)).join("");
 
 const initialRows = Array.from({ length: 4 }, (_, i) => ({
   bank: bankPool[pick(`std-bank-${i}`, bankPool.length)],
@@ -27,18 +31,25 @@ const initialRows = Array.from({ length: 4 }, (_, i) => ({
   pending: brandFlag(Astro.site, `std-pending-${i}`),
 }));
 
-const PENDING_CLASS = "bg-[#153b26]/70 text-[#9dbfa8] animate-pulse border border-[#153b26]";
+// Pending runs on the brand's ember; done stays green because green is the
+// semantic "completed" signal here, not a palette choice. Both lists are handed
+// to the module through data-pending-class / data-done-class, so the classes
+// stay written in this file where Tailwind's scanner can see them.
+const PENDING_CLASS = "bg-[#2e100a] text-[#ff7a18] animate-pulse border border-[#ef2b09]/45";
 const DONE_CLASS = "bg-[#10b981]/20 text-[#34d399] border border-[#10b981]/50";
 ---
 
 <div class="mx-auto w-full max-w-[1300px] p-4 font-sans">
   <section
-    aria-label="รายการถอนเงินล่าสุดของสมาชิก YOK789"
-    class="relative overflow-hidden rounded-[20px] border border-[#12b84f]/40 bg-[#08150d]/80 px-4 py-8 shadow-[0_10px_30px_rgba(18,184,79,0.15)] backdrop-blur-md md:p-10">
+    aria-label="รายการถอนเงินล่าสุดของสมาชิก HOT189"
+    class="relative overflow-hidden rounded-[20px] border border-[#ef2b09]/40 bg-[#1c0705]/85 px-4 py-8 shadow-[0_10px_30px_rgba(239,43,9,0.2)] backdrop-blur-md md:p-10">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-20 -left-16 h-48 w-48 rounded-full bg-[#ef2b09]/25 blur-[70px]"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -right-16 -bottom-20 h-48 w-48 rounded-full bg-[#fcd304]/14 blur-[70px]"></div>
+
     <div class="relative z-10 mb-8 flex items-center justify-center gap-3">
-      <span aria-hidden="true" class="text-2xl drop-shadow-[0_0_8px_rgba(18,184,79,0.6)]">🏆</span>
-      <p class="bg-gradient-to-b from-[#d5f0dd] to-[#12b84f] bg-clip-text text-xl font-black tracking-wide text-transparent drop-shadow-sm md:text-3xl">รายการถอนเงินล่าสุดของสมาชิก YOK789</p>
-      <span aria-hidden="true" class="text-2xl drop-shadow-[0_0_8px_rgba(18,184,79,0.6)]">🏆</span>
+      <span aria-hidden="true" class="text-2xl drop-shadow-[0_0_8px_rgba(239,43,9,0.7)]">🔥</span>
+      <p class="bg-gradient-to-b from-[#ffe86b] to-[#c99400] bg-clip-text text-xl font-black tracking-wide text-transparent drop-shadow-sm md:text-3xl">รายการถอนเงินล่าสุดของสมาชิก HOT189</p>
+      <span aria-hidden="true" class="text-2xl drop-shadow-[0_0_8px_rgba(239,43,9,0.7)]">🔥</span>
     </div>
 
     <div data-winners-feed data-interval="5000" data-max-rows="4" class="relative z-10 flex flex-col">
@@ -46,25 +57,32 @@ const DONE_CLASS = "bg-[#10b981]/20 text-[#34d399] border border-[#10b981]/50";
         initialRows.map((row) => (
           <div data-winner-row class="winner-row grid grid-rows-[1fr] transition-all duration-700 ease-in-out">
             <div class="overflow-hidden">
-              <div class="mb-3 flex items-center justify-between rounded-xl border border-[#12b84f]/20 bg-[#050d07]/60 p-4 shadow-sm backdrop-blur-md transition-all hover:border-[#12b84f]/50 hover:bg-[#0e2216]">
+              <div class="mb-3 flex items-center justify-between rounded-xl border border-[#ef2b09]/25 bg-[#0d0402]/70 p-4 shadow-sm backdrop-blur-md transition-all hover:border-[#fcd304]/55 hover:bg-[#2e100a]">
                 <div class="flex items-center gap-4">
-                  <div class="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#12b84f]/30 bg-white/5 shadow-sm">
+                  <div class="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#ef2b09]/35 bg-white/5 shadow-sm">
                     <div data-winner-bank class={`flex h-9 w-9 items-center justify-center overflow-hidden rounded-full ${row.bank.color}`}>
                       <img data-winner-icon src={row.bank.icon} alt="" width="24" height="24" loading="lazy" decoding="async" class="h-6 w-6 object-contain" />
                     </div>
                   </div>
                   <div class="flex flex-col justify-center">
-                    <div class="text-sm font-bold text-[#d5f0dd] md:text-base">
-                      User: <span data-winner-user class="tracking-wider text-[#5cff9b]">{row.user}</span>
+                    <div class="text-sm font-bold text-[#ffe9cf] md:text-base">
+                      User:{" "}
+                      <span data-winner-user class="tracking-wider text-[#fcd304]">
+                        {row.user}
+                      </span>
                     </div>
-                    <div class="mt-0.5 text-[10px] text-[#9dbfa8] md:text-xs">
-                      REF#<span data-winner-ref data-ref-length="8">{row.ref}</span> · <span data-winner-time>{row.time}</span>
+                    <div class="mt-0.5 text-[10px] text-[#d9ac86] md:text-xs">
+                      REF#
+                      <span data-winner-ref data-ref-length="8">
+                        {row.ref}
+                      </span>{" "}
+                      · <span data-winner-time>{row.time}</span>
                     </div>
                   </div>
                 </div>
                 <div class="flex flex-col items-end justify-center gap-1.5">
-                  <div class="text-lg font-black tracking-tight text-[#5cff9b] drop-shadow-[0_0_5px_rgba(18,184,79,0.35)] md:text-2xl">
-                    <span data-winner-amount>{row.amount}</span> <span class="text-[10px] font-medium text-[#ffd94a] md:text-xs">THB</span>
+                  <div class="text-lg font-black tracking-tight text-[#ffe86b] drop-shadow-[0_0_5px_rgba(252,211,4,0.35)] md:text-2xl">
+                    <span data-winner-amount>{row.amount}</span> <span class="text-[10px] font-medium text-[#ff7a18] md:text-xs">THB</span>
                   </div>
                   <div
                     data-winner-status
@@ -82,6 +100,10 @@ const DONE_CLASS = "bg-[#10b981]/20 text-[#34d399] border border-[#10b981]/50";
         ))
       }
     </div>
+
+    <p class="relative z-10 mt-4 text-center text-[10px] leading-relaxed tracking-wide text-[#d9ac86]">
+      รายการที่แสดงเป็นตัวอย่างรูปแบบการทำรายการผ่านระบบฝากถอนออโต้ ยอดและเวลาจริงของแต่ละบัญชีดูได้จากหน้าบัญชีของสมาชิกเอง
+    </p>
 
     <script type="application/json" data-winners-banks set:html={JSON.stringify(bankPool)} />
   </section>
