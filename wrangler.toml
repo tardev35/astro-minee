@@ -2,8 +2,13 @@ name = "hot189auto"
 account_id = "bd078b66a68b2893d9ad45fcbdd6a8f7"
 compatibility_date = "2026-07-27"
 
+# Worker ที่ทำ 301 www -> non-www ก่อนส่งต่อให้ไฟล์ static (ดู worker/index.js)
+main = "worker/index.js"
+
 workers_dev = false
 
 [assets]
 directory = "dist"
 not_found_handling = "404-page"
+# binding นี้คือสิ่งที่ทำให้ worker เรียก env.ASSETS.fetch() ส่งต่อไปหาไฟล์ได้
+binding = "ASSETS"
