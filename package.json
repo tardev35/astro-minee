@@ -13,7 +13,8 @@
     "astro": "astro",
     "rebrand:upload": "node tools/rebrand-uploader/server.mjs",
     "rebrand:upload:open": "start \"\" http://localhost:5555 & node tools/rebrand-uploader/server.mjs",
-    "domain:manager": "node --env-file=tools/domain-manager/.env tools/domain-manager/server.mjs"
+    "domain:manager": "node --env-file=tools/domain-manager/.env tools/domain-manager/server.mjs",
+    "cf:shield": "node tools/cf-scrape-shield/server.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",

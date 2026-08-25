@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cloudflare Scrape Shield</title>
+    <style>
+      :root {
+        --bg: #0f1115;
+        --panel: #171a21;
+        --line: #262b36;
+        --text: #e6e9ef;
+        --muted: #96a0b5;
+        --accent: #f6821f;
+        --ok: #3ecf8e;
+        --bad: #ef6461;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Segoe UI", Tahoma, system-ui, sans-serif;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+      main { max-width: 980px; margin: 0 auto; padding: 32px 20px 80px; }
+      h1 { font-size: 22px; margin: 0 0 4px; }
+      .sub { color: var(--muted); margin: 0 0 28px; font-size: 14px; }
+      .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 18px; }
+      label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+      input[type="password"], input[type="text"] {
+        width: 100%; padding: 10px 12px; border-radius: 8px;
+        border: 1px solid var(--line); background: #0d1016; color: var(--text);
+        font-family: ui-monospace, Consolas, monospace; font-size: 14px;
+      }
+      input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+      button {
+        padding: 10px 16px; border-radius: 8px; border: 1px solid var(--line);
+        background: #212734; color: var(--text); cursor: pointer; font-size: 14px; font-family: inherit;
+      }
+      button:hover:not(:disabled) { border-color: var(--accent); }
+      button:disabled { opacity: 0.45; cursor: default; }
+      button.primary { background: var(--accent); border-color: var(--accent); color: #1a1207; font-weight: 600; }
+      button.small { padding: 5px 12px; font-size: 13px; }
+      .row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+      .row > div { flex: 1 1 260px; }
+      .checkline { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; margin-top: 10px; }
+      table { width: 100%; border-collapse: collapse; margin-top: 14px; }
+      th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); font-size: 14px; }
+      th { color: var(--muted); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+      td.dom { font-family: ui-monospace, Consolas, monospace; }
+      .badge { display: inline-block; padding: 1px 9px; border-radius: 999px; font-size: 12px; border: 1px solid; }
+      .badge.on { color: var(--bad); border-color: var(--bad); }
+      .badge.off { color: var(--ok); border-color: var(--ok); }
+      .badge.unknown { color: var(--muted); border-color: var(--line); }
+      .msg { margin-top: 14px; padding: 10px 12px; border-radius: 8px; font-size: 14px; display: none; }
+      .msg.err { display: block; background: #2b1618; border: 1px solid var(--bad); }
+      .msg.info { display: block; background: #15211c; border: 1px solid var(--ok); }
+      .note { color: var(--muted); font-size: 13px; }
+      .note code { background: #0d1016; padding: 1px 6px; border-radius: 4px; font-size: 12.5px; }
+      .toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 16px; }
+      .toolbar .spacer { flex: 1; }
+      hr { border: 0; border-top: 1px solid var(--line); margin: 22px 0; }
+      details summary { cursor: pointer; color: var(--muted); font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Cloudflare Scrape Shield</h1>
+      <p class="sub">
+        ปิด <strong>Email Address Obfuscation</strong> ซึ่งเป็นตัวที่ทำให้ Cloudflare ยัด
+        <code>/cdn-cgi/scripts/…/email-decode.min.js</code> เข้าไปในหน้าเว็บแบบ render-blocking
+        เมื่อเจออีเมลในหน้า
+      </p>
+
+      <div class="panel">
+        <label for="token">API Token</label>
+        <input id="token" type="password" placeholder="วาง Cloudflare API token ที่นี่" autocomplete="off" spellcheck="false" />
+        <div class="checkline">
+          <input id="remember" type="checkbox" />
+          <label for="remember" style="margin: 0">จำไว้เฉพาะแท็บนี้ (ปิดแท็บแล้วลืม)</label>
+        </div>
+        <div class="toolbar">
+          <button id="btnVerify" class="small">ตรวจสอบ token</button>
+          <button id="btnLoad" class="primary">โหลดโดเมนทั้งหมด</button>
+        </div>
+        <div id="tokenMsg" class="msg"></div>
+        <hr />
+        <p class="note">
+          สร้าง token ที่ <strong>My Profile → API Tokens → Create Token → Custom token</strong>
+          ให้สิทธิ์ <code>Zone · Zone · Read</code> และ <code>Zone · Zone Settings · Edit</code>
+          แล้วเลือก Zone Resources เป็น <em>All zones</em><br />
+          token ไม่ถูกเขียนลงดิสก์และไม่ถูก log — ส่งผ่าน request ไป Cloudflare แล้วทิ้ง
+        </p>
+      </div>
+
+      <div class="panel" id="zonePanel" style="display: none">
+        <div class="row">
+          <div>
+            <label for="filter">กรองรายชื่อ</label>
+            <input id="filter" type="text" placeholder="พิมพ์บางส่วนของโดเมน" autocomplete="off" />
+          </div>
+          <button id="btnAllOff">ปิดทุกโดเมนที่ยังเปิดอยู่</button>
+        </div>
+        <div id="zoneMsg" class="msg"></div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 46%">โดเมน</th>
+              <th style="width: 20%">Email Obfuscation</th>
+              <th style="width: 34%"></th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <details>
+          <summary>ใส่ Zone ID เองทีละอัน (ถ้า token อ่านรายชื่อ zone ไม่ได้)</summary>
+          <div class="row" style="margin-top: 14px">
+            <div>
+              <label for="manualZone">Zone ID</label>
+              <input id="manualZone" type="text" placeholder="32 ตัวอักษร a-f และตัวเลข" autocomplete="off" spellcheck="false" />
+            </div>
+            <button id="btnManual">ดูสถานะ</button>
+          </div>
+          <div id="manualMsg" class="msg"></div>
+          <table id="manualTable" style="display: none">
+            <tbody id="manualRows"></tbody>
+          </table>
+        </details>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
