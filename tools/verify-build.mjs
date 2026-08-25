@@ -698,6 +698,39 @@ const imageKey = (filename) => filename.slice(0, filename.indexOf(".")).toLowerC
   }
 }
 
+// ── AVIF that came out heavier than its own WebP fallback ──────────────────
+const AVIF_TOLERANCE = 1.1;
+
+{
+  const sizeOf = (url) => {
+    const file = path.join(DIST, url.replace(/^\//, ""));
+    return fs.existsSync(file) ? fs.statSync(file).size : null;
+  };
+
+  const seen = new Set();
+  for (const file of pages) {
+    const html = fs.readFileSync(file, "utf8");
+    for (const [, pic] of html.matchAll(/<picture>([\s\S]*?)<\/picture>/g)) {
+      const avif = new Map();
+      const webp = new Map();
+      for (const [, url, w] of pic.matchAll(/(\/_astro\/[^\s"]+\.avif)\s+(\d+)w/g)) avif.set(w, url);
+      for (const [, url, w] of pic.matchAll(/(\/_astro\/[^\s"]+\.webp)\s+(\d+)w/g)) webp.set(w, url);
+
+      for (const [w, url] of avif) {
+        if (!webp.has(w) || seen.has(url)) continue;
+        seen.add(url);
+        const a = sizeOf(url);
+        const b = sizeOf(webp.get(w));
+        if (a === null || b === null || a <= b * AVIF_TOLERANCE) continue;
+        error(
+          path.relative(DIST, file).split(path.sep).join("/"),
+          `${path.basename(url)} at ${w}w is ${Math.round(a / 1024)} kB of AVIF against ${Math.round(b / 1024)} kB of WebP (+${Math.round((a / b - 1) * 100)}%) — every browser that supports AVIF takes the heavier file. AVIF's quality scale is not WebP's: tools/avif-quality-service.mjs rescales it, so this means the service was bypassed or the image needs its own quality.`,
+        );
+      }
+    }
+  }
+}
+
 // ── build-time randomness ──────────────────────────────────────────────────
 //
 // brandProfile.ts states the invariant: the same domain must produce

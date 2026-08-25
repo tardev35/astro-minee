@@ -59,9 +59,11 @@ export interface BrandProfile {
 // ซ้ำกันข้ามโดเมนคือ fingerprint ที่ตรวจเจอง่ายกว่าตัวอักษรที่ตาเห็นเสียอีก
 //
 // ข้อแลกเปลี่ยนของสองตัวเลือกนี้ไม่เหมือนกัน:
-//   kanit       — self-host ไม่มี request ออกนอกเลย แต่ path เป็นเอกลักษณ์
-//   google-sans — โหลดจาก Google Fonts มี request ออกนอก แต่กลืนไปกับเว็บ
-//                 อีกนับล้านที่โหลดตัวเดียวกัน และรองรับไทยครบ
+//   kanit       — 4 ไฟล์ static น้ำหนักละไฟล์ (~29 kB) ไม่มี italic
+//   google-sans — variable font แยก subset latin/thai (36 + 17 kB) ครอบคลุม
+//                 400–700 ต่อเนื่องในไฟล์เดียว มี italic จริงไม่ใช่ faux
+//
+// ทั้งสองตัว self-host ทั้งคู่ตั้งแต่ 2026-08-25 — ไม่มี request ออกนอกโดเมนแล้ว
 export type BrandFont = "kanit" | "google-sans";
 
 export const BRAND_FONT: BrandFont = "google-sans";
@@ -143,14 +145,17 @@ export const BRAND_ADDRESS: BrandAddress =
 export const iconVersion = BRAND_NAME.toLowerCase().replace(/[^a-z0-9]/g, "") || "1";
 
 const KANIT_STACK = '"Kanit", ui-sans-serif, system-ui, sans-serif';
-const GOOGLE_SANS_STACK = '"Google Sans", "Kanit", ui-sans-serif, system-ui, sans-serif';
+const GOOGLE_SANS_STACK = '"Google Sans", ui-sans-serif, system-ui, sans-serif';
 
 /** ค่าที่จะใส่เป็น --font-sans บน <html> */
 export const fontStack = BRAND_FONT === "google-sans" ? GOOGLE_SANS_STACK : KANIT_STACK;
 
-/** Google Sans มาจาก CDN จึงไม่มีไฟล์ในเครื่องให้ preload — MainLayout ใส่
- *  preconnect ให้แทน ซึ่งเป็นการเร่งที่ถูกต้องสำหรับ font ที่โหลดข้ามโดเมน */
+/** ยังชื่อเดิมเพื่อไม่ให้ต้องไล่แก้ที่เรียกใช้ แต่ตอนนี้แปลว่า "แบรนด์นี้ใช้
+ *  Google Sans" เฉยๆ ไฟล์อยู่ใน public/fonts/ เหมือน Kanit ไม่ได้ยิงออก CDN */
 export const usesGoogleFonts = BRAND_FONT === "google-sans";
+
+const GS_LATIN = "/fonts/google-sans-v70-latin-wght.woff2";
+const GS_THAI = "/fonts/google-sans-v70-thai-wght.woff2";
 
 const FONT_REGULAR = "/fonts/kanit-v17-latin_thai-regular.woff2";
 const FONT_500 = "/fonts/kanit-v17-latin_thai-500.woff2";
@@ -254,10 +259,11 @@ export function brandProfile(site: URL | string | undefined): BrandProfile {
   // the variation, and preloading a file the page never uses is not a footprint
   // trick worth paying for.
   //
-  // A Google Sans brand has nothing local to preload — preloading Kanit there
-  // would fetch files the page never draws with, and reintroduce exactly
-  // the shared paths the font switch exists to avoid.
-  const fonts = usesGoogleFonts ? [] : shuffle([FONT_REGULAR, FONT_700], key, "fonts");
+  // A Google Sans brand preloads its two normal-style subsets instead. Both are
+  // always drawn (latin for the brand name, thai for everything else), and the
+  // two italic files are deliberately absent: `italic` appears on a handful of
+  // latin words and is not worth the highest-priority fetch.
+  const fonts = usesGoogleFonts ? shuffle([GS_LATIN, GS_THAI], key, "fonts") : shuffle([FONT_REGULAR, FONT_700], key, "fonts");
   if (!usesGoogleFonts && flag(key, "font-500")) {
     fonts.splice(pick(key, "font-500-at", fonts.length + 1), 0, FONT_500);
   }

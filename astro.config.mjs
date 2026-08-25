@@ -11,6 +11,10 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
+  image: {
+    service: { entrypoint: "./tools/avif-quality-service.mjs" },
+  },
+
   build: {
     // "auto" (Astro's default) externalises anything over ~4 kB and keeps the
     // genuinely tiny page-level blocks inline.

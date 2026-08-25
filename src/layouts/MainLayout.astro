@@ -3,7 +3,7 @@ import { Image, getImage } from "astro:assets";
 import bgConfig from "../assets/bg.json";
 import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
-import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion, usesGoogleFonts } from "../lib/brandProfile";
+import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
 import Navbar from "../components/NavbarStyle4Black.astro";
 import Footer from "../components/Footer.astro";
@@ -166,18 +166,6 @@ const profile = brandProfile(Astro.site);
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    {
-      usesGoogleFonts && (
-        <Fragment>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
-            rel="stylesheet"
-          />
-        </Fragment>
-      )
-    }
     {profile.fontPreloads.map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin={profile.crossorigin} />)}
     <link rel="canonical" href={canonicalURL} />
 
