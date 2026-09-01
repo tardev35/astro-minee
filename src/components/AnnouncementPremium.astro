@@ -5,26 +5,26 @@
 //
 // No leading emoji in the string: the marquee renders `message` twice, so an
 // emoji baked into the text is announced twice and cannot be marked
-// aria-hidden. The decorative 💎 lives in its own span in the label below.
+// aria-hidden. The decorative 🌋 lives in its own span in the label below.
 const {
-  message = "VEGUS1 รวมเกมเดิมพันหลายประเภทไว้ในบัญชีเดียว ทั้งสล็อต บาคาร่า และเกมรูปแบบอื่นที่ระบบรองรับ เลือกได้ตามกติกา อัตราจ่าย และระดับความเสี่ยงที่เหมาะกับตนเอง • รองรับฝากถอนผ่าน True Wallet บนมือถือ ก่อนยืนยันควรตรวจข้อมูลบัญชี จำนวนเงิน และช่องทางรับเงินให้ถูกต้อง แล้วรอให้ระบบแสดงสถานะสำเร็จก่อนทำรายการใหม่ • ดูยอดคงเหลือ ประวัติธุรกรรม และเงื่อนไขโปรโมชั่นได้จากหน้าบัญชี หากรายการยังดำเนินการอยู่ควรรอผลก่อนส่งคำขอซ้ำ • คำว่ามั่นคงไม่ใช่การรับประกันทุกกรณี ควรดูขั้นตอนใช้งาน ประวัติรายการ และช่องทางติดต่อประกอบเสมอ • กำหนดวงเงินและระยะเวลาไว้ก่อนเริ่มเดิมพันทุกครั้ง",
+  message = "LAVA432 สล็อตเว็บใหญ่ระบบใหม่ รวมเกมหลายรูปแบบไว้ในบัญชีเดียว เลือกหมวดเกม ดูโปรโมชั่น และตรวจข้อมูลบัญชีได้จากหน้าเดียวโดยไม่ต้องสลับหลายหน้า • ระบบฝากถอนออโต้จัดการได้จากหน้าบัญชีโดยตรง ก่อนยืนยันควรตรวจชื่อบัญชี จำนวนเงิน และข้อมูลรับเงินให้ครบถ้วน • หากรายการเดิมยังดำเนินการอยู่ ควรรอผลจากระบบก่อนส่งรายการใหม่ เพื่อป้องกันรายการซ้ำ • เลือกเกมจาก RTP ตารางจ่าย ฟีเจอร์โบนัส และระดับความผันผวนร่วมกัน แทนการดูจากคำว่าแตกง่ายเพียงอย่างเดียว • คำว่าแตกง่ายและมั่นคงเป็นถ้อยคำทางการตลาด ไม่ใช่การรับประกันผล กำหนดงบและเวลาไว้ก่อนเริ่มทุกครั้ง",
 } = Astro.props;
 ---
 
 <div class="mx-auto w-full max-w-7xl px-4 py-4 font-sans">
   <div
-    class="relative flex overflow-hidden rounded-full border border-[#f5c451]/45 bg-[#2b0808]/92 shadow-[0_8px_20px_rgba(216,31,38,0.24)] backdrop-blur-lg transition-shadow duration-300 hover:shadow-[0_8px_25px_rgba(245,196,81,0.32)]">
+    class="relative flex overflow-hidden rounded-full border border-[#ec000e]/45 bg-[#120303]/92 shadow-[0_8px_20px_rgba(236,0,14,0.24)] backdrop-blur-lg transition-shadow duration-300 hover:shadow-[0_8px_25px_rgba(255,106,19,0.32)]">
     <div
-      class="relative z-10 flex shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#c9931a] px-8 py-2.5 font-black text-[#2a0606] shadow-[4px_0_15px_rgba(245,196,81,0.3)]">
-      <span aria-hidden="true" class="mr-2 text-lg">💎</span> ประกาศ
+      class="relative z-10 flex shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#ff3d2e] via-[#ec000e] to-[#a10309] px-8 py-2.5 font-black text-white shadow-[4px_0_15px_rgba(236,0,14,0.3)]">
+      <span aria-hidden="true" class="mr-2 text-lg">🌋</span> ประกาศ
     </div>
 
     <div class="marquee-container relative flex-1 overflow-hidden py-2.5 pr-6">
-      <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-12 bg-gradient-to-r from-[#2b0808] to-transparent"></div>
+      <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-12 bg-gradient-to-r from-[#120303] to-transparent"></div>
 
-      <div class="marquee-content inline-block pl-4 text-sm font-medium tracking-wide whitespace-nowrap text-[#f7e3c8]">
-        <span class="mr-10 inline-flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-[#ff3a33] shadow-[0_0_8px_rgba(255,58,51,0.75)]"></span>{message}</span>
-        <span class="mr-10 inline-flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-[#ff3a33] shadow-[0_0_8px_rgba(255,58,51,0.75)]"></span>{message}</span>
+      <div class="marquee-content inline-block pl-4 text-sm font-medium tracking-wide whitespace-nowrap text-[#f4e3e0]">
+        <span class="mr-10 inline-flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-[#ff6a13] shadow-[0_0_8px_rgba(255,106,19,0.75)]"></span>{message}</span>
+        <span class="mr-10 inline-flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-[#ff6a13] shadow-[0_0_8px_rgba(255,106,19,0.75)]"></span>{message}</span>
       </div>
     </div>
   </div>

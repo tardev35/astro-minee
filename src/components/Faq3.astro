@@ -9,24 +9,24 @@ export interface Props {
   faqs?: FaqItem[];
 }
 
-// The defaults are THIS brand's copy, not a leftover: a bare <Faq /> anywhere in
+// The defaults are THIS brand's copy, not a leftover: a bare <Faq3 /> anywhere in
 // the site would otherwise fall back to the previous brand's questions. Pages
 // that also emit FAQ JSON-LD still pass an explicit `faqs` prop, so the markup
 // and the structured data come from the same array.
 const {
-  title = "คำถามที่พบบ่อยเกี่ยวกับ VEGUS1",
+  title = "คำถามที่พบบ่อยเกี่ยวกับ LAVA432",
   faqs = [
     {
-      q: "VEGUS1 รองรับการเดิมพันประเภทใดบ้าง?",
-      a: "ระบบสามารถรวมเกมเดิมพันหลายประเภทตามหมวดที่เว็บไซต์กำหนด ผู้เล่นควรตรวจสอบกติกา อัตราจ่าย และระดับความเสี่ยงของเกมที่สนใจก่อนเริ่มทุกครั้ง",
+      q: "LAVA432 ระบบใหม่แตกต่างจากเว็บสล็อตทั่วไปอย่างไร?",
+      a: "จุดที่ควรพิจารณาคือความสะดวกในการเลือกเกม การจัดการบัญชี ระบบฝากถอน และการตรวจสอบประวัติรายการ มากกว่าดูจากคำว่า “ระบบใหม่” เพียงอย่างเดียว",
     },
     {
-      q: "VEGUS1 รองรับ True Wallet หรือไม่?",
-      a: "รองรับ True Wallet ตามช่องทางที่ระบบกำหนด สมาชิกควรตรวจสอบข้อมูลบัญชี จำนวนเงิน และสถานะรายการให้ครบก่อนและหลังยืนยันธุรกรรม",
+      q: "LAVA432 ฝากถอนผ่านระบบออโต้หรือไม่?",
+      a: "ระบบรองรับการจัดการฝากถอนแบบออโต้ตามช่องทางที่กำหนด สมาชิกควรตรวจข้อมูลบัญชี จำนวนเงิน และสถานะรายการก่อนและหลังยืนยันทุกครั้ง",
     },
     {
-      q: "คำว่ามั่นคงหมายถึงรับประกันความปลอดภัยทุกกรณีหรือไม่?",
-      a: "ไม่ควรตีความว่าเป็นการรับประกันทั้งหมด ความปลอดภัยยังขึ้นอยู่กับระบบ เว็บไซต์ และพฤติกรรมของผู้ใช้ จึงควรตรวจสอบข้อมูลและดูแลบัญชีของตนเองร่วมด้วย",
+      q: "สล็อตแตกง่ายของ LAVA432 รับประกันกำไรหรือไม่?",
+      a: "ไม่สามารถรับประกันผลลัพธ์หรือกำไรจากเกมสล็อตได้ ผู้เล่นควรดู RTP ความผันผวน กติกา และกำหนดงบที่เหมาะกับตนเองก่อนเริ่มเล่น",
     },
   ],
 } = Astro.props;
@@ -41,10 +41,10 @@ const {
   {
     title && (
       <header class="mb-8 text-center">
-        <h2 class="bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#ff3a33] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase drop-shadow-sm md:text-3xl">
+        <h2 class="bg-gradient-to-r from-[#ffffff] via-[#ffa040] to-[#ff6a13] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase drop-shadow-sm md:text-3xl">
           {title}
         </h2>
-        <div class="mx-auto mt-3 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#f5c451] to-transparent" />
+        <div class="mx-auto mt-3 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#ff6a13] to-transparent" />
       </header>
     )
   }
@@ -52,8 +52,8 @@ const {
   <div class="space-y-3">
     {
       faqs.map((faq) => (
-        <details class="faq-item rounded-3xl border border-[#d81f26]/35 bg-[#2b0808]/90 p-2 shadow-[0_10px_30px_rgba(216,31,38,0.18)] backdrop-blur-xl transition-all hover:border-[#f5c451]/60 hover:bg-[#4a0a0d]/90">
-          <summary class="flex w-full cursor-pointer items-center justify-between gap-4 p-4 text-left text-[#f7e3c8] transition-colors hover:text-[#f5c451]">
+        <details class="faq-item rounded-3xl border border-[#ec000e]/35 bg-[#1c0505]/90 p-2 shadow-[0_10px_30px_rgba(236,0,14,0.18)] backdrop-blur-xl transition-all hover:border-[#ff6a13]/60 hover:bg-[#2a0808]/90">
+          <summary class="flex w-full cursor-pointer items-center justify-between gap-4 p-4 text-left text-[#f4e3e0] transition-colors hover:text-[#ff6a13]">
             <span class="text-left text-sm leading-normal font-bold md:text-base">{faq.q}</span>
             <span aria-hidden="true" class="faq-icon ml-4 flex h-6 w-6 shrink-0 items-center justify-center text-2xl transition-transform duration-300 ease-in-out">
               +
@@ -61,7 +61,7 @@ const {
           </summary>
 
           <div class="faq-answer overflow-hidden">
-            <p class="px-4 pb-4 text-left text-base leading-relaxed text-[#f7e3c8]/85">{faq.a}</p>
+            <p class="px-4 pb-4 text-left text-base leading-relaxed text-[#f4e3e0]/85">{faq.a}</p>
           </div>
         </details>
       ))
@@ -78,7 +78,7 @@ const {
   }
   .faq-item[open] .faq-icon {
     transform: rotate(45deg);
-    color: #f5c451;
+    color: #ff6a13;
   }
   .faq-item[open] .faq-answer {
     animation: faq-reveal 0.25s ease-out;

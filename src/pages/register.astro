@@ -10,14 +10,13 @@ const targetUrl = "https://yoalink.com/q83b";
 // the first <style> block below. Kanit stays declared on either brand font: it
 // is also the Thai fallback inside the Google Sans stack.
 //
-// This brand is on Google Sans (BRAND_FONT rotated off kanit), so
-// usesGoogleFonts is true and fontHref takes the FIRST branch, asking Google for
-// Google Sans and Oswald in one request. Oswald is the only face that always
-// needs a CDN: the Latin status heading uses it and it is not self-hosted. The
-// brand wordmark does NOT — .brand-identity draws the name in var(--font-sans),
-// the same face the rest of the site uses, so the wordmark here matches the
-// navbar logotype instead of introducing a third typeface on a screen that is on
-// display for 1.5 seconds.
+// This brand is on Kanit (BRAND_FONT rotated off google-sans), so
+// usesGoogleFonts is false and fontHref takes the SECOND branch, asking Google
+// for Oswald alone. Oswald is the only face that always needs a CDN: the Latin
+// status heading uses it and it is not self-hosted. The brand wordmark does NOT
+// — .brand-identity draws the name in var(--font-sans), the same face the rest
+// of the site uses, so the wordmark here matches the navbar logotype instead of
+// introducing a third typeface on a screen that is on display for 1.5 seconds.
 //
 // The kanit branch used to request "Kanit:wght@300;400;600" too, even though the
 // site self-hosts Kanit: a third-party request for weights nothing here draws
@@ -32,7 +31,7 @@ const fontHref = usesGoogleFonts
 <html lang="th" style={`--font-sans: ${fontStack};`}>
   <head>
     <meta charset="utf-8" />
-    <title>HOT189 | สมัครสมาชิกบาคาร่าเว็บตรงผ่านช่องทางหลัก</title>
+    <title>LAVA432 | สมัครสมาชิกสล็อตผ่านช่องทางหลักอย่างสะดวก</title>
 
     {
       /* The docx has no SUB-PAGES row for สมัครสมาชิก, so this pair mirrors the
@@ -40,12 +39,13 @@ const fontHref = usesGoogleFonts
         registering. An earlier brand opened this sentence with
         "ทางเข้าเล่นและสมัครสมาชิก", which described /ทางเข้า instead and gave
         two routes the same promise.
-        Written to the site-wide 150–160 window (154 here) like every other page,
-        even though verify-build.mjs skips its length gate on this stub — that
-        check sits after `if (!indexable) continue;` and this page is noindex.
+        Because nothing here is docx-supplied it is written to the site-wide
+        150–160 window (152 here) like every other page we write ourselves, even
+        though verify-build.mjs skips its length gate on this stub — that check
+        sits after `if (!indexable) continue;` and this page is noindex.
         Count CHARACTERS, not bytes: Thai is 3 bytes per character. */
     }
-    <meta name="description" content="HOT189 สมัครสมาชิกผ่านช่องทางหลัก รองรับมือถือและคอมพิวเตอร์ พร้อมตั้งค่าบัญชี เลือกโต๊ะบาคาร่า ดูโปรโมชั่น และตรวจสอบสถานะรายการได้สะดวกจากหน้าบัญชีเดียว" />
+    <meta name="description" content="LAVA432 สมัครสมาชิกผ่านช่องทางหลัก รองรับมือถือและคอมพิวเตอร์ พร้อมตั้งค่าบัญชี เลือกเกมสล็อต ดูโปรโมชั่น และตรวจสอบสถานะรายการได้สะดวกจากหน้าบัญชีเดียว" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {
@@ -86,27 +86,27 @@ const fontHref = usesGoogleFonts
     </style>
 
     <style>
-      /* HOT189 is fire: a blazing orange-red orb inside electric gold rings on an
-         ember-black page, and a gold wordmark that falls into flame at its base,
-         the way the logo's type does. The outgoing brand here was crimson and
-         muted gold on near-black maroon, so the primary moved from CRIMSON to
-         FLAME and every support hue went hotter and much more yellow; nothing
-         below kept its old value.
+      /* LAVA432 is molten rock: a scarlet core bleeding into molten orange on a
+         near-black volcanic page, and a wordmark that starts pure white at the
+         crown and falls through ember into scarlet at its base, the way the
+         logo's type does. The outgoing brand here was flame-red over ELECTRIC
+         GOLD, and there is NO GOLD in LAVA432 at all — every gold stop became
+         molten orange or white, and nothing below kept its old value.
          Every variable is NAMED FOR THE COLOUR IT HOLDS, which previous brands
          stopped doing: this block once declared `--brand-gold` on brands with no
          gold in them and `--brand-red` on a blue one, so the next editor reused
          it by name and shipped the wrong hue. Rename with the value. */
       :root {
-        --ink: #0d0402;
-        --panel: rgba(28, 7, 5, 0.94);
-        --flame: #ef2b09;
-        --ember: #ff7a18;
-        --char: #2e100a;
-        --gold: #fcd304;
-        --gold-light: #ffe86b;
-        --gold-deep: #c99400;
-        --text: #ffe9cf;
-        --text-dim: #d9ac86;
+        --ink: #0a0203;
+        --panel: rgba(28, 5, 5, 0.94);
+        --scarlet: #ec000e;
+        --scarlet-hot: #ff3d2e;
+        --molten: #ff6a13;
+        --ember: #ffa040;
+        --char: #2a0808;
+        --white: #ffffff;
+        --text: #f4e3e0;
+        --text-dim: #c9a8a4;
       }
 
       body {
@@ -114,7 +114,7 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         color: var(--text);
 
-        background: radial-gradient(circle at 50% 10%, rgba(239, 43, 9, 0.18) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(46, 16, 10, 0.45) 0%, transparent 55%), var(--ink);
+        background: radial-gradient(circle at 50% 10%, rgba(236, 0, 14, 0.18) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(42, 8, 8, 0.45) 0%, transparent 55%), var(--ink);
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -128,11 +128,11 @@ const fontHref = usesGoogleFonts
         max-width: 450px;
         padding: 3.5rem;
         background: var(--panel);
-        border: 1px solid rgba(239, 43, 9, 0.45);
+        border: 1px solid rgba(236, 0, 14, 0.45);
         border-radius: 2rem;
         box-shadow:
-          0 1rem 3rem rgba(239, 43, 9, 0.24),
-          0 0 2rem rgba(46, 16, 10, 0.45);
+          0 1rem 3rem rgba(236, 0, 14, 0.24),
+          0 0 2rem rgba(42, 8, 8, 0.45);
         text-align: center;
         backdrop-filter: blur(10px);
       }
@@ -141,13 +141,13 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 35%, var(--gold-deep) 65%, var(--ember) 85%, var(--flame) 100%);
+        background: linear-gradient(180deg, var(--white) 0%, var(--ember) 35%, var(--molten) 65%, var(--scarlet-hot) 85%, var(--scarlet) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         letter-spacing: 0.12em;
         margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 2px rgba(13, 4, 2, 0.6));
+        filter: drop-shadow(0 1px 2px rgba(10, 2, 3, 0.6));
       }
 
       .sophisticated-loader {
@@ -163,30 +163,30 @@ const fontHref = usesGoogleFonts
       .orb {
         width: 40px;
         height: 40px;
-        background: radial-gradient(circle, var(--ember) 0%, var(--flame) 45%, var(--char) 100%);
+        background: radial-gradient(circle, var(--ember) 0%, var(--scarlet) 50%, var(--char) 100%);
         border-radius: 50%;
-        box-shadow: 0 0 2rem rgba(239, 43, 9, 0.45);
+        box-shadow: 0 0 2rem rgba(236, 0, 14, 0.45);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .ring {
         position: absolute;
         border-radius: 50%;
-        border: 3px solid rgba(252, 211, 4, 0.2);
+        border: 3px solid rgba(255, 106, 19, 0.2);
         animation: spin linear infinite;
       }
 
       .ring-1 {
         width: 100%;
         height: 100%;
-        border-top-color: var(--gold);
+        border-top-color: var(--molten);
         animation-duration: 4s;
       }
 
       .ring-2 {
         width: 80%;
         height: 80%;
-        border-bottom-color: var(--ember);
+        border-bottom-color: var(--scarlet-hot);
         animation-duration: 6s;
         animation-direction: reverse;
       }
@@ -203,11 +203,11 @@ const fontHref = usesGoogleFonts
         0%,
         100% {
           transform: scale(1);
-          box-shadow: 0 0 2rem rgba(239, 43, 9, 0.45);
+          box-shadow: 0 0 2rem rgba(236, 0, 14, 0.45);
         }
         50% {
           transform: scale(1.15);
-          box-shadow: 0 0 3rem rgba(255, 122, 24, 0.55);
+          box-shadow: 0 0 3rem rgba(255, 106, 19, 0.55);
         }
       }
 
@@ -218,7 +218,7 @@ const fontHref = usesGoogleFonts
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text);
-        text-shadow: 0 1px 1px rgba(43, 10, 2, 0.6);
+        text-shadow: 0 1px 1px rgba(10, 2, 3, 0.6);
         margin: 0;
       }
       .status-text .p {
@@ -231,7 +231,7 @@ const fontHref = usesGoogleFonts
   </head>
   <body>
     <div class="premium-loading-container">
-      <div class="brand-identity">HOT189</div>
+      <div class="brand-identity">LAVA432</div>
 
       <div class="sophisticated-loader">
         <div class="orb"></div>
@@ -241,7 +241,7 @@ const fontHref = usesGoogleFonts
 
       <div class="status-text">
         <h1 class="h1">CREATING SECURE ACCOUNT SESSION...</h1>
-        <p class="p">กำลังพาไปหน้าสมัครสมาชิก HOT189 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
+        <p class="p">กำลังพาไปหน้าสมัครสมาชิก LAVA432 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
       </div>
     </div>
 

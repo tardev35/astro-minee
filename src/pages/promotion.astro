@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement6.astro";
+import Announcement from "../components/AnnouncementPremium.astro";
 
 import { Picture } from "astro:assets";
 
@@ -22,20 +22,21 @@ import { pageGraph } from "../lib/schema";
 //
 // The alt text below was written by reading each PNG — the alt IS the Thai
 // printed on the artwork (the offer, the sub-line, the button and the scene).
-// slide1-4 are all .png in this drop (checked on disk); banner2.png is stale
-// inventory from a previous brand and is deliberately NOT imported here.
+// slide1-4 are all .png in this drop (checked on disk, all dated with the rest
+// of the LAVA432 assets) and all four belong here; banner2.png is stale
+// inventory from a previous brand and is deliberately NOT imported.
 //
-// <Announcement /> is bare on purpose: Announcement6's default message already
-// carries this brand's copy, so the ticker matches index.astro with no second
-// string to keep in sync here.
-const pageTitle = "โปรโมชั่น HOT189 รวมสิทธิพิเศษสำหรับสมาชิก";
+// <Announcement /> is bare on purpose: AnnouncementPremium's default message
+// already carries this brand's copy, so the ticker matches index.astro with no
+// second string to keep in sync here.
+const pageTitle = "โปรโมชั่น LAVA432 รวมสิทธิพิเศษสำหรับสมาชิก";
 
-// Title/Meta come from the brand spec §6. The docx sentence runs 127 characters,
-// under the DESC_MIN=150 floor tools/verify-build.mjs enforces on every page but
-// the home page, so it opens the description and one clause closes it. Counted
-// in CHARACTERS, not bytes (Thai is 3 bytes/char). Measured at 153 characters,
-// inside the 150–160 window. Do not re-word, pad or trim it.
-const pageDescription = "HOT189 รวมโปรโมชั่นบาคาร่า โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจน ช่วยให้เลือกโปรได้เหมาะกับงบและรูปแบบการเดิมพัน อ่านเงื่อนไขก่อนรับสิทธิ์";
+// Title/Meta are the docx SUB-PAGES row "โปรโมชั่น". The docx sentence runs 123
+// characters, under the DESC_MIN=150 floor tools/verify-build.mjs enforces on
+// every page but the home page, so it opens the description verbatim and one
+// clause closes it. Counted in CHARACTERS, not bytes (Thai is 3 bytes/char).
+// Measured at 157 characters, inside the 150–160 window. Do not pad or trim it.
+const pageDescription = "LAVA432 รวมโปรโมชั่นสล็อต โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมรายละเอียดชัดเจน ช่วยให้เลือกโปรได้เหมาะกับงบและรูปแบบการเล่น อ่านเงื่อนไขให้ครบก่อนกดรับสิทธิ์";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -47,30 +48,30 @@ const graph = pageGraph(Astro, {
   primaryImagePath: pro1.src,
 });
 
-// Flame red carries the surfaces here (border, rule, glow) and gold carries the
-// type — the same two-tone split the artwork uses. A #2e100a edge on the
-// near-black ember page would read as no border at all, so the resting border is
-// the primary flame accent rather than the mid surface.
+// Scarlet carries the surfaces here (border, glow) and molten orange carries the
+// hover state — the same two-tone split the artwork uses. A #2a0808 edge on the
+// near-black page would read as no border at all, so the resting border is the
+// primary scarlet accent rather than the mid surface.
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#ef2b09]/40 object-contain shadow-[0_10px_30px_rgba(239,43,9,0.24)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#ff7a18]/65 hover:shadow-[0_15px_40px_rgba(252,211,4,0.26)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#ec000e]/40 object-contain shadow-[0_10px_30px_rgba(236,0,14,0.24)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#ff6a13]/65 hover:shadow-[0_15px_40px_rgba(255,106,19,0.26)]";
 ---
 
-<MainLayout title="HOT189 | โปรโมชั่นบาคาร่าและสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
+<MainLayout title="LAVA432 | โปรโมชั่นสล็อตเว็บใหญ่และสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#ffe9cf]">
-        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#fcd304]">HOT189</strong> เปิดให้สมาชิกไว้ในที่เดียว ทั้งโบนัสต้อนรับสมาชิกใหม่ โบนัสฝากครั้งแรก โปรช่วงนาทีทอง และวงล้อโชคดีที่ลุ้นเครดิตฟรีได้ทุกวัน
-        ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ก่อนกดรับสิทธิ์ควรตรวจยอดฝากขั้นต่ำ ช่วงเวลาที่กำหนด และเงื่อนไขการถอนให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากันและปรับได้ตามรอบ
+      <p class="mb-8 text-left text-base leading-relaxed text-[#f4e3e0]">
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#ff6a13]">LAVA432</strong> เปิดให้สมาชิกไว้ในที่เดียว ทั้งเช็กอินสะสมรายวัน ภารกิจประจำวัน โบนัสชวนเพื่อน และกิจกรรมเปิดกล่องสุ่มตามช่วงเวลา ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว
+        ก่อนกดรับสิทธิ์ควรตรวจช่วงเวลาที่กำหนด ยอดฝากขั้นต่ำ และเงื่อนไขการถอนให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากันและปรับได้ตามรอบ
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น HOT189 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที ป้ายกำกับ โปรต้อนรับสำหรับสมาชิกใหม่ และปุ่ม รับโปรเลย ภาพผู้หญิงในชุดซาตินสีแดงสลับทองชี้มือไปทางซ้าย เหรียญทองลอย ชิปคาสิโนเลข 189 ตู้สล็อต 777 BAR และไพ่เอซ บนพื้นหลังเปลวไฟสีส้มแดง"
+          alt="แบนเนอร์โปรโมชั่น LAVA432 ข้อความ เช็กอิน 7 วัน รับเครดิตสะสม 432 บาท เช็กอินครบ รับต่อได้เพลิน ใต้ข้อความเป็นการ์ดเช็กอิน DAY 1 ถึง DAY 7 ติดเครื่องหมายถูกสีแดงครบทุกใบ และปุ่ม เช็กอินเลย ด้านข้างเป็นผู้หญิงในชุดกีฬาสีดำสลับแดงติดโลโก้ LAVA432 ชี้มือมาที่ข้อความ มุมล่างมีกล่องของขวัญสีดำผูกโบว์แดง หีบสมบัติเหรียญทอง และกล่องที่เขียนว่า เครดิตสะสม 432 บาท บนพื้นหลังสีดำแดงมีประกายไฟ"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -84,7 +85,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น HOT189 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ป้ายกำกับ ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย และปุ่ม ฝากเลย ภาพผู้หญิงในชุดซาตินสีแดงสลับทองถือชิปคาสิโน ตู้สล็อต 777 BAR กองเหรียญทอง ชิปเลข 189 และไพ่เอซ บนพื้นหลังเปลวไฟสีส้มแดง"
+          alt="แบนเนอร์โปรโมชั่น LAVA432 ข้อความ ภารกิจประจำวัน พร้อมป้าย DAILY MISSIONS ที่ไล่รายการ เข้าสู่ระบบ เดิมพันครบตามกำหนด เล่นเกมสล็อต และชวนเพื่อน ติดเครื่องหมายถูกสีแดงทุกข้อ ด้านล่างเขียนว่า ครบ 4 ภารกิจ รับฟรีสปิน 25 ครั้ง ทำครบ รับสิทธิ์ทันที และปุ่ม รับภารกิจ ด้านข้างเป็นผู้หญิงในชุดกีฬาสีดำสลับแดงติดโลโก้ LAVA432 ชูนิ้วและขยิบตา มีวงล้อสล็อต 777 BAR หีบสมบัติและเหรียญทองรอบภาพ"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -98,7 +99,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น HOT189 ข้อความ นาทีทอง 19:00 - 21:00 รับเพิ่ม 15% เฉพาะช่วงเวลาที่กำหนด และปุ่ม ร่วมโปรเลย ภาพหน้าปัดนาฬิกาเลขโรมันสีทองขนาดใหญ่ ผู้หญิงในชุดซาตินสีแดงสลับทองชี้มือลงมาที่ตัวเลข ตู้สล็อต 777 BAR ชิปคาสิโนเลข 189 และเหรียญทอง บนพื้นหลังเปลวไฟสีส้มแดง"
+          alt="แบนเนอร์โปรโมชั่น LAVA432 ข้อความ ชวนเพื่อนมันส์ รับโบนัสคู่หู คนละ 50 บาท เพื่อนสมัครสำเร็จ รับกันทั้งคู่ ใต้ข้อความเป็นไอคอนคนสองคนที่มีป้าย บวก 50 บาท ทั้งคู่ โดยมีกล่องของขวัญอยู่ตรงกลางและลูกศรชี้เข้าหากัน พร้อมปุ่ม ชวนเลย ด้านข้างเป็นผู้หญิงในแจ็กเก็ตสีแดงและเสื้อดำโลโก้ LAVA432 ถือโทรศัพท์ที่เปิดหน้าแอป LAVA432 และชี้มือไปที่จอ บนพื้นหลังสีดำแดงมีวงล้อรูเล็ต ลูกฟุตบอล และเหรียญทอง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -112,7 +113,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น HOT189 ข้อความ วงล้อโชคดี ลุ้นเครดิตฟรี 888 บาท หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่ม หมุนเลย ภาพวงล้อเสี่ยงโชคสีดำสลับทองมีโลโก้ HOT189 อยู่กลางวง แบ่งช่องเป็น 888 บาท 1330 บาท แจกเครดิตฟรี 50 บาท 88 บาท และ 288 บาท ข้างวงล้อเป็นผู้หญิงในชุดซาตินสีแดงสลับทองแบมือรองรับ ตู้สล็อต 777 BAR ไพ่เอซ ชิปคาสิโนเลข 189 และเหรียญทอง บนพื้นหลังเปลวไฟสีส้มแดง"
+          alt="แบนเนอร์โปรโมชั่น LAVA432 ข้อความตัวใหญ่ LAVA HOUR พร้อมไอคอนนาฬิกาและช่วงเวลา 20:00 ถึง 22:00 ใต้ลงมาเขียนว่า เปิดกล่องสุ่ม ลุ้น 18 88 188 และ 432 เครดิต กับหมายเหตุ ร่วมสนุกเฉพาะช่วงเวลาที่กำหนด ตรงกลางล่างเป็นกล่องสุ่มสีดำติดเครื่องหมายคำถามสีแดงวางบนวงแสงสีแดง ล้อมด้วยเหรียญทอง และปุ่ม เปิดเลย ด้านข้างเป็นผู้หญิงในเสื้อครอปสีแดงโลโก้ LAVA432 ยกมือแตะแก้มทำหน้าตื่นเต้น บนพื้นหลังสีดำมีสายฟ้าสีแดง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -128,8 +129,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#fcd304]/60 bg-gradient-to-r from-[#ffe86b] via-[#fcd304] to-[#c99400] px-10 py-3.5 text-lg font-black text-[#2b0a02] shadow-[0_10px_30px_rgba(252,211,4,0.32)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(239,43,9,0.40)]">
-          สมัครสมาชิก HOT189
+          class="flex items-center justify-center rounded-lg border border-[#ffa040]/60 bg-gradient-to-r from-[#ffa040] via-[#ff6a13] to-[#ec000e] px-10 py-3.5 text-lg font-black text-[#120303] shadow-[0_10px_30px_rgba(255,106,19,0.32)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(236,0,14,0.40)]">
+          สมัครสมาชิก LAVA432
         </a>
       </div>
     </div>

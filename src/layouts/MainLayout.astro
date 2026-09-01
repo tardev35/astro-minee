@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle4Black.astro";
-import Footer from "../components/Footer.astro";
+import Navbar from "../components/NavbarStyle10.astro";
+import Footer from "../components/FooterStyle3.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,12 +55,12 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "HOT189 | บาคาร่าเว็บตรงแตกง่าย มั่นคงปลอดภัย ระบบฝากถอนออโต้",
+  title = "LAVA432 | สล็อตเว็บใหญ่มั่นคง ระบบใหม่ฝากถอนออโต้ แตกง่ายจ่ายไว",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings. This one is
-  // 155 (count CHARACTERS, not bytes — Thai is 3 bytes per character).
-  description = "HOT189 บาคาร่าเว็บตรง ระบบฝากถอนออโต้ รองรับทั้งมือถือและคอมพิวเตอร์ รวมโต๊ะหลายระดับวงเงิน โปรโมชั่น และการจัดการบัญชีไว้ในหน้าเดียว พร้อมตรวจสอบสถานะรายการได้เอง",
+  // 158 (count CHARACTERS, not bytes — Thai is 3 bytes per character).
+  description = "LAVA432 สล็อตเว็บใหญ่ระบบใหม่ ฝากถอนออโต้ รองรับมือถือและคอมพิวเตอร์ รวมเกมหลายรูปแบบ โปรโมชั่น และการจัดการบัญชีไว้ในหน้าเดียว พร้อมตรวจสอบสถานะรายการได้เอง",
   robots = "index, follow",
 } = Astro.props;
 
@@ -225,7 +225,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #0d0402;
+        background-color: #0a0203;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -278,7 +278,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ HOT189 ข้อความ HOT189 เว็บตรงแตกง่าย พร้อมริบบิ้น SPORT BETTING AND CASINO ONLINE และแถบสี่ช่อง ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย จ่ายจริง กับปุ่ม สมัครเลย ด้านซ้ายบนเป็นโลโก้ HOT189 ตัวอักษรลายไฟสีทอง มีนักฟุตบอลและลูกฟุตบอลอยู่ริมซ้าย ด้านขวาเป็นผู้หญิงในชุดผ้าซาตินสีแดง-ทองชี้มือมาทางข้อความ ข้างหลังเป็นไพ่เอซสามใบ ตู้สล็อตเลข 777 กองเหรียญทอง และชิปคาสิโนเลข 189 บนพื้นหลังสีแดงลายเปลวไฟ"
+          alt="แบนเนอร์ต้อนรับ LAVA432 ข้อความ LAVA432 ความสนุกสายเกม มาแรงทุกวัน ถัดลงมาสองบรรทัดว่า เล่นง่าย ระบบลื่น รองรับมือถือ และ สีสันจัดเต็ม เข้าใช้งานสะดวก ต่อด้วยแถบสามช่องเขียนว่า เกมหลากหลาย สมัครไว พร้อมลุยทุกเวลา และปุ่ม เข้าเล่นเลย ด้านซ้ายบนเป็นโลโก้ LAVA432 ตัวอักษร LAVA สีขาวกับเลข 432 บนแถบสีแดง ด้านขวาเป็นผู้หญิงในชุดแข่งสีขาว-แดงติดโลโก้ LAVA432 กำลังยกกำปั้น ข้างหลังเป็นป้าย JACKPOT 8,888,888 วงล้อสล็อตเลข 777 ชิปคาสิโนสลักเลข 432 และเหรียญทองปลิว บนพื้นหลังสีดำแดงมีสายฟ้าและประกายไฟ"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

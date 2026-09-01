@@ -1,13 +1,13 @@
 ---
 import { Picture } from "astro:assets";
 import BankStrip from "./BankStrip.astro";
-import { BRAND_ADDRESS } from "../lib/brandProfile";
+import { BRAND_ADDRESS, BRAND_NAME } from "../lib/brandProfile";
 const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
 
 const imagePaths = Object.keys(images);
 const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 
-// CHICKYLUCKY is a slot brand: no /ตรวจหวย or /แนวทาง entries here. Both pages
+// LAVA432 is a slot brand: no /ตรวจหวย or /แนวทาง entries here. Both pages
 // are parked in src/pages-disabled/ this round, and a link to a route that does
 // not exist fails the build in tools/verify-build.mjs.
 const quickLinks = [
@@ -19,25 +19,27 @@ const quickLinks = [
   { name: "สมัครสมาชิก", path: "/register" },
   { name: "ติดต่อแอดมิน", path: "/contact-us" },
 ];
+
+const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร LAVA สีขาวหนาเอียงเล็กน้อย ต่อด้วยเลข 432 สีดำวางบนแถบสี่เหลี่ยมสีแดงสด ทั้งหมดอยู่ในกรอบสีดำขอบมน`;
 ---
 
-<footer class="relative mt-32 w-full border-t border-[#fde41a]/30 bg-[#1c0100] pt-64 pb-6 font-sans text-[#fdf3d8] shadow-[0_-10px_30px_rgba(253,228,26,0.15)] md:pt-40">
+<footer class="relative mt-32 w-full border-t border-[#ff6a13]/30 bg-[#120303] pt-64 pb-6 font-sans text-[#f4e3e0] shadow-[0_-10px_30px_rgba(255,106,19,0.15)] md:pt-40">
   <div
-    class="absolute -top-14 left-1/2 z-20 flex w-[92%] max-w-5xl -translate-x-1/2 flex-col items-center justify-between rounded-2xl border border-[#fde41a]/35 bg-gradient-to-r from-[#540101] via-[#6d0202] to-[#3a0806] p-6 shadow-[0_15px_40px_rgba(224,27,36,0.28)] md:-top-16 md:flex-row md:p-8">
+    class="absolute -top-14 left-1/2 z-20 flex w-[92%] max-w-5xl -translate-x-1/2 flex-col items-center justify-between rounded-2xl border border-[#ff6a13]/35 bg-gradient-to-r from-[#7a0206] via-[#a10309] to-[#2a0808] p-6 shadow-[0_15px_40px_rgba(236,0,14,0.28)] md:-top-16 md:flex-row md:p-8">
     <div class="mb-5 flex flex-col text-center md:mb-0 md:text-left">
-      <p class="text-xl font-black tracking-wide text-[#fff17a] uppercase italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] md:text-3xl">
-        <span aria-hidden="true">🐔</span> พร้อมเริ่มกับ CHICKYLUCKY แล้วหรือยัง?
+      <p class="text-xl font-black tracking-wide text-[#ffa040] uppercase italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] md:text-3xl">
+        <span aria-hidden="true">🌋</span> พร้อมเริ่มกับ {BRAND_NAME} แล้วหรือยัง?
       </p>
-      <p class="mt-2 text-sm font-medium text-[#fdf3d8]/90 md:text-base">
-        สมัครสมาชิก CHICKYLUCKY แล้วเลือกเกมสล็อตจากผู้ให้บริการหลายรายผ่าน API ตรงได้จากบัญชีเดียว โปรโมชั่นแต่ละรายการมีเงื่อนไขและช่วงเวลาไม่เท่ากัน ควรอ่านรายละเอียดให้ครบก่อนกดรับสิทธิ์ทุกครั้ง
+      <p class="mt-2 text-sm font-medium text-[#f4e3e0]/90 md:text-base">
+        สมัครสมาชิก {BRAND_NAME} แล้วเลือกเกมสล็อตหลายรูปแบบได้จากบัญชีเดียว โปรโมชั่นแต่ละรายการมีเงื่อนไขและช่วงเวลาไม่เท่ากัน ควรอ่านรายละเอียดให้ครบก่อนกดรับสิทธิ์ทุกครั้ง
       </p>
     </div>
 
     <a
       href="/register"
-      class="group relative flex items-center justify-center overflow-hidden rounded-full border border-[#fff17a] bg-gradient-to-b from-[#fff17a] to-[#f0b429] px-8 py-3.5 text-sm font-extrabold whitespace-nowrap text-[#1c0100] shadow-[0_0_15px_rgba(253,228,26,0.4)] transition-all hover:scale-105 md:text-base">
+      class="group relative flex items-center justify-center overflow-hidden rounded-full border border-[#ffa040] bg-gradient-to-b from-[#ffa040] to-[#ff6a13] px-8 py-3.5 text-sm font-extrabold whitespace-nowrap text-[#120303] shadow-[0_0_15px_rgba(255,106,19,0.4)] transition-all hover:scale-105 md:text-base">
       <span class="relative z-10">สมัครสมาชิกเลย <span aria-hidden="true">🚀</span></span>
-      <div aria-hidden="true" class="absolute inset-0 translate-y-full bg-[#fde41a] transition-transform duration-300 group-hover:translate-y-0"></div>
+      <div aria-hidden="true" class="absolute inset-0 translate-y-full bg-[#ffa040] transition-transform duration-300 group-hover:translate-y-0"></div>
     </a>
   </div>
 
@@ -49,24 +51,23 @@ const quickLinks = [
             mainLogo ? (
               <Picture
                 src={mainLogo}
-                alt="โลโก้ CHICKYLUCKY ตัวอักษร CHICKY LUCKY สีขาวขอบแดงวางเฉียงบนวงกลมสีเหลือง ด้านขวาเป็นไก่สีขาวสวมผ้าคลุมสีแดงติดเข็มกลัดเพชร"
+                alt={logoAlt}
                 widths={[100, 200, 300]}
                 sizes="100px"
                 height={45}
                 loading="lazy"
                 decoding="async"
-                class="h-[45px] w-auto drop-shadow-[0_0_12px_rgba(224,27,36,0.6)]"
+                class="h-[45px] w-auto drop-shadow-[0_0_12px_rgba(236,0,14,0.6)]"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
               />
             ) : (
-              <p class="bg-gradient-to-b from-[#fff17a] to-[#f0b429] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(253,228,26,0.5)]">CHICKYLUCKY</p>
+              <p class="bg-gradient-to-b from-[#ffffff] to-[#ec000e] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(236,0,14,0.5)]">{BRAND_NAME}</p>
             )
           }
         </a>
-        <p class="text-sm leading-relaxed text-[#e0bfa8]">
-          CHICKYLUCKY รวมเกมสล็อตจากผู้ให้บริการหลายรายไว้ในระบบเดียว เชื่อมต่อผ่าน API ตรง จัดหมวดเกมตามค่าย ธีม หรือรูปแบบฟีเจอร์ได้จากหน้าเดียว
-          สมาชิกดูยอดคงเหลือ ประวัติฝากถอน และสถานะรายการย้อนหลังได้จากหน้าบัญชีของตนเอง
+        <p class="text-sm leading-relaxed text-[#c9a8a4]">
+          {BRAND_NAME} รวมเกมสล็อตหลายรูปแบบไว้ในระบบเดียว จัดหมวดเกมตามค่าย ธีม หรือรูปแบบฟีเจอร์ได้จากหน้าเดียว สมาชิกดูยอดคงเหลือ ประวัติฝากถอน และสถานะรายการย้อนหลังได้จากหน้าบัญชีของตนเอง
         </p>
 
         <div class="mt-2 flex flex-wrap gap-3">
@@ -99,16 +100,16 @@ const quickLinks = [
       </div>
 
       <div class="md:col-span-6 lg:col-span-5">
-        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#fdf3d8] uppercase">
+        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#f4e3e0] uppercase">
           ลิงก์ด่วน (Quick Links)
-          <span aria-hidden="true" class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#f0b429] to-[#fff17a] shadow-[0_0_8px_rgba(253,228,26,0.6)]"></span>
+          <span aria-hidden="true" class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#ec000e] to-[#ffa040] shadow-[0_0_8px_rgba(255,106,19,0.6)]"></span>
         </p>
 
         <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
           {
             quickLinks.map((link) => (
-              <a href={link.path} class="group flex items-center text-[#e0bfa8] transition-colors hover:text-[#fff17a]">
-                <span aria-hidden="true" class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#e01b24] transition-transform group-hover:rotate-45" />
+              <a href={link.path} class="group flex items-center text-[#c9a8a4] transition-colors hover:text-[#ffa040]">
+                <span aria-hidden="true" class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#ec000e] transition-transform group-hover:rotate-45" />
                 {link.name}
               </a>
             ))
@@ -117,38 +118,38 @@ const quickLinks = [
       </div>
 
       <div class="md:col-span-6 lg:col-span-3">
-        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#fdf3d8] uppercase">
+        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#f4e3e0] uppercase">
           ระบบการเงิน
-          <span aria-hidden="true" class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#f0b429] to-[#fff17a] shadow-[0_0_8px_rgba(253,228,26,0.6)]"></span>
+          <span aria-hidden="true" class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#ec000e] to-[#ffa040] shadow-[0_0_8px_rgba(255,106,19,0.6)]"></span>
         </p>
 
-        <p class="mb-4 text-xs text-[#e0bfa8]">รองรับการฝาก-ถอนผ่านแอปธนาคารชั้นนำและ TrueMoney Wallet โดยควรใช้บัญชีชื่อเดียวกับข้อมูลที่สมัครไว้</p>
+        <p class="mb-4 text-xs text-[#c9a8a4]">รองรับการฝาก-ถอนผ่านแอปธนาคารชั้นนำและ TrueMoney Wallet โดยควรใช้บัญชีชื่อเดียวกับข้อมูลที่สมัครไว้</p>
 
         <BankStrip size={30} />
 
-        <div class="mt-3 flex h-10 items-center justify-center rounded border border-white/5 bg-[#540101] transition-colors hover:border-[#fde41a]/50" title="ตรวจรายการย้อนหลัง">
-          <span class="flex items-center gap-1 text-xs font-bold text-[#fdf3d8]"><span aria-hidden="true" class="text-lg text-[#fde41a]">🧾</span> เก็บเลขรายการไว้ตรวจสอบได้</span>
+        <div class="mt-3 flex h-10 items-center justify-center rounded border border-white/5 bg-[#7a0206] transition-colors hover:border-[#ff6a13]/50" title="ตรวจรายการย้อนหลัง">
+          <span class="flex items-center gap-1 text-xs font-bold text-[#f4e3e0]"><span aria-hidden="true" class="text-lg text-[#ff6a13]">🧾</span> เก็บเลขรายการไว้ตรวจสอบได้</span>
         </div>
       </div>
     </div>
 
-    <hr class="mb-6 border-[#fde41a]/25" />
+    <hr class="mb-6 border-[#ff6a13]/25" />
 
-    <div class="mb-6 hidden text-justify text-[10px] leading-relaxed text-[#c49a86] md:block">
-      CHICKYLUCKY สล็อตเกมลิขสิทธิ์แท้ API ตรง รวมเกมจากผู้ให้บริการหลายราย ทั้งสล็อตคลาสสิก เกมฟีเจอร์โบนัส และเกมธีมสมัยใหม่ จัดหมวดตามค่าย ธีม และรูปแบบฟีเจอร์ ระบบสมาชิกบัญชีเดียว
-      ฝากถอนอัตโนมัติ ตรวจยอดคงเหลือและประวัติธุรกรรมได้จากหน้าบัญชี ทางเข้าเว็บหลักรองรับทั้งมือถือและคอมพิวเตอร์ สมัครสมาชิก CHICKYLUCKY
+    <div class="mb-6 hidden text-justify text-[10px] leading-relaxed text-[#c9a8a4] md:block">
+      {BRAND_NAME} สล็อตเว็บใหญ่ระบบใหม่ รวมเกมสล็อตหลายรูปแบบไว้ในบัญชีเดียว ทั้งเกมคลาสสิก เกมฟีเจอร์โบนัส และเกมธีมสมัยใหม่ จัดหมวดตามค่าย ธีม และรูปแบบฟีเจอร์ ระบบสมาชิกบัญชีเดียว ฝากถอนออโต้
+      ตรวจยอดคงเหลือและประวัติธุรกรรมได้จากหน้าบัญชี ทางเข้าเว็บหลักรองรับทั้งมือถือและคอมพิวเตอร์ สมัครสมาชิก {BRAND_NAME}
     </div>
 
-    <div class="flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-[#c49a86] md:flex-row">
-      <p>&copy; {new Date().getFullYear()} <span class="font-bold tracking-wider text-[#fff17a] uppercase">CHICKYLUCKY</span>. All Rights Reserved.</p>
+    <div class="flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-[#c9a8a4] md:flex-row">
+      <p>&copy; {new Date().getFullYear()} <span class="font-bold tracking-wider text-[#ffa040] uppercase">{BRAND_NAME}</span>. All Rights Reserved.</p>
 
       <div class="flex items-center gap-6">
-        <a href="/terms/" class="transition-colors hover:text-[#fdf3d8]">เงื่อนไขและข้อตกลง</a>
-        <a href="/privacy/" class="transition-colors hover:text-[#fdf3d8]">นโยบายความเป็นส่วนตัว</a>
+        <a href="/terms/" class="transition-colors hover:text-[#f4e3e0]">เงื่อนไขและข้อตกลง</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#f4e3e0]">นโยบายความเป็นส่วนตัว</a>
 
         <a
           href="#top"
-          class="flex h-8 w-8 items-center justify-center rounded border border-white/10 bg-white/5 text-[#fdf3d8] transition-all hover:border-[#fff17a] hover:bg-[#6d0202] hover:shadow-[0_0_15px_rgba(253,228,26,0.5)]"
+          class="flex h-8 w-8 items-center justify-center rounded border border-white/10 bg-white/5 text-[#f4e3e0] transition-all hover:border-[#ffa040] hover:bg-[#a10309] hover:shadow-[0_0_15px_rgba(255,106,19,0.5)]"
           aria-label="กลับขึ้นด้านบนสุดของหน้า">
           <span aria-hidden="true">↑</span>
         </a>

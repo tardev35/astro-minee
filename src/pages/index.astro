@@ -1,17 +1,17 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/Announcement6.astro";
-import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
-import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
-import ContentBox3ThreeNeumorphism from "../components/ContentBox3ThreeNeumorphism.astro";
-import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
-import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
-import ContentBoxTwoNeumorphism from "../components/ContentBoxTwoNeumorphism.astro";
+import Announcement from "../components/AnnouncementPremium.astro";
+import ContentBoxPremium from "../components/ContentBoxPremium.astro";
+import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
+import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
+import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
+import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
+import ContentBoxTwo from "../components/ContentBoxTwo.astro";
 import ContentBox from "../components/ContentBox.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
-import LatestWinners from "../components/LatestWinners.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
-import Faq from "../components/Faq.astro";
+import LatestWinners3 from "../components/LatestWinners3.astro";
+import Faq3 from "../components/Faq3.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
 import Navfoot from "../components/Navfoot.astro";
@@ -22,57 +22,59 @@ import { pageGraph } from "../lib/schema";
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
 // two of those per rebrand — both are spent here.
 //
-// slide4 prints "วงล้อโชคดี" with a wheel split into eight different prize
-// segments, i.e. one spread with several options to pick from, which is the
-// "เลือกโต๊ะให้เหมาะกับสไตล์" idea of docx H2-2; slide2 prints "ฝากครั้งแรก รับ
-// เพิ่ม 20%" with the ฝาก-ถอนออโต้ badge on it, which is exactly what the H2-4
-// ฝากถอนออโต้ section is about.
-// slide1 (สมาชิกใหม่ รับโบนัส 50%) and slide3 (นาทีทอง 19:00 - 21:00) stay
-// unused here and keep rendering in SmoothCarousel and on /promotion.
+// slide2 prints "ภารกิจประจำวัน / DAILY MISSIONS" with a four-item checklist and
+// a รับฟรีสปิน 25 ครั้ง reward, i.e. the account doing the tracking for you,
+// which is the "ระบบใหม่ช่วยให้เลือกเกมและจัดการบัญชีง่ายขึ้น" idea of docx H2-1.
+// slide4 prints "LAVA HOUR 20:00 - 22:00 เปิดกล่องสุ่ม ลุ้น 18/88/188/432
+// เครดิต" — one spread with several possible outcomes printed on it, which is
+// the RTP/ความผันผวน section's own point in picture form.
+// slide1 (เช็กอิน 7 วัน รับเครดิตสะสม 432 บาท) and slide3 (ชวนเพื่อนมันส์ รับ
+// โบนัสคู่หู คนละ 50 บาท) stay unused here and keep rendering in SmoothCarousel
+// and on /promotion.
 //
 // banner2.png is NOT imported anywhere: it predates this asset drop.
 // banner1/banner1-mobile/og.png are the hero and the share card, and belong to
 // MainLayout alone.
-import imgPrizeWheel from "../assets/slide4.png";
-import imgFirstDeposit from "../assets/slide2.png";
+import imgDailyMissions from "../assets/slide2.png";
+import imgLavaHour from "../assets/slide4.png";
 
-const pageTitle = "HOT189 | บาคาร่าเว็บตรงแตกง่าย มั่นคงปลอดภัย ระบบฝากถอนออโต้";
-const pageHeading = "HOT189 บาคาร่าเว็บตรงแตกง่าย มั่นคงปลอดภัย ระบบฝากถอนออโต้";
+const pageTitle = "LAVA432 | สล็อตเว็บใหญ่มั่นคง ระบบใหม่ฝากถอนออโต้ แตกง่ายจ่ายไว";
+const pageHeading = "LAVA432 สล็อตเว็บใหญ่มั่นคง ระบบใหม่ฝากถอนออโต้ แตกง่ายจ่ายไว";
 
 // The docx Main SEO Meta Description, verbatim at the length it was written
-// (127 characters). DESC_MIN does not apply to the home page — verify-build.mjs
+// (123 characters). DESC_MIN does not apply to the home page — verify-build.mjs
 // exempts it precisely so the brand's own copy ships unpadded. Do not top it up
 // to 150.
-const pageDescription = "HOT189 บาคาร่าเว็บตรง ระบบฝากถอนออโต้ รองรับมือถือ ใช้งานสะดวก พร้อมข้อมูลโต๊ะ อัตราจ่าย โปรโมชั่น และสถานะรายการตรวจสอบได้ง่าย";
+const pageDescription = "LAVA432 สล็อตเว็บใหญ่ระบบใหม่ ฝากถอนออโต้ รองรับมือถือ พร้อมเกมหลายแนว ระบบบัญชีใช้งานสะดวก และตรวจสอบสถานะรายการได้ง่าย";
 
-// Byte-identical to Announcement6's own default, which is what every sub-page
-// calling <Announcement /> bare lands on. Passing it explicitly here keeps the
-// home page and the rest of the site from drifting apart silently. No leading
-// emoji — the marquee renders the string three times.
+// Byte-identical to AnnouncementPremium's own default, which is what every
+// sub-page calling <Announcement /> bare lands on. Passing it explicitly here
+// keeps the home page and the rest of the site from drifting apart silently. No
+// leading emoji — the marquee renders the string twice.
 const announcement =
-  "HOT189 บาคาร่าเว็บตรง รวมโต๊ะหลายระดับวงเงินไว้ในบัญชีเดียว ควรตรวจขั้นต่ำของโต๊ะ ตัวเลือกเดิมพัน และอัตราจ่ายก่อนเริ่มทุกครั้ง • ตัวเลือก Banker Player และ Tie มีอัตราจ่ายและความน่าจะเป็นต่างกัน ควรเข้าใจวิธีคิดผลและค่าคอมมิชชันก่อนลงเดิมพัน • ระบบฝากถอนออโต้จัดการได้จากหน้าบัญชีโดยตรง ก่อนยืนยันควรตรวจชื่อบัญชี จำนวนเงิน และข้อมูลรับเงินให้ครบ • หากรายการเดิมยังดำเนินการอยู่ ควรรอผลจากระบบก่อนส่งรายการใหม่ • คำว่าแตกง่ายเป็นถ้อยคำทางการตลาด ไม่ใช่การรับประกันผล กำหนดวงเงินและเวลาไว้ก่อนเริ่มทุกครั้ง";
+  "LAVA432 สล็อตเว็บใหญ่ระบบใหม่ รวมเกมหลายรูปแบบไว้ในบัญชีเดียว เลือกหมวดเกม ดูโปรโมชั่น และตรวจข้อมูลบัญชีได้จากหน้าเดียวโดยไม่ต้องสลับหลายหน้า • ระบบฝากถอนออโต้จัดการได้จากหน้าบัญชีโดยตรง ก่อนยืนยันควรตรวจชื่อบัญชี จำนวนเงิน และข้อมูลรับเงินให้ครบถ้วน • หากรายการเดิมยังดำเนินการอยู่ ควรรอผลจากระบบก่อนส่งรายการใหม่ เพื่อป้องกันรายการซ้ำ • เลือกเกมจาก RTP ตารางจ่าย ฟีเจอร์โบนัส และระดับความผันผวนร่วมกัน แทนการดูจากคำว่าแตกง่ายเพียงอย่างเดียว • คำว่าแตกง่ายและมั่นคงเป็นถ้อยคำทางการตลาด ไม่ใช่การรับประกันผล กำหนดงบและเวลาไว้ก่อนเริ่มทุกครั้ง";
 
-const altPrizeWheel =
-  "แบนเนอร์โปรโมชั่น HOT189 ข้อความ วงล้อโชคดี ลุ้นเครดิตฟรี 888 บาท หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่ม หมุนเลย ด้านซ้ายบนเป็นโลโก้ไฟ HOT189 พร้อมคำว่า SPORT BETTING AND CASINO ONLINE ข้างขวาเป็นวงล้อเสี่ยงโชคสีแดง-ทองแบ่งช่องเป็นเงินรางวัล 888 บาท 1330 บาท 288 บาท 88 บาท 50 บาท และช่อง ลุ้นเครดิตฟรี มีคำว่า HOT189 อยู่ตรงดุมวงล้อ ถัดไปเป็นผู้หญิงในชุดสีแดง-ทองแบมือ ด้านล่างเป็นตู้สล็อตเลข 777 ไพ่เอซ และชิปคาสิโนสลักเลข 189 บนพื้นหลังสีดำแดงมีเปลวไฟ";
+const altDailyMissions =
+  "แบนเนอร์โปรโมชั่น LAVA432 ข้อความ ภารกิจประจำวัน พร้อมไอคอนเป้าธนูและกระดานเช็กลิสต์ ใต้ลงมาเป็นแผงหัวข้อ DAILY MISSIONS ไล่รายการ เข้าสู่ระบบ เดิมพันครบตามกำหนด เล่นเกมสล็อต และ ชวนเพื่อน โดยมีเครื่องหมายถูกสีแดงอยู่ท้ายทุกข้อ ถัดลงมาเขียนว่า ครบ 4 ภารกิจ รับฟรีสปิน 25 ครั้ง ทำครบ รับสิทธิ์ทันที และปุ่ม รับภารกิจ ด้านบนเป็นโลโก้ LAVA432 ตัวอักษรขาวและเลข 432 บนบล็อกสีแดง ข้างขวาเป็นผู้หญิงในชุดกีฬาสีดำ-แดงติดโลโก้ LAVA432 ขยิบตาและชี้นิ้วขึ้น ข้างหลังเป็นวงล้อสล็อตเลข 7 และช่อง BAR ด้านซ้ายล่างเป็นหีบสมบัติที่มีเหรียญทองและป้ายเลข 432 บนพื้นหลังสีดำแดงมีประกายไฟ";
 
-const altFirstDeposit =
-  "แบนเนอร์โปรโมชั่น HOT189 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ป้ายเล็กสามอันเขียนว่า ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย และปุ่ม ฝากเลย ด้านซ้ายบนเป็นโลโก้ไฟ HOT189 พร้อมคำว่า SPORT BETTING AND CASINO ONLINE ข้างขวาเป็นผู้หญิงในชุดสีแดง-ทองถือชิปคาสิโน ข้างหลังเป็นวงล้อสล็อตเลข 777 กองเหรียญทอง ไพ่เอซ และชิปสลักเลข 189 บนพื้นหลังสีดำแดงมีเปลวไฟ";
+const altLavaHour =
+  "แบนเนอร์โปรโมชั่น LAVA432 ข้อความขนาดใหญ่ LAVA HOUR พร้อมไอคอนนาฬิกาและช่วงเวลา 20:00 - 22:00 ใต้ลงมาเขียนว่า เปิดกล่องสุ่ม ลุ้น 18 / 88 / 188 / 432 เครดิต และป้ายเล็กเขียนว่า ร่วมสนุกเฉพาะช่วงเวลาที่กำหนด พร้อมปุ่ม เปิดเลย ด้านบนเป็นโลโก้ LAVA432 ตัวอักษรขาวและเลข 432 บนบล็อกสีแดง ข้างหลังเป็นหน้าปัดนาฬิกาขนาดใหญ่และสายฟ้าสีแดง ข้างขวาเป็นผู้หญิงในเสื้อสีแดงติดโลโก้ LAVA432 ยกมือประกบแก้มทำท่าตกใจดีใจ ด้านล่างซ้ายเป็นกล่องสุ่มสีดำแดงมีเครื่องหมายคำถามและเหรียญทองกระจายรอบ ๆ บนพื้นหลังสีดำแดงมีประกายไฟ";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq's own default, so the rendered markup and the FAQ JSON-LD below come out
+// Faq3's own default, so the rendered markup and the FAQ JSON-LD below come out
 // of the same array.
 const faqs = [
   {
-    q: "HOT189 มีบาคาร่าแบบไหนให้เลือกบ้าง?",
-    a: "ระบบสามารถมีโต๊ะบาคาร่าในหลายระดับวงเงินและรูปแบบตามที่เว็บไซต์กำหนด ผู้เล่นควรตรวจขั้นต่ำ อัตราจ่าย และกติกาของโต๊ะก่อนเริ่มทุกครั้ง",
+    q: "LAVA432 ระบบใหม่แตกต่างจากเว็บสล็อตทั่วไปอย่างไร?",
+    a: "จุดที่ควรพิจารณาคือความสะดวกในการเลือกเกม การจัดการบัญชี ระบบฝากถอน และการตรวจสอบประวัติรายการ มากกว่าดูจากคำว่า “ระบบใหม่” เพียงอย่างเดียว",
   },
   {
-    q: "HOT189 ฝากถอนผ่านระบบออโต้หรือไม่?",
-    a: "ระบบรองรับการฝากถอนออโต้ตามช่องทางที่กำหนด สมาชิกควรตรวจสอบข้อมูลบัญชี จำนวนเงิน และสถานะรายการก่อนและหลังยืนยันธุรกรรม",
+    q: "LAVA432 ฝากถอนผ่านระบบออโต้หรือไม่?",
+    a: "ระบบรองรับการจัดการฝากถอนแบบออโต้ตามช่องทางที่กำหนด สมาชิกควรตรวจข้อมูลบัญชี จำนวนเงิน และสถานะรายการก่อนและหลังยืนยันทุกครั้ง",
   },
   {
-    q: "บาคาร่าแตกง่ายสามารถรับประกันกำไรได้หรือไม่?",
-    a: "ไม่สามารถรับประกันผลลัพธ์หรือกำไรจากบาคาร่าได้ ผู้เล่นควรเข้าใจกติกา อัตราจ่าย กำหนดวงเงิน และเล่นด้วยงบที่ยอมรับความเสี่ยงได้",
+    q: "สล็อตแตกง่ายของ LAVA432 รับประกันกำไรหรือไม่?",
+    a: "ไม่สามารถรับประกันผลลัพธ์หรือกำไรจากเกมสล็อตได้ ผู้เล่นควรดู RTP ความผันผวน กติกา และกำหนดงบที่เหมาะกับตนเองก่อนเริ่มเล่น",
   },
 ];
 
@@ -89,17 +91,17 @@ const graph = pageGraph(Astro, {
 
   <Announcement message={announcement} />
 
-  <ContentBoxNeumorphism as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#ffe9cf]">
-      <strong class="text-[#fcd304]">HOT189</strong> เป็นแพลตฟอร์มบาคาร่าออนไลน์ที่เน้นการใช้งานผ่านระบบเว็บตรง พร้อมระบบฝากถอนออโต้และการจัดการบัญชีจากหน้าเดียว รองรับมือถือและคอมพิวเตอร์ สมาชิกสามารถเลือกโต๊ะ
-      ตรวจสอบอัตราจ่าย ดูโปรโมชั่น และติดตามสถานะรายการได้สะดวก ก่อนเริ่มควรศึกษากติกาและกำหนดงบประมาณให้เหมาะกับตนเอง
+  <ContentBoxPremium as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#f4e3e0]">
+      <strong class="text-[#ff6a13]">LAVA432</strong> เป็นแพลตฟอร์มสล็อตออนไลน์ที่เน้นระบบใช้งานแบบใหม่และการรวมเกมหลายรูปแบบไว้ในบัญชีเดียว พร้อมระบบฝากถอนออโต้และหน้าตรวจสอบธุรกรรม
+      รองรับทั้งมือถือและคอมพิวเตอร์ ผู้เล่นสามารถเลือกเกม ดูโปรโมชั่น และติดตามสถานะรายการได้สะดวก โดยควรศึกษากติกาและเงื่อนไขต่าง ๆ ก่อนเริ่มทุกครั้ง
     </p>
-  </ContentBoxNeumorphism>
+  </ContentBoxPremium>
 
-  <ContentBoxSevenThreeNeumorphism titleright="เลือกโต๊ะบาคาร่าให้เหมาะกับสไตล์ได้บน HOT189">
+  <ContentBoxSevenThreePremium title="ระบบใหม่ของ LAVA432 ช่วยให้เลือกเกมและจัดการบัญชีง่ายขึ้น">
     <Picture
       slot="left"
-      src={imgPrizeWheel}
+      src={imgDailyMissions}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -108,32 +110,50 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt={altPrizeWheel}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#fcd304]/40 shadow-[0_10px_30px_rgba(239,43,9,0.3)]"
+      alt={altDailyMissions}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#ec000e]/40 shadow-[0_10px_30px_rgba(236,0,14,0.3)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#ffe9cf]">
-      ภายใน HOT189 สามารถเลือกโต๊ะบาคาร่าได้หลายรูปแบบตามวงเงินและความเร็วของเกม ผู้เล่นควรพิจารณาขั้นต่ำของโต๊ะ ตัวเลือกเดิมพัน และอัตราจ่ายก่อนเริ่ม
-      เพื่อให้เลือกรูปแบบที่เหมาะกับงบและไม่ต้องปรับวงเงินระหว่างเล่นบ่อยเกินไป
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f4e3e0]">
+      การออกแบบระบบของ LAVA432 ควรช่วยให้ผู้เล่นเข้าถึงหมวดเกม โปรโมชั่น และข้อมูลบัญชีได้โดยไม่ต้องสลับหลายหน้า เมนูที่ชัดเจนและประวัติรายการที่ตรวจสอบได้ช่วยลดความสับสนระหว่างใช้งาน
+      โดยเฉพาะผู้ที่เล่นผ่านมือถือเป็นหลัก
     </p>
-  </ContentBoxSevenThreeNeumorphism>
+  </ContentBoxSevenThreePremium>
+
+  <ContentBoxCyberCut as="h2" title="เว็บสล็อตขนาดใหญ่ควรมีมากกว่าแค่จำนวนเกมเยอะ">
+    <p class="text-left text-base leading-relaxed text-[#f4e3e0]">
+      คำว่าเว็บใหญ่ไม่ควรหมายถึงจำนวนเกมเพียงอย่างเดียว แต่ควรรวมถึงความเสถียรของระบบ การจัดหมวดเกม ข้อมูลค่ายเกม และการจัดการบัญชีที่เป็นระบบ ผู้เล่นควรดูองค์ประกอบเหล่านี้ร่วมกันก่อนตัดสินใจ
+      ไม่ควรเลือกจากคำโปรโมตเพียงอย่างเดียว
+    </p>
+  </ContentBoxCyberCut>
 
   <ProviderGrid />
 
-  <ContentBox3ThreeNeumorphism
-    as="h2"
-    title="เข้าใจกติกา Banker Player และ Tie ก่อนลงเดิมพัน"
-    titleleft="กติกาหลักไม่ซับซ้อน"
-    titlecenter="วิธีคิดผลและค่าคอมมิชชัน"
-    titleright="ไม่ตัดสินจากผลย้อนหลัง">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#ffe9cf]">บาคาร่าเป็นเกมที่มีกติกาหลักไม่ซับซ้อน แต่ตัวเลือก Banker, Player และ Tie มีอัตราจ่ายและความน่าจะเป็นต่างกัน</p>
-    <p slot="center" class="text-left text-base leading-relaxed text-[#ffe9cf]">ผู้เล่นควรทำความเข้าใจวิธีคิดผลและค่าคอมมิชชันที่อาจเกี่ยวข้องก่อนเดิมพัน</p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#ffe9cf]">เพื่อหลีกเลี่ยงการตัดสินใจจากรูปแบบผลย้อนหลังเพียงอย่างเดียว</p>
-  </ContentBox3ThreeNeumorphism>
+  <ContentBoxSpecial as="h2" title="ฝากถอนออโต้บน LAVA432 ช่วยลดขั้นตอนธุรกรรม" iconleft="🏧" iconright="🧾">
+    <div slot="left" class="flex flex-col gap-3">
+      <p class="text-left text-base leading-relaxed text-[#f4e3e0]">
+        สมาชิก LAVA432 สามารถจัดการฝาก ถอน และตรวจสอบสถานะรายการผ่านระบบเดียว ก่อนยืนยันควรตรวจชื่อบัญชี จำนวนเงิน และข้อมูลรับเงินให้ถูกต้อง
+      </p>
+      <p class="flex items-center gap-2 text-xs font-black tracking-widest text-[#ff6a13] uppercase">
+        <span aria-hidden="true">✅</span>
+        ตรวจให้ครบก่อนกดยืนยัน
+      </p>
+    </div>
 
-  <ContentBoxSevenThreeFloatingBadge as="h2" title="ระบบฝากถอนออโต้ของ HOT189 ช่วยลดขั้นตอนการทำรายการ">
+    <div slot="right" class="flex flex-col gap-3">
+      <p class="text-left text-base leading-relaxed text-[#f4e3e0]">
+        หากรายการเดิมยังดำเนินการอยู่ควรรอผลจากระบบก่อนส่งใหม่ เพื่อป้องกันรายการซ้ำ ทุกรายการมีเวลาและเลขอ้างอิงของตัวเองแยกจากกัน จึงเปิดย้อนดูจากประวัติธุรกรรมได้เสมอ
+      </p>
+      <p class="flex items-center gap-2 text-xs font-black tracking-widest text-[#ff6a13] uppercase">
+        <span aria-hidden="true">⏳</span>
+        รอผลจากระบบก่อนส่งรายการใหม่
+      </p>
+    </div>
+  </ContentBoxSpecial>
+
+  <ContentBoxSevenThreeCyberCut titleright="เลือกสล็อตจาก RTP ฟีเจอร์ และความผันผวนให้เหมาะกับงบ">
     <Picture
       slot="left"
-      src={imgFirstDeposit}
+      src={imgLavaHour}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -142,78 +162,71 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt={altFirstDeposit}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#fcd304]/40 shadow-[0_10px_30px_rgba(239,43,9,0.3)]"
+      alt={altLavaHour}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#ec000e]/40 shadow-[0_10px_30px_rgba(236,0,14,0.3)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#ffe9cf]">
-      สมาชิก HOT189 สามารถจัดการฝาก ถอน และตรวจสอบสถานะธุรกรรมผ่านหน้าบัญชีได้โดยตรง ก่อนยืนยันควรตรวจสอบชื่อบัญชี จำนวนเงิน และข้อมูลรับเงินให้ครบ
-      หากรายการเดิมยังดำเนินการอยู่ควรรอผลจากระบบก่อนส่งรายการใหม่
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f4e3e0]">
+      แทนที่จะมองหาเกมจากคำว่าแตกง่ายอย่างเดียว ผู้เล่นควรพิจารณา RTP ที่ผู้ให้บริการระบุ ตารางจ่าย ฟีเจอร์โบนัส และระดับความผันผวนของเกมร่วมกัน
+      ข้อมูลเหล่านี้ช่วยให้เข้าใจลักษณะของเกมและเลือกวงเงินต่อรอบได้เหมาะสมมากขึ้น
     </p>
-  </ContentBoxSevenThreeFloatingBadge>
-
-  <LatestWinners />
-
-  <ContentBoxFloatingBadge as="h2" title="เว็บตรงควรดูจากความชัดเจนของระบบและข้อมูลที่แสดง">
-    <p class="text-left text-base leading-relaxed text-[#ffe9cf]">
-      คำว่าเว็บตรงควรพิจารณาจากรายละเอียดที่สามารถตรวจสอบได้ เช่น ช่องทางเข้า ข้อมูลเกม ขั้นตอนธุรกรรม และการจัดการบัญชี ผู้ใช้งานไม่ควรตัดสินจากคำโฆษณาเพียงอย่างเดียว แต่ควรตรวจสอบเงื่อนไขต่าง ๆ
-      ให้ครบก่อนเริ่มใช้งานจริง
-    </p>
-  </ContentBoxFloatingBadge>
+  </ContentBoxSevenThreeCyberCut>
 
   <LoginRtpSection />
 
-  <ContentBoxTwoNeumorphism titleleft="ความปลอดภัยของ HOT189 เริ่มจากการป้องกันบัญชี">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#ffe9cf]">
-      การใช้งาน HOT189 อย่างปลอดภัยควรตั้งรหัสผ่านที่ไม่ซ้ำกับบริการอื่น เข้าใช้งานผ่านช่องทางหลัก และไม่ส่งรหัสยืนยันให้บุคคลภายนอก ควรตรวจสอบประวัติการเข้าสู่ระบบและธุรกรรมเป็นระยะ
-      รวมถึงหลีกเลี่ยงเครือข่ายสาธารณะเมื่อต้องทำรายการทางการเงิน
+  <ContentBoxTwo as="h2" titleleft="ตรวจสถานะจ่ายไวผ่านหน้าบัญชีของ LAVA432" iconleft="🕘">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f4e3e0]">
+      สมาชิก LAVA432 ควรใช้ประวัติธุรกรรมและสถานะรายการในหน้าบัญชีเป็นจุดหลักในการติดตามยอดถอน หากรายการยังอยู่ระหว่างดำเนินการควรเก็บเวลา จำนวนเงิน และเลขอ้างอิงไว้จนกว่าระบบจะอัปเดตผล
+      เพื่อช่วยให้ตรวจสอบย้อนหลังได้ง่ายขึ้น
     </p>
 
-    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#ef2b09]/35 bg-[#0d0402]/75 p-5">
-      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#fcd304] uppercase">
-        <span aria-hidden="true">🛡️</span>
-        สี่จุดที่ควรตรวจเพื่อดูแลบัญชีของตัวเอง
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#ec000e]/35 bg-[#120303]/75 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#ff6a13] uppercase">
+        <span aria-hidden="true">🧾</span>
+        สี่อย่างที่ควรเก็บไว้ระหว่างรอผลรายการ
       </p>
-      <span class="flex items-start gap-2.5 text-sm text-[#ffe9cf]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff7a18]">①</span>
-        ตั้งรหัสผ่านของบัญชีให้ไม่ซ้ำกับรหัสที่ใช้อยู่กับบริการอื่น
+      <span class="flex items-start gap-2.5 text-sm text-[#f4e3e0]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffa040]">①</span>
+        เวลาที่ส่งรายการ เพื่อใช้เทียบกับสถานะที่ระบบอัปเดตให้
       </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#ffe9cf]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff7a18]">②</span>
-        เข้าใช้งานผ่านช่องทางหลัก และไม่ส่งรหัสยืนยันให้บุคคลภายนอก
+      <span class="flex items-start gap-2.5 text-sm text-[#f4e3e0]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffa040]">②</span>
+        จำนวนเงินของรายการนั้น แยกจากรายการอื่นในวันเดียวกัน
       </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#ffe9cf]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff7a18]">③</span>
-        เปิดดูประวัติการเข้าสู่ระบบและประวัติธุรกรรมของบัญชีเป็นระยะ
+      <span class="flex items-start gap-2.5 text-sm text-[#f4e3e0]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffa040]">③</span>
+        เลขอ้างอิงที่ระบบออกให้ ซึ่งใช้ค้นย้อนหลังได้ตรงที่สุด
       </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#ffe9cf]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ff7a18]">④</span>
-        เลี่ยงเครือข่ายสาธารณะทุกครั้งที่ต้องทำรายการทางการเงิน
+      <span class="flex items-start gap-2.5 text-sm text-[#f4e3e0]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffa040]">④</span>
+        สถานะล่าสุดที่หน้าบัญชีแสดง ก่อนจะส่งรายการใหม่ซ้ำ
       </span>
-      <span class="mt-1 rounded-xl border border-[#fcd304]/35 bg-[#2e100a]/80 px-4 py-2.5 text-xs leading-relaxed text-[#d9ac86]">
-        การไล่ดูประวัติการเข้าสู่ระบบและประวัติธุรกรรมเป็นระยะคือสิ่งที่ทำให้เห็นรายการผิดปกติได้เร็วที่สุด เพราะทุกรายการมีเลขอ้างอิงและเวลาของตัวเองแยกจากกัน
+      <span class="mt-1 rounded-xl border border-[#ff6a13]/35 bg-[#2a0808]/80 px-4 py-2.5 text-xs leading-relaxed text-[#c9a8a4]">
+        ประวัติธุรกรรมคือจุดที่เห็นความคืบหน้าของยอดถอนได้เร็วที่สุด เพราะทุกรายการมีเวลาและเลขอ้างอิงของตัวเองแยกจากกัน จึงเทียบย้อนหลังได้ทีละรายการ
       </span>
     </div>
-  </ContentBoxTwoNeumorphism>
+  </ContentBoxTwo>
 
-  <ContentBox as="h2" title="คำว่าแตกง่ายไม่ใช่การรับประกันผลบาคาร่า">
-    <p class="text-left text-base leading-relaxed text-[#ffe9cf]">
-      คำว่าแตกง่ายเป็นถ้อยคำทางการตลาดที่สื่อถึงความน่าสนใจของการเล่น แต่ผลบาคาร่าไม่สามารถรับประกันได้ ผู้ใช้ HOT189 ควรเลือกวงเงินที่เหมาะสม กำหนดเวลาการเล่น และไม่เพิ่มเดิมพันเพื่อตามคืนยอดเสีย
-      เพราะแต่ละรอบเป็นผลลัพธ์ที่ไม่แน่นอน
+  <LatestWinners3 />
+
+  <ContentBox as="h2" title="คำว่าแตกง่ายและมั่นคงควรดูจากข้อมูลจริงของ LAVA432">
+    <p class="text-left text-base leading-relaxed text-[#f4e3e0]">
+      ข้อความแตกง่ายหรือมั่นคงของ LAVA432 เป็นคำทางการตลาด ไม่สามารถใช้รับประกันผลของเกมหรือความสำเร็จของทุกธุรกรรมได้ ผู้เล่นควรดูข้อมูลเกม ระบบบัญชี เงื่อนไขถอน และช่องทางติดต่อประกอบ
+      พร้อมกำหนดงบก่อนเริ่มเล่นทุกครั้ง
     </p>
   </ContentBox>
 
-  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ HOT189" faqs={faqs} />
+  <Faq3 title="คำถามที่พบบ่อยเกี่ยวกับ LAVA432" faqs={faqs} />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#fcd304]/60 bg-gradient-to-r from-[#ef2b09] via-[#8f1505] to-[#0d0402] px-4 py-3 text-sm font-black whitespace-nowrap text-[#ffe9cf] shadow-[0_10px_30px_rgba(239,43,9,0.4)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#fcd304] hover:shadow-[0_15px_40px_rgba(252,211,4,0.42)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ff6a13]/60 bg-gradient-to-r from-[#ec000e] via-[#7a0206] to-[#120303] px-4 py-3 text-sm font-black whitespace-nowrap text-[#ffffff] shadow-[0_10px_30px_rgba(236,0,14,0.4)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ff6a13] hover:shadow-[0_15px_40px_rgba(255,106,19,0.42)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffe86b]/70 bg-gradient-to-r from-[#ffe86b] via-[#fcd304] to-[#c99400] px-4 py-3 text-sm font-black whitespace-nowrap text-[#2b0a02] shadow-[0_10px_30px_rgba(252,211,4,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe86b] hover:shadow-[0_15px_40px_rgba(252,211,4,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffa040]/70 bg-gradient-to-r from-[#ffa040] via-[#ff6a13] to-[#ff3d2e] px-4 py-3 text-sm font-black whitespace-nowrap text-[#120303] shadow-[0_10px_30px_rgba(255,106,19,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffa040] hover:shadow-[0_15px_40px_rgba(255,106,19,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>

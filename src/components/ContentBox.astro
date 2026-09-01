@@ -13,22 +13,22 @@ const { title, as: HeadingTag = "h1" } = Astro.props;
 // decorative blurs sit at -z-10, so they paint above the card background but
 // below the text without a `relative z-10` div in between.
 //
-// HOT189 two-tone: flame red carries the surfaces (border, rules, glows), gold
-// carries the type (the heading gradient). Reversing that puts red type on a
-// dark ember card, which is where the contrast goes.
+// LAVA432 two-tone: scarlet carries the surfaces (border, rules, glows), molten
+// orange into white carries the type (the heading gradient). Reversing that puts
+// scarlet type on a dark ember card, which is where the contrast goes.
 ---
 
 <section class="relative z-10 my-8 flex w-full justify-center px-4 font-sans">
   <div
-    class="group relative isolate w-full max-w-[1400px] overflow-hidden rounded-3xl border border-[#ef2b09]/40 bg-[#1c0705]/92 p-8 text-left text-base leading-relaxed text-[#ffe9cf] shadow-[0_10px_30px_rgba(239,43,9,0.24)] backdrop-blur-xl transition-all duration-500 hover:border-[#ff7a18]/65 hover:shadow-[0_15px_40px_rgba(252,211,4,0.26)] md:p-10">
-    <div aria-hidden="true" class="pointer-events-none absolute -top-20 -left-20 -z-10 h-40 w-40 rounded-full bg-[#ef2b09]/30 blur-[60px] transition-all duration-500 group-hover:bg-[#ff7a18]/34"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute -right-20 -bottom-20 -z-10 h-40 w-40 rounded-full bg-[#2e100a]/70 blur-[60px] transition-all duration-500 group-hover:bg-[#ef2b09]/45"></div>
+    class="group relative isolate w-full max-w-[1400px] overflow-hidden rounded-3xl border border-[#ec000e]/40 bg-[#1c0505]/92 p-8 text-left text-base leading-relaxed text-[#f4e3e0] shadow-[0_10px_30px_rgba(236,0,14,0.24)] backdrop-blur-xl transition-all duration-500 hover:border-[#ff6a13]/65 hover:shadow-[0_15px_40px_rgba(255,106,19,0.26)] md:p-10">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-20 -left-20 -z-10 h-40 w-40 rounded-full bg-[#ec000e]/30 blur-[60px] transition-all duration-500 group-hover:bg-[#ff6a13]/34"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -right-20 -bottom-20 -z-10 h-40 w-40 rounded-full bg-[#2a0808]/70 blur-[60px] transition-all duration-500 group-hover:bg-[#ec000e]/45"></div>
 
     {
       title && (
-        <header class="mb-6 flex items-center gap-4 border-b border-[#ef2b09]/30 pb-4">
-          <div aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#fcd304] to-[#ef2b09] shadow-[0_0_10px_rgba(252,211,4,0.5)]" />
-          <HeadingTag class="bg-gradient-to-r from-[#ffe86b] via-[#fcd304] to-[#c99400] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
+        <header class="mb-6 flex items-center gap-4 border-b border-[#ec000e]/30 pb-4">
+          <div aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffa040] to-[#ec000e] shadow-[0_0_10px_rgba(255,106,19,0.5)]" />
+          <HeadingTag class="bg-gradient-to-r from-[#ffffff] via-[#ffa040] to-[#ff6a13] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
         </header>
       )
     }

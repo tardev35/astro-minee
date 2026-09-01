@@ -7,11 +7,9 @@ import slide3 from "../assets/slide3.png";
 import slide4 from "../assets/slide4.png";
 
 // Each alt is the text actually printed on that slide, read off the artwork,
-// plus the scene it sits in. All four share the HOT189 look: the flaming
-// orange-gold HOT189 wordmark with "SPORT BETTING AND CASINO ONLINE" under it,
-// a woman in a red-and-gold outfit, a 777 slot cabinet, ace playing cards,
-// stacks of gold coins and red-gold casino chips stamped 189, on an ember-black
-// background streaked with fire.
+// plus the scene it sits in. All four share the LAVA432 look: the white LAVA
+// wordmark with 432 in a scarlet block, a model in black-and-red LAVA432 kit,
+// gold coins, and a near-black background streaked with scarlet embers.
 //
 // This is a pure-CSS marquee — no Swiper, no JavaScript at all. It duplicates
 // the four images three times so the loop has no seam; the duplicate copies are
@@ -19,19 +17,19 @@ import slide4 from "../assets/slide4.png";
 const images = [
   {
     src: slide1,
-    alt: "แบนเนอร์โปรโมชั่น HOT189 ข้อความ สมาชิกใหม่ รับโบนัส 50% สมัครวันนี้ รับสิทธิ์ทันที ใต้ลงมาเขียนว่า โปรต้อนรับสำหรับสมาชิกใหม่ และปุ่ม รับโปรเลย ด้านซ้ายบนเป็นโลโก้ไฟ HOT189 พร้อมคำว่า SPORT BETTING AND CASINO ONLINE ข้างขวาเป็นผู้หญิงในชุดสีแดง-ทองชี้นิ้วมาทางซ้าย ข้างหลังเป็นวงล้อสล็อตเลข 77 ไพ่เอซ กองเหรียญทอง และชิปคาสิโนสีแดง-ทองสลักเลข 189 บนพื้นหลังสีดำแดงมีเปลวไฟ",
+    alt: "แบนเนอร์โปรโมชั่น LAVA432 ข้อความ เช็กอิน 7 วัน รับเครดิตสะสม 432 บาท และบรรทัดล่างเขียนว่า เช็กอินครบ รับต่อได้เพลิน ใต้ลงมาเป็นการ์ดเจ็ดใบเรียงกันเขียนว่า DAY 1 ถึง DAY 7 มีเครื่องหมายถูกอยู่ทุกใบ และปุ่ม เช็กอินเลย ด้านบนเป็นโลโก้ LAVA432 ตัวอักษรขาวและเลข 432 บนบล็อกสีแดง ข้างขวาเป็นผู้หญิงในชุดกีฬาสีดำ-แดงติดโลโก้ LAVA432 ชี้นิ้วมาทางซ้าย ด้านล่างเป็นกล่องของขวัญผูกโบว์แดง หีบสมบัติที่มีเหรียญทองล้น และกล่องเขียนว่า เครดิตสะสม 432 บาท บนพื้นหลังสีดำแดงมีประกายไฟ",
   },
   {
     src: slide2,
-    alt: "แบนเนอร์โปรโมชั่น HOT189 ข้อความ ฝากครั้งแรก รับเพิ่ม 20% คุ้มตั้งแต่ฝากแรก ป้ายเล็กสามอันเขียนว่า ฝาก-ถอนออโต้ รวดเร็ว ปลอดภัย และปุ่ม ฝากเลย ด้านซ้ายบนเป็นโลโก้ไฟ HOT189 พร้อมคำว่า SPORT BETTING AND CASINO ONLINE ข้างขวาเป็นผู้หญิงในชุดสีแดง-ทองถือชิปคาสิโน ข้างหลังเป็นวงล้อสล็อตเลข 777 กองเหรียญทอง ไพ่เอซ และชิปสลักเลข 189 บนพื้นหลังสีดำแดงมีเปลวไฟ",
+    alt: "แบนเนอร์โปรโมชั่น LAVA432 ข้อความ ภารกิจประจำวัน พร้อมไอคอนเป้าธนูและกระดานเช็กลิสต์ ใต้ลงมาเป็นแผงหัวข้อ DAILY MISSIONS ไล่รายการ เข้าสู่ระบบ เดิมพันครบตามกำหนด เล่นเกมสล็อต และ ชวนเพื่อน โดยมีเครื่องหมายถูกสีแดงอยู่ท้ายทุกข้อ ถัดลงมาเขียนว่า ครบ 4 ภารกิจ รับฟรีสปิน 25 ครั้ง ทำครบ รับสิทธิ์ทันที และปุ่ม รับภารกิจ ด้านบนเป็นโลโก้ LAVA432 ตัวอักษรขาวและเลข 432 บนบล็อกสีแดง ข้างขวาเป็นผู้หญิงในชุดกีฬาสีดำ-แดงติดโลโก้ LAVA432 ขยิบตาและชี้นิ้วขึ้น ข้างหลังเป็นวงล้อสล็อตเลข 7 และช่อง BAR ด้านซ้ายล่างเป็นหีบสมบัติที่มีเหรียญทองและป้ายเลข 432 บนพื้นหลังสีดำแดงมีประกายไฟ",
   },
   {
     src: slide3,
-    alt: "แบนเนอร์โปรโมชั่น HOT189 ข้อความ นาทีทอง 19:00 - 21:00 รับเพิ่ม 15% เฉพาะช่วงเวลาที่กำหนด และปุ่ม ร่วมโปรเลย ด้านซ้ายบนเป็นโลโก้ไฟ HOT189 พร้อมคำว่า SPORT BETTING AND CASINO ONLINE ข้างหลังเป็นหน้าปัดนาฬิกาสีทองเลขโรมันขนาดใหญ่ ข้างขวาเป็นผู้หญิงในชุดสีแดง-ทองชี้นิ้วมาทางซ้าย ล้อมด้วยชิปคาสิโนสลักเลข 189 เหรียญทอง และวงล้อสล็อต BAR 777 บนพื้นหลังสีดำแดงมีเปลวไฟ",
+    alt: "แบนเนอร์โปรโมชั่น LAVA432 ข้อความ ชวนเพื่อนมันส์ รับโบนัสคู่หู คนละ 50 บาท และบรรทัดล่างเขียนว่า เพื่อนสมัครสำเร็จ รับกันทั้งคู่ ใต้ลงมาเป็นไอคอนคนสองคนมีลูกศรชี้หากันคั่นด้วยกล่องของขวัญ กำกับว่า +50 บาท ทั้งสองฝั่ง และปุ่ม ชวนเลย ด้านบนเป็นโลโก้ LAVA432 ตัวอักษรขาวและเลข 432 บนบล็อกสีแดง มุมขวาบนเป็นไอคอนคนพร้อมเครื่องหมาย +1 ข้างขวาเป็นผู้หญิงในแจ็กเก็ตสีแดงและเสื้อดำติดโลโก้ LAVA432 ถือโทรศัพท์ที่เปิดหน้าแอป LAVA432 แล้วชี้นิ้วไปที่จอ ด้านล่างเป็นลูกฟุตบอลและเหรียญทอง บนพื้นหลังสีดำแดงมีประกายไฟ",
   },
   {
     src: slide4,
-    alt: "แบนเนอร์โปรโมชั่น HOT189 ข้อความ วงล้อโชคดี ลุ้นเครดิตฟรี 888 บาท หมุนฟรีทุกวัน ลุ้นรับทันที และปุ่ม หมุนเลย ด้านซ้ายบนเป็นโลโก้ไฟ HOT189 พร้อมคำว่า SPORT BETTING AND CASINO ONLINE ข้างขวาเป็นวงล้อเสี่ยงโชคสีแดง-ทองแบ่งช่องเป็นเงินรางวัล 888 บาท 1330 บาท 288 บาท 88 บาท 50 บาท และช่อง ลุ้นเครดิตฟรี มีคำว่า HOT189 อยู่ตรงดุมวงล้อ ถัดไปเป็นผู้หญิงในชุดสีแดง-ทองแบมือ ด้านล่างเป็นตู้สล็อตเลข 777 ไพ่เอซ และชิปคาสิโนสลักเลข 189 บนพื้นหลังสีดำแดงมีเปลวไฟ",
+    alt: "แบนเนอร์โปรโมชั่น LAVA432 ข้อความขนาดใหญ่ LAVA HOUR พร้อมไอคอนนาฬิกาและช่วงเวลา 20:00 - 22:00 ใต้ลงมาเขียนว่า เปิดกล่องสุ่ม ลุ้น 18 / 88 / 188 / 432 เครดิต และป้ายเล็กเขียนว่า ร่วมสนุกเฉพาะช่วงเวลาที่กำหนด พร้อมปุ่ม เปิดเลย ด้านบนเป็นโลโก้ LAVA432 ตัวอักษรขาวและเลข 432 บนบล็อกสีแดง ข้างหลังเป็นหน้าปัดนาฬิกาขนาดใหญ่และสายฟ้าสีแดง ข้างขวาเป็นผู้หญิงในเสื้อสีแดงติดโลโก้ LAVA432 ยกมือประกบแก้มทำท่าตกใจดีใจ ด้านล่างซ้ายเป็นกล่องสุ่มสีดำแดงมีเครื่องหมายคำถามและเหรียญทองกระจายรอบ ๆ บนพื้นหลังสีดำแดงมีประกายไฟ",
   },
 ];
 
@@ -43,7 +41,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
   <input id="carousel-pause" type="checkbox" class="peer sr-only" />
   <label
     for="carousel-pause"
-    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#fcd304]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#fcd304]">
+    class="sr-only cursor-pointer peer-focus-visible:not-sr-only peer-focus-visible:mb-3 peer-focus-visible:inline-block peer-focus-visible:rounded-full peer-focus-visible:border peer-focus-visible:border-[#ff6a13]/60 peer-focus-visible:px-4 peer-focus-visible:py-2 peer-focus-visible:text-sm peer-focus-visible:font-bold peer-focus-visible:text-[#ff6a13]">
     หยุด / เล่นสไลด์ภาพ
   </label>
 
@@ -56,7 +54,7 @@ const slides = Array.from({ length: COPIES }, () => images).flat();
             <Picture
               src={slide.src}
               alt={isDuplicate ? "" : slide.alt}
-              class="block w-full rounded-xl border border-[#ef2b09]/50 object-cover shadow-[0_10px_30px_rgba(239,43,9,0.28)]"
+              class="block w-full rounded-xl border border-[#ec000e]/50 object-cover shadow-[0_10px_30px_rgba(236,0,14,0.28)]"
               width={slide.src.width}
               height={slide.src.height}
               loading="lazy"
