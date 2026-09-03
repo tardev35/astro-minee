@@ -7,8 +7,9 @@ const imagePaths = Object.keys(images);
 const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 
 // The angled clip-path and the mono "/// DIRECTORY" labels are this variant's
-// shape and stay; only the hue moves. It arrived on a blue brand (BMK289), so
-// every #2b8cff/#02081c/#9dcef0 stop below is a repaint, not an original.
+// shape and stay; only the hue moves. It arrived on a blue brand, was repainted
+// scarlet for a red one, and is now on ORA2U's gold — so every #fe9a00/#0b0501/
+// #f6e6cf stop below is a repaint, not an original.
 //
 // Both column labels are <p>, not headings: the footer renders on every page,
 // so one <h2> here would be an <h2> sitewide and the homepage heading inventory
@@ -18,15 +19,23 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 // The <address> block is pasted verbatim from the playbook and carries NO brand
 // colour on purpose — border-white/15 + bg-black/20 + opacity land correctly on
 // every footer variant in the library. Do not repaint it.
+//
+// The two mono chips used to read TRUE_WALLET. ORA2U's brief names no wallet,
+// no bank and no payment brand anywhere — its money language is "ช่องทางที่
+// เว็บไซต์กำหนด" — so the chip now names the ระบบออโต้ the docx actually claims.
+// Do not reintroduce a payment brand the brief never mentions.
+//
+// No /ตรวจหวย or /แนวทาง in the directory: this is a slot/casino brand and both
+// pages are parked in src/pages-disabled/, so those routes do not exist.
 ---
 
 <footer
-  class="relative mt-10 w-full overflow-hidden border-t border-[#e11d16]/40 bg-[#0a0403] pt-16 pb-8 font-sans text-[#f6e5df]"
+  class="relative mt-10 w-full overflow-hidden border-t border-[#fe9a00]/40 bg-[#0b0501] pt-16 pb-8 font-sans text-[#f6e6cf]"
   style="clip-path: polygon(0 30px, 50vw 0, 100% 30px, 100% 100%, 0 100%);">
   <div
     aria-hidden="true"
     class="pointer-events-none absolute inset-0 opacity-[0.14]"
-    style="background-image: linear-gradient(#e11d16 1px, transparent 1px), linear-gradient(90deg, #8f0f0a 1px, transparent 1px); background-size: 30px 30px;">
+    style="background-image: linear-gradient(#fe9a00 1px, transparent 1px), linear-gradient(90deg, #b15d01 1px, transparent 1px); background-size: 30px 30px;">
   </div>
 
   <div class="relative z-10 mx-auto w-full max-w-[1200px] px-6">
@@ -37,45 +46,45 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
             mainLogo ? (
               <Picture
                 src={mainLogo}
-                alt={`โลโก้ ${BRAND_NAME} ตัวอักษร TAKO168 สีขาวนูนสามมิติขอบหนาสีแดง ด้านบนเป็นรูปปลาหมึกยักษ์สีชมพูสวมหมวกโจรสลัดสีม่วงขลิบทอง ปิดตาข้างซ้าย และชูดาบคัตลาสสีเงินไว้ด้วยหนวด`}
+                alt={`โลโก้ ${BRAND_NAME} เป็นเหรียญตราวงกลมสีทอง ด้านบนมีมงกุฎสีทองประดับพลอยรูปข้าวหลามตัด ตรงกลางวงแหวนทองเป็นตัวอักษร ORA2U นูนสามมิติไล่เฉดทองส้ม ใต้ลงมาเป็นริบบิ้นสีครีมทองเขียนว่า LUCKYGAME มีชิปคาสิโนสีทองรูปโพดำสีแดงอยู่ต้นริบบิ้น`}
                 widths={[100, 200, 300]}
                 sizes="100px"
                 loading="lazy"
-                class="h-[60px] w-auto drop-shadow-[0_4px_12px_rgba(225,29,22,0.4)]"
+                class="h-[60px] w-auto drop-shadow-[0_4px_12px_rgba(254,154,0,0.4)]"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
               />
             ) : (
-              <span class="text-3xl font-black tracking-widest text-[#ffd97a]">{BRAND_NAME}</span>
+              <span class="text-3xl font-black tracking-widest text-[#ffd76a]">{BRAND_NAME}</span>
             )
           }
         </a>
-        <p class="border-l-2 border-[#e11d16] pl-4 text-sm leading-relaxed text-[#f6e5df]/80">
-          {BRAND_NAME} แพลตฟอร์มสล็อตออนไลน์ที่รวมเกมหลายค่ายหลายรูปแบบไว้ในระบบเดียว รองรับ True Wallet ตามช่องทางที่กำหนด และมีระบบบัญชีสำหรับตรวจสอบธุรกรรม เลือกเกม ดูโปรโมชั่น
-          และติดตามสถานะรายการได้จากบัญชีเดียว โดยควรศึกษากติกา ข้อมูลเกม และกำหนดงบให้เหมาะกับตนเองก่อนเริ่มทุกครั้ง
+        <p class="border-l-2 border-[#fe9a00] pl-4 text-sm leading-relaxed text-[#f6e6cf]/80">
+          {BRAND_NAME} แพลตฟอร์มสล็อตและคาสิโนออนไลน์ที่รวมเกมหลายรูปแบบไว้ในระบบเดียว พร้อมโปรโมชั่นสำหรับผู้ที่เริ่มด้วยงบไม่สูง และระบบออโต้ที่ช่วยลดขั้นตอนในการจัดการบัญชีและธุรกรรม สมาชิกเลือกเกม
+          ตรวจโปรโมชั่น และติดตามสถานะรายการได้จากบัญชีเดียว โดยควรศึกษากติกา ข้อมูลเกม และกำหนดงบให้เหมาะกับตนเองก่อนเริ่มทุกครั้ง
         </p>
         <div class="mt-4 flex gap-3">
-          <span class="border border-[#e11d16]/50 bg-[#1a0806] px-3 py-1 font-mono text-xs text-[#ff6a5a]">TRUE_WALLET</span>
-          <span class="border border-[#e8b23a]/50 bg-[#1a0806] px-3 py-1 font-mono text-xs text-[#e8b23a]">SUPPORT_24H</span>
+          <span class="border border-[#fe9a00]/50 bg-[#170d03] px-3 py-1 font-mono text-xs text-[#fde49b]">AUTO_SYSTEM</span>
+          <span class="border border-[#ffd76a]/50 bg-[#170d03] px-3 py-1 font-mono text-xs text-[#ffd76a]">SUPPORT_24H</span>
         </div>
       </div>
 
       <nav class="flex flex-col gap-4 md:col-span-3 lg:pl-8" aria-label="ลิงก์หน้าเว็บ">
-        <p class="text-lg font-black tracking-widest text-[#ffd97a] uppercase">/// DIRECTORY</p>
-        <ul class="flex flex-col gap-3 font-mono text-sm text-[#f6e5df]/80">
-          <li><a href="/" class="transition-colors hover:text-[#e8b23a]">&gt; หน้าแรก</a></li>
-          <li><a href="/promotion" class="transition-colors hover:text-[#e8b23a]">&gt; โปรโมชั่น</a></li>
-          <li><a href="/ทดลองเล่น" class="transition-colors hover:text-[#e8b23a]">&gt; ทดลองเล่น</a></li>
-          <li><a href="/ทางเข้า" class="transition-colors hover:text-[#e8b23a]">&gt; ทางเข้า</a></li>
-          <li><a href="/about-us" class="transition-colors hover:text-[#e8b23a]">&gt; เกี่ยวกับเรา</a></li>
-          <li><a href="/contact-us" class="transition-colors hover:text-[#e8b23a]">&gt; ติดต่อเรา</a></li>
-          <li><a href="/register" class="transition-colors hover:text-[#e8b23a]">&gt; สมัครสมาชิก</a></li>
-          <li><a href="/login" class="transition-colors hover:text-[#e8b23a]">&gt; เข้าสู่ระบบ</a></li>
+        <p class="text-lg font-black tracking-widest text-[#ffd76a] uppercase">/// DIRECTORY</p>
+        <ul class="flex flex-col gap-3 font-mono text-sm text-[#f6e6cf]/80">
+          <li><a href="/" class="transition-colors hover:text-[#fe9a00]">&gt; หน้าแรก</a></li>
+          <li><a href="/promotion" class="transition-colors hover:text-[#fe9a00]">&gt; โปรโมชั่น</a></li>
+          <li><a href="/ทดลองเล่น" class="transition-colors hover:text-[#fe9a00]">&gt; ทดลองเล่น</a></li>
+          <li><a href="/ทางเข้า" class="transition-colors hover:text-[#fe9a00]">&gt; ทางเข้า</a></li>
+          <li><a href="/about-us" class="transition-colors hover:text-[#fe9a00]">&gt; เกี่ยวกับเรา</a></li>
+          <li><a href="/contact-us" class="transition-colors hover:text-[#fe9a00]">&gt; ติดต่อเรา</a></li>
+          <li><a href="/register" class="transition-colors hover:text-[#fe9a00]">&gt; สมัครสมาชิก</a></li>
+          <li><a href="/login" class="transition-colors hover:text-[#fe9a00]">&gt; เข้าสู่ระบบ</a></li>
         </ul>
       </nav>
 
       <div class="flex flex-col gap-5 md:col-span-4">
-        <p class="text-lg font-black tracking-widest text-[#ffd97a] uppercase">/// SUPPORT_LINK</p>
+        <p class="text-lg font-black tracking-widest text-[#ffd76a] uppercase">/// SUPPORT_LINK</p>
 
         <a
           href="/line"
@@ -106,21 +115,21 @@ const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 
         <a
           href="#top"
-          class="flex w-full items-center justify-center gap-2 border border-[#e11d16]/60 bg-transparent py-3 font-bold text-[#ffd97a] transition-all hover:bg-[#2b0705]/60"
+          class="flex w-full items-center justify-center gap-2 border border-[#fe9a00]/60 bg-transparent py-3 font-bold text-[#ffd76a] transition-all hover:bg-[#241503]/60"
           style="clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);">
           <span aria-hidden="true">↑</span> กลับขึ้นบน
         </a>
 
-        <div class="mt-2 font-mono text-xs text-[#f6e5df]/60">ACCEPTED_PAYMENTS</div>
+        <div class="mt-2 font-mono text-xs text-[#f6e6cf]/60">ACCEPTED_PAYMENTS</div>
         <BankStrip size={28} />
       </div>
     </div>
 
-    <div class="flex flex-col items-center justify-between border-t border-[#e11d16]/25 pt-6 font-mono text-xs text-[#f6e5df]/60 md:flex-row">
+    <div class="flex flex-col items-center justify-between border-t border-[#fe9a00]/25 pt-6 font-mono text-xs text-[#f6e6cf]/60 md:flex-row">
       <p>SYSTEM_COPYRIGHT &copy; {new Date().getFullYear()} {BRAND_NAME}</p>
       <div class="mt-4 flex gap-4 md:mt-0">
-        <a href="/terms/" class="hover:text-[#e8b23a]">TERMS_OF_SERVICE</a>
-        <a href="/privacy/" class="hover:text-[#e8b23a]">PRIVACY_POLICY</a>
+        <a href="/terms/" class="hover:text-[#fe9a00]">TERMS_OF_SERVICE</a>
+        <a href="/privacy/" class="hover:text-[#fe9a00]">PRIVACY_POLICY</a>
       </div>
     </div>
   </div>

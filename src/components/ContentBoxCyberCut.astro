@@ -9,26 +9,25 @@ const headingSize = HeadingTag === "h1" ? "text-2xl md:text-3xl" : "text-xl md:t
 // isolate on the card + -z-10 on each decorative corner rule is what lets the
 // slot content paint above the decoration without a wrapper <div>. Keep both.
 //
-// TAKO168: the top-left corner rules run gold, the bottom-right ones bright red,
-// so the clipped frame carries both halves of the logo (the gold pirate hat over
-// the red-edged wordmark) rather than one flat colour. The heading gradient runs
-// bright gold → bright red → crimson and stops there — anything deeper as
-// clip-text on this card falls under 3:1 even at heading size.
+// ORA2U: the top-left corner rules run pale gold and the bottom-right ones the
+// primary gold, so the clipped frame reads as the two ends of the medallion's
+// bevel. The heading gradient stops at #fe9a00 — bronze as clip-text on this
+// near-black card falls close to 3:1 even at heading size.
 ---
 
 <section class="my-6 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-7xl border border-[#e11d16]/35 bg-[#1a0806]/92 p-8 text-left text-base leading-relaxed text-[#f6e5df] shadow-[0_10px_30px_rgba(225,29,22,0.24)] backdrop-blur-md"
+    class="relative isolate w-full max-w-7xl border border-[#fe9a00]/35 bg-[#170d03]/92 p-8 text-left text-base leading-relaxed text-[#f6e6cf] shadow-[0_10px_30px_rgba(254,154,0,0.24)] backdrop-blur-md"
     style="clip-path: polygon(40px 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%, 0 40px);">
-    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-1 w-32 bg-gradient-to-r from-[#e8b23a] to-transparent"></div>
-    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-1 w-32 bg-gradient-to-l from-[#ff6a5a] to-transparent"></div>
-    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-32 w-1 bg-gradient-to-b from-[#e8b23a] to-transparent"></div>
-    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-32 w-1 bg-gradient-to-t from-[#ff6a5a] to-transparent"></div>
+    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-1 w-32 bg-gradient-to-r from-[#ffd76a] to-transparent"></div>
+    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-1 w-32 bg-gradient-to-l from-[#fe9a00] to-transparent"></div>
+    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-32 w-1 bg-gradient-to-b from-[#ffd76a] to-transparent"></div>
+    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-32 w-1 bg-gradient-to-t from-[#fe9a00] to-transparent"></div>
 
     {
       title && (
-        <header class="mb-8 border-l-4 border-[#e11d16] pl-6">
-          <HeadingTag class={`bg-gradient-to-r from-[#ffd97a] via-[#ff6a5a] to-[#e11d16] bg-clip-text ${headingSize} leading-normal font-black text-transparent uppercase`}>{title}</HeadingTag>
+        <header class="mb-8 border-l-4 border-[#fe9a00] pl-6">
+          <HeadingTag class={`bg-gradient-to-r from-[#fde49b] via-[#ffb733] to-[#fe9a00] bg-clip-text ${headingSize} leading-normal font-black text-transparent uppercase`}>{title}</HeadingTag>
         </header>
       )
     }

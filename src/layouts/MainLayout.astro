@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle6.astro";
-import Footer from "../components/FooterPremium.astro";
+import Navbar from "../components/NavbarPremium.astro";
+import Footer from "../components/FooterCyber.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,12 +55,12 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "DIAMOND789 | เว็บสล็อตรวมเกมลิขสิทธิ์แท้ โปรทุนน้อยแตกดีไม่มีขั้นต่ำ",
+  title = "ORA2U | สล็อตเกมคาสิโนออนไลน์ โปรทุนน้อยระบบออโต้แตกง่ายจ่ายไว",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings. This one is
-  // 156 (count CHARACTERS, not bytes — Thai is 3 bytes per character).
-  description = "DIAMOND789 รวมเกมสล็อตลิขสิทธิ์จากหลายค่ายไว้ในระบบเดียว พร้อมข้อมูลตารางจ่าย RTP ความผันผวน โปรโมชั่นทุนน้อย และสถานะธุรกรรมให้ตรวจสอบได้จากบัญชีเดียวบนมือถือ",
+  // 155 (count CHARACTERS, not bytes — Thai is 3 bytes per character).
+  description = "ORA2U รวมเกมสล็อตและเกมคาสิโนออนไลน์หลายรูปแบบไว้ในระบบเดียว พร้อมโปรทุนน้อย ระบบออโต้ ข้อมูลค่ายเกม ตารางจ่าย และสถานะธุรกรรมให้สมาชิกตรวจสอบได้จากบัญชีเดียว",
   robots = "index, follow",
 } = Astro.props;
 
@@ -225,7 +225,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #070308;
+        background-color: #080401;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -278,7 +278,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ DIAMOND789 ด้านบนเป็นโลโก้ Diamond789 ตัวอักษรสีเงินเงาสลับชมพูบานเย็น มีเพชรเจียระไนสีขาวอยู่ข้างหน้า ใต้โลโก้เขียนว่า GAME CASIO ONLINE AND SPORT BETTING ถัดลงมาเป็นข้อความขนาดใหญ่สองบรรทัดว่า Diamond789 เกมสนุกครบ และ หรูทุกสัมผัส ต่อด้วยแถบสีดำเขียนว่า ระบบลื่น สมัครง่าย รองรับมือถือ เล่นได้ทุกวัน ถัดมาเป็นแถบสามช่องขอบชมพูเขียนว่า เข้าเล่นง่าย เกมดังหลากหลาย และ พร้อมลุย 24 ชม. ปิดท้ายด้วยปุ่มสีชมพูบานเย็นขนาดใหญ่เขียนว่า สมัครเลย ด้านล่างเป็นแถบสี่ช่องเขียนว่า มั่นคง ปลอดภัย ข้อมูลส่วนตัวปลอดภัย บริการรวดเร็ว และ จ่ายจริง การันตี ด้านซ้ายเป็นผู้หญิงในชุดสีดำสลับชมพูติดโลโก้ Diamond789 ถือไพ่โพแดงเอซ ข้างหลังเป็นวงล้อรูเล็ต ชิปคาสิโนสีชมพูดำมีเลข 789 กองเหรียญทอง วงล้อสล็อตเลข 777 ไพ่โพดำเอซ และเพชรสีชมพูกับสีขาวกระจายอยู่บนพื้นหลังสีดำ"
+          alt="แบนเนอร์ต้อนรับ ORA2U ด้านบนเป็นโลโก้วงกลมสีทอง มีมงกุฎประดับอยู่ด้านบน ตรงกลางเป็นตัวอักษร ORA2U นูนสามมิติสีทอง ใต้ลงมาเป็นริบบิ้นสีครีมทองเขียนว่า LUCKYGAME พร้อมชิปคาสิโนสีทองรูปโพดำสีแดง ถัดลงมาเป็นข้อความขนาดใหญ่สีทองว่า ORA2U LUCKYGAME และบรรทัดภาษาไทยสีขาวขอบทองว่า เกมฮิตครบ จบในที่เดียว ต่อด้วยบรรทัดสีทองว่า ระบบลื่น สมัครไว รองรับมือถือ พร้อมลุยทุกวัน ถัดมาเป็นแถบสามช่องขอบทองเขียนว่า สมัครง่าย พร้อมไอคอนรูปคนกดเครื่องหมายบวก เกมหลากหลาย พร้อมไอคอนวงล้อสล็อตเลข 777 และ บริการ 24 ชม. พร้อมไอคอนหูฟังคอลเซ็นเตอร์ ปิดท้ายด้วยปุ่มวงรีสีทองขนาดใหญ่เขียนว่า เข้าเล่นเลย ด้านซ้ายเป็นผู้หญิงในชุดสีดำสลับทองติดโลโก้ ORA2U ถือไพ่โพดำเอซกับไพ่โพแดงเค ข้างหลังเป็นวงล้อรูเล็ต กองเหรียญทอง ชิปคาสิโน และไพ่เอซกระจายอยู่บนพื้นหลังสีดำทอง"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

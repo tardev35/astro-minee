@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement5.astro";
+import Announcement from "../components/Announcement2.astro";
 
 import { Picture } from "astro:assets";
 import imgLine from "../assets/contact-line.webp";
@@ -17,11 +17,12 @@ import { BRAND_ADDRESS } from "../lib/brandProfile";
 // reads ~3x too long and will send you rewriting a description that was fine).
 //
 // Title and Meta are the docx SUB-PAGES row "ติดต่อเรา" and ship VERBATIM at
-// their own length (125 characters) — the brand spec is explicit that the
+// their own length (120 characters) — the brand spec is explicit that the
 // docx-supplied rows are not to be padded to the 150-character floor. Earlier
 // brands bolted an extra clause on to clear tools/verify-build.mjs' DESC_MIN;
-// that is what this round deliberately stops doing. If the verifier objects,
-// the floor is the thing to relax, not this sentence.
+// that is what this round deliberately stops doing. verify-build.mjs exempts
+// any description that appears literally in src/assets/content.txt, which this
+// one does.
 //
 // This page is a BUTTON PAGE: zero section headings, zero paragraphs, nothing
 // that turns it back into an article. The docx gives it a Title and a Meta and
@@ -29,27 +30,28 @@ import { BRAND_ADDRESS } from "../lib/brandProfile";
 // it. The whole body is the <h1>, the LINE image, the BRAND_ADDRESS block and
 // the button row — in that order. Rendered inventory: h1x1, h2x0, h3x0.
 //
-// <Announcement /> is bare on purpose: Announcement5's default message is this
+// <Announcement /> is bare on purpose: Announcement2's default message is this
 // brand's copy, so the ticker matches index.astro without a second string here.
+// Rotated off Announcement5, the outgoing brand's pick, per the brand spec.
 //
 // The BRAND_ADDRESS block below names NO colour on purpose — it inherits
 // ContentBox's body colour and draws its rule from currentColor, so it lands
 // correctly on every brand this template is relaunched for. Retyping it in this
 // round's palette is exactly what leaves the previous brand's hex behind next
 // time. The lines themselves come from BRAND_ADDRESS; never retype those either.
-const pageDescription = "DIAMOND789 เปิดช่องทางติดต่อเรื่องบัญชี ทางเข้า โปรโมชั่น เกม และสถานะธุรกรรม พร้อมข้อมูลช่วยตรวจสอบรายการและขั้นตอนการใช้งาน";
+const pageDescription = "ORA2U เปิดช่องทางติดต่อเรื่องบัญชี ทางเข้า โปรโมชั่น เกม และสถานะธุรกรรม พร้อมข้อมูลช่วยตรวจสอบรายการและขั้นตอนการใช้งาน";
 
 // BRAND_ADDRESS is visible text only — it never goes into the graph below.
 const graph = pageGraph(Astro, {
   type: "ContactPage",
-  name: "ติดต่อทีมงาน DIAMOND789",
+  name: "ติดต่อทีมงาน ORA2U",
   description: pageDescription,
   breadcrumb: [
     { name: "หน้าแรก", path: "/" },
     { name: "ติดต่อเรา", path: "/contact-us" },
   ],
   org: {
-    alternateName: "DIAMOND789 แพลตฟอร์มสล็อตออนไลน์ที่รวบรวมเกมจากหลายค่ายไว้ในระบบเดียว พร้อมโปรโมชั่นทุนน้อยและเงื่อนไขไม่มีขั้นต่ำในบางช่องทาง",
+    alternateName: "ORA2U แพลตฟอร์มสล็อตและคาสิโนออนไลน์ที่รวมเกมหลายรูปแบบไว้ในระบบเดียว พร้อมโปรโมชั่นสำหรับผู้ที่เริ่มด้วยงบไม่สูงและระบบออโต้ที่ช่วยลดขั้นตอนจัดการบัญชี",
     contactPoints: [
       {
         contactType: "customer service",
@@ -62,12 +64,12 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="DIAMOND789 | ติดต่อทีมงานและสอบถามข้อมูลการใช้งาน" description={pageDescription}>
+<MainLayout title="ORA2U | ติดต่อทีมงานและสอบถามข้อมูลการใช้งาน" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
-  <ContentBox title="ติดต่อทีมงาน DIAMOND789" as="h1">
+  <ContentBox title="ติดต่อทีมงาน ORA2U" as="h1">
     <Picture
       src={imgLine}
       alt="ผู้หญิงผมยาวสีน้ำตาลในชุดเลื่อมสีชมพูยืนกอดอกและยิ้ม ด้านล่างเป็นปุ่มสีขาวที่มีไอคอนแชต LINE สีเขียวและคำว่า Support"
@@ -75,7 +77,7 @@ const graph = pageGraph(Astro, {
       fetchpriority="low"
       widths={[200, 400, 600]}
       sizes="(max-width: 400px) 100vw, 400px"
-      class="mx-auto h-auto w-full max-w-[400px] object-contain shadow-[0_10px_30px_rgba(243,13,140,0.22)]"
+      class="mx-auto h-auto w-full max-w-[400px] object-contain shadow-[0_10px_30px_rgba(254,154,0,0.22)]"
       decoding="async"
       formats={["avif", "webp"]}
       fallbackFormat="webp"
@@ -106,14 +108,14 @@ const graph = pageGraph(Astro, {
       <a
         href="/register"
         aria-label="สมัครสมาชิก"
-        class="flex items-center justify-center rounded-lg border border-[#ff5cb8]/60 bg-gradient-to-b from-[#f30d8c] to-[#b80568] px-8 py-3 font-bold text-white shadow-[0_10px_30px_rgba(243,13,140,0.30)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(243,13,140,0.44)]">
+        class="flex items-center justify-center rounded-lg border border-[#ffd76a]/60 bg-gradient-to-b from-[#fe9a00] to-[#b15d01] px-8 py-3 font-bold text-[#170d03] shadow-[0_10px_30px_rgba(254,154,0,0.30)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(254,154,0,0.44)]">
         สมัครสมาชิก
       </a>
 
       <a
         href="/login"
         aria-label="เข้าสู่ระบบ"
-        class="flex items-center justify-center rounded-lg border border-[#f30d8c]/65 bg-[#1a0d16] px-8 py-3 font-extrabold text-[#f8e3f0] shadow-[0_4px_14px_rgba(243,13,140,0.30)] transition-transform hover:scale-105 hover:border-[#ff5cb8] hover:bg-[#2b0620]">
+        class="flex items-center justify-center rounded-lg border border-[#fe9a00]/65 bg-[#170d03] px-8 py-3 font-extrabold text-[#f6e6cf] shadow-[0_4px_14px_rgba(254,154,0,0.30)] transition-transform hover:scale-105 hover:border-[#ffb733] hover:bg-[#241503]">
         เข้าสู่ระบบ
       </a>
 

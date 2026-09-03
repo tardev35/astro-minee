@@ -12,31 +12,31 @@ const { title, as: HeadingTag = "h2", titleleft, titleright } = Astro.props;
 // sits on `title` must leave titleleft/titleright unset or it invents two more
 // <h2> the brief never asked for.
 //
-// TAKO168: gold rules and gold heading text on the deep crimson card, with the
-// column divider and the aura wash in the primary red. Gold carries the type
-// because red-on-near-black is where the contrast would go.
+// ORA2U: gold rules and pale-gold heading text on the near-black card, with the
+// column divider and the aura wash in bronze. The pale gold carries the type
+// because bronze-on-near-black is where the contrast would go.
 ---
 
 <section class="relative z-10 mx-auto mb-8 w-full max-w-7xl px-4 font-sans">
   <div
-    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#e8b23a]/30 bg-[#1a0806]/92 p-8 text-[#f6e5df] shadow-[0_10px_30px_rgba(10,4,3,0.85)] backdrop-blur-xl transition-all duration-500 hover:border-[#e8b23a]/55 hover:shadow-[0_15px_40px_rgba(232,178,58,0.24)] md:p-10">
-    <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-[#8f0f0a]/45 to-transparent opacity-70"></div>
+    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#fe9a00]/30 bg-[#170d03]/92 p-8 text-[#f6e6cf] shadow-[0_10px_30px_rgba(3,1,0,0.85)] backdrop-blur-xl transition-all duration-500 hover:border-[#ffd76a]/55 hover:shadow-[0_15px_40px_rgba(254,154,0,0.24)] md:p-10">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-[#b15d01]/45 to-transparent opacity-70"></div>
 
     {
       title && (
-        <header class="mb-8 flex items-center gap-4 border-b border-[#e8b23a]/30 pb-4">
-          <span aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffd97a] via-[#e8b23a] to-[#e11d16] shadow-[0_0_10px_rgba(232,178,58,0.5)]" />
-          <HeadingTag class="bg-gradient-to-r from-[#ffd97a] via-[#e8b23a] to-[#ff6a5a] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
+        <header class="mb-8 flex items-center gap-4 border-b border-[#fe9a00]/30 pb-4">
+          <span aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#fdf3da] via-[#ffd76a] to-[#b15d01] shadow-[0_0_10px_rgba(254,154,0,0.5)]" />
+          <HeadingTag class="bg-gradient-to-r from-[#fdf3da] via-[#ffd76a] to-[#fe9a00] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
         </header>
       )
     }
 
     <div class="grid grid-cols-1 gap-10 md:grid-cols-2">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f6e5df]">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f6e6cf]">
         {
           titleleft && (
-            <h2 class="flex items-center gap-3 border-b border-[#e8b23a]/30 pb-3 text-xl leading-normal font-black tracking-widest text-[#ffd97a] uppercase">
-              <span aria-hidden="true" class="h-6 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffd97a] via-[#e8b23a] to-[#e11d16] shadow-[0_0_10px_rgba(232,178,58,0.45)]" />
+            <h2 class="flex items-center gap-3 border-b border-[#fe9a00]/30 pb-3 text-xl leading-normal font-black tracking-widest text-[#ffd76a] uppercase">
+              <span aria-hidden="true" class="h-6 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#fdf3da] via-[#ffd76a] to-[#b15d01] shadow-[0_0_10px_rgba(254,154,0,0.45)]" />
               {titleleft}
             </h2>
           )
@@ -44,11 +44,11 @@ const { title, as: HeadingTag = "h2", titleleft, titleright } = Astro.props;
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f6e5df] md:border-l md:border-[#e11d16]/40 md:pl-10">
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f6e6cf] md:border-l md:border-[#b15d01]/50 md:pl-10">
         {
           titleright && (
-            <h2 class="flex items-center gap-3 border-b border-[#e8b23a]/30 pb-3 text-xl leading-normal font-black tracking-widest text-[#ffd97a] uppercase">
-              <span aria-hidden="true" class="h-6 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffd97a] via-[#e8b23a] to-[#e11d16] shadow-[0_0_10px_rgba(232,178,58,0.45)]" />
+            <h2 class="flex items-center gap-3 border-b border-[#fe9a00]/30 pb-3 text-xl leading-normal font-black tracking-widest text-[#ffd76a] uppercase">
+              <span aria-hidden="true" class="h-6 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#fdf3da] via-[#ffd76a] to-[#b15d01] shadow-[0_0_10px_rgba(254,154,0,0.45)]" />
               {titleright}
             </h2>
           )

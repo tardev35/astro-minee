@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement5.astro";
+import Announcement from "../components/Announcement2.astro";
 
 import { Picture } from "astro:assets";
 
@@ -20,28 +20,28 @@ import { pageGraph } from "../lib/schema";
 // paragraph found here was invented by an earlier rebrand and gets deleted, not
 // translated. Rendered inventory: h1x1, h2x0, h3x0.
 //
-// The alt text below was written by opening each PNG — the alt IS the Thai
-// printed on the artwork (the offer, the sub-line, the button and the scene).
-// DIAMOND789's slides are pink-diamond themed: ภารกิจประจำวัน / ชวนเพื่อนรับเพิ่ม
-// / Lucky Hour / วงล้อเพชรแตก, and none of the outgoing brand's pirate wording
-// survived. slide1-4 are all .png in this drop (on disk, all dated 2026-09-02 with
-// the rest of the DIAMOND789 assets) and all four belong here; banner2.png is
-// stale inventory from a previous brand and is deliberately NOT imported. No
-// domain string appears in any alt — verify-build.mjs fails the build on a host
-// found inside an attribute.
+// The alt text below is the Thai printed on each ORA2U slide plus the scene it
+// draws — the offer, the sub-line, the button and the artwork. Slide order on
+// disk is: slide1 ภารกิจประจำวัน, slide2 Lucky Hour, slide3 วงล้อแต้มทอง,
+// slide4 ชวนเพื่อนรับเพิ่ม. The outgoing brand's alts described the same four
+// files in a different order, so every string here was rewritten rather than
+// renamed. slide1-4 are all .png in this drop (2026-09-03) and all four belong
+// here; banner2.png is dated 2026-08-13, predates the drop, and is deliberately
+// NOT imported anywhere. No domain string appears in any alt — verify-build.mjs
+// fails the build on a host found inside an attribute.
 //
-// <Announcement /> is bare on purpose: Announcement5's default message already
+// <Announcement /> is bare on purpose: Announcement2's default message already
 // carries this brand's copy, so the ticker matches index.astro with no second
-// string to keep in sync here. The variant rotated off Announcement3, the
+// string to keep in sync here. The variant rotated off Announcement5, the
 // outgoing brand's pick, per the brand spec.
-const pageTitle = "โปรโมชั่น DIAMOND789 รวมสิทธิพิเศษสำหรับสมาชิก";
+const pageTitle = "โปรโมชั่น ORA2U รวมสิทธิพิเศษสำหรับสมาชิกสล็อตและคาสิโน";
 
 // Title and description are the docx SUB-PAGES row for /promotion, both shipped
-// VERBATIM. The description is shorter than the DESC_MIN=150 floor and that is
-// correct: the brief's own sentence is the brand's copy, not a draft to top up.
-// verify-build.mjs exempts any description that appears literally in
-// src/assets/content.txt for exactly this reason. Do not pad it.
-const pageDescription = "DIAMOND789 รวมโปรโมชั่นสล็อตทุนน้อย โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมข้อมูลช่วยเลือกโปรให้เหมาะกับงบและรูปแบบการเล่น";
+// VERBATIM. The description is 113 characters, shorter than the DESC_MIN=150
+// floor, and that is correct: the brief's own sentence is the brand's copy, not
+// a draft to top up. verify-build.mjs exempts any description that appears
+// literally in src/assets/content.txt for exactly this reason. Do not pad it.
+const pageDescription = "ORA2U รวมโปรโมชั่นสล็อตคาสิโน โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมข้อมูลช่วยเลือกโปรให้เหมาะกับงบและรูปแบบการเล่น";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -53,31 +53,30 @@ const graph = pageGraph(Astro, {
   primaryImagePath: pro1.src,
 });
 
-// Hot pink carries the surfaces here (border, glow) and the brighter pink
-// carries the hover state — the same read the artwork uses, a pink-edged card
-// lifting to a highlight. A #1a0d16 edge on the near-black page would read as no
-// border at all, so the resting border is the primary pink rather than the panel
-// surface.
+// Gold carries the surfaces here (border, glow) and the lighter gold carries the
+// hover state — the same read the artwork uses, a gold-edged card lifting to a
+// highlight. A #241503 edge on the near-black page would read as no border at
+// all, so the resting border is the primary gold rather than the panel surface.
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#f30d8c]/40 object-contain shadow-[0_10px_30px_rgba(243,13,140,0.24)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#ff5cb8]/65 hover:shadow-[0_15px_40px_rgba(243,13,140,0.3)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#fe9a00]/40 object-contain shadow-[0_10px_30px_rgba(254,154,0,0.24)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#ffd76a]/65 hover:shadow-[0_15px_40px_rgba(254,154,0,0.3)]";
 ---
 
-<MainLayout title="DIAMOND789 | โปรโมชั่นสล็อตทุนน้อยและสิทธิพิเศษสมาชิก" description={pageDescription}>
+<MainLayout title="ORA2U | โปรโมชั่นสล็อตคาสิโนและสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#f8e3f0]">
-        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#ff5cb8]">DIAMOND789</strong> เปิดให้สมาชิกสล็อตไว้ในที่เดียว ทั้งภารกิจประจำวัน ช่วง Lucky Hour โบนัสชวนเพื่อน และสิทธิ์หมุนวงล้อจากยอดฝาก ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว
-        ก่อนกดรับสิทธิ์ควรตรวจช่วงเวลาที่กำหนด ยอดฝากขั้นต่ำ และเงื่อนไขการถอนให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากันและปรับได้ตามรอบ
+      <p class="mb-8 text-left text-base leading-relaxed text-[#f6e6cf]">
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#ffd76a]">ORA2U</strong> เปิดให้สมาชิกสล็อตและคาสิโนออนไลน์ไว้ในที่เดียว ทั้งภารกิจประจำวัน ช่วง Lucky Hour วงล้อแต้มทองจากยอดฝาก และโบนัสชวนเพื่อน ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว
+        ก่อนกดรับสิทธิ์ควรตรวจช่วงเวลาที่กำหนด ยอดฝากขั้นต่ำ เกมที่ร่วมรายการ และเงื่อนไขการถอนให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากันและปรับได้ตามรอบ
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น DIAMOND789 ข้อความ ภารกิจประจำวัน ทำครบ 3 ภารกิจ รับกล่องสุ่ม 79 บาท ใต้ลงมาเป็นรายการภารกิจสามข้อติดเครื่องหมายถูกครบทุกข้อ ล็อกอิน ฝากเงิน และ หมุนเกม ถัดมาเป็นวงกลมสีชมพูเขียนว่า 79 บาท พร้อมปุ่ม รับภารกิจ ด้านขวาเป็นกล่องของขวัญสีชมพูผูกโบว์เรืองแสง ด้านซ้ายเป็นผู้หญิงในชุดรัดรูปสีดำสลับชมพูติดโลโก้ DIAMOND789 บนพื้นหลังสีดำชมพูที่มีเพชรเจียระไน วงล้อรูเล็ต ชิปคาสิโน และไพ่เอซ"
+          alt="แบนเนอร์โปรโมชั่น ORA2U ข้อความทองว่า ภารกิจประจำวัน ใต้ลงมาเขียนว่า ทำครบ 4 ภารกิจ รับซองสุ่ม พร้อมไอคอนซองแดง ถัดมาเป็นตัวเลขทองขนาดใหญ่ 28 หรือ 88 หรือ 168 เหนือคำว่า เครดิต แล้วเป็นแถวการ์ดทองสี่ขั้นตอนติดเครื่องหมายถูกครบทุกช่อง ล็อกอิน ฝากเงิน หมุนเกม และ รับรางวัล ปิดท้ายด้วยปุ่มทองทรงรีเขียนว่า รับภารกิจ ด้านซ้ายเป็นผู้หญิงในชุดรัดรูปสีดำสลับทอง โลโก้มงกุฎ ORA2U อยู่กลางด้านบน รอบภาพเป็นกล่องของขวัญ เหรียญทอง และวงล้อสล็อตบนพื้นหลังสีดำ"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -91,7 +90,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น DIAMOND789 ข้อความ ชวนเพื่อนรับเพิ่ม เพื่อนสมัครสำเร็จ รับทันที 89 บาท ใต้ข้อความเป็นแผนภาพสามขั้นตอนต่อกันด้วยลูกศร หนึ่ง ชวนเพื่อน สอง สมัครสำเร็จ สาม รับโบนัส แล้วมีแถบเขียนว่า รับสิทธิ์ง่าย โบนัสเข้าไว พร้อมปุ่ม ชวนเลย ด้านขวาเป็นผู้หญิงในชุดรัดรูปสีดำสลับชมพูถือโทรศัพท์ที่เปิดหน้าแอปของเว็บและชี้นิ้วมาที่หน้าจอ บนพื้นหลังสีดำชมพูที่มีเพชรเจียระไน กองเหรียญ ไพ่เอซ ลูกเต๋า และวงล้อรูเล็ต"
+          alt="แบนเนอร์โปรโมชั่น ORA2U ข้อความสีขาวว่า Lucky Hour พร้อมกรอบไฟนีออนชมพูเขียนช่วงเวลา 19:00 ถึง 20:00 ใต้ลงมาเป็นข้อความ เปิดหีบลับ ลุ้นรับ แล้วเป็นตัวเลขทองขนาดใหญ่ 29 หรือ 79 หรือ 179 เครดิต กับหมายเหตุ เฉพาะช่วงเวลาที่กำหนด และปุ่มทองทรงรีเขียนว่า เปิดเลย ด้านขวาเป็นหีบสมบัติทองเปิดออกมีแสงพุ่งขึ้น พร้อมอัญมณีสีฟ้า ชมพู ขาว เหรียญทอง และวงล้อรูเล็ต ด้านซ้ายเป็นผู้หญิงในชุดดำสลับทองยกมือทั้งสองข้าง มีโลโก้ ORA2U อยู่มุมบนซ้ายและไอคอนนาฬิกาด้านบน"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -105,7 +104,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น DIAMOND789 ข้อความตัวใหญ่ Lucky Hour พร้อมช่วงเวลา 20:00 ถึง 21:00 ใต้ลงมาเขียนว่า เปิดหีบลับ ลุ้นรับ 29 หรือ 79 หรือ 179 เครดิต กับหมายเหตุ ร่วมสนุกเฉพาะช่วงเวลาที่กำหนด และปุ่ม เปิดเลย ด้านขวาเป็นหีบสมบัติสีชมพูเปิดออก มีเพชรและเหรียญล้นออกมาจากหีบ ด้านซ้ายเป็นผู้หญิงในชุดรัดรูปสีดำสลับชมพูยกมือแนบแก้มทำหน้าตื่นเต้น บนพื้นหลังสีดำชมพูที่มีเพชรเจียระไน วงล้อรูเล็ต ชิปคาสิโน และไพ่เอซ"
+          alt="แบนเนอร์โปรโมชั่น ORA2U ข้อความทองว่า วงล้อแต้มทอง พร้อมบรรทัดรอง ฝากครบ 300 รับสิทธิ์หมุน 1 ครั้ง ด้านขวาเป็นวงล้อรางวัลสีทองสลับดำขนาดใหญ่ ขอบวงล้อประดับหลอดไฟ แบ่งช่องเป็น 39 เครดิต 89 เครดิต 189 เครดิต สลับกับช่อง ของรางวัล ที่มีไอคอนกล่องของขวัญ และช่อง หมุนฟรี ที่มีไอคอนลูกศรวน ตรงกลางวงล้อเขียนว่า หมุน และมีลูกศรทองชี้อยู่ด้านบน ใต้ภาพเป็นหมายเหตุ ลุ้นได้ทุกวันตามเงื่อนไข กับปุ่มทองทรงรีเขียนว่า หมุนเลย ด้านซ้ายเป็นผู้หญิงในชุดดำสลับทองชี้นิ้วไปที่วงล้อ มีโลโก้ ORA2U อยู่มุมบนซ้าย รอบภาพเป็นเพชรและเหรียญทอง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -119,7 +118,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น DIAMOND789 ข้อความ วงล้อเพชรแตก ฝากครบ 300 รับสิทธิ์หมุน 1 ครั้ง ด้านขวาเป็นวงล้อรางวัลขอบไฟสีชมพู แบ่งช่องเป็น 39 เครดิต 89 เครดิต 189 เครดิต สลับกับช่อง ของรางวัล และ หมุนฟรี มีเพชรสีชมพูอยู่กลางวงล้อ ใต้ลงมาเป็นหมายเหตุ ลุ้นได้ทุกวันตามเงื่อนไข และปุ่ม หมุนเลย ด้านซ้ายเป็นผู้หญิงในชุดรัดรูปสีดำสลับชมพูติดโลโก้ DIAMOND789 ชี้นิ้วไปที่วงล้อ บนพื้นหลังสีดำชมพูที่มีชิปคาสิโน กองเหรียญ และเพชรเจียระไน"
+          alt="แบนเนอร์โปรโมชั่น ORA2U ข้อความทองว่า ชวนเพื่อนรับเพิ่ม ใต้ลงมาเป็นแผงกรอบทองเขียนว่า เพื่อนสมัครสำเร็จ รับทันที พร้อมตัวเลข 69 ขนาดใหญ่มากและคำว่า บาท ถัดมาเป็นไอคอนวงกลมทองสามขั้นตอนต่อกันด้วยลูกศร ชวนเพื่อน เป็นรูปคนพร้อมเครื่องหมายบวก สมัครสำเร็จ เป็นคลิปบอร์ดติดเครื่องหมายถูก และ รับโบนัส เป็นกล่องของขวัญ ปิดท้ายด้วยบรรทัด ยิ่งชวน ยิ่งได้ และปุ่มทองทรงรีเขียนว่า ชวนเลย ด้านซ้ายเป็นผู้หญิงในชุดดำสลับทองถือโทรศัพท์ที่แสดงโลโก้ ORA2U และชี้นิ้วมาที่หน้าจอ รอบภาพเป็นไพ่เอซ เหรียญทอง และกล่องของขวัญบนพื้นหลังสีดำ"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -135,8 +134,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#ff5cb8]/60 bg-gradient-to-r from-[#f30d8c] via-[#b312ac] to-[#b80568] px-10 py-3.5 text-lg font-black text-white shadow-[0_10px_30px_rgba(243,13,140,0.32)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(184,5,104,0.40)]">
-          สมัครสมาชิก DIAMOND789
+          class="flex items-center justify-center rounded-lg border border-[#ffd76a]/60 bg-gradient-to-r from-[#fdf3da] via-[#ffd76a] to-[#fe9a00] px-10 py-3.5 text-lg font-black text-[#2a1502] shadow-[0_10px_30px_rgba(254,154,0,0.32)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(177,93,1,0.40)]">
+          สมัครสมาชิก ORA2U
         </a>
       </div>
     </div>

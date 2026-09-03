@@ -37,12 +37,12 @@ const initialRows = Array.from({ length: 5 }, (_, i) => {
 
 const seedTotal = initialRows.reduce((sum, row) => sum + row.amount, 0);
 
-const ROW_NORMAL = "border-[#fdd323]/25";
-const ROW_BIG = "border-[#ffe98a]/70 shadow-[0_0_15px_rgba(253,211,35,0.3)]";
+const ROW_NORMAL = "border-[#fe9a00]/25";
+const ROW_BIG = "border-[#ffd76a]/70 shadow-[0_0_15px_rgba(254,154,0,0.3)]";
 
 // Wording for the two states of a withdrawal on this brand. The rotation module
 // reads these off the markup — it never learns the palette or the copy.
-const STATUS_PENDING = "text-[#fdd323] font-bold";
+const STATUS_PENDING = "text-[#ffb733] font-bold";
 const STATUS_DONE = "text-green-400 font-bold";
 const TEXT_PENDING = "อยู่ระหว่างดำเนินการ";
 const TEXT_DONE = "โอนเข้าบัญชีแล้ว";
@@ -50,16 +50,16 @@ const TEXT_DONE = "โอนเข้าบัญชีแล้ว";
 
 <div class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <section
-    aria-label="รายการถอนเงินล่าสุดของสมาชิก FINN20"
-    class="relative overflow-hidden rounded-3xl border border-[#fdd323]/40 bg-[#14110a]/92 shadow-[0_10px_40px_rgba(8,7,5,0.85)] backdrop-blur-xl">
-    <div class="relative z-10 flex flex-col gap-4 border-b border-[#fdd323]/30 px-5 py-5 sm:flex-row sm:items-center sm:justify-between md:px-8">
+    aria-label="รายการถอนเงินล่าสุดของสมาชิก ORA2U"
+    class="relative overflow-hidden rounded-3xl border border-[#fe9a00]/40 bg-[#170d03]/92 shadow-[0_10px_40px_rgba(3,1,0,0.85)] backdrop-blur-xl">
+    <div class="relative z-10 flex flex-col gap-4 border-b border-[#fe9a00]/30 px-5 py-5 sm:flex-row sm:items-center sm:justify-between md:px-8">
       <div class="flex items-center gap-3">
-        <span aria-hidden="true" class="flex h-10 w-10 items-center justify-center rounded-full border border-[#ffe98a]/45 bg-[#1f1a10] text-2xl text-[#fdd323]">🏆</span>
+        <span aria-hidden="true" class="flex h-10 w-10 items-center justify-center rounded-full border border-[#ffd76a]/45 bg-[#241503] text-2xl text-[#fe9a00]">🏆</span>
         <div class="flex flex-col">
-          <p class="text-2xl font-black tracking-widest text-[#f3e7c8] drop-shadow-sm">
-            รายการถอนเงินล่าสุด <span class="text-[#fdd323]">FINN20</span>
+          <p class="text-2xl font-black tracking-widest text-[#f6e6cf] drop-shadow-sm">
+            รายการถอนเงินล่าสุด <span class="text-[#ffd76a]">ORA2U</span>
           </p>
-          <span class="text-[11px] font-medium tracking-wide text-[#bfae86]">อัปเดตอัตโนมัติจากระบบออโต้ ผ่าน True Wallet และ Mobile Banking</span>
+          <span class="text-[11px] font-medium tracking-wide text-[#d6bd94]">อัปเดตอัตโนมัติจากระบบออโต้ ผ่าน True Wallet และ Mobile Banking</span>
         </div>
       </div>
       <div class="flex items-center gap-2 self-start rounded-full border border-green-500/40 bg-green-900/20 px-3 py-1.5 sm:self-auto">
@@ -68,24 +68,24 @@ const TEXT_DONE = "โอนเข้าบัญชีแล้ว";
       </div>
     </div>
 
-    <div class="relative z-10 grid grid-cols-2 gap-px overflow-hidden border-b border-[#fdd323]/25 bg-[#fdd323]/40 sm:grid-cols-3">
-      <div class="flex flex-col items-center gap-1 bg-[#14110a] px-4 py-4">
-        <span class="text-[11px] font-medium tracking-wide text-[#bfae86]">ยอดถอนรวมวันนี้</span>
-        <span data-winners-total data-prefix="฿" data-seed={seedTotal} class="bg-gradient-to-r from-[#ffe98a] to-[#fdd323] bg-clip-text font-mono text-lg font-black text-transparent sm:text-xl">
+    <div class="relative z-10 grid grid-cols-2 gap-px overflow-hidden border-b border-[#fe9a00]/25 bg-[#fe9a00]/40 sm:grid-cols-3">
+      <div class="flex flex-col items-center gap-1 bg-[#170d03] px-4 py-4">
+        <span class="text-[11px] font-medium tracking-wide text-[#d6bd94]">ยอดถอนรวมวันนี้</span>
+        <span data-winners-total data-prefix="฿" data-seed={seedTotal} class="bg-gradient-to-r from-[#fde49b] to-[#fe9a00] bg-clip-text font-mono text-lg font-black text-transparent sm:text-xl">
           ฿{seedTotal.toLocaleString("en-US")}
         </span>
       </div>
-      <div class="flex flex-col items-center gap-1 bg-[#14110a] px-4 py-4">
-        <span class="text-[11px] font-medium tracking-wide text-[#bfae86]">รายการสำเร็จวันนี้</span>
-        <span data-winners-count data-seed={initialRows.length} class="font-mono text-lg font-black text-[#f3e7c8] sm:text-xl">{initialRows.length}</span>
+      <div class="flex flex-col items-center gap-1 bg-[#170d03] px-4 py-4">
+        <span class="text-[11px] font-medium tracking-wide text-[#d6bd94]">รายการสำเร็จวันนี้</span>
+        <span data-winners-count data-seed={initialRows.length} class="font-mono text-lg font-black text-[#f6e6cf] sm:text-xl">{initialRows.length}</span>
       </div>
-      <div class="col-span-2 flex flex-col items-center gap-1 bg-[#14110a] px-4 py-4 sm:col-span-1">
-        <span class="text-[11px] font-medium tracking-wide text-[#bfae86]">ถอนได้ต่อรายการ</span>
-        <span class="font-mono text-lg font-black text-[#f3e7c8] sm:text-xl">฿100–49,000</span>
+      <div class="col-span-2 flex flex-col items-center gap-1 bg-[#170d03] px-4 py-4 sm:col-span-1">
+        <span class="text-[11px] font-medium tracking-wide text-[#d6bd94]">ถอนได้ต่อรายการ</span>
+        <span class="font-mono text-lg font-black text-[#f6e6cf] sm:text-xl">฿100–49,000</span>
       </div>
     </div>
 
-    <div class="relative z-10 hidden grid-cols-[2fr_1.3fr_1fr_0.8fr] gap-4 px-8 pt-4 text-[11px] font-bold tracking-widest text-[#bfae86] uppercase sm:grid">
+    <div class="relative z-10 hidden grid-cols-[2fr_1.3fr_1fr_0.8fr] gap-4 px-8 pt-4 text-[11px] font-bold tracking-widest text-[#d6bd94] uppercase sm:grid">
       <span>ผู้ใช้งาน</span>
       <span>สถานะ</span>
       <span class="text-right">จำนวนเงิน</span>
@@ -109,12 +109,12 @@ const TEXT_DONE = "โอนเข้าบัญชีแล้ว";
               data-winner-big
               data-normal-class={ROW_NORMAL}
               data-big-class={ROW_BIG}
-              class={`grid grid-cols-[auto_1fr] items-center gap-4 rounded-xl border bg-[#080705]/90 p-3.5 shadow-sm transition-colors duration-300 hover:border-[#ffe98a]/60 hover:bg-[#1f1a10] sm:grid-cols-[2fr_1.3fr_1fr_0.8fr] ${row.big ? ROW_BIG : ROW_NORMAL}`}>
+              class={`grid grid-cols-[auto_1fr] items-center gap-4 rounded-xl border bg-[#0b0501]/90 p-3.5 shadow-sm transition-colors duration-300 hover:border-[#ffd76a]/60 hover:bg-[#241503] sm:grid-cols-[2fr_1.3fr_1fr_0.8fr] ${row.big ? ROW_BIG : ROW_NORMAL}`}>
               <div class="col-span-2 flex items-center gap-3 sm:col-span-1">
                 <div data-winner-bank class={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 shadow-inner ${row.bank.color}`}>
                   <img data-winner-icon src={row.bank.icon} alt="" width="20" height="20" loading="lazy" decoding="async" class="h-5 w-5 object-contain grayscale" />
                 </div>
-                <span data-winner-user class="font-mono text-sm font-bold text-[#f3e7c8]">
+                <span data-winner-user class="font-mono text-sm font-bold text-[#f6e6cf]">
                   {row.user}
                 </span>
               </div>
@@ -132,10 +132,10 @@ const TEXT_DONE = "โอนเข้าบัญชีแล้ว";
                   {row.pending ? TEXT_PENDING : TEXT_DONE}
                 </span>
               </div>
-              <div class="bg-gradient-to-r from-[#ffe98a] to-[#fdd323] bg-clip-text text-right font-mono text-base font-black text-transparent sm:text-lg">
+              <div class="bg-gradient-to-r from-[#fde49b] to-[#fe9a00] bg-clip-text text-right font-mono text-base font-black text-transparent sm:text-lg">
                 ฿<span data-winner-amount>{row.amount.toLocaleString("en-US")}</span>
               </div>
-              <div class="text-right text-[11px] font-medium text-[#bfae86] sm:text-xs">เมื่อสักครู่</div>
+              <div class="text-right text-[11px] font-medium text-[#d6bd94] sm:text-xs">เมื่อสักครู่</div>
             </div>
           </div>
         ))

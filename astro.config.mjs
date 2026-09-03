@@ -37,7 +37,7 @@ export default defineConfig({
     "/line": "https://tinyurl.com/tog191",
   },
 
-  site: "https://diamond789-auto.com",
+  site: "https://ora2u.app",
   integrations: [
     sitemap({
       // /login, /register and /line are forwarding pages that all ship
