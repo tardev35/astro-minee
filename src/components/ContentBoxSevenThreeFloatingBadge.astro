@@ -12,32 +12,33 @@ const { title, titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
 // sentence has to wrap rather than blow past the viewport, and the wrapped badge
 // has to clear the grid below it.
 //
-// Re-measured against FINN20's H2-6 title, the longest sentence any FloatingBadge
-// carries this round ("ทำความเข้าใจอัตราจ่ายบน FINN20 ก่อนเลือก Banker Player
-// หรือ Tie", 62 chars). Mobile at a 375px viewport: the card is 343px inside the
-// section's px-4, the badge is w-[92%] = 315px, and after px-4 (32px) and
-// border-2 (4px) about 279px is left (this variant has no ✦ spans eating width).
-// text-lg wraps that title to 4 lines at worst; leading-normal on 18px = 27px a
-// line, so 4×27 + 20 (py-2.5) + 4 (border-2) = 132px tall, bottom edge at
-// 132 − 24 = 108px into the card — still clear of pt-32 (128px). Desktop:
-// text-2xl at 36px a line over ~604px of usable width inside max-w-2xl wraps to
-// 2 lines = 96px tall, bottom edge at 72px, inside md:pt-28 (112px). Both clear
-// as they stand; do not shrink either. pt-16/pt-18 are the documented floor and
-// these sit well above it — kept in sync with the other two *FloatingBadge files.
+// Re-measured against DIAMOND789's H2-2 title, the sentence this brand feeds it
+// ("โปรทุนน้อยควรดูทั้งโบนัสและเงื่อนไขการถอน", 41 chars). Mobile at a 375px
+// viewport: the card is 343px inside the section's px-4, the badge is w-[92%] =
+// 315px, and after px-4 (32px) and border-2 (4px) about 279px is left (this
+// variant has no ✦ spans eating width). text-lg wraps that title to 3 lines at
+// worst; leading-normal on 18px = 27px a line, so 3×27 + 20 (py-2.5) + 4
+// (border-2) = 105px tall, bottom edge at 105 − 24 = 81px into the card — clear
+// of pt-32 (128px). Desktop: text-2xl at 36px a line over ~604px of usable width
+// inside max-w-2xl wraps to 2 lines = 96px tall, bottom edge at 72px, inside
+// md:pt-28 (112px). Both clear as they stand; do not shrink either. pt-16/pt-18
+// are the documented floor and these sit well above it — kept in sync with the
+// other two *FloatingBadge files.
 //
 // titleleft/titleright are <p>, not headings: the column labels here are
 // supporting chrome. The one docx heading this box carries is `title`.
 ---
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
-  <div class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#fdd323]/35 bg-gradient-to-b from-[#14110a]/95 to-[#080705]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(253,211,35,0.2)] md:pt-28">
-    <div aria-hidden="true" class="pointer-events-none absolute -right-10 -bottom-16 -z-10 h-40 w-40 rounded-full bg-[#e39d02]/28 blur-[60px]"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#fdd323]/28 blur-[60px]"></div>
+  <div
+    class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#f30d8c]/35 bg-gradient-to-b from-[#150810]/95 to-[#070308]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(243,13,140,0.2)] md:pt-28">
+    <div aria-hidden="true" class="pointer-events-none absolute -right-10 -bottom-16 -z-10 h-40 w-40 rounded-full bg-[#b312ac]/28 blur-[60px]"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#f30d8c]/28 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 w-[92%] max-w-2xl -translate-x-1/2 rounded-lg border-2 border-[#fdd323]/45 bg-[#1f1a10] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(253,211,35,0.2)] sm:px-8">
-          <HeadingTag class="bg-gradient-to-r from-[#ffe98a] via-[#fdd323] to-[#e39d02] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
+        <div class="absolute -top-6 left-1/2 w-[92%] max-w-2xl -translate-x-1/2 rounded-lg border-2 border-[#f30d8c]/45 bg-[#2a1122] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(243,13,140,0.2)] sm:px-8">
+          <HeadingTag class="bg-gradient-to-r from-[#e8e8ef] via-[#ff5cb8] to-[#f30d8c] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
             {title}
           </HeadingTag>
         </div>
@@ -45,13 +46,13 @@ const { title, titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
     }
 
     <div class="grid grid-cols-1 gap-10 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f3e7c8]">
-        {titleleft && <p class="text-2xl leading-normal font-bold text-[#fdd323]">{titleleft}</p>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f8e3f0]">
+        {titleleft && <p class="text-2xl leading-normal font-bold text-[#ff5cb8]">{titleleft}</p>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f3e7c8] md:border-l md:border-[#fdd323]/30 md:pl-10">
-        {titleright && <p class="text-2xl leading-normal font-bold text-[#fdd323]">{titleright}</p>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f8e3f0] md:border-l md:border-[#f30d8c]/30 md:pl-10">
+        {titleright && <p class="text-2xl leading-normal font-bold text-[#ff5cb8]">{titleright}</p>}
         <slot name="right" />
       </article>
     </div>

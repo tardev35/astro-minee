@@ -10,24 +10,28 @@
 //
 // No domain name in the copy either — verify-build.mjs fails the build on an
 // off-domain URL found in a component.
+//
+// TAKO168 two-tone: crimson carries the track and the pill, gold is the second
+// metal on the badge ring and the rule. The text runs gold rather than red —
+// red type on a near-black panel is where the contrast would go.
 const {
-  message = "BANANAV3 รวมบาคาร่าและหวยออนไลน์ไว้ในระบบเดียว จัดการเกม โปรโมชั่น และรายการต่าง ๆ ผ่านบัญชีเดียว รองรับทั้งมือถือและคอมพิวเตอร์ • แต่ละประเภทเดิมพันมีกติกา อัตราจ่าย และความเสี่ยงต่างกัน ควรตรวจสอบให้ครบก่อนเริ่มทุกครั้ง • ก่อนยืนยันโพยหวยควรตรวจเลข ประเภทหวย จำนวนเงิน และงวดให้ถูกต้อง แล้วเก็บเลขอ้างอิงรายการไว้จนกว่าการตรวจสอบจะเสร็จสมบูรณ์ • คำว่าอันดับ 1 และไม่โกงเป็นข้อความทางการตลาด ควรดูเงื่อนไข ประวัติรายการ และข้อมูลที่ตรวจสอบได้ประกอบเสมอ • ควรกำหนดวงเงินต่อรอบไว้ล่วงหน้าก่อนเริ่มเดิมพันทุกครั้ง",
+  message = "TAKO168 รวมเกมสล็อตหลายค่ายไว้ในระบบเดียว เลือกเกมจากธีม ฟีเจอร์โบนัส และระดับเดิมพันได้จากหน้าเดียว • รองรับ True Wallet ตามช่องทางที่กำหนด ก่อนยืนยันควรตรวจข้อมูล Wallet จำนวนเงิน และบัญชีสมาชิกให้ถูกต้อง • ควรดูตารางจ่าย RTP และความผันผวนของเกมประกอบกัน แทนการดูจากคำว่าแตกหนักเพียงอย่างเดียว • สมาชิกตรวจยอดคงเหลือ ประวัติถอน และสถานะธุรกรรมได้จากหน้าบัญชี หากรายการยังดำเนินการอยู่ควรเก็บเลขอ้างอิงและรอระบบอัปเดตก่อนส่งคำขอใหม่ • คำว่าแตกหนักและจ่ายไวเป็นถ้อยคำทางการตลาด ไม่ใช่การรับประกันผลของเกมหรือการถอนทุกกรณี ควรกำหนดงบก่อนเริ่มเล่นทุกครั้ง",
 } = Astro.props;
 ---
 
 <div class="mx-auto mt-4 max-w-[900px] px-4 md:px-0">
   <div
-    class="relative flex h-[46px] items-center rounded-r-full border border-[#fed624]/35 bg-gradient-to-r from-[#5b3304]/70 to-[#140b02] py-2 pr-4 pl-12 shadow-[0_0_20px_rgba(254,214,36,0.16)] backdrop-blur-md">
-    <div class="absolute top-1/2 -left-2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border-[3px] border-[#fed624] bg-[#140b02] shadow-[0_0_15px_rgba(254,214,36,0.55)]">
+    class="relative flex h-[46px] items-center rounded-r-full border border-[#e8b23a]/35 bg-gradient-to-r from-[#6b0d08]/75 to-[#0a0403] py-2 pr-4 pl-12 shadow-[0_0_20px_rgba(225,29,22,0.2)] backdrop-blur-md">
+    <div class="absolute top-1/2 -left-2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border-[3px] border-[#e8b23a] bg-[#0a0403] shadow-[0_0_15px_rgba(225,29,22,0.55)]">
       <span aria-hidden="true" class="animate-pulse text-xl">📢</span>
     </div>
 
-    <div aria-hidden="true" class="mr-4 h-full w-[1px] bg-[#fed624]/30"></div>
+    <div aria-hidden="true" class="mr-4 h-full w-[1px] bg-[#e8b23a]/30"></div>
 
     <div class="flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent_0%,#000_5%,#000_95%,transparent_100%)]">
-      <div class="flex w-max animate-[scroll_25s_linear_infinite] gap-12 text-sm font-bold whitespace-nowrap text-[#fed624]">
-        <span class="drop-shadow-[0_0_5px_rgba(254,214,36,0.5)]">{message}</span>
-        <span class="drop-shadow-[0_0_5px_rgba(254,214,36,0.5)]">{message}</span>
+      <div class="flex w-max animate-[scroll_25s_linear_infinite] gap-12 text-sm font-bold whitespace-nowrap text-[#ffd97a]">
+        <span class="drop-shadow-[0_0_5px_rgba(232,178,58,0.5)]">{message}</span>
+        <span class="drop-shadow-[0_0_5px_rgba(232,178,58,0.5)]">{message}</span>
       </div>
     </div>
   </div>

@@ -18,28 +18,30 @@ import { pageGraph } from "../lib/schema";
 // prose underneath only re-types what the visitor can already read. The docx
 // gives this route a Title and a Meta and never a body, so any heading or extra
 // paragraph found here was invented by an earlier rebrand and gets deleted, not
-// translated.
+// translated. Rendered inventory: h1x1, h2x0, h3x0.
 //
-// The alt text below was written by reading each PNG — the alt IS the Thai
+// The alt text below was written by opening each PNG — the alt IS the Thai
 // printed on the artwork (the offer, the sub-line, the button and the scene).
-// slide1-4 are all .png in this drop (checked on disk, all dated 2026-09-02 with
-// the rest of the FINN20 assets) and all four belong here; banner2.png is stale
-// inventory from a previous brand and is deliberately NOT imported. The domain
-// printed on the logo in each slide is left OUT of the alt on purpose —
-// verify-build.mjs fails the build on a host string inside an attribute.
+// DIAMOND789's slides are pink-diamond themed: ภารกิจประจำวัน / ชวนเพื่อนรับเพิ่ม
+// / Lucky Hour / วงล้อเพชรแตก, and none of the outgoing brand's pirate wording
+// survived. slide1-4 are all .png in this drop (on disk, all dated 2026-09-02 with
+// the rest of the DIAMOND789 assets) and all four belong here; banner2.png is
+// stale inventory from a previous brand and is deliberately NOT imported. No
+// domain string appears in any alt — verify-build.mjs fails the build on a host
+// found inside an attribute.
 //
 // <Announcement /> is bare on purpose: Announcement5's default message already
 // carries this brand's copy, so the ticker matches index.astro with no second
-// string to keep in sync here.
-const pageTitle = "โปรโมชั่น FINN20 รวมสิทธิพิเศษสำหรับสมาชิก";
+// string to keep in sync here. The variant rotated off Announcement3, the
+// outgoing brand's pick, per the brand spec.
+const pageTitle = "โปรโมชั่น DIAMOND789 รวมสิทธิพิเศษสำหรับสมาชิก";
 
-// Title/Meta are the docx SUB-PAGES row "โปรโมชั่น". The Title ships verbatim.
-// The docx description runs 123 characters, under the DESC_MIN=150 floor
-// tools/verify-build.mjs enforces on every page but the home page, so the docx
-// sentence opens the description verbatim and one clause closes it. Counted in
-// CHARACTERS, not bytes (Thai is 3 bytes/char). Measured at 157 characters,
-// inside the 150–160 window. Do not pad or trim it further.
-const pageDescription = "FINN20 รวมโปรโมชั่นบาคาร่า โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมข้อมูลช่วยเปรียบเทียบโปร วงเงิน และรูปแบบโต๊ะก่อนเลือกใช้งาน อ่านเงื่อนไขให้ครบก่อนกดรับสิทธิ์";
+// Title and description are the docx SUB-PAGES row for /promotion, both shipped
+// VERBATIM. The description is shorter than the DESC_MIN=150 floor and that is
+// correct: the brief's own sentence is the brand's copy, not a draft to top up.
+// verify-build.mjs exempts any description that appears literally in
+// src/assets/content.txt for exactly this reason. Do not pad it.
+const pageDescription = "DIAMOND789 รวมโปรโมชั่นสล็อตทุนน้อย โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมข้อมูลช่วยเลือกโปรให้เหมาะกับงบและรูปแบบการเล่น";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -51,31 +53,31 @@ const graph = pageGraph(Astro, {
   primaryImagePath: pro1.src,
 });
 
-// Gold carries the surfaces here (border, glow) and the brighter gold carries
-// the hover state — the same read the artwork uses, chrome gold lifting to a
-// highlight. A #1f1a10 edge on the near-black page would read as no border at
-// all, so the resting border is the primary gold accent rather than the panel
+// Hot pink carries the surfaces here (border, glow) and the brighter pink
+// carries the hover state — the same read the artwork uses, a pink-edged card
+// lifting to a highlight. A #1a0d16 edge on the near-black page would read as no
+// border at all, so the resting border is the primary pink rather than the panel
 // surface.
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#fdd323]/40 object-contain shadow-[0_10px_30px_rgba(253,211,35,0.24)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#ffe98a]/65 hover:shadow-[0_15px_40px_rgba(253,211,35,0.3)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#f30d8c]/40 object-contain shadow-[0_10px_30px_rgba(243,13,140,0.24)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#ff5cb8]/65 hover:shadow-[0_15px_40px_rgba(243,13,140,0.3)]";
 ---
 
-<MainLayout title="FINN20 | โปรโมชั่นบาคาร่าเว็บตรงและสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
+<MainLayout title="DIAMOND789 | โปรโมชั่นสล็อตทุนน้อยและสิทธิพิเศษสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#f3e7c8]">
-        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#fdd323]">FINN20</strong> เปิดให้สมาชิกไว้ในที่เดียว ทั้งเช็กอินสะสมรายวัน ภารกิจประจำวัน โบนัสชวนเพื่อน และกิจกรรมเปิดกล่องสุ่มตามช่วงเวลา ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว
+      <p class="mb-8 text-left text-base leading-relaxed text-[#f8e3f0]">
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#ff5cb8]">DIAMOND789</strong> เปิดให้สมาชิกสล็อตไว้ในที่เดียว ทั้งภารกิจประจำวัน ช่วง Lucky Hour โบนัสชวนเพื่อน และสิทธิ์หมุนวงล้อจากยอดฝาก ตัวเลขและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว
         ก่อนกดรับสิทธิ์ควรตรวจช่วงเวลาที่กำหนด ยอดฝากขั้นต่ำ และเงื่อนไขการถอนให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากันและปรับได้ตามรอบ
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น FINN20 ข้อความ เช็กอิน 5 วัน รับเครดิตสะสม 120 บาท เช็กครบ รับต่อเนื่องทุกวัน ใต้ข้อความเป็นการ์ด DAY 1 ถึง DAY 5 เรียงต่อกันด้วยลูกศร แต่ละใบมีเหรียญทองตัวอักษร F กำกับ 20 บาท สี่วันแรกและ 40 บาทในวันที่ห้า พร้อมปุ่ม เช็กอินเลย แถวล่างสุดเขียนว่า เช็กอินง่าย ครั้งเดียวต่อวัน รับเครดิตทุกวัน ต่อเนื่อง 5 วัน และ เครดิตใช้ได้ทันที ไม่ต้องทำเทิร์น ด้านข้างเป็นผู้หญิงในชุดรัดรูปสีดำสลับทองติดโลโก้ FINN20 ชูนิ้วชี้ขึ้น บนพื้นหลังสีดำทองที่มีวงล้อรูเล็ต กล่องของขวัญผูกโบว์ทอง ชิปคาสิโนเลข 20 และเหรียญทองกระจายอยู่"
+          alt="แบนเนอร์โปรโมชั่น DIAMOND789 ข้อความ ภารกิจประจำวัน ทำครบ 3 ภารกิจ รับกล่องสุ่ม 79 บาท ใต้ลงมาเป็นรายการภารกิจสามข้อติดเครื่องหมายถูกครบทุกข้อ ล็อกอิน ฝากเงิน และ หมุนเกม ถัดมาเป็นวงกลมสีชมพูเขียนว่า 79 บาท พร้อมปุ่ม รับภารกิจ ด้านขวาเป็นกล่องของขวัญสีชมพูผูกโบว์เรืองแสง ด้านซ้ายเป็นผู้หญิงในชุดรัดรูปสีดำสลับชมพูติดโลโก้ DIAMOND789 บนพื้นหลังสีดำชมพูที่มีเพชรเจียระไน วงล้อรูเล็ต ชิปคาสิโน และไพ่เอซ"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -89,7 +91,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น FINN20 ข้อความ ภารกิจประจำวัน ครบ 3 ภารกิจ รับฟรีสปิน 20 ครั้ง ทำครบ รับสิทธิ์ทันที ใต้ข้อความเป็นรายการภารกิจสามข้อ เข้าเล่น เดิมพันครบ และ หมุนสล็อต ติดเครื่องหมายถูกครบทุกข้อ ถัดลงมาเป็นวงกลมสีดำขอบทองเขียนว่า รับฟรีสปิน 20 ครั้ง และปุ่ม รับภารกิจ ด้านข้างเป็นผู้หญิงในชุดรัดรูปสีดำสลับทองติดโลโก้ FINN20 ชูนิ้วชี้ขึ้นและยิ้ม บนพื้นหลังสีดำทองที่มีตู้สล็อต 777 BAR ป้าย JACKPOT BIG WIN ชิปคาสิโน และเหรียญทอง"
+          alt="แบนเนอร์โปรโมชั่น DIAMOND789 ข้อความ ชวนเพื่อนรับเพิ่ม เพื่อนสมัครสำเร็จ รับทันที 89 บาท ใต้ข้อความเป็นแผนภาพสามขั้นตอนต่อกันด้วยลูกศร หนึ่ง ชวนเพื่อน สอง สมัครสำเร็จ สาม รับโบนัส แล้วมีแถบเขียนว่า รับสิทธิ์ง่าย โบนัสเข้าไว พร้อมปุ่ม ชวนเลย ด้านขวาเป็นผู้หญิงในชุดรัดรูปสีดำสลับชมพูถือโทรศัพท์ที่เปิดหน้าแอปของเว็บและชี้นิ้วมาที่หน้าจอ บนพื้นหลังสีดำชมพูที่มีเพชรเจียระไน กองเหรียญ ไพ่เอซ ลูกเต๋า และวงล้อรูเล็ต"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -103,7 +105,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น FINN20 ข้อความ ชวนเพื่อนรับคู่ คนละ 20 บาท เพื่อนสมัครสำเร็จ รับโบนัสทันที ใต้ข้อความเป็นแผนภาพสามขั้นตอนต่อกันด้วยลูกศร ชวนเพื่อน แล้ว เพื่อนสมัครสำเร็จ แล้ว รับโบนัส โดยขั้นสุดท้ายเป็นกล่องของขวัญกับกองเหรียญทอง พร้อมปุ่ม ชวนเลย ด้านข้างเป็นผู้หญิงในชุดรัดรูปสีดำสลับทองติดโลโก้ FINN20 ถือโทรศัพท์ที่เปิดหน้าแอป FINN20 และชี้มือไปที่จอ บนพื้นหลังสีดำทองที่มีวงล้อรูเล็ต ไพ่โพดำ ตู้สล็อต และเหรียญทอง"
+          alt="แบนเนอร์โปรโมชั่น DIAMOND789 ข้อความตัวใหญ่ Lucky Hour พร้อมช่วงเวลา 20:00 ถึง 21:00 ใต้ลงมาเขียนว่า เปิดหีบลับ ลุ้นรับ 29 หรือ 79 หรือ 179 เครดิต กับหมายเหตุ ร่วมสนุกเฉพาะช่วงเวลาที่กำหนด และปุ่ม เปิดเลย ด้านขวาเป็นหีบสมบัติสีชมพูเปิดออก มีเพชรและเหรียญล้นออกมาจากหีบ ด้านซ้ายเป็นผู้หญิงในชุดรัดรูปสีดำสลับชมพูยกมือแนบแก้มทำหน้าตื่นเต้น บนพื้นหลังสีดำชมพูที่มีเพชรเจียระไน วงล้อรูเล็ต ชิปคาสิโน และไพ่เอซ"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -117,7 +119,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น FINN20 ข้อความตัวใหญ่ FINN HOUR เป็นตัวอักษรทองสลับเงิน พร้อมไอคอนนาฬิกาและช่วงเวลา 20:20 ถึง 21:20 ใต้ลงมาเขียนว่า เปิดกล่องสุ่ม ลุ้น 20 หรือ 120 หรือ 520 เครดิต กับหมายเหตุ ร่วมสนุกเฉพาะช่วงเวลาที่กำหนด ด้านล่างซ้ายเป็นกล่องสุ่มสีดำเรืองแสงติดเครื่องหมายคำถามสีทองและป้าย LUCKY BOX ข้างปุ่ม เปิดเลย ด้านข้างเป็นผู้หญิงในชุดรัดรูปสีดำสลับทองติดโลโก้ FINN20 ยกมือขึ้นข้างแก้มทำหน้าตื่นเต้น บนพื้นหลังสีดำทองที่มีนาฬิกา ตู้สล็อต 777 และเหรียญทอง"
+          alt="แบนเนอร์โปรโมชั่น DIAMOND789 ข้อความ วงล้อเพชรแตก ฝากครบ 300 รับสิทธิ์หมุน 1 ครั้ง ด้านขวาเป็นวงล้อรางวัลขอบไฟสีชมพู แบ่งช่องเป็น 39 เครดิต 89 เครดิต 189 เครดิต สลับกับช่อง ของรางวัล และ หมุนฟรี มีเพชรสีชมพูอยู่กลางวงล้อ ใต้ลงมาเป็นหมายเหตุ ลุ้นได้ทุกวันตามเงื่อนไข และปุ่ม หมุนเลย ด้านซ้ายเป็นผู้หญิงในชุดรัดรูปสีดำสลับชมพูติดโลโก้ DIAMOND789 ชี้นิ้วไปที่วงล้อ บนพื้นหลังสีดำชมพูที่มีชิปคาสิโน กองเหรียญ และเพชรเจียระไน"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -133,8 +135,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#ffe98a]/60 bg-gradient-to-r from-[#ffe98a] via-[#fdd323] to-[#e39d02] px-10 py-3.5 text-lg font-black text-[#14110a] shadow-[0_10px_30px_rgba(253,211,35,0.32)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(227,157,2,0.40)]">
-          สมัครสมาชิก FINN20
+          class="flex items-center justify-center rounded-lg border border-[#ff5cb8]/60 bg-gradient-to-r from-[#f30d8c] via-[#b312ac] to-[#b80568] px-10 py-3.5 text-lg font-black text-white shadow-[0_10px_30px_rgba(243,13,140,0.32)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(184,5,104,0.40)]">
+          สมัครสมาชิก DIAMOND789
         </a>
       </div>
     </div>

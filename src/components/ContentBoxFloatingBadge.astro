@@ -12,40 +12,42 @@ const headingSize = HeadingTag === "h1" ? "text-xl sm:text-2xl md:text-3xl" : "t
 // viewport, and the card's pt-32/md:pt-28, which reserves clearance for that
 // wrapped badge.
 //
-// Re-measured for FINN20's H2-3 title, the one this brand feeds it
-// ("บาคาร่าเว็บตรงควรตรวจผู้ให้บริการเกมก่อนเลือกเล่น", 48 chars). Mobile at a
-// 375px viewport: the card is 343px wide inside the section's px-4, the badge is
-// w-[92%] of that = 315px, and after px-4 (32px), border-2 (4px), the two ✦
-// spans (~28px) and their gap-2 pair (16px) about 235px is left for text.
-// text-lg wraps that title to 3 lines at worst; leading-normal on 18px = 27px a
-// line, so 3×27 + 20 (py-2.5) + 4 (border-2) = 105px tall and the bottom edge
-// sits at 105 − 24 = 81px into the card — clear of pt-32 (128px).
-// Desktop: text-2xl at 36px a line over ~548px of usable width inside max-w-2xl
-// wraps to 2 lines = 96px tall, bottom edge at 72px, inside md:pt-28 (112px).
-// Both clear as they stand; do not shrink either padding. pt-16/pt-18 are the
-// documented floor, and these sit well above it.
+// Re-measured for DIAMOND789's H1, the longest title this file carries this
+// round ("DIAMOND789 เว็บสล็อตรวมเกมลิขสิทธิ์แท้ โปรทุนน้อยแตกดีไม่มีขั้นต่ำ",
+// 66 chars, and it renders at the larger h1 ramp). Mobile at a 375px viewport:
+// the card is 343px wide inside the section's px-4, the badge is w-[92%] of that
+// = 315px, and after px-4 (32px), border-2 (4px), the two ✦ spans (~28px) and
+// their gap-2 pair (16px) about 235px is left for text. text-xl wraps that title
+// to 3 lines at worst; leading-normal on 20px = 30px a line, so 3×30 + 20
+// (py-2.5) + 4 (border-2) = 114px tall and the bottom edge sits at 114 − 24 =
+// 90px into the card — clear of pt-32 (128px).
+// Desktop: md:text-3xl at 45px a line over ~560px of usable width inside
+// max-w-2xl wraps to 2 lines = 114px tall, bottom edge at 90px, inside md:pt-28
+// (112px). Both clear as they stand; do not shrink either padding. pt-16/pt-18
+// are the documented floor, and these sit well above it.
 //
-// FINN20 two-tone: gold carries the surfaces and glows, silver is the secondary
-// accent on the ✦ marks. The badge sits on the panel tone (#1f1a10) so the gold
-// gradient stays readable where it overlaps the card edge.
+// DIAMOND789 two-tone: hot pink carries the surfaces and glows, chrome silver is
+// the secondary accent on the ✦ marks — the logo read left to right, silver gem
+// into the pink wordmark. The badge sits on the plum panel tone (#2a1122) so the
+// pink gradient stays readable where it overlaps the card edge.
 ---
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#fdd323]/35 bg-gradient-to-b from-[#14110a]/95 to-[#080705]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#f3e7c8] shadow-[0_10px_30px_rgba(253,211,35,0.2)] md:pt-28">
-    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#fdd323]/28 blur-[60px]"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#d7dbe1]/18 blur-[60px]"></div>
+    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#f30d8c]/35 bg-gradient-to-b from-[#150810]/95 to-[#070308]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#f8e3f0] shadow-[0_10px_30px_rgba(243,13,140,0.2)] md:pt-28">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#f30d8c]/28 blur-[60px]"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#e8e8ef]/18 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#fdd323]/45 bg-[#1f1a10] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(253,211,35,0.2)] sm:px-8">
-          <span aria-hidden="true" class="shrink-0 text-[#d7dbe1]">
+        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#f30d8c]/45 bg-[#2a1122] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(243,13,140,0.2)] sm:px-8">
+          <span aria-hidden="true" class="shrink-0 text-[#e8e8ef]">
             ✦
           </span>
-          <HeadingTag class={`min-w-0 bg-gradient-to-r from-[#ffe98a] via-[#fdd323] to-[#e39d02] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
+          <HeadingTag class={`min-w-0 bg-gradient-to-r from-[#e8e8ef] via-[#ff5cb8] to-[#f30d8c] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
             {title}
           </HeadingTag>
-          <span aria-hidden="true" class="shrink-0 text-[#d7dbe1]">
+          <span aria-hidden="true" class="shrink-0 text-[#e8e8ef]">
             ✦
           </span>
         </div>

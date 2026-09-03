@@ -4,27 +4,27 @@
 // สองรอบ screen reader จะอ่าน emoji ซ้ำตามไปด้วย และห้ามใส่ชื่อโดเมนลงในข้อความ
 // (verify-build.mjs จับ URL นอกโดเมนแล้วทำให้ build แดง)
 const {
-  message = "FINN20 รวมโต๊ะบาคาร่าหลายรูปแบบไว้ในระบบเดียว เลือกโต๊ะจากยอดเดิมพันขั้นต่ำ ความเร็วของแต่ละรอบ และรูปแบบการเล่นได้จากหน้าเดียว • ก่อนเริ่มควรตรวจชื่อผู้ให้บริการเกม กติกา อัตราจ่าย และค่าคอมมิชชันของแต่ละโต๊ะให้ครบ • ระบบออโต้ช่วยให้ตรวจยอด ประวัติรายการ และสถานะธุรกรรมได้จากบัญชีเดียว ก่อนยืนยันควรตรวจชื่อบัญชี จำนวนเงิน และข้อมูลรับเงินให้ถูกต้อง • หากรายการเดิมยังดำเนินการอยู่ ควรรอระบบอัปเดตก่อนทำรายการใหม่ เพื่อลดความซ้ำซ้อน • คำว่าไม่ล็อคผลและจ่ายไวเป็นถ้อยคำทางการตลาด ไม่ใช่การรับประกันผลของเกมหรือการถอนทุกกรณี ควรกำหนดงบก่อนเริ่มเล่นทุกครั้ง",
+  message = "DIAMOND789 รวมเกมสล็อตจากหลายค่ายไว้ในระบบเดียว เลือกเกมจากค่าย ธีม และรูปแบบฟีเจอร์ได้จากหน้าเดียว • ก่อนเริ่มควรตรวจชื่อผู้ให้บริการ ตารางจ่าย รายละเอียดเกม และกติกาให้ครบทุกครั้ง • โปรทุนน้อยควรดูยอดฝาก เกมที่ร่วมรายการ ระยะเวลา และข้อกำหนดการถอนร่วมกัน โบนัสสูงไม่ได้แปลว่าคุ้มที่สุดเสมอไป • คำว่าไม่มีขั้นต่ำอาจใช้กับยอดฝาก ยอดถอน หรือขั้นต่ำของเกม ซึ่งไม่จำเป็นต้องเป็นเงื่อนไขเดียวกัน ควรตรวจแต่ละส่วนก่อนทำรายการ • คำว่าแตกดีใช้สื่อถึงความน่าสนใจของเกม ไม่ใช่การรับประกันผลลัพธ์ ควรกำหนดวงเงินและหยุดเมื่อถึงขีดจำกัดที่วางไว้ล่วงหน้า",
 } = Astro.props;
 ---
 
 <div class="mx-auto w-full max-w-7xl px-4 py-3 font-sans">
-  <div class="relative overflow-hidden rounded-md border border-[#fdd323]/45 bg-[#14110a] shadow-[0_0_15px_rgba(253,211,35,0.18)]">
-    <div class="absolute top-0 -left-4 h-full w-8 -skew-x-12 bg-gradient-to-b from-[#ffe98a] to-[#e39d02]"></div>
-    <div class="absolute top-0 -right-4 h-full w-8 -skew-x-12 bg-[#d7dbe1]/25"></div>
+  <div class="relative overflow-hidden rounded-md border border-[#f30d8c]/45 bg-[#14060f] shadow-[0_0_15px_rgba(243,13,140,0.18)]">
+    <div aria-hidden="true" class="absolute top-0 -left-4 h-full w-8 -skew-x-12 bg-gradient-to-b from-[#ff8ccc] to-[#b312ac]"></div>
+    <div aria-hidden="true" class="absolute top-0 -right-4 h-full w-8 -skew-x-12 bg-[#e8e8ef]/25"></div>
 
     <div class="flex items-center">
-      <div class="relative z-10 flex w-12 shrink-0 items-center justify-center bg-gradient-to-b from-[#ffe98a] to-[#e39d02] py-2.5">
-        <span aria-hidden="true" class="animate-pulse text-lg drop-shadow-[0_0_5px_rgba(8,7,5,0.85)]">🔔</span>
+      <div class="relative z-10 flex w-12 shrink-0 items-center justify-center bg-gradient-to-b from-[#ff8ccc] to-[#b312ac] py-2.5">
+        <span aria-hidden="true" class="animate-pulse text-lg drop-shadow-[0_0_5px_rgba(7,3,8,0.85)]">🔔</span>
       </div>
 
       <div class="marquee-container relative flex-1 overflow-hidden py-2.5 pr-6">
-        <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#14110a] to-transparent"></div>
-        <div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-12 bg-gradient-to-l from-[#14110a] to-transparent"></div>
+        <div aria-hidden="true" class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#14060f] to-transparent"></div>
+        <div aria-hidden="true" class="pointer-events-none absolute top-0 right-0 z-10 h-full w-12 bg-gradient-to-l from-[#14060f] to-transparent"></div>
 
-        <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-wide whitespace-nowrap text-[#f3e7c8]">
-          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#fdd323] shadow-[0_0_5px_rgba(253,211,35,0.85)]"></span>{message}</span>
-          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#fdd323] shadow-[0_0_5px_rgba(253,211,35,0.85)]"></span>{message}</span>
+        <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-wide whitespace-nowrap text-[#f8e3f0]">
+          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#f30d8c] shadow-[0_0_5px_rgba(243,13,140,0.85)]"></span>{message}</span>
+          <span class="mr-8 inline-flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#f30d8c] shadow-[0_0_5px_rgba(243,13,140,0.85)]"></span>{message}</span>
         </div>
       </div>
     </div>

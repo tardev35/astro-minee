@@ -31,6 +31,7 @@
 @source not "../components/ContentBoxSevenThreePremium.astro";
 @source not "../components/ContentBoxSpecial.astro";
 @source not "../components/ContentBoxTwoCyberCut.astro";
+@source not "../components/ContentBoxTwoFloatingBadge.astro";
 @source not "../components/ContentBoxTwoHuay.astro";
 @source not "../components/ContentBoxTwoPremium.astro";
 @source not "../components/CtaRedirect.astro";
@@ -51,8 +52,8 @@
 @source not "../components/LatestWinners2.astro";
 @source not "../components/LatestWinners3.astro";
 @source not "../components/LatestWinners4.astro";
-@source not "../components/LatestWinnersCyber.astro";
 @source not "../components/LatestWinnersHuay.astro";
+@source not "../components/LatestWinnersPremium.astro";
 @source not "../components/LottoGrid.astro";
 @source not "../components/Navbar.astro";
 @source not "../components/NavbarCyber.astro";
@@ -66,7 +67,7 @@
 @source not "../components/NavbarStyle4.astro";
 @source not "../components/NavbarStyle4Black.astro";
 @source not "../components/NavbarStyle5.astro";
-@source not "../components/NavbarStyle6.astro";
+@source not "../components/NavbarStyle7.astro";
 @source not "../components/NavbarStyle8.astro";
 @source not "../components/NavbarStyle9.astro";
 @source not "../components/PopularGamesStrip.astro";

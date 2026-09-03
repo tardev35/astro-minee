@@ -7,21 +7,23 @@ import { pageGraph } from "../lib/schema";
 
 // Button page, not an article: the whole body is the <h1> plus the two-button
 // grid. The docx SUB-PAGES block gives this page a Title and a Meta and never
-// a body, so no section heading and no prose belong here. The h1 names what it IS
-// rather than previewing a section that does not exist. Rendered inventory:
-// h1x1, h2x0, h3x0.
-const pageTitle = "ทางเข้า FINN20 เว็บหลัก";
+// a body, so no section heading and no prose belong here — not a login
+// checklist, not a PIN/OTP notice. The h1 names what the page IS rather than
+// previewing a section that does not exist. Rendered inventory: h1x1, h2x0,
+// h3x0.
+const pageTitle = "ทางเข้า DIAMOND789 เว็บหลัก";
 
 // <Announcement /> is called bare on purpose — Announcement5's default message
 // is this brand's copy, set once in the component so every sub-page ticker and
-// index.astro's explicit prop can never drift apart.
+// index.astro's explicit prop can never drift apart. Rotated off Announcement3,
+// the outgoing brand's pick, per the brand spec.
 
-// Title and Meta are the docx SUB-PAGES row "ทางเข้าเล่น". The docx sentence is
-// 118 characters, under the DESC_MIN=150 floor tools/verify-build.mjs enforces
-// on every INDEXABLE page (the exemption in that file is home-page-only), so the
-// description opens with the docx sentence verbatim and one clause closes it.
-// 158 CHARACTERS (count characters, not bytes — Thai is 3 bytes/char).
-const pageDescription = "FINN20 ทางเข้าเล่นบาคาร่าเว็บตรง พร้อมโต๊ะหลายรูปแบบ ระบบออโต้ โปรโมชั่น และข้อมูลการเดิมพันให้ตรวจสอบผ่านช่องทางเดียว เข้าสู่ระบบหรือสมัครสมาชิกได้จากหน้านี้";
+// Title and description are the docx SUB-PAGES row for /ทางเข้า, both shipped
+// VERBATIM. The description is shorter than the DESC_MIN=150 floor and that is
+// correct: the brief's own sentence is the brand's copy, not a draft to top up.
+// verify-build.mjs exempts any description that appears literally in
+// src/assets/content.txt for exactly this reason. Do not pad it.
+const pageDescription = "DIAMOND789 ทางเข้าเล่นสล็อตออนไลน์ พร้อมค่ายเกมหลายรูปแบบ โปรโมชั่นทุนน้อย ระบบสมาชิก และข้อมูลธุรกรรมให้ตรวจสอบได้ง่าย";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -33,7 +35,7 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="FINN20 | ทางเข้าเล่นบาคาร่าเว็บตรงระบบออโต้" description={pageDescription}>
+<MainLayout title="DIAMOND789 | ทางเข้าเล่นสล็อตรวมค่ายเกมลิขสิทธิ์" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
@@ -43,12 +45,12 @@ const graph = pageGraph(Astro, {
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/login"
-          aria-label="เข้าสู่ระบบ FINN20"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#fdd323]/65 bg-[#14110a] px-6 py-4 shadow-[0_10px_30px_rgba(253,211,35,0.28)] transition-all duration-300 hover:scale-105 hover:border-[#ffe98a] hover:bg-[#1f1a10] hover:shadow-[0_15px_40px_rgba(253,211,35,0.36)]">
-          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#fdd323]/22 to-transparent"></div>
+          aria-label="เข้าสู่ระบบ DIAMOND789"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#f30d8c]/65 bg-[#1a0d16] px-6 py-4 shadow-[0_10px_30px_rgba(243,13,140,0.28)] transition-all duration-300 hover:scale-105 hover:border-[#ff5cb8] hover:bg-[#2b0620] hover:shadow-[0_15px_40px_rgba(243,13,140,0.36)]">
+          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#f30d8c]/22 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#fdd323]"
+            class="relative z-10 h-9 w-9 text-[#ff5cb8]"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -59,19 +61,19 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#fdd323]">เข้าสู่ระบบ</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#ff5cb8]">เข้าสู่ระบบ</span>
         </a>
       </div>
 
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/register"
-          aria-label="สมัครสมาชิก FINN20"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#ffe98a]/60 bg-gradient-to-r from-[#ffe98a] via-[#fdd323] to-[#e39d02] px-6 py-4 shadow-[0_10px_30px_rgba(253,211,35,0.30)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(253,211,35,0.44)]">
+          aria-label="สมัครสมาชิก DIAMOND789"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#ff5cb8]/60 bg-gradient-to-b from-[#f30d8c] to-[#b80568] px-6 py-4 shadow-[0_10px_30px_rgba(243,13,140,0.30)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(243,13,140,0.44)]">
           <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/25 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#080705]"
+            class="relative z-10 h-9 w-9 text-white"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -82,7 +84,7 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#080705]">สมัครสมาชิก</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-white">สมัครสมาชิก</span>
         </a>
       </div>
     </div>

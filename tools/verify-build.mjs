@@ -63,11 +63,18 @@ const EMOJI = /\p{Extended_Pictographic}/u;
 // Thai is 3 bytes per character in UTF-8, so any byte-based measurement reads
 // roughly 3x too long and will send you rewriting descriptions that were fine.
 //
-// DESC_MIN does not apply to the home page: its description is the brand's own
-// copy out of content.docx and ships verbatim. Those keep arriving under 150
-// (ANDAMAN168 134, NORWAY89 136, WINSIAM88 142), and a floor here only forces
-// the docx wording to be padded or rewritten. The upper bounds still apply
-// everywhere — over-length truncates in the SERP whoever wrote it.
+// DESC_MIN does not apply to a description the BRAND'S OWN BRIEF supplies: that
+// copy ships verbatim. Those keep arriving under 150 (ANDAMAN168 134, NORWAY89
+// 136, WINSIAM88 142), and a floor here only forces the docx wording to be
+// padded or rewritten. The upper bounds still apply everywhere — over-length
+// truncates in the SERP whoever wrote it.
+//
+// This used to exempt the home page by filename, because until a docx carried a
+// SUB-PAGES block the home page was the only page whose description came from
+// the brief. DIAMOND789's docx has one, which put two agents on opposite sides
+// of the same rule in one run (one padded the client's sentences to clear the
+// floor, one shipped them and went red). Exempting by PROVENANCE instead of by
+// filename is what the comment above always meant; see briefDescriptions().
 const DESC_MIN = 150;
 const DESC_MAX = 160;
 const DESC_HARD_MAX = 200;
@@ -75,6 +82,35 @@ const DESC_HARD_MAX = 200;
 // Astro emits one <style> per page with inlineStylesheets:"always". Past this
 // size the stylesheet is pushing the LCP image out of the parser's reach.
 const INLINE_STYLE_MAX = 40_000;
+
+// Every meta description the brand's brief supplies, read from the file the
+// uploader normalises content.docx (or a plain .txt brief) into. The SUB-PAGES
+// block looks like:
+//
+//   ติดต่อเรา
+//   Title: DIAMOND789 | ติดต่อทีมงาน...
+//   Meta Description: DIAMOND789 เปิดช่องทางติดต่อ...
+//
+// Matching the LITERAL string is what keeps DESC_MIN in force everywhere else:
+// a sentence has to actually appear in the brief to skip the floor, so a
+// description the agent wrote is still held to 150–160. Upper bounds are never
+// skipped — those truncate in the SERP no matter who wrote them.
+function briefDescriptions() {
+  const out = new Set();
+  try {
+    const raw = fs.readFileSync(path.join("src", "assets", "content.txt"), "utf8");
+    for (const line of raw.split(/\r?\n/)) {
+      const m = line.match(/^\s*Meta\s*Description\s*:\s*(.+?)\s*$/i);
+      if (m) out.add(m[1]);
+    }
+  } catch {
+    // No brief on disk — a brand launched before the uploader existed. The
+    // floor then applies to every page except the home one, as it used to.
+  }
+  return out;
+}
+
+const BRIEF_DESCS = briefDescriptions();
 
 const errors = [];
 const warnings = [];
@@ -480,11 +516,12 @@ for (const file of pages) {
   } else {
     const n = chars(desc);
     const isHome = path.relative(DIST, file).split(path.sep).join("/") === "index.html";
+    const fromBrief = BRIEF_DESCS.has(desc.trim());
     if (n > DESC_HARD_MAX) {
       error(where, `meta description ${n} characters — will be truncated in every SERP (max ${DESC_HARD_MAX})`);
     } else if (n > DESC_MAX) {
       error(where, `meta description ${n} characters, over ${DESC_MAX} — count CHARACTERS, not bytes`);
-    } else if (n < DESC_MIN && !isHome) {
+    } else if (n < DESC_MIN && !isHome && !fromBrief) {
       error(where, `meta description ${n} characters, under ${DESC_MIN} — count CHARACTERS, not bytes`);
     }
   }
