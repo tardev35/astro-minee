@@ -4,85 +4,87 @@ import ContentBoxTwo from "./ContentBoxTwo.astro";
 // Reference table, not article content — every label below renders as <p>/<span>
 // inside ContentBoxTwo (whose `as` prop stays at its "p" default), and the
 // section's aria-label carries the accessible name. This widget belongs to the
-// docx section directly above it (เลือกสล็อตจาก RTP ฟีเจอร์ และความผันผวน).
+// docx section directly above it (คำว่าไม่ล็อคผลควรดูจากความโปร่งใสของตัวเกม) and
+// leads into the payout section below it.
 //
-// The RTP column is written as "ตามที่ผู้ให้บริการระบุ" and never as a hard
-// figure. RTP, ตารางจ่าย and volatility are set per game and per provider, so a
-// single number printed here would be a claim the site cannot stand behind — and
-// the brief itself says to read what the provider states, not a promoted number.
-const gameFactors = [
-  { icon: "📊", name: "ค่า RTP ของเกม", meta: "อ่านค่าที่ผู้ให้บริการระบุไว้ในเกม", note: "ตัวเลขต่างกันได้ในแต่ละเกมและแต่ละค่าย", tag: "ดูจากในเกม" },
-  { icon: "🧾", name: "ตารางจ่ายของเกม", meta: "ดูสัญลักษณ์และอัตราจ่ายก่อนหมุนจริง", note: "ตารางจ่ายบอกว่าคอมโบไหนให้ผลเท่าไร", tag: "อ่านก่อนเริ่ม" },
-  { icon: "🎁", name: "ฟีเจอร์โบนัส", meta: "ฟรีสปิน ตัวคูณ และรอบพิเศษไม่เหมือนกัน", note: "เงื่อนไขเข้าฟีเจอร์ระบุอยู่ในกติกาของเกม", tag: "ดูเงื่อนไข" },
-  { icon: "🌋", name: "ระดับความผันผวน", meta: "ผันผวนสูงหรือต่ำมีผลกับจังหวะของรางวัล", note: "ควรเลือกให้เข้ากับงบที่เตรียมไว้", tag: "เลือกตามงบ" },
-  { icon: "💵", name: "วงเงินต่อรอบ", meta: "กำหนดไว้ล่วงหน้าก่อนเริ่มหมุน", note: "ความผันผวนของเกมมีผลกับวงเงินที่เหมาะสม", tag: "ตั้งไว้ก่อน" },
-  { icon: "🏧", name: "ฝากผ่านระบบออโต้", meta: "ทำรายการจากหน้าบัญชีได้โดยตรง", note: "ตรวจชื่อบัญชีและจำนวนเงินก่อนยืนยัน", tag: "ตรวจก่อนยืนยัน" },
-  { icon: "🕘", name: "ถอนผ่านระบบออโต้", meta: "สถานะรายการแสดงจากหน้าบัญชี", note: "รายการเดิมยังดำเนินการอยู่ควรรอผลก่อน", tag: "รอผลจากระบบ" },
+// The payout column is written as "ตามที่โต๊ะระบุ" and never as a hard figure.
+// อัตราจ่าย, ค่าคอมมิชชัน and table limits are set per table and per provider, so
+// a single number printed here would be a claim the site cannot stand behind —
+// and the brief itself says to read the details the table states.
+const tableFactors = [
+  { icon: "🏷️", name: "ชื่อผู้ให้บริการเกม", meta: "ดูว่าโต๊ะนั้นดำเนินการโดยค่ายใด", note: "ชื่อค่ายที่ระบุชัดช่วยให้ตรวจแหล่งที่มาได้", tag: "ตรวจก่อนเล่น" },
+  { icon: "🎥", name: "วิธีดำเนินเกม", meta: "บาคาร่าสดเห็นการแจกไพ่แบบเรียลไทม์", note: "ดูขั้นตอนตัดสินผลประกอบเสมอ", tag: "ดูแบบเรียลไทม์" },
+  { icon: "📜", name: "กติกาของโต๊ะ", meta: "อ่านกติกาย่อยและตัวเลือกเดิมพันก่อนเริ่ม", note: "กติกาต่างกันได้ในแต่ละโต๊ะและแต่ละค่าย", tag: "อ่านก่อนเริ่ม" },
+  { icon: "💰", name: "อัตราจ่าย Banker Player Tie", meta: "แต่ละตัวเลือกจ่ายและเสี่ยงไม่เท่ากัน", note: "อ่านอัตราจ่ายที่โต๊ะระบุไว้จริง", tag: "ดูจากในโต๊ะ" },
+  { icon: "✂️", name: "ค่าคอมมิชชันฝั่ง Banker", meta: "หักจากยอดที่ชนะตามเงื่อนไขของโต๊ะ", note: "เงื่อนไขเฉพาะระบุอยู่ในรายละเอียดโต๊ะ", tag: "ดูเงื่อนไข" },
+  { icon: "🪙", name: "ขั้นต่ำและสูงสุดต่อไม้", meta: "กำหนดว่างบก้อนเดียวเล่นได้กี่รอบ", note: "ควรเลือกให้เข้ากับงบที่เตรียมไว้", tag: "เลือกตามงบ" },
+  { icon: "⏱️", name: "ความเร็วของแต่ละรอบ", meta: "โต๊ะที่เดินเร็วใช้งบต่อชั่วโมงมากกว่า", note: "วางแผนจำนวนรอบไว้ล่วงหน้า", tag: "ตั้งไว้ก่อน" },
+  { icon: "🏧", name: "ธุรกรรมผ่านระบบออโต้", meta: "ตรวจยอดและสถานะรายการจากบัญชีเดียว", note: "รายการเดิมยังดำเนินการอยู่ควรรอผลก่อน", tag: "ตรวจก่อนยืนยัน" },
 ];
 
-const chips = ["สล็อต", "RTP", "ตารางจ่าย", "ฟีเจอร์โบนัส", "ความผันผวน", "วงเงินต่อรอบ", "ฝากถอนออโต้", "ประวัติธุรกรรม", "รองรับมือถือ"];
+const chips = ["บาคาร่าสด", "Banker", "Player", "Tie", "อัตราจ่าย", "ค่าคอมมิชชัน", "ขั้นต่ำต่อไม้", "ธุรกรรมออโต้", "ประวัติรายการ", "รองรับมือถือ"];
 ---
 
 <ContentBoxTwo
-  titleleft="เข้าสู่ระบบ LAVA432"
-  titleright="RTP ตารางจ่าย ฟีเจอร์ และความผันผวนที่ควรดูก่อนเลือกเกม"
+  titleleft="เข้าสู่ระบบ FINN20"
+  titleright="ข้อมูลของโต๊ะที่ควรตรวจก่อนวางเดิมพัน"
   iconleft="🔐"
-  iconright="🎰"
-  label="เข้าสู่ระบบ LAVA432 และตารางอ้างอิงสิ่งที่ควรดูก่อนเลือกเกมสล็อต ทั้ง RTP ตารางจ่าย ฟีเจอร์โบนัส ความผันผวน และขั้นตอนฝากถอนออโต้">
+  iconright="🎴"
+  label="เข้าสู่ระบบ FINN20 และตารางอ้างอิงสิ่งที่ควรตรวจก่อนวางเดิมพันบาคาร่า ทั้งผู้ให้บริการเกม กติกาโต๊ะ อัตราจ่าย ค่าคอมมิชชัน วงเงินต่อไม้ และธุรกรรมผ่านระบบออโต้">
   <div slot="left" class="flex h-full flex-col gap-4">
-    <div class="relative overflow-hidden rounded-2xl border border-[#ec000e]/35 bg-[#1c0505]/92 p-6 shadow-[0_10px_30px_rgba(236,0,14,0.22)] backdrop-blur-md">
-      <div aria-hidden="true" class="pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#7a0206]/80 blur-[50px]"></div>
+    <div class="relative overflow-hidden rounded-2xl border border-[#fdd323]/35 bg-[#14110a]/92 p-6 shadow-[0_10px_30px_rgba(253,211,35,0.22)] backdrop-blur-md">
+      <div aria-hidden="true" class="pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#e39d02]/45 blur-[50px]"></div>
 
       <div class="relative z-10 mb-5 flex items-center gap-3">
         <span
           aria-hidden="true"
-          class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#ff6a13]/45 bg-gradient-to-br from-[#ffa040] via-[#ff6a13] to-[#ff3d2e] text-xl text-[#120303] shadow-inner">
-          🌋
+          class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#ffe98a]/50 bg-gradient-to-br from-[#ffe98a] via-[#fdd323] to-[#e39d02] text-xl text-[#14110a] shadow-inner">
+          🎴
         </span>
         <div class="flex flex-col">
-          <p class="text-base font-black text-[#ff6a13]">ยินดีต้อนรับกลับ</p>
-          <span class="text-[11px] text-[#c9a8a4]">บัญชีเดียวใช้เลือกหมวดเกม ดูค่า RTP ที่เกมระบุ ดูโปรโมชั่น และติดตามสถานะฝากถอนของ LAVA432 ได้จากหน้าเดียว</span>
+          <p class="text-base font-black text-[#fdd323]">ยินดีต้อนรับกลับ</p>
+          <span class="text-[11px] text-[#bfae86]">บัญชีเดียวใช้เลือกโต๊ะบาคาร่า ดูอัตราจ่ายที่โต๊ะระบุ ดูโปรโมชั่น และติดตามสถานะธุรกรรมของ FINN20 ได้จากหน้าเดียว</span>
         </div>
       </div>
 
       <div class="relative z-10 flex flex-col gap-3.5">
         <div class="relative">
-          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#ff6a13]">👤</span>
+          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#fdd323]">👤</span>
           <input
             type="text"
             aria-label="เบอร์โทรศัพท์หรือยูสเซอร์เนม"
             placeholder="เบอร์โทรศัพท์ / ยูสเซอร์เนม"
-            class="w-full rounded-xl border border-[#ec000e]/40 bg-[#120303]/95 py-3 pr-4 pl-12 text-[#f4e3e0] transition-all outline-none placeholder:text-[#c9a8a4] focus:border-[#ff6a13] focus:ring-1 focus:ring-[#ff6a13]/50"
+            class="w-full rounded-xl border border-[#fdd323]/40 bg-[#080705]/95 py-3 pr-4 pl-12 text-[#f3e7c8] transition-all outline-none placeholder:text-[#8b93a1] focus:border-[#fdd323] focus:ring-1 focus:ring-[#fdd323]/50"
           />
         </div>
         <div class="relative">
-          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#ff6a13]">🔑</span>
+          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#fdd323]">🔑</span>
           <input
             type="password"
             aria-label="รหัสผ่านของบัญชี"
             placeholder="รหัสผ่านของบัญชี"
-            class="w-full rounded-xl border border-[#ec000e]/40 bg-[#120303]/95 py-3 pr-4 pl-12 text-[#f4e3e0] transition-all outline-none placeholder:text-[#c9a8a4] focus:border-[#ff6a13] focus:ring-1 focus:ring-[#ff6a13]/50"
+            class="w-full rounded-xl border border-[#fdd323]/40 bg-[#080705]/95 py-3 pr-4 pl-12 text-[#f3e7c8] transition-all outline-none placeholder:text-[#8b93a1] focus:border-[#fdd323] focus:ring-1 focus:ring-[#fdd323]/50"
           />
         </div>
 
         <div class="flex items-center justify-between px-1 text-xs">
-          <label class="flex items-center gap-2 text-[#c9a8a4]">
-            <input type="checkbox" class="h-3.5 w-3.5 rounded border-[#ec000e]/45 bg-[#120303] accent-[#ec000e]" />
+          <label class="flex items-center gap-2 text-[#bfae86]">
+            <input type="checkbox" class="h-3.5 w-3.5 rounded border-[#fdd323]/45 bg-[#080705] accent-[#fdd323]" />
             จดจำฉันไว้
           </label>
-          <a href="/login" class="text-[#c9a8a4] transition-colors hover:text-[#ff6a13]">ลืมรหัสผ่าน?</a>
+          <a href="/login" class="text-[#bfae86] transition-colors hover:text-[#fdd323]">ลืมรหัสผ่าน?</a>
         </div>
 
         <a
           href="/login"
-          class="mt-1 block w-full rounded-xl border border-[#ff6a13]/45 bg-gradient-to-r from-[#ffa040] via-[#ff6a13] to-[#ff3d2e] p-3.5 text-center font-black text-[#120303] shadow-[0_10px_30px_rgba(255,106,19,0.3)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(255,106,19,0.42)]">
+          class="mt-1 block w-full rounded-xl border border-[#ffe98a]/50 bg-gradient-to-r from-[#ffe98a] via-[#fdd323] to-[#e39d02] p-3.5 text-center font-black text-[#14110a] shadow-[0_10px_30px_rgba(253,211,35,0.3)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(253,211,35,0.42)]">
           เข้าสู่ระบบ
         </a>
 
-        <div class="flex items-center gap-3 py-1 text-[11px] text-[#c9a8a4]">
-          <span class="h-px flex-1 bg-[#ec000e]/40"></span>
+        <div class="flex items-center gap-3 py-1 text-[11px] text-[#bfae86]">
+          <span class="h-px flex-1 bg-[#fdd323]/40"></span>
           หรือ
-          <span class="h-px flex-1 bg-[#ec000e]/40"></span>
+          <span class="h-px flex-1 bg-[#fdd323]/40"></span>
         </div>
 
         <a
@@ -93,21 +95,21 @@ const chips = ["สล็อต", "RTP", "ตารางจ่าย", "ฟี�
 
         <div class="mt-1 flex items-center justify-between px-1">
           <div class="flex gap-2">
-            <span class="rounded-full border border-[#ec000e]/35 bg-[#120303] px-2.5 py-1 text-[10px] font-bold text-[#ff6a13]"><span aria-hidden="true">🔒</span> HTTPS + SSL</span>
-            <span class="rounded-full border border-[#7a0206] bg-[#120303]/80 px-2.5 py-1 text-[10px] font-bold text-[#f4e3e0]"><span aria-hidden="true">🕐</span> ดูแลสมาชิก 24 ชั่วโมง</span>
+            <span class="rounded-full border border-[#fdd323]/35 bg-[#080705] px-2.5 py-1 text-[10px] font-bold text-[#fdd323]"><span aria-hidden="true">🔒</span> HTTPS + SSL</span>
+            <span class="rounded-full border border-[#8b93a1]/45 bg-[#080705]/80 px-2.5 py-1 text-[10px] font-bold text-[#d7dbe1]"><span aria-hidden="true">🕐</span> ดูแลสมาชิก 24 ชั่วโมง</span>
           </div>
-          <a href="/register" class="text-xs font-bold text-[#ff6a13] transition-colors hover:text-[#ffa040]">สมัครสมาชิกใหม่</a>
+          <a href="/register" class="text-xs font-bold text-[#fdd323] transition-colors hover:text-[#ffe98a]">สมัครสมาชิกใหม่</a>
         </div>
       </div>
     </div>
   </div>
 
   <div slot="right" class="h-full">
-    <div class="flex h-full flex-col rounded-2xl border border-[#ec000e]/35 bg-[#1c0505]/92 p-5 shadow-[0_10px_30px_rgba(236,0,14,0.22)] backdrop-blur-md">
+    <div class="flex h-full flex-col rounded-2xl border border-[#fdd323]/35 bg-[#14110a]/92 p-5 shadow-[0_10px_30px_rgba(253,211,35,0.22)] backdrop-blur-md">
       <div class="mb-5 flex items-center justify-between gap-3">
         <div>
-          <span class="text-xs font-bold tracking-wide text-[#c9a8a4]">ตารางอ้างอิงสิ่งที่ควรดูก่อนเลือกเกม และขั้นตอนฝากถอนที่ควรตรวจก่อนเริ่ม</span>
-          <p class="bg-gradient-to-r from-[#ffffff] via-[#ffa040] to-[#ff6a13] bg-clip-text text-3xl font-black text-transparent sm:text-4xl">ดู RTP ตารางจ่าย และความผันผวนก่อนเลือกเกม</p>
+          <span class="text-xs font-bold tracking-wide text-[#bfae86]">ตารางอ้างอิงสิ่งที่ควรตรวจก่อนนั่งโต๊ะ และขั้นตอนธุรกรรมที่ควรดูก่อนยืนยัน</span>
+          <p class="bg-gradient-to-r from-[#d7dbe1] via-[#ffe98a] to-[#fdd323] bg-clip-text text-3xl font-black text-transparent sm:text-4xl">ดูผู้ให้บริการ อัตราจ่าย และค่าคอมมิชชันก่อนวางเดิมพัน</p>
         </div>
         <span class="flex items-center gap-1.5 self-start rounded-full border border-green-500/40 bg-green-900/40 px-2.5 py-1">
           <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.7)]"></span>
@@ -115,27 +117,27 @@ const chips = ["สล็อต", "RTP", "ตารางจ่าย", "ฟี�
         </span>
       </div>
 
-      <div class="mb-2 flex items-center justify-between text-[11px] font-bold tracking-widest text-[#c9a8a4] uppercase">
+      <div class="mb-2 flex items-center justify-between text-[11px] font-bold tracking-widest text-[#bfae86] uppercase">
         <span>สิ่งที่ควรดู / ช่องทาง</span>
         <span>รายละเอียด / เงื่อนไข</span>
       </div>
 
       <div class="flex flex-1 flex-col gap-2.5">
         {
-          gameFactors.map((b) => (
-            <div class="rounded-xl border border-[#ec000e]/30 bg-[#120303]/95 px-3.5 py-2.5 transition-colors hover:border-[#ff6a13]/60 hover:bg-[#2a0808]">
+          tableFactors.map((b) => (
+            <div class="rounded-xl border border-[#fdd323]/30 bg-[#080705]/95 px-3.5 py-2.5 transition-colors hover:border-[#ffe98a]/60 hover:bg-[#1f1a10]">
               <div class="flex items-center justify-between gap-2 text-sm">
-                <span class="flex min-w-0 items-center gap-2 font-bold text-[#f4e3e0]">
+                <span class="flex min-w-0 items-center gap-2 font-bold text-[#f3e7c8]">
                   <span aria-hidden="true" class="w-5 shrink-0 text-center">
                     {b.icon}
                   </span>{" "}
                   <span class="truncate">{b.name}</span>
                 </span>
-                <span class="shrink-0 rounded-full border border-[#ff6a13]/50 bg-[#120303] px-2.5 py-0.5 text-[10px] font-bold text-[#ff6a13]">{b.tag}</span>
+                <span class="shrink-0 rounded-full border border-[#fdd323]/50 bg-[#080705] px-2.5 py-0.5 text-[10px] font-bold text-[#fdd323]">{b.tag}</span>
               </div>
-              <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] tracking-wide text-[#c9a8a4]">
+              <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] tracking-wide text-[#bfae86]">
                 <span>{b.meta}</span>
-                <span class="font-bold text-[#ff6a13]">{b.note}</span>
+                <span class="font-bold text-[#fdd323]">{b.note}</span>
               </div>
             </div>
           ))
@@ -143,12 +145,12 @@ const chips = ["สล็อต", "RTP", "ตารางจ่าย", "ฟี�
       </div>
 
       <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
-        {chips.map((c) => <span class="rounded-full border border-[#ec000e]/35 bg-[#120303] px-3 py-1 text-[10px] font-bold text-[#ff6a13]">{c}</span>)}
+        {chips.map((c) => <span class="rounded-full border border-[#fdd323]/35 bg-[#080705] px-3 py-1 text-[10px] font-bold text-[#fdd323]">{c}</span>)}
       </div>
 
-      <div class="mt-3 text-center text-[10px] tracking-wide text-[#c9a8a4]">
-        รายการในตารางเป็นหัวข้อที่ควรเปิดดูเท่านั้น ค่า RTP ตารางจ่าย ฟีเจอร์โบนัส และระดับความผันผวนถูกกำหนดโดยผู้ให้บริการเกมและต่างกันในแต่ละเกม
-        จึงควรอ่านข้อมูลที่ระบบแสดงจริงก่อนเริ่มทุกครั้ง และกำหนดวงเงินต่อรอบไว้ล่วงหน้าเสมอ
+      <div class="mt-3 text-center text-[10px] tracking-wide text-[#bfae86]">
+        รายการในตารางเป็นหัวข้อที่ควรเปิดดูเท่านั้น อัตราจ่าย ค่าคอมมิชชัน กติกา และวงเงินต่อไม้ถูกกำหนดโดยผู้ให้บริการเกมและต่างกันในแต่ละโต๊ะ จึงควรอ่านข้อมูลที่ระบบแสดงจริงก่อนเริ่มทุกครั้ง
+        และกำหนดงบไว้ล่วงหน้าเสมอ
       </div>
     </div>
   </div>

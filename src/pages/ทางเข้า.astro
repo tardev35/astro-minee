@@ -2,24 +2,26 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
+import Announcement from "../components/Announcement5.astro";
 import { pageGraph } from "../lib/schema";
 
 // Button page, not an article: the whole body is the <h1> plus the two-button
 // grid. The docx SUB-PAGES block gives this page a Title and a Meta and never
 // a body, so no section heading and no prose belong here. The h1 names what it IS
-// rather than previewing a section that does not exist.
-const pageTitle = "ทางเข้า LAVA432 เว็บหลัก";
+// rather than previewing a section that does not exist. Rendered inventory:
+// h1x1, h2x0, h3x0.
+const pageTitle = "ทางเข้า FINN20 เว็บหลัก";
 
-// <Announcement /> is called bare on purpose — AnnouncementPremium's default
-// message is this brand's copy, set once in the component so every sub-page
-// ticker and index.astro's explicit prop can never drift apart.
+// <Announcement /> is called bare on purpose — Announcement5's default message
+// is this brand's copy, set once in the component so every sub-page ticker and
+// index.astro's explicit prop can never drift apart.
 
 // Title and Meta are the docx SUB-PAGES row "ทางเข้าเล่น". The docx sentence is
-// 126 characters, under the DESC_MIN=150 floor tools/verify-build.mjs enforces
-// on every indexable page, so it opens the description verbatim and one clause
-// closes it. 159 CHARACTERS (count characters, not bytes — Thai is 3 bytes/char).
-const pageDescription = "LAVA432 ทางเข้าเล่นสล็อตออนไลน์ รองรับมือถือ พร้อมระบบออโต้ เกมหลายรูปแบบ โปรโมชั่น และข้อมูลธุรกรรมให้ตรวจสอบผ่านช่องทางเดียว เข้าสู่ระบบหรือสมัครสมาชิกได้เลย";
+// 118 characters, under the DESC_MIN=150 floor tools/verify-build.mjs enforces
+// on every INDEXABLE page (the exemption in that file is home-page-only), so the
+// description opens with the docx sentence verbatim and one clause closes it.
+// 158 CHARACTERS (count characters, not bytes — Thai is 3 bytes/char).
+const pageDescription = "FINN20 ทางเข้าเล่นบาคาร่าเว็บตรง พร้อมโต๊ะหลายรูปแบบ ระบบออโต้ โปรโมชั่น และข้อมูลการเดิมพันให้ตรวจสอบผ่านช่องทางเดียว เข้าสู่ระบบหรือสมัครสมาชิกได้จากหน้านี้";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -31,7 +33,7 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="LAVA432 | ทางเข้าเล่นสล็อตเว็บใหญ่พร้อมระบบออโต้" description={pageDescription}>
+<MainLayout title="FINN20 | ทางเข้าเล่นบาคาร่าเว็บตรงระบบออโต้" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
@@ -41,12 +43,12 @@ const graph = pageGraph(Astro, {
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/login"
-          aria-label="เข้าสู่ระบบ LAVA432"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#ff6a13]/65 bg-[#2a0808] px-6 py-4 shadow-[0_10px_30px_rgba(236,0,14,0.32)] transition-all duration-300 hover:scale-105 hover:border-[#ffa040] hover:bg-[#7a0206] hover:shadow-[0_15px_40px_rgba(255,106,19,0.32)]">
-          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#ec000e]/30 to-transparent"></div>
+          aria-label="เข้าสู่ระบบ FINN20"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#fdd323]/65 bg-[#14110a] px-6 py-4 shadow-[0_10px_30px_rgba(253,211,35,0.28)] transition-all duration-300 hover:scale-105 hover:border-[#ffe98a] hover:bg-[#1f1a10] hover:shadow-[0_15px_40px_rgba(253,211,35,0.36)]">
+          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#fdd323]/22 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#ffa040]"
+            class="relative z-10 h-9 w-9 text-[#fdd323]"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -57,19 +59,19 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#ffa040]">เข้าสู่ระบบ</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#fdd323]">เข้าสู่ระบบ</span>
         </a>
       </div>
 
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/register"
-          aria-label="สมัครสมาชิก LAVA432"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#ffa040]/60 bg-gradient-to-r from-[#ffa040] via-[#ff6a13] to-[#ec000e] px-6 py-4 shadow-[0_10px_30px_rgba(255,106,19,0.30)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(236,0,14,0.44)]">
+          aria-label="สมัครสมาชิก FINN20"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#ffe98a]/60 bg-gradient-to-r from-[#ffe98a] via-[#fdd323] to-[#e39d02] px-6 py-4 shadow-[0_10px_30px_rgba(253,211,35,0.30)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(253,211,35,0.44)]">
           <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/25 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#120303]"
+            class="relative z-10 h-9 w-9 text-[#080705]"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -80,7 +82,7 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#120303]">สมัครสมาชิก</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#080705]">สมัครสมาชิก</span>
         </a>
       </div>
     </div>

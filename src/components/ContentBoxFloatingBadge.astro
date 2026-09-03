@@ -12,8 +12,8 @@ const headingSize = HeadingTag === "h1" ? "text-xl sm:text-2xl md:text-3xl" : "t
 // viewport, and the card's pt-32/md:pt-28, which reserves clearance for that
 // wrapped badge.
 //
-// Re-measured for HOT189's H2-5 title, which is the one this brand feeds it
-// ("เว็บตรงควรดูจากความชัดเจนของระบบและข้อมูลที่แสดง", 48 chars). Mobile at a
+// Re-measured for FINN20's H2-3 title, the one this brand feeds it
+// ("บาคาร่าเว็บตรงควรตรวจผู้ให้บริการเกมก่อนเลือกเล่น", 48 chars). Mobile at a
 // 375px viewport: the card is 343px wide inside the section's px-4, the badge is
 // w-[92%] of that = 315px, and after px-4 (32px), border-2 (4px), the two ✦
 // spans (~28px) and their gap-2 pair (16px) about 235px is left for text.
@@ -22,29 +22,30 @@ const headingSize = HeadingTag === "h1" ? "text-xl sm:text-2xl md:text-3xl" : "t
 // sits at 105 − 24 = 81px into the card — clear of pt-32 (128px).
 // Desktop: text-2xl at 36px a line over ~548px of usable width inside max-w-2xl
 // wraps to 2 lines = 96px tall, bottom edge at 72px, inside md:pt-28 (112px).
-// Both clear as they stand; do not shrink either padding.
+// Both clear as they stand; do not shrink either padding. pt-16/pt-18 are the
+// documented floor, and these sit well above it.
 //
-// HOT189 two-tone: flame red carries the surfaces and glows, gold carries the
-// type. The badge sits on the panel tone so the gold gradient stays readable
-// where it overlaps the card edge.
+// FINN20 two-tone: gold carries the surfaces and glows, silver is the secondary
+// accent on the ✦ marks. The badge sits on the panel tone (#1f1a10) so the gold
+// gradient stays readable where it overlaps the card edge.
 ---
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#ef2b09]/35 bg-gradient-to-b from-[#1c0705]/95 to-[#0d0402]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#ffe9cf] shadow-[0_10px_30px_rgba(239,43,9,0.2)] md:pt-28">
-    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#ef2b09]/28 blur-[60px]"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#fcd304]/22 blur-[60px]"></div>
+    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#fdd323]/35 bg-gradient-to-b from-[#14110a]/95 to-[#080705]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#f3e7c8] shadow-[0_10px_30px_rgba(253,211,35,0.2)] md:pt-28">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#fdd323]/28 blur-[60px]"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#d7dbe1]/18 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#ef2b09]/45 bg-[#2e100a] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(252,211,4,0.2)] sm:px-8">
-          <span aria-hidden="true" class="shrink-0 text-[#ff7a18]">
+        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#fdd323]/45 bg-[#1f1a10] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(253,211,35,0.2)] sm:px-8">
+          <span aria-hidden="true" class="shrink-0 text-[#d7dbe1]">
             ✦
           </span>
-          <HeadingTag class={`min-w-0 bg-gradient-to-r from-[#ffe86b] via-[#fcd304] to-[#c99400] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
+          <HeadingTag class={`min-w-0 bg-gradient-to-r from-[#ffe98a] via-[#fdd323] to-[#e39d02] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
             {title}
           </HeadingTag>
-          <span aria-hidden="true" class="shrink-0 text-[#ff7a18]">
+          <span aria-hidden="true" class="shrink-0 text-[#d7dbe1]">
             ✦
           </span>
         </div>

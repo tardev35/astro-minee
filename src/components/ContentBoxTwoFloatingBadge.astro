@@ -12,12 +12,17 @@ const { title, titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
 // sentence has to wrap rather than blow past the viewport, and the wrapped badge
 // has to clear the grid below it.
 //
-// Measured against BANANAV3's H2-2 title ("บาคาร่าเหมาะกับผู้ที่ชอบกติกาชัดและ
-// รอบเกมรวดเร็ว", 45 chars). Mobile: text-lg at leading-normal = 27px a line
-// over ~240px of usable badge width wraps to 3 lines at worst → 3×27 + 20
+// Re-measured against FINN20's H2-7 title, the one this brand feeds it
+// ("จ่ายไวบน FINN20 ควรตรวจจากสถานะรายการจริง", 40 chars). Mobile at a 375px
+// viewport: the card is 343px inside the section's px-4, the badge is w-[92%] =
+// 315px, and after px-4 (32px), border-2 (4px), the two ✦ spans (~28px) and
+// their gap-2 pair (16px) about 235px is left for text. text-lg at
+// leading-normal = 27px a line wraps that title to 3 lines at worst → 3×27 + 20
 // (py-2.5) + 4 (border-2) = 105px tall, bottom edge at 105 − 24 = 81px into the
-// card, inside pt-32 (128px). Desktop: text-2xl at 36px a line over ~560px
+// card, inside pt-32 (128px). Desktop: text-2xl at 36px a line over ~548px
 // wraps to 2 lines → 96px tall, bottom edge at 72px, inside md:pt-28 (112px).
+// pt-16/pt-18 are the documented floor; these sit well above it and are kept in
+// sync with the other two *FloatingBadge files.
 //
 // titleleft/titleright are <p>, not headings: this box's column labels are
 // supporting-panel chrome. The one docx heading it carries is `title`.
@@ -25,20 +30,20 @@ const { title, titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#e8a317]/30 bg-gradient-to-b from-[#2e1a05]/95 to-[#241303]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(232,163,23,0.16)] md:pt-28">
-    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#fed624]/30 blur-[60px]"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#e8a317]/25 blur-[60px]"></div>
+    class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#fdd323]/35 bg-gradient-to-b from-[#14110a]/95 to-[#080705]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(253,211,35,0.2)] md:pt-28">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#fdd323]/28 blur-[60px]"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#d7dbe1]/18 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#e8a317]/40 bg-[#2e1a05] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(254,214,36,0.22)] sm:px-8">
-          <span aria-hidden="true" class="shrink-0 text-[#fed624]">
+        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#fdd323]/45 bg-[#1f1a10] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(253,211,35,0.2)] sm:px-8">
+          <span aria-hidden="true" class="shrink-0 text-[#d7dbe1]">
             ✦
           </span>
-          <HeadingTag class="min-w-0 bg-gradient-to-r from-[#ffe97a] via-[#fed624] to-[#ffc94d] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
+          <HeadingTag class="min-w-0 bg-gradient-to-r from-[#ffe98a] via-[#fdd323] to-[#e39d02] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
             {title}
           </HeadingTag>
-          <span aria-hidden="true" class="shrink-0 text-[#fed624]">
+          <span aria-hidden="true" class="shrink-0 text-[#d7dbe1]">
             ✦
           </span>
         </div>
@@ -46,13 +51,13 @@ const { title, titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
     }
 
     <div class="grid grid-cols-1 gap-10 md:grid-cols-2">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdf1b3]">
-        {titleleft && <p class="text-2xl leading-normal font-bold text-[#fed624]">{titleleft}</p>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f3e7c8]">
+        {titleleft && <p class="text-2xl leading-normal font-bold text-[#fdd323]">{titleleft}</p>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#fdf1b3] md:border-l md:border-[#e8a317]/30 md:pl-10">
-        {titleright && <p class="text-2xl leading-normal font-bold text-[#fed624]">{titleright}</p>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f3e7c8] md:border-l md:border-[#fdd323]/30 md:pl-10">
+        {titleright && <p class="text-2xl leading-normal font-bold text-[#fdd323]">{titleright}</p>}
         <slot name="right" />
       </article>
     </div>

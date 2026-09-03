@@ -10,13 +10,14 @@ const targetUrl = "https://yoalink.com/q83b";
 // the first <style> block below. Kanit stays declared on either brand font: it
 // is also the Thai fallback inside the Google Sans stack.
 //
-// This brand is on Kanit (BRAND_FONT rotated off google-sans), so
-// usesGoogleFonts is false and fontHref takes the SECOND branch, asking Google
-// for Oswald alone. Oswald is the only face that always needs a CDN: the Latin
-// status heading uses it and it is not self-hosted. The brand wordmark does NOT
-// — .brand-identity draws the name in var(--font-sans), the same face the rest
-// of the site uses, so the wordmark here matches the navbar logotype instead of
-// introducing a third typeface on a screen that is on display for 1.5 seconds.
+// This brand is on Google Sans (BRAND_FONT rotated off kanit), so
+// usesGoogleFonts is true and fontHref takes the FIRST branch, asking Google for
+// Google Sans plus Oswald. Oswald is the only face that always needs a CDN: the
+// Latin status heading uses it and it is not self-hosted. The brand wordmark
+// does NOT — .brand-identity draws the name in var(--font-sans), the same face
+// the rest of the site uses, so the wordmark here matches the navbar logotype
+// instead of introducing a third typeface on a screen that is on display for
+// 1.5 seconds.
 //
 // The kanit branch used to request "Kanit:wght@300;400;600" too, even though the
 // site self-hosts Kanit: a third-party request for weights nothing here draws
@@ -31,18 +32,18 @@ const fontHref = usesGoogleFonts
 <html lang="th" style={`--font-sans: ${fontStack};`}>
   <head>
     <meta charset="utf-8" />
-    <title>LAVA432 | เข้าสู่ระบบสล็อตผ่านช่องทางหลักอย่างสะดวก</title>
+    <title>FINN20 | เข้าสู่ระบบบาคาร่าเว็บตรงผ่านช่องทางหลัก</title>
 
     {
       /* Title and description are the docx SUB-PAGES row for เข้าสู่ระบบ, both
-        verbatim. The brief's sentence is 120 characters and it ships at 120:
-        brand-spec §7 says a description the docx supplies is used at its own
-        length and is not padded. Nothing forces a floor here either —
+        verbatim. The brief's sentence is 119 characters and it ships at 119:
+        brand-spec says a description the docx supplies is used at its own length
+        and is not padded. Nothing forces a floor here either —
         verify-build.mjs puts its 150–160 gate after `if (!indexable) continue;`
         and this stub is noindex (see the robots meta below).
         Count CHARACTERS, not bytes: Thai is 3 bytes per character. */
     }
-    <meta name="description" content="LAVA432 เข้าสู่ระบบผ่านช่องทางหลัก รองรับมือถือและคอมพิวเตอร์ พร้อมเลือกเกม ตรวจสอบโปรโมชั่น บัญชี และสถานะรายการได้ง่าย" />
+    <meta name="description" content="FINN20 เข้าสู่ระบบบาคาร่า รองรับมือถือ พร้อมเลือกโต๊ะ ตรวจสอบบัญชี โปรโมชั่น ประวัติเดิมพัน และสถานะรายการได้อย่างสะดวก" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {
@@ -83,27 +84,28 @@ const fontHref = usesGoogleFonts
     </style>
 
     <style>
-      /* LAVA432 is molten rock: a scarlet core bleeding into molten orange on a
-         near-black volcanic page, and a wordmark that starts pure white at the
-         crown and falls through ember into scarlet at its base, the way the
-         logo's type does. The outgoing brand here was flame-red over ELECTRIC
-         GOLD, and there is NO GOLD in LAVA432 at all — every gold stop became
-         molten orange or white, and nothing below kept its old value.
+      /* FINN20 is a gold-luxury baccarat room: heavy chrome gold on a near-black
+         table, with silver as the second metal — the logo is a gold-chrome
+         "FiNN" running into a silver "20", and the wordmark below falls white →
+         silver → gold the same way. The outgoing brand here was molten SCARLET
+         AND ORANGE, and there is no red anywhere in FINN20 — every
+         scarlet/molten/ember stop became gold or silver, and nothing below kept
+         its old value.
          Every variable is NAMED FOR THE COLOUR IT HOLDS, which previous brands
          stopped doing: this block once declared `--brand-gold` on brands with no
          gold in them and `--brand-red` on a blue one, so the next editor reused
          it by name and shipped the wrong hue. Rename with the value. */
       :root {
-        --ink: #0a0203;
-        --panel: rgba(28, 5, 5, 0.94);
-        --scarlet: #ec000e;
-        --scarlet-hot: #ff3d2e;
-        --molten: #ff6a13;
-        --ember: #ffa040;
-        --char: #2a0808;
+        --ink: #080705;
+        --panel: rgba(20, 17, 10, 0.94);
+        --gold: #fdd323;
+        --gold-bright: #ffe98a;
+        --gold-deep: #e39d02;
+        --silver: #d7dbe1;
+        --char: #1f1a10;
         --white: #ffffff;
-        --text: #f4e3e0;
-        --text-dim: #c9a8a4;
+        --text: #f3e7c8;
+        --text-dim: #bfae86;
       }
 
       body {
@@ -111,7 +113,7 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         color: var(--text);
 
-        background: radial-gradient(circle at 50% 10%, rgba(236, 0, 14, 0.18) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(42, 8, 8, 0.45) 0%, transparent 55%), var(--ink);
+        background: radial-gradient(circle at 50% 10%, rgba(253, 211, 35, 0.16) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(31, 26, 16, 0.55) 0%, transparent 55%), var(--ink);
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -125,11 +127,11 @@ const fontHref = usesGoogleFonts
         max-width: 450px;
         padding: 3.5rem;
         background: var(--panel);
-        border: 1px solid rgba(236, 0, 14, 0.45);
+        border: 1px solid rgba(253, 211, 35, 0.45);
         border-radius: 2rem;
         box-shadow:
-          0 1rem 3rem rgba(236, 0, 14, 0.24),
-          0 0 2rem rgba(42, 8, 8, 0.45);
+          0 1rem 3rem rgba(253, 211, 35, 0.24),
+          0 0 2rem rgba(31, 26, 16, 0.55);
         text-align: center;
         backdrop-filter: blur(10px);
       }
@@ -138,13 +140,13 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(180deg, var(--white) 0%, var(--ember) 35%, var(--molten) 65%, var(--scarlet-hot) 85%, var(--scarlet) 100%);
+        background: linear-gradient(180deg, var(--white) 0%, var(--silver) 22%, var(--gold-bright) 48%, var(--gold) 74%, var(--gold-deep) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         letter-spacing: 0.12em;
         margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 2px rgba(10, 2, 3, 0.6));
+        filter: drop-shadow(0 1px 2px rgba(8, 7, 5, 0.6));
       }
 
       .sophisticated-loader {
@@ -160,30 +162,30 @@ const fontHref = usesGoogleFonts
       .orb {
         width: 40px;
         height: 40px;
-        background: radial-gradient(circle, var(--ember) 0%, var(--scarlet) 50%, var(--char) 100%);
+        background: radial-gradient(circle, var(--gold-bright) 0%, var(--gold) 50%, var(--char) 100%);
         border-radius: 50%;
-        box-shadow: 0 0 2rem rgba(236, 0, 14, 0.45);
+        box-shadow: 0 0 2rem rgba(253, 211, 35, 0.45);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .ring {
         position: absolute;
         border-radius: 50%;
-        border: 3px solid rgba(255, 106, 19, 0.2);
+        border: 3px solid rgba(253, 211, 35, 0.2);
         animation: spin linear infinite;
       }
 
       .ring-1 {
         width: 100%;
         height: 100%;
-        border-top-color: var(--molten);
+        border-top-color: var(--gold);
         animation-duration: 4s;
       }
 
       .ring-2 {
         width: 80%;
         height: 80%;
-        border-bottom-color: var(--scarlet-hot);
+        border-bottom-color: var(--silver);
         animation-duration: 6s;
         animation-direction: reverse;
       }
@@ -200,11 +202,11 @@ const fontHref = usesGoogleFonts
         0%,
         100% {
           transform: scale(1);
-          box-shadow: 0 0 2rem rgba(236, 0, 14, 0.45);
+          box-shadow: 0 0 2rem rgba(253, 211, 35, 0.45);
         }
         50% {
           transform: scale(1.15);
-          box-shadow: 0 0 3rem rgba(255, 106, 19, 0.55);
+          box-shadow: 0 0 3rem rgba(255, 233, 138, 0.55);
         }
       }
 
@@ -215,7 +217,7 @@ const fontHref = usesGoogleFonts
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text);
-        text-shadow: 0 1px 1px rgba(10, 2, 3, 0.6);
+        text-shadow: 0 1px 1px rgba(8, 7, 5, 0.6);
         margin: 0;
       }
       .status-text .p {
@@ -228,7 +230,7 @@ const fontHref = usesGoogleFonts
   </head>
   <body>
     <div class="premium-loading-container">
-      <div class="brand-identity">LAVA432</div>
+      <div class="brand-identity">FINN20</div>
 
       <div class="sophisticated-loader">
         <div class="orb"></div>
@@ -238,7 +240,7 @@ const fontHref = usesGoogleFonts
 
       <div class="status-text">
         <h1 class="h1">AUTHENTICATING SECURE ACCESS...</h1>
-        <p class="p">กำลังพาไปหน้าเข้าสู่ระบบ LAVA432 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
+        <p class="p">กำลังพาไปหน้าเข้าสู่ระบบ FINN20 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
       </div>
     </div>
 

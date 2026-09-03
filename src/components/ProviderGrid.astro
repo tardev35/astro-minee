@@ -4,28 +4,30 @@
 // the brief. The accessible name for the region lives on the section's
 // aria-label instead.
 //
-// Copy follows the LAVA432 brief, docx section "เว็บสล็อตขนาดใหญ่ควรมีมากกว่าแค่
-// จำนวนเกมเยอะ": ความเสถียรของระบบ การจัดหมวดเกม ข้อมูลค่ายเกม และการจัดการบัญชี
-// ที่เป็นระบบ. The tiles name the things the brief says to weigh together and
-// nothing else — no game studio is named, because the brief never states which
-// are on the system and an invented list is a claim the site cannot back.
+// Copy follows the FINN20 brief, docx section "บาคาร่าเว็บตรงควรตรวจผู้ให้บริการ
+// เกมก่อนเลือกเล่น": ชื่อผู้ให้บริการเกม รายละเอียดโต๊ะ กติกา และข้อมูลระบบที่แสดง.
+// The tiles name the things the brief says to check and nothing else — no game
+// studio is named, because the brief never states which are on the system and an
+// invented list is a claim the site cannot back.
 const categories = [
-  { name: "จำนวนเกมในระบบ", desc: "เกมเยอะเป็นแค่ปัจจัยเดียว ไม่ใช่ข้อสรุปว่าเว็บใหญ่", tag: "ดูเป็นปัจจัยเดียว", icon: "🎰" },
-  { name: "ความเสถียรของระบบ", desc: "เปิดเกมและทำรายการได้ต่อเนื่องคือสิ่งที่วัดได้จริง", tag: "ใช้งานต่อเนื่อง", icon: "🛠️" },
-  { name: "การจัดหมวดเกม", desc: "หมวดที่แยกชัดช่วยให้ไล่หาเกมได้โดยไม่ต้องสลับหลายหน้า", tag: "หาเกมง่าย", icon: "🗂️" },
-  { name: "ข้อมูลค่ายเกม", desc: "ค่ายผู้พัฒนาระบุ RTP ตารางจ่าย และฟีเจอร์ของเกมไว้ให้อ่าน", tag: "อ่านจากค่าย", icon: "🏷️" },
-  { name: "การจัดการบัญชี", desc: "โปรไฟล์ ยอดคงเหลือ และการตั้งค่าอยู่ในที่เดียวกัน", tag: "จัดการที่เดียว", icon: "🧭" },
-  { name: "ประวัติรายการ", desc: "ประวัติที่ตรวจย้อนหลังได้ช่วยลดความสับสนระหว่างใช้งาน", tag: "ตรวจย้อนหลังได้", icon: "🧾" },
+  { name: "ชื่อผู้ให้บริการเกม", desc: "ค่ายที่ดำเนินโต๊ะระบุชื่อไว้ให้ตรวจแหล่งที่มาได้", tag: "ดูจากชื่อค่าย", icon: "🏷️" },
+  { name: "รายละเอียดของโต๊ะ", desc: "ขั้นต่ำ สูงสุด และรูปแบบการเล่นต่างกันในแต่ละโต๊ะ", tag: "อ่านก่อนนั่ง", icon: "🎴" },
+  { name: "กติกาของเกม", desc: "กติกาย่อยและขั้นตอนตัดสินผลระบุไว้ในตัวเกม", tag: "อ่านให้ครบ", icon: "📜" },
+  { name: "อัตราจ่ายและค่าคอมมิชชัน", desc: "Banker Player และ Tie จ่ายและเสี่ยงไม่เท่ากัน", tag: "ดูก่อนเดิมพัน", icon: "💰" },
+  { name: "วิธีดำเนินเกมแบบสด", desc: "บาคาร่าสดดูการแจกไพ่และการตัดสินผลได้แบบเรียลไทม์", tag: "ดูเรียลไทม์", icon: "🎥" },
+  { name: "ข้อมูลระบบที่แสดง", desc: "ยอด ประวัติรายการ และสถานะธุรกรรมอยู่ในบัญชีเดียว", tag: "ตรวจย้อนหลังได้", icon: "🧾" },
   { name: "รองรับหลายอุปกรณ์", desc: "เปิดผ่านเบราว์เซอร์บนมือถือ แท็บเล็ต และคอมพิวเตอร์ด้วยบัญชีเดียว", tag: "ใช้ได้ทุกจอ", icon: "📱" },
 ];
 ---
 
-<section aria-label="องค์ประกอบของเว็บสล็อตขนาดใหญ่บน LAVA432 ทั้งความเสถียรของระบบ การจัดหมวดเกม ข้อมูลค่ายเกม และการจัดการบัญชี" class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
+<section
+  aria-label="สิ่งที่ควรตรวจก่อนเลือกโต๊ะบาคาร่าบน FINN20 ทั้งชื่อผู้ให้บริการเกม รายละเอียดโต๊ะ กติกา อัตราจ่าย และข้อมูลระบบที่แสดง"
+  class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
-    <p class="bg-gradient-to-r from-[#ffffff] via-[#ffa040] to-[#ff6a13] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
-      สิ่งที่ควรดูร่วมกันก่อนบอกว่า <span class="text-[#ffffff]">LAVA432</span> เป็นเว็บใหญ่
+    <p class="bg-gradient-to-r from-[#d7dbe1] via-[#ffe98a] to-[#fdd323] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
+      สิ่งที่ควรตรวจก่อนบอกว่า <span class="text-[#d7dbe1]">FINN20</span> เป็นเว็บตรง
     </p>
-    <div class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#ec000e] to-transparent"></div>
+    <div class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#fdd323] to-transparent"></div>
   </div>
 
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5 xl:grid-cols-7">
@@ -33,21 +35,21 @@ const categories = [
       categories.map((category) => (
         <a
           href="/register"
-          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#ec000e]/35 bg-[#1c0505]/92 p-5 shadow-[0_10px_30px_rgba(236,0,14,0.22)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#ff6a13]/60 hover:bg-[#2a0808]/95 hover:shadow-[0_15px_40px_rgba(255,106,19,0.3)]">
-          <div class="pointer-events-none absolute inset-0 bg-[#7a0206]/35 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#fdd323]/35 bg-[#14110a]/92 p-5 shadow-[0_10px_30px_rgba(253,211,35,0.22)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#ffe98a]/60 hover:bg-[#1f1a10]/95 hover:shadow-[0_15px_40px_rgba(253,211,35,0.3)]">
+          <div class="pointer-events-none absolute inset-0 bg-[#e39d02]/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#ffa040] via-[#ff6a13] to-[#ff3d2e] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#120303] shadow-sm transition-transform duration-300 group-hover:scale-110">
+          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#ffe98a] via-[#fdd323] to-[#e39d02] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#14110a] shadow-sm transition-transform duration-300 group-hover:scale-110">
             {category.tag}
           </div>
 
           <div aria-hidden="true" class="mb-3 text-4xl transition-transform duration-300 group-hover:scale-125 group-hover:rotate-3">
             {category.icon}
           </div>
-          <p class="text-center text-sm font-black text-[#f4e3e0] transition-colors group-hover:text-[#ff6a13]">{category.name}</p>
-          <p class="mt-1 text-center text-[10px] text-[#c9a8a4]">{category.desc}</p>
+          <p class="text-center text-sm font-black text-[#f3e7c8] transition-colors group-hover:text-[#fdd323]">{category.name}</p>
+          <p class="mt-1 text-center text-[10px] text-[#bfae86]">{category.desc}</p>
 
-          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#ec000e]/35 bg-[#120303] py-1.5 text-center text-[11px] font-bold text-[#ff6a13] shadow-inner transition-colors duration-300 group-hover:border-[#ff6a13]/60 group-hover:bg-gradient-to-r group-hover:from-[#ffa040] group-hover:via-[#ff6a13] group-hover:to-[#ff3d2e] group-hover:text-[#120303]">
-            เข้าดูหมวดนี้
+          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#fdd323]/35 bg-[#080705] py-1.5 text-center text-[11px] font-bold text-[#fdd323] shadow-inner transition-colors duration-300 group-hover:border-[#ffe98a]/60 group-hover:bg-gradient-to-r group-hover:from-[#ffe98a] group-hover:via-[#fdd323] group-hover:to-[#e39d02] group-hover:text-[#14110a]">
+            เข้าดูรายละเอียด
           </span>
         </a>
       ))

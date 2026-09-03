@@ -37,7 +37,7 @@ export default defineConfig({
     "/line": "https://tinyurl.com/tog191",
   },
 
-  site: "https://lava432auto.com",
+  site: "https://finn20-play.org",
   integrations: [
     sitemap({
       // /login, /register and /line are forwarding pages that all ship

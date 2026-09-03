@@ -14,15 +14,19 @@ const { title, faqs = [] } = Astro.props;
 // The title is the only heading here and it is prop-driven, i.e. it comes from
 // the page's own FAQ section. Each question stays a <span> inside <summary> so
 // the page's heading inventory keeps matching the flat H1 + H2 docx.
+//
+// <details>/<summary> stays: it opens with no JavaScript, it is in the HTML for
+// a crawler whether or not it is open, and `name="faq-terminal"` gives the group
+// accordion behaviour natively.
 ---
 
 <div class="mx-auto max-w-[1000px] px-4 py-10 font-sans">
   {
     title && (
       <div
-        class="mb-8 flex items-center gap-3 border-l-4 border-[#e8a317] bg-gradient-to-r from-[#241303] via-[#241303]/60 to-transparent px-4 py-2.5"
+        class="mb-8 flex items-center gap-3 border-l-4 border-[#fdd323] bg-gradient-to-r from-[#1f1a10] via-[#1f1a10]/60 to-transparent px-4 py-2.5"
         style="clip-path: polygon(0 0, 100% 0, calc(100% - 15px) 100%, 0 100%);">
-        <h2 class="text-xl leading-normal font-black tracking-widest text-[#fed624] uppercase md:text-2xl">{title}</h2>
+        <h2 class="text-xl leading-normal font-black tracking-widest text-[#fdd323] uppercase md:text-2xl">{title}</h2>
       </div>
     )
   }
@@ -32,13 +36,13 @@ const { title, faqs = [] } = Astro.props;
       faqs.map((faq) => (
         <details
           name="faq-terminal"
-          class="faq-item group relative overflow-hidden border border-[#e8a317]/25 bg-[#2e1a05]/92 backdrop-blur-sm transition-all duration-300 hover:border-[#e8a317]/50 hover:shadow-[0_15px_40px_rgba(232,163,23,0.30)]"
+          class="faq-item group relative overflow-hidden border border-[#fdd323]/25 bg-[#14110a]/92 backdrop-blur-sm transition-all duration-300 hover:border-[#fdd323]/50 hover:shadow-[0_15px_40px_rgba(253,211,35,0.3)]"
           style="clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);">
-          <div aria-hidden="true" class="absolute top-0 left-0 h-[2px] w-16 bg-gradient-to-r from-[#ffc94d] to-transparent" />
+          <div aria-hidden="true" class="absolute top-0 left-0 h-[2px] w-16 bg-gradient-to-r from-[#ffe98a] to-transparent" />
 
           <summary class="flex w-full cursor-pointer items-center justify-between p-5 text-left transition-all">
-            <span class="flex items-center gap-2 text-base font-bold text-[#fdf1b3] transition-colors group-hover:text-[#fed624] md:text-lg">
-              <span aria-hidden="true" class="font-mono text-[#ffc94d]">
+            <span class="flex items-center gap-2 text-base font-bold text-[#f3e7c8] transition-colors group-hover:text-[#fdd323] md:text-lg">
+              <span aria-hidden="true" class="font-mono text-[#ffe98a]">
                 &gt;_
               </span>
               {faq.q}
@@ -46,13 +50,13 @@ const { title, faqs = [] } = Astro.props;
 
             <span
               aria-hidden="true"
-              class="faq-icon ml-4 flex h-8 w-8 shrink-0 items-center justify-center border border-[#e8a317]/30 bg-[#241303] text-lg font-black text-[#e8a317] transition-all duration-300 group-hover:border-[#e8a317]/50 group-hover:text-[#fed624]"
+              class="faq-icon ml-4 flex h-8 w-8 shrink-0 items-center justify-center border border-[#fdd323]/30 bg-[#1f1a10] text-lg font-black text-[#fdd323] transition-all duration-300 group-hover:border-[#fdd323]/50 group-hover:text-[#ffe98a]"
               style="clip-path: polygon(25% 0, 100% 0, 100% 75%, 75% 100%, 0 100%, 0 25%);">
               +
             </span>
           </summary>
 
-          <div class="faq-answer border-t border-[#5b3304] p-5 pt-4 text-left text-base leading-relaxed text-[#fdf1b3]">{faq.a}</div>
+          <div class="faq-answer border-t border-[#e39d02]/45 p-5 pt-4 text-left text-base leading-relaxed text-[#f3e7c8]">{faq.a}</div>
         </details>
       ))
     }
@@ -67,13 +71,13 @@ const { title, faqs = [] } = Astro.props;
     display: none;
   }
   .faq-item[open] {
-    border-color: rgba(232, 163, 23, 0.6);
-    box-shadow: 0 15px 40px rgba(232, 163, 23, 0.3);
+    border-color: rgba(253, 211, 35, 0.6);
+    box-shadow: 0 15px 40px rgba(253, 211, 35, 0.3);
   }
   .faq-item[open] .faq-icon {
     transform: rotate(45deg);
-    border-color: #e8a317;
-    color: #fed624;
+    border-color: #fdd323;
+    color: #ffe98a;
   }
   .faq-item[open] .faq-answer {
     animation: faq-reveal 0.25s ease-out;

@@ -6,15 +6,15 @@ const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png
 const imagePaths = Object.keys(images);
 const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 
-const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร BANANAV3 สีเหลืองกล้วยไล่เฉดทอง ขอบหนาสีน้ำตาลเข้ม มีรูปกล้วยลูกหนึ่งพาดเฉียงอยู่หลังตัวอักษร และมีเปลือกกล้วยโค้งรับอยู่ด้านล่าง`;
+const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร FiNN สีทองไล่เฉดขอบเข้ม ต่อด้วยเลข 20 สีเงินเมทัลลิก มีสัญลักษณ์ไพ่โพดำซ้อนอยู่ท้ายเลข ใต้ตัวอักษรเป็นแถบสีดำโค้งเขียนว่า WWW.FINN20.COM`;
 
-// ลิงก์ /ตรวจหวย ถูกถอดออกแล้ว — หน้านั้นถูกพักไว้ใน src/pages-disabled/ สำหรับ
-// แบรนด์นี้ ลิงก์ค้างไว้จะกลายเป็น href ไปยัง route ที่ไม่มีอยู่ ซึ่ง
-// verify-build.mjs ตีเป็น error ส่วน /แนวทาง ยังอยู่เพราะ operator เปิดหน้านั้นไว้
+// FINN20 เป็นแบรนด์บาคาร่า ไม่ใช่เว็บหวย — ลิงก์ /ตรวจหวย และ /แนวทาง ที่ variant
+// นี้เคยมีถูกถอดออกแล้ว ทั้งสองหน้าถูกพักไว้ใน src/pages-disabled/ รอบนี้ ลิงก์ที่
+// ค้างไว้จะกลายเป็น href ไปยัง route ที่ไม่มีอยู่ ซึ่ง verify-build.mjs ตีเป็น error
 ---
 
-<footer class="relative mt-16 w-full overflow-hidden rounded-t-[3rem] border-t border-[#e8a317]/45 bg-[#140b02] pt-16 pb-8 font-sans text-[#fdf1b3] shadow-[0_-15px_40px_rgba(232,163,23,0.24)]">
-  <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-[250px] w-full max-w-4xl rounded-full bg-[#fed624]/25 blur-[100px]"></div>
+<footer class="relative mt-16 w-full overflow-hidden rounded-t-[3rem] border-t border-[#e39d02]/45 bg-[#14110a] pt-16 pb-8 font-sans text-[#f3e7c8] shadow-[0_-15px_40px_rgba(253,211,35,0.22)]">
+  <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-[250px] w-full max-w-4xl rounded-full bg-[#fdd323]/22 blur-[100px]"></div>
 
   <div class="relative z-10 mx-auto w-full max-w-[1200px] px-6">
     <div class="mb-12 grid grid-cols-1 gap-12 md:grid-cols-12">
@@ -28,44 +28,43 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร BANANAV3
                 widths={[130, 260, 390]}
                 sizes="130px"
                 loading="lazy"
-                class="h-[65px] w-auto drop-shadow-[0_5px_15px_rgba(254,214,36,0.45)]"
+                class="h-[65px] w-auto drop-shadow-[0_5px_15px_rgba(253,211,35,0.45)]"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
               />
             ) : (
-              <span class="bg-gradient-to-r from-[#ffe97a] to-[#e8a317] bg-clip-text text-4xl font-black tracking-widest text-transparent">{BRAND_NAME}</span>
+              <span class="bg-gradient-to-r from-[#ffe98a] to-[#e39d02] bg-clip-text text-4xl font-black tracking-widest text-transparent">{BRAND_NAME}</span>
             )
           }
         </a>
-        <p class="border-l-2 border-[#fed624]/60 pl-4 text-sm leading-relaxed text-[#fdf1b3]/65">
-          {BRAND_NAME} เป็นแพลตฟอร์มเดิมพันออนไลน์ที่รวมทั้งบาคาร่าและหวยไว้ในระบบเดียว รองรับการใช้งานบนมือถือ แท็บเล็ต และคอมพิวเตอร์ สมาชิกเลือกประเภทเดิมพัน ตรวจสอบโปรโมชั่น
-          และติดตามสถานะธุรกรรมได้จากบัญชีเดียว โดยควรศึกษากติกา อัตราจ่าย และเงื่อนไขของแต่ละประเภทให้ครบก่อนเริ่มใช้งานทุกครั้ง
+        <p class="border-l-2 border-[#fdd323]/60 pl-4 text-sm leading-relaxed text-[#f3e7c8]/65">
+          {BRAND_NAME} เป็นแพลตฟอร์มบาคาร่าออนไลน์ที่รวมโต๊ะเกมหลายรูปแบบไว้ในระบบเดียว รองรับการใช้งานบนมือถือ แท็บเล็ต และคอมพิวเตอร์ สมาชิกเลือกโต๊ะจากวงเงินและรูปแบบการเล่น ตรวจสอบโปรโมชั่น
+          และติดตามสถานะธุรกรรมได้จากบัญชีเดียว โดยควรศึกษากติกา อัตราจ่าย ค่าคอมมิชชัน และเงื่อนไขของแต่ละโต๊ะให้ครบก่อนเริ่มเดิมพันทุกครั้ง
         </p>
         <div class="mt-4 flex gap-3">
-          <span class="rounded-full border border-[#fed624]/45 bg-[#2e1a05]/70 px-4 py-1 text-xs font-medium text-[#ffe97a] backdrop-blur-sm">TRUE WALLET</span>
-          <span class="rounded-full border border-[#e8a317]/40 bg-[#2e1a05]/70 px-4 py-1 text-xs font-medium text-[#ffe97a] backdrop-blur-sm">AUTO 24 HRS</span>
+          <span class="rounded-full border border-[#fdd323]/45 bg-[#1f1a10]/70 px-4 py-1 text-xs font-medium text-[#ffe98a] backdrop-blur-sm">TRUE WALLET</span>
+          <span class="rounded-full border border-[#e39d02]/40 bg-[#1f1a10]/70 px-4 py-1 text-xs font-medium text-[#ffe98a] backdrop-blur-sm">AUTO 24 HRS</span>
         </div>
       </div>
 
       <nav class="flex flex-col gap-4 md:col-span-3 lg:pl-8" aria-label="ทางลัดหน้าเว็บ">
-        <p class="text-lg font-black tracking-widest text-[#fed624] uppercase drop-shadow-sm">QUICK LINKS</p>
-        <div aria-hidden="true" class="h-[1px] w-12 bg-gradient-to-r from-[#fed624] to-[#e8a317]"></div>
-        <ul class="flex flex-col gap-3 text-sm font-medium text-[#fdf1b3]/65">
-          <li><a href="/" class="transition-colors hover:text-[#fed624]">หน้าหลัก (Home)</a></li>
-          <li><a href="/promotion" class="transition-colors hover:text-[#fed624]">โปรโมชั่น (Promotions)</a></li>
-          <li><a href="/ทางเข้า" class="transition-colors hover:text-[#fed624]">ทางเข้า (Access)</a></li>
-          <li><a href="/ทดลองเล่น" class="transition-colors hover:text-[#fed624]">ทดลองเล่น (Demo)</a></li>
-          <li><a href="/แนวทาง" class="transition-colors hover:text-[#fed624]">แนวทางหวย</a></li>
-          <li><a href="/about-us" class="transition-colors hover:text-[#fed624]">เกี่ยวกับเรา (About)</a></li>
-          <li><a href="/contact-us" class="transition-colors hover:text-[#fed624]">ติดต่อเรา (Contact)</a></li>
-          <li><a href="/register" class="transition-colors hover:text-[#fed624]">สมัครสมาชิก (Join Us)</a></li>
-          <li><a href="/login" class="transition-colors hover:text-[#fed624]">เข้าสู่ระบบ (Login)</a></li>
+        <p class="text-lg font-black tracking-widest text-[#fdd323] uppercase drop-shadow-sm">QUICK LINKS</p>
+        <div aria-hidden="true" class="h-[1px] w-12 bg-gradient-to-r from-[#fdd323] to-[#e39d02]"></div>
+        <ul class="flex flex-col gap-3 text-sm font-medium text-[#f3e7c8]/65">
+          <li><a href="/" class="transition-colors hover:text-[#fdd323]">หน้าหลัก (Home)</a></li>
+          <li><a href="/promotion" class="transition-colors hover:text-[#fdd323]">โปรโมชั่น (Promotions)</a></li>
+          <li><a href="/ทางเข้า" class="transition-colors hover:text-[#fdd323]">ทางเข้า (Access)</a></li>
+          <li><a href="/ทดลองเล่น" class="transition-colors hover:text-[#fdd323]">ทดลองเล่น (Demo)</a></li>
+          <li><a href="/about-us" class="transition-colors hover:text-[#fdd323]">เกี่ยวกับเรา (About)</a></li>
+          <li><a href="/contact-us" class="transition-colors hover:text-[#fdd323]">ติดต่อเรา (Contact)</a></li>
+          <li><a href="/register" class="transition-colors hover:text-[#fdd323]">สมัครสมาชิก (Join Us)</a></li>
+          <li><a href="/login" class="transition-colors hover:text-[#fdd323]">เข้าสู่ระบบ (Login)</a></li>
         </ul>
       </nav>
 
       <div class="flex flex-col gap-5 md:col-span-4">
-        <p class="text-lg font-black tracking-widest text-[#fed624] uppercase drop-shadow-sm">CUSTOMER SUPPORT</p>
-        <div aria-hidden="true" class="h-[1px] w-12 bg-gradient-to-r from-[#fed624] to-[#e8a317]"></div>
+        <p class="text-lg font-black tracking-widest text-[#fdd323] uppercase drop-shadow-sm">CUSTOMER SUPPORT</p>
+        <div aria-hidden="true" class="h-[1px] w-12 bg-gradient-to-r from-[#fdd323] to-[#e39d02]"></div>
 
         <a
           href="/line"
@@ -101,20 +100,20 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร BANANAV3
 
         <a
           href="#top"
-          class="flex w-full items-center justify-center gap-2 rounded-xl border border-[#e8a317]/55 bg-[#2e1a05]/40 py-3 text-sm font-bold text-[#ffe97a] transition-all hover:bg-[#2e1a05]/80 hover:text-[#fdf1b3]">
+          class="flex w-full items-center justify-center gap-2 rounded-xl border border-[#e39d02]/55 bg-[#1f1a10]/40 py-3 text-sm font-bold text-[#ffe98a] transition-all hover:bg-[#1f1a10]/80 hover:text-[#f3e7c8]">
           <span aria-hidden="true">↑</span> กลับขึ้นบน
         </a>
 
-        <div class="mt-2 text-xs font-medium tracking-widest text-[#fed624]/60 uppercase">Supported Payments</div>
+        <div class="mt-2 text-xs font-medium tracking-widest text-[#fdd323]/60 uppercase">Supported Payments</div>
         <BankStrip size={30} />
       </div>
     </div>
 
-    <div class="flex flex-col items-center justify-between border-t border-[#e8a317]/45 pt-8 text-xs font-medium tracking-wide text-[#fdf1b3]/45 md:flex-row">
+    <div class="flex flex-col items-center justify-between border-t border-[#e39d02]/45 pt-8 text-xs font-medium tracking-wide text-[#f3e7c8]/45 md:flex-row">
       <p>COPYRIGHT &copy; {new Date().getFullYear()} {BRAND_NAME}. ALL RIGHTS RESERVED.</p>
       <div class="mt-4 flex gap-4 md:mt-0">
-        <a href="/terms/" class="transition-colors hover:text-[#fed624]">TERMS &amp; CONDITIONS</a>
-        <a href="/privacy/" class="transition-colors hover:text-[#fed624]">PRIVACY POLICY</a>
+        <a href="/terms/" class="transition-colors hover:text-[#fdd323]">TERMS &amp; CONDITIONS</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#fdd323]">PRIVACY POLICY</a>
       </div>
     </div>
   </div>

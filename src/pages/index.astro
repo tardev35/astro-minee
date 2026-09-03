@@ -1,17 +1,17 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
-import ContentBoxPremium from "../components/ContentBoxPremium.astro";
-import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
-import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
-import ContentBoxTwo from "../components/ContentBoxTwo.astro";
+import Announcement from "../components/Announcement5.astro";
+import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
+import ContentBoxTwoNeumorphism from "../components/ContentBoxTwoNeumorphism.astro";
+import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
+import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
 import ContentBox from "../components/ContentBox.astro";
+import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
+import ContentBoxTwoFloatingBadge from "../components/ContentBoxTwoFloatingBadge.astro";
 import ProviderGrid from "../components/ProviderGrid.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
-import LatestWinners3 from "../components/LatestWinners3.astro";
-import Faq3 from "../components/Faq3.astro";
+import LatestWinnersPremium from "../components/LatestWinnersPremium.astro";
+import Faq4 from "../components/Faq4.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
 import Navfoot from "../components/Navfoot.astro";
@@ -22,59 +22,58 @@ import { pageGraph } from "../lib/schema";
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
 // two of those per rebrand — both are spent here.
 //
-// slide2 prints "ภารกิจประจำวัน / DAILY MISSIONS" with a four-item checklist and
-// a รับฟรีสปิน 25 ครั้ง reward, i.e. the account doing the tracking for you,
-// which is the "ระบบใหม่ช่วยให้เลือกเกมและจัดการบัญชีง่ายขึ้น" idea of docx H2-1.
-// slide4 prints "LAVA HOUR 20:00 - 22:00 เปิดกล่องสุ่ม ลุ้น 18/88/188/432
-// เครดิต" — one spread with several possible outcomes printed on it, which is
-// the RTP/ความผันผวน section's own point in picture form.
-// slide1 (เช็กอิน 7 วัน รับเครดิตสะสม 432 บาท) and slide3 (ชวนเพื่อนมันส์ รับ
-// โบนัสคู่หู คนละ 50 บาท) stay unused here and keep rendering in SmoothCarousel
-// and on /promotion.
+// slide3 prints "ชวนเพื่อนรับคู่ คนละ 20 บาท" over a three-step flow diagram
+// (ชวนเพื่อน → เพื่อนสมัครสำเร็จ → รับโบนัส): a sequential process that ends in a
+// credited status, which is docx H2-4's auto-system point in picture form.
+// slide4 prints "FINN HOUR 20:20 - 21:20 เปิดกล่องสุ่ม ลุ้น 20 / 120 / 520
+// เครดิต" — one action with several printed payout values, which is H2-6's
+// Banker / Player / Tie payout point in picture form.
+// slide1 and slide2 stay unused on this page and keep rendering in
+// SmoothCarousel and on /promotion.
 //
 // banner2.png is NOT imported anywhere: it predates this asset drop.
-// banner1/banner1-mobile/og.png are the hero and the share card, and belong to
+// banner1/banner1-mobile/og.png are the hero and the share card and belong to
 // MainLayout alone.
-import imgDailyMissions from "../assets/slide2.png";
-import imgLavaHour from "../assets/slide4.png";
+import imgReferFriend from "../assets/slide3.png";
+import imgFinnHour from "../assets/slide4.png";
 
-const pageTitle = "LAVA432 | สล็อตเว็บใหญ่มั่นคง ระบบใหม่ฝากถอนออโต้ แตกง่ายจ่ายไว";
-const pageHeading = "LAVA432 สล็อตเว็บใหญ่มั่นคง ระบบใหม่ฝากถอนออโต้ แตกง่ายจ่ายไว";
+const pageTitle = "FINN20 | บาคาร่าลิขสิทธิ์แท้เว็บตรง เล่นง่ายไม่ล็อคผล ระบบออโต้จ่ายไว";
+const pageHeading = "FINN20 บาคาร่า ลิขสิทธิ์แท้เว็บตรง เล่นง่ายไม่ล็อคผล ระบบออโต้จ่ายไว";
 
 // The docx Main SEO Meta Description, verbatim at the length it was written
-// (123 characters). DESC_MIN does not apply to the home page — verify-build.mjs
+// (128 characters). DESC_MIN does not apply to the home page — verify-build.mjs
 // exempts it precisely so the brand's own copy ships unpadded. Do not top it up
 // to 150.
-const pageDescription = "LAVA432 สล็อตเว็บใหญ่ระบบใหม่ ฝากถอนออโต้ รองรับมือถือ พร้อมเกมหลายแนว ระบบบัญชีใช้งานสะดวก และตรวจสอบสถานะรายการได้ง่าย";
+const pageDescription = "FINN20 บาคาร่าเว็บตรง ระบบออโต้ รวมโต๊ะหลายรูปแบบ พร้อมข้อมูลผู้ให้บริการ อัตราจ่าย ประวัติเดิมพัน และสถานะธุรกรรมให้ตรวจสอบได้";
 
-// Byte-identical to AnnouncementPremium's own default, which is what every
-// sub-page calling <Announcement /> bare lands on. Passing it explicitly here
-// keeps the home page and the rest of the site from drifting apart silently. No
-// leading emoji — the marquee renders the string twice.
+// Byte-identical to Announcement5's own default, which is what every sub-page
+// calling <Announcement /> bare lands on. Passing it explicitly here keeps the
+// home page and the rest of the site from drifting apart silently. No leading
+// emoji — the marquee renders the string twice.
 const announcement =
-  "LAVA432 สล็อตเว็บใหญ่ระบบใหม่ รวมเกมหลายรูปแบบไว้ในบัญชีเดียว เลือกหมวดเกม ดูโปรโมชั่น และตรวจข้อมูลบัญชีได้จากหน้าเดียวโดยไม่ต้องสลับหลายหน้า • ระบบฝากถอนออโต้จัดการได้จากหน้าบัญชีโดยตรง ก่อนยืนยันควรตรวจชื่อบัญชี จำนวนเงิน และข้อมูลรับเงินให้ครบถ้วน • หากรายการเดิมยังดำเนินการอยู่ ควรรอผลจากระบบก่อนส่งรายการใหม่ เพื่อป้องกันรายการซ้ำ • เลือกเกมจาก RTP ตารางจ่าย ฟีเจอร์โบนัส และระดับความผันผวนร่วมกัน แทนการดูจากคำว่าแตกง่ายเพียงอย่างเดียว • คำว่าแตกง่ายและมั่นคงเป็นถ้อยคำทางการตลาด ไม่ใช่การรับประกันผล กำหนดงบและเวลาไว้ก่อนเริ่มทุกครั้ง";
+  "FINN20 รวมโต๊ะบาคาร่าหลายรูปแบบไว้ในระบบเดียว เลือกโต๊ะจากยอดเดิมพันขั้นต่ำ ความเร็วของแต่ละรอบ และรูปแบบการเล่นได้จากหน้าเดียว • ก่อนเริ่มควรตรวจชื่อผู้ให้บริการเกม กติกา อัตราจ่าย และค่าคอมมิชชันของแต่ละโต๊ะให้ครบ • ระบบออโต้ช่วยให้ตรวจยอด ประวัติรายการ และสถานะธุรกรรมได้จากบัญชีเดียว ก่อนยืนยันควรตรวจชื่อบัญชี จำนวนเงิน และข้อมูลรับเงินให้ถูกต้อง • หากรายการเดิมยังดำเนินการอยู่ ควรรอระบบอัปเดตก่อนทำรายการใหม่ เพื่อลดความซ้ำซ้อน • คำว่าไม่ล็อคผลและจ่ายไวเป็นถ้อยคำทางการตลาด ไม่ใช่การรับประกันผลของเกมหรือการถอนทุกกรณี ควรกำหนดงบก่อนเริ่มเล่นทุกครั้ง";
 
-const altDailyMissions =
-  "แบนเนอร์โปรโมชั่น LAVA432 ข้อความ ภารกิจประจำวัน พร้อมไอคอนเป้าธนูและกระดานเช็กลิสต์ ใต้ลงมาเป็นแผงหัวข้อ DAILY MISSIONS ไล่รายการ เข้าสู่ระบบ เดิมพันครบตามกำหนด เล่นเกมสล็อต และ ชวนเพื่อน โดยมีเครื่องหมายถูกสีแดงอยู่ท้ายทุกข้อ ถัดลงมาเขียนว่า ครบ 4 ภารกิจ รับฟรีสปิน 25 ครั้ง ทำครบ รับสิทธิ์ทันที และปุ่ม รับภารกิจ ด้านบนเป็นโลโก้ LAVA432 ตัวอักษรขาวและเลข 432 บนบล็อกสีแดง ข้างขวาเป็นผู้หญิงในชุดกีฬาสีดำ-แดงติดโลโก้ LAVA432 ขยิบตาและชี้นิ้วขึ้น ข้างหลังเป็นวงล้อสล็อตเลข 7 และช่อง BAR ด้านซ้ายล่างเป็นหีบสมบัติที่มีเหรียญทองและป้ายเลข 432 บนพื้นหลังสีดำแดงมีประกายไฟ";
+const altReferFriend =
+  "แบนเนอร์โปรโมชั่น FINN20 ข้อความ ชวนเพื่อนรับคู่ คนละ 20 บาท และบรรทัดล่างเขียนว่า เพื่อนสมัครสำเร็จ รับโบนัสทันที ใต้ลงมาเป็นแผงสามขั้นตอนเรียงจากซ้ายไปขวา ไอคอนคนเขียนว่า ชวนเพื่อน มีลูกศรชี้ไปยังไอคอนคนที่มีเครื่องหมายถูกเขียนว่า เพื่อนสมัครสำเร็จ แล้วลูกศรชี้ต่อไปยังกล่องของขวัญที่มีเหรียญทองกองอยู่ เขียนว่า รับโบนัส และปุ่มสีทองเขียนว่า ชวนเลย ด้านบนเป็นโลโก้ FINN20 ตัวอักษร FiNN สีทองเงาและเลข 20 สีเงินพร้อมสัญลักษณ์โพดำ ใต้โลโก้เป็นแถบดำเขียนว่า WWW.FINN20.COM ข้างขวาเป็นผู้หญิงในชุดสีดำสลับทองติดโลโก้ FINN20 ถือโทรศัพท์ที่เปิดหน้าแอป FINN20 แล้วชี้นิ้วไปที่จอ ด้านซ้ายเป็นวงล้อรูเล็ตและไพ่โพดำ ด้านขวาเป็นวงล้อสล็อตช่อง BAR บนพื้นหลังสีดำที่มีเหรียญทองและประกายทองกระจายอยู่";
 
-const altLavaHour =
-  "แบนเนอร์โปรโมชั่น LAVA432 ข้อความขนาดใหญ่ LAVA HOUR พร้อมไอคอนนาฬิกาและช่วงเวลา 20:00 - 22:00 ใต้ลงมาเขียนว่า เปิดกล่องสุ่ม ลุ้น 18 / 88 / 188 / 432 เครดิต และป้ายเล็กเขียนว่า ร่วมสนุกเฉพาะช่วงเวลาที่กำหนด พร้อมปุ่ม เปิดเลย ด้านบนเป็นโลโก้ LAVA432 ตัวอักษรขาวและเลข 432 บนบล็อกสีแดง ข้างหลังเป็นหน้าปัดนาฬิกาขนาดใหญ่และสายฟ้าสีแดง ข้างขวาเป็นผู้หญิงในเสื้อสีแดงติดโลโก้ LAVA432 ยกมือประกบแก้มทำท่าตกใจดีใจ ด้านล่างซ้ายเป็นกล่องสุ่มสีดำแดงมีเครื่องหมายคำถามและเหรียญทองกระจายรอบ ๆ บนพื้นหลังสีดำแดงมีประกายไฟ";
+const altFinnHour =
+  "แบนเนอร์โปรโมชั่น FINN20 ข้อความขนาดใหญ่ FINN HOUR โดยคำว่า FINN เป็นสีทองและ HOUR เป็นสีเงิน ใต้ลงมาเป็นไอคอนนาฬิกาพร้อมช่วงเวลา 20:20 - 21:20 ถัดมาเขียนว่า เปิดกล่องสุ่ม และ ลุ้น 20 / 120 / 520 เครดิต พร้อมไอคอนปฏิทินและข้อความ ร่วมสนุกเฉพาะช่วงเวลาที่กำหนด ด้านล่างซ้ายเป็นกล่องสุ่มสีดำขอบทองมีเครื่องหมายคำถามและป้ายเขียนว่า LUCKY BOX ข้างกันเป็นปุ่มสีทองเขียนว่า เปิดเลย ด้านบนเป็นโลโก้ FINN20 ตัวอักษร FiNN สีทองเงาและเลข 20 สีเงินพร้อมสัญลักษณ์โพดำ ใต้โลโก้เป็นแถบดำเขียนว่า WWW.FINN20.COM ข้างขวาเป็นผู้หญิงในชุดสีดำสลับทองติดโลโก้ FINN20 ยกมือขึ้นข้างแก้มทำท่าตื่นเต้น ข้างหลังเป็นนาฬิกาเรือนทอง วงล้อรูเล็ต และวงล้อสล็อตเลข 777 บนพื้นหลังสีดำที่มีเหรียญทองและประกายทองกระจายอยู่";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq3's own default, so the rendered markup and the FAQ JSON-LD below come out
+// Faq4's own default, so the rendered markup and the FAQ JSON-LD below come out
 // of the same array.
 const faqs = [
   {
-    q: "LAVA432 ระบบใหม่แตกต่างจากเว็บสล็อตทั่วไปอย่างไร?",
-    a: "จุดที่ควรพิจารณาคือความสะดวกในการเลือกเกม การจัดการบัญชี ระบบฝากถอน และการตรวจสอบประวัติรายการ มากกว่าดูจากคำว่า “ระบบใหม่” เพียงอย่างเดียว",
+    q: "FINN20 มีบาคาร่าให้เลือกหลายรูปแบบหรือไม่?",
+    a: "ระบบอาจมีโต๊ะบาคาร่าในหลายระดับวงเงินและรูปแบบ ผู้เล่นควรตรวจชื่อผู้ให้บริการ ขั้นต่ำ อัตราจ่าย และกติกาของแต่ละโต๊ะก่อนเริ่มเดิมพัน",
   },
   {
-    q: "LAVA432 ฝากถอนผ่านระบบออโต้หรือไม่?",
-    a: "ระบบรองรับการจัดการฝากถอนแบบออโต้ตามช่องทางที่กำหนด สมาชิกควรตรวจข้อมูลบัญชี จำนวนเงิน และสถานะรายการก่อนและหลังยืนยันทุกครั้ง",
+    q: "FINN20 ที่ระบุว่าไม่ล็อคผลหมายความว่าอย่างไร?",
+    a: "โดยทั่วไปใช้สื่อว่าผลเกมไม่ได้ถูกกำหนดล่วงหน้าโดยเว็บไซต์ แต่ควรตรวจข้อมูลผู้ให้บริการ วิธีดำเนินเกม และรายละเอียดที่ระบบแสดงประกอบด้วย",
   },
   {
-    q: "สล็อตแตกง่ายของ LAVA432 รับประกันกำไรหรือไม่?",
-    a: "ไม่สามารถรับประกันผลลัพธ์หรือกำไรจากเกมสล็อตได้ ผู้เล่นควรดู RTP ความผันผวน กติกา และกำหนดงบที่เหมาะกับตนเองก่อนเริ่มเล่น",
+    q: "ระบบออโต้จ่ายไวของ FINN20 รับประกันการถอนทุกครั้งหรือไม่?",
+    a: "ไม่ควรตีความว่าเป็นการรับประกันทุกกรณี ระยะเวลาอาจขึ้นอยู่กับสถานะบัญชี ช่องทางธุรกรรม โปรโมชั่น และขั้นตอนตรวจสอบของระบบ",
   },
 ];
 
@@ -91,69 +90,59 @@ const graph = pageGraph(Astro, {
 
   <Announcement message={announcement} />
 
-  <ContentBoxPremium as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#f4e3e0]">
-      <strong class="text-[#ff6a13]">LAVA432</strong> เป็นแพลตฟอร์มสล็อตออนไลน์ที่เน้นระบบใช้งานแบบใหม่และการรวมเกมหลายรูปแบบไว้ในบัญชีเดียว พร้อมระบบฝากถอนออโต้และหน้าตรวจสอบธุรกรรม
-      รองรับทั้งมือถือและคอมพิวเตอร์ ผู้เล่นสามารถเลือกเกม ดูโปรโมชั่น และติดตามสถานะรายการได้สะดวก โดยควรศึกษากติกาและเงื่อนไขต่าง ๆ ก่อนเริ่มทุกครั้ง
+  <ContentBoxNeumorphism as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#f3e7c8]">
+      <strong class="text-[#fdd323]">FINN20</strong> เป็นแพลตฟอร์มบาคาร่าออนไลน์ที่เน้นการเข้าถึงโต๊ะเกมหลายรูปแบบผ่านระบบเดียว พร้อมระบบออโต้สำหรับจัดการบัญชีและธุรกรรม ผู้เล่นสามารถเปรียบเทียบวงเงิน อัตราจ่าย
+      และรายละเอียดของโต๊ะก่อนเริ่ม รองรับการใช้งานผ่านมือถือ โดยควรตรวจข้อมูลผู้ให้บริการและกติกาของแต่ละเกมก่อนเดิมพันทุกครั้ง
     </p>
-  </ContentBoxPremium>
+  </ContentBoxNeumorphism>
 
-  <ContentBoxSevenThreePremium title="ระบบใหม่ของ LAVA432 ช่วยให้เลือกเกมและจัดการบัญชีง่ายขึ้น">
-    <Picture
-      slot="left"
-      src={imgDailyMissions}
-      loading="lazy"
-      fetchpriority="low"
-      widths={[300, 450, 600]}
-      sizes="(max-width: 768px) calc(100vw - 6rem), 380px"
-      decoding="async"
-      formats={["avif", "webp"]}
-      fallbackFormat="webp"
-      quality={80}
-      alt={altDailyMissions}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#ec000e]/40 shadow-[0_10px_30px_rgba(236,0,14,0.3)]"
-    />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f4e3e0]">
-      การออกแบบระบบของ LAVA432 ควรช่วยให้ผู้เล่นเข้าถึงหมวดเกม โปรโมชั่น และข้อมูลบัญชีได้โดยไม่ต้องสลับหลายหน้า เมนูที่ชัดเจนและประวัติรายการที่ตรวจสอบได้ช่วยลดความสับสนระหว่างใช้งาน
-      โดยเฉพาะผู้ที่เล่นผ่านมือถือเป็นหลัก
+  <ContentBoxTwoNeumorphism titleleft="FINN20 ช่วยให้เลือกโต๊ะจากวงเงินและรูปแบบเกมได้ง่ายขึ้น">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f3e7c8]">
+      ผู้เล่น FINN20 สามารถพิจารณาโต๊ะจากยอดเดิมพันขั้นต่ำ ความเร็วของแต่ละรอบ และรูปแบบการเล่นที่แตกต่างกัน การเลือกโต๊ะให้ตรงกับงบช่วยให้วางแผนจำนวนรอบได้ง่ายขึ้น
+      และลดโอกาสต้องปรับวงเงินตามสถานการณ์ระหว่างเกมโดยไม่จำเป็น
     </p>
-  </ContentBoxSevenThreePremium>
 
-  <ContentBoxCyberCut as="h2" title="เว็บสล็อตขนาดใหญ่ควรมีมากกว่าแค่จำนวนเกมเยอะ">
-    <p class="text-left text-base leading-relaxed text-[#f4e3e0]">
-      คำว่าเว็บใหญ่ไม่ควรหมายถึงจำนวนเกมเพียงอย่างเดียว แต่ควรรวมถึงความเสถียรของระบบ การจัดหมวดเกม ข้อมูลค่ายเกม และการจัดการบัญชีที่เป็นระบบ ผู้เล่นควรดูองค์ประกอบเหล่านี้ร่วมกันก่อนตัดสินใจ
-      ไม่ควรเลือกจากคำโปรโมตเพียงอย่างเดียว
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#fdd323]/30 bg-[#1f1a10]/80 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#fdd323] uppercase">
+        <span aria-hidden="true">🎴</span>
+        จุดที่ควรดูก่อนเลือกโต๊ะ
+      </p>
+      <span class="flex items-start gap-2.5 text-sm text-[#f3e7c8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffe98a]">①</span>
+        ยอดเดิมพันขั้นต่ำของโต๊ะ ซึ่งกำหนดว่างบก้อนเดียวเล่นได้กี่รอบ
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#f3e7c8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffe98a]">②</span>
+        ความเร็วของแต่ละรอบ เพราะโต๊ะที่เดินเร็วใช้งบต่อชั่วโมงมากกว่า
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#f3e7c8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffe98a]">③</span>
+        รูปแบบการเล่นของโต๊ะนั้น ทั้งกติกาย่อยและตัวเลือกเดิมพันที่เปิดให้
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#f3e7c8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffe98a]">④</span>
+        งบที่เตรียมไว้ล่วงหน้า เพื่อไม่ต้องปรับวงเงินกลางเกมโดยไม่จำเป็น
+      </span>
+      <span class="mt-1 rounded-xl border border-[#e39d02]/35 bg-[#14110a]/85 px-4 py-2.5 text-xs leading-relaxed text-[#bfae86]">
+        รายละเอียดขั้นต่ำ ความเร็วรอบ และกติกาของแต่ละโต๊ะถูกกำหนดโดยผู้ให้บริการเกม จึงต่างกันได้ในแต่ละโต๊ะ ควรอ่านข้อมูลที่ระบบแสดงจริงก่อนนั่งโต๊ะทุกครั้ง
+      </span>
+    </div>
+  </ContentBoxTwoNeumorphism>
+
+  <ContentBoxFloatingBadge as="h2" title="บาคาร่าเว็บตรงควรตรวจผู้ให้บริการเกมก่อนเลือกเล่น">
+    <p class="text-left text-base leading-relaxed text-[#f3e7c8]">
+      คำว่าเว็บตรงหรือลิขสิทธิ์แท้ไม่ควรพิจารณาจากข้อความโฆษณาเพียงอย่างเดียว ผู้ใช้งานควรดูชื่อผู้ให้บริการเกม รายละเอียดโต๊ะ กติกา และข้อมูลระบบที่แสดง
+      หากมีข้อมูลชัดเจนจะช่วยให้เปรียบเทียบเกมและตรวจสอบแหล่งที่มาได้ง่ายขึ้น
     </p>
-  </ContentBoxCyberCut>
+  </ContentBoxFloatingBadge>
 
   <ProviderGrid />
 
-  <ContentBoxSpecial as="h2" title="ฝากถอนออโต้บน LAVA432 ช่วยลดขั้นตอนธุรกรรม" iconleft="🏧" iconright="🧾">
-    <div slot="left" class="flex flex-col gap-3">
-      <p class="text-left text-base leading-relaxed text-[#f4e3e0]">
-        สมาชิก LAVA432 สามารถจัดการฝาก ถอน และตรวจสอบสถานะรายการผ่านระบบเดียว ก่อนยืนยันควรตรวจชื่อบัญชี จำนวนเงิน และข้อมูลรับเงินให้ถูกต้อง
-      </p>
-      <p class="flex items-center gap-2 text-xs font-black tracking-widest text-[#ff6a13] uppercase">
-        <span aria-hidden="true">✅</span>
-        ตรวจให้ครบก่อนกดยืนยัน
-      </p>
-    </div>
-
-    <div slot="right" class="flex flex-col gap-3">
-      <p class="text-left text-base leading-relaxed text-[#f4e3e0]">
-        หากรายการเดิมยังดำเนินการอยู่ควรรอผลจากระบบก่อนส่งใหม่ เพื่อป้องกันรายการซ้ำ ทุกรายการมีเวลาและเลขอ้างอิงของตัวเองแยกจากกัน จึงเปิดย้อนดูจากประวัติธุรกรรมได้เสมอ
-      </p>
-      <p class="flex items-center gap-2 text-xs font-black tracking-widest text-[#ff6a13] uppercase">
-        <span aria-hidden="true">⏳</span>
-        รอผลจากระบบก่อนส่งรายการใหม่
-      </p>
-    </div>
-  </ContentBoxSpecial>
-
-  <ContentBoxSevenThreeCyberCut titleright="เลือกสล็อตจาก RTP ฟีเจอร์ และความผันผวนให้เหมาะกับงบ">
+  <ContentBoxSevenThreeNeumorphism titleright="ระบบออโต้ของ FINN20 ช่วยลดขั้นตอนด้านบัญชีและธุรกรรม">
     <Picture
       slot="left"
-      src={imgLavaHour}
+      src={imgReferFriend}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -162,71 +151,92 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt={altLavaHour}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#ec000e]/40 shadow-[0_10px_30px_rgba(236,0,14,0.3)]"
+      alt={altReferFriend}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#fdd323]/40 shadow-[0_10px_30px_rgba(253,211,35,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f4e3e0]">
-      แทนที่จะมองหาเกมจากคำว่าแตกง่ายอย่างเดียว ผู้เล่นควรพิจารณา RTP ที่ผู้ให้บริการระบุ ตารางจ่าย ฟีเจอร์โบนัส และระดับความผันผวนของเกมร่วมกัน
-      ข้อมูลเหล่านี้ช่วยให้เข้าใจลักษณะของเกมและเลือกวงเงินต่อรอบได้เหมาะสมมากขึ้น
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f3e7c8]">
+      สมาชิก FINN20 สามารถตรวจยอด ประวัติรายการ และสถานะธุรกรรมผ่านระบบเดียวได้ ก่อนยืนยันควรตรวจชื่อบัญชี จำนวนเงิน และข้อมูลรับเงินให้ครบ หากรายการเดิมยังดำเนินการอยู่ควรรอระบบอัปเดตก่อนทำรายการใหม่
+      เพื่อลดความซ้ำซ้อน
     </p>
-  </ContentBoxSevenThreeCyberCut>
+  </ContentBoxSevenThreeNeumorphism>
 
-  <LoginRtpSection />
-
-  <ContentBoxTwo as="h2" titleleft="ตรวจสถานะจ่ายไวผ่านหน้าบัญชีของ LAVA432" iconleft="🕘">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#f4e3e0]">
-      สมาชิก LAVA432 ควรใช้ประวัติธุรกรรมและสถานะรายการในหน้าบัญชีเป็นจุดหลักในการติดตามยอดถอน หากรายการยังอยู่ระหว่างดำเนินการควรเก็บเวลา จำนวนเงิน และเลขอ้างอิงไว้จนกว่าระบบจะอัปเดตผล
-      เพื่อช่วยให้ตรวจสอบย้อนหลังได้ง่ายขึ้น
-    </p>
-
-    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#ec000e]/35 bg-[#120303]/75 p-5">
-      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#ff6a13] uppercase">
-        <span aria-hidden="true">🧾</span>
-        สี่อย่างที่ควรเก็บไว้ระหว่างรอผลรายการ
-      </p>
-      <span class="flex items-start gap-2.5 text-sm text-[#f4e3e0]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffa040]">①</span>
-        เวลาที่ส่งรายการ เพื่อใช้เทียบกับสถานะที่ระบบอัปเดตให้
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f4e3e0]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffa040]">②</span>
-        จำนวนเงินของรายการนั้น แยกจากรายการอื่นในวันเดียวกัน
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f4e3e0]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffa040]">③</span>
-        เลขอ้างอิงที่ระบบออกให้ ซึ่งใช้ค้นย้อนหลังได้ตรงที่สุด
-      </span>
-      <span class="flex items-start gap-2.5 text-sm text-[#f4e3e0]">
-        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffa040]">④</span>
-        สถานะล่าสุดที่หน้าบัญชีแสดง ก่อนจะส่งรายการใหม่ซ้ำ
-      </span>
-      <span class="mt-1 rounded-xl border border-[#ff6a13]/35 bg-[#2a0808]/80 px-4 py-2.5 text-xs leading-relaxed text-[#c9a8a4]">
-        ประวัติธุรกรรมคือจุดที่เห็นความคืบหน้าของยอดถอนได้เร็วที่สุด เพราะทุกรายการมีเวลาและเลขอ้างอิงของตัวเองแยกจากกัน จึงเทียบย้อนหลังได้ทีละรายการ
-      </span>
-    </div>
-  </ContentBoxTwo>
-
-  <LatestWinners3 />
-
-  <ContentBox as="h2" title="คำว่าแตกง่ายและมั่นคงควรดูจากข้อมูลจริงของ LAVA432">
-    <p class="text-left text-base leading-relaxed text-[#f4e3e0]">
-      ข้อความแตกง่ายหรือมั่นคงของ LAVA432 เป็นคำทางการตลาด ไม่สามารถใช้รับประกันผลของเกมหรือความสำเร็จของทุกธุรกรรมได้ ผู้เล่นควรดูข้อมูลเกม ระบบบัญชี เงื่อนไขถอน และช่องทางติดต่อประกอบ
-      พร้อมกำหนดงบก่อนเริ่มเล่นทุกครั้ง
+  <ContentBox as="h2" title="คำว่าไม่ล็อคผลควรดูจากความโปร่งใสของตัวเกม">
+    <p class="text-left text-base leading-relaxed text-[#f3e7c8]">
+      ข้อความไม่ล็อคผลควรพิจารณาร่วมกับวิธีดำเนินเกม ผู้ให้บริการ และขั้นตอนการตัดสินผล หากเป็นบาคาร่าแบบสด ผู้เล่นสามารถดูการดำเนินเกมแบบเรียลไทม์ได้
+      แต่ไม่ควรตีความว่าคำดังกล่าวเป็นการรับประกันความยุติธรรมโดยอัตโนมัติ
     </p>
   </ContentBox>
 
-  <Faq3 title="คำถามที่พบบ่อยเกี่ยวกับ LAVA432" faqs={faqs} />
+  <LoginRtpSection />
+
+  <ContentBoxSevenThreeFloatingBadge title="ทำความเข้าใจอัตราจ่ายบน FINN20 ก่อนเลือก Banker Player หรือ Tie">
+    <Picture
+      slot="left"
+      src={imgFinnHour}
+      loading="lazy"
+      fetchpriority="low"
+      widths={[300, 450, 600]}
+      sizes="(max-width: 768px) calc(100vw - 6rem), 380px"
+      decoding="async"
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      quality={80}
+      alt={altFinnHour}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#fdd323]/40 shadow-[0_10px_30px_rgba(253,211,35,0.28)]"
+    />
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f3e7c8]">
+      ตัวเลือก Banker, Player และ Tie มีอัตราจ่ายและความเสี่ยงแตกต่างกัน ผู้ใช้ FINN20 ควรตรวจรายละเอียดของโต๊ะ โดยเฉพาะค่าคอมมิชชันและเงื่อนไขเฉพาะก่อนวางเดิมพัน
+      การเข้าใจข้อมูลเหล่านี้ช่วยให้เลือกวงเงินได้เหมาะสมกว่าการตามผลจากรอบที่ผ่านมา
+    </p>
+  </ContentBoxSevenThreeFloatingBadge>
+
+  <LatestWinnersPremium />
+
+  <ContentBoxTwoFloatingBadge as="h2" title="จ่ายไวบน FINN20 ควรตรวจจากสถานะรายการจริง">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f3e7c8]">
+      คำว่าจ่ายไวของ FINN20 ควรใช้ประกอบกับข้อมูลสถานะธุรกรรมจริงในระบบ ก่อนถอนควรตรวจยอดคงเหลือ ข้อมูลบัญชี และเงื่อนไขโปรโมชั่น หากรายการล่าช้าควรเก็บเวลา จำนวนเงิน และเลขอ้างอิงไว้จนกว่าจะตรวจสอบเสร็จ
+      ไม่ควรถือเป็นการรับประกันทุกกรณี
+    </p>
+
+    <div slot="right" class="flex flex-col gap-3 rounded-2xl border border-[#fdd323]/30 bg-[#1f1a10]/80 p-5">
+      <p class="flex items-center gap-2 text-sm font-black tracking-widest text-[#fdd323] uppercase">
+        <span aria-hidden="true">🧾</span>
+        สี่อย่างที่ควรเก็บไว้ระหว่างรอผลรายการ
+      </p>
+      <span class="flex items-start gap-2.5 text-sm text-[#f3e7c8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffe98a]">①</span>
+        เวลาที่ส่งรายการ เพื่อใช้เทียบกับสถานะที่ระบบอัปเดตให้
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#f3e7c8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffe98a]">②</span>
+        จำนวนเงินของรายการนั้น แยกจากรายการอื่นในวันเดียวกัน
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#f3e7c8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffe98a]">③</span>
+        เลขอ้างอิงที่ระบบออกให้ ซึ่งใช้ค้นย้อนหลังได้ตรงที่สุด
+      </span>
+      <span class="flex items-start gap-2.5 text-sm text-[#f3e7c8]">
+        <span aria-hidden="true" class="mt-0.5 shrink-0 text-[#ffe98a]">④</span>
+        เงื่อนไขโปรโมชั่นที่ยังผูกกับยอดคงเหลือ ก่อนกดถอนรอบถัดไป
+      </span>
+      <span class="mt-1 rounded-xl border border-[#e39d02]/35 bg-[#14110a]/85 px-4 py-2.5 text-xs leading-relaxed text-[#bfae86]">
+        ประวัติธุรกรรมคือจุดที่เห็นความคืบหน้าของยอดถอนได้เร็วที่สุด เพราะทุกรายการมีเวลาและเลขอ้างอิงของตัวเองแยกจากกัน จึงเทียบย้อนหลังได้ทีละรายการ
+      </span>
+    </div>
+  </ContentBoxTwoFloatingBadge>
+
+  <Faq4 title="คำถามที่พบบ่อยเกี่ยวกับ FINN20" faqs={faqs} />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ff6a13]/60 bg-gradient-to-r from-[#ec000e] via-[#7a0206] to-[#120303] px-4 py-3 text-sm font-black whitespace-nowrap text-[#ffffff] shadow-[0_10px_30px_rgba(236,0,14,0.4)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ff6a13] hover:shadow-[0_15px_40px_rgba(255,106,19,0.42)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#fdd323]/55 bg-gradient-to-r from-[#1f1a10] via-[#14110a] to-[#080705] px-4 py-3 text-sm font-black whitespace-nowrap text-[#ffe98a] shadow-[0_10px_30px_rgba(253,211,35,0.28)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe98a] hover:shadow-[0_15px_40px_rgba(253,211,35,0.42)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffa040]/70 bg-gradient-to-r from-[#ffa040] via-[#ff6a13] to-[#ff3d2e] px-4 py-3 text-sm font-black whitespace-nowrap text-[#120303] shadow-[0_10px_30px_rgba(255,106,19,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffa040] hover:shadow-[0_15px_40px_rgba(255,106,19,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffe98a]/70 bg-gradient-to-r from-[#ffe98a] via-[#fdd323] to-[#e39d02] px-4 py-3 text-sm font-black whitespace-nowrap text-[#14110a] shadow-[0_10px_30px_rgba(253,211,35,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffe98a] hover:shadow-[0_15px_40px_rgba(253,211,35,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>
