@@ -13,49 +13,53 @@ const isActive = (path: string) => isActivePath(currentPath, path);
 // up with an entry on desktop that the phone menu does not have.
 //
 // Order: หน้าแรก first, โปรโมชั่น second, then the informational pages.
-// TAKO168 has the cta toggle OFF — /login and /register are still interstitial
-// redirect stubs, not indexable button pages — so เข้าสู่ระบบ/สมัครสมาชิก are
-// NOT menu entries (they are the CTA pair pinned in the corner) and ทางเข้า
-// keeps its normal place in the menu. The "conversion actions come third and
-// fourth" rule therefore has nothing to place here.
+// RENGER8888 has the cta toggle OFF — /login and /register are still
+// interstitial redirect stubs, not indexable button pages — so
+// เข้าสู่ระบบ/สมัครสมาชิก are NOT menu entries (they are the CTA pair pinned in
+// the corner) and ทางเข้า keeps its normal place in the menu. The "conversion
+// actions come third and fourth" rule therefore has nothing to place here.
 //
-// TAKO168 is a slot brand: /ตรวจหวย and /แนวทาง are parked in
+// RENGER8888 is a casino brand: /ตรวจหวย and /แนวทาง are parked in
 // src/pages-disabled/, so there is deliberately no link to either. A link to a
 // route that does not exist fails the build in tools/verify-build.mjs.
 //
 // The icon is a separate aria-hidden <span>, never concatenated into `name`:
 // an emoji inside the label puts "house" into the accessible name of the link.
+// They read as this brand's genre — cards and a knight's shield, not a slot
+// reel: the logo is an armoured ranger and the site is a casino, not a slot hall.
 const links = [
   { name: "หน้าแรก", path: "/", icon: "🏠" },
   { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
-  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🃏" },
   { name: "ทางเข้า", path: "/ทางเข้า", icon: "🚪" },
-  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "🏢" },
+  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "🛡️" },
   { name: "ติดต่อเรา", path: "/contact-us", icon: "💬" },
 ];
 
-const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร TAKO168 สีขาวนูนสามมิติขอบหนาสีแดง ด้านบนเป็นรูปปลาหมึกยักษ์สีชมพูสวมหมวกโจรสลัดปีกกว้างสีม่วงขลิบทอง ปิดตาข้างซ้ายด้วยผ้าปิดตา และชูดาบคัตลาสสีเงินไว้ด้วยหนวด`;
+// The wordmark on the artwork reads "RANGER 8888" — described as drawn, while
+// the brand string itself stays RENGER8888.
+const logoAlt = `โลโก้ ${BRAND_NAME} รูปอัศวินสวมเกราะเหล็กสีเงินกับหมวกยอดขนนกสีแดง ยืนกอดอกถือดาบด้ามทองไว้กลางลำตัว มีผ้าคลุมสีแดงและวงกลมเรืองแสงสีแดงล้อมรอบ ใต้ลงมาเป็นตัวอักษรบนภาพเขียนว่า RANGER สีขาวเงินนูนสามมิติ และเลข 8888 สีแดงเรืองแสง ด้านล่างสุดเป็นโล่สีเงินขอบแดงที่มีตัวอักษร R อยู่ตรงกลาง`;
 
 // sizes describes how wide the logo is DRAWN (h-[40px]/h-[45px] on a ~1.6:1
 // wordmark ≈ 65–73 px), not how wide the source file is. The old value claimed
 // 130 px and fetched roughly four times the pixels the box ever paints.
 ---
 
-<div class="hidden w-full border-b border-[#e11d16]/35 bg-gradient-to-r from-[#0a0403] via-[#8f0f0a] to-[#0a0403] px-4 py-1.5 font-sans text-xs font-bold text-[#f6e5df]/80 lg:block">
+<div class="hidden w-full border-b border-[#e8121f]/35 bg-gradient-to-r from-[#080203] via-[#8f0c14] to-[#080203] px-4 py-1.5 font-sans text-xs font-bold text-[#f0dcdc]/80 lg:block">
   <div class="mx-auto flex max-w-7xl justify-between">
     <div class="flex gap-4">
-      <span class="flex items-center gap-1"><span aria-hidden="true" class="text-[#e8b23a]">🎰</span> {BRAND_NAME} สล็อตเว็บตรง รวมเกมหลายค่ายหลายสไตล์ไว้ในบัญชีเดียว</span>
-      <span class="flex items-center gap-1 text-[#e8b23a]"><span aria-hidden="true" class="text-[#ffd97a]">✔</span> รองรับ True Wallet ตรวจสถานะรายการได้จากหน้าบัญชีตลอด 24 ชม.</span>
+      <span class="flex items-center gap-1"><span aria-hidden="true" class="text-[#e6ecf2]">🃏</span> {BRAND_NAME} คาสิโนเว็บหลัก รวมเกมหลายประเภทไว้ในบัญชีเดียว</span>
+      <span class="flex items-center gap-1 text-[#e6ecf2]"><span aria-hidden="true" class="text-[#e8b45a]">✔</span> ระบบออโต้ ตรวจสถานะรายการได้จากหน้าบัญชีตลอด 24 ชม.</span>
     </div>
     <div class="flex gap-4">
-      <a href="/line" class="flex items-center gap-1 transition-colors hover:text-white"><span aria-hidden="true" class="text-[#ff6a5a]">💬</span> ติดต่อแอดมินผ่าน LINE</a>
+      <a href="/line" class="flex items-center gap-1 transition-colors hover:text-white"><span aria-hidden="true" class="text-[#ffb0b4]">💬</span> ติดต่อแอดมินผ่าน LINE</a>
     </div>
   </div>
 </div>
 
 <header class="sticky top-2 z-50 mt-2 w-full px-2 font-sans md:px-4">
   <nav
-    class="relative mx-auto flex h-[75px] w-full max-w-7xl items-center justify-between rounded-[20px] border border-[#e11d16]/45 bg-[#0a0403]/90 px-4 shadow-[0_10px_30px_rgba(225,29,22,0.22)] backdrop-blur-lg xl:px-8"
+    class="relative mx-auto flex h-[75px] w-full max-w-7xl items-center justify-between rounded-[20px] border border-[#e8121f]/45 bg-[#080203]/90 px-4 shadow-[0_10px_30px_rgba(232,18,31,0.22)] backdrop-blur-lg xl:px-8"
     aria-label={`เมนูหลัก ${BRAND_NAME}`}>
     <a href="/" class="z-50 flex-shrink-0 transition-transform hover:scale-105">
       {
@@ -67,12 +71,12 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร TAKO168 
             fetchpriority="high"
             widths={[80, 160, 240]}
             sizes="80px"
-            class="h-[40px] w-auto drop-shadow-[0_0_10px_rgba(225,29,22,0.55)] xl:h-[45px]"
+            class="h-[40px] w-auto drop-shadow-[0_0_10px_rgba(232,18,31,0.55)] xl:h-[45px]"
             formats={["avif", "webp"]}
             fallbackFormat="webp"
           />
         ) : (
-          <span class="bg-gradient-to-b from-[#ffffff] to-[#e11d16] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(225,29,22,0.45)]">{BRAND_NAME}</span>
+          <span class="bg-gradient-to-b from-[#ffffff] to-[#e8121f] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(232,18,31,0.45)]">{BRAND_NAME}</span>
         )
       }
     </a>
@@ -82,13 +86,13 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร TAKO168 
         links.map((item) => (
           <a
             href={item.path}
-            class={`group relative flex h-full items-center gap-1.5 text-sm font-bold tracking-wide uppercase transition-colors xl:text-base ${isActive(item.path) ? "text-[#e8b23a] drop-shadow-[0_0_8px_rgba(232,178,58,0.45)]" : "text-[#f6e5df]/75 hover:text-[#e8b23a]"}`}>
+            class={`group relative flex h-full items-center gap-1.5 text-sm font-bold tracking-wide uppercase transition-colors xl:text-base ${isActive(item.path) ? "text-[#e6ecf2] drop-shadow-[0_0_8px_rgba(232,18,31,0.55)]" : "text-[#f0dcdc]/75 hover:text-[#e6ecf2]"}`}>
             <span aria-hidden="true" class="text-base leading-none">
               {item.icon}
             </span>
             <span>{item.name}</span>
             <div
-              class={`absolute bottom-[18px] left-0 h-[2px] w-full origin-center bg-gradient-to-r from-[#e8b23a] to-[#e11d16] shadow-[0_0_8px_rgba(232,178,58,0.7)] transition-transform duration-300 ${isActive(item.path) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+              class={`absolute bottom-[18px] left-0 h-[2px] w-full origin-center bg-gradient-to-r from-[#e6ecf2] to-[#e8121f] shadow-[0_0_8px_rgba(232,18,31,0.7)] transition-transform duration-300 ${isActive(item.path) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
             />
           </a>
         ))
@@ -98,33 +102,33 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร TAKO168 
     <div class="z-50 flex items-center gap-3">
       <a
         href="/login"
-        class="hidden items-center justify-center rounded-full border border-[#e11d16]/60 bg-[#2b0705] px-6 py-2 text-sm font-bold text-[#ff6a5a] shadow-sm transition-all hover:bg-[#e11d16]/25 hover:text-white lg:flex">
+        class="hidden items-center justify-center rounded-full border border-[#e8121f]/60 bg-[#28080b] px-6 py-2 text-sm font-bold text-[#ffb0b4] shadow-sm transition-all hover:bg-[#e8121f]/25 hover:text-white lg:flex">
         เข้าสู่ระบบ
       </a>
       <a
         href="/register"
-        class="hidden items-center justify-center rounded-full bg-gradient-to-r from-[#e8b23a] via-[#e11d16] to-[#8f0f0a] px-6 py-2 text-sm font-black text-white shadow-[0_0_15px_rgba(225,29,22,0.5)] transition-all hover:scale-105 lg:flex">
+        class="hidden items-center justify-center rounded-full bg-gradient-to-r from-[#ff2b38] via-[#e8121f] to-[#8f0c14] px-6 py-2 text-sm font-black text-white shadow-[0_0_15px_rgba(232,18,31,0.5)] transition-all hover:scale-105 lg:flex">
         สมัครสมาชิก
       </a>
 
       <button
         id="hamburger-btn"
-        class="relative flex h-[42px] w-[42px] flex-col items-center justify-center gap-[5px] rounded-full border border-[#e11d16]/40 bg-gradient-to-b from-[#2b0705] to-[#0a0403] shadow-sm lg:hidden"
+        class="relative flex h-[42px] w-[42px] flex-col items-center justify-center gap-[5px] rounded-full border border-[#e8121f]/40 bg-gradient-to-b from-[#28080b] to-[#080203] shadow-sm lg:hidden"
         aria-label="เปิดเมนู">
-        <span class="line-1 h-[2px] w-5 origin-center rounded-full bg-[#e8b23a] transition-all duration-300"></span>
-        <span class="line-2 h-[2px] w-5 origin-center rounded-full bg-[#e8b23a] transition-all duration-300"></span>
-        <span class="line-3 h-[2px] w-5 origin-center rounded-full bg-[#e8b23a] transition-all duration-300"></span>
+        <span class="line-1 h-[2px] w-5 origin-center rounded-full bg-[#e6ecf2] transition-all duration-300"></span>
+        <span class="line-2 h-[2px] w-5 origin-center rounded-full bg-[#e6ecf2] transition-all duration-300"></span>
+        <span class="line-3 h-[2px] w-5 origin-center rounded-full bg-[#e6ecf2] transition-all duration-300"></span>
       </button>
     </div>
   </nav>
 
-  <div id="fullscreen-menu" class="pointer-events-none fixed inset-0 z-[40] flex flex-col items-center justify-center overflow-y-auto bg-[#0a0403]/98 opacity-0 backdrop-blur-xl transition-opacity duration-500">
+  <div id="fullscreen-menu" class="pointer-events-none fixed inset-0 z-[40] flex flex-col items-center justify-center overflow-y-auto bg-[#080203]/98 opacity-0 backdrop-blur-xl transition-opacity duration-500">
     <div class="flex w-full flex-col items-center space-y-4 px-6 py-10">
       {
         links.map((item) => (
           <a
             href={item.path}
-            class={`fs-item flex items-center gap-3 text-xl font-black tracking-widest uppercase transition-all duration-300 ${isActive(item.path) ? "text-[#e8b23a] drop-shadow-[0_0_10px_rgba(232,178,58,0.6)]" : "text-[#f6e5df]/85 hover:text-white"}`}>
+            class={`fs-item flex items-center gap-3 text-xl font-black tracking-widest uppercase transition-all duration-300 ${isActive(item.path) ? "text-[#e6ecf2] drop-shadow-[0_0_10px_rgba(232,18,31,0.6)]" : "text-[#f0dcdc]/85 hover:text-white"}`}>
             <span aria-hidden="true" class="text-2xl leading-none">
               {item.icon}
             </span>
@@ -135,12 +139,12 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร TAKO168 
       <div class="fs-item mt-4 flex w-full max-w-[280px] flex-col gap-4 pt-6">
         <a
           href="/register"
-          class="flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#e8b23a] to-[#8f0f0a] py-3.5 text-lg font-black text-white shadow-[0_0_20px_rgba(225,29,22,0.55)]">
+          class="flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#e8121f] to-[#4a060a] py-3.5 text-lg font-black text-white shadow-[0_0_20px_rgba(232,18,31,0.55)]">
           สมัครสมาชิกใหม่
         </a>
         <a
           href="/login"
-          class="flex w-full items-center justify-center rounded-full border-2 border-[#e11d16]/60 bg-[#2b0705] py-3.5 text-lg font-bold text-[#ff6a5a] transition-colors hover:bg-[#e11d16]/25">
+          class="flex w-full items-center justify-center rounded-full border-2 border-[#e8121f]/60 bg-[#28080b] py-3.5 text-lg font-bold text-[#ffb0b4] transition-colors hover:bg-[#e8121f]/25">
           เข้าสู่ระบบ
         </a>
       </div>

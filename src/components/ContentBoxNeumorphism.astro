@@ -18,24 +18,23 @@ const headingSize = HeadingTag === "h1" ? "text-3xl" : "text-2xl";
 // No slot wrapper — the card carries the body text classes itself and the slot
 // renders as its direct child. Do not re-add a `relative z-10` div.
 //
-// JERRY69 neumorphic pair: the page ink (#0a0503) casts the dark side of the
-// extrusion and the raised warm brown (#261305) the lit side, so the card reads
-// as lifted off the near-black page. Matches ContentBoxTwoNeumorphism so the two
-// read as one system.
+// RENGER8888 neumorphic pair: the page ink (#080203) casts the dark side of the
+// extrusion and the card surface (#28080b) the lit side, so the card reads as
+// lifted off the near-black maroon page. Matches ContentBoxTwoNeumorphism and
+// ContentBoxSevenThreeNeumorphism so the three read as one raised system.
 //
-// Two-tone split held across every box this brand renders: hot orange carries
-// the surfaces (border, rule, extrusion) and warm ivory body copy sits on the
-// card. The heading ramp runs cream → light gold → orange, which is the logo's
-// bevelled "69" read left to right.
+// Crimson carries every surface (border, rule, extrusion) and the warm off-white
+// body copy sits on the card. The heading ramp runs steel silver → crimson →
+// blood red, the wordmark's own bevel.
 ---
 
 <section class="relative z-10 my-6 flex w-full justify-center px-4 font-sans">
   <div
-    class="w-full max-w-[1400px] rounded-[25px] border border-[#fa8302]/35 bg-[#160b03] p-8 text-left text-base leading-relaxed text-[#f3e3d0] shadow-[10px_10px_20px_#0a0503,-10px_-10px_20px_#261305]">
+    class="w-full max-w-[1400px] rounded-[25px] border border-[#e8121f]/35 bg-[#160406] p-8 text-left text-base leading-relaxed text-[#f0dcdc] shadow-[10px_10px_20px_#080203,-10px_-10px_20px_#28080b]">
     {
       title && (
-        <header class="mb-8 border-b border-[#fa8302]/35 pb-4 text-center">
-          <HeadingTag class={`bg-gradient-to-r from-[#fff4e2] via-[#ffc94a] to-[#fa8302] bg-clip-text ${headingSize} leading-normal font-black tracking-wide text-transparent`}>{title}</HeadingTag>
+        <header class="mb-8 border-b border-[#e8121f]/35 pb-4 text-center">
+          <HeadingTag class={`bg-gradient-to-r from-[#e6ecf2] via-[#e8121f] to-[#8f0c14] bg-clip-text ${headingSize} leading-normal font-black tracking-wide text-transparent`}>{title}</HeadingTag>
         </header>
       )
     }

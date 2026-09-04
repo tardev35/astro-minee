@@ -13,55 +13,55 @@ const intro = Astro.slots.has("default") ? (await Astro.slots.render("default"))
 // `titleleft`/`titleright` are docx section headings handed down by the page, so
 // they render as <h2> — the rendered heading inventory is diffed against the
 // brief on every rebrand and these are the brief's own H2s. `title` is the
-// optional centered banner line above the grid, which is chrome, so it stays a
-// <p>; `label` (or whichever title is present) names the region for assistive
-// tech via the section's aria-label.
+// centered banner line above the grid: it stays a <p> by default because it is
+// chrome, and a page that feeds it a real docx heading passes as="h2".
+// `label` (or whichever title is present) names the region for assistive tech
+// via the section's aria-label.
 //
 // The intro-slot wrapper below keeps its own mb-8 and sits next to the grid, so
 // unlike the column slots it is real layout and cannot be hoisted onto the card.
 // The card is `isolate` and the four corner rules are `-z-10`, so nothing needs
 // a `relative z-10` content wrapper.
 //
-// JERRY69: the clipped frame runs light gold at the top-left and bright orange
-// at the bottom-right, matching ContentBoxCyberCut so the two CyberCut sections
-// read as one family.
+// RENGER8888: the clipped frame runs the logo's sword-hilt gold at the top-left
+// and bright crimson at the bottom-right on the near-black maroon card.
 const sectionLabel = label ?? title ?? titleleft ?? titleright ?? "ข้อมูลประกอบ";
 ---
 
 <section aria-label={sectionLabel} class="mx-auto mb-6 w-full max-w-7xl px-4 font-sans">
   <div
-    class="relative isolate w-full border border-[#fa8302]/30 bg-[#160b03]/92 p-8 text-[#f3e3d0] shadow-[0_10px_30px_rgba(250,131,2,0.22)] backdrop-blur-md transition-all duration-300 hover:border-[#ffc94a]/55 hover:shadow-[0_15px_40px_rgba(255,201,74,0.28)]"
+    class="relative isolate w-full border border-[#e8121f]/30 bg-[#160406]/92 p-8 text-[#f0dcdc] shadow-[0_10px_30px_rgba(232,18,31,0.22)] backdrop-blur-md transition-all duration-300 hover:border-[#ff2b38]/55 hover:shadow-[0_15px_40px_rgba(255,43,56,0.28)]"
     style="clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);">
-    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#ffc94a] to-transparent"></div>
-    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#ff9c2e] to-transparent"></div>
-    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#ffc94a] to-transparent"></div>
-    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#ff9c2e] to-transparent"></div>
+    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-[2px] w-24 bg-gradient-to-r from-[#e8b45a] to-transparent"></div>
+    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-[2px] w-24 bg-gradient-to-l from-[#ff2b38] to-transparent"></div>
+    <div aria-hidden="true" class="absolute top-0 left-0 -z-10 h-16 w-[2px] bg-gradient-to-b from-[#e8b45a] to-transparent"></div>
+    <div aria-hidden="true" class="absolute right-0 bottom-0 -z-10 h-16 w-[2px] bg-gradient-to-t from-[#ff2b38] to-transparent"></div>
 
     {
       title && (
-        <TitleTag class="mb-4 bg-gradient-to-r from-[#fff4e2] via-[#ffc94a] to-[#fa8302] bg-clip-text text-center text-2xl leading-normal font-black text-transparent uppercase">{title}</TitleTag>
+        <TitleTag class="mb-4 bg-gradient-to-r from-[#e6ecf2] via-[#e8121f] to-[#8f0c14] bg-clip-text text-center text-2xl leading-normal font-black text-transparent uppercase">{title}</TitleTag>
       )
     }
 
-    {intro && <div class="mb-8 text-left text-base leading-relaxed text-[#f3e3d0]" set:html={intro} />}
+    {intro && <div class="mb-8 text-left text-base leading-relaxed text-[#f0dcdc]" set:html={intro} />}
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-      <article class="relative flex flex-col gap-4 text-left text-base leading-relaxed text-[#f3e3d0]">
+      <article class="relative flex flex-col gap-4 text-left text-base leading-relaxed text-[#f0dcdc]">
         {
           titleleft && (
-            <h2 class="flex items-center gap-2 border-b border-[#fa8302]/30 pb-2 text-xl leading-normal font-black text-[#ffc94a] uppercase">
-              <span aria-hidden="true" class="inline-block h-2 w-2 shrink-0 bg-[#ff9c2e] shadow-[0_0_5px_rgba(255,156,46,0.7)]" /> {titleleft}
+            <h2 class="flex items-center gap-2 border-b border-[#e8121f]/30 pb-2 text-xl leading-normal font-black text-[#ff2b38] uppercase">
+              <span aria-hidden="true" class="inline-block h-2 w-2 shrink-0 bg-[#e8121f] shadow-[0_0_5px_rgba(232,18,31,0.7)]" /> {titleleft}
             </h2>
           )
         }
         <slot name="left" />
       </article>
 
-      <article class="relative flex flex-col gap-4 text-left text-base leading-relaxed text-[#f3e3d0] md:border-l md:border-[#fa8302]/30 md:pl-8">
+      <article class="relative flex flex-col gap-4 text-left text-base leading-relaxed text-[#f0dcdc] md:border-l md:border-[#e8121f]/30 md:pl-8">
         {
           titleright && (
-            <h2 class="flex items-center gap-2 border-b border-[#fa8302]/30 pb-2 text-xl leading-normal font-black text-[#ffc94a] uppercase">
-              <span aria-hidden="true" class="inline-block h-2 w-2 shrink-0 bg-[#ffc94a] shadow-[0_0_5px_rgba(255,201,74,0.8)]" /> {titleright}
+            <h2 class="flex items-center gap-2 border-b border-[#e8121f]/30 pb-2 text-xl leading-normal font-black text-[#ff2b38] uppercase">
+              <span aria-hidden="true" class="inline-block h-2 w-2 shrink-0 bg-[#e8b45a] shadow-[0_0_5px_rgba(232,180,90,0.8)]" /> {titleright}
             </h2>
           )
         }

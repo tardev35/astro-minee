@@ -1,5 +1,5 @@
-name = "mvp9288play"
-account_id = "366a1c38280ec2685435a598ede0e900"
+name = "renger8888"
+account_id = "26f8930ec7075f6cfbfa39c576270e45"
 compatibility_date = "2026-07-27"
 
 # Worker ที่ทำ 301 www -> non-www ก่อนส่งต่อให้ไฟล์ static (ดู worker/index.js)

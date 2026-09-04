@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle8.astro";
-import Footer from "../components/FooterPremiumSumo.astro";
+import Navbar from "../components/NavbarStyle10.astro";
+import Footer from "../components/FooterStyle3.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,12 +55,12 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "MVP928 | เว็บตรงสล็ออันดับหนึ่ง รวมโปรสุดคุ้ม ระบบใหม่ออโต้ แตกง่าย",
+  title = "RENGER8888 | คาสิโนเว็บหลักระบบออโต้ ฝากถอนง่ายไว โปรดีสุดคุ้ม",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings. Count
   // CHARACTERS, not bytes — Thai is 3 bytes per character.
-  description = "MVP928 สล็อตเว็บตรงระบบใหม่ออโต้ รวมโปรโมชั่นหลายรูปแบบภายในบัญชีเดียว พร้อมเกมยอดนิยม ระบบสมาชิกใช้งานง่าย และข้อมูลรายการที่ตรวจสอบได้สะดวกจากหน้าเดียว",
+  description = "RENGER8888 คาสิโนเว็บหลักระบบออโต้ รวมเกมหลายประเภท โปรโมชั่น และระบบบัญชีไว้ในช่องทางเดียว ฝากถอนสะดวกตามเงื่อนไข พร้อมสถานะรายการให้สมาชิกตรวจสอบได้ง่าย",
   robots = "index, follow",
 } = Astro.props;
 
@@ -225,7 +225,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #0b0502;
+        background-color: #080203;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -278,7 +278,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ MVP928 ตรงกลางค่อนไปทางขวาเป็นโลโก้หัวราชาไว้เคราขาวสวมมงกุฎทองขอบสีส้ม ต่อด้วยตัวอักษร MVP928 แบบโลหะสีขาวเงินไล่ไปส้ม บรรทัดถัดมาเป็นข้อความขนาดใหญ่ MVP928 สีขาวเงิน ตามด้วย ราชาเกมพรีเมียม สีส้มทอง ใต้ลงมาเป็นบรรทัดสีขาวว่า สนุกครบทุกแนว ระบบลื่น เล่นได้ทุกวัน ถัดลงมาเป็นแถบวงรีสีดำขอบทองสามช่องเขียนว่า สมัครไว พร้อมไอคอนรูปคน ฝากถอนคล่อง พร้อมไอคอนเหรียญหมุนวน และ รองรับมือถือ พร้อมไอคอนโทรศัพท์ ปิดท้ายด้วยปุ่มสี่เหลี่ยมมุมมนสีส้มเรืองแสงขนาดใหญ่เขียนว่า เข้าเล่นเลย ขนาบด้วยมงกุฎทองสองข้าง ด้านซ้ายเป็นผู้หญิงผมยาวในชุดรัดรูปสีดำสลับแถบทองแดงติดโลโก้ MVP928 ที่หน้าอก กำลังแบมือเชิญไปทางข้อความ ข้างหลังเป็นรูปปั้นราชาสีทองสวมมงกุฎ ป้าย JACKPOT ตู้สล็อตขึ้นเลข 7 และกองเหรียญทองกับชิปคาสิโนสีดำขอบทองแดง กระจายอยู่บนพื้นหลังสีดำที่มีประกายไฟสีส้ม"
+          alt="แบนเนอร์ต้อนรับ RENGER8888 ด้านซ้ายบนเป็นโลโก้อัศวินสวมเกราะเหล็กสีเงินกับหมวกยอดขนนกสีแดง ยืนกอดอกถือดาบด้ามทองไว้กลางลำตัว มีผ้าคลุมสีแดงและวงกลมเรืองแสงสีแดงล้อมรอบ ใต้โลโก้เป็นตัวอักษรบนภาพเขียนว่า RANGER สีขาวเงินและ 8888 สีแดง ถัดลงมาเป็นข้อความขนาดใหญ่ RANGER สีขาวเงินต่อด้วย 8888 สีแดง บรรทัดถัดมาเขียนว่า อาณาจักรเกมสายลุย เป็นตัวอักษรสีทอง ใต้ลงมาเป็นบรรทัดสีขาวว่า เกมมันส์ครบโซน ระบบลื่น เล่นได้ทุกเวลา ถัดลงมาเป็นแถบสีดำขอบแดงสามช่องเขียนว่า สมัครไว พร้อมไอคอนรูปคน ฝากถอนคล่อง พร้อมไอคอนกระเป๋าเงิน และ รองรับมือถือ พร้อมไอคอนโทรศัพท์ ปิดท้ายด้วยปุ่มขนาดใหญ่ขอบแดงเรืองแสงเขียนว่า เริ่มลุยเลย ขนาบด้วยลูกศรสีแดงสองข้าง ด้านขวาเป็นผู้หญิงผมยาวในชุดหนังสีดำสลับแถบแดง ยกมือถือชิปคาสิโนสีดำแดงที่มีตัวอักษร R ข้างหลังเป็นปราสาทหินสีเข้มกับเส้นแสงสีแดง รอบภาพมีเหรียญทอง ชิปคาสิโนสีดำแดง และประกายไฟสีแดงกระจายอยู่บนพื้นหลังสีดำ"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}
