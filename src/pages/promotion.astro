@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement4.astro";
+import Announcement from "../components/Announcement3.astro";
 
 import { Picture } from "astro:assets";
 
@@ -20,28 +20,28 @@ import { pageGraph } from "../lib/schema";
 // paragraph found here was invented by an earlier rebrand and gets deleted, not
 // translated. Rendered inventory: h1x1, h2x0, h3x0.
 //
-// The alt text below is the Thai printed on each JERRY69 slide plus the scene it
+// The alt text below is the Thai printed on each MVP928 slide plus the scene it
 // draws — the offer, the sub-line, the button and the artwork. Every string was
 // rewritten against the actual image in this drop, not renamed from the outgoing
-// brand's: the four offers changed as well as the numbers. Slide order on disk
-// is: slide1 ภารกิจรายวัน, slide2 Lucky Hour, slide3 เช็กอิน 7 วัน, slide4
-// วงล้อโชคดี. slide1-4 are all .png in this drop (2026-09-04) and all four
+// brand's: all four offers changed, not only the numbers. Slide order on disk is
+// slide1 สนุกคุ้มทุกแมตช์, slide2 เช็กอิน 5 วัน, slide3 King Hour, slide4
+// วงล้อราชัน. slide1-4 are all .png in this drop (2026-09-04) and all four
 // belong here; banner2.png is dated 2026-08-13, predates the drop, and is
 // deliberately NOT imported anywhere. No domain string appears in any alt —
 // verify-build.mjs fails the build on a host found inside an attribute.
 //
-// <Announcement /> is bare on purpose: Announcement4's default message already
+// <Announcement /> is bare on purpose: Announcement3's default message already
 // carries this brand's copy, so the ticker matches index.astro with no second
-// string to keep in sync here. The variant rotated off Announcement2, the
+// string to keep in sync here. The variant rotated off Announcement4, the
 // outgoing brand's pick, per the brand spec.
-const pageTitle = "โปรโมชั่น JERRY69 รวมสิทธิพิเศษและโบนัสสำหรับสมาชิกสล็อต";
+const pageTitle = "โปรโมชั่น MVP928 รวมสิทธิพิเศษและโบนัสสำหรับสมาชิกสล็อต";
 
 // Title and description are the docx SUB-PAGES row for /promotion, both shipped
-// VERBATIM. The description is 122 characters, shorter than the DESC_MIN=150
+// VERBATIM. The description is 123 characters, shorter than the DESC_MIN=150
 // floor, and that is correct: the brief's own sentence is the brand's copy, not
 // a draft to top up. verify-build.mjs exempts any description that appears
 // literally in src/assets/content.txt for exactly this reason. Do not pad it.
-const pageDescription = "JERRY69 รวมโปรโมชั่นสล็อตทุนน้อย โบนัสสมาชิกใหม่ และสิทธิพิเศษตามเงื่อนไข พร้อมข้อมูลช่วยเลือกโปรให้เหมาะกับงบและการใช้งาน";
+const pageDescription = "MVP928 รวมโปรโมชั่นสล็อต โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมข้อมูลช่วยเลือกโปรให้เหมาะกับงบ รูปแบบเกม และการใช้งานแต่ละแบบ";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -53,31 +53,31 @@ const graph = pageGraph(Astro, {
   primaryImagePath: pro1.src,
 });
 
-// Orange carries the surfaces here (border, glow) and the light gold carries the
-// hover state — the same read the artwork uses, an orange-rimmed card lifting to
-// a gold highlight. A #261305 edge on the near-black page would read as no
-// border at all, so the resting border is the primary orange rather than the
+// Burnt copper carries the surfaces here (border, glow) and the gold carries the
+// hover state — the same read the artwork uses, a copper-rimmed card lifting to
+// a gold highlight. A #2a1508 edge on the near-black page would read as no
+// border at all, so the resting border is the primary copper rather than the
 // panel surface.
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#fa8302]/40 object-contain shadow-[0_10px_30px_rgba(250,131,2,0.24)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#ffc94a]/65 hover:shadow-[0_15px_40px_rgba(250,131,2,0.3)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#ef6a17]/40 object-contain shadow-[0_10px_30px_rgba(239,106,23,0.24)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#f0b243]/65 hover:shadow-[0_15px_40px_rgba(239,106,23,0.3)]";
 ---
 
-<MainLayout title="JERRY69 | โปรโมชั่นสล็อตทุนน้อยและสิทธิพิเศษสมาชิกใหม่" description={pageDescription}>
+<MainLayout title="MVP928 | โปรโมชั่นสล็อตและสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#f3e3d0]">
-        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#ffc94a]">JERRY69</strong> เปิดให้สมาชิกสล็อตไว้ในที่เดียว ทั้งภารกิจรายวัน ช่วง Lucky Hour การเช็กอินสะสมเจ็ดวัน และวงล้อโชคดีจากยอดฝาก ตัวเลขเครดิตและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว
-        ก่อนกดรับสิทธิ์ควรตรวจช่วงเวลาที่กำหนด ยอดฝากขั้นต่ำ เกมที่ร่วมรายการ และเงื่อนไขการถอนให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากันและปรับได้ตามรอบ
+      <p class="mb-8 text-left text-base leading-relaxed text-[#ece0d6]">
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#f0b243]">MVP928</strong> เปิดให้สมาชิกสล็อตไว้ในที่เดียว ทั้งเกมเด่นที่อัปเดตโบนัสทุกวัน การเช็กอินสะสมห้าวัน ช่วงเวลา King Hour และวงล้อราชันจากยอดฝาก
+        ตัวเลขเครดิตและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ก่อนกดรับสิทธิ์ควรตรวจช่วงเวลาที่กำหนด ยอดฝากขั้นต่ำ เกมที่ร่วมรายการ และเงื่อนไขการถอนให้ครบ เพราะแต่ละรายการกำหนดไว้ไม่เท่ากันและปรับได้ตามรอบ
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น JERRY69 โลโก้ตัวอักษรขาวขอบดำอ่านว่า JERRY กับเลข 69 ไล่สีเหลืองทองไปส้ม ใต้โลโก้เป็นข้อความสีขาวว่า ภารกิจรายวัน แล้วเป็นบรรทัด ทำครบ 3 ภารกิจ รับสุ่ม ถัดมาเป็นตัวเลขทองขนาดใหญ่ 29 หรือ 69 หรือ 169 เหนือคำว่า เครดิต ใต้ลงมาเป็นไอคอนสี่ขั้นตอนต่อกันด้วยลูกศร หมายเลขหนึ่ง ล็อกอิน หมายเลขสอง ฝากเงิน หมายเลขสาม หมุนเกม และหมายเลขสี่ รับรางวัล ปิดท้ายด้วยปุ่มส้มทองทรงรีเขียนว่า รับภารกิจ ด้านซ้ายเป็นผู้หญิงในชุดดำขลิบส้มยกมือชูสามนิ้ว รอบภาพเป็นเหรียญทอง ชิปคาสิโนขอบส้ม และประกายไฟบนพื้นหลังสีดำ"
+          alt="แบนเนอร์โปรโมชั่น MVP928 มุมซ้ายบนเป็นโลโก้ MVP928 ถัดมาเป็นข้อความตัวใหญ่สีโครมสลับส้มว่า MVP928 เหนือบรรทัด สนุกคุ้มทุกแมตช์ ใต้ลงมาเป็นแถบข้อความ รวมเกมเด่น โบนัสอัปเดตทุกวัน แล้วเป็นป้ายทรงแคปซูลสามอัน เกมไว คู่ไอคอนสายฟ้า ภาพคม คู่ไอคอนเป้า และ เล่นลื่น คู่ไอคอนจรวด ปิดท้ายด้วยปุ่มสีส้มเขียนว่า เปิดเกมเลย ด้านขวาเป็นผู้หญิงในชุดดำขลิบทองแดงติดโลโก้ MVP928 นั่งอยู่ท่ามกลางเหรียญทองและชิปคาสิโน ด้านหลังเป็นรูปปั้นครึ่งตัวเทพซุสสีทองบนพื้นหลังสีดำ"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -91,7 +91,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น JERRY69 ใต้โลโก้เป็นข้อความไล่สีทองว่า Lucky Hour พร้อมไอคอนนาฬิกา แล้วเป็นกรอบเขียนช่วงเวลา 20:00 ถึง 21:00 ถัดมาเป็นข้อความสีขาวว่า เปิดหีบลับ ลุ้นรับ และตัวเลขทองขนาดใหญ่ 39 หรือ 79 หรือ 179 ตามด้วยคำว่า เครดิต ปิดท้ายด้วยปุ่มส้มทองทรงรีเขียนว่า เปิดเลย ด้านขวาเป็นหีบสมบัติทองเปิดออกมีแสงพุ่งขึ้น ข้างในเป็นอัญมณีสีแดง ฟ้า ขาว รอบ ๆ มีวงล้อรูเล็ต ไพ่เอซสี่ใบ และกองเหรียญทอง ด้านซ้ายเป็นผู้หญิงในชุดดำขลิบส้มกางมือทั้งสองข้างด้วยสีหน้าตื่นเต้น"
+          alt="แบนเนอร์โปรโมชั่น MVP928 พาดหัวว่า เช็กอิน 5 วัน เหนือบรรทัด รับกล่องสุ่มโบนัส ถัดมาเป็นข้อความ ลุ้น 28 หรือ 58 หรือ 128 เครดิต ใต้ลงมาเป็นแถวหมุดห้าขั้น วันที่ 1 ถึง วันที่ 5 แต่ละขั้นเป็นเครื่องหมายถูกสีทองในวงกลมเชื่อมกันด้วยลูกศร พร้อมคำอธิบายว่า ทำเช็กอินต่อเนื่องครบ รับสิทธิ์สุ่มทันที ด้านล่างเป็นหีบสมบัติสามใบเขียนว่า 28 เครดิต 58 เครดิต และ 128 เครดิต ปิดท้ายด้วยปุ่มเขียนว่า เช็กอินเลย ด้านซ้ายเป็นผู้หญิงในชุดดำขลิบทองแดงติดโลโก้ MVP928 ชี้นิ้วไปที่ขั้นตอนการเช็กอิน"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -105,7 +105,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น JERRY69 ใต้โลโก้เป็นกรอบเขียนว่า เช็กอิน 7 วัน ถัดมาเป็นข้อความส้มตัวหนาว่า รับฟรีทุกวัน แล้วเป็นป้าย สูงสุด คู่กับเลขทองขนาดใหญ่มาก 88 เหนือคำว่า เครดิต ใต้ลงมาเป็นแถวการ์ดเจ็ดใบ วันที่ 1 ถึง วันที่ 7 ทุกใบติดเครื่องหมายถูก ปิดท้ายด้วยปุ่มส้มทองทรงรีเขียนว่า เช็กอินเลย และแถบล่างสามข้อ สมัครไว ระบบลื่น รองรับมือถือ ด้านขวาเป็นผู้หญิงในชุดดำขลิบส้มยิ้มยกมือทั้งสองข้าง มีตู้สล็อตแจ็กพอต 777 กล่องของขวัญผูกโบว์ทอง และกองเหรียญทองรอบภาพ"
+          alt="แบนเนอร์โปรโมชั่น MVP928 ข้อความสีโครมสลับทองว่า King Hour พร้อมป้ายนาฬิกาเขียนช่วงเวลา 22:00 ถึง 23:00 ถัดมาเป็นบรรทัด เปิดหีบ ลุ้นโค้ดลับ และ รับเครดิตฟรี 99 หรือ 199 หรือ 299 พร้อมคำอธิบายว่า เฉพาะช่วงเวลากำหนดของทุกวัน ตรงกลางเป็นหีบสมบัติทองเปิดออกเรืองแสง มีเหรียญรูปกุญแจสลักคำว่า CODE กระจายออกมา ปิดท้ายด้วยปุ่มเขียนว่า ล่ารางวัล บนพื้นหลังสีดำ"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -119,7 +119,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น JERRY69 ใต้โลโก้เป็นข้อความส้มขอบขาวขนาดใหญ่ว่า วงล้อโชคดี ด้านซ้ายเป็นบรรทัด ฝากครบ กับเลข 300 ตัวใหญ่ และบรรทัด หมุนฟรี 1 ครั้ง ด้านขวาเป็นวงล้อรางวัลขอบไฟทองแบ่งเป็นช่องสีส้มสลับดำ เขียนว่า 69 เครดิต 169 เครดิต 269 เครดิต และช่อง ของรางวัล ที่มีไอคอนกล่องของขวัญ มีลูกศรทองชี้อยู่ด้านบนวงล้อ ปิดท้ายด้วยปุ่มส้มทองทรงรีเขียนว่า หมุนเลย ด้านซ้ายเป็นผู้หญิงในชุดดำขลิบส้มชี้นิ้วไปที่วงล้อ รอบภาพเป็นเพชร เหรียญทอง และกล่องของขวัญบนพื้นหลังสีดำ"
+          alt="แบนเนอร์โปรโมชั่น MVP928 ข้อความตัวใหญ่ว่า วงล้อราชัน พร้อมเงื่อนไขว่า ฝากครบ 500 รับสิทธิ์หมุนฟรี 1 ครั้ง ด้านขวาเป็นวงล้อรางวัลสีทองสลับดำ แบ่งเป็นช่อง 68 เครดิต 168 เครดิต 368 เครดิต ช่อง ของรางวัล และช่องที่เป็นไอคอนหีบสมบัติ ถุงเงิน กับเพชร พร้อมคำอธิบายว่า หมุนรับสิทธิ์ลุ้นของรางวัลได้ทุกวัน ปิดท้ายด้วยปุ่มเขียนว่า หมุนเลย ด้านซ้ายเป็นผู้หญิงในชุดดำขลิบทองแดงติดโลโก้ MVP928 ชี้นิ้วไปที่วงล้อ"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -135,8 +135,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#ffc94a]/60 bg-gradient-to-r from-[#fff4e2] via-[#ffc94a] to-[#fa8302] px-10 py-3.5 text-lg font-black text-[#2a1301] shadow-[0_10px_30px_rgba(250,131,2,0.32)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(194,83,2,0.40)]">
-          สมัครสมาชิก JERRY69
+          class="flex items-center justify-center rounded-lg border border-[#f0b243]/60 bg-gradient-to-r from-[#f7ece2] via-[#f0b243] to-[#ef6a17] px-10 py-3.5 text-lg font-black text-[#1c0e05] shadow-[0_10px_30px_rgba(239,106,23,0.32)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(179,74,8,0.40)]">
+          สมัครสมาชิก MVP928
         </a>
       </div>
     </div>

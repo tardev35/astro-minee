@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle9.astro";
-import Footer from "../components/FooterStyle3.astro";
+import Navbar from "../components/NavbarStyle8.astro";
+import Footer from "../components/FooterPremiumSumo.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,12 +55,12 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "JERRY69 | สล็อตรวมเกมค่ายดัง แตกง่าย รวยไว สมัครฟรีรับโปรทุนน้อย",
+  title = "MVP928 | เว็บตรงสล็ออันดับหนึ่ง รวมโปรสุดคุ้ม ระบบใหม่ออโต้ แตกง่าย",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings. Count
   // CHARACTERS, not bytes — Thai is 3 bytes per character.
-  description = "JERRY69 รวมเกมสล็อตจากหลายค่ายไว้ในระบบเดียว สมัครฟรี พร้อมโปรทุนน้อยตามเงื่อนไข ระบบสมาชิกใช้งานง่าย ตรวจข้อมูลบัญชี และติดตามสถานะรายการได้จากหน้าเดียว",
+  description = "MVP928 สล็อตเว็บตรงระบบใหม่ออโต้ รวมโปรโมชั่นหลายรูปแบบภายในบัญชีเดียว พร้อมเกมยอดนิยม ระบบสมาชิกใช้งานง่าย และข้อมูลรายการที่ตรวจสอบได้สะดวกจากหน้าเดียว",
   robots = "index, follow",
 } = Astro.props;
 
@@ -225,7 +225,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #080402;
+        background-color: #0b0502;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -278,7 +278,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ JERRY69 ตรงกลางเป็นโลโก้ตัวอักษรโป่งพอง คำว่า JERRY สีขาวขอบดำหนา ต่อด้วยเลข 69 สีส้มไล่เฉดทองมีไฮไลต์มันวาว ใต้โลโก้เป็นแถบสีดำขอบส้มเรืองแสงเขียนว่า เว็บเกมสุดมัน ด้วยตัวอักษรสีขาว ตามด้วย โบนัสแน่น สีส้ม บรรทัดถัดมาเป็นข้อความสีส้มทองขนาดใหญ่ว่า เล่นง่ายทุกวัน ถัดลงมาเป็นแถบวงรีขอบส้มสามช่องเขียนว่า สมัครไว พร้อมไอคอนนาฬิกาจับเวลา ระบบลื่น พร้อมไอคอนลูกศรความเร็ว และ รองรับมือถือ พร้อมไอคอนโทรศัพท์ ปิดท้ายด้วยปุ่มวงรีสีส้มทองขนาดใหญ่เขียนว่า เข้าเล่นเลย ด้านซ้ายเป็นผู้หญิงผมยาวรวบสูงในชุดสีดำสลับส้มติดโลโก้ JERRY69 ที่ปลอกคอและเข็มขัด กำลังชี้นิ้วขึ้นไปที่โลโก้ ข้างหลังเป็นไพ่โพดำเอซ ตู้สล็อตเลข 777 ป้าย JACKPOT เหรียญทองสลักคำว่า JERRY ชิปคาสิโนสีดำขอบส้ม และกล่องของขวัญผูกโบว์ทอง กระจายอยู่บนพื้นหลังสีดำที่มีประกายไฟสีส้ม"
+          alt="แบนเนอร์ต้อนรับ MVP928 ตรงกลางค่อนไปทางขวาเป็นโลโก้หัวราชาไว้เคราขาวสวมมงกุฎทองขอบสีส้ม ต่อด้วยตัวอักษร MVP928 แบบโลหะสีขาวเงินไล่ไปส้ม บรรทัดถัดมาเป็นข้อความขนาดใหญ่ MVP928 สีขาวเงิน ตามด้วย ราชาเกมพรีเมียม สีส้มทอง ใต้ลงมาเป็นบรรทัดสีขาวว่า สนุกครบทุกแนว ระบบลื่น เล่นได้ทุกวัน ถัดลงมาเป็นแถบวงรีสีดำขอบทองสามช่องเขียนว่า สมัครไว พร้อมไอคอนรูปคน ฝากถอนคล่อง พร้อมไอคอนเหรียญหมุนวน และ รองรับมือถือ พร้อมไอคอนโทรศัพท์ ปิดท้ายด้วยปุ่มสี่เหลี่ยมมุมมนสีส้มเรืองแสงขนาดใหญ่เขียนว่า เข้าเล่นเลย ขนาบด้วยมงกุฎทองสองข้าง ด้านซ้ายเป็นผู้หญิงผมยาวในชุดรัดรูปสีดำสลับแถบทองแดงติดโลโก้ MVP928 ที่หน้าอก กำลังแบมือเชิญไปทางข้อความ ข้างหลังเป็นรูปปั้นราชาสีทองสวมมงกุฎ ป้าย JACKPOT ตู้สล็อตขึ้นเลข 7 และกองเหรียญทองกับชิปคาสิโนสีดำขอบทองแดง กระจายอยู่บนพื้นหลังสีดำที่มีประกายไฟสีส้ม"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

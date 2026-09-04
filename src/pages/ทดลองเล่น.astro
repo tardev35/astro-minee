@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement4.astro";
+import Announcement from "../components/Announcement3.astro";
 import { pageGraph } from "../lib/schema";
 
 // An earlier brand rendered a grid of twelve gamedemo*.webp provider covers here
@@ -18,19 +18,23 @@ import { pageGraph } from "../lib/schema";
 //
 // What replaces them is the four-step walkthrough below — no images, plain
 // markup, and each step's label is a <p>/<span> with an aria-label on the
-// region, because only the article body may produce a heading.
+// region, because only the article body may produce a heading. It is NOT an
+// h3-bearing icon-card block: the sanctioned source of an h3 is
+// FeatureHighlights.astro, and that file still carries a previous brand's
+// crimson/amber palette, so wiring it in here would ship off-brand colour.
 //
-// <Announcement /> is bare: Announcement4's default message is this brand's
+// <Announcement /> is bare: Announcement3's default message is this brand's
 // copy, so the ticker matches index.astro without a second string here. The
-// variant rotated off Announcement2, the outgoing brand's pick, per the brand
+// variant rotated off Announcement4, the outgoing brand's pick, per the brand
 // spec.
 //
-// JERRY69 is a SLOT brand: the docx talks about เกมค่ายดัง จากหลายค่ายในระบบเดียว,
-// โปรทุนน้อย, and reading RTP / ความผันผวน / ตารางจ่าย / ฟีเจอร์โบนัส before
-// playing for real. It names no wallet, no bank and no payment brand — its money
-// language is "ระบบสมาชิก" plus "ตรวจบัญชี ประวัติรายการ และสถานะธุรกรรม" — so do
-// not reintroduce a payment brand the brief never mentions. Its standing caveat
-// is that แตกง่าย and รวยไว are marketing wording, never a guarantee of results.
+// MVP928 is a SLOT brand: the docx talks about เว็บตรง, ระบบใหม่ออโต้,
+// โปรโมชั่นหลายรูปแบบ, and reading RTP / ความผันผวน / ตารางจ่าย / ฟีเจอร์โบนัส
+// before playing for real. It names no wallet, no bank and no payment brand —
+// its money language is "ระบบสมาชิก" plus "ตรวจบัญชี ประวัติรายการ และสถานะ
+// ธุรกรรม" — so do not reintroduce a payment brand the brief never mentions. Its
+// standing caveat is that อันดับหนึ่ง and แตกง่าย are marketing wording, never a
+// guarantee of results.
 const trySteps = [
   {
     icon: "🎰",
@@ -46,28 +50,28 @@ const trySteps = [
   },
   {
     icon: "🎁",
-    label: "เทียบเงื่อนไขโปรทุนน้อยก่อนกดรับสิทธิ์",
+    label: "เทียบเงื่อนไขโปรโมชั่นแต่ละรูปแบบก่อนกดรับสิทธิ์",
     detail:
-      "โปรสำหรับผู้เล่นงบไม่สูงควรดูยอดเริ่มต้น เกมที่ร่วมรายการ และเงื่อนไขการถอนพร้อมกัน ไม่ใช่ดูตัวเลขโบนัสอย่างเดียว โบนัสที่ดูสูงอาจไม่เหมาะที่สุดหากมีข้อกำหนดซับซ้อน โหมดทดลองใช้ไล่อ่านเงื่อนไขเหล่านี้ได้ก่อนที่เงินจะเข้าไปผูกกับรายการ",
+      "โปรโมชั่นมีได้ทั้งโบนัสสมาชิกใหม่ สิทธิ์ตามยอดฝาก และกิจกรรมตามช่วงเวลา ก่อนรับควรดูยอดขั้นต่ำ เกมที่ร่วมรายการ และเงื่อนไขการถอนพร้อมกัน ไม่ใช่ดูตัวเลขโบนัสอย่างเดียว โหมดทดลองใช้ไล่อ่านเงื่อนไขเหล่านี้ได้ก่อนที่เงินจะเข้าไปผูกกับรายการ",
   },
   {
     icon: "⚙️",
-    label: "ไล่ดูระบบสมาชิกและสถานะรายการให้ครบก่อนยืนยัน",
+    label: "ไล่ดูระบบออโต้และสถานะรายการให้ครบก่อนยืนยัน",
     detail:
-      "ระบบสมาชิกรวมข้อมูลบัญชี สิทธิ์โปรโมชั่น ประวัติรายการ และสถานะธุรกรรมไว้ในระบบเดียว ลองเดินตั้งแต่หน้าบัญชีจนถึงหน้าสรุปเพื่อให้รู้ว่าต้องตรวจอะไรบ้างก่อนกดยืนยัน ทั้งชื่อบัญชี จำนวนเงิน และเงื่อนไขที่เกี่ยวข้อง หากรายการเดิมยังดำเนินการอยู่ควรรอระบบอัปเดตก่อนส่งคำขอใหม่",
+      "ระบบออโต้รวมข้อมูลบัญชี สิทธิ์โปรโมชั่น ประวัติรายการ และสถานะธุรกรรมไว้ที่จุดเดียว ลองเดินตั้งแต่หน้าบัญชีจนถึงหน้าสรุปเพื่อให้รู้ว่าต้องตรวจอะไรบ้างก่อนกดยืนยัน ทั้งชื่อบัญชี จำนวนเงิน และเงื่อนไขที่เกี่ยวข้อง หากรายการเดิมยังดำเนินการอยู่ควรรอผลจากระบบก่อนส่งใหม่",
   },
 ];
 
-const pageTitle = "ทดลองเล่นสล็อตค่ายดังบน JERRY69 ก่อนเริ่มเล่นด้วยเงินจริง";
+const pageTitle = "ทดลองเล่นสล็อตบน MVP928 และศึกษาฟีเจอร์ก่อนเริ่มเล่นด้วยเงินจริง";
 
 // Title and description are the docx SUB-PAGES row "ทดลองเล่น" and ship
-// VERBATIM at their own length (116 characters). The brand spec is explicit
+// VERBATIM at their own length (115 characters). The brand spec is explicit
 // that the docx-supplied rows are not to be padded to the 150-character floor
 // tools/verify-build.mjs enforces — earlier brands bolted a closing clause on
 // to clear DESC_MIN, and that is exactly what this round stops doing. Counted
 // in CHARACTERS (Thai is 3 bytes per character, so a byte count reads ~3x too
 // long). Do not re-word it.
-const pageDescription = "JERRY69 ทดลองเล่นสล็อตเพื่อศึกษาฟีเจอร์ ตารางจ่าย RTP และความผันผวน ช่วยให้เปรียบเทียบเกมและเลือกวงเงินได้เหมาะกับงบ";
+const pageDescription = "MVP928 ทดลองเล่นสล็อตเพื่อศึกษากติกา ฟีเจอร์ ตารางจ่าย RTP และความผันผวน ช่วยให้เลือกเกมได้เหมาะกับสไตล์และงบประมาณ";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -78,44 +82,44 @@ const graph = pageGraph(Astro, {
   ],
 });
 
-// h2 inside the card: light gold → orange → bronze, i.e. the ramp read downward,
-// where ContentBox's own h1 gradient starts on cream and climbs
-// (#fff4e2 → #ffc94a → #fa8302). The two heading levels stay distinct without
-// either repeating the other's opening stop, and the cream stays on the h1 —
-// a second cream heading on a near-black card is where the hierarchy collapses.
-// There is no gold-luxury ramp left on this page; that was the outgoing brand.
-const sectionHeadingClass = "bg-gradient-to-r from-[#ffc94a] via-[#fa8302] to-[#c25302] bg-clip-text text-2xl leading-normal font-bold text-transparent";
+// h2 inside the card: gold → burnt copper → deep copper, i.e. the brand ramp read
+// downward, where ContentBox's own h1 gradient opens on chrome silver and runs
+// chrome → gold → copper. The two heading levels stay distinct without either
+// repeating the other's opening stop, and the chrome stays on the h1 — a second
+// chrome heading on a near-black card is where the hierarchy collapses.
+const sectionHeadingClass = "bg-gradient-to-r from-[#f0b243] via-[#ef6a17] to-[#b34a08] bg-clip-text text-2xl leading-normal font-bold text-transparent";
 ---
 
-<MainLayout title="JERRY69 | ทดลองเล่นสล็อตค่ายดังและเปรียบเทียบเกมก่อนเล่นจริง" description={pageDescription}>
+<MainLayout title="MVP928 | ทดลองเล่นสล็อตและศึกษาฟีเจอร์ก่อนเล่นจริง" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <h2 class={`mb-6 ${sectionHeadingClass}`}>ทดลองเล่นบน JERRY69 คือการไล่ดูอะไรบ้างก่อนลงเงินจริง</h2>
+      <h2 class={`mb-6 ${sectionHeadingClass}`}>ทดลองเล่นบน MVP928 คือการไล่ดูอะไรบ้างก่อนลงเงินจริง</h2>
 
-      <p class="mb-8 text-left text-base leading-relaxed text-[#f3e3d0]">
-        การทดลองเล่นบน JERRY69 คือการเปิดหน้าจอชุดเดียวกับที่จะใช้จริงขึ้นมาไล่ดูให้ครบก่อนใส่เงินลงไป ตั้งแต่หน้ารวมเกมที่แยกตามธีม ฟีเจอร์ และระดับเดิมพัน หน้าข้อมูลของเกมที่ระบุตารางจ่าย ค่า RTP
-        และระดับความผันผวน ไปจนถึงหน้าโปรโมชั่นที่บอกยอดเริ่มต้นกับเงื่อนไขการถอน และระบบสมาชิกที่รวมข้อมูลบัญชี ประวัติรายการ และสถานะธุรกรรมไว้ที่เดียว
+      <p class="mb-8 text-left text-base leading-relaxed text-[#ece0d6]">
+        การทดลองเล่นบน MVP928 คือการเปิดหน้าจอชุดเดียวกับที่จะใช้จริงขึ้นมาไล่ดูให้ครบก่อนใส่เงินลงไป ตั้งแต่หน้ารวมเกมที่แยกตามธีม ฟีเจอร์ และระดับเดิมพัน หน้าข้อมูลของเกมที่ระบุตารางจ่าย ค่า RTP
+        และระดับความผันผวน ไปจนถึงหน้าโปรโมชั่นที่บอกยอดขั้นต่ำกับเงื่อนไขการถอน และระบบออโต้ที่รวมข้อมูลบัญชี ประวัติรายการ และสถานะธุรกรรมไว้ที่จุดเดียว
         เพราะสิ่งที่ทำให้ผู้เล่นใหม่เสียเงินโดยไม่จำเป็นมักไม่ใช่ดวง แต่เป็นการกดยืนยันโดยยังไม่รู้ว่ารายการตรงหน้าคิดผลจากอะไร เช่น
-        เข้าใจว่าคำว่าแตกง่ายคือโอกาสชนะที่สูงกว่าทั้งที่เป็นถ้อยคำบรรยายเกม ปรับเดิมพันต่อรอบขึ้นโดยยังไม่ได้ดูว่าเกมนั้นความผันผวนสูงแค่ไหน เข้าใจเงื่อนไขโปรทุนน้อยผิดจนรับสิทธิ์ไม่ครบ
-        หรือกดยืนยันรายการซ้ำเพราะไม่ได้รอให้ระบบแสดงสถานะของรายการเดิมก่อน ความเข้าใจคลาดเคลื่อนเหล่านี้แก้ทีหลังไม่ได้เมื่อรายการเข้าสู่ระบบแล้ว แต่ป้องกันได้เกือบทั้งหมดด้วยการเปิดดูหนึ่งรอบก่อน
-        สี่ขั้นด้านล่างคือสิ่งที่ควรไล่ดูให้ครบ และเป็นลำดับเดียวกับที่ใช้จริงเมื่อลงเดิมพันด้วยเงินของตัวเอง
+        เข้าใจว่าคำว่าแตกง่ายคือโอกาสชนะที่สูงกว่าทั้งที่เป็นถ้อยคำบรรยายเกม เชื่อคำว่าอันดับหนึ่งโดยยังไม่ได้ดูข้อมูลค่ายเกมและเงื่อนไขธุรกรรมประกอบ
+        ปรับเดิมพันต่อรอบขึ้นโดยยังไม่ได้ดูว่าเกมนั้นความผันผวนสูงแค่ไหน เข้าใจเงื่อนไขโปรโมชั่นผิดจนรับสิทธิ์ไม่ครบ หรือกดยืนยันรายการซ้ำเพราะไม่ได้รอให้ระบบแสดงสถานะของรายการเดิมก่อน
+        ความเข้าใจคลาดเคลื่อนเหล่านี้แก้ทีหลังไม่ได้เมื่อรายการเข้าสู่ระบบแล้ว แต่ป้องกันได้เกือบทั้งหมดด้วยการเปิดดูหนึ่งรอบก่อน สี่ขั้นด้านล่างคือสิ่งที่ควรไล่ดูให้ครบ
+        และเป็นลำดับเดียวกับที่ใช้จริงเมื่อลงเดิมพันด้วยเงินของตัวเอง
       </p>
 
-      <div class="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2" role="list" aria-label="สี่ขั้นตอนที่ควรศึกษาก่อนเล่นด้วยเงินจริงบน JERRY69">
+      <div class="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2" role="list" aria-label="สี่ขั้นตอนที่ควรศึกษาก่อนเล่นด้วยเงินจริงบน MVP928">
         {
           trySteps.map((step) => (
-            <div role="listitem" class="rounded-2xl border border-[#fa8302]/35 bg-[#160b03]/70 p-5 transition-colors duration-300 hover:border-[#ffc94a]/55">
-              <p class="mb-2 flex items-center gap-3 text-base font-bold text-[#ffc94a]">
+            <div role="listitem" class="rounded-2xl border border-[#ef6a17]/35 bg-[#1c0e05]/70 p-5 transition-colors duration-300 hover:border-[#f0b243]/55">
+              <p class="mb-2 flex items-center gap-3 text-base font-bold text-[#f0b243]">
                 <span aria-hidden="true" class="text-2xl">
                   {step.icon}
                 </span>
                 {step.label}
               </p>
-              <p class="text-left text-base leading-relaxed text-[#f3e3d0]">{step.detail}</p>
+              <p class="text-left text-base leading-relaxed text-[#ece0d6]">{step.detail}</p>
             </div>
           ))
         }
@@ -123,9 +127,9 @@ const sectionHeadingClass = "bg-gradient-to-r from-[#ffc94a] via-[#fa8302] to-[#
 
       <h2 class={`mt-8 mb-6 ${sectionHeadingClass}`}>สามชั้นข้อมูลที่ควรอ่านให้จบในโหมดทดลองก่อนกดรอบแรก</h2>
 
-      <p class="mb-4 text-left text-base leading-relaxed text-[#f3e3d0]">
+      <p class="mb-4 text-left text-base leading-relaxed text-[#ece0d6]">
         สล็อตเป็นเกมที่กติกาหลักไม่ซับซ้อน แต่ละรอบระบบสุ่มสัญลักษณ์ลงบนวงล้อแล้ววัดผลจากรูปแบบการจ่ายที่เกมนั้นประกาศไว้ จะเป็นแบบเส้นการจ่ายหรือแบบนับจำนวนสัญลักษณ์ที่ออกก็ได้ ขึ้นอยู่กับเกม
-        และเพราะระบบรวมเกมจากหลายค่ายไว้ด้วยกัน เกมสองเกมที่หน้าตาใกล้เคียงกันจึงอาจใช้รูปแบบการจ่ายและเงื่อนไขฟีเจอร์คนละแบบ จึงไม่ควรเทียบความเสี่ยงข้ามเกมหรือข้ามค่ายกันตรง ๆ
+        และเพราะระบบเว็บตรงรวมเกมจากหลายค่ายไว้ด้วยกัน เกมสองเกมที่หน้าตาใกล้เคียงกันจึงอาจใช้รูปแบบการจ่ายและเงื่อนไขฟีเจอร์คนละแบบ จึงไม่ควรเทียบความเสี่ยงข้ามเกมหรือข้ามค่ายกันตรง ๆ
         สิ่งที่ควรได้จากการทดลองจึงเป็นความเข้าใจว่ารอบที่กำลังจะเริ่มนั้นคิดผลจากอะไร ไม่ใช่การจำว่าปุ่มอยู่ตรงไหน เรื่องที่ควรอ่านให้จบมีสามชั้น ชั้นแรกคือตารางจ่ายและเงื่อนไขของฟีเจอร์โบนัส
         ทั้งสัญลักษณ์ไวลด์ สแคทเทอร์ และวิธีเข้าสู่รอบฟรีสปินของเกมนั้น ซึ่งระบบตัดสินให้เองตามกติกาที่ประกาศไว้ ชั้นที่สองคือค่า RTP ที่ผู้ให้บริการระบุและระดับความผันผวนของเกม
         สองค่านี้อธิบายลักษณะการจ่ายได้ดีกว่าคำว่าแตกง่าย เกมความผันผวนสูงจ่ายห่างแต่ก้อนใหญ่ เกมความผันผวนต่ำจ่ายถี่แต่ก้อนเล็ก และทั้งคู่ให้ประสบการณ์คนละแบบกับงบเท่ากัน ชั้นที่สามคือขอบเขตของรายการ
@@ -137,17 +141,17 @@ const sectionHeadingClass = "bg-gradient-to-r from-[#ffc94a] via-[#fa8302] to-[#
 
       <h2 class={`mt-8 mb-6 ${sectionHeadingClass}`}>สิ่งที่การทดลองบอกได้ และสิ่งที่บอกไม่ได้</h2>
 
-      <p class="mb-4 text-left text-base leading-relaxed text-[#f3e3d0]">
+      <p class="mb-4 text-left text-base leading-relaxed text-[#ece0d6]">
         สิ่งที่การทดลองบอกได้คือกลไกและขั้นตอน ได้แก่ วิธีอ่านตารางจ่ายและเงื่อนไขเข้าสู่รอบฟรีสปิน ความต่างระหว่างเดิมพันต่อเส้นกับเดิมพันรวมต่อรอบ ลำดับหน้าจอตั้งแต่เลือกเกมจนถึงหน้าสรุป
         ตำแหน่งที่ระบบแสดงค่า RTP กับระดับความผันผวน และความรู้สึกตอนใช้งานว่าจังหวะการจ่ายของเกมนั้นเข้ากับสไตล์ของเราหรือไม่ เมื่อรู้สิ่งเหล่านี้แล้ว
         การเล่นจริงจะเหลือแค่การตัดสินใจเรื่องวงเงินและงบ ไม่ต้องเสียสมาธิไปกับการหาปุ่มหรือเดาว่ารอบที่ผ่านไปนั้นตัดสินจากอะไร สิ่งที่การทดลองบอกไม่ได้เลยคือผลของรอบถัดไปเมื่อลงด้วยเงินจริง
         ผลของแต่ละรอบไม่ได้ถูกกำหนดโดยรอบก่อนหน้า และเครดิตในโหมดทดลองไม่ใช่เงินจริง ถอนไม่ได้ และไม่มีผลต่อยอดเงินในบัญชีจริง
         ตัวเลขที่เห็นในโหมดทดลองจึงไม่ใช่ตัวแทนของผลจริงหรือของอัตราการจ่ายที่จะได้รับ ช่วงที่โบนัสออกถี่ผิดปกติในโหมดทดลองก็เป็นเรื่องของความผันผวนระยะสั้น ไม่ใช่สัญญาณว่ารอบถัดไปจะออกทางใด
-        และการนับสถิติจากรอบที่ผ่านมาก็ไม่ได้ทำให้คาดเดารอบหน้าได้แม่นขึ้น คำว่าแตกง่ายและรวยไวก็เป็นถ้อยคำทางการตลาดที่ใช้บรรยายลักษณะของเกมและความตื่นเต้นของการลุ้นรางวัล
+        และการนับสถิติจากรอบที่ผ่านมาก็ไม่ได้ทำให้คาดเดารอบหน้าได้แม่นขึ้น คำว่าอันดับหนึ่งและแตกง่ายก็เป็นถ้อยคำทางการตลาดที่ใช้สื่อถึงความนิยมและลักษณะการจ่ายของเกมเท่านั้น
         ไม่ใช่การรับประกันผลของเกมหรือรายได้ ทุกอย่างจึงควรตรวจจากข้อมูลที่ระบบแสดงจริง ไม่ใช่จากคำโฆษณา
       </p>
 
-      <p class="mb-2 text-left text-base leading-relaxed text-[#f3e3d0]">
+      <p class="mb-2 text-left text-base leading-relaxed text-[#ece0d6]">
         เมื่อพร้อมจะขยับไปเล่นจริง สิ่งที่ควรจัดให้เรียบร้อยก่อนมีสามอย่าง อย่างแรกคือบัญชี ควรใช้ข้อมูลที่ตรงกับตอนสมัคร ตั้งรหัสผ่านที่คาดเดายากและไม่ซ้ำกับบริการอื่น
         และเข้าใช้งานผ่านช่องทางหลักที่เว็บไซต์กำหนดเท่านั้น โดยตรวจชื่อเว็บไซต์และการเชื่อมต่อแบบ HTTPS ทุกครั้งก่อนกรอกข้อมูล อย่างที่สองคืองบประมาณ ควรกำหนดวงเงินและระยะเวลาไว้ล่วงหน้า
         ใช้เฉพาะเงินที่ไม่กระทบค่าใช้จ่ายจำเป็น และไม่เพิ่มเดิมพันต่อรอบเพื่อหวังตามคืนยอดที่เสียไปแล้ว อย่างที่สามคือการติดตามรายการ

@@ -8,65 +8,65 @@
 // sr-only line beside it: U+2605 counts as Extended_Pictographic, so a bare one
 // would be read out five times per card.
 //
-// Each card echoes one section of the JERRY69 brief — starting from a game whose
-// rules are clear, weighing a low-budget promotion's conditions instead of its
-// headline bonus, using the auto system step by step, telling slot risk from
-// casino risk, reading RTP with the pay table and volatility, and checking a
-// transaction's real status rather than trusting a marketing phrase — so nothing
-// here claims more than the brief.
+// Each card echoes one section of the MVP928 brief — finding games, promotions
+// and account data from one place, treating "อันดับหนึ่ง" as marketing and
+// checking the data behind it, matching a promotion to the budget rather than to
+// the headline bonus, working the auto system step by step, reading RTP with
+// volatility and the bonus features, and setting a limit because "แตกง่าย"
+// guarantees nothing — so nothing here claims more than the brief.
 const reviews = [
   {
-    name: "สมาชิกที่เริ่มจากเกมกติกาชัดเจน",
-    role: "เลือกจากธีม ฟีเจอร์ และระดับเดิมพันที่เข้าใจก่อน",
+    name: "สมาชิกที่ใช้ระบบจากจุดเดียว",
+    role: "ค้นหาเกม โปรโมชั่น และข้อมูลบัญชีในหน้าเดียวกัน",
     stars: 5,
-    tag: "เริ่มจากที่เข้าใจ",
+    tag: "ลดการสลับหน้า",
     content:
-      "ตอนเพิ่งเริ่มเลือกเกมที่กติกาชัดเจนและวงเงินต่อรอบไม่สูงเกินงบก่อน พอเข้าใจรูปแบบการจ่ายและฟีเจอร์ของเกมแล้วค่อยขยับไปเกมที่ซับซ้อนขึ้น วิธีนี้ทำให้ไล่ดูธีมและระดับเดิมพันได้ตรงกับที่ตัวเองรับได้มากกว่า",
-    avatar: "📄",
+      "ตั้งแต่เปลี่ยนมาไล่ดูจากจุดเดียวก็หาเกมกับโปรโมชั่นได้เร็วขึ้น ไม่ต้องเปิดสลับหลายหน้าเหมือนเมื่อก่อน หมวดเกมที่แยกไว้ชัดเจนทำให้เทียบฟีเจอร์และรูปแบบการเล่นก่อนตัดสินใจได้สะดวกกว่าเดิมพอสมควร",
+    avatar: "🗂️",
   },
   {
-    name: "สมาชิกที่เริ่มด้วยงบไม่สูง",
-    role: "ดูยอดเริ่มต้น เกมที่ร่วมรายการ และเงื่อนไขการถอน",
+    name: "สมาชิกที่ดูข้อมูลมากกว่าคำโปรโมต",
+    role: "ดูค่ายเกม ระบบบัญชี ช่องทางติดต่อ และเงื่อนไขธุรกรรม",
+    stars: 5,
+    tag: "อ่านข้อมูลก่อนเชื่อ",
+    content:
+      "คำว่าอันดับหนึ่งเป็นถ้อยคำทางการตลาด เลยไม่ได้ใช้เป็นหลักฐานอย่างเดียว ก่อนตัดสินใจก็ดูข้อมูลค่ายเกม ระบบบัญชี ช่องทางติดต่อ และเงื่อนไขธุรกรรมประกอบกัน วิธีนี้ทำให้มีข้อมูลรองรับมากกว่าดูจากคำโฆษณา",
+    avatar: "🔎",
+  },
+  {
+    name: "สมาชิกที่เลือกโปรให้ตรงกับงบ",
+    role: "ดูยอดขั้นต่ำ เกมที่ร่วมรายการ และเงื่อนไขการถอน",
     stars: 5,
     tag: "อ่านเงื่อนไขก่อนรับ",
     content:
-      "โปรสำหรับงบน้อยช่วยคุมค่าใช้จ่ายได้จริง แต่ต้องดูยอดเริ่มต้น เกมที่ร่วมรายการ และเงื่อนไขการถอนไปพร้อมกัน เคยเจอโบนัสที่ดูสูงกว่าแต่ข้อกำหนดซับซ้อนจนไม่เข้ากับสไตล์การเล่นของตัวเอง สุดท้ายเลยไม่ได้เหมาะที่สุด",
+      "โปรโมชั่นมีทั้งโบนัสสมาชิกใหม่ สิทธิ์ตามยอดฝาก และกิจกรรมตามช่วงเวลา ก่อนรับเลยตรวจยอดขั้นต่ำ เกมที่ร่วมรายการ และเงื่อนไขการถอนให้ครบก่อน โปรที่โบนัสสูงสุดไม่ได้แปลว่าเหมาะกับงบและพฤติกรรมการเล่นที่สุด",
     avatar: "🏷️",
   },
   {
     name: "สมาชิกที่ตรวจรายการทีละขั้นตอน",
-    role: "ดูยอดคงเหลือ ประวัติธุรกรรม และสถานะรายการจากที่เดียว",
+    role: "ดูชื่อบัญชี จำนวนเงิน และสถานะรายการก่อนยืนยัน",
     stars: 4,
     tag: "ตรวจก่อนยืนยัน",
     content:
-      "ตรวจยอด ประวัติธุรกรรม และสถานะรายการผ่านระบบเดียวได้สะดวก ก่อนกดยืนยันก็ไล่ดูชื่อบัญชี จำนวนเงิน และข้อมูลที่เกี่ยวข้องให้ถูกต้องก่อน ถ้ารายการเดิมยังดำเนินการอยู่ก็รอผลจากระบบก่อน จะได้ไม่ทำรายการซ้ำซ้อน",
+      "ระบบออโต้ช่วยลดขั้นตอนจัดการบัญชีและธุรกรรมได้จริง แต่ก่อนกดยืนยันก็ยังไล่ดูชื่อบัญชีและจำนวนเงินให้ถูกต้องทุกครั้ง ถ้ารายการเดิมยังดำเนินการอยู่ก็รอผลจากระบบก่อนส่งใหม่ จะได้ไม่เกิดรายการซ้ำหรือคลาดเคลื่อน",
     avatar: "🧾",
   },
   {
-    name: "สมาชิกที่แยกความเสี่ยงของสองหมวด",
-    role: "ดูโครงสร้างของเกมสล็อตและเกมคาสิโนแยกจากกัน",
-    stars: 5,
-    tag: "เลือกตามความเสี่ยง",
-    content:
-      "เกมสล็อตมีฟีเจอร์โบนัสและระดับความผันผวนต่างกันไป ส่วนเกมคาสิโนใช้กติกาและอัตราจ่ายเฉพาะของแต่ละประเภท เลยทำความเข้าใจโครงสร้างของเกมก่อนเลือก เพื่อให้วงเงินและระดับความเสี่ยงสอดคล้องกับที่ตัวเองรับได้",
-    avatar: "🃏",
-  },
-  {
-    name: "สมาชิกที่อ่าน RTP คู่กับตารางจ่าย",
-    role: "ดูค่าที่ผู้ให้บริการระบุ ฟีเจอร์โบนัส และความผันผวน",
+    name: "สมาชิกที่อ่าน RTP คู่กับความผันผวน",
+    role: "ดูค่าที่ผู้ให้บริการระบุ ฟีเจอร์โบนัส และระดับความผันผวน",
     stars: 5,
     tag: "ดูข้อมูลก่อนเล่น",
     content:
-      "แทนที่จะเลือกจากคำว่าแตกง่ายอย่างเดียว ก็ดูค่า RTP ที่ผู้ให้บริการระบุ ตารางจ่าย ฟีเจอร์โบนัส และความผันผวนประกอบกัน ข้อมูลพวกนี้ช่วยให้เข้าใจลักษณะของเกมมากขึ้นและเลือกวงเงินต่อรอบได้เหมาะสมกว่าเดิม",
+      "แทนที่จะเลือกจากคำว่าแตกง่ายอย่างเดียว ก็ดูค่า RTP ที่ผู้ให้บริการระบุ ฟีเจอร์โบนัส และระดับความผันผวนของเกมร่วมกัน เกมแต่ละประเภทให้ประสบการณ์ต่างกัน พอเข้าใจข้อมูลพวกนี้ก็เลือกวงเงินได้เหมาะกับงบมากขึ้น",
     avatar: "🎯",
   },
   {
-    name: "สมาชิกที่เก็บเลขอ้างอิงไว้ทุกครั้ง",
-    role: "ดูสถานะธุรกรรมจริงแทนการเชื่อคำว่าจ่ายไว",
+    name: "สมาชิกที่กำหนดวงเงินไว้ล่วงหน้า",
+    role: "ตั้งงบและเวลาเล่นก่อนเริ่มทุกครั้ง",
     stars: 4,
-    tag: "ดูสถานะจริง",
+    tag: "เล่นตามแผนที่ตั้งไว้",
     content:
-      "คำว่าจ่ายไวดูจากสถานะธุรกรรมในระบบเอาเองดีกว่า ไม่ได้ใช้เป็นการรับประกันทุกกรณี ก่อนถอนก็ตรวจยอดคงเหลือ ข้อมูลรับเงิน และเงื่อนไขโปรโมชั่นก่อน แล้วเก็บเลขอ้างอิงไว้จนกว่ารายการจะเสร็จสมบูรณ์ทุกครั้ง",
+      "คำว่าแตกง่ายเป็นข้อความทางการตลาดที่ใช้สื่อถึงความน่าสนใจของเกม ไม่ได้รับประกันรางวัลหรือกำไร เลยกำหนดวงเงินและเวลาเล่นไว้ล่วงหน้า และเลี่ยงการเพิ่มเดิมพันเพื่อตามคืนยอดเสีย ทำให้คุมค่าใช้จ่ายได้ตามที่วางไว้",
     avatar: "⏱️",
   },
 ];
@@ -75,62 +75,62 @@ const totalStars = reviews.reduce((sum, r) => sum + r.stars, 0);
 const average = (totalStars / reviews.length).toFixed(1);
 ---
 
-<section aria-label="เสียงจากสมาชิก JERRY69" class="relative z-10 mx-auto mb-12 w-full max-w-[1400px] px-4 font-sans">
+<section aria-label="เสียงจากสมาชิก MVP928" class="relative z-10 mx-auto mb-12 w-full max-w-[1400px] px-4 font-sans">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
-    <p class="bg-gradient-to-r from-[#fff4e2] via-[#ffc94a] to-[#fa8302] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
-      เสียงจากสมาชิก <span class="text-[#ffc94a]">JERRY69</span>
+    <p class="bg-gradient-to-r from-[#eaeef3] via-[#f0b243] to-[#ef6a17] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
+      เสียงจากสมาชิก <span class="text-[#f0b243]">MVP928</span>
     </p>
-    <div class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#fa8302] to-transparent"></div>
+    <div class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#ef6a17] to-transparent"></div>
   </div>
 
   <div
-    class="mx-auto mb-8 flex max-w-md items-center justify-center gap-5 rounded-2xl border border-[#fa8302]/35 bg-[#160b03]/92 px-6 py-4 shadow-[0_10px_30px_rgba(250,131,2,0.22)] backdrop-blur-xl">
+    class="mx-auto mb-8 flex max-w-md items-center justify-center gap-5 rounded-2xl border border-[#ef6a17]/35 bg-[#1c0e05]/92 px-6 py-4 shadow-[0_10px_30px_rgba(239,106,23,0.22)] backdrop-blur-xl">
     <div class="flex flex-col items-center">
-      <span class="bg-gradient-to-b from-[#fff4e2] to-[#fa8302] bg-clip-text text-4xl leading-none font-black text-transparent">{average}</span>
-      <span class="mt-1 text-[10px] font-bold tracking-widest text-[#c8ab8b] uppercase">คะแนนเฉลี่ย</span>
+      <span class="bg-gradient-to-b from-[#eaeef3] to-[#ef6a17] bg-clip-text text-4xl leading-none font-black text-transparent">{average}</span>
+      <span class="mt-1 text-[10px] font-bold tracking-widest text-[#c6ab97] uppercase">คะแนนเฉลี่ย</span>
     </div>
-    <div class="h-12 w-px bg-[#fa8302]/40"></div>
+    <div class="h-12 w-px bg-[#ef6a17]/40"></div>
     <div class="flex flex-col gap-1.5">
       <div aria-hidden="true" class="flex gap-1 text-lg">
-        {Array.from({ length: 5 }).map((_, i) => <span class={i < Math.round(Number(average)) ? "text-[#ff9c2e]" : "text-[#3d2205]"}>★</span>)}
+        {Array.from({ length: 5 }).map((_, i) => <span class={i < Math.round(Number(average)) ? "text-[#fb8b32]" : "text-[#3a2109]"}>★</span>)}
       </div>
-      <span class="text-xs font-bold text-[#c8ab8b]">คะแนนเฉลี่ย {average} จาก 5 ดาว จากการใช้งานจริงของสมาชิก {reviews.length} ด้าน</span>
+      <span class="text-xs font-bold text-[#c6ab97]">คะแนนเฉลี่ย {average} จาก 5 ดาว จากการใช้งานจริงของสมาชิก {reviews.length} ด้าน</span>
     </div>
   </div>
 
   <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
     {
       reviews.map((review) => (
-        <article class="group relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl border border-[#fa8302]/35 bg-[#160b03]/92 p-6 text-left shadow-[0_10px_30px_rgba(250,131,2,0.22)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#ffc94a]/60 hover:shadow-[0_15px_40px_rgba(255,156,46,0.28)]">
-          <span class="absolute inset-y-0 left-0 -z-10 w-1 bg-gradient-to-b from-[#fff4e2] to-[#c25302] opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
-          <span class="pointer-events-none absolute -top-14 -right-14 -z-10 h-32 w-32 rounded-full bg-[#c25302]/50 blur-[50px] transition-all duration-300 group-hover:bg-[#fa8302]/35" />
+        <article class="group relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl border border-[#ef6a17]/35 bg-[#1c0e05]/92 p-6 text-left shadow-[0_10px_30px_rgba(239,106,23,0.22)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#f0b243]/60 hover:shadow-[0_15px_40px_rgba(251,139,50,0.28)]">
+          <span class="absolute inset-y-0 left-0 -z-10 w-1 bg-gradient-to-b from-[#eaeef3] to-[#b34a08] opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
+          <span class="pointer-events-none absolute -top-14 -right-14 -z-10 h-32 w-32 rounded-full bg-[#b34a08]/50 blur-[50px] transition-all duration-300 group-hover:bg-[#ef6a17]/35" />
 
           <div class="flex items-center justify-between gap-3">
-            <span class="inline-flex items-center gap-1.5 rounded-full border border-[#fa8302]/35 bg-[#0a0503] px-3 py-1 text-[10px] font-bold tracking-widest text-[#ffc94a] uppercase">
-              <span aria-hidden="true" class="h-1.5 w-1.5 animate-pulse rounded-full bg-[#fa8302]" />
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-[#ef6a17]/35 bg-[#0b0502] px-3 py-1 text-[10px] font-bold tracking-widest text-[#f0b243] uppercase">
+              <span aria-hidden="true" class="h-1.5 w-1.5 animate-pulse rounded-full bg-[#ef6a17]" />
               {review.tag}
             </span>
             <span class="flex gap-0.5 text-sm">
               <span aria-hidden="true" class="flex gap-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <span class={i < review.stars ? "text-[#ff9c2e]" : "text-[#3d2205]"}>★</span>
+                  <span class={i < review.stars ? "text-[#fb8b32]" : "text-[#3a2109]"}>★</span>
                 ))}
               </span>
               <span class="sr-only">ให้คะแนน {review.stars} จาก 5 ดาว</span>
             </span>
           </div>
 
-          <p class="text-left text-base leading-relaxed text-[#f3e3d0]">{review.content}</p>
+          <p class="text-left text-base leading-relaxed text-[#ece0d6]">{review.content}</p>
 
-          <div class="mt-auto flex items-center gap-3 border-t border-[#fa8302]/35 pt-4">
+          <div class="mt-auto flex items-center gap-3 border-t border-[#ef6a17]/35 pt-4">
             <span
               aria-hidden="true"
-              class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#ffc94a]/50 bg-gradient-to-br from-[#ffc94a] to-[#fa8302] text-xl shadow-inner transition-transform duration-300 group-hover:scale-110">
+              class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#f0b243]/50 bg-gradient-to-br from-[#f0b243] to-[#ef6a17] text-xl shadow-inner transition-transform duration-300 group-hover:scale-110">
               {review.avatar}
             </span>
             <span class="flex flex-col">
-              <span class="text-sm font-black text-[#f3e3d0] transition-colors group-hover:text-[#ffc94a]">{review.name}</span>
-              <span class="text-[10px] font-bold tracking-wider text-[#c8ab8b] uppercase">{review.role}</span>
+              <span class="text-sm font-black text-[#ece0d6] transition-colors group-hover:text-[#f0b243]">{review.name}</span>
+              <span class="text-[10px] font-bold tracking-wider text-[#c6ab97] uppercase">{review.role}</span>
             </span>
           </div>
         </article>
