@@ -3,33 +3,39 @@ export interface Props {
   title?: string;
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
-const { title, as: HeadingTag = "h1" } = Astro.props;
+const { title, as: HeadingTag = "h2" } = Astro.props;
 const headingSize = HeadingTag === "h1" ? "text-3xl" : "text-2xl";
 
+// `as` defaults to "h2" because the docx is flat H1 + H2 and only the one block
+// carrying the page title asks for "h1" explicitly. A default of "h1" is how a
+// second <h1> reaches an indexable page without anyone typing one.
+//
 // text-center lives on the <header> ONLY, never on the card or the <section>.
 // This file shipped that bug once: centering on an ancestor inherits straight
 // into the slot and centers the body paragraph with it. House style is headings
 // may be centered, paragraphs are always flush left at text-base.
 //
-// DIAMOND789 neumorphic pair: the page ground (#070308, the layout's own ink)
-// casts the dark side of the extrusion and the raised plum tone (#2a1122) the
-// lit side, so the card reads as lifted off the near-black page. Matches
-// ContentBoxSevenThreeNeumorphism and ContentBoxTwoNeumorphism so the three read
-// as one system.
+// No slot wrapper — the card carries the body text classes itself and the slot
+// renders as its direct child. Do not re-add a `relative z-10` div.
 //
-// Two-tone split held across every box this brand renders: hot pink carries the
-// surfaces (border, rules, glows) and the soft pink-white body copy sits on the
-// card. The heading ramp runs chrome silver → bright pink → hot pink, which is
-// the logo read left to right.
+// JERRY69 neumorphic pair: the page ink (#0a0503) casts the dark side of the
+// extrusion and the raised warm brown (#261305) the lit side, so the card reads
+// as lifted off the near-black page. Matches ContentBoxTwoNeumorphism so the two
+// read as one system.
+//
+// Two-tone split held across every box this brand renders: hot orange carries
+// the surfaces (border, rule, extrusion) and warm ivory body copy sits on the
+// card. The heading ramp runs cream → light gold → orange, which is the logo's
+// bevelled "69" read left to right.
 ---
 
 <section class="relative z-10 my-6 flex w-full justify-center px-4 font-sans">
   <div
-    class="w-full max-w-[1400px] rounded-[25px] border border-[#f30d8c]/35 bg-[#150810] p-8 text-left text-base leading-relaxed text-[#f8e3f0] shadow-[10px_10px_20px_#070308,-10px_-10px_20px_#2a1122]">
+    class="w-full max-w-[1400px] rounded-[25px] border border-[#fa8302]/35 bg-[#160b03] p-8 text-left text-base leading-relaxed text-[#f3e3d0] shadow-[10px_10px_20px_#0a0503,-10px_-10px_20px_#261305]">
     {
       title && (
-        <header class="mb-8 border-b border-[#f30d8c]/35 pb-4 text-center">
-          <HeadingTag class={`bg-gradient-to-r from-[#e8e8ef] via-[#ff5cb8] to-[#f30d8c] bg-clip-text ${headingSize} leading-normal font-black tracking-wide text-transparent`}>{title}</HeadingTag>
+        <header class="mb-8 border-b border-[#fa8302]/35 pb-4 text-center">
+          <HeadingTag class={`bg-gradient-to-r from-[#fff4e2] via-[#ffc94a] to-[#fa8302] bg-clip-text ${headingSize} leading-normal font-black tracking-wide text-transparent`}>{title}</HeadingTag>
         </header>
       )
     }

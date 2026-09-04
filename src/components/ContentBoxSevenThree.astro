@@ -11,20 +11,25 @@ const { titleleft, titleright } = Astro.props;
 // direct child, so `leading-normal` on each heading neutralises the inherited
 // leading-relaxed. Do not re-add a wrapper <div> around either slot.
 //
-// LOTTO77: crimson card on the near-black maroon page, gold headings.
+// The 3fr column is the slide artwork and the 7fr column is the docx paragraph,
+// so index.astro passes titleright only and the block contributes one <h2>.
+//
+// JERRY69: warm near-black card on the page ink, hot orange frame and glow, and
+// the light-gold headings the logo's "69" is bevelled in. Body copy is the warm
+// ivory the whole brand shares.
 ---
 
 <section class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div
-    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#d81220]/35 bg-[#2a0507]/92 p-8 text-[#f3ded7] shadow-[0_10px_30px_rgba(216,18,32,0.20)] backdrop-blur-xl transition-all duration-500 hover:border-[#ff3d3d]/60 hover:shadow-[0_15px_40px_rgba(255,61,61,0.26)] md:p-10">
+    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#fa8302]/35 bg-[#160b03]/92 p-8 text-[#f3e3d0] shadow-[0_10px_30px_rgba(250,131,2,0.20)] backdrop-blur-xl transition-all duration-500 hover:border-[#ffc94a]/60 hover:shadow-[0_15px_40px_rgba(255,156,46,0.26)] md:p-10">
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 border-b border-[#d81220]/30 pb-6 text-left text-base leading-relaxed font-medium text-[#f3ded7] md:border-r md:border-b-0 md:pr-6 md:pb-0">
-        {titleleft && <h2 class="text-center text-3xl leading-normal font-black tracking-wider text-[#ffe08a] uppercase drop-shadow-[0_2px_10px_rgba(245,196,81,0.35)] md:text-left">{titleleft}</h2>}
+      <article class="flex flex-col gap-4 border-b border-[#fa8302]/30 pb-6 text-left text-base leading-relaxed font-medium text-[#f3e3d0] md:border-r md:border-b-0 md:pr-6 md:pb-0">
+        {titleleft && <h2 class="text-center text-3xl leading-normal font-black tracking-wider text-[#fff4e2] uppercase drop-shadow-[0_2px_10px_rgba(250,131,2,0.35)] md:text-left">{titleleft}</h2>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-3 text-left text-base leading-relaxed text-[#f3ded7] md:pl-6">
-        {titleright && <h2 class="flex items-center gap-2 text-2xl leading-normal font-black text-[#f5c451] drop-shadow-[0_0_8px_rgba(245,196,81,0.35)]">{titleright}</h2>}
+      <article class="flex flex-col gap-3 text-left text-base leading-relaxed text-[#f3e3d0] md:pl-6">
+        {titleright && <h2 class="flex items-center gap-2 text-2xl leading-normal font-black text-[#ffc94a] drop-shadow-[0_0_8px_rgba(250,131,2,0.35)]">{titleright}</h2>}
         <slot name="right" />
       </article>
     </div>

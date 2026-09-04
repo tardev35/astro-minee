@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement2.astro";
+import Announcement from "../components/Announcement4.astro";
 import { pageGraph } from "../lib/schema";
 
 // Button page, not an article: the whole body is the <h1> plus the two-button
@@ -11,20 +11,20 @@ import { pageGraph } from "../lib/schema";
 // checklist, not a PIN/OTP notice. The h1 names what the page IS rather than
 // previewing a section that does not exist. Rendered inventory: h1x1, h2x0,
 // h3x0.
-const pageTitle = "ทางเข้า ORA2U เว็บหลัก";
+const pageTitle = "ทางเข้า JERRY69 เว็บหลัก";
 
-// <Announcement /> is called bare on purpose — Announcement2's default message
+// <Announcement /> is called bare on purpose — Announcement4's default message
 // is this brand's copy, set once in the component so every sub-page ticker and
-// index.astro's explicit prop can never drift apart. Rotated off Announcement5,
+// index.astro's explicit prop can never drift apart. Rotated off Announcement2,
 // the outgoing brand's pick, per the brand spec.
 
 // Title and description are the docx SUB-PAGES row for /ทางเข้า, both shipped
-// VERBATIM at their own length (113 characters). The description is shorter than
+// VERBATIM at their own length (115 characters). The description is shorter than
 // the DESC_MIN=150 floor and that is correct: the brief's own sentence is the
 // brand's copy, not a draft to top up. verify-build.mjs exempts any description
 // that appears literally in src/assets/content.txt for exactly this reason. Do
 // not pad it.
-const pageDescription = "ORA2U ทางเข้าเล่นสล็อตคาสิโนออนไลน์ พร้อมระบบออโต้ เกมหลายประเภท โปรโมชั่น และข้อมูลสมาชิกให้ตรวจสอบได้อย่างสะดวก";
+const pageDescription = "JERRY69 ทางเข้าเล่นสล็อตออนไลน์ รวมเกมจากหลายค่าย พร้อมโปรโมชั่นสมาชิก ระบบบัญชี และข้อมูลธุรกรรมให้ตรวจสอบได้สะดวก";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -36,7 +36,7 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="ORA2U | ทางเข้าเล่นสล็อตคาสิโนออนไลน์พร้อมระบบออโต้" description={pageDescription}>
+<MainLayout title="JERRY69 | ทางเข้าเล่นสล็อตรวมเกมค่ายดังหลายรูปแบบ" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
@@ -46,12 +46,12 @@ const graph = pageGraph(Astro, {
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/login"
-          aria-label="เข้าสู่ระบบ ORA2U"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#fe9a00]/65 bg-[#170d03] px-6 py-4 shadow-[0_10px_30px_rgba(254,154,0,0.28)] transition-all duration-300 hover:scale-105 hover:border-[#ffb733] hover:bg-[#241503] hover:shadow-[0_15px_40px_rgba(254,154,0,0.36)]">
-          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#fe9a00]/22 to-transparent"></div>
+          aria-label="เข้าสู่ระบบ JERRY69"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#fa8302]/65 bg-[#160b03] px-6 py-4 shadow-[0_10px_30px_rgba(250,131,2,0.28)] transition-all duration-300 hover:scale-105 hover:border-[#ff9c2e] hover:bg-[#261305] hover:shadow-[0_15px_40px_rgba(250,131,2,0.36)]">
+          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#fa8302]/22 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#ffd76a]"
+            class="relative z-10 h-9 w-9 text-[#ffc94a]"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -62,19 +62,19 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#ffd76a]">เข้าสู่ระบบ</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#ffc94a]">เข้าสู่ระบบ</span>
         </a>
       </div>
 
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/register"
-          aria-label="สมัครสมาชิก ORA2U"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#ffd76a]/60 bg-gradient-to-b from-[#fe9a00] to-[#b15d01] px-6 py-4 shadow-[0_10px_30px_rgba(254,154,0,0.30)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(254,154,0,0.44)]">
-          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#fdf3da]/35 to-transparent"></div>
+          aria-label="สมัครสมาชิก JERRY69"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#ffc94a]/60 bg-gradient-to-b from-[#fa8302] to-[#c25302] px-6 py-4 shadow-[0_10px_30px_rgba(250,131,2,0.30)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(250,131,2,0.44)]">
+          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#fff4e2]/35 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#170d03]"
+            class="relative z-10 h-9 w-9 text-[#160b03]"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -85,7 +85,7 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#170d03]">สมัครสมาชิก</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#160b03]">สมัครสมาชิก</span>
         </a>
       </div>
     </div>

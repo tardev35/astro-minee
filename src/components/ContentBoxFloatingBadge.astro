@@ -3,51 +3,58 @@ export interface Props {
   title?: string;
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
-const { title, as: HeadingTag = "h1" } = Astro.props;
+const { title, as: HeadingTag = "h2" } = Astro.props;
 const headingSize = HeadingTag === "h1" ? "text-xl sm:text-2xl md:text-3xl" : "text-lg sm:text-xl md:text-2xl";
 
+// `as` defaults to "h2" because the docx is flat H1 + H2 and only the block
+// carrying the page title asks for "h1" explicitly. A default of "h1" is how a
+// second <h1> reaches an indexable page without anyone typing one.
+//
 // The title badge is absolutely positioned at -top-6, so two things are load
 // bearing and must survive any restyle: the width cap (w-[92%] max-w-2xl) plus
 // text-center, which lets a full docx sentence wrap instead of blowing past the
 // viewport, and the card's pt-32/md:pt-28, which reserves clearance for that
-// wrapped badge.
+// wrapped badge. There is no whitespace-nowrap here and none may come back.
 //
-// Re-measured for DIAMOND789's H1, the longest title this file carries this
-// round ("DIAMOND789 เว็บสล็อตรวมเกมลิขสิทธิ์แท้ โปรทุนน้อยแตกดีไม่มีขั้นต่ำ",
-// 66 chars, and it renders at the larger h1 ramp). Mobile at a 375px viewport:
-// the card is 343px wide inside the section's px-4, the badge is w-[92%] of that
-// = 315px, and after px-4 (32px), border-2 (4px), the two ✦ spans (~28px) and
-// their gap-2 pair (16px) about 235px is left for text. text-xl wraps that title
-// to 3 lines at worst; leading-normal on 20px = 30px a line, so 3×30 + 20
-// (py-2.5) + 4 (border-2) = 114px tall and the bottom edge sits at 114 − 24 =
-// 90px into the card — clear of pt-32 (128px).
-// Desktop: md:text-3xl at 45px a line over ~560px of usable width inside
-// max-w-2xl wraps to 2 lines = 114px tall, bottom edge at 90px, inside md:pt-28
-// (112px). Both clear as they stand; do not shrink either padding. pt-16/pt-18
-// are the documented floor, and these sit well above it.
+// Re-measured for JERRY69's H2-1, the title this file carries this round
+// ("เลือกเกมค่ายดังจากสไตล์ที่ชอบบน JERRY69", 38 chars, rendered at the h2 ramp).
+// Mobile at a 375px viewport: the card is 343px wide inside the section's px-4,
+// the badge is w-[92%] of that = 316px, and after px-4 (32px), border-2 (4px),
+// the two ✦ spans (~28px) and their gap-2 pair (16px) about 236px is left for
+// text. text-lg wraps that title to 3 lines at worst; leading-normal on 18px =
+// 27px a line, so 3×27 + 20 (py-2.5) + 4 (border-2) = 105px tall and the bottom
+// edge sits at 105 − 24 = 81px into the card — clear of pt-32 (128px).
+// Desktop: md:text-2xl at 36px a line over ~554px of usable width inside
+// max-w-2xl wraps to 2 lines at worst = 96px tall, bottom edge at 72px, inside
+// md:pt-28 (112px). Both clear as they stand; do not shrink either padding.
+// pt-16/pt-18 are the documented floor, and these sit well above it.
 //
-// DIAMOND789 two-tone: hot pink carries the surfaces and glows, chrome silver is
-// the secondary accent on the ✦ marks — the logo read left to right, silver gem
-// into the pink wordmark. The badge sits on the plum panel tone (#2a1122) so the
-// pink gradient stays readable where it overlaps the card edge.
+// JERRY69 two-tone: hot orange carries the surfaces and glows, light gold is the
+// secondary accent on the ✦ marks — the logo read left to right, white wordmark
+// into the gold-bevelled "69". The badge sits on the raised warm brown (#261305)
+// so the orange gradient stays readable where it overlaps the card edge.
+//
+// The card is `isolate` and every decorative layer is `-z-10`, so the blurs
+// paint above the card background but below the slot content. No `relative z-10`
+// wrapper is needed and none may be re-added.
 ---
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#f30d8c]/35 bg-gradient-to-b from-[#150810]/95 to-[#070308]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#f8e3f0] shadow-[0_10px_30px_rgba(243,13,140,0.2)] md:pt-28">
-    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#f30d8c]/28 blur-[60px]"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#e8e8ef]/18 blur-[60px]"></div>
+    class="relative isolate w-full max-w-[1400px] rounded-2xl border-2 border-[#fa8302]/35 bg-gradient-to-b from-[#160b03]/95 to-[#0a0503]/95 p-8 pt-32 text-left text-base leading-relaxed text-[#f3e3d0] shadow-[0_10px_30px_rgba(250,131,2,0.2)] md:pt-28">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#fa8302]/28 blur-[60px]"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#ffc94a]/18 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#f30d8c]/45 bg-[#2a1122] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(243,13,140,0.2)] sm:px-8">
-          <span aria-hidden="true" class="shrink-0 text-[#e8e8ef]">
+        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#fa8302]/45 bg-[#261305] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(250,131,2,0.2)] sm:px-8">
+          <span aria-hidden="true" class="shrink-0 text-[#ffc94a]">
             ✦
           </span>
-          <HeadingTag class={`min-w-0 bg-gradient-to-r from-[#e8e8ef] via-[#ff5cb8] to-[#f30d8c] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
+          <HeadingTag class={`min-w-0 bg-gradient-to-r from-[#fff4e2] via-[#ffc94a] to-[#fa8302] bg-clip-text ${headingSize} leading-normal font-black tracking-tight text-transparent uppercase`}>
             {title}
           </HeadingTag>
-          <span aria-hidden="true" class="shrink-0 text-[#e8e8ef]">
+          <span aria-hidden="true" class="shrink-0 text-[#ffc94a]">
             ✦
           </span>
         </div>

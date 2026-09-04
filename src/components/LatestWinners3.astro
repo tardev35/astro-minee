@@ -33,9 +33,11 @@ const bankPool = [
 // The feed is chrome, so its title is a <p> and the region is named by the
 // section's aria-label — it never takes a heading tag.
 //
-// TAKO168: crimson panel and rail, gold on the amount and the pending badge.
-// The timeline dot is the primary red; verified keeps the semantic success
-// green, which is outside the brand swap.
+// JERRY69: orange panel and rail, light gold on the amount and the pending
+// badge. The timeline dot is the primary orange; the completed status keeps the
+// semantic success green, which is outside the brand swap. The status wording
+// and its two classes travel as data-* on the row, so src/lib/winnersFeed.ts
+// never has to know this brand's palette or its Thai copy.
 const LETTERS = "abcdefghijklmnopqrstuvwxyz";
 const pickFrom = (chars: string, salt: string) => chars.charAt(brandPick(Astro.site, salt, chars.length));
 
@@ -49,14 +51,14 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
 
 <div class="mx-auto w-full max-w-[900px] p-4 font-sans">
   <section
-    aria-label="ประวัติการถอนเงินล่าสุดของสมาชิก TAKO168"
-    class="relative overflow-hidden rounded-[30px] border-2 border-[#e11d16]/45 bg-[#0a0403]/90 px-4 py-8 shadow-[0_10px_30px_rgba(225,29,22,0.22)] backdrop-blur-md md:p-10">
-    <div class="pointer-events-none absolute -top-16 -right-10 h-40 w-40 rounded-full bg-[#e11d16]/25 blur-[60px]"></div>
-    <div class="pointer-events-none absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-[#8f0f0a]/55 blur-[60px]"></div>
+    aria-label="ประวัติการถอนเงินล่าสุดของสมาชิก JERRY69"
+    class="relative overflow-hidden rounded-[30px] border-2 border-[#fa8302]/45 bg-[#0a0503]/90 px-4 py-8 shadow-[0_10px_30px_rgba(250,131,2,0.22)] backdrop-blur-md md:p-10">
+    <div class="pointer-events-none absolute -top-16 -right-10 h-40 w-40 rounded-full bg-[#fa8302]/25 blur-[60px]"></div>
+    <div class="pointer-events-none absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-[#c25302]/55 blur-[60px]"></div>
 
     <div class="relative z-10 mb-8 text-center">
-      <p class="bg-gradient-to-b from-[#ffffff] to-[#e8b23a] bg-clip-text text-xl font-black text-transparent md:text-3xl">ประวัติการถอนเงินของสมาชิก TAKO168 แบบเรียลไทม์</p>
-      <p class="mt-2 text-base leading-relaxed text-[#c9a99f]">ตัวเลขด้านล่างเป็นข้อมูลตัวอย่างสำหรับแสดงรูปแบบรายการเท่านั้น ไม่ใช่การรับประกันผลลัพธ์ของเกมหรือจำนวนเครดิตที่จะได้รับ</p>
+      <p class="bg-gradient-to-b from-[#fff4e2] to-[#fa8302] bg-clip-text text-xl font-black text-transparent md:text-3xl">ประวัติการถอนเงินของสมาชิก JERRY69 แบบเรียลไทม์</p>
+      <p class="mt-2 text-base leading-relaxed text-[#c8ab8b]">ตัวเลขด้านล่างเป็นข้อมูลตัวอย่างสำหรับแสดงรูปแบบรายการเท่านั้น ไม่ใช่การรับประกันผลลัพธ์ของเกมหรือจำนวนเครดิตที่จะได้รับ</p>
     </div>
 
     <div
@@ -68,35 +70,37 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
       data-pending-chance="0.4"
       data-user-style="letters"
       data-user-digits="4"
-      class="relative z-10 ml-4 border-l-2 border-[#e11d16]/50 pl-6 md:ml-8 md:pl-8">
+      class="relative z-10 ml-4 border-l-2 border-[#fa8302]/50 pl-6 md:ml-8 md:pl-8">
       {
         initialRows.map((row) => (
           <div data-winner-row class="winner-row relative mb-6 transition-all duration-500 ease-out">
-            <div class="absolute top-2 -left-[35px] h-4 w-4 rounded-full border-2 border-[#0a0403] bg-[#e11d16] shadow-[0_0_10px_rgba(225,29,22,0.8)] md:-left-[43px]" />
+            <div class="absolute top-2 -left-[35px] h-4 w-4 rounded-full border-2 border-[#0a0503] bg-[#fa8302] shadow-[0_0_10px_rgba(250,131,2,0.8)] md:-left-[43px]" />
 
-            <div class="flex items-center gap-4 rounded-[20px] bg-gradient-to-r from-[#2b0705]/75 to-transparent p-4 transition-colors hover:from-[#8f0f0a]/70">
+            <div class="flex items-center gap-4 rounded-[20px] bg-gradient-to-r from-[#261305]/75 to-transparent p-4 transition-colors hover:from-[#c25302]/70">
               <div data-winner-bank class={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${row.bank.color}`}>
                 <img data-winner-icon src={row.bank.icon} alt="" width="24" height="24" loading="lazy" decoding="async" class="h-6 w-6 object-contain" />
               </div>
 
               <div class="min-w-0 flex-1">
-                <div class="text-sm text-[#c9a99f]">
+                <div class="text-sm text-[#c8ab8b]">
                   ยูสเซอร์:{" "}
-                  <span data-winner-user class="font-bold text-[#ffffff]">
+                  <span data-winner-user class="font-bold text-[#fff4e2]">
                     {row.user}
                   </span>
                 </div>
-                <div class="text-xl font-black text-[#ffd97a]">
+                <div class="text-xl font-black text-[#ffc94a]">
                   <span data-winner-amount>{row.amount}</span> THB
                 </div>
               </div>
 
               <div
                 data-winner-status
-                data-pending-text="[PROCESSING]"
-                data-done-text="[VERIFIED]"
+                data-pending-text="กำลังโอน"
+                data-done-text="โอนสำเร็จ"
+                data-pending-class="is-pending"
+                data-done-class="is-verified"
                 class={`winner-status hidden shrink-0 rounded-full border px-3 py-1 text-[10px] tracking-widest md:block ${row.pending ? "is-pending" : "is-verified"}`}>
-                {row.pending ? "[PROCESSING]" : "[VERIFIED]"}
+                {row.pending ? "กำลังโอน" : "โอนสำเร็จ"}
               </div>
             </div>
           </div>
@@ -121,11 +125,11 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
 <style>
   /* The two status colours are classes rather than inline strings so the JS in
      src/lib/winnersFeed.ts never has to know what this brand's palette is.
-     Pending is the brand's gold; verified keeps the semantic success green,
-     which is not part of the brand swap. */
+     Pending is the brand's light gold; completed keeps the semantic success
+     green, which is not part of the brand swap. */
   .winner-status.is-pending {
-    color: #ffd97a;
-    border-color: #e8b23a;
+    color: #ffc94a;
+    border-color: #fbb401;
   }
   .winner-status.is-verified {
     color: oklch(79.2% 0.209 151.711);

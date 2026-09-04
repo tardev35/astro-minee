@@ -1,5 +1,5 @@
-name = "ora2u"
-account_id = "c147770e4d709605d185fba9770d9d89"
+name = "jerry699x"
+account_id = "773dce1e382aabe93f6c263960ac45e2"
 compatibility_date = "2026-07-27"
 
 # Worker ที่ทำ 301 www -> non-www ก่อนส่งต่อให้ไฟล์ static (ดู worker/index.js)

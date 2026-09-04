@@ -5,7 +5,7 @@ export interface Props {
 }
 const { titleleft, titleright } = Astro.props;
 
-// Both column titles render as <h2>, not <h3>: the DIAMOND789 docx is flat
+// Both column titles render as <h2>, not <h3>: the JERRY69 docx is flat
 // H1 + H2 with no nested sub-headings, and the page's heading inventory is
 // diffed against that brief. The text is prop-driven, so a title here is a real
 // docx section heading — a consumer that wants a headingless column simply omits
@@ -13,22 +13,28 @@ const { titleleft, titleright } = Astro.props;
 // titleleft and splits one docx paragraph across the two columns at a sentence
 // boundary, so the section still contributes exactly one <h2>.
 //
-// DIAMOND789 neumorphic pair: page ground (#070308) casts the dark side of the
-// extrusion, the raised plum tone (#2a1122) the lit side, matching
-// ContentBoxNeumorphism so the two read as one system.
+// The columns are flattened: the text classes sit on each <article> and the slot
+// renders as a direct child, so `leading-normal` on each heading neutralises the
+// inherited leading-relaxed. Do not re-add a wrapper <div> around either slot.
+//
+// JERRY69 neumorphic pair: page ink (#0a0503) casts the dark side of the
+// extrusion, the raised warm brown (#261305) the lit side, matching
+// ContentBoxNeumorphism so the two read as one system. Hot orange carries the
+// surfaces and the heading ramp runs cream → light gold → orange, the logo's
+// bevelled "69" read left to right.
 ---
 
 <section class="mx-auto mb-8 w-full max-w-7xl px-4 font-sans">
   <div
-    class="w-full rounded-[25px] border border-[#f30d8c]/35 bg-[#150810] p-8 shadow-[10px_10px_20px_#070308,-10px_-10px_20px_#2a1122] transition-all duration-300 hover:shadow-[15px_15px_30px_#070308,-15px_-15px_30px_#2a1122]">
+    class="w-full rounded-[25px] border border-[#fa8302]/35 bg-[#160b03] p-8 shadow-[10px_10px_20px_#0a0503,-10px_-10px_20px_#261305] transition-all duration-300 hover:shadow-[15px_15px_30px_#0a0503,-15px_-15px_30px_#261305]">
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f8e3f0]">
-        {titleleft && <h2 class="bg-gradient-to-r from-[#e8e8ef] via-[#ff5cb8] to-[#f30d8c] bg-clip-text text-2xl leading-normal font-black tracking-wide text-transparent">{titleleft}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f3e3d0]">
+        {titleleft && <h2 class="bg-gradient-to-r from-[#fff4e2] via-[#ffc94a] to-[#fa8302] bg-clip-text text-2xl leading-normal font-black tracking-wide text-transparent">{titleleft}</h2>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f8e3f0] md:border-l md:border-[#f30d8c]/35 md:pl-8">
-        {titleright && <h2 class="bg-gradient-to-r from-[#e8e8ef] via-[#ff5cb8] to-[#f30d8c] bg-clip-text text-2xl leading-normal font-black tracking-wide text-transparent">{titleright}</h2>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f3e3d0] md:border-l md:border-[#fa8302]/35 md:pl-8">
+        {titleright && <h2 class="bg-gradient-to-r from-[#fff4e2] via-[#ffc94a] to-[#fa8302] bg-clip-text text-2xl leading-normal font-black tracking-wide text-transparent">{titleright}</h2>}
         <slot name="right" />
       </article>
     </div>

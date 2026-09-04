@@ -19,30 +19,29 @@ const isActive = (path: string) => isActivePath(currentPath, path);
 // ต่อท้าย แบรนด์นี้ปิด cta toggle (login/register ยังเป็นหน้า interstitial)
 // จึงไม่มีเมนู สมัครสมาชิก/เข้าสู่ระบบ และ ทางเข้า ยังอยู่ในเมนูตามปกติ
 //
-// ไอคอนเลือกให้ตรงแนวบาคาร่า+หวยของ BANANAV3 (ไม่ใช่แบรนด์สล็อตล้วน) — ทดลองเล่น
-// เป็นไพ่ ไม่ใช่ตู้สล็อต
+// ไอคอนเลือกให้ตรงแนวสล็อตล้วนของ JERRY69 — ทดลองเล่น เป็นตู้สล็อต ไม่ใช่ไพ่
 //
-// แนวทาง อยู่ในเมนูเพราะ operator เปิดหน้านี้ไว้ ส่วน /ตรวจหวย ถูกพักไว้ใน
-// src/pages-disabled/ จึงต้องไม่มีลิงก์ไปหาที่ไหนเลย — route นั้นไม่มีอยู่จริง
+// JERRY69 เป็นแบรนด์สล็อต ไม่ใช่เว็บหวย: /ตรวจหวย กับ /แนวทาง ถูกพักไว้ใน
+// src/pages-disabled/ ทั้งคู่ จึงต้องไม่มีลิงก์ไปหาที่ไหนเลย — route นั้นไม่มีอยู่
+// จริง และ tools/verify-build.mjs จะทำให้ build แดงถ้ามี href ชี้ไปหน้าที่ไม่มี
 const links = [
   { name: "หน้าแรก", path: "/", icon: "🏠" },
   { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
-  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎴" },
-  { name: "แนวทาง", path: "/แนวทาง", icon: "📊" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
   { name: "ทางเข้า", path: "/ทางเข้า", icon: "🚪" },
   { name: "เกี่ยวกับเรา", path: "/about-us", icon: "🏢" },
   { name: "ติดต่อเรา", path: "/contact-us", icon: "💬" },
 ];
 
-const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร BANANAV3 สีเหลืองกล้วยไล่เฉดทอง ขอบหนาสีน้ำตาลเข้ม มีรูปกล้วยลูกหนึ่งพาดเฉียงอยู่หลังตัวอักษร และมีเปลือกกล้วยโค้งรับอยู่ด้านล่าง`;
+const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษรโป่งพอง คำว่า JERRY สีขาวขอบดำหนามีเงาสีทองอยู่ด้านหลัง ต่อด้วยเลข 69 ตัวอ้วนสีส้มไล่เฉดไปทองพร้อมไฮไลต์มันวาวด้านบน ทั้งหมดวางบนพื้นโปร่งใส`;
 ---
 
 <header class="sticky top-0 z-50 w-full font-sans">
-  <nav class="relative z-50 w-full border-b border-[#fed624]/30 bg-gradient-to-r from-[#140b02] via-[#2e1a05] to-[#140b02] shadow-[0_4px_25px_rgba(20,11,2,0.75)]" aria-label={`เมนูหลัก ${BRAND_NAME}`}>
+  <nav class="relative z-50 w-full border-b border-[#fa8302]/30 bg-gradient-to-r from-[#0a0503] via-[#261305] to-[#0a0503] shadow-[0_4px_25px_rgba(10,5,3,0.75)]" aria-label={`เมนูหลัก ${BRAND_NAME}`}>
     <div class="mx-auto flex h-[70px] w-full max-w-[1600px] items-center justify-between px-4 lg:h-[85px] lg:px-8">
       <div class="flex items-center">
         <a href="/" class="relative flex-shrink-0 transition-transform hover:scale-105">
-          <div aria-hidden="true" class="absolute inset-0 rounded-full bg-[#fed624]/20 blur-xl"></div>
+          <div aria-hidden="true" class="absolute inset-0 rounded-full bg-[#fa8302]/20 blur-xl"></div>
           <Picture
             src={mainLogo!}
             alt={logoAlt}
@@ -50,7 +49,7 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร BANANAV3
             fetchpriority="high"
             widths={[120, 240, 360]}
             sizes="120px"
-            class="relative h-[40px] w-auto drop-shadow-[0_0_8px_rgba(254,214,36,0.45)] lg:h-[50px]"
+            class="relative h-[40px] w-auto drop-shadow-[0_0_8px_rgba(250,131,2,0.45)] lg:h-[50px]"
             formats={["avif", "webp"]}
             fallbackFormat="webp"
           />
@@ -62,16 +61,16 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร BANANAV3
           links.map((link) => (
             <a
               href={link.path}
-              class={`group relative flex h-full items-center gap-1.5 px-3 text-sm font-bold transition-all duration-300 xl:px-5 xl:text-base ${isActive(link.path) ? "text-[#ffe97a]" : "text-[#d9bd82]/85 hover:text-[#fed624]"}`}>
+              class={`group relative flex h-full items-center gap-1.5 px-3 text-sm font-bold transition-all duration-300 xl:px-5 xl:text-base ${isActive(link.path) ? "text-[#ffc94a]" : "text-[#c8ab8b]/85 hover:text-[#fa8302]"}`}>
               <div
                 aria-hidden="true"
-                class={`absolute inset-0 bg-gradient-to-b from-transparent to-[#fed624]/12 transition-opacity duration-300 ${isActive(link.path) ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+                class={`absolute inset-0 bg-gradient-to-b from-transparent to-[#fa8302]/12 transition-opacity duration-300 ${isActive(link.path) ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
               />
               <span aria-hidden="true" class="relative z-10 text-base">
                 {link.icon}
               </span>
               <span class="relative z-10">{link.name}</span>
-              <div class={`absolute bottom-0 left-1/2 h-[3px] -translate-x-1/2 bg-[#fed624] transition-all duration-300 ${isActive(link.path) ? "w-full" : "w-0 group-hover:w-full"}`} />
+              <div class={`absolute bottom-0 left-1/2 h-[3px] -translate-x-1/2 bg-[#fa8302] transition-all duration-300 ${isActive(link.path) ? "w-full" : "w-0 group-hover:w-full"}`} />
             </a>
           ))
         }
@@ -80,28 +79,28 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร BANANAV3
       <div class="flex items-center gap-3 md:gap-4">
         <a
           href="/login"
-          class="hidden items-center justify-center rounded-full border border-[#fed624]/70 px-6 py-2.5 text-sm font-bold text-[#fed624] shadow-[0_0_10px_rgba(254,214,36,0.2)] transition-all hover:bg-[#fed624] hover:text-[#241303] lg:flex">
+          class="hidden items-center justify-center rounded-full border border-[#fa8302]/70 px-6 py-2.5 text-sm font-bold text-[#fa8302] shadow-[0_0_10px_rgba(250,131,2,0.2)] transition-all hover:bg-[#fa8302] hover:text-[#190c02] lg:flex">
           เข้าสู่ระบบ
         </a>
         <a
           href="/register"
-          class="hidden items-center justify-center rounded-full bg-gradient-to-r from-[#ffe97a] via-[#fed624] to-[#e8a317] px-6 py-2.5 text-sm font-extrabold text-[#241303] shadow-[0_0_20px_rgba(254,214,36,0.4)] transition-all hover:scale-105 hover:brightness-110 lg:flex">
+          class="hidden items-center justify-center rounded-full bg-gradient-to-r from-[#ffc94a] via-[#fa8302] to-[#c25302] px-6 py-2.5 text-sm font-extrabold text-[#190c02] shadow-[0_0_20px_rgba(250,131,2,0.4)] transition-all hover:scale-105 hover:brightness-110 lg:flex">
           สมัครสมาชิก
         </a>
 
         <button
           id="hamburger-btn"
-          class="relative z-[60] flex h-10 w-10 flex-col items-center justify-center overflow-hidden rounded-full border-2 border-[#e8a317]/70 bg-gradient-to-tr from-[#e8a317] to-[#fed624] shadow-[0_0_15px_rgba(254,214,36,0.5)] lg:hidden"
+          class="relative z-[60] flex h-10 w-10 flex-col items-center justify-center overflow-hidden rounded-full border-2 border-[#c25302]/70 bg-gradient-to-tr from-[#c25302] to-[#fa8302] shadow-[0_0_15px_rgba(250,131,2,0.5)] lg:hidden"
           aria-label="เปิดเมนู">
-          <span class="hamburger-line absolute h-[2px] w-5 -translate-y-1.5 transform rounded-full bg-[#241303] transition-all duration-300"></span>
-          <span class="hamburger-line absolute h-[2px] w-5 rounded-full bg-[#241303] transition-all duration-300"></span>
-          <span class="hamburger-line absolute h-[2px] w-5 translate-y-1.5 transform rounded-full bg-[#241303] transition-all duration-300"></span>
+          <span class="hamburger-line absolute h-[2px] w-5 -translate-y-1.5 transform rounded-full bg-[#190c02] transition-all duration-300"></span>
+          <span class="hamburger-line absolute h-[2px] w-5 rounded-full bg-[#190c02] transition-all duration-300"></span>
+          <span class="hamburger-line absolute h-[2px] w-5 translate-y-1.5 transform rounded-full bg-[#190c02] transition-all duration-300"></span>
         </button>
       </div>
     </div>
   </nav>
 
-  <div id="mobile-circular-menu" class="pointer-events-none fixed inset-0 z-40 flex flex-col items-center justify-center bg-[#140b02]/98 backdrop-blur-2xl lg:hidden">
+  <div id="mobile-circular-menu" class="pointer-events-none fixed inset-0 z-40 flex flex-col items-center justify-center bg-[#0a0503]/98 backdrop-blur-2xl lg:hidden">
     <div class="flex w-full flex-col items-center space-y-5 px-6">
       <Picture
         src={mainLogo!}
@@ -110,7 +109,7 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร BANANAV3
         sizes="150px"
         loading="lazy"
         decoding="async"
-        class="menu-item mb-4 h-[50px] w-auto opacity-0 drop-shadow-[0_0_15px_rgba(254,214,36,0.5)]"
+        class="menu-item mb-4 h-[50px] w-auto opacity-0 drop-shadow-[0_0_15px_rgba(250,131,2,0.5)]"
         formats={["avif", "webp"]}
         fallbackFormat="webp"
       />
@@ -119,20 +118,20 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร BANANAV3
         links.map((link) => (
           <a
             href={link.path}
-            class={`menu-item flex items-center gap-3 text-2xl font-black tracking-wider uppercase opacity-0 transition-all duration-300 ${isActive(link.path) ? "text-[#ffe97a] drop-shadow-[0_0_8px_rgba(254,214,36,0.8)]" : "text-[#d9bd82]/85 hover:text-[#fdf1b3]"}`}>
+            class={`menu-item flex items-center gap-3 text-2xl font-black tracking-wider uppercase opacity-0 transition-all duration-300 ${isActive(link.path) ? "text-[#ffc94a] drop-shadow-[0_0_8px_rgba(250,131,2,0.8)]" : "text-[#c8ab8b]/85 hover:text-[#fff4e2]"}`}>
             <span aria-hidden="true">{link.icon}</span>
             <span>{link.name}</span>
           </a>
         ))
       }
 
-      <div class="menu-item mt-4 flex w-full max-w-[280px] flex-col gap-4 border-t border-[#e8a317]/60 pt-8 opacity-0">
+      <div class="menu-item mt-4 flex w-full max-w-[280px] flex-col gap-4 border-t border-[#c25302]/60 pt-8 opacity-0">
         <a
           href="/register"
-          class="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#ffe97a] via-[#fed624] to-[#e8a317] py-3.5 text-lg font-extrabold text-[#241303] shadow-[0_0_20px_rgba(254,214,36,0.4)]">
-          <span aria-hidden="true">🍌</span> สมัครสมาชิก
+          class="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#ffc94a] via-[#fa8302] to-[#c25302] py-3.5 text-lg font-extrabold text-[#190c02] shadow-[0_0_20px_rgba(250,131,2,0.4)]">
+          <span aria-hidden="true">🎁</span> สมัครสมาชิก
         </a>
-        <a href="/login" class="flex w-full items-center justify-center rounded-full border border-[#fed624]/50 py-3.5 text-lg font-bold text-[#fed624] hover:bg-[#fed624]/10">เข้าสู่ระบบ</a>
+        <a href="/login" class="flex w-full items-center justify-center rounded-full border border-[#fa8302]/50 py-3.5 text-lg font-bold text-[#fa8302] hover:bg-[#fa8302]/10">เข้าสู่ระบบ</a>
       </div>
     </div>
   </div>

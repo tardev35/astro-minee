@@ -4,8 +4,8 @@ import ContentBoxTwo from "./ContentBoxTwo.astro";
 // Reference table, not article content — every label below renders as <p>/<span>
 // inside ContentBoxTwo (whose `as` prop stays at its "p" default), and the
 // section's aria-label carries the accessible name. This widget belongs to the
-// docx section directly above it (ดู RTP และฟีเจอร์ก่อนหาเกมแตกง่ายบน ORA2U)
-// and leads into the คำว่าจ่ายไว section below it.
+// docx section directly above it (เกมแตกง่ายควรดู RTP และความผันผวนประกอบ) and
+// leads into the JERRY69 account/promotion section below it.
 //
 // The RTP column is written as "ตามที่ผู้ให้บริการระบุ" and never as a hard
 // figure. RTP, ความผันผวน and ตารางจ่าย are set per game and per provider, so a
@@ -26,65 +26,65 @@ const chips = ["สล็อตออนไลน์", "คาสิโนออ
 ---
 
 <ContentBoxTwo
-  titleleft="เข้าสู่ระบบ ORA2U"
+  titleleft="เข้าสู่ระบบ JERRY69"
   titleright="ข้อมูลของเกมที่ควรดูก่อนเลือกเล่น"
   iconleft="🔐"
   iconright="🎰"
-  label="เข้าสู่ระบบ ORA2U และตารางอ้างอิงข้อมูลที่ควรดูก่อนเลือกเกม ทั้งค่า RTP ตารางจ่าย ฟีเจอร์โบนัส ความผันผวน ระดับเดิมพันต่อรอบ เงื่อนไขโปรทุนน้อย และสถานะรายการในระบบออโต้">
+  label="เข้าสู่ระบบ JERRY69 และตารางอ้างอิงข้อมูลที่ควรดูก่อนเลือกเกม ทั้งค่า RTP ตารางจ่าย ฟีเจอร์โบนัส ความผันผวน ระดับเดิมพันต่อรอบ เงื่อนไขโปรทุนน้อย และสถานะรายการในระบบออโต้">
   <div slot="left" class="flex h-full flex-col gap-4">
-    <div class="relative overflow-hidden rounded-2xl border border-[#fe9a00]/35 bg-[#170d03]/92 p-6 shadow-[0_10px_30px_rgba(254,154,0,0.22)] backdrop-blur-md">
-      <div aria-hidden="true" class="pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#b15d01]/55 blur-[50px]"></div>
+    <div class="relative overflow-hidden rounded-2xl border border-[#fa8302]/35 bg-[#160b03]/92 p-6 shadow-[0_10px_30px_rgba(250,131,2,0.22)] backdrop-blur-md">
+      <div aria-hidden="true" class="pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#c25302]/55 blur-[50px]"></div>
 
       <div class="relative z-10 mb-5 flex items-center gap-3">
         <span
           aria-hidden="true"
-          class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#ffd76a]/50 bg-gradient-to-br from-[#ffd76a] to-[#fe9a00] text-xl text-[#170d03] shadow-inner">
-          👑
+          class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#ffc94a]/50 bg-gradient-to-br from-[#ffc94a] to-[#fa8302] text-xl text-[#160b03] shadow-inner">
+          🎮
         </span>
         <div class="flex flex-col">
-          <p class="text-base font-black text-[#ffd76a]">ยินดีต้อนรับกลับ</p>
-          <span class="text-[11px] text-[#d6bd94]">บัญชีเดียวใช้เลือกเกมสล็อตและเกมคาสิโน ดูค่า RTP และความผันผวนที่เกมระบุ ตรวจโปรโมชั่น และติดตามสถานะรายการของ ORA2U ได้จากหน้าเดียว</span>
+          <p class="text-base font-black text-[#ffc94a]">ยินดีต้อนรับกลับ</p>
+          <span class="text-[11px] text-[#c8ab8b]">บัญชีเดียวใช้เลือกเกมสล็อตและเกมคาสิโน ดูค่า RTP และความผันผวนที่เกมระบุ ตรวจโปรโมชั่น และติดตามสถานะรายการของ JERRY69 ได้จากหน้าเดียว</span>
         </div>
       </div>
 
       <div class="relative z-10 flex flex-col gap-3.5">
         <div class="relative">
-          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#ffd76a]">👤</span>
+          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#ffc94a]">👤</span>
           <input
             type="text"
             aria-label="เบอร์โทรศัพท์หรือยูสเซอร์เนม"
             placeholder="เบอร์โทรศัพท์ / ยูสเซอร์เนม"
-            class="w-full rounded-xl border border-[#fe9a00]/45 bg-[#0b0501]/95 py-3 pr-4 pl-12 text-[#f6e6cf] transition-all outline-none placeholder:text-[#a98d63] focus:border-[#ffd76a] focus:ring-1 focus:ring-[#ffd76a]/50"
+            class="w-full rounded-xl border border-[#fa8302]/45 bg-[#0a0503]/95 py-3 pr-4 pl-12 text-[#f3e3d0] transition-all outline-none placeholder:text-[#a3835a] focus:border-[#ffc94a] focus:ring-1 focus:ring-[#ffc94a]/50"
           />
         </div>
         <div class="relative">
-          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#ffd76a]">🔑</span>
+          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#ffc94a]">🔑</span>
           <input
             type="password"
             aria-label="รหัสผ่านของบัญชี"
             placeholder="รหัสผ่านของบัญชี"
-            class="w-full rounded-xl border border-[#fe9a00]/45 bg-[#0b0501]/95 py-3 pr-4 pl-12 text-[#f6e6cf] transition-all outline-none placeholder:text-[#a98d63] focus:border-[#ffd76a] focus:ring-1 focus:ring-[#ffd76a]/50"
+            class="w-full rounded-xl border border-[#fa8302]/45 bg-[#0a0503]/95 py-3 pr-4 pl-12 text-[#f3e3d0] transition-all outline-none placeholder:text-[#a3835a] focus:border-[#ffc94a] focus:ring-1 focus:ring-[#ffc94a]/50"
           />
         </div>
 
         <div class="flex items-center justify-between px-1 text-xs">
-          <label class="flex items-center gap-2 text-[#d6bd94]">
-            <input type="checkbox" class="h-3.5 w-3.5 rounded border-[#fe9a00]/45 bg-[#0b0501] accent-[#fe9a00]" />
+          <label class="flex items-center gap-2 text-[#c8ab8b]">
+            <input type="checkbox" class="h-3.5 w-3.5 rounded border-[#fa8302]/45 bg-[#0a0503] accent-[#fa8302]" />
             จดจำฉันไว้
           </label>
-          <a href="/login" class="text-[#d6bd94] transition-colors hover:text-[#ffd76a]">ลืมรหัสผ่าน?</a>
+          <a href="/login" class="text-[#c8ab8b] transition-colors hover:text-[#ffc94a]">ลืมรหัสผ่าน?</a>
         </div>
 
         <a
           href="/login"
-          class="mt-1 block w-full rounded-xl border border-[#ffd76a]/50 bg-gradient-to-r from-[#ffd76a] to-[#fe9a00] p-3.5 text-center font-black text-[#170d03] shadow-[0_10px_30px_rgba(254,154,0,0.35)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(254,154,0,0.5)]">
+          class="mt-1 block w-full rounded-xl border border-[#ffc94a]/50 bg-gradient-to-r from-[#ffc94a] to-[#fa8302] p-3.5 text-center font-black text-[#160b03] shadow-[0_10px_30px_rgba(250,131,2,0.35)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(250,131,2,0.5)]">
           เข้าสู่ระบบ
         </a>
 
-        <div class="flex items-center gap-3 py-1 text-[11px] text-[#d6bd94]">
-          <span class="h-px flex-1 bg-[#fe9a00]/40"></span>
+        <div class="flex items-center gap-3 py-1 text-[11px] text-[#c8ab8b]">
+          <span class="h-px flex-1 bg-[#fa8302]/40"></span>
           หรือ
-          <span class="h-px flex-1 bg-[#fe9a00]/40"></span>
+          <span class="h-px flex-1 bg-[#fa8302]/40"></span>
         </div>
 
         <a
@@ -95,21 +95,21 @@ const chips = ["สล็อตออนไลน์", "คาสิโนออ
 
         <div class="mt-1 flex items-center justify-between px-1">
           <div class="flex gap-2">
-            <span class="rounded-full border border-[#fe9a00]/40 bg-[#0b0501] px-2.5 py-1 text-[10px] font-bold text-[#ffd76a]"><span aria-hidden="true">🔒</span> HTTPS + SSL</span>
-            <span class="rounded-full border border-[#fdf3da]/45 bg-[#0b0501]/80 px-2.5 py-1 text-[10px] font-bold text-[#fdf3da]"><span aria-hidden="true">🕐</span> ดูแลสมาชิก 24 ชั่วโมง</span>
+            <span class="rounded-full border border-[#fa8302]/40 bg-[#0a0503] px-2.5 py-1 text-[10px] font-bold text-[#ffc94a]"><span aria-hidden="true">🔒</span> HTTPS + SSL</span>
+            <span class="rounded-full border border-[#fff4e2]/45 bg-[#0a0503]/80 px-2.5 py-1 text-[10px] font-bold text-[#fff4e2]"><span aria-hidden="true">🕐</span> ดูแลสมาชิก 24 ชั่วโมง</span>
           </div>
-          <a href="/register" class="text-xs font-bold text-[#ffd76a] transition-colors hover:text-[#fdf3da]">สมัครสมาชิกใหม่</a>
+          <a href="/register" class="text-xs font-bold text-[#ffc94a] transition-colors hover:text-[#fff4e2]">สมัครสมาชิกใหม่</a>
         </div>
       </div>
     </div>
   </div>
 
   <div slot="right" class="h-full">
-    <div class="flex h-full flex-col rounded-2xl border border-[#fe9a00]/35 bg-[#170d03]/92 p-5 shadow-[0_10px_30px_rgba(254,154,0,0.22)] backdrop-blur-md">
+    <div class="flex h-full flex-col rounded-2xl border border-[#fa8302]/35 bg-[#160b03]/92 p-5 shadow-[0_10px_30px_rgba(250,131,2,0.22)] backdrop-blur-md">
       <div class="mb-5 flex items-center justify-between gap-3">
         <div>
-          <span class="text-xs font-bold tracking-wide text-[#d6bd94]">ตารางอ้างอิงข้อมูลที่ควรเปิดดูก่อนเริ่มเล่น และสิ่งที่ควรตรวจก่อนยืนยันรายการ</span>
-          <p class="bg-gradient-to-r from-[#fdf3da] via-[#ffd76a] to-[#fe9a00] bg-clip-text text-3xl font-black text-transparent sm:text-4xl">ดู RTP ตารางจ่าย และฟีเจอร์ก่อนเลือกเกม</p>
+          <span class="text-xs font-bold tracking-wide text-[#c8ab8b]">ตารางอ้างอิงข้อมูลที่ควรเปิดดูก่อนเริ่มเล่น และสิ่งที่ควรตรวจก่อนยืนยันรายการ</span>
+          <p class="bg-gradient-to-r from-[#fff4e2] via-[#ffc94a] to-[#fa8302] bg-clip-text text-3xl font-black text-transparent sm:text-4xl">ดู RTP ตารางจ่าย และฟีเจอร์ก่อนเลือกเกม</p>
         </div>
         <span class="flex items-center gap-1.5 self-start rounded-full border border-green-500/40 bg-green-900/40 px-2.5 py-1">
           <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.7)]"></span>
@@ -117,7 +117,7 @@ const chips = ["สล็อตออนไลน์", "คาสิโนออ
         </span>
       </div>
 
-      <div class="mb-2 flex items-center justify-between text-[11px] font-bold tracking-widest text-[#d6bd94] uppercase">
+      <div class="mb-2 flex items-center justify-between text-[11px] font-bold tracking-widest text-[#c8ab8b] uppercase">
         <span>สิ่งที่ควรดู / ช่องทาง</span>
         <span>รายละเอียด / เงื่อนไข</span>
       </div>
@@ -125,19 +125,19 @@ const chips = ["สล็อตออนไลน์", "คาสิโนออ
       <div class="flex flex-1 flex-col gap-2.5">
         {
           tableFactors.map((b) => (
-            <div class="rounded-xl border border-[#fe9a00]/30 bg-[#0b0501]/95 px-3.5 py-2.5 transition-colors hover:border-[#ffd76a]/60 hover:bg-[#241503]">
+            <div class="rounded-xl border border-[#fa8302]/30 bg-[#0a0503]/95 px-3.5 py-2.5 transition-colors hover:border-[#ffc94a]/60 hover:bg-[#261305]">
               <div class="flex items-center justify-between gap-2 text-sm">
-                <span class="flex min-w-0 items-center gap-2 font-bold text-[#f6e6cf]">
+                <span class="flex min-w-0 items-center gap-2 font-bold text-[#f3e3d0]">
                   <span aria-hidden="true" class="w-5 shrink-0 text-center">
                     {b.icon}
                   </span>{" "}
                   <span class="truncate">{b.name}</span>
                 </span>
-                <span class="shrink-0 rounded-full border border-[#ffd76a]/50 bg-[#0b0501] px-2.5 py-0.5 text-[10px] font-bold text-[#ffd76a]">{b.tag}</span>
+                <span class="shrink-0 rounded-full border border-[#ffc94a]/50 bg-[#0a0503] px-2.5 py-0.5 text-[10px] font-bold text-[#ffc94a]">{b.tag}</span>
               </div>
-              <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] tracking-wide text-[#d6bd94]">
+              <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] tracking-wide text-[#c8ab8b]">
                 <span>{b.meta}</span>
-                <span class="font-bold text-[#ffd76a]">{b.note}</span>
+                <span class="font-bold text-[#ffc94a]">{b.note}</span>
               </div>
             </div>
           ))
@@ -145,10 +145,10 @@ const chips = ["สล็อตออนไลน์", "คาสิโนออ
       </div>
 
       <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
-        {chips.map((c) => <span class="rounded-full border border-[#fe9a00]/35 bg-[#0b0501] px-3 py-1 text-[10px] font-bold text-[#ffd76a]">{c}</span>)}
+        {chips.map((c) => <span class="rounded-full border border-[#fa8302]/35 bg-[#0a0503] px-3 py-1 text-[10px] font-bold text-[#ffc94a]">{c}</span>)}
       </div>
 
-      <div class="mt-3 text-center text-[10px] tracking-wide text-[#d6bd94]">
+      <div class="mt-3 text-center text-[10px] tracking-wide text-[#c8ab8b]">
         รายการในตารางเป็นหัวข้อที่ควรเปิดดูเท่านั้น ค่า RTP ความผันผวน ตารางจ่าย และเงื่อนไขฟีเจอร์โบนัสถูกกำหนดโดยผู้ให้บริการเกมและต่างกันในแต่ละเกม จึงควรอ่านข้อมูลที่ระบบแสดงจริงก่อนเริ่มทุกครั้ง
         และกำหนดงบไว้ล่วงหน้าเสมอ
       </div>

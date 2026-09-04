@@ -1,17 +1,17 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/Announcement2.astro";
-import ContentBoxPremium from "../components/ContentBoxPremium.astro";
+import Announcement from "../components/Announcement4.astro";
+import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
+import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
+import ContentBoxTwoNeumorphism from "../components/ContentBoxTwoNeumorphism.astro";
+import ContentBoxSevenThree from "../components/ContentBoxSevenThree.astro";
 import ContentBox from "../components/ContentBox.astro";
-import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
-import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
-import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
-import ContentBoxTwoPremium from "../components/ContentBoxTwoPremium.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ProviderGrid from "../components/ProviderGrid.astro";
+import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
+import ContentBoxTwoCyberCut from "../components/ContentBoxTwoCyberCut.astro";
+import ProviderGridPremium from "../components/ProviderGridPremium.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
-import LatestWinnersPremium from "../components/LatestWinnersPremium.astro";
-import Faq2 from "../components/Faq2.astro";
+import LatestWinners3 from "../components/LatestWinners3.astro";
+import Faq4 from "../components/Faq4.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
 import Navfoot from "../components/Navfoot.astro";
@@ -22,64 +22,64 @@ import { pageGraph } from "../lib/schema";
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
 // two of those per rebrand — both are spent here.
 //
-// slide3 prints "วงล้อแต้มทอง / ฝากครบ 300 รับสิทธิ์หมุน 1 ครั้ง" on a prize wheel
-// whose segments read 39 / 89 / 189 เครดิต beside ของรางวัล and หมุนฟรี: one
-// promotion carrying several printed values and a printed condition, which is
-// docx H2-2's "ดูยอดเริ่มต้น เกมที่ร่วมรายการ และเงื่อนไขการถอนร่วมกัน" in
-// picture form.
-// slide1 prints "ภารกิจประจำวัน / ทำครบ 4 ภารกิจ รับซองสุ่ม" over a four-step
-// checklist (ล็อกอิน → ฝากเงิน → หมุนเกม → รับรางวัล), each step ticked on its
-// own — the same shape as docx H2-3's point that the auto system lets a member
-// work through account steps one at a time.
-// slide2 and slide4 stay unused on this page and keep rendering in
+// slide4 prints "วงล้อโชคดี / ฝากครบ 300 หมุนฟรี 1 ครั้ง" on a prize wheel whose
+// segments read 69 / 169 / 269 เครดิต beside ของรางวัล: one promotion carrying
+// several printed values and a printed condition, which is docx H2-3's point
+// that สมัครฟรี still leaves deposit, promotion and withdrawal conditions to
+// check separately, in picture form.
+// slide1 prints "ภารกิจรายวัน / ทำครบ 3 ภารกิจ รับสุ่ม" over a four-step row
+// (ล็อกอิน → ฝากเงิน → หมุนเกม → รับรางวัล), each step numbered on its own — the
+// same shape as docx H2-5's point that account, promotion and transaction
+// history all run through one system, checked step by step.
+// slide2 and slide3 stay unused on this page and keep rendering in
 // SmoothCarousel and on /promotion.
 //
 // banner2.png is NOT imported anywhere: it predates this asset drop.
 // banner1/banner1-mobile/og.png are the hero and the share card and belong to
 // MainLayout alone.
-import imgGoldWheel from "../assets/slide3.png";
+import imgLuckyWheel from "../assets/slide4.png";
 import imgDailyMission from "../assets/slide1.png";
 
 // The docx "Main SEO" Title and H1, verbatim. They are the brand's own copy,
 // not a draft to tidy.
-const pageTitle = "ORA2U | สล็อตเกมคาสิโนออนไลน์ โปรทุนน้อยระบบออโต้แตกง่ายจ่ายไว";
-const pageHeading = "ORA2U สล็อตเกมคาสิโนออนไลน์ โปรทุนน้อยระบบออโต้แตกง่ายจ่ายไว";
+const pageTitle = "JERRY69 | สล็อตรวมเกมค่ายดัง แตกง่าย รวยไว สมัครฟรีรับโปรทุนน้อย";
+const pageHeading = "JERRY69 สล็อตรวมเกมค่ายดัง แตกง่าย รวยไว สมัครฟรีรับโปรทุนน้อย";
 
 // The docx Main SEO Meta Description, verbatim at the length it was written.
 // DESC_MIN does not apply to the home page — verify-build.mjs exempts it
 // precisely so the brand's own copy ships unpadded. Do not top it up to 150.
-const pageDescription = "ORA2U สล็อตคาสิโนออนไลน์ โปรทุนน้อย ระบบออโต้ รองรับมือถือ พร้อมเกมหลายแนว ระบบบัญชี และสถานะรายการให้ตรวจสอบได้สะดวก";
+const pageDescription = "JERRY69 รวมเกมสล็อตค่ายดัง สมัครฟรี โปรทุนน้อยตามเงื่อนไข พร้อมเกมหลายแนว ระบบสมาชิกใช้งานง่าย และข้อมูลรายการตรวจสอบได้สะดวก";
 
-// Byte-identical to Announcement2's own default, which is what every sub-page
+// Byte-identical to Announcement4's own default, which is what every sub-page
 // calling <Announcement /> bare lands on. Passing it explicitly here keeps the
 // home page and the rest of the site from drifting apart silently. No leading
-// emoji — the marquee renders the string three times.
+// emoji — the marquee renders the string twice.
 const announcement =
-  "ORA2U รวมเกมสล็อตและเกมคาสิโนออนไลน์หลายรูปแบบไว้ในระบบเดียว เลือกเกมจากธีม ฟีเจอร์ และระดับเดิมพันได้จากหน้าเดียว • หากเพิ่งเริ่มควรเลือกเกมที่กติกาชัดเจนและวงเงินต่อรอบไม่สูงเกินงบ เพื่อทำความเข้าใจรูปแบบการจ่ายก่อนขยับไปเกมที่ซับซ้อนขึ้น • โปรทุนน้อยควรดูยอดเริ่มต้น เกมที่ร่วมรายการ และเงื่อนไขการถอนร่วมกัน โบนัสที่ดูสูงอาจไม่เหมาะที่สุดหากมีข้อกำหนดซับซ้อน • ระบบออโต้ช่วยตรวจยอด ประวัติธุรกรรม และสถานะรายการได้จากที่เดียว ก่อนยืนยันควรตรวจชื่อบัญชีและจำนวนเงินให้ถูกต้อง • คำว่าแตกง่ายและจ่ายไวไม่ใช่การรับประกันผล ควรกำหนดงบและศึกษากติกาก่อนเริ่มใช้งานทุกครั้ง";
+  "JERRY69 รวมเกมสล็อตจากหลายค่ายไว้ในระบบเดียว เลือกได้จากธีม ฟีเจอร์โบนัส ความเร็วของเกม และระดับเดิมพัน แทนการดูจากชื่อค่ายอย่างเดียว • สมัครฟรีหมายถึงไม่มีค่าธรรมเนียมเปิดบัญชี แต่ยังควรตรวจเงื่อนไขการฝาก โปรโมชั่น และการถอนแยกกันให้ชัด • โปรทุนน้อยควรดูยอดเริ่มต้น โบนัส เกมที่ร่วมรายการ และเงื่อนไขการถอนร่วมกัน โปรที่ให้โบนัสสูงสุดไม่จำเป็นต้องเหมาะกับงบที่สุด • คำว่าแตกง่ายและรวยไวเป็นข้อความทางการตลาด ไม่ใช่การรับประกันผล ควรดู RTP ความผันผวน และตารางจ่ายประกอบเสมอ • ก่อนทำธุรกรรมควรตรวจชื่อบัญชีและจำนวนเงินให้ครบ หากรายการเดิมยังดำเนินการอยู่ควรรอระบบอัปเดตก่อนส่งคำขอใหม่";
 
 // Each alt is the text printed on that slide plus the scene around it, read off
-// the artwork — the same strings SmoothCarousel uses for the same two files.
-const altGoldWheel =
-  "แบนเนอร์โปรโมชั่น ORA2U หัวข้อสีทองเขียนว่า วงล้อแต้มทอง และบรรทัดถัดมาเขียนว่า ฝากครบ 300 รับสิทธิ์หมุน 1 ครั้ง ด้านขวาเป็นวงล้อเสี่ยงโชคสีทองสลับดำขนาดใหญ่ที่มีหลอดไฟล้อมรอบขอบ ช่องต่าง ๆ เขียนว่า 39 เครดิต 89 เครดิต 189 เครดิต สลับกับช่องที่มีไอคอนกล่องของขวัญเขียนว่า ของรางวัล และช่องที่มีไอคอนลูกศรวนเขียนว่า หมุนฟรี ตรงดุมกลางวงล้อเขียนว่า หมุน และมีหัวลูกศรสีทองชี้ลงอยู่ด้านบน ใต้วงล้อเป็นบรรทัดเขียนว่า ลุ้นได้ทุกวันตามเงื่อนไข และปุ่มวงรีสีทองเขียนว่า หมุนเลย ด้านซ้ายเป็นผู้หญิงในชุดสีดำสลับทองชี้นิ้วไปที่วงล้อ ด้านบนซ้ายเป็นโลโก้มงกุฎ ORA2U รอบด้านเป็นเพชรและเหรียญทองบนพื้นหลังสีดำ";
+// the artwork itself.
+const altLuckyWheel =
+  "แบนเนอร์โปรโมชั่น JERRY69 ด้านบนเป็นโลโก้ตัวอักษรสีขาวขอบดำเขียนว่า JERRY ต่อด้วยเลข 69 สีส้มไล่เฉดทอง ถัดลงมาเป็นหัวข้อตัวหนาสีส้มเขียนว่า วงล้อโชคดี ด้านขวาเป็นวงล้อเสี่ยงโชคขนาดใหญ่สีส้มสลับดำ มีหลอดไฟสีส้มเรียงรอบขอบและหัวลูกศรสีส้มชี้ลงอยู่ด้านบน ช่องบนวงล้อเขียนว่า 69 เครดิต 169 เครดิต และ 269 เครดิต สลับกับช่องที่มีไอคอนกล่องของขวัญเขียนว่า ของรางวัล ด้านซ้ายเป็นข้อความเขียนว่า ฝากครบ แล้วเป็นตัวเลข 300 ขนาดใหญ่ ใต้ลงมาเขียนว่า หมุนฟรี 1 ครั้ง ด้านล่างเป็นปุ่มวงรีสีส้มขอบทองเขียนว่า หมุนเลย ด้านซ้ายของภาพเป็นผู้หญิงในชุดสีดำสลับส้มติดโลโก้ JERRY69 ชี้นิ้วไปที่วงล้อ รอบด้านเป็นเหรียญทองสลักคำว่า JERRY69 กล่องของขวัญ และเพชรบนพื้นหลังสีดำ";
 
 const altDailyMission =
-  "แบนเนอร์โปรโมชั่น ORA2U หัวข้อสีทองเขียนว่า ภารกิจประจำวัน บรรทัดถัดมาเขียนว่า ทำครบ 4 ภารกิจ รับซองสุ่ม พร้อมไอคอนซองสีแดง ใต้ลงมาเป็นตัวเลขสีทองขนาดใหญ่ 28 / 88 / 168 เหนือคำว่า เครดิต ถัดลงมาเป็นแถวไทล์สีทองสี่ขั้นตอนที่ติดเครื่องหมายถูกครบทุกช่อง ล็อกอิน พร้อมไอคอนคน ฝากเงิน พร้อมไอคอนเหรียญ หมุนเกม พร้อมไอคอนวงล้อ 777 และ รับรางวัล พร้อมไอคอนกล่องของขวัญ ด้านล่างเป็นปุ่มวงรีสีทองเขียนว่า รับภารกิจ ด้านซ้ายเป็นผู้หญิงในชุดสีดำสลับทองติดโลโก้ ORA2U ด้านบนกลางภาพเป็นโลโก้มงกุฎ ORA2U รอบด้านเป็นกล่องของขวัญ เหรียญทอง และวงล้อสล็อตบนพื้นหลังสีดำ";
+  "แบนเนอร์โปรโมชั่น JERRY69 ด้านบนเป็นโลโก้ตัวอักษรสีขาวขอบดำเขียนว่า JERRY ต่อด้วยเลข 69 สีส้มไล่เฉดทอง ถัดลงมาเป็นหัวข้อตัวหนาสีส้มเขียนว่า ภารกิจรายวัน และบรรทัดถัดมาเขียนว่า ทำครบ 3 ภารกิจ รับสุ่ม ใต้ลงมาเป็นตัวเลขสีทองขนาดใหญ่ 29 / 69 / 169 เหนือคำว่า เครดิต ถัดลงมาเป็นแถวสี่ขั้นตอนที่มีหมายเลขกำกับและลูกศรชี้ต่อกัน หมายเลข 1 ล็อกอิน พร้อมไอคอนคนติดเครื่องหมายถูก หมายเลข 2 ฝากเงิน พร้อมไอคอนกระเป๋าเงินและเหรียญ หมายเลข 3 หมุนเกม พร้อมไอคอนตู้สล็อตเลข 777 และหมายเลข 4 รับรางวัล พร้อมไอคอนกล่องของขวัญ ด้านล่างเป็นปุ่มวงรีสีส้มขอบทองเขียนว่า รับภารกิจ ด้านซ้ายของภาพเป็นผู้หญิงในชุดสีดำสลับส้มติดโลโก้ JERRY69 ชูสามนิ้ว รอบด้านเป็นเหรียญทองสลักคำว่า JERRY69 กล่องของขวัญ และประกายไฟบนพื้นหลังสีดำ";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq2's own default, so the rendered markup and the FAQ JSON-LD below come out
+// Faq4's own default, so the rendered markup and the FAQ JSON-LD below come out
 // of the same array.
 const faqs = [
   {
-    q: "ORA2U เหมาะกับผู้เล่นทุนน้อยหรือไม่?",
-    a: "มีโปรโมชั่นและตัวเลือกเกมที่อาจเหมาะกับงบไม่สูงตามเงื่อนไขของระบบ แต่ควรตรวจยอดเริ่มต้น ระดับเดิมพัน และข้อกำหนดการถอนก่อนใช้งานจริง",
+    q: "JERRY69 สมัครสมาชิกฟรีหรือไม่?",
+    a: "การสมัครอาจไม่มีค่าธรรมเนียมตามเงื่อนไขที่เว็บไซต์กำหนด แต่ควรตรวจรายละเอียดเกี่ยวกับการฝาก โปรโมชั่น และการถอนเพิ่มเติมก่อนใช้งานจริง",
   },
   {
-    q: "ORA2U มีทั้งสล็อตและคาสิโนออนไลน์หรือไม่?",
-    a: "ระบบอาจรวมเกมสล็อตและเกมคาสิโนหลายประเภทตามที่เว็บไซต์กำหนด ผู้เล่นควรตรวจหมวดเกม กติกา และอัตราจ่ายของเกมที่สนใจก่อนเริ่ม",
+    q: "JERRY69 มีเกมสล็อตจากหลายค่ายหรือไม่?",
+    a: "ระบบอาจรวมเกมจากหลายผู้ให้บริการ ผู้เล่นควรตรวจรายชื่อค่าย ฟีเจอร์เกม RTP และกติกาก่อนเลือกเล่น เพื่อให้เหมาะกับสไตล์และงบของตนเอง",
   },
   {
-    q: "ระบบออโต้แตกง่ายจ่ายไวของ ORA2U รับประกันผลหรือไม่?",
-    a: "ไม่สามารถรับประกันผลของเกมหรือระยะเวลาธุรกรรมทุกกรณีได้ ผู้เล่นควรดูข้อมูลเกม สถานะบัญชี และเงื่อนไขที่เกี่ยวข้องก่อนทำรายการ",
+    q: "โปรทุนน้อยและคำว่ารวยไวของ JERRY69 รับประกันกำไรไหม?",
+    a: "ไม่สามารถรับประกันกำไรจากเกมสล็อตหรือโปรโมชั่นได้ ผู้เล่นควรดูเงื่อนไขโปร ความเสี่ยงของเกม และกำหนดงบประมาณก่อนเริ่มทุกครั้ง",
   },
 ];
 
@@ -96,26 +96,33 @@ const graph = pageGraph(Astro, {
 
   <Announcement message={announcement} />
 
-  <ContentBoxPremium as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#f6e6cf]">
-      <strong class="text-[#ffd76a]">ORA2U</strong> เป็นแพลตฟอร์มสล็อตและคาสิโนออนไลน์ที่รวมเกมหลายรูปแบบไว้ในระบบเดียว พร้อมโปรโมชั่นสำหรับผู้ที่ต้องการเริ่มด้วยงบไม่สูง
-      และระบบออโต้ช่วยลดขั้นตอนในการจัดการบัญชีและธุรกรรม สมาชิกสามารถเลือกเกม ตรวจโปรโมชั่น และติดตามรายการได้สะดวก โดยควรศึกษากติกาและกำหนดงบก่อนเริ่มใช้งานทุกครั้ง
+  <ContentBoxNeumorphism as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#f3e3d0]">
+      <strong class="text-[#ffc94a]">JERRY69</strong> เป็นแพลตฟอร์มสล็อตออนไลน์ที่รวบรวมเกมจากหลายค่ายไว้ในระบบเดียว พร้อมขั้นตอนสมัครสมาชิกและโปรโมชั่นสำหรับผู้ที่ต้องการเริ่มต้นด้วยงบไม่สูง สมาชิกสามารถค้นหาเกม
+      ดูสิทธิพิเศษ และตรวจสอบข้อมูลบัญชีได้สะดวก ก่อนเริ่มควรศึกษากติกา ฟีเจอร์ และเงื่อนไขโปรโมชั่นให้ครบถ้วน
     </p>
-  </ContentBoxPremium>
+  </ContentBoxNeumorphism>
 
-  <ContentBox as="h2" title="เริ่มจากเกมที่เข้าใจกติกาง่ายบน ORA2U">
-    <p class="text-left text-base leading-relaxed text-[#f6e6cf]">
-      ผู้เล่น ORA2U สามารถเลือกเกมจากธีม ฟีเจอร์ และระดับเดิมพันที่แตกต่างกัน หากเพิ่งเริ่มควรเลือกเกมที่มีกติกาชัดเจนและวงเงินต่อรอบไม่สูงเกินงบ
-      เพื่อให้เข้าใจรูปแบบการจ่ายและฟีเจอร์ของเกมก่อนขยับไปยังเกมที่มีความซับซ้อนมากขึ้น
+  <ContentBoxFloatingBadge as="h2" title="เลือกเกมค่ายดังจากสไตล์ที่ชอบบน JERRY69">
+    <p class="text-left text-base leading-relaxed text-[#f3e3d0]">
+      ภายใน JERRY69 มีเกมสล็อตหลายธีมและหลายรูปแบบจากค่ายที่ระบบรองรับ ผู้เล่นสามารถเลือกจากฟีเจอร์โบนัส ความเร็วของเกม และระดับเดิมพัน แทนการเลือกจากชื่อค่ายเพียงอย่างเดียว
+      การเปรียบเทียบข้อมูลก่อนเล่นช่วยให้หาเกมที่เหมาะกับงบและความชอบได้ง่ายขึ้น
     </p>
-  </ContentBox>
+  </ContentBoxFloatingBadge>
 
-  <ProviderGrid />
+  <ProviderGridPremium />
 
-  <ContentBoxSevenThreePremium titleright="โปรทุนน้อยควรเทียบเงื่อนไขมากกว่าดูโบนัสอย่างเดียว">
+  <ContentBoxTwoNeumorphism titleleft="สมัครฟรีควรดูว่ามีค่าใช้จ่ายส่วนไหนเพิ่มเติมหรือไม่">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f3e3d0]">
+      คำว่าสมัครฟรีควรหมายถึงไม่มีค่าธรรมเนียมในการเปิดบัญชี แต่ผู้ใช้งานยังควรตรวจสอบเงื่อนไขด้านการฝาก โปรโมชั่น และการถอนแยกกันให้ชัด
+    </p>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f3e3d0]">การอ่านรายละเอียดตั้งแต่ต้นช่วยลดความเข้าใจผิดและทำให้เลือกสิทธิ์ที่เหมาะกับตนเองได้มากขึ้น</p>
+  </ContentBoxTwoNeumorphism>
+
+  <ContentBoxSevenThree titleright="โปรทุนน้อยของ JERRY69 เหมาะกับการเริ่มแบบมีแผน">
     <Picture
       slot="left"
-      src={imgGoldWheel}
+      src={imgLuckyWheel}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -124,16 +131,25 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt={altGoldWheel}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#fe9a00]/45 shadow-[0_10px_30px_rgba(254,154,0,0.28)]"
+      alt={altLuckyWheel}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#fa8302]/45 shadow-[0_10px_30px_rgba(250,131,2,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f6e6cf]">
-      โปรโมชั่นสำหรับผู้เล่นงบน้อยควรดูทั้งยอดเริ่มต้น เกมที่ร่วมรายการ และเงื่อนไขการถอนร่วมกัน โบนัสที่ดูสูงอาจไม่เหมาะที่สุดหากมีข้อกำหนดซับซ้อน
-      การเลือกโปรที่สัมพันธ์กับงบและสไตล์การเล่นจะช่วยให้ใช้งานได้ยืดหยุ่นมากกว่า
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f3e3d0]">
+      โปรโมชั่นทุนน้อยของ JERRY69 ควรพิจารณาจากยอดเริ่มต้น โบนัส เกมที่ร่วมรายการ และเงื่อนไขการถอนร่วมกัน โปรที่เหมาะไม่จำเป็นต้องให้โบนัสสูงที่สุด แต่ควรสัมพันธ์กับงบและรูปแบบการเล่น
+      เพื่อไม่ให้ต้องเพิ่มเงินเกินแผนที่ตั้งไว้
     </p>
-  </ContentBoxSevenThreePremium>
+  </ContentBoxSevenThree>
 
-  <ContentBoxSevenThreeCyberCut titleright="ระบบออโต้ของ ORA2U ช่วยจัดการบัญชีได้เป็นขั้นตอน">
+  <ContentBox as="h2" title="เกมแตกง่ายควรดู RTP และความผันผวนประกอบ">
+    <p class="text-left text-base leading-relaxed text-[#f3e3d0]">
+      คำว่าแตกง่ายเป็นข้อความทางการตลาดและไม่สามารถรับประกันผลได้ ผู้เล่นควรดู RTP ที่ผู้ให้บริการระบุ ความผันผวน ตารางจ่าย และฟีเจอร์โบนัสร่วมกัน
+      ข้อมูลเหล่านี้ช่วยอธิบายลักษณะของเกมได้ดีกว่าการเลือกจากคำโปรโมตเพียงอย่างเดียว
+    </p>
+  </ContentBox>
+
+  <LoginRtpSection />
+
+  <ContentBoxSevenThreeFloatingBadge title="จัดการบัญชีและโปรโมชั่นผ่านระบบของ JERRY69">
     <Picture
       slot="left"
       src={imgDailyMission}
@@ -146,57 +162,35 @@ const graph = pageGraph(Astro, {
       fallbackFormat="webp"
       quality={80}
       alt={altDailyMission}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#ffd76a]/45 shadow-[0_10px_30px_rgba(177,93,1,0.32)]"
+      class="mx-auto h-auto w-full rounded-2xl border border-[#ffc94a]/45 shadow-[0_10px_30px_rgba(194,83,2,0.32)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f6e6cf]">
-      สมาชิก ORA2U สามารถตรวจยอด ประวัติธุรกรรม และสถานะรายการผ่านระบบเดียวได้ ก่อนยืนยันควรตรวจชื่อบัญชี จำนวนเงิน และข้อมูลที่เกี่ยวข้องให้ถูกต้อง
-      หากรายการเดิมยังดำเนินการอยู่ควรรอผลจากระบบก่อนทำรายการใหม่ เพื่อลดความซ้ำซ้อน
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f3e3d0]">
+      สมาชิก JERRY69 สามารถตรวจสอบข้อมูลบัญชี สิทธิ์โปรโมชั่น และประวัติรายการผ่านระบบเดียวได้ ก่อนทำธุรกรรมควรตรวจชื่อบัญชี จำนวนเงิน และเงื่อนไขที่เกี่ยวข้องให้ครบ
+      หากรายการเดิมยังดำเนินการอยู่ควรรอระบบอัปเดตก่อนส่งคำขอใหม่
     </p>
-  </ContentBoxSevenThreeCyberCut>
+  </ContentBoxSevenThreeFloatingBadge>
 
-  <ContentBoxSpecial as="h2" title="สล็อตกับคาสิโนออนไลน์ควรเลือกจากความเสี่ยงที่ต่างกัน" iconleft="🎰" iconright="🃏">
-    <div slot="left">
-      <p class="text-left text-base leading-relaxed text-[#f6e6cf]">เกมสล็อตมักมีฟีเจอร์โบนัสและระดับความผันผวนที่แตกต่างกัน</p>
-    </div>
-    <div slot="right">
-      <p class="text-left text-base leading-relaxed text-[#f6e6cf]">
-        ส่วนเกมคาสิโนอาจใช้กติกาและอัตราจ่ายเฉพาะของแต่ละประเภท ผู้เล่นควรเข้าใจโครงสร้างของเกมก่อนเลือก เพื่อให้วงเงินและระดับความเสี่ยงสอดคล้องกับสิ่งที่ตนเองรับได้
-      </p>
-    </div>
-  </ContentBoxSpecial>
+  <LatestWinners3 />
 
-  <ContentBoxTwoPremium titleleft="ดู RTP และฟีเจอร์ก่อนหาเกมแตกง่ายบน ORA2U">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#f6e6cf]">
-      แทนที่จะเลือกจากคำว่าแตกง่ายเพียงอย่างเดียว ผู้ใช้ ORA2U ควรดู RTP ที่ผู้ให้บริการระบุ ตารางจ่าย ฟีเจอร์โบนัส และความผันผวนประกอบกัน
-    </p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#f6e6cf]">ข้อมูลเหล่านี้ช่วยให้เข้าใจลักษณะของเกมได้มากขึ้นและเลือกวงเงินต่อรอบได้เหมาะสมกว่า</p>
-  </ContentBoxTwoPremium>
+  <ContentBoxTwoCyberCut titleleft="คำว่ารวยไวบน JERRY69 ไม่ใช่การรับประกันรายได้">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f3e3d0]">คำว่ารวยไวของ JERRY69 ใช้สื่อถึงโอกาสลุ้นรางวัลและความตื่นเต้นของเกมสล็อต แต่ไม่สามารถรับประกันรายได้หรือกำไรได้</p>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f3e3d0]">ผู้เล่นควรกำหนดวงเงินและเวลาเล่นไว้ล่วงหน้า และหลีกเลี่ยงการเพิ่มเดิมพันเพื่อตามคืนยอดที่เสียไป</p>
+  </ContentBoxTwoCyberCut>
 
-  <LoginRtpSection />
-
-  <ContentBoxCyberCut as="h2" title="คำว่าจ่ายไวควรตรวจจากสถานะรายการจริงของ ORA2U">
-    <p class="text-left text-base leading-relaxed text-[#f6e6cf]">
-      คำว่าจ่ายไวของ ORA2U ควรพิจารณาจากสถานะธุรกรรมในระบบ ไม่ควรใช้เป็นการรับประกันทุกกรณี ก่อนถอนควรตรวจยอดคงเหลือ ข้อมูลรับเงิน และเงื่อนไขโปรโมชั่น
-      พร้อมเก็บเลขอ้างอิงไว้จนกว่ารายการจะเสร็จสมบูรณ์
-    </p>
-  </ContentBoxCyberCut>
-
-  <LatestWinnersPremium />
-
-  <Faq2 title="คำถามที่พบบ่อยเกี่ยวกับ ORA2U" faqs={faqs} />
+  <Faq4 title="คำถามที่พบบ่อยเกี่ยวกับ JERRY69" faqs={faqs} />
 
   <SmoothCarousel />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#fdf3da]/55 bg-gradient-to-r from-[#241503] via-[#170d03] to-[#0b0501] px-4 py-3 text-sm font-black whitespace-nowrap text-[#fdf3da] shadow-[0_10px_30px_rgba(254,154,0,0.22)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffd76a] hover:shadow-[0_15px_40px_rgba(254,154,0,0.35)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#fff4e2]/55 bg-gradient-to-r from-[#261305] via-[#160b03] to-[#0a0503] px-4 py-3 text-sm font-black whitespace-nowrap text-[#fff4e2] shadow-[0_10px_30px_rgba(250,131,2,0.22)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffc94a] hover:shadow-[0_15px_40px_rgba(250,131,2,0.35)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffd76a]/70 bg-gradient-to-r from-[#ffd76a] to-[#fe9a00] px-4 py-3 text-sm font-black whitespace-nowrap text-[#170d03] shadow-[0_10px_30px_rgba(254,154,0,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#fdf3da] hover:shadow-[0_15px_40px_rgba(254,154,0,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ffc94a]/70 bg-gradient-to-r from-[#ffc94a] to-[#fa8302] px-4 py-3 text-sm font-black whitespace-nowrap text-[#160b03] shadow-[0_10px_30px_rgba(250,131,2,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#fff4e2] hover:shadow-[0_15px_40px_rgba(250,131,2,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>

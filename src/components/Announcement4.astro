@@ -1,18 +1,28 @@
 ---
+// This default IS the site's ticker copy: every sub-page calls <Announcement />
+// bare and lands here, and index.astro passes the same string explicitly. Keep
+// the two byte-identical so the home page and the rest of the site cannot drift.
+//
+// No leading emoji — the track renders the message twice for the marquee loop,
+// so a decorative glyph in the string would be read out twice and cannot be
+// wrapped in aria-hidden the way a real element can.
+//
+// JERRY69: orange rail and badge on warm near-black, replacing the green this
+// variant carried from an earlier brand.
 const {
-  message = "YOK789 สล็อตเว็บตรง รวมสล็อตกว่า 40 ค่าย เกมกว่า 4,000 รายการ คาสิโนสด หวย และกีฬา ไว้ในบัญชีเดียว • ฝากถอนออโต้ไวระดับ 1 วินาที ตรวจประวัติรายการได้เองทุกยอด • คืนยอดเสียสูงสุด 8% อ่านฐานคำนวณ รอบรับสิทธิ์ จำนวนเทิร์น และเพดานถอนก่อนกดรับทุกครั้ง • ตรวจชื่อเว็บและ HTTPS ให้ตรงก่อนล็อกอินที่ yok789-brand.com",
+  message = "JERRY69 รวมเกมสล็อตจากหลายค่ายไว้ในระบบเดียว เลือกได้จากธีม ฟีเจอร์โบนัส ความเร็วของเกม และระดับเดิมพัน แทนการดูจากชื่อค่ายอย่างเดียว • สมัครฟรีหมายถึงไม่มีค่าธรรมเนียมเปิดบัญชี แต่ยังควรตรวจเงื่อนไขการฝาก โปรโมชั่น และการถอนแยกกันให้ชัด • โปรทุนน้อยควรดูยอดเริ่มต้น โบนัส เกมที่ร่วมรายการ และเงื่อนไขการถอนร่วมกัน โปรที่ให้โบนัสสูงสุดไม่จำเป็นต้องเหมาะกับงบที่สุด • คำว่าแตกง่ายและรวยไวเป็นข้อความทางการตลาด ไม่ใช่การรับประกันผล ควรดู RTP ความผันผวน และตารางจ่ายประกอบเสมอ • ก่อนทำธุรกรรมควรตรวจชื่อบัญชีและจำนวนเงินให้ครบ หากรายการเดิมยังดำเนินการอยู่ควรรอระบบอัปเดตก่อนส่งคำขอใหม่",
 } = Astro.props;
 ---
 
 <div class="mx-auto mt-6 max-w-[900px] px-2 md:px-0">
-  <div class="relative flex h-[40px] items-center rounded-sm border-b-2 border-[#12b84f] bg-[#040a06] shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-    <div class="absolute -top-3 left-4 flex items-center gap-1.5 rounded-sm bg-gradient-to-r from-[#0a6b2f] to-[#5cff9b] px-3 py-0.5 shadow-[0_4px_10px_rgba(18,184,79,0.5)]">
-      <div aria-hidden="true" class="h-2 w-2 animate-pulse rounded-full bg-[#04140a]"></div>
-      <span class="text-[10px] font-black tracking-widest text-[#04140a] md:text-xs">LIVE UPDATE</span>
+  <div class="relative flex h-[40px] items-center rounded-sm border-b-2 border-[#fa8302] bg-[#0a0503] shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+    <div class="absolute -top-3 left-4 flex items-center gap-1.5 rounded-sm bg-gradient-to-r from-[#c25302] to-[#ffc94a] px-3 py-0.5 shadow-[0_4px_10px_rgba(250,131,2,0.5)]">
+      <div aria-hidden="true" class="h-2 w-2 animate-pulse rounded-full bg-[#190c02]"></div>
+      <span class="text-[10px] font-black tracking-widest text-[#190c02] md:text-xs">LIVE UPDATE</span>
     </div>
 
     <div class="ml-32 flex-1 overflow-hidden md:ml-40">
-      <div class="ticker-track flex w-max gap-12 text-sm font-medium whitespace-nowrap text-[#d5f0dd]">
+      <div class="ticker-track flex w-max gap-12 text-sm font-medium whitespace-nowrap text-[#f3e3d0]">
         <span>{message}</span>
         <span>{message}</span>
       </div>
