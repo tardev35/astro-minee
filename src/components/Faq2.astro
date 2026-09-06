@@ -17,9 +17,9 @@ const { title, faqs = [] } = Astro.props;
 // every rebrand. <details>/<summary> already exposes each question as a
 // disclosure control, so nothing is lost by dropping the tag.
 //
-// ORA2U: the clipped card runs a pale-gold → gold hairline over a bronze panel.
-// The "?" tile keeps a cream → pale-gold fill so its near-black ink stays
-// readable end to end — a fade down to bronze would have put #0b0501 on a dark
+// PRODED888: the clipped card runs an ivory -> gold hairline over a deep-gold
+// panel. The "?" tile keeps an ivory -> gold-light fill so its ink stays
+// readable end to end — a fade down to #8f6614 would have put #070b20 on a dark
 // surface at the bottom.
 ---
 
@@ -27,33 +27,33 @@ const { title, faqs = [] } = Astro.props;
   {
     title && (
       <header class="mb-8 text-center">
-        <h2 class="bg-gradient-to-r from-[#fdf3da] via-[#ffd76a] to-[#fe9a00] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase drop-shadow-sm md:text-3xl">
+        <h2 class="bg-gradient-to-r from-[#faf3de] via-[#f8de91] to-[#e3b53f] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase drop-shadow-sm md:text-3xl">
           {title}
         </h2>
-        <div class="mx-auto mt-3 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#fe9a00] to-transparent" />
+        <div class="mx-auto mt-3 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#e3b53f] to-transparent" />
       </header>
     )
   }
 
   {
     faqs.map((faq) => (
-      <div class="group relative bg-[#b15d01] p-[1px] [clip-path:polygon(0_0,calc(100%-20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%-20px))]">
-        <div class="absolute inset-0 bg-gradient-to-r from-[#ffd76a] via-[#fe9a00] to-transparent opacity-40 transition-opacity group-hover:opacity-100" />
+      <div class="group relative bg-[#8f6614] p-[1px] [clip-path:polygon(0_0,calc(100%-20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%-20px))]">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#f8de91] via-[#e3b53f] to-transparent opacity-40 transition-opacity group-hover:opacity-100" />
 
-        <details class="faq-item relative bg-[#170d03] p-4 [clip-path:polygon(0_0,calc(100%-19px)_0,100%_19px,100%_100%,19px_100%,0_calc(100%-19px))]">
+        <details class="faq-item relative bg-[#0d1338] p-4 [clip-path:polygon(0_0,calc(100%-19px)_0,100%_19px,100%_100%,19px_100%,0_calc(100%-19px))]">
           <summary class="flex w-full cursor-pointer items-center gap-4 text-left">
             <span
               aria-hidden="true"
-              class="flex h-10 w-10 shrink-0 items-center justify-center bg-gradient-to-br from-[#fdf3da] to-[#ffd76a] font-black text-[#0b0501] italic [clip-path:polygon(20%_0,100%_0,80%_100%,0_100%)]">
+              class="flex h-10 w-10 shrink-0 items-center justify-center bg-gradient-to-br from-[#faf3de] to-[#f8de91] font-black text-[#070b20] italic [clip-path:polygon(20%_0,100%_0,80%_100%,0_100%)]">
               ?
             </span>
-            <span class="flex-1 text-base leading-normal font-bold tracking-tight text-[#f6e6cf]">{faq.q}</span>
-            <span aria-hidden="true" class="faq-arrow shrink-0 text-[#fe9a00] transition-transform duration-300">
+            <span class="flex-1 text-base leading-normal font-bold tracking-tight text-[#ece0c2]">{faq.q}</span>
+            <span aria-hidden="true" class="faq-arrow shrink-0 text-[#e3b53f] transition-transform duration-300">
               ▼
             </span>
           </summary>
 
-          <p class="faq-answer mt-4 border-l-2 border-[#fe9a00]/70 pl-4 text-left text-base leading-relaxed text-[#f6e6cf]/90">{faq.a}</p>
+          <p class="faq-answer mt-4 border-l-2 border-[#e3b53f]/70 pl-4 text-left text-base leading-relaxed text-[#ece0c2]/90">{faq.a}</p>
         </details>
       </div>
     ))

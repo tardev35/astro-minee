@@ -1,3 +1,4 @@
 {
-  "mode": "image"
+  "mode": "color",
+  "color": "#0f172a"
 }

@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/Announcement5.astro";
+import Announcement from "../components/AnnouncementPremium.astro";
 
 import { Picture } from "astro:assets";
 
@@ -20,30 +20,30 @@ import { pageGraph } from "../lib/schema";
 // paragraph found here was invented by an earlier rebrand and gets deleted, not
 // translated. Rendered inventory: h1x1, h2x0, h3x0.
 //
-// The alt text below is the Thai printed on each RENGER8888 slide plus the scene
+// The alt text below is the Thai printed on each PRODED888 slide plus the scene
 // it draws — the offer, the sub-line, the button and the artwork. Every string
-// was rewritten against the actual image in this drop, not renamed from the
-// outgoing brand's: all four offers changed, not only the numbers. Slide order on
-// disk is slide1 เช็กอิน 7 วัน, slide2 ภารกิจสายลุย, slide3 เปิดหีบแดง, slide4
-// ศึกสุดสัปดาห์. slide1-4 are all .png in this drop (2026-09-04) and all four
-// belong here; banner2.png is dated 2026-08-13, predates the drop, and is
-// deliberately NOT imported anywhere. No domain string appears in any alt —
-// verify-build.mjs fails the build on a host found inside an attribute. The
-// wordmark drawn on every slide reads "RANGER 8888", so the alt says that is
-// what is printed while every brand string on the page stays RENGER8888.
+// was rewritten against the actual image in this drop (read with the Read tool),
+// not renamed from the outgoing brand's: all four artworks changed, not only the
+// numbers. Slide order on disk is slide1 วงล้อทองคำ, slide2 เช็กอิน 7 วัน,
+// slide3 ภารกิจประจำวัน, slide4 the brand/entry banner. slide1-4 are all .png in
+// this drop (2026-09-06) and all four belong here; banner2.png is dated
+// 2026-08-13, predates the drop, and is deliberately NOT imported anywhere. No
+// domain string appears in any alt — verify-build.mjs fails the build on a host
+// found inside an attribute. The wordmark drawn on every slide reads
+// "PRODED 888", which is what the alt says is printed.
 //
-// <Announcement /> is bare on purpose: Announcement5's default message already
-// carries this brand's copy, so the ticker matches index.astro with no second
-// string to keep in sync here. The variant rotated off Announcement3, the
+// <Announcement /> is bare on purpose: AnnouncementPremium's default message
+// already carries this brand's copy, so the ticker matches index.astro with no
+// second string to keep in sync here. The variant rotated off Announcement5, the
 // outgoing brand's pick, per the brand spec.
-const pageTitle = "โปรโมชั่น RENGER8888 รวมสิทธิพิเศษและโบนัสสำหรับสมาชิกคาสิโน";
+const pageTitle = "โปรโมชั่น PRODED888 รวมสิทธิพิเศษและโบนัสเกมฮิตสำหรับสมาชิก";
 
 // Title and description are the docx SUB-PAGES row for /promotion, both shipped
-// VERBATIM. The description is 126 characters, shorter than the DESC_MIN=150
+// VERBATIM. The description is 118 characters, shorter than the DESC_MIN=150
 // floor, and that is correct: the brief's own sentence is the brand's copy, not
 // a draft to top up. verify-build.mjs exempts any description that appears
 // literally in src/assets/content.txt for exactly this reason. Do not pad it.
-const pageDescription = "RENGER8888 รวมโปรโมชั่นคาสิโน โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมข้อมูลช่วยเลือกโปรให้เหมาะกับงบ ประเภทเกม และรูปแบบการใช้งาน";
+const pageDescription = "PRODED888 รวมโปรโมชั่นเกมฮิต โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมข้อมูลช่วยเปรียบเทียบโปรให้เหมาะกับงบและรูปแบบการเล่น";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -55,32 +55,32 @@ const graph = pageGraph(Astro, {
   primaryImagePath: pro1.src,
 });
 
-// The primary crimson carries the surfaces here (border, glow) and the bright
-// crimson carries the hover state — the same read the artwork uses, a
-// crimson-rimmed panel lifting to a hotter edge. A #28080b border on the
-// near-black page would read as no border at all, so the resting border is the
-// primary crimson rather than the card surface.
+// The primary gold carries the surfaces here (border, glow) and the light gold
+// carries the hover state — the same read the artwork uses, a gold-rimmed panel
+// lifting to a brighter edge. A #8f6614 border on the near-black navy page would
+// read as no border at all, so the resting border is the primary gold rather
+// than the deep shade.
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#e8121f]/40 object-contain shadow-[0_10px_30px_rgba(232,18,31,0.24)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#ff2b38]/65 hover:shadow-[0_15px_40px_rgba(232,18,31,0.3)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#e3b53f]/40 object-contain shadow-[0_10px_30px_rgba(227,181,63,0.24)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#f8de91]/65 hover:shadow-[0_15px_40px_rgba(227,181,63,0.3)]";
 ---
 
-<MainLayout title="RENGER8888 | โปรโมชั่นคาสิโนและสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
+<MainLayout title="PRODED888 | โปรโมชั่นเกมฮิตและสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed text-[#f0dcdc]">
-        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#ff2b38]">RENGER8888</strong> เปิดให้สมาชิกไว้ในที่เดียว ทั้งการเช็กอินต่อเนื่องเจ็ดวัน ภารกิจสะสมแต้มสามขั้น สิทธิ์เปิดหีบประจำวัน
-        และการสะสมคะแนนชิงอันดับสุดสัปดาห์ จำนวนเครดิตและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ก่อนกดรับสิทธิ์ควรตรวจยอดฝากขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา
-        และข้อกำหนดการถอนร่วมกัน เพราะแต่ละรายการกำหนดไว้ไม่เท่ากันและปรับได้ตามรอบ
+      <p class="mb-8 text-left text-base leading-relaxed text-[#ece0c2]">
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#f8de91]">PRODED888</strong> เปิดให้สมาชิกไว้ในที่เดียว ทั้งวงล้อทองคำที่หมุนลุ้นเครดิตฟรีได้วันละครั้ง การเช็กอินต่อเนื่องเจ็ดวัน
+        และภารกิจประจำวันที่สะสมแต้มไว้แลกของรางวัล จำนวนเครดิตและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ก่อนกดรับสิทธิ์ควรเทียบยอดฝากขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา
+        และข้อกำหนดการถอนร่วมกัน เพราะแต่ละรายการกำหนดเงื่อนไขไว้ไม่เท่ากันและปรับได้ตามรอบ
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น RENGER8888 ด้านบนเป็นตราอัศวินสวมหมวกเกราะถือดาบ ใต้ลงมาเป็นตัวอักษรบนภาพเขียนว่า RANGER 8888 ถัดมาเป็นพาดหัวตัวใหญ่สีขาวสลับแดงว่า เช็กอิน 7 วัน เหนือบรรทัด รับกล่องนักรบ ใต้ลงมาเป็นข้อความ เช็กอินต่อเนื่อง ลุ้นรับ 28 หรือ 58 หรือ 88 เครดิต แล้วเป็นแถวป้ายเจ็ดช่องเขียนว่า วันที่ 1 ถึง วันที่ 7 แต่ละช่องมีเครื่องหมายถูกในวงกลมสีแดง ด้านล่างเป็นหีบเหล็กสามใบสลักอักษร R เขียนกำกับว่า 28 เครดิต 58 เครดิต และ 88 เครดิต ตามด้วยบรรทัด รับสิทธิ์พิเศษทันทีเมื่อเช็กอินครบ ปิดท้ายด้วยปุ่มเขียนว่า เช็กอินเลย ด้านซ้ายเป็นผู้หญิงในชุดหนังสีดำขลิบแดงที่มีตราแบรนด์อยู่บนอก บนพื้นหลังสีดำสลับแดง"
+          alt="แบนเนอร์โปรโมชั่น PRODED888 มุมซ้ายบนเป็นตราริบบิ้นทองคำเขียนว่า PRODED เหนือเลข 888 พร้อมมงกุฎทอง ตรงกลางเป็นวงล้อเสี่ยงโชคสีทองแบ่งช่องเขียนว่า 18 เครดิต 38 เครดิต 88 เครดิต และ 188 เครดิต มีคำว่า LUCKY SPIN กำกับไว้ใต้วงล้อ ด้านล่างเป็นพาดหัวตัวใหญ่สีทองว่า วงล้อทองคำ เหนือบรรทัด ลุ้นรับเครดิตฟรี ตามด้วยข้อความ หมุนฟรีทุกวัน และ ลุ้นรับ 18 / 38 / 88 / 188 เครดิต แล้วเป็นบรรทัด สิทธิ์สุ่มวันละ 1 ครั้ง ปิดท้ายด้วยปุ่มสีทองเขียนว่า หมุนเลย ข้อความด้านข้างเขียนว่า SPIN FOR A BIGGER TOMORROW และ GOOD LUCK BIG WIN ด้านซ้ายเป็นผู้หญิงในชุดสีน้ำเงินกรมท่าขลิบทองกำลังชี้มือมาข้างหน้า ฉากหลังเป็นห้องโถงคาสิโนสีกรมท่าที่มีเหรียญทอง ชิป ไพ่ และลูกเต๋ากระจายอยู่"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -94,7 +94,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น RENGER8888 ด้านบนเป็นตราอัศวินถือดาบและตัวอักษรบนภาพเขียนว่า RANGER 8888 ถัดมาเป็นพาดหัวว่า ภารกิจสายลุย เหนือบรรทัด ทำครบ 3 ขั้น รับแต้ม RANGER PASS ใต้ลงมาเป็นสามขั้นเรียงต่อกันด้วยลูกศร ขั้น 1 ล็อกอิน คู่ไอคอนหมวกเกราะ ขั้น 2 เล่นเกม คู่ไอคอนดาบไขว้ และขั้น 3 สะสมแต้ม คู่ไอคอนอักษร R ถัดมาเป็นบรรทัด แลกของรางวัลสุดพิเศษ พร้อมโล่สลักอักษร R บัตรสมาชิกเขียนว่า R VIP RANGER8888 และกองเหรียญสลักอักษร R ตามด้วยบรรทัด สะสมแต้มครบ รับโบนัสรายสัปดาห์ ปิดท้ายด้วยปุ่มเขียนว่า รับภารกิจ ด้านซ้ายเป็นผู้หญิงในชุดเกราะสีดำแดงสวมผ้าคลุมสีแดง ฉากหลังเป็นปราสาทในหมอกสีแดง"
+          alt="แบนเนอร์โปรโมชั่น PRODED888 ด้านบนเป็นตราริบบิ้นทองคำเขียนว่า PRODED เหนือเลข 888 พร้อมมงกุฎทอง ถัดมาเป็นพาดหัวตัวใหญ่ว่า เช็กอิน 7 วัน เหนือบรรทัด รับของขวัญทุกวัน ใต้ลงมาเป็นแถบข้อความ เช็กอินต่อเนื่อง รับโบนัส 28 / 58 / 88 เครดิต แล้วเป็นแถวการ์ดเจ็ดใบเขียนว่า วันที่ 1 ถึง วันที่ 7 แต่ละใบมีเครื่องหมายถูกในวงกลมสีทองและกองเหรียญกำกับไว้ว่า 28 เครดิต 28 เครดิต 58 เครดิต 58 เครดิต 88 เครดิต และ 88 เครดิต ส่วนใบสุดท้ายเป็นหีบสมบัติเขียนว่า กล่องรางวัลพิเศษ ตามด้วยบรรทัด ครบวันที่ 7 รับกล่องรางวัลพิเศษ ปิดท้ายด้วยปุ่มสีทองเขียนว่า เช็กอินเลย แถวล่างมีไอคอนกำกับว่า เล่นสนุกปลอดภัย โปรโมชั่นจัดเต็ม และ ดูแลตลอด 24 ชม. ข้อความด้านข้างเขียนว่า TRUSTED PLAY BIGGER TOGETHER, PLAY MORE WIN BIGGER และ PREMIUM CASINO FOR A BETTER YOU ด้านซ้ายเป็นผู้หญิงในชุดราตรีสีกรมท่าขลิบทอง ฉากหลังเป็นห้องโถงสีกรมท่าประดับทอง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -108,7 +108,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น RENGER8888 ด้านบนเป็นตราอัศวินถือดาบและตัวอักษรบนภาพเขียนว่า RANGER 8888 ถัดมาเป็นพาดหัวตัวใหญ่สีแดงว่า เปิดหีบแดง เหนือบรรทัด ลุ้นรางวัล ใต้ลงมาเป็นแถบข้อความ รับสิทธิ์เปิดหีบทุกวัน ลุ้นเครดิตและของรางวัล ตรงกลางเป็นหีบสมบัติสี่ใบเปิดออกมีเหรียญทองล้น เขียนกำกับว่า โบนัส 18 โบนัส 38 โบนัส 68 และ โบนัส 128 ถัดไปเป็นโทรศัพท์มือถือเขียนกำกับว่า ของรางวัลพิเศษ ตามด้วยบรรทัด สุ่มรับรางวัลได้ทุกวัน ปิดท้ายด้วยปุ่มเขียนว่า เปิดหีบเลย ด้านขวาเป็นผู้หญิงในชุดราตรีสีแดงเลื่อมนั่งอยู่ ฉากหลังเป็นห้องโถงหินสีแดงเข้ม"
+          alt="แบนเนอร์โปรโมชั่น PRODED888 ด้านบนเป็นตราริบบิ้นทองคำเขียนว่า PRODED เหนือเลข 888 พร้อมมงกุฎทองและกองชิปคาสิโน ถัดมาเป็นพาดหัวตัวใหญ่ว่า ภารกิจประจำวัน เหนือบรรทัด รับแต้มแลกรางวัล ใต้ลงมาเป็นข้อความ เล่นทุกวัน สะสมแต้ม แลกของรางวัลสุดพิเศษ แล้วเป็นวงกลมสีทองสามวงเรียงกัน วงแรกเขียนว่า ล็อกอิน คู่ไอคอนปฏิทิน วงถัดมาเขียนว่า เล่นเกม คู่ไอคอนจอยเกม และวงสุดท้ายเขียนว่า รับแต้ม คู่ไอคอนกองเหรียญ ตามด้วยแถบข้อความ ทำครบ 3 ขั้น รับโบนัสทันที ปิดท้ายด้วยปุ่มสีทองเขียนว่า รับภารกิจ และบรรทัดล่างสุดว่า ภารกิจเล็ก ๆ ทุกวัน รางวัลใหญ่รอคุณอยู่ ข้อความด้านข้างเขียนว่า GOOD PLAYERS BETTER TOMORROW, MORE PLAY MORE REWARDS, DAILY MISSION BIGGER REWARDS, SAME PLAY MORE VALUE และ REWARD YOUR JOURNEY ด้านซ้ายเป็นผู้หญิงในชุดกรมท่าขลิบทองยกนิ้วโป้งให้ ด้านล่างเป็นไพ่โพดำและเหรียญทอง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -122,7 +122,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น RENGER8888 มุมซ้ายบนเป็นตราอัศวินถือดาบและตัวอักษรบนภาพเขียนว่า RANGER 8888 ด้านขวาเป็นพาดหัวตัวใหญ่ว่า ศึกสุดสัปดาห์ เหนือบรรทัด ชิงอันดับ ใต้ลงมาเป็นแถบข้อความ เล่นสะสมคะแนน ลุ้นโบนัสสำหรับ Top 10 ถัดมาเป็นตารางสามแถว แถวเหรียญทองเขียนว่า TOP 1 คู่หีบสมบัติและข้อความ โบนัสพิเศษ 10,000 แถวเหรียญเงินเขียนว่า TOP 3 คู่ข้อความ เหรียญรางวัล 5,000 และแถวเหรียญทองแดงเขียนว่า TOP 10 คู่บัตร VIP และข้อความ สิทธิ์ VIP 3,000 ด้านล่างเป็นบรรทัด อัปเดตอันดับทุกวัน แข่งขันได้ตลอดแคมเปญ ข้างปุ่มที่เขียนว่า ดูอันดับ ด้านซ้ายเป็นผู้หญิงในชุดสีแดงดำหันหลังให้เห็นรอยสักอักษร R บนสะบัก"
+          alt="แบนเนอร์แนะนำ PRODED888 ตรงกลางด้านบนเป็นตราริบบิ้นทองคำเขียนว่า PRODED เหนือเลข 888 พร้อมมงกุฎทอง ไพ่ และกองชิป ถัดลงมาเป็นชื่อแบรนด์ตัวใหญ่สีทองว่า PRODED888 เหนือบรรทัด เกมดัง เล่นสนุก จบในที่เดียว ตามด้วยบรรทัด ภาพคม ระบบลื่น โปรโมชั่นคุ้ม แล้วเป็นป้ายไอคอนสามอันเรียงกัน เข้าไว คู่ไอคอนสายฟ้า ปลอดภัย คู่ไอคอนโล่ และ ใช้งานง่าย คู่ไอคอนโทรศัพท์มือถือ ปิดท้ายด้วยปุ่มสีทองเขียนว่า เข้าร่วมเลย ข้อความด้านข้างเขียนว่า MORE THAN A GAME, PLAY BIG WIN BIGGER และ GOOD PLAY GREAT LUCK ด้านซ้ายเป็นผู้หญิงในชุดราตรีสีกรมท่าถือไพ่เอซสองใบอยู่ที่โต๊ะคาสิโนซึ่งมีชิปสีทองสลักคำว่า PRODED 888 วางเรียงอยู่"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -138,8 +138,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#ff2b38]/60 bg-gradient-to-r from-[#e8121f] via-[#ff2b38] to-[#8f0c14] px-10 py-3.5 text-lg font-black text-[#f7e8e8] shadow-[0_10px_30px_rgba(232,18,31,0.32)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(143,12,20,0.40)]">
-          สมัครสมาชิก RENGER8888
+          class="flex items-center justify-center rounded-lg border border-[#f8de91]/60 bg-gradient-to-r from-[#e3b53f] via-[#f8de91] to-[#8f6614] px-10 py-3.5 text-lg font-black text-[#070b20] shadow-[0_10px_30px_rgba(227,181,63,0.32)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(42,58,143,0.40)]">
+          สมัครสมาชิก PRODED888
         </a>
       </div>
     </div>
