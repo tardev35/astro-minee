@@ -1,17 +1,17 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
-import ContentBoxPremium from "../components/ContentBoxPremium.astro";
+import Announcement from "../components/AnnouncementHuay.astro";
+import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
 import ContentBox from "../components/ContentBox.astro";
-import ContentBoxTwoPremium from "../components/ContentBoxTwoPremium.astro";
-import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
-import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
-import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ProviderGridPremium from "../components/ProviderGridPremium.astro";
+import ContentBox3ThreeNeumorphism from "../components/ContentBox3ThreeNeumorphism.astro";
+import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
+import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
+import ContentBoxTwoNeumorphism from "../components/ContentBoxTwoNeumorphism.astro";
+import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
+import LottoGrid from "../components/LottoGrid.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
-import LatestWinnersPremium from "../components/LatestWinnersPremium.astro";
-import Faq2 from "../components/Faq2.astro";
+import LatestWinnersHuay from "../components/LatestWinnersHuay.astro";
+import Faq3 from "../components/Faq3.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
 import Navfoot from "../components/Navfoot.astro";
@@ -22,62 +22,57 @@ import { pageGraph } from "../lib/schema";
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
 // two of those per rebrand — both are spent here.
 //
-// slide1 prints "วงล้อทองคำ / ลุ้นรับเครดิตฟรี" over a fortune wheel whose
-// segments read 18 / 38 / 88 / 188 เครดิต, with the entitlement capped at
-// "สิทธิ์สุ่มวันละ 1 ครั้ง": one promotion whose printed values differ and whose
-// conditions decide what it is worth, which is docx H2-4's point.
-// slide2 prints "เช็กอิน 7 วัน / รับของขวัญทุกวัน" over a วันที่ 1–7 row of
-// ticked day cards ending in a กล่องรางวัลพิเศษ chest — progress a member reads
-// off their own account, the same shape as docx H2-6.
-// slide3 (ภารกิจประจำวัน) and slide4 (เกมดัง เล่นสนุก จบในที่เดียว) stay unused
-// on this page and keep rendering in SmoothCarousel and on /promotion.
+// slide1 prints "สมาชิกใหม่ / รับเครดิตฟรี" over a gold 88 the size of a
+// third of the frame, with the entitlement itself only in the small line
+// underneath: a headline number that means nothing until you read the condition
+// attached to it, which is docx H2-4's point exactly.
+// slide2 prints "วงล้อเลขมงคล / ลุ้นเครดิต 188" over a wheel whose segments run
+// 18 / 38 / 88 / 188 เครดิต, and its bottom strip reads
+// หวยรัฐบาล หวยฮานอย หวยลาว หวยหุ้น — every market on one screen, the same shape
+// as docx H2-6.
+// slide3 (เช็กอิน 5 วัน) and slide4 (ชวนเพื่อนลุ้นเฮง) stay unused on this page
+// and keep rendering in SmoothCarousel and on /promotion.
 //
 // banner2.png is NOT imported anywhere: it predates this asset drop.
 // banner1/banner1-mobile/og.png are the hero and the share card and belong to
 // MainLayout alone.
-import imgLuckySpin from "../assets/slide1.png";
-import imgCheckIn from "../assets/slide2.png";
+import imgWelcomeCredit from "../assets/slide1.png";
+import imgLuckyWheel from "../assets/slide2.png";
 
 // The docx "Main SEO" Title and H1, verbatim. They are the brand's own copy,
 // not a draft to tidy.
-const pageTitle = "PRODED888 | เว็บพนันออนไลน์รวมเกมฮิต แตกง่าย จ่ายจริง โปรสุดคุ้ม";
-const pageHeading = "PRODED888 เว็บพนันออนไลน์รวมเกมฮิต แตกง่าย จ่ายจริง โปรสุดคุ้ม";
+const pageTitle = "หวยพร้อม | เว็บแทงหวยออนไลน์จ่ายเยอะ ไม่อั้นเลข รวมครบจบในที่เดียว";
+const pageHeading = "หวยพร้อม เว็บแทงหวยออนไลน์จ่ายเยอะ ไม่อั้นเลข รวมครบจบในที่เดียว";
 
-// The docx Main SEO Meta Description, verbatim at the length it was written.
-// DESC_MIN does not apply to the home page — verify-build.mjs exempts it
-// precisely so the brand's own copy ships unpadded. Do not top it up to 150.
-const pageDescription = "PRODED888 เว็บพนันออนไลน์รวมเกมฮิตหลายประเภท พร้อมโปรโมชั่นตามเงื่อนไข ระบบบัญชีใช้งานง่าย และสถานะธุรกรรมให้ตรวจสอบได้สะดวก";
-
-// Byte-identical to AnnouncementPremium's own default, which is what every
-// sub-page calling <Announcement /> bare lands on. Passing it explicitly here
-// keeps the home page and the rest of the site from drifting apart silently. No
-// leading emoji — the marquee renders the string twice.
-const announcement =
-  "PRODED888 เว็บพนันออนไลน์รวมเกมยอดนิยมหลายประเภทไว้ในระบบเดียว เลือกเกม ตรวจโปรโมชั่น และติดตามข้อมูลบัญชีได้จากหน้าเดียว รองรับทั้งมือถือและคอมพิวเตอร์ • เริ่มจากเกมที่เข้าใจกติกาและรูปแบบการจ่ายก่อน แล้วค่อยเทียบฟีเจอร์ ความเสี่ยง และวงเงินของเกมอื่น • เกมที่มีผู้เล่นสนใจมากอาจมีความผันผวนที่ไม่เหมาะกับทุกคน ควรดูอัตราจ่าย วงเงินต่อรอบ และเงื่อนไขของเกมประกอบกัน • โปรโมชั่นควรเทียบจากเงื่อนไขจริง ทั้งยอดรับโบนัส เกมที่เข้าร่วม และเงื่อนไขการถอน ไม่ใช่ดูเพียงจำนวนเครดิตที่ได้รับ • คำว่าแตกง่ายจ่ายจริงเป็นถ้อยคำทางการตลาด ไม่ใช่การรับประกันผล ควรตรวจยอดคงเหลือและประวัติธุรกรรมจากหน้าบัญชีเป็นหลัก • กำหนดงบต่อวันไว้ก่อนเริ่มและหยุดเมื่อถึงวงเงินที่ตั้งไว้ ไม่ควรเพิ่มเดิมพันเพื่อตามคืนยอดเสีย";
+// The docx Main SEO Meta Description, verbatim at the length it was written
+// (113 characters). DESC_MIN does not apply to the home page — verify-build.mjs
+// exempts any description that appears literally in src/assets/content.txt,
+// precisely so the brand's own copy ships unpadded. Do not top it up.
+const pageDescription = "หวยพร้อม เว็บแทงหวยออนไลน์รวมหลายประเภท พร้อมอัตราจ่ายตามเงื่อนไข ตรวจเลขอั้น โพย ผลรางวัล และสถานะรายการได้สะดวก";
 
 // Each alt is the text actually printed on that slide plus the scene around it,
 // read off the artwork itself.
-const altLuckySpin =
-  "แบนเนอร์โปรโมชั่น PRODED888 หัวข้อตัวหนาสองบรรทัดเขียนว่า วงล้อทองคำ และ ลุ้นรับเครดิตฟรี ด้านขวาบนเป็นวงล้อเสี่ยงโชคสีทองแบ่งเป็นช่องเขียนว่า 18 เครดิต 38 เครดิต 88 เครดิต และ 188 เครดิต ตรงกลางวงล้อเป็นแผ่นทองรูปโพดำ ใต้วงล้อเขียนว่า LUCKY SPIN ใต้หัวข้อเขียนว่า หมุนฟรีทุกวัน และ ลุ้นรับ 18 / 38 / 88 / 188 เครดิต ถัดลงมาเป็นไอคอนกล่องของขวัญคู่กับข้อความ สิทธิ์สุ่มวันละ 1 ครั้ง ด้านล่างเป็นปุ่มสีทองเขียนว่า หมุนเลย พร้อมลูกศร ด้านซ้ายของภาพเป็นผู้หญิงในชุดสีน้ำเงินกรมท่าขลิบทองกำลังชี้มือมาข้างหน้า มุมบนซ้ายเป็นโลโก้ริบบิ้นทองเขียนว่า PRODED และ 888 พร้อมมงกุฎทอง ข้อความแนวตั้งด้านซ้ายเขียนว่า GOOD LUCK BIG WIN ด้านขวาเขียนว่า SPIN FOR A BIGGER TOMORROW ฉากหลังเป็นห้องโถงสีน้ำเงินเข้มมีเหรียญทอง ชิปคาสิโน ไพ่โพดำ และลูกเต๋ากระจายอยู่";
+const altWelcomeCredit =
+  "แบนเนอร์โปรโมชั่น หวยพร้อม หัวข้อตัวหนาสองบรรทัดเขียนว่า สมาชิกใหม่ และ รับเครดิตฟรี ถัดลงมาเป็นตัวเลข 88 สีทองขนาดใหญ่ มีริบบิ้นสีแดงมุมขวาเขียนว่า NEW MEMBER ใต้ตัวเลขเขียนว่า รับสิทธิ์ต้อนรับสำหรับใช้ลุ้นหวยออนไลน์ ด้านล่างเป็นปุ่มสีแดงเขียนว่า สมัครเลย พร้อมลูกศร ใต้ปุ่มเป็นไอคอนสามอันเขียนว่า สมัครง่าย คู่กับรูปสายฟ้า ใช้งานสะดวก คู่กับรูปโทรศัพท์ และ ลุ้นได้ทุกวัน คู่กับรูปมงกุฎ ด้านบนกลางภาพเป็นโลโก้เขียนว่า หวย และ พร้อม พร้อมเครื่องหมายถูกสีแดง ใต้โลโก้เขียนว่า ลุ้นทุกความหวัง อยู่ใกล้แค่ปลายนิ้ว มุมบนขวาเขียนว่า ซื้อง่าย ตรวจผลเร็ว รางวัลจริง แน่นอน ข้อความด้านซ้ายเขียนว่า เลขดี ชีวิตดี เริ่มได้ที่ หวยพร้อม และ หวยไทย หวยรัฐบาล หวยฮานอย หวยลาว หวยหุ้น ด้านขวาเขียนว่า เสี่ยงโชค สร้างโอกาส ให้ชีวิต ในภาพเป็นผู้หญิงในชุดเลื่อมสีเขียวเข้มที่มีโลโก้ หวยพร้อม กำลังถือสลากกินแบ่งรัฐบาลเป็นพัดและชี้มือไปที่ตัวเลข ฉากหลังเป็นเส้นขอบฟ้าเมืองสีเขียวนีออนมีลูกบอลหวยหมายเลข 6 2 9 5 และ 8 กับเหรียญทองลอยอยู่";
 
-const altCheckIn =
-  "แบนเนอร์โปรโมชั่น PRODED888 หัวข้อตัวหนาสองบรรทัดเขียนว่า เช็กอิน 7 วัน และ รับของขวัญทุกวัน ใต้ลงมาเป็นแถบเงื่อนไขเขียนว่า เช็กอินต่อเนื่อง รับโบนัส 28 / 58 / 88 เครดิต ถัดลงมาเป็นแถวการ์ดเจ็ดใบเขียนว่า วันที่ 1 ถึง วันที่ 7 แต่ละใบมีเครื่องหมายถูกในวงกลมสีทองและกองเหรียญ ใต้การ์ดเขียนว่า 28 เครดิต 28 เครดิต 58 เครดิต 58 เครดิต 88 เครดิต 88 เครดิต ส่วนใบวันที่ 7 เป็นหีบสมบัติเขียนว่า กล่องรางวัลพิเศษ ถัดลงมาเป็นไอคอนกล่องของขวัญคู่กับข้อความ ครบวันที่ 7 รับกล่องรางวัลพิเศษ ด้านล่างเป็นปุ่มสีทองเขียนว่า เช็กอินเลย พร้อมลูกศร ด้านซ้ายของภาพเป็นผู้หญิงในชุดราตรีสีน้ำเงินกรมท่าขลิบทอง ด้านบนเป็นโลโก้ริบบิ้นทองเขียนว่า PRODED และ 888 พร้อมมงกุฎทอง มุมบนซ้ายเขียนว่า TRUSTED PLAY BIGGER TOGETHER ตรงกลางเขียนว่า PLAY MORE WIN BIGGER มุมบนขวาเขียนว่า PREMIUM CASINO FOR A BETTER YOU มุมล่างซ้ายเขียนว่า PRODED888 MORE THAN A GAME A ROYAL EXPERIENCE มุมล่างขวาเขียนว่า GOOD PLAYERS GOOD REWARDS";
+const altLuckyWheel =
+  "แบนเนอร์โปรโมชั่น หวยพร้อม หัวข้อตัวหนาสองบรรทัดเขียนว่า วงล้อเลขมงคล และ ลุ้นเครดิต 188 โดยเลข 188 เป็นสีทองมีมงกุฎอยู่ด้านบน ใต้หัวข้อเขียนว่า หมุนรับของรางวัล ก่อนซื้อหวยทุกวัน ด้านล่างเป็นปุ่มสีแดงเขียนว่า สิทธิ์พิเศษประจำวัน คู่กับไอคอนกล่องของขวัญ ด้านขวาบนเป็นวงล้อเสี่ยงโชคสีเขียวทองแบ่งเป็นช่องเขียนว่า 188 เครดิต 88 เครดิต 38 เครดิต 18 เครดิต ขอให้รวย ลุ้นโชค 2 เท่า เครดิตฟรี และ รางวัลพิเศษ ตรงกลางวงล้อเป็นโลโก้ หวยพร้อม มุมบนซ้ายเป็นโลโก้เขียนว่า หวย และ พร้อม พร้อมเครื่องหมายถูกสีแดง ข้อความด้านซ้ายเขียนว่า มากกว่าหวย คือความมั่นใจ และ เสี่ยงโชค สร้างโอกาส ให้ชีวิตดีขึ้น ด้านขวาเขียนว่า หมุนวันนี้ อาจเป็นคุณ ที่โชคดี แถบล่างสุดมีสี่หัวข้อเขียนว่า เล่นง่าย ไม่ยุ่งยาก จ่ายจริง มั่นใจได้ 100% รองรับมือถือ เล่นได้ทุกที่ ทุกเวลา และ หวยรัฐบาล หวยฮานอย หวยลาว หวยหุ้น ในภาพเป็นผู้หญิงในชุดเลื่อมสีเขียวเข้มที่มีโลโก้ หวยพร้อม กำลังถือลูกบอลหวยสีดำหมายเลข 8 และชี้มือมาข้างหน้า ฉากหลังเป็นแสงสีเขียวนีออนมีลูกบอลหวยหมายเลข 9 6 5 2 และ 8 เหรียญทอง ใบโคลเวอร์ และสลากกินแบ่งรัฐบาลกระจายอยู่";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq2's own default, so the rendered markup and the FAQ JSON-LD below come out
+// Faq3's own default, so the rendered markup and the FAQ JSON-LD below come out
 // of the same array.
 const faqs = [
   {
-    q: "PRODED888 มีเกมพนันออนไลน์ประเภทใดบ้าง?",
-    a: "ระบบอาจรวมเกมหลายหมวด เช่น สล็อต บาคาร่า คาสิโน หรือประเภทอื่นตามที่เว็บไซต์กำหนด ผู้เล่นควรตรวจกติกา อัตราจ่าย และวงเงินก่อนเลือกเล่น",
+    q: "หวยพร้อม มีหวยประเภทไหนให้เลือกบ้าง?",
+    a: "ระบบอาจรวมหวยหลายประเภทตามรายการที่เว็บไซต์กำหนด ผู้ใช้ควรตรวจชื่อหวย รอบออกรางวัล เวลาเปิดปิด และรูปแบบเดิมพันก่อนกรอกโพยทุกครั้ง",
   },
   {
-    q: "โปรโมชั่นสุดคุ้มของ PRODED888 ควรดูอะไร?",
-    a: "ควรเปรียบเทียบโบนัส ยอดขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา และข้อกำหนดการถอนร่วมกัน เพื่อเลือกโปรให้เหมาะกับงบและรูปแบบการเล่นของตนเอง",
+    q: "หวยพร้อม ไม่อั้นเลขทุกตัวจริงหรือไม่?",
+    a: "ไม่ควรตีความว่าไม่มีข้อจำกัดทุกเลข เพราะบางงวดอาจมีเลขปิดรับ จำกัดยอด หรือปรับอัตราจ่าย ควรตรวจสถานะล่าสุดจากระบบก่อนยืนยันโพย",
   },
   {
-    q: "คำว่าแตกง่ายจ่ายจริงของ PRODED888 รับประกันผลหรือไม่?",
-    a: "ไม่ควรตีความว่าเป็นการรับประกัน เพราะผลเกมและสถานะธุรกรรมขึ้นอยู่กับกติกา บัญชี ช่องทาง และเงื่อนไขที่เกี่ยวข้อง ควรตรวจข้อมูลจริงก่อนใช้งาน",
+    q: "คำว่าจ่ายเยอะของ หวยพร้อม หมายถึงอะไร?",
+    a: "โดยทั่วไปสื่อถึงอัตราจ่ายที่เว็บไซต์กำหนด แต่ราคาอาจต่างกันตามประเภทหวยและเลขที่เลือก จึงควรดูอัตราจ่ายจริงในระบบก่อนทำรายการ",
   },
 ];
 
@@ -92,37 +87,43 @@ const graph = pageGraph(Astro, {
 <MainLayout title={pageTitle} description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
-  <Announcement message={announcement} />
+  <Announcement />
 
   <SmoothCarousel />
 
-  <ContentBoxPremium as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#ece0c2]">
-      <strong class="text-[#f8de91]">PRODED888</strong> เป็นแพลตฟอร์มพนันออนไลน์ที่รวบรวมเกมยอดนิยมหลายประเภทไว้ในระบบเดียว ช่วยให้สมาชิกเลือกเกม ตรวจโปรโมชั่น และติดตามข้อมูลบัญชีได้สะดวก
-      รองรับการใช้งานผ่านมือถือและคอมพิวเตอร์ ก่อนเริ่มควรศึกษากติกา อัตราจ่าย และเงื่อนไขโปรโมชั่นของแต่ละเกมให้ครบถ้วน เพื่อเลือกใช้งานได้เหมาะกับงบของตนเอง
+  <ContentBoxNeumorphism as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#d8efdc]">
+      <strong class="text-[#f5c451]">หวยพร้อม</strong> เป็นแพลตฟอร์มหวยออนไลน์ที่รวบรวมประเภทหวย ระบบกรอกโพย อัตราจ่าย และข้อมูลผลรางวัลไว้ในระบบเดียว รองรับการใช้งานผ่านมือถือ ช่วยให้สมาชิกเลือกเลข ตรวจงวด
+      และดูสถานะโพยได้สะดวก ก่อนยืนยันควรตรวจประเภทเดิมพัน จำนวนเงิน อัตราจ่าย และเงื่อนไขของเลขที่เลือกให้ครบทุกครั้ง
     </p>
-  </ContentBoxPremium>
+  </ContentBoxNeumorphism>
 
-  <ContentBox as="h2" title="เกมฮิตบน PRODED888 ควรเลือกจากประเภทที่เข้าใจกติกา">
-    <p class="text-left text-base leading-relaxed text-[#ece0c2]">
-      ภายใน PRODED888 อาจมีทั้งสล็อต บาคาร่า คาสิโน และเกมเดิมพันรูปแบบอื่น ผู้เล่นควรเริ่มจากเกมที่เข้าใจกติกาและรูปแบบการจ่ายก่อน แล้วค่อยเปรียบเทียบฟีเจอร์ ความเสี่ยง และวงเงินของเกมอื่น
-      การเลือกจากความเข้าใจช่วยลดการตัดสินใจตามกระแสเพียงอย่างเดียว
+  <ContentBox as="h2" title="เลือกประเภทหวยให้ตรงกับงวดบน หวยพร้อม">
+    <p class="text-left text-base leading-relaxed text-[#d8efdc]">
+      ภายใน หวยพร้อม สามารถจัดหมวดหวยตามประเภทและรอบออกรางวัล ช่วยให้ผู้ใช้แยกงวดและเวลาเปิดรับได้ง่ายขึ้น ก่อนเลือกเลขควรตรวจชื่อรายการ วันที่ออกรางวัล และเวลาปิดรับให้ถูกต้อง
+      โดยเฉพาะผู้ที่ซื้อหวยหลายประเภทในวันเดียว เพื่อป้องกันการส่งโพยผิดงวด
     </p>
   </ContentBox>
 
-  <ProviderGridPremium />
+  <LottoGrid />
 
-  <ContentBoxTwoPremium as="h2" title="เกมยอดนิยมไม่ได้แปลว่าเหมาะกับผู้เล่นทุกคน">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#ece0c2]">
-      เกมที่มีผู้เล่นสนใจจำนวนมากอาจมีรูปแบบการเดิมพันหรือความผันผวนที่ไม่เหมาะกับทุกคน ควรดูอัตราจ่าย วงเงินต่อรอบ และเงื่อนไขของเกมประกอบกัน
+  <ContentBox3ThreeNeumorphism as="h2" title="เลข 2 ตัว 3 ตัว และวิ่งต่างกันอย่างไร" titleleft="เลข 2 ตัว" titlecenter="เลข 3 ตัว" titleright="เลขวิ่ง">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#d8efdc]">รูปแบบแทงหวยแต่ละประเภทมีวิธีคิดผลและอัตราจ่ายแตกต่างกัน เช่น เลข 2 ตัว เลข 3 ตัว หรือเลขวิ่ง</p>
+    <p slot="center" class="text-left text-base leading-relaxed text-[#d8efdc]">ผู้ใช้งานควรตรวจว่าต้องการแทงตรง โต๊ด หรือรูปแบบใดก่อนกรอกจำนวนเงิน</p>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#d8efdc]">เพราะการเลือกประเภทผิดอาจทำให้โพยไม่ตรงกับความตั้งใจแม้จะใช้เลขชุดเดียวกัน</p>
+  </ContentBox3ThreeNeumorphism>
+
+  <ContentBoxFloatingBadge as="h2" title="ตรวจสถานะเลขอั้นบน หวยพร้อม ก่อนยืนยันโพย">
+    <p class="text-left text-base leading-relaxed text-[#d8efdc]">
+      คำว่าไม่อั้นเลขของ หวยพร้อม ควรพิจารณาตามสถานะล่าสุดของแต่ละงวด เพราะบางเลขอาจมีการจำกัดยอด เปลี่ยนอัตราจ่าย หรือหยุดรับเมื่อถึงวงเงินที่กำหนด
+      ผู้เล่นจึงควรตรวจเลขและราคาที่ระบบแสดงอีกครั้งก่อนกดยืนยัน เพื่อให้เข้าใจเงื่อนไขของโพยอย่างชัดเจน
     </p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#ece0c2]">ผู้เล่นควรกำหนดขอบเขตเงินไว้ก่อนเริ่มเพื่อให้เลือกเกมได้สอดคล้องกับงบของตนเอง</p>
-  </ContentBoxTwoPremium>
+  </ContentBoxFloatingBadge>
 
-  <ContentBoxSevenThreePremium title="โปรโมชั่นของ PRODED888 ควรเทียบจากเงื่อนไขจริง">
+  <ContentBoxSevenThreeNeumorphism title="อัตราจ่ายสูงควรดูพร้อมเงื่อนไขของเลขที่เลือก">
     <Picture
       slot="left"
-      src={imgLuckySpin}
+      src={imgWelcomeCredit}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -131,26 +132,26 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt={altLuckySpin}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#e3b53f]/45 shadow-[0_10px_30px_rgba(227,181,63,0.28)]"
+      alt={altWelcomeCredit}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#1e7a3a]/55 shadow-[0_10px_30px_rgba(34,197,94,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#ece0c2]">
-      โปรโมชั่นของ PRODED888 อาจแตกต่างกันทั้งยอดรับโบนัส เกมที่เข้าร่วม และเงื่อนไขการถอน ก่อนเลือกรับควรเปรียบเทียบรายละเอียดทั้งหมด ไม่ควรดูเพียงจำนวนเครดิตที่ได้รับ
-      เพราะโปรที่เหมาะกับรูปแบบการเล่นอาจคุ้มกว่าข้อเสนอที่ให้โบนัสสูงแต่มีข้อจำกัดมาก
+    <p slot="right" class="text-left text-base leading-relaxed text-[#d8efdc]">
+      คำว่าจ่ายเยอะไม่ควรดูจากตัวเลขสูงเพียงอย่างเดียว เพราะอัตราจ่ายอาจแตกต่างตามประเภทหวย รูปแบบเดิมพัน และสถานะของเลข ผู้ใช้ควรเปรียบเทียบราคาที่ระบบแสดงจริงก่อนซื้อ
+      และไม่ควรถือว่าอัตราจ่ายสูงหมายถึงมีโอกาสถูกรางวัลมากขึ้น
     </p>
-  </ContentBoxSevenThreePremium>
+  </ContentBoxSevenThreeNeumorphism>
 
-  <ContentBoxSpecial as="h2" title="ดูข้อมูลเกมก่อนเชื่อคำว่าแตกง่าย" iconleft="📢" iconright="📊">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#ece0c2]">คำว่าแตกง่ายเป็นถ้อยคำทางการตลาดที่ใช้สื่อถึงความน่าสนใจของเกม แต่ไม่สามารถรับประกันผลได้</p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#ece0c2]">
-      หากเป็นเกมสล็อตควรดู RTP ความผันผวน ตารางจ่าย และฟีเจอร์โบนัสประกอบ ส่วนเกมประเภทอื่นควรอ่านกติกาและอัตราจ่ายก่อนวางเดิมพัน
+  <ContentBoxTwoNeumorphism as="h2" titleleft="จัดโพยหลายเลขให้ตรวจง่ายขึ้นด้วย หวยพร้อม">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#d8efdc]">
+      เมื่อซื้อหลายเลขพร้อมกัน หวยพร้อม ควรช่วยให้ผู้ใช้ตรวจรายการก่อนส่งได้เป็นขั้นตอน ควรไล่ดูเลข ประเภทเดิมพัน จำนวนเงิน และยอดรวมทีละรายการ
     </p>
-  </ContentBoxSpecial>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#d8efdc]">พร้อมเก็บเลขอ้างอิงของโพยหลังยืนยัน เพื่อใช้ตรวจสอบย้อนหลังเมื่อมีการประกาศผลหรือพบข้อมูลไม่ตรงกัน</p>
+  </ContentBoxTwoNeumorphism>
 
-  <ContentBoxSevenThreeCyberCut titleright="ตรวจสถานะจ่ายจริงผ่านบัญชี PRODED888">
+  <ContentBoxSevenThreeFloatingBadge title="รวมครบจบในที่เดียวควรช่วยลดการสลับหลายหน้า">
     <Picture
       slot="left"
-      src={imgCheckIn}
+      src={imgLuckyWheel}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -159,38 +160,31 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt={altCheckIn}
-      class="mx-auto h-auto w-full border border-[#e3b53f]/45 shadow-[0_10px_30px_rgba(227,181,63,0.24)]"
+      alt={altLuckyWheel}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#1e7a3a]/55 shadow-[0_10px_30px_rgba(34,197,94,0.24)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#ece0c2]">
-      สมาชิก PRODED888 ควรตรวจยอดคงเหลือ ประวัติธุรกรรม และสถานะรายการผ่านหน้าบัญชีเป็นหลัก หากมีรายการถอนอยู่ระหว่างดำเนินการควรเก็บเวลา จำนวนเงิน และเลขอ้างอิงไว้จนกว่าระบบจะอัปเดตผล
-      เพื่อช่วยให้ตรวจสอบย้อนหลังได้ง่ายขึ้น
+    <p slot="right" class="text-left text-base leading-relaxed text-[#d8efdc]">
+      การรวมประเภทหวย โพย อัตราจ่าย และผลรางวัลไว้ในแพลตฟอร์มเดียวช่วยให้ผู้ใช้ตรวจข้อมูลได้สะดวกขึ้น แต่แต่ละรายการยังมีกติกาและช่วงเวลาปิดรับต่างกัน ผู้ใช้ หวยพร้อม
+      จึงควรตรวจรายละเอียดเฉพาะของแต่ละงวดก่อนทำรายการทุกครั้ง
     </p>
-  </ContentBoxSevenThreeCyberCut>
+  </ContentBoxSevenThreeFloatingBadge>
 
-  <ContentBoxCyberCut as="h2" title="ใช้ PRODED888 ให้เป็นระบบด้วยการวางงบก่อนเริ่ม">
-    <p class="text-left text-base leading-relaxed text-[#ece0c2]">
-      การใช้งาน PRODED888 ควรเริ่มจากการกำหนดงบต่อวันหรือแต่ละช่วงเวลา เลือกเกมที่เข้าใจกติกา และหยุดเมื่อถึงวงเงินที่ตั้งไว้ ไม่ควรเพิ่มเดิมพันเพื่อตามคืนยอดเสีย
-      เพราะผลเกมมีความไม่แน่นอนและไม่มีรูปแบบใดรับประกันกำไรได้
-    </p>
-  </ContentBoxCyberCut>
+  <Faq3 title="คำถามที่พบบ่อยเกี่ยวกับ หวยพร้อม" faqs={faqs} />
 
-  <Faq2 title="คำถามที่พบบ่อยเกี่ยวกับ PRODED888" faqs={faqs} />
-
-  <LatestWinnersPremium />
+  <LatestWinnersHuay />
 
   <LoginRtpSection />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#dbe3f5]/55 bg-gradient-to-r from-[#18225c] via-[#0d1338] to-[#070b20] px-4 py-3 text-sm font-black whitespace-nowrap text-[#faf3de] shadow-[0_10px_30px_rgba(227,181,63,0.22)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#e3b53f] hover:shadow-[0_15px_40px_rgba(227,181,63,0.35)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#22c55e]/60 bg-[#0a2413]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#d8efdc] shadow-[0_10px_30px_rgba(34,197,94,0.22)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#6ee7a0] hover:text-[#6ee7a0] hover:shadow-[0_15px_40px_rgba(34,197,94,0.35)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#f8de91]/70 bg-gradient-to-r from-[#e3b53f] to-[#8f6614] px-4 py-3 text-sm font-black whitespace-nowrap text-[#070b20] shadow-[0_10px_30px_rgba(227,181,63,0.35)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#dbe3f5] hover:shadow-[0_15px_40px_rgba(227,181,63,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ff4d4a]/70 bg-gradient-to-r from-[#e10600] to-[#8f0402] px-4 py-3 text-sm font-black whitespace-nowrap text-white shadow-[0_10px_30px_rgba(225,6,0,0.32)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ff4d4a] hover:shadow-[0_15px_40px_rgba(225,6,0,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>

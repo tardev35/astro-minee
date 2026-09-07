@@ -8,66 +8,70 @@
 // sr-only line beside it: U+2605 counts as Extended_Pictographic, so a bare one
 // would be read out five times per card.
 //
-// Each card echoes one section of the PRODED888 brief — starting from a game
-// whose rules you understand, treating a popular game as something that may not
-// suit every player, comparing a promotion on its real conditions, reading RTP
-// and ตารางจ่าย instead of the phrase "แตกง่าย", checking ยอดคงเหลือ and
-// ประวัติธุรกรรม from the account page, and setting a budget before starting —
-// so nothing here claims more than the brief.
+// Each card echoes one section of the หวยพร้อม brief — matching the หวย type to
+// the งวด before choosing, telling เลข 2 ตัว / 3 ตัว / วิ่ง apart before entering
+// an amount, reading "ไม่อั้นเลข" against the งวด's current เลขอั้น status,
+// reading "จ่ายเยอะ" against the price the system shows, going through a
+// multi-number โพย line by line and keeping its เลขอ้างอิง, and treating one
+// platform as convenience rather than one shared rule — so nothing here claims
+// more than the brief.
+//
+// หวยพร้อม: green cards and rules with prize gold on the tags, the score and the
+// stars.
 const reviews = [
   {
-    name: "สมาชิกที่เริ่มจากเกมที่เข้าใจกติกา",
-    role: "เลือกจากสล็อต บาคาร่า หรือคาสิโนตามที่เว็บไซต์กำหนด",
+    name: "สมาชิกที่เลือกหวยให้ตรงกับงวด",
+    role: "ตรวจชื่อรายการ วันที่ออกรางวัล และเวลาปิดรับก่อนเลือกเลข",
     stars: 5,
-    tag: "เริ่มจากหมวด",
+    tag: "ดูงวดก่อน",
     content:
-      "ในระบบมีทั้งสล็อต บาคาร่า คาสิโน และเกมเดิมพันรูปแบบอื่น เลยเริ่มจากเกมที่เข้าใจกติกาและรูปแบบการจ่ายก่อน แล้วค่อยเปรียบเทียบฟีเจอร์ ความเสี่ยง และวงเงินของเกมอื่น การเลือกจากความเข้าใจช่วยลดการตัดสินใจตามกระแสเพียงอย่างเดียว",
-    avatar: "🗂️",
+      "ในระบบจัดหมวดหวยตามประเภทและรอบออกรางวัลไว้ เลยแยกงวดกับเวลาเปิดรับได้ง่ายขึ้น ก่อนเลือกเลขก็ตรวจชื่อรายการ วันที่ออกรางวัล และเวลาปิดรับให้ถูกต้องก่อนทุกครั้ง เพราะซื้อหวยหลายประเภทในวันเดียวจะพลาดส่งโพยผิดงวดได้ง่าย",
+    avatar: "🗓️",
   },
   {
-    name: "สมาชิกที่ดูว่าเกมดังเหมาะกับตัวเองไหม",
-    role: "ดูอัตราจ่าย วงเงินต่อรอบ และเงื่อนไขของเกมประกอบกัน",
+    name: "สมาชิกที่แยกรูปแบบเดิมพันก่อนกรอกเงิน",
+    role: "ดูว่าเป็นเลข 2 ตัว เลข 3 ตัว หรือเลขวิ่ง และแทงตรงหรือโต๊ด",
     stars: 4,
-    tag: "ดูให้เหมาะกับตัวเอง",
+    tag: "แยกให้ชัด",
     content:
-      "เกมที่มีผู้เล่นสนใจจำนวนมากอาจมีรูปแบบการเดิมพันหรือความผันผวนที่ไม่เหมาะกับทุกคน เลยดูอัตราจ่าย วงเงินต่อรอบ และเงื่อนไขของเกมประกอบกันก่อน แล้วกำหนดขอบเขตเงินไว้ตั้งแต่ต้นเพื่อให้เลือกเกมได้สอดคล้องกับงบของตนเอง",
-    avatar: "🎮",
+      "รูปแบบแทงหวยแต่ละประเภทมีวิธีคิดผลและอัตราจ่ายต่างกัน ทั้งเลข 2 ตัว เลข 3 ตัว และเลขวิ่ง เลยตรวจก่อนว่าจะแทงตรงหรือโต๊ดแล้วค่อยกรอกจำนวนเงิน เพราะเลือกประเภทผิดทำให้โพยไม่ตรงกับที่ตั้งใจ ทั้งที่ใช้เลขชุดเดียวกัน",
+    avatar: "🔢",
   },
   {
-    name: "สมาชิกที่เทียบโปรจากเงื่อนไขจริง",
-    role: "ดูยอดรับโบนัส เกมที่เข้าร่วม และเงื่อนไขการถอน",
+    name: "สมาชิกที่ตรวจสถานะเลขอั้นก่อนยืนยัน",
+    role: "ดูว่าเลขนั้นถูกจำกัดยอด เปลี่ยนอัตราจ่าย หรือหยุดรับหรือยัง",
     stars: 5,
-    tag: "เทียบก่อนรับสิทธิ์",
+    tag: "เช็กก่อนกดยืนยัน",
     content:
-      "โปรโมชั่นแต่ละรายการต่างกันทั้งยอดรับโบนัส เกมที่เข้าร่วม และเงื่อนไขการถอน ก่อนเลือกรับเลยเปรียบเทียบรายละเอียดทั้งหมด ไม่ได้ดูเพียงจำนวนเครดิตที่ได้รับ เพราะโปรที่เหมาะกับรูปแบบการเล่นอาจคุ้มกว่าข้อเสนอที่ให้โบนัสสูงแต่มีข้อจำกัดมาก",
-    avatar: "🏷️",
+      "คำว่าไม่อั้นเลขดูตามสถานะล่าสุดของแต่ละงวดเป็นหลัก เพราะบางเลขอาจมีการจำกัดยอด เปลี่ยนอัตราจ่าย หรือหยุดรับเมื่อถึงวงเงินที่กำหนด เลยตรวจเลขและราคาที่ระบบแสดงอีกครั้งก่อนกดยืนยัน จะได้เข้าใจเงื่อนไขของโพยชัดเจน",
+    avatar: "🚦",
   },
   {
-    name: "สมาชิกที่อ่านข้อมูลเกมก่อนเชื่อคำโปรโมต",
-    role: "ดู RTP ความผันผวน ตารางจ่าย และฟีเจอร์โบนัส",
+    name: "สมาชิกที่ดูอัตราจ่ายพร้อมเงื่อนไขของเลข",
+    role: "เทียบราคาที่ระบบแสดงจริงก่อนซื้อทุกครั้ง",
     stars: 5,
-    tag: "ดูข้อมูลจริง",
+    tag: "เทียบราคาจริง",
     content:
-      "คำว่าแตกง่ายเป็นถ้อยคำทางการตลาดที่ใช้สื่อถึงความน่าสนใจของเกม แต่ไม่สามารถรับประกันผลได้ ถ้าเป็นเกมสล็อตก็ดู RTP ความผันผวน ตารางจ่าย และฟีเจอร์โบนัสประกอบ ส่วนเกมประเภทอื่นก็อ่านกติกาและอัตราจ่ายก่อนวางเดิมพันทุกครั้ง",
-    avatar: "📊",
+      "คำว่าจ่ายเยอะไม่ได้ดูจากตัวเลขสูงอย่างเดียว เพราะอัตราจ่ายต่างกันตามประเภทหวย รูปแบบเดิมพัน และสถานะของเลข เลยเปรียบเทียบราคาที่ระบบแสดงจริงก่อนซื้อ และไม่ได้ถือว่าอัตราจ่ายสูงแปลว่ามีโอกาสถูกรางวัลมากขึ้น",
+    avatar: "💰",
   },
   {
-    name: "สมาชิกที่ตรวจสถานะจากหน้าบัญชี",
-    role: "ดูยอดคงเหลือ ประวัติธุรกรรม และสถานะรายการ",
+    name: "สมาชิกที่ไล่ตรวจโพยทีละรายการ",
+    role: "ดูเลข ประเภทเดิมพัน จำนวนเงิน และยอดรวมก่อนส่ง",
     stars: 5,
-    tag: "ตรวจจากบัญชี",
+    tag: "ตรวจก่อนส่ง",
     content:
-      "ตรวจยอดคงเหลือ ประวัติธุรกรรม และสถานะรายการผ่านหน้าบัญชีเป็นหลัก ถ้ามีรายการถอนอยู่ระหว่างดำเนินการก็เก็บเวลา จำนวนเงิน และเลขอ้างอิงไว้จนกว่าระบบจะอัปเดตผล จะได้ตรวจสอบย้อนหลังได้ง่ายขึ้นเมื่ออยากดูรายการเดิม",
+      "เวลาซื้อหลายเลขพร้อมกันก็ไล่ดูเลข ประเภทเดิมพัน จำนวนเงิน และยอดรวมทีละรายการก่อนส่ง แล้วเก็บเลขอ้างอิงของโพยไว้หลังยืนยัน จะได้ใช้ตรวจสอบย้อนหลังตอนประกาศผลหรือเวลาที่พบข้อมูลไม่ตรงกัน",
     avatar: "🧾",
   },
   {
-    name: "สมาชิกที่วางงบไว้ก่อนเริ่มเล่น",
-    role: "กำหนดงบต่อวันและหยุดเมื่อถึงวงเงินที่ตั้งไว้",
+    name: "สมาชิกที่ใช้ระบบเดียวแต่ยังดูกติกาแต่ละงวด",
+    role: "รวมประเภทหวย โพย อัตราจ่าย และผลรางวัลไว้ที่เดียว",
     stars: 4,
-    tag: "วางงบก่อนเริ่ม",
+    tag: "ดูรายละเอียดของงวด",
     content:
-      "เริ่มจากการกำหนดงบต่อวันหรือแต่ละช่วงเวลา เลือกเกมที่เข้าใจกติกา และหยุดเมื่อถึงวงเงินที่ตั้งไว้ ไม่ได้เพิ่มเดิมพันเพื่อตามคืนยอดเสีย เพราะผลเกมมีความไม่แน่นอนและไม่มีรูปแบบใดรับประกันกำไรได้",
-    avatar: "⏳",
+      "การรวมประเภทหวย โพย อัตราจ่าย และผลรางวัลไว้ในแพลตฟอร์มเดียวช่วยให้ตรวจข้อมูลสะดวกขึ้นจริง แต่แต่ละรายการยังมีกติกาและช่วงเวลาปิดรับต่างกัน เลยยังตรวจรายละเอียดเฉพาะของแต่ละงวดก่อนทำรายการทุกครั้ง",
+    avatar: "🗂️",
   },
 ];
 
@@ -75,64 +79,64 @@ const totalStars = reviews.reduce((sum, r) => sum + r.stars, 0);
 const average = (totalStars / reviews.length).toFixed(1);
 ---
 
-<section aria-label="เสียงจากสมาชิก PRODED888" class="relative z-10 mx-auto mb-12 w-full max-w-[1400px] px-4 font-sans">
+<section aria-label="เสียงจากสมาชิก หวยพร้อม" class="relative z-10 mx-auto mb-12 w-full max-w-[1400px] px-4 font-sans">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
-    <p class="bg-gradient-to-r from-[#dbe3f5] via-[#f8de91] to-[#e3b53f] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
-      เสียงจากสมาชิก <span class="text-[#f8de91]">PRODED888</span>
+    <p class="bg-gradient-to-r from-[#d8efdc] via-[#22c55e] to-[#f5c451] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
+      เสียงจากสมาชิก <span class="text-[#f5c451]">หวยพร้อม</span>
     </p>
-    <div aria-hidden="true" class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#e3b53f] to-transparent"></div>
+    <div aria-hidden="true" class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#22c55e] to-transparent"></div>
   </div>
 
-  <div class="mx-auto mb-8 flex max-w-md items-center justify-center gap-5 rounded-2xl border border-[#e3b53f]/35 bg-[#0d1338]/92 px-6 py-4 shadow-[0_10px_30px_rgba(227,181,63,0.22)] backdrop-blur-xl">
+  <div class="mx-auto mb-8 flex max-w-md items-center justify-center gap-5 rounded-2xl border border-[#1e7a3a]/45 bg-[#0a2413]/92 px-6 py-4 shadow-[0_10px_30px_rgba(34,197,94,0.22)] backdrop-blur-xl">
     <div class="flex flex-col items-center">
-      <span class="bg-gradient-to-b from-[#dbe3f5] to-[#e3b53f] bg-clip-text text-4xl leading-none font-black text-transparent">{average}</span>
-      <span class="mt-1 text-[10px] font-bold tracking-widest text-[#dbe3f5] uppercase">คะแนนเฉลี่ย</span>
+      <span class="bg-gradient-to-b from-[#d8efdc] to-[#f5c451] bg-clip-text text-4xl leading-none font-black text-transparent">{average}</span>
+      <span class="mt-1 text-[10px] font-bold tracking-widest text-[#9fc8ab] uppercase">คะแนนเฉลี่ย</span>
     </div>
-    <div aria-hidden="true" class="h-12 w-px bg-[#e3b53f]/40"></div>
+    <div aria-hidden="true" class="h-12 w-px bg-[#1e7a3a]/50"></div>
     <div class="flex flex-col gap-1.5">
       <div aria-hidden="true" class="flex gap-1 text-lg">
-        {Array.from({ length: 5 }).map((_, i) => <span class={i < Math.round(Number(average)) ? "text-[#f8de91]" : "text-[#18225c]"}>★</span>)}
+        {Array.from({ length: 5 }).map((_, i) => <span class={i < Math.round(Number(average)) ? "text-[#f5c451]" : "text-[#1e7a3a]"}>★</span>)}
       </div>
-      <span class="text-xs font-bold text-[#dbe3f5]">คะแนนเฉลี่ย {average} จาก 5 ดาว จากการใช้งานจริงของสมาชิก {reviews.length} ด้าน</span>
+      <span class="text-xs font-bold text-[#9fc8ab]">คะแนนเฉลี่ย {average} จาก 5 ดาว จากการใช้งานจริงของสมาชิก {reviews.length} ด้าน</span>
     </div>
   </div>
 
   <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
     {
       reviews.map((review) => (
-        <article class="group relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl border border-[#e3b53f]/35 bg-[#0d1338]/92 p-6 text-left shadow-[0_10px_30px_rgba(227,181,63,0.22)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#f8de91]/60 hover:shadow-[0_15px_40px_rgba(248,222,145,0.28)]">
-          <span aria-hidden="true" class="absolute inset-y-0 left-0 -z-10 w-1 bg-gradient-to-b from-[#dbe3f5] to-[#8f6614] opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
+        <article class="group relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl border border-[#1e7a3a]/45 bg-[#0a2413]/92 p-6 text-left shadow-[0_10px_30px_rgba(34,197,94,0.22)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#22c55e]/70 hover:shadow-[0_15px_40px_rgba(34,197,94,0.3)]">
+          <span aria-hidden="true" class="absolute inset-y-0 left-0 -z-10 w-1 bg-gradient-to-b from-[#6ee7a0] to-[#1e7a3a] opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
           <span
             aria-hidden="true"
-            class="pointer-events-none absolute -top-14 -right-14 -z-10 h-32 w-32 rounded-full bg-[#2a3a8f]/60 blur-[50px] transition-all duration-300 group-hover:bg-[#e3b53f]/30"
+            class="pointer-events-none absolute -top-14 -right-14 -z-10 h-32 w-32 rounded-full bg-[#1e7a3a]/60 blur-[50px] transition-all duration-300 group-hover:bg-[#f5c451]/30"
           />
 
           <div class="flex items-center justify-between gap-3">
-            <span class="inline-flex items-center gap-1.5 rounded-full border border-[#e3b53f]/35 bg-[#070b20] px-3 py-1 text-[10px] font-bold tracking-widest text-[#f8de91] uppercase">
-              <span aria-hidden="true" class="h-1.5 w-1.5 animate-pulse rounded-full bg-[#e3b53f]" />
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-[#1e7a3a]/45 bg-[#04140a] px-3 py-1 text-[10px] font-bold tracking-widest text-[#f5c451] uppercase">
+              <span aria-hidden="true" class="h-1.5 w-1.5 animate-pulse rounded-full bg-[#22c55e]" />
               {review.tag}
             </span>
             <span class="flex gap-0.5 text-sm">
               <span aria-hidden="true" class="flex gap-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <span class={i < review.stars ? "text-[#f8de91]" : "text-[#18225c]"}>★</span>
+                  <span class={i < review.stars ? "text-[#f5c451]" : "text-[#1e7a3a]"}>★</span>
                 ))}
               </span>
               <span class="sr-only">ให้คะแนน {review.stars} จาก 5 ดาว</span>
             </span>
           </div>
 
-          <p class="text-left text-base leading-relaxed text-[#ece0c2]">{review.content}</p>
+          <p class="text-left text-base leading-relaxed text-[#d8efdc]">{review.content}</p>
 
-          <div class="mt-auto flex items-center gap-3 border-t border-[#e3b53f]/35 pt-4">
+          <div class="mt-auto flex items-center gap-3 border-t border-[#1e7a3a]/45 pt-4">
             <span
               aria-hidden="true"
-              class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#f8de91]/50 bg-gradient-to-br from-[#e3b53f] to-[#8f6614] text-xl shadow-inner transition-transform duration-300 group-hover:scale-110">
+              class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#ffe08a]/50 bg-gradient-to-br from-[#f5c451] to-[#a9791a] text-xl shadow-inner transition-transform duration-300 group-hover:scale-110">
               {review.avatar}
             </span>
             <span class="flex flex-col">
-              <span class="text-sm font-black text-[#ece0c2] transition-colors group-hover:text-[#f8de91]">{review.name}</span>
-              <span class="text-[10px] font-bold tracking-wider text-[#dbe3f5] uppercase">{review.role}</span>
+              <span class="text-sm font-black text-[#d8efdc] transition-colors group-hover:text-[#f5c451]">{review.name}</span>
+              <span class="text-[10px] font-bold tracking-wider text-[#9fc8ab] uppercase">{review.role}</span>
             </span>
           </div>
         </article>

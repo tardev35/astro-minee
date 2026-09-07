@@ -275,6 +275,20 @@ if (!siteRaw) {
 }
 const SITE = new URL(siteRaw);
 
+// โดเมนเดียวกันเขียนได้สองรูปเมื่อ site: เป็น IDN: new URL() ให้ punycode
+// (xn--…) ส่วนสตริงดิบใน astro.config.mjs ยังเป็นไทย หน้าเว็บใช้คนละรูปโดยตั้งใจ —
+// mailto: ต้องเป็น punycode เพราะเป็นรูปเดียวที่ mail client ส่งได้ ส่วนตัวอักษร
+// ที่คนอ่านใช้รูปไทยเพราะสั้นกว่าครึ่งและไม่ตกบรรทัด (ดู contactDisplayHost)
+//
+// เช็กอีเมลด้านล่างจึงต้องรู้จักทั้งคู่ ไม่งั้นรูปไทยจะ "ผ่าน" เพราะ regex เดิม
+// จับเฉพาะ ASCII แล้วไม่แมตช์เลย ซึ่งเท่ากับปิดการตรวจทิ้งเงียบๆ
+const stripScheme = (u) =>
+  u
+    .replace(/^[a-z][a-z0-9+.-]*:\/\//i, "")
+    .replace(/[/?#].*$/, "")
+    .replace(/^www\./, "");
+const SITE_HOSTS = new Set([SITE.hostname.replace(/^www\./, ""), stripScheme(siteRaw)]);
+
 const ADDRESS_TERMS = ["PostalAddress", "streetAddress", "addressLocality", "addressRegion", "addressCountry", "postalCode", '"address"'];
 
 const BRAND_PROFILE = "src/lib/brandProfile.ts";
@@ -397,9 +411,11 @@ for (const file of pages) {
     if (brandName && !text.includes(brandName)) {
       error(where, `<address> does not name ${brandName} ("${text.slice(0, 60)}…") — a leftover address from an earlier brand (see BRAND_ADDRESS)`);
     }
-    const mail = text.match(/[\w.+-]+@([\w.-]+)/);
-    if (mail && mail[1].replace(/^www\./, "") !== SITE.hostname.replace(/^www\./, "")) {
-      error(where, `contact email is at ${mail[1]}, not this brand's ${SITE.hostname} — an address block carried over from an earlier brand`);
+    // host ต้องรับตัวอักษรนอก ASCII ด้วย — โดเมนไทยไม่เข้า \w
+    const mail = text.match(/[\w.+-]+@([^\s<>"']+)/u);
+    const mailHost = mail ? mail[1].replace(/[.,;:]+$/, "").replace(/^www\./, "") : "";
+    if (mailHost && !SITE_HOSTS.has(mailHost)) {
+      error(where, `contact email is at ${mailHost}, not this brand's ${[...SITE_HOSTS].join(" / ")} — an address block carried over from an earlier brand`);
     }
   }
 

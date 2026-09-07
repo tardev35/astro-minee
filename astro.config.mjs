@@ -37,7 +37,12 @@ export default defineConfig({
     "/line": "https://tinyurl.com/tog191",
   },
 
-  site: "https://proded888.vip",
+  // IDN. Node normalises this to punycode (xn--v3caicgve0awc1gc6qnc.com) the
+  // moment it reaches new URL(), which is what canonical, sitemap, robots.txt
+  // and the JSON-LD all end up printing — correct, and the only form a crawler
+  // resolves. Written in Thai here because that is the domain the operator
+  // registered; do not "fix" it to the xn-- form.
+  site: "https://หวยพร้อมวีไอพี.com",
   integrations: [
     sitemap({
       // /login, /register and /line are forwarding pages that all ship

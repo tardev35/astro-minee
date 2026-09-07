@@ -5,9 +5,19 @@ export interface Props {
 }
 const { title, as: HeadingTag = "h1" } = Astro.props;
 
-// The Huay card, rendered by the two lottery pages (/ตรวจหวย, /แนวทาง). Its
-// red/gold is the sanctioned lottery theme, tuned here to this brand's exact
-// palette so the pages sit in the same family as the rest of the site.
+// The Huay card. Only /แนวทาง renders it in this build (/ตรวจหวย is parked in
+// src/pages-disabled by the operator).
+//
+// It used to carry the maroon/red "lottery page" theme, which exists so a CASINO
+// brand does not push its own hue onto a lottery sub-page. หวยพร้อม IS the
+// lottery brand — its identity hue is the deep green of its own artwork — so
+// that exemption does not apply and this card moves onto the site palette like
+// everything else. A green site with one red page reads as broken.
+//
+// It stays distinguishable from ContentBox.astro by inverting which colour holds
+// the edge: ContentBox rims itself in green on a lifted green surface, this one
+// rims itself in the prize gold on the deepest green ink. Red is not used here at
+// all — it belongs to calls to action, and a red card border reads as a button.
 //
 // No slot wrapper and no `text-center` anywhere on the card or the section:
 // both are inheritable, so centering an ancestor of the slot silently centers
@@ -18,15 +28,15 @@ const { title, as: HeadingTag = "h1" } = Astro.props;
 
 <section class="relative z-10 my-8 flex w-full justify-center px-4 font-sans">
   <div
-    class="group relative isolate w-full max-w-[1400px] overflow-hidden rounded-3xl border border-[#f5c451]/35 bg-[#2a0507]/95 p-8 text-left text-base leading-relaxed text-[#f3ded7] shadow-[0_10px_30px_rgba(245,196,81,0.14)] backdrop-blur-xl transition-all duration-500 hover:border-[#f5c451]/60 hover:shadow-[0_15px_40px_rgba(216,18,32,0.28)] md:p-10">
-    <div aria-hidden="true" class="pointer-events-none absolute -top-20 -left-20 -z-10 h-40 w-40 rounded-full bg-[#f5c451]/22 blur-[50px] transition-all duration-500 group-hover:bg-[#ffe08a]/30"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute -right-20 -bottom-20 -z-10 h-40 w-40 rounded-full bg-[#7d0000]/60 blur-[50px] transition-all duration-500 group-hover:bg-[#d81220]/60"></div>
+    class="group relative isolate w-full max-w-[1400px] overflow-hidden rounded-3xl border border-[#f5c451]/35 bg-[#04140a]/95 p-8 text-left text-base leading-relaxed text-[#d8efdc] shadow-[0_10px_30px_rgba(245,196,81,0.14)] backdrop-blur-xl transition-all duration-500 hover:border-[#f5c451]/60 hover:shadow-[0_15px_40px_rgba(34,197,94,0.28)] md:p-10">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-20 -left-20 -z-10 h-40 w-40 rounded-full bg-[#f5c451]/20 blur-[50px] transition-all duration-500 group-hover:bg-[#ffe08a]/28"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -right-20 -bottom-20 -z-10 h-40 w-40 rounded-full bg-[#10361c]/80 blur-[50px] transition-all duration-500 group-hover:bg-[#1e7a3a]/70"></div>
 
     {
       title && (
         <header class="mb-6 flex items-center gap-4 border-b border-[#f5c451]/30 pb-4">
-          <div aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffe08a] to-[#b8860b] shadow-[0_0_10px_rgba(245,196,81,0.45)]" />
-          <HeadingTag class="bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#b8860b] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
+          <div aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffe08a] to-[#a9791a] shadow-[0_0_10px_rgba(245,196,81,0.45)]" />
+          <HeadingTag class="bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#a9791a] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
         </header>
       )
     }

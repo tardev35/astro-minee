@@ -5,6 +5,18 @@ import ContentBoxHuay from "../components/ContentBoxHuay.astro";
 import Navfoot from "../components/Navfoot.astro";
 import { pageGraph } from "../lib/schema";
 
+// A real ARTICLE page — h1 + three h2, all from this file's own body, unlike
+// /promotion, /contact-us and /ทางเข้า which carry no article at all.
+//
+// It is rethemed to the site's GREEN palette, not left on the maroon "Huay"
+// theme. That exemption exists so a CASINO brand does not force its hue onto a
+// lottery sub-page; หวยพร้อม is itself the lottery brand and green is its own
+// artwork's hue, so the exemption does not apply and a lone red page here would
+// read as broken. ContentBoxHuay was rethemed in the same pass.
+//
+// No SUB-PAGES row exists for this route, so the Title and description below are
+// written here and held to the 150–160 CHARACTER window.
+//
 // The previous brand shipped this page as six "เลขเด็ด" teaser cards —
 // "เข้ามาแล้ว 3 งวดติด รีบส่งโพยก่อนเลขเต็ม", "รวมเลขเด็ด สำนักดัง" — plus a
 // โหลดบทความเพิ่มเติม button wired to nothing. Every one of those is a promise
@@ -36,13 +48,13 @@ const infoTypes = [
   },
 ];
 
-const pageTitle = "แนวทางหวยและสถิติย้อนหลังบน BANANAV3 ใช้เป็นข้อมูลประกอบเท่านั้น";
+const pageTitle = "แนวทางหวยและสถิติย้อนหลังบน หวยพร้อม ใช้เป็นข้อมูลประกอบเท่านั้น";
 
 // The docx has no SUB-PAGES row for /แนวทาง, so this one is written here:
 // 150–160 CHARACTERS, counted as characters not bytes (Thai is 3 bytes each).
 // This one is 155.
 const pageDescription =
-  "BANANAV3 อธิบายแนวทางหวยและสถิติย้อนหลังว่าใช้ประกอบการตัดสินใจได้แค่ไหน พร้อมวิธีอ่านข้อมูลของแต่ละงวดอย่างมีขอบเขต และเหตุผลที่ผลการออกรางวัลคาดเดาไม่ได้";
+  "หวยพร้อม อธิบายแนวทางหวยและสถิติย้อนหลังว่าใช้ประกอบการตัดสินใจได้แค่ไหน พร้อมวิธีอ่านข้อมูลของแต่ละงวดอย่างมีขอบเขต และเหตุผลที่ผลการออกรางวัลคาดเดาไม่ได้";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -54,14 +66,14 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="BANANAV3 | แนวทางหวยและสถิติย้อนหลังเพื่อประกอบการตัดสินใจ" description={pageDescription}>
+<MainLayout title="หวยพร้อม | แนวทางหวยและสถิติย้อนหลังเพื่อประกอบการตัดสินใจ" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBoxHuay title={pageTitle} as="h1">
     <p class="text-left text-base leading-relaxed">
-      หน้านี้รวบรวมข้อมูลประกอบการตัดสินใจสำหรับสมาชิก BANANAV3 และอธิบายขอบเขตของมันไปพร้อมกัน คำว่าแนวทางบนเว็บไซต์นี้หมายถึงข้อมูลที่ช่วยให้เข้าใจว่าตลาดหนึ่งทำงานอย่างไร
+      หน้านี้รวบรวมข้อมูลประกอบการตัดสินใจสำหรับสมาชิก หวยพร้อม และอธิบายขอบเขตของมันไปพร้อมกัน คำว่าแนวทางบนเว็บไซต์นี้หมายถึงข้อมูลที่ช่วยให้เข้าใจว่าตลาดหนึ่งทำงานอย่างไร
       เช่น รอบการประกาศผล เวลาปิดรับ สถิติของงวดที่ผ่านไปแล้ว และสถานะของเลขในงวดปัจจุบัน ไม่ได้หมายถึงการชี้เลขหรือการคาดการณ์ผลของงวดถัดไป ซึ่งเป็นสิ่งที่ทำไม่ได้และไม่มีใครรับประกันได้
       เราเขียนหน้านี้ให้อ่านแล้วรู้ว่าข้อมูลแต่ละชนิดใช้ทำอะไรได้จริง และตรงไหนที่ควรหยุด มากกว่าจะรวมตัวเลขมากองไว้เฉย ๆ
     </p>
@@ -77,7 +89,7 @@ const graph = pageGraph(Astro, {
       <div class="mb-6 grid grid-cols-1 gap-5 sm:grid-cols-2" role="list" aria-label="ชนิดของข้อมูลประกอบการตัดสินใจที่พบบ่อย และขอบเขตของแต่ละชนิด">
         {
           infoTypes.map((info) => (
-            <div role="listitem" class="rounded-2xl border border-[#f5c451]/25 bg-[#3f070a]/55 p-5 transition-colors duration-300 hover:border-[#f5c451]/55">
+            <div role="listitem" class="rounded-2xl border border-[#1e7a3a]/40 bg-[#10361c]/55 p-5 transition-colors duration-300 hover:border-[#22c55e]/65">
               <p class="mb-2 flex items-center gap-3 text-base font-bold text-[#f5c451]">
                 <span aria-hidden="true" class="text-2xl">
                   {info.icon}
@@ -123,7 +135,7 @@ const graph = pageGraph(Astro, {
   <ContentBoxHuay title="ผลการออกรางวัลคาดเดาไม่ได้ และไม่มีใครรับประกันได้" as="h2">
     <div>
       <p class="mb-4 text-left text-base leading-relaxed">
-        BANANAV3 ไม่ให้บริการชี้เลข ไม่ขายสูตร และไม่รับรองแหล่งข้อมูลใดว่าแม่นยำ ผลการออกรางวัลของทุกตลาดที่เปิดรับเป็นสิ่งที่คาดเดาไม่ได้ และไม่มีบุคคล สำนัก โปรแกรม หรือระบบใดรับประกันได้
+        หวยพร้อม ไม่ให้บริการชี้เลข ไม่ขายสูตร และไม่รับรองแหล่งข้อมูลใดว่าแม่นยำ ผลการออกรางวัลของทุกตลาดที่เปิดรับเป็นสิ่งที่คาดเดาไม่ได้ และไม่มีบุคคล สำนัก โปรแกรม หรือระบบใดรับประกันได้
         ข้อความที่อ้างว่ารู้ผลล่วงหน้า อ้างว่ามีเลขวงใน หรือเสนอขายเลขโดยรับประกันว่าถูกรางวัล เป็นสิ่งที่ควรปฏิเสธทันทีไม่ว่าจะมาจากช่องทางใด และไม่ใช่สิ่งที่ทีมงานของเราส่งถึงสมาชิก
       </p>
 

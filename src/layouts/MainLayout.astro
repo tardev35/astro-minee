@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarPremium.astro";
-import Footer from "../components/FooterPremium.astro";
+import Navbar from "../components/NavbarStyle6.astro";
+import Footer from "../components/FooterHuay.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,12 +55,16 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "PRODED888 | เว็บพนันออนไลน์รวมเกมฮิต แตกง่าย จ่ายจริง โปรสุดคุ้ม",
+  title = "หวยพร้อม | เว็บแทงหวยออนไลน์จ่ายเยอะ ไม่อั้นเลข รวมครบจบในที่เดียว",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings. Count
-  // CHARACTERS, not bytes — Thai is 3 bytes per character.
-  description = "PRODED888 เว็บพนันออนไลน์รวมเกมฮิตหลายประเภทไว้ในระบบเดียว พร้อมโปรโมชั่นตามเงื่อนไข ระบบบัญชีใช้งานง่าย และสถานะธุรกรรมให้สมาชิกตรวจสอบย้อนหลังได้สะดวก",
+  // CHARACTERS, not bytes — Thai is 3 bytes per character. This one is 154.
+  //
+  // The home page passes the docx's own 113-character description instead and
+  // that is correct: verify-build exempts the home page from the floor so the
+  // brief's copy ships unpadded. This default is only a fallback.
+  description = "หวยพร้อม เว็บแทงหวยออนไลน์ที่รวมประเภทหวย ระบบกรอกโพย อัตราจ่าย และข้อมูลผลรางวัลไว้ในระบบเดียว รองรับมือถือ พร้อมให้ตรวจสถานะเลขและรายการย้อนหลังได้สะดวก",
   robots = "index, follow",
 } = Astro.props;
 
@@ -225,7 +229,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #070b20;
+        background-color: #04140a;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -278,7 +282,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ PRODED888 ในโทนน้ำเงินกรมท่าสลับทอง ด้านซ้ายเป็นตัวอักษรเรียงลงมาว่า PLAY BIGGER WIN TOGETHER ถัดลงมาในกรอบสีเข้มเขียนว่า GOOD GAMES GREAT PEOPLE และ PRODED888 กลางภาพด้านบนเป็นตราสัญลักษณ์ริบบิ้นทองเขียนว่า PRODED ทับวงล้อรูเล็ตน้ำเงินทอง ใต้ริบบิ้นเป็นเลข 888 สีน้ำเงินขอบทอง มีมงกุฎทองอยู่ด้านบนพร้อมไพ่ ลูกเต๋า และกองชิปคาสิโนสีทอง ถัดลงมาเป็นข้อความขนาดใหญ่สีทองว่า PRODED888 บรรทัดถัดมาเป็นตัวอักษรทองว่า อาณาจักรเกมพรีเมียม ใต้ลงมาเป็นบรรทัดสีขาวว่า ครบสล็อต คาสิโนสด และเกมไพ่สุดมัน ถัดลงมาเป็นแคปซูลขอบทองสามช่องเขียนว่า สมัครง่าย พร้อมไอคอนรูปคน ฝากถอนคล่อง พร้อมไอคอนกระเป๋าเงิน และ รองรับมือถือ พร้อมไอคอนโทรศัพท์ ปิดท้ายด้วยปุ่มทองขนาดใหญ่เขียนว่า เริ่มสนุกเลย พร้อมลูกศรวงกลม ด้านล่างเป็นแถบเขียนว่า SLOT LIVE CASINO CARD GAMES SPORTS AND MORE ด้านขวาเป็นผู้หญิงผมยาวในชุดราตรีสีน้ำเงินกรมท่าขลิบทอง ยกไพ่โพดำและโพแดงสองใบไว้ข้างหน้า ข้างตัวมีข้อความลายมือว่า More Than a Game A Royal Experience และมุมขวาบนเขียนว่า PREMIUM ONLINE CASINO รอบภาพมีเหรียญทอง ชิปคาสิโนน้ำเงินทอง และประกายทองกระจายบนพื้นหลังห้องโถงสีน้ำเงินเข้ม"
+          alt="แบนเนอร์ต้อนรับ หวยพร้อม ในโทนเขียวนีออนสลับทอง กลางภาพด้านบนเป็นโลโก้ หวยพร้อม ตัวอักษรไทยสองบรรทัดพร้อมเครื่องหมายถูกสีแดง ถัดลงมาเป็นข้อความขนาดใหญ่สีขาวว่า เว็บหวยออนไลน์ และบรรทัดถัดมาเป็นตัวอักษรเขียวเรืองแสงว่า ครบจบในที่เดียว ใต้ลงมาเป็นบรรทัดสีขาวว่า ซื้อหวยง่าย ลุ้นไว ตรวจผลสะดวก ถัดลงมาเป็นแถวรายชื่อหวยคั่นด้วยจุดเขียนว่า หวยรัฐบาล หวยฮานอย หวยลาว และ หวยหุ้น ถัดลงมาเป็นแคปซูลขอบเขียวสามช่องเขียนว่า สมัครไว ไม่ยุ่งยาก พร้อมไอคอนสายฟ้า จ่ายจริง มั่นใจได้ 100% พร้อมไอคอนโล่ และ รองรับมือถือ เล่นได้ทุกที่ ทุกเวลา พร้อมไอคอนโทรศัพท์ ปิดท้ายด้วยปุ่มสีแดงขนาดใหญ่เขียนว่า แทงหวยเลย พร้อมลูกศร ด้านล่างเป็นแถบสามช่องเขียนว่า ปลอดภัย ข้อมูลไม่รั่วไหล บริการด้วยใจ ดูแลตลอด 24 ชม. และ หวยออนไลน์ เชื่อถือได้ มั่นคง ด้านซ้ายเป็นผู้หญิงผมยาวในชุดสีเขียวเข้มเมทัลลิก มือหนึ่งถือโทรศัพท์ที่มีโลโก้ หวยพร้อม อีกมือถือสลากกินแบ่งรัฐบาลคลี่เป็นพัด รอบภาพมีลูกบอลหวยสีเขียวและสีขาวพิมพ์เลข 6 2 9 5 และ 8 พร้อมเหรียญทองและใบสลากปลิวอยู่ มีข้อความลายมือกระจายอยู่ว่า ทุกเลข ทุกความหวัง อยู่ใกล้แค่ปลายนิ้ว ลุ้นวันนี้ ชีวิตดีขึ้นได้ จริงๆ เสี่ยงโชค สร้างโอกาส ให้ชีวิต และ เลขเล็กๆ อาจเปลี่ยนชีวิตได้ เริ่มเลขวันนี้ ฉากหลังเป็นเส้นขอบฟ้าเมืองสีเขียวเรืองแสงมีเงาพระปรางค์วัดอรุณ"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

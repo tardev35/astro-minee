@@ -66,7 +66,7 @@ export interface BrandProfile {
 // ทั้งสองตัว self-host ทั้งคู่ตั้งแต่ 2026-08-25 — ไม่มี request ออกนอกโดเมนแล้ว
 export type BrandFont = "kanit" | "google-sans";
 
-export const BRAND_FONT: BrandFont = "kanit";
+export const BRAND_FONT: BrandFont = "google-sans";
 
 // ── ชื่อแบรนด์ ─────────────────────────────────────────────────────────────
 // สลับบรรทัดเดียวนี้ตอนรีแบรนด์ เหมือน BRAND_FONT ด้านบน (ดู SKILL.md)
@@ -75,7 +75,7 @@ export const BRAND_FONT: BrandFont = "kanit";
 // terms/privacy หรือ schema helper อยู่นอกสโคปที่รีแบรนด์แตะ ถ้ามันพิมพ์ชื่อ
 // แบรนด์ไว้ตรงๆ มันจะกลายเป็นชื่อของแบรนด์ก่อนหน้าแบบเงียบๆ ภายในไม่กี่ชั่วโมง
 // และไม่มีอะไรในบิลด์จับได้ เพราะเว็บยัง build ผ่านทั้งสองแบบ
-export const BRAND_NAME = "PRODED888";
+export const BRAND_NAME = "หวยพร้อม";
 
 // ── สีตัวอักษรเริ่มต้นของทั้งเว็บ ──────────────────────────────────────────
 // สลับบรรทัดเดียวนี้ตอนรีแบรนด์ เหมือนสองตัวข้างบน ใส่สีเนื้อความหลักของแบรนด์
@@ -91,7 +91,7 @@ export const BRAND_NAME = "PRODED888";
 // MainLayout เอาค่านี้ไปใส่เป็น inline style บน <html> ให้ทุกอย่าง inherit
 // ต่อกันลงมา — คลาส text-[#...] ที่ component เขียนเองยังชนะเสมอ เพราะการ
 // ประกาศตรงตัวชนะการ inherit อยู่แล้ว ค่านี้จึงเป็น "พื้น" ไม่ใช่การบังคับ
-export const BRAND_TEXT = "#ece0c2";
+export const BRAND_TEXT = "#d8efdc";
 
 // ── ที่อยู่ + อีเมลติดต่อ (หน้า /contact-us และ footer) ────────────────────
 // ปกติไม่ต้องแก้อะไรตรงนี้ — ทั้งที่อยู่และอีเมลมาจาก BRAND_NAME กับ site:
@@ -110,27 +110,57 @@ function generatedAddress(brand: string): readonly string[] {
   return [`${desk} ${brand}`, `${spot.district} ${spot.province} ${spot.postcode}`];
 }
 
-function generatedEmail(brand: string): string {
-  const box = CONTACT_MAILBOXES[hash32(`${brand} contact-mailbox`) % CONTACT_MAILBOXES.length];
-  let host = "";
+function contactMailbox(brand: string): string {
+  return CONTACT_MAILBOXES[hash32(`${brand} contact-mailbox`) % CONTACT_MAILBOXES.length];
+}
+
+/** โดเมนสำหรับ mailto: — new URL() normalise IDN เป็น punycode ให้เอง และนั่นคือ
+ *  รูปเดียวที่ mail client ส่งได้จริง ห้ามสลับไปใช้รูปไทย */
+function contactHrefHost(): string {
   try {
-    host = new URL(import.meta.env.SITE ?? "").hostname.replace(/^www\./, "");
+    return new URL(import.meta.env.SITE ?? "").hostname.replace(/^www\./, "");
   } catch {
-    host = "";
+    return "";
   }
-  return host ? `${box}@${host}` : "";
+}
+
+/** โดเมนสำหรับ "ตัวอักษรที่คนอ่าน" — ตัดจากสตริงดิบของ site: ซึ่งยังเป็นไทยอยู่
+ *  (import.meta.env.SITE ไม่ได้ถูก normalise เป็น punycode — ตรวจแล้ว 2026-09-06)
+ *
+ *  ที่ต้องแยกจาก mailto: เพราะโดเมนเดียวกันสองรูปยาวไม่เท่ากันมาก:
+ *    xn--v3caicgve0awc1gc6qnc.com  36 ตัว — ตกบรรทัดใน footer และคนอ่านไม่ออก
+ *    หวยพร้อมวีไอพี.com            21 ตัว — สั้นกว่าเกือบครึ่ง
+ *  ลิงก์ยังชี้ที่เดิมทุกประการ ต่างแค่สิ่งที่ตาเห็น */
+function contactDisplayHost(): string {
+  return (import.meta.env.SITE ?? "")
+    .replace(/^[a-z][a-z0-9+.-]*:\/\//i, "")
+    .replace(/[/?#].*$/, "")
+    .replace(/^www\./, "");
 }
 
 export interface BrandAddress {
   readonly label: string;
   readonly lines: readonly string[];
+  /** ใส่ใน mailto: — punycode เสมอ */
   readonly email: string;
+  /** ข้อความที่แสดงบนหน้าเว็บ — รูปเดิมของโดเมน (ไทย ถ้า site: เขียนเป็นไทย) */
+  readonly emailDisplay: string;
 }
+
+const CONTACT_BOX = contactMailbox(BRAND_NAME);
+const CONTACT_HREF = contactHrefHost() ? `${CONTACT_BOX}@${contactHrefHost()}` : "";
+
+// ถ้าตัดโดเมนที่อ่านได้ไม่ออกด้วยเหตุใดก็ตาม ให้ถอยไปใช้ตัวเดียวกับ mailto:
+// แทนที่จะปล่อยว่าง — footer ใช้ค่านี้เป็นเงื่อนไขแสดงผล ค่าว่าง = บล็อกติดต่อหายทั้งก้อน
+const CONTACT_EMAIL = {
+  email: CONTACT_HREF,
+  emailDisplay: (contactDisplayHost() ? `${CONTACT_BOX}@${contactDisplayHost()}` : "") || CONTACT_HREF,
+} as const;
 
 export const BRAND_ADDRESS: BrandAddress =
   ADDRESS_OWNER.trim().toUpperCase() === BRAND_NAME.trim().toUpperCase() && ADDRESS_LINES.length > 0
-    ? { label: "ที่อยู่จดทะเบียนบริษัท", lines: ADDRESS_LINES, email: generatedEmail(BRAND_NAME) }
-    : { label: "ที่อยู่ติดต่อ", lines: generatedAddress(BRAND_NAME), email: generatedEmail(BRAND_NAME) };
+    ? { label: "ที่อยู่จดทะเบียนบริษัท", lines: ADDRESS_LINES, ...CONTACT_EMAIL }
+    : { label: "ที่อยู่ติดต่อ", lines: generatedAddress(BRAND_NAME), ...CONTACT_EMAIL };
 
 /** ต่อท้าย URL ของไอคอนเป็น ?v=... — ไม่ต้องแก้เอง มาจาก BRAND_NAME
  *

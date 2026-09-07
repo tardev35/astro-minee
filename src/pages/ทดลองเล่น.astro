@@ -2,78 +2,81 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/AnnouncementPremium.astro";
+import Announcement from "../components/AnnouncementHuay.astro";
 import { pageGraph } from "../lib/schema";
 
-// An earlier brand rendered a grid of twelve gamedemo*.webp provider covers here
-// with a "เล่นเลย" overlay per tile. Those tiles claimed twelve specific playable
-// demos by name, which is a claim this page cannot back — the demo opens inside
-// the provider's own client, and the cover art is a stale off-brand set. The
-// tiles stay gone and their imports with them, so nothing is emitted into
-// dist/_astro that no page renders. The gamedemo*.webp files stay in src/assets
-// as inventory. DO NOT import them: an imported image is an emitted image, and
-// verify-build.mjs fails the build on an image that ships unrendered. This page
-// imports no image of any kind, which is also why the stale-asset sweep has
-// nothing to check here.
+// This page imports NO image, and that is a decision rather than an omission.
+// The only "demo" art in the repo is src/assets/gamedemo7-18.webp — twelve slot
+// and live-casino game covers left behind by an earlier brand. หวยพร้อม sells
+// หวย, so a grid of those covers on this page can only go one of two ways: an
+// honest alt ("ปกเกมสล็อต…") puts twelve off-topic pictures on a lottery page,
+// or a lottery-sounding alt describes something the picture is not. Neither is
+// worth a tile row, so the files stay in src/assets as inventory for the next
+// slot brand. DO NOT import them: an imported image is an emitted image, and
+// verify-build.mjs fails the build on an image that ships unrendered. Because
+// nothing is imported, the stale-asset sweep has nothing to check here either.
 //
-// What replaces them is the four-step walkthrough below — no images, plain
-// markup, and each step's label is a <p>/<span> with an aria-label on the
+// What carries the page instead is the four-step walkthrough below — no images,
+// plain markup, and each step's label is a <p>/<span> with an aria-label on the
 // region, because only the article body may produce a heading. It is NOT an
 // h3-bearing icon-card block: the sanctioned source of an h3 is
 // FeatureHighlights.astro, and that file still carries a previous brand's
 // palette, so wiring it in here would ship off-brand colour.
 //
-// <Announcement /> is bare: AnnouncementPremium's default message is this
-// brand's copy, so the ticker matches index.astro without a second string here.
-// The variant rotated off Announcement5, the outgoing brand's pick, per the
+// <Announcement /> is bare: AnnouncementHuay's default message is this brand's
+// copy, so the ticker matches index.astro without a second string here. The
+// variant rotated off AnnouncementPremium, the outgoing brand's pick, per the
 // brand spec.
 //
-// PRODED888's brief frames the site as a platform that gathers many popular game
-// types into one system — สล็อต บาคาร่า คาสิโน และเกมเดิมพันรูปแบบอื่น — and its
-// standing advice is to start from a game whose กติกา and รูปแบบการจ่าย you
-// already understand, to compare ฟีเจอร์ ความเสี่ยง และวงเงิน before moving on,
-// to read a promotion's real conditions rather than its credit figure, to check
-// balances and transaction status from the account page, and to set a per-day
-// budget first. Its standing caveat is that แตกง่าย / จ่ายจริง are marketing
-// wording, never a guarantee. The brief names no wallet, no bank and no payment
-// brand, so neither does this page.
+// หวยพร้อม's brief frames the site as a platform that gathers ประเภทหวย, ระบบ
+// กรอกโพย, อัตราจ่าย and ข้อมูลผลรางวัล into one system. Its standing advice:
+// check ชื่อรายการ / วันที่ออกรางวัล / เวลาปิดรับ before choosing a number;
+// know whether the bet is 2 ตัว, 3 ตัว or วิ่ง and whether it is ตรง or โต๊ด
+// before typing an amount; read เลขอั้น status, because a number may be capped,
+// repriced or closed once a งวด reaches its limit; compare the price the system
+// actually shows rather than a headline อัตราจ่าย; and keep the โพย's เลขอ้างอิง
+// for checking back. Its standing caveat is that ไม่อั้นเลข and จ่ายเยอะ are
+// wording, not a guarantee, and that a higher payout rate does not mean a better
+// chance of winning. The brief names no wallet, no bank and no payment brand, so
+// neither does this page — and it promises no payout, no win rate, and never
+// that a trial run predicts a real draw.
 const trySteps = [
   {
-    icon: "🎴",
-    label: "เลือกเกมจากหมวดที่เข้าใจกติกา ไม่ใช่จากกระแส",
+    icon: "🗂️",
+    label: "เลือกประเภทหวยแล้วตรวจงวดกับเวลาปิดรับให้ตรงกัน",
     detail:
-      "หน้ารวมเกมแยกไว้เป็นหมวด ทั้งสล็อต บาคาร่า คาสิโน และเกมเดิมพันรูปแบบอื่นตามที่ระบบรองรับ ควรเริ่มจากเกมที่เข้าใจกติกาและรูปแบบการจ่ายอยู่แล้ว แล้วค่อยเปรียบเทียบฟีเจอร์ ความเสี่ยง และวงเงินของเกมอื่นทีหลัง การเลือกจากความเข้าใจช่วยลดการตัดสินใจตามกระแสเพียงอย่างเดียว",
+      "ระบบจัดหมวดหวยตามประเภทและรอบออกรางวัลตามรายการที่เว็บไซต์กำหนด เช่น หวยรัฐบาล หวยฮานอย หวยลาว หวยหุ้น และหวยยี่กี ซึ่งแต่ละรายการเปิดรับคนละช่วงเวลา ช่วงทดลองคือเวลาที่ควรไล่ดูให้ครบว่าแต่ละงวดปิดรับเมื่อไร ก่อนเลือกเลขควรตรวจชื่อรายการ วันที่ออกรางวัล และเวลาปิดรับให้ถูกต้อง โดยเฉพาะผู้ที่ซื้อหลายประเภทในวันเดียว เพื่อป้องกันการส่งโพยผิดงวด",
   },
   {
-    icon: "📊",
-    label: "อ่านกติกา อัตราจ่าย และฟีเจอร์ของเกมนั้นให้จบ",
+    icon: "🔢",
+    label: "แยกให้ออกว่าเป็นเลข 2 ตัว 3 ตัว หรือวิ่ง และแทงตรงหรือโต๊ด",
     detail:
-      "ผู้ให้บริการระบุกติกาของแต่ละเกม อัตราจ่ายของแต่ละรูปแบบเดิมพัน เงื่อนไขของฟีเจอร์พิเศษ และวงเงินขั้นต่ำไว้ในหน้าข้อมูลของเกม ถ้าเป็นสล็อตให้ดู RTP ความผันผวน ตารางจ่าย และฟีเจอร์โบนัสประกอบกัน ค่าเหล่านี้เป็นค่าเฉพาะของเกมนั้น ไม่ใช่ค่ากลางที่ทุกเกมในหมวดเดียวกันใช้ร่วมกัน",
+      "รูปแบบแทงหวยแต่ละประเภทมีวิธีคิดผลและอัตราจ่ายแตกต่างกัน เลข 2 ตัวแยกตามตำแหน่งที่เลือก เลข 3 ตัวแยกระหว่างแทงตรงกับโต๊ดที่นับผลได้แม้ตำแหน่งสลับกัน ส่วนเลขวิ่งนับจากตัวเลขตัวเดียวที่ปรากฏในผลตามเงื่อนไขของรายการนั้น ควรตรวจว่าต้องการรูปแบบใดก่อนกรอกจำนวนเงิน เพราะเลือกประเภทผิดจะทำให้โพยไม่ตรงกับความตั้งใจแม้จะใช้เลขชุดเดียวกัน",
   },
   {
-    icon: "🎁",
-    label: "เทียบเงื่อนไขจริงของโปรโมชั่นก่อนกดรับสิทธิ์",
+    icon: "🚦",
+    label: "ตรวจสถานะเลขอั้นและราคาที่ระบบแสดงจริงก่อนกดยืนยัน",
     detail:
-      "โปรโมชั่นแต่ละรายการต่างกันทั้งยอดรับโบนัส เกมที่เข้าร่วม ระยะเวลา และเงื่อนไขการถอน ก่อนรับควรดูทั้งหมดพร้อมกัน ไม่ใช่ดูเพียงจำนวนเครดิตที่ได้รับ เพราะโปรที่เหมาะกับรูปแบบการเล่นอาจคุ้มกว่าข้อเสนอที่ให้โบนัสสูงแต่มีข้อจำกัดมาก ช่วงทดลองคือเวลาที่ไล่อ่านเงื่อนไขเหล่านี้ได้ก่อนเงินเข้าไปผูกกับรายการ",
+      "คำว่าไม่อั้นเลขควรพิจารณาตามสถานะล่าสุดของแต่ละงวด เพราะบางเลขอาจถูกจำกัดยอด เปลี่ยนอัตราจ่าย หรือหยุดรับเมื่อถึงวงเงินที่กำหนด ช่วงทดลองจึงเป็นเวลาที่ควรฝึกดูว่าระบบแสดงสถานะเหล่านี้ไว้ตรงไหนของหน้ากรอกโพย แล้วยึดราคาที่ขึ้นกับเลขนั้นจริงในขณะกรอก ไม่ใช่อัตราจ่ายที่จำมาจากงวดก่อนหรือจากรายการอื่น",
   },
   {
-    icon: "⚙️",
-    label: "ไล่ดูหน้าบัญชีและสถานะรายการให้ครบก่อนยืนยัน",
+    icon: "🧾",
+    label: "ไล่ดูโพยทีละรายการแล้วเก็บเลขอ้างอิงไว้ตรวจย้อนหลัง",
     detail:
-      "ระบบรวมข้อมูลบัญชี สิทธิ์โปรโมชั่น ประวัติธุรกรรม และสถานะรายการไว้ที่จุดเดียว ลองเดินตั้งแต่หน้าบัญชีจนถึงหน้าสรุปเพื่อให้รู้ว่าต้องตรวจอะไรบ้างก่อนกดยืนยัน ทั้งชื่อบัญชี จำนวนเงิน และข้อมูลรับเงิน หากมีรายการถอนอยู่ระหว่างดำเนินการ ควรเก็บเวลา จำนวนเงิน และเลขอ้างอิงไว้จนกว่าระบบจะอัปเดตผล",
+      "เมื่อซื้อหลายเลขพร้อมกัน ควรไล่ดูเลข ประเภทเดิมพัน จำนวนเงิน และยอดรวมทีละรายการก่อนกดส่ง เพราะยอดรวมโตเร็วกว่าที่คาดไว้เสมอเมื่อวางหลายเลขในรอบเดียว หลังยืนยันแล้วให้เก็บเลขอ้างอิงของโพยไว้ เพื่อใช้ตรวจสอบย้อนหลังเมื่อมีการประกาศผลรางวัลหรือเมื่อพบข้อมูลที่ไม่ตรงกัน",
   },
 ];
 
-const pageTitle = "ทดลองระบบเกมบน PRODED888 และศึกษากติกาก่อนเริ่มเล่นจริง";
+const pageTitle = "ทดลองระบบหวยบน หวยพร้อม และศึกษาวิธีกรอกโพยก่อนซื้อจริง";
 
 // Title and description are the docx SUB-PAGES row "ทดลองเล่น" and ship
-// VERBATIM at their own length (118 characters). The brand spec is explicit
+// VERBATIM at their own length (116 characters). The brand spec is explicit
 // that the docx-supplied rows are not to be padded to the 150-character floor
-// tools/verify-build.mjs enforces — earlier brands bolted a closing clause on
-// to clear DESC_MIN, and that is exactly what this round stops doing. Counted
-// in CHARACTERS (Thai is 3 bytes per character, so a byte count reads ~3x too
-// long). Do not re-word it.
-const pageDescription = "PRODED888 ทดลองระบบเพื่อศึกษากติกา อัตราจ่าย ฟีเจอร์ และรูปแบบการเดิมพัน ช่วยให้เลือกเกมได้เหมาะกับงบและความชอบมากขึ้น";
+// tools/verify-build.mjs enforces — it exempts any description that appears
+// literally in src/assets/content.txt for exactly this reason. Counted in
+// CHARACTERS (Thai is 3 bytes per character, so a byte count reads ~3x too
+// long). Do not re-word it: an edit here loses the exemption as well.
+const pageDescription = "หวยพร้อม ทดลองระบบเพื่อศึกษาวิธีเลือกเลข 2 ตัว 3 ตัว วิ่ง อัตราจ่าย และขั้นตอนตรวจโพย ช่วยให้เข้าใจก่อนส่งรายการจริง";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -84,82 +87,81 @@ const graph = pageGraph(Astro, {
   ],
 });
 
-// h2 inside the card: light gold → primary gold → deep gold, i.e. the brand ramp
-// read downward, where ContentBox's own h1 gradient opens on platinum and runs
-// platinum → gold → deep gold. The two heading levels stay visually distinct
-// without either repeating the other's opening stop, and the platinum stays on
-// the h1 — a second platinum heading on a deep navy card is where the hierarchy
-// would collapse.
-const sectionHeadingClass = "bg-gradient-to-r from-[#f8de91] via-[#e3b53f] to-[#8f6614] bg-clip-text text-2xl leading-normal font-bold text-transparent";
+// h2 inside the card: light gold → prize gold → deep gold, i.e. the brand's gold
+// accent read downward, where ContentBox's own h1 gradient opens on soft
+// green-white and runs green-white → neon green → gold. The two levels stay
+// visually distinct without either repeating the other's opening stop, and the
+// green stays on the h1 — a second green-led heading on this near-black green
+// card is where the hierarchy would collapse.
+const sectionHeadingClass = "bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#a9791a] bg-clip-text text-2xl leading-normal font-bold text-transparent";
 ---
 
-<MainLayout title="PRODED888 | ทดลองระบบเกมและศึกษากติกาก่อนเล่นจริง" description={pageDescription}>
+<MainLayout title="หวยพร้อม | ทดลองระบบหวยและศึกษาวิธีกรอกโพยก่อนซื้อจริง" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <h2 class={`mb-6 ${sectionHeadingClass}`}>ทดลองระบบบน PRODED888 คือการไล่ดูอะไรบ้างก่อนลงเงินจริง</h2>
+      <h2 class={`mb-6 ${sectionHeadingClass}`}>ทดลองระบบบน หวยพร้อม คือการไล่ดูอะไรบ้างก่อนส่งโพยจริง</h2>
 
-      <p class="mb-8 text-left text-base leading-relaxed text-[#ece0c2]">
-        การทดลองระบบบน PRODED888 คือการเปิดหน้าจอชุดเดียวกับที่จะใช้จริงขึ้นมาไล่ดูให้ครบก่อนใส่เงินลงไป ตั้งแต่หน้ารวมเกมที่แยกตามหมวด ทั้งสล็อต บาคาร่า คาสิโน และเกมเดิมพันรูปแบบอื่นตามที่ระบบรองรับ
-        หน้าข้อมูลของเกมที่ระบุกติกา อัตราจ่ายของแต่ละรูปแบบเดิมพัน ฟีเจอร์พิเศษ และวงเงินขั้นต่ำ ไปจนถึงหน้าโปรโมชั่นที่บอกยอดรับโบนัส เกมที่เข้าร่วม และเงื่อนไขการถอน
-        และหน้าบัญชีที่รวมยอดคงเหลือ ประวัติธุรกรรม และสถานะรายการไว้ที่จุดเดียว เพราะสิ่งที่ทำให้ผู้เล่นใหม่เสียเงินโดยไม่จำเป็นมักไม่ใช่ดวง แต่เป็นการกดยืนยันโดยยังไม่รู้ว่ารายการตรงหน้าคิดผลจากอะไร เช่น
-        เชื่อคำว่าแตกง่ายโดยยังไม่ได้เปิดดู RTP ความผันผวน และตารางจ่ายของเกมนั้น เลือกรูปแบบเดิมพันที่อัตราจ่ายสูงโดยยังไม่ได้อ่านว่าเงื่อนไขการนับผลต่างจากรูปแบบพื้นฐานอย่างไร
-        ขยับวงเงินต่อรอบขึ้นโดยยังไม่ได้เทียบกับงบที่ตั้งไว้ล่วงหน้า เข้าใจเงื่อนไขโปรโมชั่นผิดจนรับสิทธิ์ไม่ครบ หรือกดยืนยันรายการซ้ำเพราะไม่ได้รอให้ระบบแสดงสถานะของรายการเดิมก่อน
-        ความเข้าใจคลาดเคลื่อนเหล่านี้แก้ทีหลังไม่ได้เมื่อรายการเข้าสู่ระบบแล้ว แต่ป้องกันได้เกือบทั้งหมดด้วยการเปิดดูหนึ่งรอบก่อน สี่ขั้นด้านล่างคือสิ่งที่ควรไล่ดูให้ครบ
-        และเป็นลำดับเดียวกับที่ใช้จริงเมื่อลงเดิมพันด้วยเงินของตัวเอง
+      <p class="mb-8 text-left text-base leading-relaxed text-[#d8efdc]">
+        การทดลองระบบบน หวยพร้อม คือการเปิดหน้าจอชุดเดียวกับที่จะใช้จริงขึ้นมาไล่ดูให้ครบก่อนส่งโพยด้วยเงินของตัวเอง ตั้งแต่หน้ารวมหวยที่แยกตามประเภทและรอบออกรางวัลตามรายการที่เว็บไซต์กำหนด
+        หน้ากรอกโพยที่ต้องระบุว่าเป็นเลข 2 ตัว เลข 3 ตัว หรือเลขวิ่ง และเป็นแทงตรงหรือโต๊ด หน้าที่แสดงอัตราจ่ายกับสถานะของเลขในงวดนั้น ไปจนถึงหน้าสรุปรายการที่รวมยอดของทุกเลขไว้ก่อนกดยืนยัน
+        และหน้าประวัติที่เก็บเลขอ้างอิงของโพยไว้ใช้ตรวจผลย้อนหลัง เพราะสิ่งที่ทำให้ผู้เล่นใหม่เสียเงินโดยไม่จำเป็นมักไม่ใช่เลขที่เลือก แต่เป็นการกดยืนยันโดยยังไม่รู้ว่ารายการตรงหน้าคิดผลจากอะไร เช่น
+        ส่งโพยผิดงวดเพราะไม่ได้ดูเวลาปิดรับของรายการนั้น เลือกโต๊ดทั้งที่ตั้งใจแทงตรง กรอกเลขไปโดยยังไม่ได้ดูว่าเลขนั้นถูกจำกัดยอดหรือปรับอัตราจ่ายไปแล้ว
+        อ่านยอดรวมของโพยผิดช่องจนใช้เงินเกินงบที่ตั้งไว้ หรือกดส่งซ้ำเพราะไม่ได้รอให้ระบบแสดงสถานะของรายการเดิมก่อน
+        ความเข้าใจคลาดเคลื่อนเหล่านี้แก้ทีหลังไม่ได้เมื่อโพยเข้าสู่ระบบและงวดปิดรับไปแล้ว แต่ป้องกันได้เกือบทั้งหมดด้วยการเปิดดูหนึ่งรอบก่อน สี่ขั้นด้านล่างคือสิ่งที่ควรไล่ดูให้ครบ
+        และเป็นลำดับเดียวกับที่ใช้จริงเมื่อซื้อหวยด้วยเงินของตัวเอง
       </p>
 
-      <div class="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2" role="list" aria-label="สี่ขั้นตอนที่ควรศึกษาก่อนเล่นด้วยเงินจริงบน PRODED888">
+      <div class="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2" role="list" aria-label="สี่ขั้นตอนที่ควรศึกษาก่อนซื้อหวยด้วยเงินจริงบน หวยพร้อม">
         {
           trySteps.map((step) => (
-            <div role="listitem" class="rounded-2xl border border-[#8f6614]/35 bg-[#18225c]/70 p-5 transition-colors duration-300 hover:border-[#e3b53f]/55">
-              <p class="mb-2 flex items-center gap-3 text-base font-bold text-[#f8de91]">
+            <div role="listitem" class="rounded-2xl border border-[#1e7a3a]/35 bg-[#10361c]/70 p-5 transition-colors duration-300 hover:border-[#22c55e]/55">
+              <p class="mb-2 flex items-center gap-3 text-base font-bold text-[#6ee7a0]">
                 <span aria-hidden="true" class="text-2xl">
                   {step.icon}
                 </span>
                 {step.label}
               </p>
-              <p class="text-left text-base leading-relaxed text-[#ece0c2]">{step.detail}</p>
+              <p class="text-left text-base leading-relaxed text-[#d8efdc]">{step.detail}</p>
             </div>
           ))
         }
       </div>
 
-      <h2 class={`mt-8 mb-6 ${sectionHeadingClass}`}>สามชั้นข้อมูลที่ควรอ่านให้จบในช่วงทดลองก่อนลงเดิมพันรอบแรก</h2>
+      <h2 class={`mt-8 mb-6 ${sectionHeadingClass}`}>สามชั้นข้อมูลที่ควรอ่านให้จบในช่วงทดลองก่อนกรอกโพยรอบแรก</h2>
 
-      <p class="mb-4 text-left text-base leading-relaxed text-[#ece0c2]">
-        เกมแต่ละหมวดใช้วิธีตัดสินผลคนละแบบ สล็อตวัดผลจากสัญลักษณ์ที่ระบบสุ่มลงบนวงล้อแล้วเทียบกับตารางจ่ายที่เกมนั้นประกาศไว้ บาคาร่านับแต้มจากไพ่ที่เปิดตามกติกาของโต๊ะ
-        ส่วนคาสิโนสดเดินตามขั้นตอนของโต๊ะจริงที่ถ่ายทอดมา และเพราะระบบรวมเกมยอดนิยมจากหลายผู้ให้บริการไว้ด้วยกัน เกมสองเกมที่หน้าตาใกล้เคียงกันจึงอาจใช้กติกาและอัตราจ่ายคนละชุด
-        จึงไม่ควรเทียบความเสี่ยงข้ามเกมหรือข้ามหมวดกันตรง ๆ สิ่งที่ควรได้จากการทดลองจึงเป็นความเข้าใจว่ารอบที่กำลังจะเริ่มนั้นคิดผลจากอะไร ไม่ใช่การจำว่าปุ่มอยู่ตรงไหน เรื่องที่ควรอ่านให้จบมีสามชั้น
-        ชั้นแรกคือกติกาของเกมและรูปแบบเดิมพันที่เปิดให้เลือก ทั้งเดิมพันหลักและเดิมพันเสริมที่บางโต๊ะมีเพิ่มมา ซึ่งระบบตัดสินให้เองตามกติกาที่ประกาศไว้
-        ชั้นที่สองคืออัตราจ่ายของแต่ละรูปแบบและลักษณะความเสี่ยงที่มาคู่กัน รูปแบบที่อัตราจ่ายสูงกว่ามักมาพร้อมโอกาสออกที่น้อยกว่า สองอย่างนี้อธิบายเกมได้ตรงกว่าคำโฆษณา
-        และให้ประสบการณ์คนละแบบเมื่อใช้งบเท่ากัน ชั้นที่สามคือขอบเขตของรายการ ทั้งวงเงินขั้นต่ำต่อรอบ วงเงินสูงสุดต่อรอบ และเพดานการจ่ายของเกม สามชั้นนี้เป็นค่าเฉพาะของเกมนั้น
-        จึงต้องอ่านจากหน้าข้อมูลที่ระบบแสดงจริง ไม่ใช่จากที่จำมาจากเกมอื่น เรื่องสุดท้ายในขั้นนี้คือการอ่านยอดให้ถูกช่อง เดิมพันต่อหนึ่งรูปแบบกับยอดรวมต่อรอบเป็นคนละยอด
-        และเมื่อวางหลายรูปแบบพร้อมกันในรอบเดียว ยอดรวมจะโตเร็วกว่าที่คาดไว้เสมอ การตั้งค่าให้ต่ำไว้ตอนเริ่มจึงช่วยได้จริง ฝั่งบัญชีใช้หลักเดียวกันแต่คนละหน่วยวัด คือชื่อบัญชี จำนวนเงิน ข้อมูลรับเงิน
-        และเงื่อนไขโปรโมชั่นที่ผูกกับรายการนั้น ต้องตรงกันครบทั้งสี่อย่างก่อนกดยืนยัน
+      <p class="mb-4 text-left text-base leading-relaxed text-[#d8efdc]">
+        หวยแต่ละประเภทออกผลกันคนละแบบและคนละเวลา หวยรัฐบาลออกตามงวดที่ประกาศไว้ล่วงหน้า หวยต่างประเทศอย่างฮานอยและลาวเดินตามรอบของรายการนั้นในแต่ละวัน หวยหุ้นอ้างอิงตัวเลขจากตลาดตามเงื่อนไขที่ระบบระบุ
+        ส่วนยี่กีมีรอบถี่กว่ามากภายในวันเดียว เมื่อระบบรวมหลายประเภทไว้ด้วยกัน รายการสองรายการที่อยู่ใกล้กันบนหน้าจอจึงอาจใช้เวลาปิดรับและอัตราจ่ายคนละชุด สิ่งที่ควรได้จากการทดลองจึงเป็นความเข้าใจว่าโพยที่กำลังจะส่งนั้นผูกกับงวดไหน
+        ไม่ใช่การจำว่าปุ่มอยู่ตรงไหน เรื่องที่ควรอ่านให้จบมีสามชั้น ชั้นแรกคือรายการและงวด ทั้งชื่อหวย วันที่ออกรางวัล และเวลาปิดรับ ซึ่งเป็นชั้นที่ผิดแล้วเสียทั้งโพยเพราะเลขถูกส่งไปอยู่คนละงวดกับที่ตั้งใจ
+        ชั้นที่สองคือรูปแบบเดิมพันกับอัตราจ่ายที่มาคู่กัน เลข 2 ตัวกับเลข 3 ตัวคิดผลคนละแบบ แทงตรงกับโต๊ดนับผลคนละเงื่อนไขและจ่ายคนละอัตรา ส่วนเลขวิ่งใช้ตัวเลขตัวเดียวจึงมีลักษณะความเสี่ยงต่างออกไปอีก
+        รูปแบบที่อัตราจ่ายสูงกว่ามักมาพร้อมเงื่อนไขการนับผลที่แคบกว่า สองอย่างนี้ต้องอ่านคู่กันเสมอ และไม่ควรถือว่าอัตราจ่ายสูงหมายถึงมีโอกาสถูกรางวัลมากขึ้น
+        ชั้นที่สามคือขอบเขตของเลขและของโพย ทั้งสถานะเลขอั้น วงเงินที่รับต่อเลข ยอดขั้นต่ำต่อรายการ และยอดรวมทั้งโพย ค่าเหล่านี้เป็นค่าเฉพาะของงวดนั้นและเปลี่ยนได้ระหว่างวัน
+        จึงต้องอ่านจากหน้าที่ระบบแสดงจริง ไม่ใช่จากที่จำมาจากงวดก่อน เรื่องสุดท้ายในขั้นนี้คือการอ่านยอดให้ถูกช่อง จำนวนเงินต่อหนึ่งเลขกับยอดรวมของทั้งโพยเป็นคนละยอด
+        และเมื่อกรอกหลายเลขพร้อมกัน ยอดรวมจะโตเร็วกว่าที่คาดไว้เสมอ การตั้งยอดต่อเลขให้ต่ำไว้ตอนเริ่มจึงช่วยได้จริง
       </p>
 
-      <h2 class={`mt-8 mb-6 ${sectionHeadingClass}`}>สิ่งที่การทดลองบอกได้ และสิ่งที่บอกไม่ได้</h2>
+      <h2 class={`mt-8 mb-6 ${sectionHeadingClass}`}>สิ่งที่การทดลองระบบบอกได้ และสิ่งที่บอกไม่ได้</h2>
 
-      <p class="mb-4 text-left text-base leading-relaxed text-[#ece0c2]">
-        สิ่งที่การทดลองบอกได้คือกลไกและขั้นตอน ได้แก่ วิธีอ่านกติกาและเงื่อนไขของแต่ละรูปแบบเดิมพัน ความต่างระหว่างเดิมพันต่อหนึ่งรูปแบบกับยอดรวมต่อรอบ ลำดับหน้าจอตั้งแต่เลือกหมวดเกมจนถึงหน้าสรุป
-        ตำแหน่งที่ระบบแสดงอัตราจ่ายกับวงเงินขั้นต่ำ และความรู้สึกตอนใช้งานว่าจังหวะของเกมนั้นเข้ากับความชอบของเราหรือไม่ เมื่อรู้สิ่งเหล่านี้แล้ว การเล่นจริงจะเหลือแค่การตัดสินใจเรื่องวงเงินและงบ
-        ไม่ต้องเสียสมาธิไปกับการหาปุ่มหรือเดาว่ารอบที่ผ่านไปนั้นตัดสินจากอะไร สิ่งที่การทดลองบอกไม่ได้เลยคือผลของรอบถัดไปเมื่อลงด้วยเงินจริง ผลของแต่ละรอบไม่ได้ถูกกำหนดโดยรอบก่อนหน้า
-        และเครดิตในช่วงทดลองไม่ใช่เงินจริง ถอนไม่ได้ และไม่มีผลต่อยอดเงินในบัญชีจริง ตัวเลขที่เห็นในช่วงทดลองจึงไม่ใช่ตัวแทนของผลจริงหรือของอัตราการจ่ายที่จะได้รับ
-        ช่วงที่ผลออกทางเดียวกันติดกันหลายรอบก็เป็นเรื่องของความผันผวนระยะสั้น ไม่ใช่สัญญาณว่ารอบถัดไปจะออกทางใด และการนับสถิติจากรอบที่ผ่านมาก็ไม่ได้ทำให้คาดเดารอบหน้าได้แม่นขึ้น
-        คำว่าแตกง่ายและจ่ายจริงก็เป็นถ้อยคำทางการตลาดที่ใช้สื่อถึงความน่าสนใจของเกมและรูปแบบการให้บริการเท่านั้น ไม่ใช่การรับประกันผลของเกม ระยะเวลาทำรายการ หรือรายได้
-        ทุกอย่างจึงควรตรวจจากข้อมูลและสถานะที่ระบบแสดงจริง ไม่ใช่จากคำโฆษณา
+      <p class="mb-4 text-left text-base leading-relaxed text-[#d8efdc]">
+        สิ่งที่การทดลองบอกได้คือกลไกและขั้นตอน ได้แก่ วิธีหาชื่อรายการกับเวลาปิดรับของแต่ละงวด ความต่างระหว่างเลข 2 ตัว เลข 3 ตัว และเลขวิ่ง ความต่างระหว่างแทงตรงกับโต๊ด ตำแหน่งที่ระบบแสดงอัตราจ่ายและสถานะเลขอั้น
+        ลำดับหน้าจอตั้งแต่เลือกประเภทหวยจนถึงหน้าสรุปโพย และจุดที่เก็บเลขอ้างอิงไว้ตรวจผลย้อนหลัง เมื่อรู้สิ่งเหล่านี้แล้ว การซื้อจริงจะเหลือแค่การตัดสินใจเรื่องเลขและงบ
+        ไม่ต้องเสียสมาธิไปกับการหาปุ่มหรือเดาว่ารายการที่ส่งไปนั้นนับผลอย่างไร สิ่งที่การทดลองบอกไม่ได้เลยคือผลของงวดถัดไป เลขที่ออกในงวดหนึ่งไม่ได้ถูกกำหนดจากงวดก่อนหน้า
+        และเครดิตที่ใช้ในช่วงทดลองไม่ใช่เงินจริง ถอนไม่ได้ และไม่มีผลต่อยอดในบัญชีจริง ตัวเลขที่เห็นระหว่างทดลองจึงไม่ใช่ตัวแทนของผลจริงหรือของอัตราจ่ายที่จะได้รับ
+        ช่วงที่เลขกลุ่มใดออกติดกันหลายงวดก็เป็นเรื่องของความบังเอิญในระยะสั้น ไม่ใช่สัญญาณว่างวดถัดไปจะออกทางใด และการนับสถิติจากงวดที่ผ่านมาก็ไม่ได้ทำให้คาดเดางวดหน้าได้แม่นขึ้น
+        คำว่าไม่อั้นเลขและจ่ายเยอะก็เป็นถ้อยคำที่ใช้สื่อถึงรูปแบบการให้บริการและอัตราจ่ายที่เว็บไซต์กำหนดเท่านั้น ไม่ใช่การรับประกันว่าทุกเลขจะรับไม่จำกัด และไม่ใช่การรับประกันผลรางวัลหรือรายได้
+        ทุกอย่างจึงควรตรวจจากสถานะและราคาที่ระบบแสดงจริงในขณะนั้น ไม่ใช่จากคำโฆษณา
       </p>
 
-      <p class="mb-2 text-left text-base leading-relaxed text-[#ece0c2]">
-        เมื่อพร้อมจะขยับไปเล่นจริง สิ่งที่ควรจัดให้เรียบร้อยก่อนมีสามอย่าง อย่างแรกคือบัญชี ควรใช้ข้อมูลที่ตรงกับตอนสมัคร ตั้งรหัสผ่านที่คาดเดายากและไม่ซ้ำกับบริการอื่น
-        และเข้าใช้งานผ่านช่องทางหลักที่เว็บไซต์กำหนดเท่านั้น โดยตรวจชื่อเว็บไซต์และการเชื่อมต่อแบบ HTTPS ทุกครั้งก่อนกรอกข้อมูล อย่างที่สองคืองบประมาณ ควรกำหนดงบต่อวันหรือต่อช่วงเวลาไว้ล่วงหน้า
-        ใช้เฉพาะเงินที่ไม่กระทบค่าใช้จ่ายจำเป็น หยุดเมื่อถึงวงเงินที่ตั้งไว้ และไม่เพิ่มเดิมพันเพื่อตามคืนยอดเสีย อย่างที่สามคือการติดตามรายการ
-        หลังทำรายการหรือรับสิทธิ์โปรโมชั่นแล้วให้ยึดยอดคงเหลือและสถานะจากหน้าบัญชีเป็นหลัก หลีกเลี่ยงการส่งคำขอซ้ำขณะที่รายการเดิมยังดำเนินการอยู่ และหากพบรายการที่ผิดปกติ ให้เตรียมเวลา จำนวนเงิน
-        และเลขอ้างอิงไว้แจ้งทีมงานตั้งแต่ข้อความแรก โดยไม่เปิดเผยรหัสผ่านหรือรหัสยืนยันแก่ผู้ใด
+      <p class="mb-2 text-left text-base leading-relaxed text-[#d8efdc]">
+        เมื่อพร้อมจะขยับไปซื้อจริง สิ่งที่ควรจัดให้เรียบร้อยก่อนมีสามอย่าง อย่างแรกคือบัญชี ควรใช้ข้อมูลที่ตรงกับตอนสมัคร ตั้งรหัสผ่านที่คาดเดายากและไม่ซ้ำกับบริการอื่น
+        และเข้าใช้งานผ่านช่องทางหลักที่เว็บไซต์กำหนดเท่านั้น โดยตรวจชื่อเว็บไซต์และการเชื่อมต่อแบบ HTTPS ทุกครั้งก่อนกรอกข้อมูล อย่างที่สองคืองบประมาณ ควรกำหนดงบต่อวันหรือต่องวดไว้ล่วงหน้า
+        ใช้เฉพาะเงินที่ไม่กระทบค่าใช้จ่ายจำเป็น หยุดเมื่อถึงวงเงินที่ตั้งไว้ และไม่เพิ่มยอดในงวดถัดไปเพื่อตามคืนยอดที่เสียไปแล้ว อย่างที่สามคือการติดตามรายการ
+        หลังส่งโพยหรือรับสิทธิ์โปรโมชั่นแล้วให้ยึดสถานะและยอดคงเหลือจากหน้าบัญชีเป็นหลัก หลีกเลี่ยงการส่งคำขอซ้ำขณะที่รายการเดิมยังดำเนินการอยู่ และหากพบรายการที่ผิดปกติ ให้เตรียมเวลา จำนวนเงิน
+        และเลขอ้างอิงของโพยไว้แจ้งทีมงานตั้งแต่ข้อความแรก โดยไม่เปิดเผยรหัสผ่านหรือรหัสยืนยันแก่ผู้ใด
       </p>
     </div>
   </ContentBox>

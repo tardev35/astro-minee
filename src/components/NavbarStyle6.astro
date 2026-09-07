@@ -19,29 +19,32 @@ const isActive = (path: string) => isActivePath(currentPath, path);
 // are off, so /register and /login exist only as the pinned buttons below and
 // /ทางเข้า keeps its place in the menu.
 //
-// DIAMOND789 is a slot/casino brand, not a lottery one: /ตรวจหวย and /แนวทาง
-// are parked in src/pages-disabled/ this round, so there are no rows for them
-// here. A link to a route that does not exist fails the build.
+// หวยพร้อม is a lottery brand, so /แนวทาง is routed and linked here. /ตรวจหวย is
+// NOT: the operator left it parked in src/pages-disabled/ this round, so there is
+// no row for it — a link to a route that does not exist fails the build.
 //
-// The icon is its own aria-hidden <span>, never concatenated into `name`: an
+// Icons are chosen for a lottery brand, not the slot brand this variant last
+// carried: 🎫 for /ทดลองเล่น rather than a slot machine, 📊 for the statistics
+// page. Each is its own aria-hidden <span>, never concatenated into `name` — an
 // emoji inside the label puts "house" into the accessible name of the link.
 const links = [
   { name: "หน้าแรก", path: "/", icon: "🏠" },
   { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
-  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
+  { name: "แนวทาง", path: "/แนวทาง", icon: "📊" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎫" },
   { name: "ทางเข้า", path: "/ทางเข้า", icon: "🚪" },
-  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "💎" },
-  { name: "ติดต่อเรา", path: "/contact-us", icon: "📞" },
+  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "🏛️" },
+  { name: "ติดต่อเรา", path: "/contact-us", icon: "💬" },
 ];
 
-const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร Daimond789 คำว่า aimond เป็นสีเงินเงาโลหะ ส่วนตัว D และเลข 789 เป็นสีชมพูบานเย็นไล่เฉดม่วง ด้านซ้ายเป็นเพชรเจียระไนสีขาวประกายวาว ด้านล่างเป็นข้อความ GAME CASIO ONLINE AND SPORT BETTING`;
+const logoAlt = `โลโก้ ${BRAND_NAME} เป็นตัวอักษรไทยหนาสองบรรทัด บรรทัดบนเขียนว่า หวย บรรทัดล่างเขียนว่า พร้อม มีเครื่องหมายถูกสีแดงขนาดใหญ่พาดเฉียงขึ้นทางขวาคร่อมตัวอักษร และมีสัญลักษณ์วงกลมเล็กสีเข้มคั่นอยู่ระหว่างสองบรรทัด`;
 ---
 
 <header class="sticky top-0 z-50 w-full font-sans shadow-lg">
   <div class="pointer-events-none absolute top-0 left-0 z-50 hidden h-0 w-full items-start justify-center lg:flex">
     <div
-      class="pointer-events-auto flex h-[65px] w-[130px] items-center justify-center rounded-b-3xl border-x border-b border-[#f30d8c] bg-gradient-to-b from-[#5c0a33] to-[#14060f] shadow-[0_5px_18px_rgba(243,13,140,0.45)]">
-      <a href="/" class="drop-shadow-[0_0_9px_rgba(255,92,184,0.45)] transition-transform hover:scale-110">
+      class="pointer-events-auto flex h-[65px] w-[130px] items-center justify-center rounded-b-3xl border-x border-b border-[#22c55e] bg-gradient-to-b from-[#10361c] to-[#04140a] shadow-[0_5px_18px_rgba(34,197,94,0.45)]">
+      <a href="/" class="drop-shadow-[0_0_9px_rgba(110,231,160,0.45)] transition-transform hover:scale-110">
         <Picture
           src={mainLogo!}
           alt={logoAlt}
@@ -58,21 +61,21 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร Daimond7
   </div>
 
   <aside
-    class="fixed top-1/2 left-3 z-40 hidden h-[500px] w-[92px] -translate-y-1/2 flex-col items-center justify-center rounded-2xl border border-[#f30d8c]/50 bg-[#14060f]/95 p-2 shadow-[5px_0_22px_rgba(7,3,8,0.8)] backdrop-blur-md lg:flex"
+    class="fixed top-1/2 left-3 z-40 hidden h-[540px] w-[92px] -translate-y-1/2 flex-col items-center justify-center rounded-2xl border border-[#22c55e]/50 bg-[#04140a]/95 p-2 shadow-[5px_0_22px_rgba(2,10,5,0.8)] backdrop-blur-md lg:flex"
     aria-label={`เมนูหลัก ${BRAND_NAME}`}>
     <div class="relative flex h-full w-full flex-col gap-2 overflow-hidden rounded-xl">
       {
         links.map((link) => (
           <a
             href={link.path}
-            class={`group relative flex h-full w-full flex-col items-center justify-center rounded-lg transition-all ${isActive(link.path) ? "bg-[#5c0a33]" : "hover:bg-[#5c0a33]/70"}`}>
-            <span aria-hidden="true" class="mb-1 text-3xl drop-shadow-md transition-transform group-hover:scale-110">
+            class={`group relative flex h-full w-full flex-col items-center justify-center rounded-lg transition-all ${isActive(link.path) ? "bg-[#10361c]" : "hover:bg-[#10361c]/70"}`}>
+            <span aria-hidden="true" class="mb-1 text-2xl drop-shadow-md transition-transform group-hover:scale-110">
               {link.icon ?? "🔗"}
             </span>
-            <span class={`text-xs font-bold transition-colors ${isActive(link.path) ? "text-[#ff5cb8]" : "text-[#e7bfd6] group-hover:text-[#ff5cb8]"}`}>{link.name}</span>
+            <span class={`text-xs font-bold transition-colors ${isActive(link.path) ? "text-[#6ee7a0]" : "text-[#9fc8ab] group-hover:text-[#6ee7a0]"}`}>{link.name}</span>
             <div
               aria-hidden="true"
-              class={`absolute top-0 left-0 h-full w-[3px] origin-top bg-gradient-to-b from-[#f30d8c] to-[#ff5cb8] transition-transform duration-300 ${isActive(link.path) ? "scale-y-100" : "scale-y-0 group-hover:scale-y-100"}`}
+              class={`absolute top-0 left-0 h-full w-[3px] origin-top bg-gradient-to-b from-[#22c55e] to-[#6ee7a0] transition-transform duration-300 ${isActive(link.path) ? "scale-y-100" : "scale-y-0 group-hover:scale-y-100"}`}
             />
           </a>
         ))
@@ -80,11 +83,11 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร Daimond7
     </div>
   </aside>
 
-  <nav class="relative z-40 flex h-[60px] items-center justify-between border-b border-[#f30d8c]/45 bg-[#14060f] px-3 shadow-xl lg:hidden" aria-label={`เมนูหลัก ${BRAND_NAME}`}>
+  <nav class="relative z-40 flex h-[60px] items-center justify-between border-b border-[#22c55e]/45 bg-[#04140a] px-3 shadow-xl lg:hidden" aria-label={`เมนูหลัก ${BRAND_NAME}`}>
     <button id="hamburger-btn" class="flex flex-col items-center justify-center space-y-1.5 p-2" aria-label="เปิดเมนู" aria-controls="mobile-sidebar" aria-expanded="false">
-      <span class="hamburger-line h-0.5 w-6 origin-center bg-[#ff5cb8] transition-all duration-300"></span>
-      <span class="hamburger-line h-0.5 w-6 bg-[#ff5cb8] transition-all duration-300"></span>
-      <span class="hamburger-line h-0.5 w-6 origin-center bg-[#ff5cb8] transition-all duration-300"></span>
+      <span class="hamburger-line h-0.5 w-6 origin-center bg-[#6ee7a0] transition-all duration-300"></span>
+      <span class="hamburger-line h-0.5 w-6 bg-[#6ee7a0] transition-all duration-300"></span>
+      <span class="hamburger-line h-0.5 w-6 origin-center bg-[#6ee7a0] transition-all duration-300"></span>
     </button>
 
     <a href="/" class="flex-shrink-0 transition-transform hover:scale-105">
@@ -103,7 +106,7 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร Daimond7
 
     <a
       href="/login"
-      class="flex h-[32px] items-center justify-center rounded border border-[#f30d8c]/60 bg-gradient-to-r from-[#ff5cb8] to-[#b80568] px-4 text-xs font-bold text-[#fff0f8] shadow-[0_0_12px_rgba(243,13,140,0.45)] transition-transform active:scale-95">
+      class="flex h-[32px] items-center justify-center rounded border border-[#22c55e]/60 bg-[#0a2413] px-4 text-xs font-bold text-[#6ee7a0] shadow-[0_0_12px_rgba(34,197,94,0.45)] transition-transform active:scale-95">
       เข้าสู่ระบบ
     </a>
   </nav>
@@ -112,13 +115,13 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร Daimond7
 
   <div
     id="mobile-sidebar"
-    class="fixed top-0 left-0 z-50 h-screen w-[260px] -translate-x-full transform overflow-y-auto border-r border-[#f30d8c]/40 bg-[#14060f] shadow-[10px_0_30px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out lg:hidden">
+    class="fixed top-0 left-0 z-50 h-screen w-[260px] -translate-x-full transform overflow-y-auto border-r border-[#22c55e]/40 bg-[#04140a] shadow-[10px_0_30px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out lg:hidden">
     <div class="flex flex-col space-y-2.5 px-4 pt-16 pb-8">
       {
         links.map((link) => (
           <a
             href={link.path}
-            class={`sidebar-item flex items-center rounded-lg border px-4 py-3 transition-all ${isActive(link.path) ? "border-[#f30d8c] bg-[#5c0a33] text-[#ff5cb8] shadow-inner" : "border-transparent bg-white/5 text-[#e7bfd6] hover:bg-white/10 hover:text-[#ff5cb8]"}`}>
+            class={`sidebar-item flex items-center rounded-lg border px-4 py-3 transition-all ${isActive(link.path) ? "border-[#22c55e] bg-[#10361c] text-[#6ee7a0] shadow-inner" : "border-transparent bg-white/5 text-[#9fc8ab] hover:bg-white/10 hover:text-[#6ee7a0]"}`}>
             <span aria-hidden="true" class="mr-3 text-xl">
               {link.icon ?? "🔗"}
             </span>
@@ -127,11 +130,11 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร Daimond7
         ))
       }
 
-      <div class="mt-5 flex flex-col gap-2 border-t border-[#f30d8c]/45 pt-5">
+      <div class="mt-5 flex flex-col gap-2 border-t border-[#22c55e]/45 pt-5">
         <a
           href="/register"
-          class="sidebar-item flex justify-center gap-1.5 rounded border border-[#ff5cb8]/60 bg-gradient-to-r from-[#ff8ccc] via-[#f30d8c] to-[#b312ac] py-3 text-sm font-bold text-[#2a0618] shadow-md transition-transform active:scale-95">
-          <span aria-hidden="true">💎</span> สมัครสมาชิกใหม่
+          class="sidebar-item flex justify-center gap-1.5 rounded border border-[#ff4d4a]/60 bg-gradient-to-r from-[#ff4d4a] via-[#e10600] to-[#8f0402] py-3 text-sm font-bold text-[#fff5f5] shadow-md transition-transform active:scale-95">
+          <span aria-hidden="true">🎫</span> สมัครสมาชิกใหม่
         </a>
       </div>
     </div>
@@ -140,12 +143,12 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร Daimond7
   <div class="fixed top-4 right-6 z-50 hidden items-center gap-3 lg:flex">
     <a
       href="/login"
-      class="group flex items-center gap-1.5 rounded border border-[#f30d8c]/60 bg-[#2b0820]/90 px-6 py-2 text-sm font-bold text-[#ff5cb8] shadow-md backdrop-blur-sm transition-all hover:border-[#ff5cb8] hover:bg-[#6d0d45]/90">
+      class="group flex items-center gap-1.5 rounded border border-[#22c55e]/60 bg-[#0a2413]/90 px-6 py-2 text-sm font-bold text-[#6ee7a0] shadow-md backdrop-blur-sm transition-all hover:border-[#6ee7a0] hover:bg-[#10361c]/90">
       <span aria-hidden="true">🔒</span> เข้าสู่ระบบ
     </a>
     <a
       href="/register"
-      class="group flex items-center gap-1.5 rounded border border-[#ff5cb8]/60 bg-gradient-to-r from-[#ff8ccc] via-[#f30d8c] to-[#b312ac] px-6 py-2 text-sm font-bold text-[#2a0618] shadow-[0_0_15px_rgba(243,13,140,0.32)] transition-all hover:scale-105">
+      class="group flex items-center gap-1.5 rounded border border-[#ff4d4a]/60 bg-gradient-to-r from-[#ff4d4a] via-[#e10600] to-[#8f0402] px-6 py-2 text-sm font-bold text-[#fff5f5] shadow-[0_0_15px_rgba(225,6,0,0.32)] transition-all hover:scale-105">
       <span aria-hidden="true">👤</span> สมัครสมาชิก
     </a>
   </div>
@@ -194,6 +197,12 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร Daimond7
   }
   .sidebar-item:nth-child(6) {
     transition-delay: 0.35s;
+  }
+  .sidebar-item:nth-child(7) {
+    transition-delay: 0.4s;
+  }
+  .sidebar-item:nth-child(8) {
+    transition-delay: 0.45s;
   }
 
   @media (prefers-reduced-motion: reduce) {
