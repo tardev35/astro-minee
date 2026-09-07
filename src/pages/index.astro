@@ -1,17 +1,17 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/AnnouncementHuay.astro";
-import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
+import Announcement from "../components/AnnouncementCyber.astro";
+import ContentBoxPremium from "../components/ContentBoxPremium.astro";
 import ContentBox from "../components/ContentBox.astro";
-import ContentBox3ThreeNeumorphism from "../components/ContentBox3ThreeNeumorphism.astro";
-import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
-import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
-import ContentBoxTwoNeumorphism from "../components/ContentBoxTwoNeumorphism.astro";
-import ContentBoxSevenThreeFloatingBadge from "../components/ContentBoxSevenThreeFloatingBadge.astro";
-import LottoGrid from "../components/LottoGrid.astro";
+import ProviderGrid from "../components/ProviderGrid.astro";
+import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
+import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
+import ContentBox3ThreePremium from "../components/ContentBox3ThreePremium.astro";
+import ContentBoxSevenThree from "../components/ContentBoxSevenThree.astro";
+import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
+import Faq from "../components/Faq.astro";
+import LatestWinners4 from "../components/LatestWinners4.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
-import LatestWinnersHuay from "../components/LatestWinnersHuay.astro";
-import Faq3 from "../components/Faq3.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
 import Navfoot from "../components/Navfoot.astro";
@@ -22,57 +22,57 @@ import { pageGraph } from "../lib/schema";
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
 // two of those per rebrand — both are spent here.
 //
-// slide1 prints "สมาชิกใหม่ / รับเครดิตฟรี" over a gold 88 the size of a
-// third of the frame, with the entitlement itself only in the small line
-// underneath: a headline number that means nothing until you read the condition
-// attached to it, which is docx H2-4's point exactly.
-// slide2 prints "วงล้อเลขมงคล / ลุ้นเครดิต 188" over a wheel whose segments run
-// 18 / 38 / 88 / 188 เครดิต, and its bottom strip reads
-// หวยรัฐบาล หวยฮานอย หวยลาว หวยหุ้น — every market on one screen, the same shape
-// as docx H2-6.
-// slide3 (เช็กอิน 5 วัน) and slide4 (ชวนเพื่อนลุ้นเฮง) stay unused on this page
-// and keep rendering in SmoothCarousel and on /promotion.
+// slide1 is a seven-day check-in calendar whose reward is a mystery box: the
+// offer is real but what it pays is behind the condition, which is docx H2-3's
+// point about reading a promotion's terms rather than its headline number.
+// slide2 is a DAILY MISSION checklist with four ticked items and a phone in
+// hand — a member's own list of what has been done and what is still open,
+// the same shape as docx H2-6's "ตรวจสิทธิ์และประวัติรายการก่อนทำธุรกรรม".
+// slide3 (เล่นง่าย ลุ้นสนุกทุกวัน) and slide4 (ชวนเพื่อนรับรางวัล) stay unused
+// here and keep rendering in SmoothCarousel and on /promotion.
 //
 // banner2.png is NOT imported anywhere: it predates this asset drop.
 // banner1/banner1-mobile/og.png are the hero and the share card and belong to
 // MainLayout alone.
-import imgWelcomeCredit from "../assets/slide1.png";
-import imgLuckyWheel from "../assets/slide2.png";
+import imgCheckin from "../assets/slide1.png";
+import imgDailyMission from "../assets/slide2.png";
 
 // The docx "Main SEO" Title and H1, verbatim. They are the brand's own copy,
 // not a draft to tidy.
-const pageTitle = "หวยพร้อม | เว็บแทงหวยออนไลน์จ่ายเยอะ ไม่อั้นเลข รวมครบจบในที่เดียว";
-const pageHeading = "หวยพร้อม เว็บแทงหวยออนไลน์จ่ายเยอะ ไม่อั้นเลข รวมครบจบในที่เดียว";
+const pageTitle = "RUAYRUAY888 | รวมค่ายเกมพนันจ่ายดี โปรแรง ฝากถอนวอลเลทสะดวก";
+const pageHeading = "RUAYRUAY888 รวมค่ายเกมพนันจ่ายดี โปรแรง ฝากถอนวอลเลทสะดวก";
 
 // The docx Main SEO Meta Description, verbatim at the length it was written
-// (113 characters). DESC_MIN does not apply to the home page — verify-build.mjs
+// (120 characters). DESC_MIN does not apply to the home page — verify-build.mjs
 // exempts any description that appears literally in src/assets/content.txt,
 // precisely so the brand's own copy ships unpadded. Do not top it up.
-const pageDescription = "หวยพร้อม เว็บแทงหวยออนไลน์รวมหลายประเภท พร้อมอัตราจ่ายตามเงื่อนไข ตรวจเลขอั้น โพย ผลรางวัล และสถานะรายการได้สะดวก";
+const pageDescription = "RUAYRUAY888 รวมค่ายเกมพนันหลายรูปแบบ โปรแรงตามเงื่อนไข รองรับ Wallet พร้อมระบบบัญชีใช้งานง่าย และตรวจสถานะรายการได้สะดวก";
 
-// Each alt is the text actually printed on that slide plus the scene around it,
-// read off the artwork itself.
-const altWelcomeCredit =
-  "แบนเนอร์โปรโมชั่น หวยพร้อม หัวข้อตัวหนาสองบรรทัดเขียนว่า สมาชิกใหม่ และ รับเครดิตฟรี ถัดลงมาเป็นตัวเลข 88 สีทองขนาดใหญ่ มีริบบิ้นสีแดงมุมขวาเขียนว่า NEW MEMBER ใต้ตัวเลขเขียนว่า รับสิทธิ์ต้อนรับสำหรับใช้ลุ้นหวยออนไลน์ ด้านล่างเป็นปุ่มสีแดงเขียนว่า สมัครเลย พร้อมลูกศร ใต้ปุ่มเป็นไอคอนสามอันเขียนว่า สมัครง่าย คู่กับรูปสายฟ้า ใช้งานสะดวก คู่กับรูปโทรศัพท์ และ ลุ้นได้ทุกวัน คู่กับรูปมงกุฎ ด้านบนกลางภาพเป็นโลโก้เขียนว่า หวย และ พร้อม พร้อมเครื่องหมายถูกสีแดง ใต้โลโก้เขียนว่า ลุ้นทุกความหวัง อยู่ใกล้แค่ปลายนิ้ว มุมบนขวาเขียนว่า ซื้อง่าย ตรวจผลเร็ว รางวัลจริง แน่นอน ข้อความด้านซ้ายเขียนว่า เลขดี ชีวิตดี เริ่มได้ที่ หวยพร้อม และ หวยไทย หวยรัฐบาล หวยฮานอย หวยลาว หวยหุ้น ด้านขวาเขียนว่า เสี่ยงโชค สร้างโอกาส ให้ชีวิต ในภาพเป็นผู้หญิงในชุดเลื่อมสีเขียวเข้มที่มีโลโก้ หวยพร้อม กำลังถือสลากกินแบ่งรัฐบาลเป็นพัดและชี้มือไปที่ตัวเลข ฉากหลังเป็นเส้นขอบฟ้าเมืองสีเขียวนีออนมีลูกบอลหวยหมายเลข 6 2 9 5 และ 8 กับเหรียญทองลอยอยู่";
+// Each alt is the Thai promotional text actually printed on that slide plus the
+// scene around it, read off the artwork itself. The wordmark baked into these
+// files belongs to an unrelated brand, so it is written as "โลโก้เว็บไซต์" and
+// never transcribed.
+const altCheckin =
+  "แบนเนอร์โปรโมชั่นโทนชมพูนีออน ด้านบนกลางภาพเป็นโลโก้เว็บไซต์บนพื้นดำ หัวข้อตัวหนาเขียนว่า เช็กอิน 7 วัน โดยเลข 7 เป็นตัวใหญ่ ใต้หัวข้อเป็นแถบสีชมพูเขียนว่า รับกล่องสุ่มโบนัสฟรี คู่กับไอคอนกล่องของขวัญ ถัดลงมาเป็นปฏิทินตั้งโต๊ะเจ็ดช่องเขียนว่า วันที่ 1 ถึง วันที่ 7 ทุกช่องมีเครื่องหมายถูกสีชมพู ด้านขวาเป็นตราวงกลมมีมงกุฎเขียนว่า ลุ้นรางวัลทุกวัน ข้อความลายมือด้านซ้ายเขียนว่า Play More Be Happier และ GOOD PLAY BRIGHTER DAYS มุมบนขวาเขียนว่า GAMES REWARDS FRIENDS BIGGER HAPPINESS แถบล่างสุดเขียนว่า MORE REWARDS A BRIGHTER YOU ในภาพเป็นผู้หญิงเกล้าผมสวมชุดเลื่อมสีเงินและต่างหูระย้า ด้านหน้ามีกล่องสุ่มสีดำพิมพ์โลโก้เว็บไซต์กับเครื่องหมายคำถาม กล่องของขวัญผูกโบว์ชมพู และเหรียญรูปมงกุฎวางอยู่ ฉากหลังเป็นซุ้มโค้งเรืองแสงสีชมพู";
 
-const altLuckyWheel =
-  "แบนเนอร์โปรโมชั่น หวยพร้อม หัวข้อตัวหนาสองบรรทัดเขียนว่า วงล้อเลขมงคล และ ลุ้นเครดิต 188 โดยเลข 188 เป็นสีทองมีมงกุฎอยู่ด้านบน ใต้หัวข้อเขียนว่า หมุนรับของรางวัล ก่อนซื้อหวยทุกวัน ด้านล่างเป็นปุ่มสีแดงเขียนว่า สิทธิ์พิเศษประจำวัน คู่กับไอคอนกล่องของขวัญ ด้านขวาบนเป็นวงล้อเสี่ยงโชคสีเขียวทองแบ่งเป็นช่องเขียนว่า 188 เครดิต 88 เครดิต 38 เครดิต 18 เครดิต ขอให้รวย ลุ้นโชค 2 เท่า เครดิตฟรี และ รางวัลพิเศษ ตรงกลางวงล้อเป็นโลโก้ หวยพร้อม มุมบนซ้ายเป็นโลโก้เขียนว่า หวย และ พร้อม พร้อมเครื่องหมายถูกสีแดง ข้อความด้านซ้ายเขียนว่า มากกว่าหวย คือความมั่นใจ และ เสี่ยงโชค สร้างโอกาส ให้ชีวิตดีขึ้น ด้านขวาเขียนว่า หมุนวันนี้ อาจเป็นคุณ ที่โชคดี แถบล่างสุดมีสี่หัวข้อเขียนว่า เล่นง่าย ไม่ยุ่งยาก จ่ายจริง มั่นใจได้ 100% รองรับมือถือ เล่นได้ทุกที่ ทุกเวลา และ หวยรัฐบาล หวยฮานอย หวยลาว หวยหุ้น ในภาพเป็นผู้หญิงในชุดเลื่อมสีเขียวเข้มที่มีโลโก้ หวยพร้อม กำลังถือลูกบอลหวยสีดำหมายเลข 8 และชี้มือมาข้างหน้า ฉากหลังเป็นแสงสีเขียวนีออนมีลูกบอลหวยหมายเลข 9 6 5 2 และ 8 เหรียญทอง ใบโคลเวอร์ และสลากกินแบ่งรัฐบาลกระจายอยู่";
+const altDailyMission =
+  "แบนเนอร์โปรโมชั่นโทนชมพูนีออน มุมบนซ้ายเป็นโลโก้เว็บไซต์บนพื้นดำ ใต้โลโก้เขียนว่า PLAY MORE WIN MORE หัวข้อตัวหนาด้านล่างเขียนว่า ภารกิจรายวัน ใต้หัวข้อเป็นแถบเขียนว่า ทำครบ รับเครดิตพิเศษทุกวัน ด้านซ้ายเป็นคลิปบอร์ดหัวข้อ DAILY MISSION มีรายการสี่บรรทัดเขียนว่า เข้าเล่นเกม ทำยอดเดิมพัน รับโบนัส และ ภารกิจพิเศษ ทุกบรรทัดมีเครื่องหมายถูกสีชมพู ด้านขวาเป็นการ์ดสามใบเขียนว่า BONUS FREE CREDIT และ CASH BACK พร้อมตราวงกลมมีมงกุฎเขียนว่า ของรางวัลเพียบ ข้อความลายมือเขียนว่า Daily Mission และ Good Game Better You แถบล่างสุดมีสี่ช่องเขียนว่า เล่น ลุ้น รับ และ ชนะ คู่กับไอคอนจอยเกม ลูกเต๋า กล่องของขวัญ และถ้วยรางวัล ในภาพเป็นผู้หญิงผมยาวสวมชุดวอร์มสีชมพูดำพิมพ์โลโก้เว็บไซต์ กำลังชี้มือมาข้างหน้าและถือโทรศัพท์ที่มีข้อความ PLAY ANYTIME ANYWHERE ฉากหลังมีลูกเต๋า จอยเกม และเหรียญรูปมงกุฎลอยอยู่";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq3's own default, so the rendered markup and the FAQ JSON-LD below come out
+// Faq's own default, so the rendered markup and the FAQ JSON-LD below come out
 // of the same array.
 const faqs = [
   {
-    q: "หวยพร้อม มีหวยประเภทไหนให้เลือกบ้าง?",
-    a: "ระบบอาจรวมหวยหลายประเภทตามรายการที่เว็บไซต์กำหนด ผู้ใช้ควรตรวจชื่อหวย รอบออกรางวัล เวลาเปิดปิด และรูปแบบเดิมพันก่อนกรอกโพยทุกครั้ง",
+    q: "RUAYRUAY888 มีเกมจากหลายค่ายหรือไม่?",
+    a: "ระบบอาจรวมเกมจากหลายผู้ให้บริการตามที่เว็บไซต์กำหนด ผู้เล่นควรตรวจประเภทเกม กติกา อัตราจ่าย และวงเงินของค่ายที่สนใจก่อนเริ่ม",
   },
   {
-    q: "หวยพร้อม ไม่อั้นเลขทุกตัวจริงหรือไม่?",
-    a: "ไม่ควรตีความว่าไม่มีข้อจำกัดทุกเลข เพราะบางงวดอาจมีเลขปิดรับ จำกัดยอด หรือปรับอัตราจ่าย ควรตรวจสถานะล่าสุดจากระบบก่อนยืนยันโพย",
+    q: "RUAYRUAY888 รองรับการฝากถอนผ่าน Wallet หรือไม่?",
+    a: "ระบบถูกนำเสนอว่ารองรับ Wallet ตามช่องทางที่กำหนด สมาชิกควรตรวจข้อมูลบัญชี จำนวนเงิน และสถานะรายการก่อนและหลังทำธุรกรรมทุกครั้ง",
   },
   {
-    q: "คำว่าจ่ายเยอะของ หวยพร้อม หมายถึงอะไร?",
-    a: "โดยทั่วไปสื่อถึงอัตราจ่ายที่เว็บไซต์กำหนด แต่ราคาอาจต่างกันตามประเภทหวยและเลขที่เลือก จึงควรดูอัตราจ่ายจริงในระบบก่อนทำรายการ",
+    q: "โปรแรงและคำว่าจ่ายดีของ RUAYRUAY888 รับประกันกำไรหรือไม่?",
+    a: "ไม่สามารถรับประกันกำไรจากโปรโมชั่นหรือเกมได้ ผู้เล่นควรดูเงื่อนไขโปร อัตราจ่าย ความเสี่ยง และกำหนดงบประมาณที่เหมาะสมก่อนเริ่มเล่น",
   },
 ];
 
@@ -91,39 +91,26 @@ const graph = pageGraph(Astro, {
 
   <SmoothCarousel />
 
-  <ContentBoxNeumorphism as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#d8efdc]">
-      <strong class="text-[#f5c451]">หวยพร้อม</strong> เป็นแพลตฟอร์มหวยออนไลน์ที่รวบรวมประเภทหวย ระบบกรอกโพย อัตราจ่าย และข้อมูลผลรางวัลไว้ในระบบเดียว รองรับการใช้งานผ่านมือถือ ช่วยให้สมาชิกเลือกเลข ตรวจงวด
-      และดูสถานะโพยได้สะดวก ก่อนยืนยันควรตรวจประเภทเดิมพัน จำนวนเงิน อัตราจ่าย และเงื่อนไขของเลขที่เลือกให้ครบทุกครั้ง
+  <ContentBoxPremium as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#f6dde8]">
+      <strong class="text-[#fdb4d4]">RUAYRUAY888</strong> เป็นแพลตฟอร์มพนันออนไลน์ที่รวบรวมเกมจากหลายค่ายไว้ในระบบเดียว พร้อมโปรโมชั่นหลายรูปแบบและช่องทาง Wallet สำหรับจัดการธุรกรรมผ่านมือถือ สมาชิกสามารถเลือกเกม ตรวจสอบโปรโมชั่น
+      และติดตามสถานะรายการได้สะดวก ก่อนเริ่มควรศึกษากติกา อัตราจ่าย และเงื่อนไขของแต่ละค่ายให้ครบถ้วน
     </p>
-  </ContentBoxNeumorphism>
+  </ContentBoxPremium>
 
-  <ContentBox as="h2" title="เลือกประเภทหวยให้ตรงกับงวดบน หวยพร้อม">
-    <p class="text-left text-base leading-relaxed text-[#d8efdc]">
-      ภายใน หวยพร้อม สามารถจัดหมวดหวยตามประเภทและรอบออกรางวัล ช่วยให้ผู้ใช้แยกงวดและเวลาเปิดรับได้ง่ายขึ้น ก่อนเลือกเลขควรตรวจชื่อรายการ วันที่ออกรางวัล และเวลาปิดรับให้ถูกต้อง
-      โดยเฉพาะผู้ที่ซื้อหวยหลายประเภทในวันเดียว เพื่อป้องกันการส่งโพยผิดงวด
+  <ContentBox as="h2" title="เปรียบเทียบค่ายเกมหลายรูปแบบได้บน RUAYRUAY888">
+    <p class="text-left text-base leading-relaxed text-[#f6dde8]">
+      ภายใน RUAYRUAY888 อาจมีทั้งสล็อต บาคาร่า คาสิโนสด และเกมรูปแบบอื่นจากหลายผู้ให้บริการ ผู้เล่นควรเปรียบเทียบกติกา ฟีเจอร์ อัตราจ่าย และวงเงินก่อนเลือก
+      เพราะค่ายที่ได้รับความนิยมไม่จำเป็นต้องเหมาะกับรูปแบบการเล่นของทุกคน
     </p>
   </ContentBox>
 
-  <LottoGrid />
+  <ProviderGrid />
 
-  <ContentBox3ThreeNeumorphism as="h2" title="เลข 2 ตัว 3 ตัว และวิ่งต่างกันอย่างไร" titleleft="เลข 2 ตัว" titlecenter="เลข 3 ตัว" titleright="เลขวิ่ง">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#d8efdc]">รูปแบบแทงหวยแต่ละประเภทมีวิธีคิดผลและอัตราจ่ายแตกต่างกัน เช่น เลข 2 ตัว เลข 3 ตัว หรือเลขวิ่ง</p>
-    <p slot="center" class="text-left text-base leading-relaxed text-[#d8efdc]">ผู้ใช้งานควรตรวจว่าต้องการแทงตรง โต๊ด หรือรูปแบบใดก่อนกรอกจำนวนเงิน</p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#d8efdc]">เพราะการเลือกประเภทผิดอาจทำให้โพยไม่ตรงกับความตั้งใจแม้จะใช้เลขชุดเดียวกัน</p>
-  </ContentBox3ThreeNeumorphism>
-
-  <ContentBoxFloatingBadge as="h2" title="ตรวจสถานะเลขอั้นบน หวยพร้อม ก่อนยืนยันโพย">
-    <p class="text-left text-base leading-relaxed text-[#d8efdc]">
-      คำว่าไม่อั้นเลขของ หวยพร้อม ควรพิจารณาตามสถานะล่าสุดของแต่ละงวด เพราะบางเลขอาจมีการจำกัดยอด เปลี่ยนอัตราจ่าย หรือหยุดรับเมื่อถึงวงเงินที่กำหนด
-      ผู้เล่นจึงควรตรวจเลขและราคาที่ระบบแสดงอีกครั้งก่อนกดยืนยัน เพื่อให้เข้าใจเงื่อนไขของโพยอย่างชัดเจน
-    </p>
-  </ContentBoxFloatingBadge>
-
-  <ContentBoxSevenThreeNeumorphism title="อัตราจ่ายสูงควรดูพร้อมเงื่อนไขของเลขที่เลือก">
+  <ContentBoxSevenThreePremium title="โปรแรงควรดูเงื่อนไขจริงมากกว่าจำนวนโบนัส">
     <Picture
       slot="left"
-      src={imgWelcomeCredit}
+      src={imgCheckin}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -132,26 +119,32 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt={altWelcomeCredit}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#1e7a3a]/55 shadow-[0_10px_30px_rgba(34,197,94,0.28)]"
+      alt={altCheckin}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f874a1]/55 shadow-[0_10px_30px_rgba(248,116,161,0.28)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#d8efdc]">
-      คำว่าจ่ายเยอะไม่ควรดูจากตัวเลขสูงเพียงอย่างเดียว เพราะอัตราจ่ายอาจแตกต่างตามประเภทหวย รูปแบบเดิมพัน และสถานะของเลข ผู้ใช้ควรเปรียบเทียบราคาที่ระบบแสดงจริงก่อนซื้อ
-      และไม่ควรถือว่าอัตราจ่ายสูงหมายถึงมีโอกาสถูกรางวัลมากขึ้น
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f6dde8]">
+      โปรโมชั่นที่ดูแรงอาจมีทั้งโบนัสสมาชิกใหม่ สิทธิ์ตามยอดฝาก หรือกิจกรรมเฉพาะช่วงเวลา ผู้เล่นควรตรวจยอดขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา และเงื่อนไขการถอนให้ครบ
+      เพราะโปรที่เหมาะกับงบอาจคุ้มกว่าข้อเสนอที่ให้เครดิตสูงแต่มีข้อจำกัดมาก
     </p>
-  </ContentBoxSevenThreeNeumorphism>
+  </ContentBoxSevenThreePremium>
 
-  <ContentBoxTwoNeumorphism as="h2" titleleft="จัดโพยหลายเลขให้ตรวจง่ายขึ้นด้วย หวยพร้อม">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#d8efdc]">
-      เมื่อซื้อหลายเลขพร้อมกัน หวยพร้อม ควรช่วยให้ผู้ใช้ตรวจรายการก่อนส่งได้เป็นขั้นตอน ควรไล่ดูเลข ประเภทเดิมพัน จำนวนเงิน และยอดรวมทีละรายการ
+  <ContentBoxCyberCut as="h2" title="ฝากถอนผ่าน Wallet บน RUAYRUAY888 ช่วยลดขั้นตอนบนมือถือ">
+    <p class="text-left text-base leading-relaxed text-[#f6dde8]">
+      การรองรับ Wallet ของ RUAYRUAY888 ช่วยให้สมาชิกจัดการฝากและถอนผ่านมือถือได้สะดวกขึ้น ก่อนยืนยันควรตรวจข้อมูลกระเป๋าเงิน จำนวนเงิน และบัญชีสมาชิกให้ตรงกัน
+      พร้อมรอให้รายการเดิมอัปเดตสถานะก่อนทำธุรกรรมใหม่
     </p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#d8efdc]">พร้อมเก็บเลขอ้างอิงของโพยหลังยืนยัน เพื่อใช้ตรวจสอบย้อนหลังเมื่อมีการประกาศผลหรือพบข้อมูลไม่ตรงกัน</p>
-  </ContentBoxTwoNeumorphism>
+  </ContentBoxCyberCut>
 
-  <ContentBoxSevenThreeFloatingBadge title="รวมครบจบในที่เดียวควรช่วยลดการสลับหลายหน้า">
+  <ContentBox3ThreePremium as="h2" title="คำว่าจ่ายดีควรดูจากอัตราจ่ายของแต่ละเกม">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f6dde8]">คำว่าจ่ายดีไม่ได้หมายความว่าเกมจะให้ผลตอบแทนสูงทุกครั้ง</p>
+    <p slot="center" class="text-left text-base leading-relaxed text-[#f6dde8]">เกมแต่ละประเภทมีอัตราจ่าย ความผันผวน และเงื่อนไขแตกต่างกัน</p>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f6dde8]">ผู้เล่นควรดูตารางจ่าย กติกา และข้อมูลจากผู้ให้บริการก่อนเริ่ม เพื่อให้เลือกเกมจากข้อมูลมากกว่าคำโปรโมต</p>
+  </ContentBox3ThreePremium>
+
+  <ContentBoxSevenThree titleright="ตรวจสิทธิ์และประวัติรายการผ่าน RUAYRUAY888 ก่อนทำธุรกรรม">
     <Picture
       slot="left"
-      src={imgLuckyWheel}
+      src={imgDailyMission}
       loading="lazy"
       fetchpriority="low"
       widths={[300, 450, 600]}
@@ -160,31 +153,38 @@ const graph = pageGraph(Astro, {
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={80}
-      alt={altLuckyWheel}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#1e7a3a]/55 shadow-[0_10px_30px_rgba(34,197,94,0.24)]"
+      alt={altDailyMission}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#f874a1]/55 shadow-[0_10px_30px_rgba(248,116,161,0.24)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#d8efdc]">
-      การรวมประเภทหวย โพย อัตราจ่าย และผลรางวัลไว้ในแพลตฟอร์มเดียวช่วยให้ผู้ใช้ตรวจข้อมูลได้สะดวกขึ้น แต่แต่ละรายการยังมีกติกาและช่วงเวลาปิดรับต่างกัน ผู้ใช้ หวยพร้อม
-      จึงควรตรวจรายละเอียดเฉพาะของแต่ละงวดก่อนทำรายการทุกครั้ง
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f6dde8]">
+      สมาชิก RUAYRUAY888 ควรตรวจโปรโมชั่นที่เปิดใช้งาน ยอดคงเหลือ และประวัติธุรกรรมก่อนฝากหรือถอน หากพบรายการล่าช้าควรเก็บเวลา จำนวนเงิน และเลขอ้างอิงไว้จนกว่าระบบจะอัปเดตผล
+      เพื่อช่วยให้ตรวจสอบย้อนหลังได้ง่ายขึ้น
     </p>
-  </ContentBoxSevenThreeFloatingBadge>
+  </ContentBoxSevenThree>
 
-  <Faq3 title="คำถามที่พบบ่อยเกี่ยวกับ หวยพร้อม" faqs={faqs} />
+  <ContentBoxSpecial as="h2" title="เลือก RUAYRUAY888 ให้เหมาะกับงบด้วยการวางแผนก่อนเล่น" iconleft="🧭" iconright="🛡️">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f6dde8]">
+      การใช้งาน RUAYRUAY888 ควรเริ่มจากการกำหนดวงเงิน เลือกเกมที่เข้าใจกติกา และเลือกโปรโมชั่นที่ไม่บังคับให้เพิ่มยอดเกินแผน
+    </p>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f6dde8]">ไม่ควรเพิ่มเงินเพื่อตามคืนยอดเสีย เพราะเกมพนันมีความไม่แน่นอนและไม่สามารถรับประกันกำไรได้</p>
+  </ContentBoxSpecial>
 
-  <LatestWinnersHuay />
+  <Faq title="คำถามที่พบบ่อยเกี่ยวกับ RUAYRUAY888" faqs={faqs} />
+
+  <LatestWinners4 />
 
   <LoginRtpSection />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#22c55e]/60 bg-[#0a2413]/85 px-4 py-3 text-sm font-black whitespace-nowrap text-[#d8efdc] shadow-[0_10px_30px_rgba(34,197,94,0.22)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#6ee7a0] hover:text-[#6ee7a0] hover:shadow-[0_15px_40px_rgba(34,197,94,0.35)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#f874a1]/60 bg-[#1a1113]/90 px-4 py-3 text-sm font-black whitespace-nowrap text-[#f6dde8] shadow-[0_10px_30px_rgba(248,116,161,0.22)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#fdb4d4] hover:text-[#fdb4d4] hover:shadow-[0_15px_40px_rgba(248,116,161,0.38)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#ff4d4a]/70 bg-gradient-to-r from-[#e10600] to-[#8f0402] px-4 py-3 text-sm font-black whitespace-nowrap text-white shadow-[0_10px_30px_rgba(225,6,0,0.32)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ff4d4a] hover:shadow-[0_15px_40px_rgba(225,6,0,0.45)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#fdb4d4]/70 bg-gradient-to-r from-[#f874a1] to-[#8f1140] px-4 py-3 text-sm font-black whitespace-nowrap text-white shadow-[0_10px_30px_rgba(214,55,122,0.34)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#ffffff] hover:shadow-[0_15px_40px_rgba(248,116,161,0.48)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>

@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/AnnouncementHuay.astro";
+import Announcement from "../components/AnnouncementCyber.astro";
 
 import { Picture } from "astro:assets";
 
@@ -20,32 +20,36 @@ import { pageGraph } from "../lib/schema";
 // paragraph found here was invented by an earlier rebrand and gets deleted, not
 // translated. Rendered inventory: h1x1, h2x0, h3x0.
 //
-// The alt text below is the Thai printed on each หวยพร้อม slide plus the scene
-// it draws — the offer, the sub-line, the button and the artwork. All four
-// strings were rewritten from scratch against the images in this drop (read with
-// the Read tool): the artwork changed completely, not only the numbers, so the
-// outgoing brand's casino descriptions could not be renamed, only replaced.
-// Slide order on disk is slide1 สมาชิกใหม่ รับเครดิตฟรี 88, slide2 วงล้อเลขมงคล
-// ลุ้นเครดิต 188, slide3 เช็กอิน 5 วัน รับเครดิตเพิ่ม, slide4 ชวนเพื่อนลุ้นเฮง
-// รับโบนัส 88. All four are .png in this drop (2026-09-06) and all four belong
-// here; banner2.png is dated 2026-08-13, predates the drop, and is deliberately
-// NOT imported anywhere. No domain string appears in any alt — verify-build.mjs
-// fails the build on a host found inside an attribute. The wordmark drawn on
-// every slide reads "หวยพร้อม" with a red tick emblem, which is what the alt
-// says is printed.
+// The alt text below is the Thai printed on each slide plus the scene it draws —
+// the offer, the sub-line, the badge and the artwork. All four strings were
+// rewritten from scratch against the images in this drop (read with the Read
+// tool): the artwork changed completely, not only the numbers, so the outgoing
+// brand's lottery descriptions could not be renamed, only replaced. Slide order
+// on disk is slide1 เช็กอิน 7 วัน, slide2 ภารกิจรายวัน, slide3 เล่นง่าย ลุ้นสนุกทุกวัน,
+// slide4 ชวนเพื่อนรับรางวัล. All four are .png in this drop (2026-09-06) and all
+// four belong here; banner2.png is dated 2026-08-13, predates the drop, and is
+// deliberately NOT imported anywhere.
 //
-// <Announcement /> is bare on purpose: AnnouncementHuay's default message
+// IMPORTANT — the wordmark drawn into these pixels is NOT this brand's. Each
+// slide carries a different wrong Latin name baked into the artwork, so every
+// alt below calls it "โลโก้เว็บไซต์" and none of them transcribes what the
+// letters actually spell. Publishing another brand's name in this site's alt
+// text is worse than a slightly less literal alt. The Thai promotional copy on
+// the images is generic and IS transcribed. No domain string appears in any alt
+// either — verify-build.mjs fails the build on a host found inside an attribute.
+//
+// <Announcement /> is bare on purpose: AnnouncementCyber's default message
 // already carries this brand's copy, so the ticker matches index.astro with no
-// second string to keep in sync here. The variant rotated off AnnouncementPremium,
+// second string to keep in sync here. The variant rotated off AnnouncementHuay,
 // the outgoing brand's pick, per the brand spec.
-const pageTitle = "โปรโมชั่น หวยพร้อม รวมสิทธิพิเศษและโบนัสสำหรับสมาชิก";
+const pageTitle = "โปรโมชั่น RUAYRUAY888 รวมสิทธิพิเศษสำหรับสมาชิก";
 
 // Title and description are the docx SUB-PAGES row for /promotion, both shipped
 // VERBATIM. The description is shorter than the DESC_MIN=150 floor, and that is
 // correct: the brief's own sentence is the brand's copy, not a draft to top up.
 // verify-build.mjs exempts any description that appears literally in
 // src/assets/content.txt for exactly this reason. Do not pad it.
-const pageDescription = "หวยพร้อม รวมโปรโมชั่นหวยออนไลน์ โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมข้อมูลอัตราจ่ายและรายละเอียดช่วยเลือกโปรให้เหมาะกับงบ";
+const pageDescription = "RUAYRUAY888 รวมโปรโมชั่นเกมพนัน โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมข้อมูลช่วยเลือกโปรให้เหมาะกับงบและรูปแบบการเล่น";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -57,16 +61,18 @@ const graph = pageGraph(Astro, {
   primaryImagePath: pro1.src,
 });
 
-// Green carries the card edge and the glow — the identity hue of the artwork,
-// which is a green city glow behind gold lottery balls. Gold stays on the prize
-// numbers inside the pictures and red stays on the CTA below, so the frame
-// around a promo image is the one place neither belongs: a gold rim would
-// compete with the gold printed on the slide, a red rim would read as a button.
+// Hot pink carries the card edge and the glow — the identity hue of the
+// artwork, which is pink neon over a rose-tinted black casino floor. The slides
+// themselves are almost entirely pink, so the frame stays on the deep end of
+// the ramp (#8f1140) at rest and only lifts to the bright #f874a1 on hover;
+// a bright rim at rest would blur into the picture it is supposed to contain.
+// No gold — that was the outgoing brand's secondary and none of this artwork
+// has any.
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#1e7a3a]/45 object-contain shadow-[0_10px_30px_rgba(34,197,94,0.22)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#22c55e]/70 hover:shadow-[0_15px_40px_rgba(34,197,94,0.3)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#8f1140]/50 object-contain shadow-[0_10px_30px_rgba(248,116,161,0.22)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#f874a1]/70 hover:shadow-[0_15px_40px_rgba(248,116,161,0.32)]";
 ---
 
-<MainLayout title="หวยพร้อม | โปรโมชั่นหวยออนไลน์และสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
+<MainLayout title="RUAYRUAY888 | โปรโมชั่นเกมพนันและสิทธิพิเศษสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
@@ -74,15 +80,15 @@ const promoCardClass =
   <ContentBox title={pageTitle} as="h1">
     <div>
       <p class="mb-8 text-left text-base leading-relaxed">
-        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#6ee7a0]">หวยพร้อม</strong> เปิดให้สมาชิกไว้ในที่เดียว ทั้งเครดิตต้อนรับสมาชิกใหม่ วงล้อเลขมงคลประจำวัน การเช็กอินสะสมสิทธิ์รายวัน
-        และโบนัสจากการชวนเพื่อน จำนวนเครดิตและเงื่อนไขหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ก่อนกดรับสิทธิ์ควรตรวจยอดฝากขั้นต่ำ ประเภทหวยที่ร่วมรายการ ระยะเวลา
-        และเงื่อนไขการถอนของรายการนั้นอีกครั้ง เพราะแต่ละโปรกำหนดเงื่อนไขไว้ไม่เท่ากันและปรับได้ตามรอบ
+        หน้านี้รวมโปรโมชั่นที่ <strong class="text-[#fdb4d4]">RUAYRUAY888</strong> เปิดให้สมาชิกไว้ในที่เดียว ทั้งกิจกรรมเช็กอินสะสมสิทธิ์รายวัน ภารกิจประจำวัน โบนัสจากการชวนเพื่อน
+        และสิทธิพิเศษเฉพาะช่วงเวลา รายละเอียดหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว ก่อนกดรับสิทธิ์ควรตรวจยอดฝากขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา
+        และเงื่อนไขการถอนของรายการนั้นอีกครั้ง เพราะแต่ละโปรกำหนดเงื่อนไขไว้ไม่เท่ากันและปรับเปลี่ยนได้ตามรอบ
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่น หวยพร้อม ด้านบนเป็นโลโก้เขียนว่า หวยพร้อม พร้อมเครื่องหมายถูกสีแดงในวงกลม ตรงกลางเป็นพาดหัวตัวใหญ่สีขาวว่า สมาชิกใหม่ เหนือบรรทัด รับเครดิตฟรี แล้วเป็นเลข 88 ตัวทองขนาดใหญ่ ข้างเลขมีริบบิ้นสีแดงเขียนว่า NEW MEMBER ใต้ลงมาเป็นบรรทัด รับสิทธิ์ต้อนรับสำหรับใช้ลุ้นหวยออนไลน์ ปิดท้ายด้วยปุ่มสีแดงเขียนว่า สมัครเลย แถวล่างมีไอคอนกำกับว่า สมัครง่าย ใช้งานสะดวก และ ลุ้นได้ทุกวัน ข้อความด้านข้างเขียนว่า เลขดี ชีวิตดี เริ่มได้ที่ หวยพร้อม ซื้อง่าย ตรวจผลเร็ว รางวัลจริงแน่นอน ลุ้นทุกความหวังอยู่ใกล้แค่ปลายนิ้ว และ หวยไทย หวยฮานอย หวยลาว หวยหุ้น ด้านซ้ายเป็นผู้หญิงในชุดสีเขียวเมทัลลิกถือใบสลากหลายใบและชี้มือไปที่ตัวเลข ฉากหลังเป็นเส้นขอบฟ้าเมืองสีเขียวเรืองแสง มีลูกบอลหวยหมายเลข 6 2 9 5 และ 8 เหรียญทอง และใบสลากกระจายอยู่"
+          alt="แบนเนอร์โปรโมชั่นพื้นหลังห้องคาสิโนสีชมพูนีออน ด้านบนกลางภาพเป็นโลโก้เว็บไซต์ ถัดมาเป็นพาดหัวตัวใหญ่สีขาวว่า เช็กอิน 7 วัน โดยเลข 7 เป็นตัวใหญ่พิเศษ ใต้ลงมาเป็นแถบชมพูเขียนว่า รับกล่องสุ่มโบนัสฟรี พร้อมไอคอนกล่องของขวัญ กลางภาพเป็นแผงปฏิทินเจ็ดช่องเขียนว่า วันที่ 1 ถึง วันที่ 7 ทุกช่องมีเครื่องหมายถูกสีชมพู ด้านขวาเป็นตราวงกลมสีดำขอบชมพูมีมงกุฎเขียนว่า ลุ้นรางวัลทุกวัน ด้านซ้ายเป็นผู้หญิงเกล้าผมสวมชุดเกาะอกสีเงินวาววับและต่างหูระย้า ด้านล่างเป็นกล่องของขวัญสีดำผูกโบว์ชมพูวางซ้อนกัน กล่องหนึ่งมีเครื่องหมายคำถาม อีกกล่องมีโลโก้เว็บไซต์ รอบภาพมีเหรียญชมพูลายมงกุฎ ริบบิ้น และแสงนีออนวงกลมกระจายอยู่"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -96,7 +102,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่น หวยพร้อม มุมบนซ้ายเป็นโลโก้เขียนว่า หวยพร้อม พร้อมเครื่องหมายถูกสีแดงในวงกลม ด้านขวาเป็นวงล้อเสี่ยงโชคสีเขียวขอบทองแบ่งช่องเขียนว่า 188 เครดิต 88 เครดิต 38 เครดิต 18 เครดิต ขอให้รวย ลุ้นโชค 2 เท่า เครดิตฟรี คู่ไอคอนกล่องของขวัญ และ รางวัลพิเศษ คู่ไอคอนกองเหรียญ โดยมีโลโก้แบรนด์อยู่กลางวงล้อ ด้านล่างเป็นพาดหัวตัวใหญ่สีขาวว่า วงล้อเลขมงคล เหนือบรรทัด ลุ้นเครดิต 188 ตามด้วยข้อความ หมุนรับของรางวัล ก่อนซื้อหวยทุกวัน ปิดท้ายด้วยปุ่มสีแดงเขียนว่า สิทธิ์พิเศษประจำวัน แถวล่างมีไอคอนกำกับว่า เล่นง่ายไม่ยุ่งยาก จ่ายจริงมั่นใจได้ 100 เปอร์เซ็นต์ รองรับมือถือเล่นได้ทุกที่ทุกเวลา และ หวยรัฐบาล หวยฮานอย หวยลาว หวยหุ้น ข้อความด้านข้างเขียนว่า มากกว่าหวยคือความมั่นใจ เสี่ยงโชคสร้างโอกาสให้ชีวิตดีขึ้น และ หมุนวันนี้อาจเป็นคุณที่โชคดี ด้านซ้ายเป็นผู้หญิงในชุดสีเขียวเมทัลลิกถือลูกบอลหมายเลข 8 และชี้มือมาข้างหน้า ฉากหลังเป็นแสงเขียวเรืองรอง มีลูกบอลหวย เหรียญทอง ธนบัตร และใบโคลเวอร์กระจายอยู่"
+          alt="แบนเนอร์โปรโมชั่นโทนชมพู-ดำ มุมบนซ้ายเป็นโลโก้เว็บไซต์คู่บรรทัดภาษาอังกฤษว่า PLAY MORE WIN MORE ด้านซ้ายเป็นแผ่นคลิปบอร์ดหัวข้อ DAILY MISSION ไล่รายการว่า เข้าเล่นเกม ทำยอดเดิมพัน รับโบนัส และ ภารกิจพิเศษ ทุกบรรทัดมีเครื่องหมายถูกสีชมพู ตรงกลางเป็นผู้หญิงมัดผมหางม้าสวมชุดวอร์มสีชมพูสลับดำ ชี้นิ้วมาข้างหน้าและถือโทรศัพท์ที่หน้าจอเขียนว่า PLAY ANYTIME ANYWHERE ด้านขวาเป็นป้ายเหลี่ยมสามใบเขียนว่า BONUS FREE CREDIT และ CASH BACK พร้อมไอคอนเพชร บัตรเครดิต และกองเหรียญ ถัดมาเป็นตราวงกลมมีมงกุฎเขียนว่า ของรางวัลเพียบ ด้านล่างเป็นพาดหัวตัวใหญ่สีขาวว่า ภารกิจรายวัน เหนือบรรทัด ทำครบ รับเครดิตพิเศษทุกวัน แถวล่างสุดมีไอคอนกำกับว่า เล่น ลุ้น รับ และ ชนะ รอบภาพมีจอยเกม ลูกเต๋า และเหรียญชมพูลอยอยู่"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -110,7 +116,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่น หวยพร้อม ด้านบนเป็นโลโก้เขียนว่า หวยพร้อม พร้อมเครื่องหมายถูกสีแดงในวงกลม ถัดมาเป็นพาดหัวตัวใหญ่ว่า เช็กอิน 5 วัน โดยเลข 5 เป็นตัวทองขนาดใหญ่ เหนือบรรทัด รับเครดิตเพิ่ม ใต้ลงมาเป็นข้อความ สะสมสิทธิ์รายวัน พร้อมลุ้นเลขเด่นทุกเช้า แล้วเป็นแผงปฏิทินห้าช่องเขียนว่า วันที่ 1 ถึง วันที่ 5 แต่ละช่องมีเครื่องหมายถูกสีเขียวในวงกลม ข้างกันเป็นป้ายสีทองเขียนว่า DAILY CHECK-IN คู่ไอคอนปฏิทิน ข้อความด้านข้างเขียนว่า เช็กทุกวัน โชคดีทุกเช้า ที่ หวยพร้อม เช็กอินวันนี้ รับเลยเครดิตฟรี ลุ้นเลขปังทุกวัน และ เสี่ยงโชคสร้างโอกาสให้ชีวิตดีขึ้น ด้านซ้ายเป็นผู้หญิงในชุดสีเขียวเมทัลลิกถือโทรศัพท์ที่หน้าจอเป็นโลโก้แบรนด์และชี้มือไปที่หน้าจอ ฉากหลังเป็นเส้นขอบฟ้าเมืองสีเขียวเรืองแสง มีลูกบอลหวย ใบสลากลงวันที่ และเหรียญทองกระจายอยู่"
+          alt="แบนเนอร์โปรโมชั่นพื้นหลังตู้เกมเรืองแสงสีชมพู มุมบนซ้ายเป็นโลโก้เว็บไซต์ตัวใหญ่ ใต้โลโก้มีลายมือเขียนว่า Play More Good Vibes ถัดมาเป็นพาดหัวตัวใหญ่สีขาวว่า เล่นง่าย เหนือบรรทัดสีชมพูว่า ลุ้นสนุกทุกวัน ใต้ลงมาเป็นแถบเล็กมีมงกุฎกำกับ ประกอบด้วยชื่อเว็บไซต์ตามด้วยข้อความ โปรใหม่มาแล้ว กลางภาพล่างเป็นปุ่มทรงแคปซูลสีชมพูเขียนว่า ดูโปรโมชั่น พร้อมลูกศรวงกลม ด้านขวาเป็นผู้หญิงขยิบตาสวมแจ็กเก็ตหนังสีดำแถบชมพูชี้นิ้วมาข้างหน้า ด้านซ้ายมีป้ายเขียนว่า BIG WINS BRIGHTER DAYS ด้านขวามีป้ายเขียนว่า GAMERS PLAY A BRIGHTER TOMORROW แถวล่างสุดมีไอคอนกำกับว่า ปลอดภัยมั่นใจ 100 เปอร์เซ็นต์ ฝาก-ถอนรวดเร็ว โปรโมชั่นจัดเต็ม และ เล่นได้ทุกที่ทุกเวลา รอบภาพมีชิปคาสิโนลายหัวใจ เหรียญเงินสลัก 888 และเหรียญชมพูกองอยู่"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -124,7 +130,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่น หวยพร้อม ด้านบนเป็นโลโก้เขียนว่า หวยพร้อม พร้อมเครื่องหมายถูกสีแดงในวงกลม ใต้โลโก้เป็นบรรทัด หวยรัฐบาล หวยฮานอย หวยลาว หวยหุ้น ถัดมาเป็นพาดหัวตัวใหญ่สีขาวว่า ชวนเพื่อนลุ้นเฮง เหนือบรรทัด รับโบนัส แล้วเป็นเลข 88 ตัวทองขนาดใหญ่ ใต้ลงมาเป็นป้ายเขียนว่า เพื่อนสมัครสำเร็จ รับเครดิตโบนัสทันที คู่ไอคอนรูปคนสองคน ตามด้วยบรรทัด ยิ่งชวน ยิ่งได้ลุ้น และป้ายเล็กด้านซ้ายเขียนว่า ชวนเลย ข้อความด้านข้างเขียนว่า ชวนเพื่อน สร้างโอกาส สร้างความเฮงไปด้วยกัน เล่นหวยได้เพื่อน ได้โชค ได้โบนัส และ เพื่อนเยอะ โชคเยอะ รวยไปด้วยกัน ด้านซ้ายเป็นผู้หญิงในชุดสีเขียวเมทัลลิกถือโทรศัพท์ที่หน้าจอเป็นโลโก้แบรนด์ ด้านล่างเป็นกล่องของขวัญสีเขียวคาดทองเขียนว่า ชวนเพื่อน รับโบนัส 88 พร้อมไอคอนแชร์ ลูกบอลหวย ใบสลาก และเหรียญทอง"
+          alt="แบนเนอร์โปรโมชั่นชวนเพื่อนโทนชมพู-ดำ ด้านบนเป็นโลโก้เว็บไซต์มีมงกุฎเล็กวางอยู่บนสุด ถัดมาเป็นพาดหัวตัวใหญ่สีขาวว่า ชวนเพื่อนรับรางวัล เหนือบรรทัด ยิ่งชวน ยิ่งได้ ลุ้นโบนัส แล้วปิดท้ายด้วยตัวอักษร X2 ตัวใหญ่ กลางภาพเป็นไอคอนสามมิติรูปคนสองคนสีชมพูพร้อมเครื่องหมายบวก ด้านขวาเป็นตราวงกลมสีดำขอบชมพูมีมงกุฎเขียนว่า แจกจริงทุกสัปดาห์ ด้านซ้ายเป็นผู้หญิงผมหยิกสวมแจ็กเก็ตดำแถบชมพูกับกางเกงคาร์โก้มีโซ่ ชี้นิ้วสองมือมาข้างหน้า ข้างตัวมีป้ายเขียนว่า PLAY INVITE WIN TOGETHER ด้านขวามีป้ายเขียนว่า MORE FRIENDS MORE GAMES MORE REWARDS ด้านล่างเป็นกล่องของขวัญสีดำผูกโบว์ชมพูที่มีโลโก้เว็บไซต์ รอบภาพมีเหรียญชมพูลายมงกุฎและแสงนีออนกระจายอยู่"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -140,8 +146,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#ff4d4a]/60 bg-gradient-to-r from-[#ff4d4a] via-[#e10600] to-[#8f0402] px-10 py-3.5 text-lg font-black text-white shadow-[0_10px_30px_rgba(225,6,0,0.32)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(225,6,0,0.45)]">
-          สมัครสมาชิก หวยพร้อม
+          class="flex items-center justify-center rounded-lg border border-[#f874a1]/60 bg-gradient-to-r from-[#f874a1] via-[#d6377a] to-[#8f1140] px-10 py-3.5 text-lg font-black text-white shadow-[0_10px_30px_rgba(214,55,122,0.34)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(248,116,161,0.45)]">
+          สมัครสมาชิก RUAYRUAY888
         </a>
       </div>
     </div>

@@ -4,32 +4,32 @@
 // the brief. The accessible name for the region lives on the section's
 // aria-label instead.
 //
-// Copy follows the RENGER8888 brief, docx section "เริ่มเลือกเกมจากหมวดที่สนใจบน
-// RENGER8888": เลือกเกมตามประเภท เช่น บาคาร่า สล็อต หรือคาสิโนสด ตามที่ระบบรองรับ
-// แล้วเทียบกติกา อัตราจ่าย และวงเงินขั้นต่ำ พร้อมดูระดับความเสี่ยงให้สอดคล้องกับงบ.
-// The three game types are named because the brief names them, each qualified
-// with "ตามที่ระบบรองรับ" exactly as the brief qualifies them; no game studio is
-// named, because the brief never states which are on the system and an invented
-// list is a claim the site cannot back.
+// Copy follows the RUAYRUAY888 brief, docx section "เปรียบเทียบค่ายเกมหลาย
+// รูปแบบได้บน RUAYRUAY888": ภายใน RUAYRUAY888 อาจมีทั้งสล็อต บาคาร่า คาสิโนสด
+// และเกมรูปแบบอื่นจากหลายผู้ให้บริการ ผู้เล่นควรเปรียบเทียบกติกา ฟีเจอร์ อัตราจ่าย
+// และวงเงินก่อนเลือก. The four game types are named because the brief names them,
+// each qualified with "อาจมีตามที่เว็บไซต์กำหนด" exactly as the brief qualifies
+// them; no game studio is named, because the brief never states which providers
+// are on the system and an invented list is a claim the site cannot back.
 const categories = [
-  { name: "บาคาร่า", desc: "หนึ่งในประเภทที่ระบบรองรับ ดูกติกาและวงเงินก่อนเริ่ม", tag: "ตามที่ระบบรองรับ", icon: "🃏" },
-  { name: "สล็อต", desc: "อีกประเภทที่ระบบรองรับ แต่ละเกมตั้งเงื่อนไขไว้ต่างกัน", tag: "ตามที่ระบบรองรับ", icon: "🎰" },
-  { name: "คาสิโนสด", desc: "ประเภทที่ถ่ายทอดโต๊ะจริง ดูรูปแบบการเล่นก่อนเลือก", tag: "ตามที่ระบบรองรับ", icon: "🎥" },
-  { name: "กติกาของเกม", desc: "แต่ละเกมกำหนดกติกาไว้ไม่เหมือนกัน อ่านก่อนเริ่มทุกครั้ง", tag: "อ่านก่อนเลือก", icon: "📄" },
-  { name: "อัตราจ่าย", desc: "ระบุไว้ในหน้าเกม ใช้เทียบระหว่างเกมในหมวดเดียวกัน", tag: "ใช้เทียบเกม", icon: "🎯" },
-  { name: "วงเงินขั้นต่ำ", desc: "แต่ละเกมกำหนดขั้นต่ำต่อรอบไว้ไม่เท่ากัน", tag: "เลือกตามงบ", icon: "🪙" },
-  { name: "ระดับความเสี่ยง", desc: "ดูข้อมูลของเกมแล้วเลือกให้สอดคล้องกับงบของตนเอง", tag: "ดูคู่กับงบ", icon: "📈" },
+  { name: "สล็อต", desc: "หนึ่งในรูปแบบที่อาจมีในระบบ แต่ละเกมตั้งเงื่อนไขไว้ต่างกัน", tag: "ตามที่กำหนด", icon: "🎰" },
+  { name: "บาคาร่า", desc: "อีกรูปแบบที่อาจมีในระบบ ดูกติกาและวงเงินก่อนเริ่ม", tag: "ตามที่กำหนด", icon: "🃏" },
+  { name: "คาสิโนสด", desc: "รูปแบบที่ถ่ายทอดโต๊ะจริง ดูวิธีเล่นก่อนเลือก", tag: "ตามที่กำหนด", icon: "🎥" },
+  { name: "เกมรูปแบบอื่น", desc: "ยังมีเกมประเภทอื่นจากหลายผู้ให้บริการให้เทียบ", tag: "หลายค่าย", icon: "🕹️" },
+  { name: "กติกาและฟีเจอร์", desc: "แต่ละค่ายเขียนกติกาและฟีเจอร์ไว้ไม่เหมือนกัน", tag: "อ่านก่อนเลือก", icon: "📄" },
+  { name: "อัตราจ่าย", desc: "ระบุไว้ในหน้าเกม ใช้เทียบระหว่างเกมในหมวดเดียวกัน", tag: "ใช้เทียบเกม", icon: "📊" },
+  { name: "วงเงินต่อรอบ", desc: "แต่ละเกมกำหนดขั้นต่ำและขั้นสูงต่อรอบไว้ต่างกัน", tag: "เลือกตามงบ", icon: "🪙" },
 ];
 ---
 
 <section
-  aria-label="หมวดเกมที่ระบบของ RENGER8888 แยกไว้ให้เลือก ทั้งบาคาร่า สล็อต และคาสิโนสดตามที่ระบบรองรับ พร้อมกติกาของเกม อัตราจ่าย วงเงินขั้นต่ำ และระดับความเสี่ยงที่ควรเทียบก่อนเริ่ม"
+  aria-label="หมวดเกมที่อาจมีบน RUAYRUAY888 ทั้งสล็อต บาคาร่า คาสิโนสด และเกมรูปแบบอื่นจากหลายผู้ให้บริการ พร้อมกติกา ฟีเจอร์ อัตราจ่าย และวงเงินที่ควรเทียบก่อนเลือก"
   class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
-    <p class="bg-gradient-to-r from-[#e6ecf2] via-[#e8121f] to-[#8f0c14] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
-      หมวดที่ระบบ <span class="text-[#ff2b38]">RENGER8888</span> แยกไว้ให้เทียบก่อนเลือกเกม
+    <p class="bg-gradient-to-r from-[#ffffff] via-[#fdb4d4] to-[#8f1140] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
+      หมวดเกมและสิ่งที่ควรเทียบก่อนเลือกค่ายบน <span class="text-[#f874a1]">RUAYRUAY888</span>
     </p>
-    <div aria-hidden="true" class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#e8121f] to-transparent"></div>
+    <div aria-hidden="true" class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#f874a1] to-transparent"></div>
   </div>
 
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5 xl:grid-cols-7">
@@ -37,20 +37,20 @@ const categories = [
       categories.map((category) => (
         <a
           href="/register"
-          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#e8121f]/35 bg-[#160406]/92 p-5 shadow-[0_10px_30px_rgba(232,18,31,0.22)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#ff2b38]/60 hover:bg-[#28080b]/95 hover:shadow-[0_15px_40px_rgba(255,43,56,0.3)]">
-          <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[#8f0c14]/25 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#f874a1]/35 bg-[#1a1113]/92 p-5 shadow-[0_10px_30px_rgba(248,116,161,0.22)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#fdb4d4]/65 hover:bg-[#241b1d]/95 hover:shadow-[0_15px_40px_rgba(248,116,161,0.34)]">
+          <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[#8f1140]/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#e8121f] to-[#8f0c14] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#f7e8e8] shadow-sm transition-transform duration-300 group-hover:scale-110">
+          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#f874a1] to-[#8f1140] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#fff0f6] shadow-sm transition-transform duration-300 group-hover:scale-110">
             {category.tag}
           </div>
 
           <div aria-hidden="true" class="mb-3 text-4xl transition-transform duration-300 group-hover:scale-125 group-hover:rotate-3">
             {category.icon}
           </div>
-          <p class="text-center text-sm font-black text-[#f0dcdc] transition-colors group-hover:text-[#ff2b38]">{category.name}</p>
-          <p class="mt-1 text-center text-[10px] text-[#c5a0a2]">{category.desc}</p>
+          <p class="text-center text-sm font-black text-[#f6dde8] transition-colors group-hover:text-[#fdb4d4]">{category.name}</p>
+          <p class="mt-1 text-center text-[10px] text-[#d8b9c6]">{category.desc}</p>
 
-          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#e8121f]/40 bg-[#080203] py-1.5 text-center text-[11px] font-bold text-[#ff2b38] shadow-inner transition-colors duration-300 group-hover:border-[#ff2b38]/60 group-hover:bg-gradient-to-r group-hover:from-[#e8121f] group-hover:to-[#8f0c14] group-hover:text-[#f7e8e8]">
+          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#f874a1]/40 bg-[#0c0a0a] py-1.5 text-center text-[11px] font-bold text-[#fdb4d4] shadow-inner transition-colors duration-300 group-hover:border-[#fdb4d4]/60 group-hover:bg-gradient-to-r group-hover:from-[#d6377a] group-hover:to-[#8f1140] group-hover:text-[#fff0f6]">
             เข้าดูรายละเอียด
           </span>
         </a>

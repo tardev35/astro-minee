@@ -4,89 +4,89 @@ import ContentBoxTwo from "./ContentBoxTwo.astro";
 // Reference table, not article content — every label below renders as <p>/<span>
 // inside ContentBoxTwo (whose `as` prop stays at its "p" default), and the
 // section's aria-label carries the accessible name. It closes the page after the
-// FAQ and collects, in one place, the things the หวยพร้อม brief says to check:
-// the ชื่อรายการ / วันที่ออกรางวัล / เวลาปิดรับ of the งวด before choosing; the
-// bet form (ตรง or โต๊ด) before entering an amount; the สถานะเลขอั้น and the
-// price the system actually shows before confirming; and the โพย line items
-// plus their เลขอ้างอิง afterwards.
+// FAQ and collects, in one place, the things the RUAYRUAY888 brief says to
+// check: กติกา ฟีเจอร์ อัตราจ่าย และวงเงิน of each ค่าย before choosing; the
+// ยอดขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา and เงื่อนไขการถอน behind a promotion; the
+// ข้อมูลกระเป๋าเงิน จำนวนเงิน and บัญชีสมาชิก before confirming a Wallet
+// transaction; and the ยอดคงเหลือ ประวัติธุรกรรม and เลขอ้างอิง afterwards.
 //
-// The close times and payout rates in the first six rows are the SAME numbers
-// LottoGrid.astro's market grid prints and the same ones index.astro's prose
-// refers to. Move one, move all three.
+// Nothing here states a rate, a bonus size or a provider name: the brief never
+// gives one, and an invented number is a claim the site cannot back. Every row
+// is a thing to look up in the system, not a figure to trust from this page.
 const tableFactors = [
-  { icon: "🇹🇭", name: "หวยรัฐบาลไทย", meta: "ปิดรับ 15:00 น. ตามวันที่ออกรางวัลของงวด", note: "3 ตัวบน 900 · 2 ตัวบน 95", tag: "ตามงวด" },
-  { icon: "🇻🇳", name: "หวยฮานอย", meta: "ปิดรับ 18:00 น. มีหลายรอบตามรายการที่เปิดรับ", note: "3 ตัวบน 900 · 2 ตัวบน 95", tag: "ออกทุกวัน" },
-  { icon: "🇱🇦", name: "หวยลาวพัฒนา", meta: "ปิดรับ 20:00 น. ตามรอบที่ระบบแสดง", note: "3 ตัวบน 900 · 2 ตัวบน 95", tag: "ดูรอบก่อน" },
-  { icon: "⏱️", name: "หวยยี่กี 88 รอบ", meta: "ปิดรับ ทุก 15 นาที ตลอดวัน", note: "3 ตัวบน 850 · 2 ตัวบน 90", tag: "รอบถี่" },
-  { icon: "🇲🇾", name: "หวยมาเลย์", meta: "ปิดรับ 18:00 น. เฉพาะวันที่มีรอบออกรางวัล", note: "3 ตัวบน 900 · 2 ตัวบน 95", tag: "ตามปฏิทิน" },
-  { icon: "📈", name: "หวยหุ้นไทย", meta: "ปิดรับ 16:40 น. อิงเวลาปิดตลาดหุ้น", note: "3 ตัวบน 850 · 2 ตัวบน 92", tag: "ตามตลาด" },
-  { icon: "🚦", name: "สถานะเลขอั้นของงวด", meta: "บางเลขอาจถูกจำกัดยอด เปลี่ยนอัตราจ่าย หรือหยุดรับ", note: "ตรวจเลขและราคาที่ระบบแสดงก่อนกดยืนยัน", tag: "ดูก่อนซื้อ" },
-  { icon: "🧾", name: "โพยและเลขอ้างอิง", meta: "ไล่ดูเลข ประเภทเดิมพัน จำนวนเงิน และยอดรวมทีละรายการ", note: "เก็บเลขอ้างอิงไว้ตรวจสอบย้อนหลัง", tag: "ก่อนส่งโพย" },
+  { icon: "🎰", name: "ประเภทเกมในระบบ", meta: "อาจมีทั้งสล็อต บาคาร่า คาสิโนสด และเกมรูปแบบอื่น", note: "ดูรายการจริงที่เว็บไซต์กำหนด", tag: "หลายค่าย" },
+  { icon: "📄", name: "กติกาและฟีเจอร์ของค่าย", meta: "แต่ละผู้ให้บริการเขียนกติกาและฟีเจอร์ไว้ไม่เหมือนกัน", note: "อ่านก่อนเลือกค่ายทุกครั้ง", tag: "อ่านก่อนเลือก" },
+  { icon: "📊", name: "อัตราจ่ายและความผันผวน", meta: "ระบุไว้ในตารางจ่ายของแต่ละเกม ไม่เท่ากันทุกประเภท", note: "ใช้เทียบเกมในหมวดเดียวกัน", tag: "ดูตารางจ่าย" },
+  { icon: "🪙", name: "วงเงินต่อรอบ", meta: "แต่ละเกมกำหนดขั้นต่ำและขั้นสูงต่อรอบไว้ต่างกัน", note: "เลือกให้สอดคล้องกับงบที่ตั้งไว้", tag: "เลือกตามงบ" },
+  { icon: "🎁", name: "เงื่อนไขของโปรโมชั่น", meta: "ยอดขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา และเงื่อนไขการถอน", note: "โปรที่เหมาะกับงบอาจคุ้มกว่าเครดิตสูง", tag: "ดูเงื่อนไข" },
+  { icon: "👛", name: "ฝากถอนผ่าน Wallet", meta: "ตรวจข้อมูลกระเป๋าเงิน จำนวนเงิน และบัญชีสมาชิกให้ตรงกัน", note: "รอรายการเดิมอัปเดตก่อนทำรายการใหม่", tag: "ก่อนยืนยัน" },
+  { icon: "🧾", name: "ยอดคงเหลือและประวัติธุรกรรม", meta: "ตรวจโปรที่เปิดใช้งาน ยอดคงเหลือ และประวัติก่อนฝากหรือถอน", note: "เก็บเวลา จำนวนเงิน และเลขอ้างอิงไว้", tag: "ตรวจย้อนหลัง" },
+  { icon: "🧭", name: "วงเงินและแผนการเล่น", meta: "กำหนดงบก่อนเริ่ม และเลือกเกมที่เข้าใจกติกา", note: "ไม่เพิ่มเงินเพื่อตามคืนยอดเสีย", tag: "วางแผนก่อน" },
 ];
 
-const chips = ["หวยรัฐบาล", "หวยฮานอย", "หวยลาว", "หวยยี่กี", "หวยหุ้น", "เลข 2 ตัว", "เลข 3 ตัว", "เลขวิ่ง", "แทงตรง / โต๊ด", "อัตราจ่าย", "เลขอั้น", "โพยหวย"];
+const chips = ["สล็อต", "บาคาร่า", "คาสิโนสด", "เกมรูปแบบอื่น", "หลายผู้ให้บริการ", "อัตราจ่าย", "ความผันผวน", "วงเงินต่อรอบ", "เงื่อนไขโปร", "Wallet", "ประวัติธุรกรรม", "เลขอ้างอิง"];
 ---
 
 <ContentBoxTwo
-  titleleft="เข้าสู่ระบบ หวยพร้อม"
-  titleright="ตลาดหวยและสิ่งที่ควรตรวจก่อนยืนยันโพย"
+  titleleft="เข้าสู่ระบบ RUAYRUAY888"
+  titleright="สิ่งที่ควรตรวจก่อนเลือกเกมและก่อนทำธุรกรรม"
   iconleft="🔐"
   iconright="🎯"
-  label="เข้าสู่ระบบ หวยพร้อม และตารางอ้างอิงตลาดหวยที่เปิดรับ พร้อมเวลาปิดรับ อัตราจ่าย สถานะเลขอั้น และสิ่งที่ควรตรวจในโพยก่อนกดยืนยัน">
+  label="เข้าสู่ระบบ RUAYRUAY888 และตารางอ้างอิงสิ่งที่ควรตรวจก่อนเลือกค่ายเกม รับโปรโมชั่น และยืนยันการฝากถอนผ่าน Wallet">
   <div slot="left" class="flex h-full flex-col gap-4">
-    <div class="relative overflow-hidden rounded-2xl border border-[#1e7a3a]/45 bg-[#0a2413]/92 p-6 shadow-[0_10px_30px_rgba(34,197,94,0.22)] backdrop-blur-md">
-      <div aria-hidden="true" class="pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#22c55e]/35 blur-[50px]"></div>
+    <div class="relative overflow-hidden rounded-2xl border border-[#f874a1]/40 bg-[#1a1113]/92 p-6 shadow-[0_10px_30px_rgba(248,116,161,0.22)] backdrop-blur-md">
+      <div aria-hidden="true" class="pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#f874a1]/35 blur-[50px]"></div>
 
       <div class="relative z-10 mb-5 flex items-center gap-3">
         <span
           aria-hidden="true"
-          class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#ffe08a]/50 bg-gradient-to-br from-[#ffe08a] to-[#a9791a] text-xl text-[#04140a] shadow-inner">
+          class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#fdb4d4]/50 bg-gradient-to-br from-[#ffffff] to-[#f874a1] text-xl text-[#0c0a0a] shadow-inner">
           🛡️
         </span>
         <div class="flex flex-col">
-          <p class="text-base font-black text-[#f5c451]">ยินดีต้อนรับกลับ</p>
-          <span class="text-[11px] text-[#9fc8ab]">บัญชีเดียวใช้เลือกประเภทหวยตามรอบที่เปิดรับ กรอกโพย ดูอัตราจ่ายและสถานะเลขที่ระบบแสดง แล้วตามผลรางวัลกับสถานะรายการของ หวยพร้อม ได้จากจุดเดียว</span>
+          <p class="text-base font-black text-[#fdb4d4]">ยินดีต้อนรับกลับ</p>
+          <span class="text-[11px] text-[#d8b9c6]">บัญชีเดียวใช้เลือกเกมจากค่ายที่ระบบรองรับ เทียบอัตราจ่ายกับวงเงิน ดูเงื่อนไขโปรโมชั่น แล้วจัดการฝากถอนผ่าน Wallet กับตรวจสถานะรายการของ RUAYRUAY888 ได้จากจุดเดียว</span>
         </div>
       </div>
 
       <div class="relative z-10 flex flex-col gap-3.5">
         <div class="relative">
-          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#f5c451]">👤</span>
+          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#fdb4d4]">👤</span>
           <input
             type="text"
             aria-label="เบอร์โทรศัพท์หรือยูสเซอร์เนม"
             placeholder="เบอร์โทรศัพท์ / ยูสเซอร์เนม"
-            class="w-full rounded-xl border border-[#1e7a3a]/55 bg-[#04140a]/95 py-3 pr-4 pl-12 text-[#d8efdc] transition-all outline-none placeholder:text-[#9fc8ab] focus:border-[#22c55e] focus:ring-1 focus:ring-[#22c55e]/50"
+            class="w-full rounded-xl border border-[#8f1140]/60 bg-[#0c0a0a]/95 py-3 pr-4 pl-12 text-[#f6dde8] transition-all outline-none placeholder:text-[#d8b9c6] focus:border-[#f874a1] focus:ring-1 focus:ring-[#f874a1]/50"
           />
         </div>
         <div class="relative">
-          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#f5c451]">🔑</span>
+          <span aria-hidden="true" class="absolute top-3.5 left-4 text-[#fdb4d4]">🔑</span>
           <input
             type="password"
             aria-label="รหัสผ่านของบัญชี"
             placeholder="รหัสผ่านของบัญชี"
-            class="w-full rounded-xl border border-[#1e7a3a]/55 bg-[#04140a]/95 py-3 pr-4 pl-12 text-[#d8efdc] transition-all outline-none placeholder:text-[#9fc8ab] focus:border-[#22c55e] focus:ring-1 focus:ring-[#22c55e]/50"
+            class="w-full rounded-xl border border-[#8f1140]/60 bg-[#0c0a0a]/95 py-3 pr-4 pl-12 text-[#f6dde8] transition-all outline-none placeholder:text-[#d8b9c6] focus:border-[#f874a1] focus:ring-1 focus:ring-[#f874a1]/50"
           />
         </div>
 
         <div class="flex items-center justify-between px-1 text-xs">
-          <label class="flex items-center gap-2 text-[#9fc8ab]">
-            <input type="checkbox" class="h-3.5 w-3.5 rounded border-[#1e7a3a]/55 bg-[#04140a] accent-[#22c55e]" />
+          <label class="flex items-center gap-2 text-[#d8b9c6]">
+            <input type="checkbox" class="h-3.5 w-3.5 rounded border-[#8f1140]/60 bg-[#0c0a0a] accent-[#f874a1]" />
             จดจำฉันไว้
           </label>
-          <a href="/login" class="text-[#9fc8ab] transition-colors hover:text-[#f5c451]">ลืมรหัสผ่าน?</a>
+          <a href="/login" class="text-[#d8b9c6] transition-colors hover:text-[#fdb4d4]">ลืมรหัสผ่าน?</a>
         </div>
 
         <a
           href="/login"
-          class="mt-1 block w-full rounded-xl border border-[#6ee7a0]/50 bg-gradient-to-r from-[#22c55e] to-[#1e7a3a] p-3.5 text-center font-black text-[#04140a] shadow-[0_10px_30px_rgba(34,197,94,0.28)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(34,197,94,0.45)]">
+          class="mt-1 block w-full rounded-xl border border-[#fdb4d4]/50 bg-gradient-to-r from-[#f874a1] to-[#8f1140] p-3.5 text-center font-black text-[#0c0a0a] shadow-[0_10px_30px_rgba(248,116,161,0.3)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(248,116,161,0.45)]">
           เข้าสู่ระบบ
         </a>
 
-        <div class="flex items-center gap-3 py-1 text-[11px] text-[#9fc8ab]">
-          <span aria-hidden="true" class="h-px flex-1 bg-[#1e7a3a]/50"></span>
+        <div class="flex items-center gap-3 py-1 text-[11px] text-[#d8b9c6]">
+          <span aria-hidden="true" class="h-px flex-1 bg-[#8f1140]/60"></span>
           หรือ
-          <span aria-hidden="true" class="h-px flex-1 bg-[#1e7a3a]/50"></span>
+          <span aria-hidden="true" class="h-px flex-1 bg-[#8f1140]/60"></span>
         </div>
 
         <a
@@ -97,49 +97,49 @@ const chips = ["หวยรัฐบาล", "หวยฮานอย", "ห�
 
         <div class="mt-1 flex items-center justify-between px-1">
           <div class="flex gap-2">
-            <span class="rounded-full border border-[#1e7a3a]/50 bg-[#04140a] px-2.5 py-1 text-[10px] font-bold text-[#f5c451]"><span aria-hidden="true">🔒</span> HTTPS + SSL</span>
-            <span class="rounded-full border border-[#1e7a3a]/50 bg-[#04140a]/80 px-2.5 py-1 text-[10px] font-bold text-[#d8efdc]"><span aria-hidden="true">🕐</span> ดูแลสมาชิก 24 ชั่วโมง</span>
+            <span class="rounded-full border border-[#8f1140]/55 bg-[#0c0a0a] px-2.5 py-1 text-[10px] font-bold text-[#fdb4d4]"><span aria-hidden="true">🔒</span> HTTPS + SSL</span>
+            <span class="rounded-full border border-[#8f1140]/55 bg-[#0c0a0a]/80 px-2.5 py-1 text-[10px] font-bold text-[#f6dde8]"><span aria-hidden="true">🕐</span> ดูแลสมาชิก 24 ชั่วโมง</span>
           </div>
-          <a href="/register" class="text-xs font-bold text-[#f5c451] transition-colors hover:text-[#ffe08a]">สมัครสมาชิกใหม่</a>
+          <a href="/register" class="text-xs font-bold text-[#fdb4d4] transition-colors hover:text-[#ffffff]">สมัครสมาชิกใหม่</a>
         </div>
       </div>
     </div>
   </div>
 
   <div slot="right" class="h-full">
-    <div class="flex h-full flex-col rounded-2xl border border-[#1e7a3a]/45 bg-[#0a2413]/92 p-5 shadow-[0_10px_30px_rgba(34,197,94,0.22)] backdrop-blur-md">
+    <div class="flex h-full flex-col rounded-2xl border border-[#f874a1]/40 bg-[#1a1113]/92 p-5 shadow-[0_10px_30px_rgba(248,116,161,0.22)] backdrop-blur-md">
       <div class="mb-5 flex items-center justify-between gap-3">
         <div>
-          <span class="text-xs font-bold tracking-wide text-[#9fc8ab]">ตารางอ้างอิงเวลาปิดรับและอัตราจ่ายของแต่ละตลาด พร้อมสิ่งที่ควรตรวจในโพย</span>
-          <p class="bg-gradient-to-r from-[#d8efdc] via-[#22c55e] to-[#f5c451] bg-clip-text text-3xl font-black text-transparent sm:text-4xl">ดูงวด เวลาปิดรับ และอัตราจ่ายก่อนกรอกเลข</p>
+          <span class="text-xs font-bold tracking-wide text-[#d8b9c6]">ตารางอ้างอิงสิ่งที่ควรดูก่อนเลือกค่ายเกม รับโปรโมชั่น และยืนยันฝากถอน</span>
+          <p class="bg-gradient-to-r from-[#ffffff] via-[#fdb4d4] to-[#d6377a] bg-clip-text text-3xl font-black text-transparent sm:text-4xl">ดูกติกา อัตราจ่าย และเงื่อนไขก่อนเริ่มเล่น</p>
         </div>
-        <span class="flex items-center gap-1.5 self-start rounded-full border border-green-500/40 bg-[#04140a]/70 px-2.5 py-1">
-          <span aria-hidden="true" class="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.7)]"></span>
-          <span class="text-[10px] font-bold tracking-widest text-green-300 uppercase">Live</span>
+        <span class="flex items-center gap-1.5 self-start rounded-full border border-[#f874a1]/45 bg-[#0c0a0a]/70 px-2.5 py-1">
+          <span aria-hidden="true" class="h-1.5 w-1.5 animate-pulse rounded-full bg-[#f874a1] shadow-[0_0_8px_rgba(248,116,161,0.8)]"></span>
+          <span class="text-[10px] font-bold tracking-widest text-[#fdb4d4] uppercase">Live</span>
         </span>
       </div>
 
-      <div class="mb-2 flex items-center justify-between text-[11px] font-bold tracking-widest text-[#9fc8ab] uppercase">
-        <span>รายการ / สิ่งที่ควรดู</span>
-        <span>เวลาปิดรับ / อัตราจ่ายอ้างอิง</span>
+      <div class="mb-2 flex items-center justify-between text-[11px] font-bold tracking-widest text-[#d8b9c6] uppercase">
+        <span>หัวข้อ / สิ่งที่ควรดู</span>
+        <span>รายละเอียดที่ควรตรวจในระบบ</span>
       </div>
 
       <div class="flex flex-1 flex-col gap-2.5">
         {
           tableFactors.map((b) => (
-            <div class="rounded-xl border border-[#1e7a3a]/35 bg-[#04140a]/95 px-3.5 py-2.5 transition-colors hover:border-[#f5c451]/60 hover:bg-[#10361c]">
+            <div class="rounded-xl border border-[#8f1140]/45 bg-[#0c0a0a]/95 px-3.5 py-2.5 transition-colors hover:border-[#fdb4d4]/60 hover:bg-[#241b1d]">
               <div class="flex items-center justify-between gap-2 text-sm">
-                <span class="flex min-w-0 items-center gap-2 font-bold text-[#d8efdc]">
+                <span class="flex min-w-0 items-center gap-2 font-bold text-[#f6dde8]">
                   <span aria-hidden="true" class="w-5 shrink-0 text-center">
                     {b.icon}
-                  </span>{" "}
+                  </span>
                   <span class="truncate">{b.name}</span>
                 </span>
-                <span class="shrink-0 rounded-full border border-[#f5c451]/50 bg-[#04140a] px-2.5 py-0.5 text-[10px] font-bold text-[#f5c451]">{b.tag}</span>
+                <span class="shrink-0 rounded-full border border-[#f874a1]/50 bg-[#0c0a0a] px-2.5 py-0.5 text-[10px] font-bold text-[#fdb4d4]">{b.tag}</span>
               </div>
-              <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] tracking-wide text-[#9fc8ab]">
+              <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] tracking-wide text-[#d8b9c6]">
                 <span>{b.meta}</span>
-                <span class="font-bold text-[#f5c451]">{b.note}</span>
+                <span class="font-bold text-[#fdb4d4]">{b.note}</span>
               </div>
             </div>
           ))
@@ -147,12 +147,12 @@ const chips = ["หวยรัฐบาล", "หวยฮานอย", "ห�
       </div>
 
       <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
-        {chips.map((c) => <span class="rounded-full border border-[#1e7a3a]/45 bg-[#04140a] px-3 py-1 text-[10px] font-bold text-[#f5c451]">{c}</span>)}
+        {chips.map((c) => <span class="rounded-full border border-[#8f1140]/50 bg-[#0c0a0a] px-3 py-1 text-[10px] font-bold text-[#fdb4d4]">{c}</span>)}
       </div>
 
-      <div class="mt-3 text-center text-[10px] tracking-wide text-[#9fc8ab]">
-        เวลาปิดรับและอัตราจ่ายในตารางเป็นค่าอ้างอิงเท่านั้น แต่ละงวดกำหนดรอบออกรางวัล เวลาปิดรับ รูปแบบเดิมพัน และสถานะเลขไว้ต่างกัน จึงอาจเปลี่ยนได้ตามที่ระบบแสดงในขณะนั้น
-        ควรตรวจข้อมูลจริงก่อนกรอกเลขทุกครั้ง และกำหนดวงเงินกับเวลาไว้ล่วงหน้าเสมอ
+      <div class="mt-3 text-center text-[10px] tracking-wide text-[#d8b9c6]">
+        หัวข้อในตารางเป็นสิ่งที่ควรเปิดดูในระบบก่อนทำรายการ ไม่ใช่ตัวเลขรับประกัน แต่ละค่ายและแต่ละเกมกำหนดกติกา อัตราจ่าย ความผันผวน วงเงิน และเงื่อนไขโปรโมชั่นไว้ต่างกัน
+        จึงอาจเปลี่ยนได้ตามที่เว็บไซต์แสดงในขณะนั้น ควรตรวจข้อมูลจริงก่อนเริ่มทุกครั้ง และกำหนดวงเงินกับเวลาไว้ล่วงหน้าเสมอ
       </div>
     </div>
   </div>

@@ -10,12 +10,11 @@ const targetUrl = "https://yoalink.com/q83b";
 // the first <style> block below. Kanit stays declared on either brand font: it
 // is also the Thai fallback inside the Google Sans stack.
 //
-// This brand is on Google Sans (BRAND_FONT rotated off kanit), so
-// usesGoogleFonts is true and fontHref takes the FIRST branch, asking Google
-// for Google Sans and Oswald. Oswald is the only face that always needs a CDN:
-// the Latin status heading uses it and it is not self-hosted. Kanit still comes
-// from /fonts by the @font-face rules below — it is the Thai fallback inside
-// the Google Sans stack — and never from the CDN.
+// This brand is on Kanit (BRAND_FONT rotated off google-sans), so
+// usesGoogleFonts is false and fontHref takes the SECOND branch, asking Google
+// for Oswald only. Oswald is the face that always needs a CDN: the Latin status
+// heading uses it and it is not self-hosted. Kanit comes from /fonts by the
+// @font-face rules below and never from the CDN.
 // The brand wordmark needs no third typeface either — .brand-identity draws the
 // name in var(--font-sans), the same face the rest of the site uses, so the
 // wordmark here matches the navbar logotype on a screen that is on display for
@@ -34,18 +33,18 @@ const fontHref = usesGoogleFonts
 <html lang="th" style={`--font-sans: ${fontStack};`}>
   <head>
     <meta charset="utf-8" />
-    <title>หวยพร้อม | เข้าสู่ระบบแทงหวยออนไลน์ผ่านช่องทางหลัก</title>
+    <title>RUAYRUAY888 | เข้าสู่ระบบเกมพนันออนไลน์ผ่านช่องทางหลัก</title>
 
     {
       /* Title and description are the docx SUB-PAGES row for /login, both
-        verbatim. The brief's sentence is 118 characters and it ships at 118:
-        a description the docx supplies is used at its own length and is not
-        padded. Nothing forces a floor here either — verify-build.mjs puts its
-        150–160 gate after `if (!indexable) continue;` and this stub is noindex
-        (see the robots meta below).
+        verbatim. The brief's sentence ships at its own length: a description the
+        docx supplies is used as written and is not padded. Nothing forces a
+        floor here either — verify-build.mjs puts its 150–160 gate after
+        `if (!indexable) continue;` and this stub is noindex (see the robots meta
+        below).
         Count CHARACTERS, not bytes: Thai is 3 bytes per character. */
     }
-    <meta name="description" content="หวยพร้อม เข้าสู่ระบบผ่านช่องทางหลัก รองรับมือถือ พร้อมเลือกหวย กรอกเลข ตรวจโพย อัตราจ่าย และประวัติรายการได้อย่างสะดวก" />
+    <meta name="description" content="RUAYRUAY888 เข้าสู่ระบบผ่านช่องทางหลัก รองรับมือถือ พร้อมเลือกค่ายเกม ตรวจโปรโมชั่น บัญชี และสถานะรายการได้สะดวก" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {
@@ -86,38 +85,38 @@ const fontHref = usesGoogleFonts
     </style>
 
     <style>
-      /* หวยพร้อม is a deep-green lottery hall: the identity hue is the green of
-         its own artwork, gold is the prize metal that credit figures and badges
-         are drawn in, and red appears on exactly one thing — the tick in the
-         logo, which elsewhere on the site is the call-to-action colour. There is
-         no button on this screen, so red is deliberately absent from it rather
-         than sprinkled around for decoration.
+      /* This brand is a neon hot-pink casino floor: the identity hue is the
+         pink of its own artwork — measured off the logo — and it runs the whole
+         ramp on its own, from a pale pink-white highlight down to a deep
+         magenta, over a rose-tinted near-black. White is the only second note,
+         used for contrast rather than as a hue. There is deliberately NO metal
+         accent on this screen: the outgoing brand paired its primary with gold,
+         and carrying a gold stop over would be the one leftover a pink page
+         cannot absorb. There is no button here either, so nothing needs a
+         separate call-to-action colour.
          The .brand-identity gradient reads the wordmark's own bevel top to
-         bottom: white through mint into gold, and down into the forest green the
-         page itself sits on.
-         The outgoing brand here was a metallic gold-on-navy hall, so every stop
-         below changed hue as well as value. Naming a previous brand or quoting
-         its hexes in this comment is what a dist/ grep for the old name would
-         find, so the description stays generic on purpose.
+         bottom: white through pale pink into hot pink, then down into the
+         rose-black the page itself sits on.
+         Naming a previous brand or quoting its hexes in this comment is what a
+         dist/ grep for the old name would find, so the description stays
+         generic on purpose.
          Every variable is NAMED FOR THE COLOUR IT HOLDS, which previous brands
          stopped doing: this block once declared `--brand-gold` on brands with no
          gold in them and `--brand-red` on a blue one, so the next editor reused
-         it by name and shipped the wrong hue. Hence `--green*` for the primary,
-         `--gold*` for the prize metal, and `--ink`/`--forest` for the two dark
-         surfaces the ramp ends on. Rename with the value. */
+         it by name and shipped the wrong hue. Hence `--pink*` for the primary
+         ramp and `--ink`/`--roseblack` for the two dark surfaces it ends on.
+         Rename with the value. */
       :root {
-        --ink: #04140a;
-        --panel: rgba(10, 36, 19, 0.94);
-        --green: #22c55e;
-        --green-bright: #6ee7a0;
-        --green-deep: #1e7a3a;
-        --forest: #10361c;
-        --gold: #f5c451;
-        --gold-bright: #ffe08a;
-        --gold-deep: #a9791a;
+        --ink: #0c0a0a;
+        --panel: rgba(26, 17, 19, 0.94);
+        --pink: #f874a1;
+        --pink-bright: #fdb4d4;
+        --pink-deep: #d6377a;
+        --pink-deeper: #8f1140;
+        --roseblack: #3a1d24;
         --white: #ffffff;
-        --text: #d8efdc;
-        --text-dim: #9fc8ab;
+        --text: #f6dde8;
+        --text-dim: #d8b9c6;
       }
 
       body {
@@ -125,7 +124,7 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         color: var(--text);
 
-        background: radial-gradient(circle at 50% 10%, rgba(34, 197, 94, 0.16) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(30, 122, 58, 0.55) 0%, transparent 55%), var(--ink);
+        background: radial-gradient(circle at 50% 10%, rgba(248, 116, 161, 0.16) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(143, 17, 64, 0.55) 0%, transparent 55%), var(--ink);
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -139,11 +138,11 @@ const fontHref = usesGoogleFonts
         max-width: 450px;
         padding: 3.5rem;
         background: var(--panel);
-        border: 1px solid rgba(34, 197, 94, 0.45);
+        border: 1px solid rgba(248, 116, 161, 0.45);
         border-radius: 2rem;
         box-shadow:
-          0 1rem 3rem rgba(34, 197, 94, 0.24),
-          0 0 2rem rgba(30, 122, 58, 0.55);
+          0 1rem 3rem rgba(248, 116, 161, 0.24),
+          0 0 2rem rgba(143, 17, 64, 0.55);
         text-align: center;
         backdrop-filter: blur(10px);
       }
@@ -152,13 +151,13 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(180deg, var(--white) 0%, var(--green-bright) 22%, var(--gold-bright) 48%, var(--gold) 72%, var(--gold-deep) 88%, var(--forest) 100%);
+        background: linear-gradient(180deg, var(--white) 0%, var(--pink-bright) 22%, var(--pink) 48%, var(--pink-deep) 72%, var(--pink-deeper) 88%, var(--roseblack) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         letter-spacing: 0.12em;
         margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 2px rgba(4, 20, 10, 0.6));
+        filter: drop-shadow(0 1px 2px rgba(12, 10, 10, 0.6));
       }
 
       .sophisticated-loader {
@@ -174,30 +173,30 @@ const fontHref = usesGoogleFonts
       .orb {
         width: 40px;
         height: 40px;
-        background: radial-gradient(circle, var(--green-bright) 0%, var(--green) 55%, var(--forest) 100%);
+        background: radial-gradient(circle, var(--pink-bright) 0%, var(--pink) 55%, var(--pink-deeper) 100%);
         border-radius: 50%;
-        box-shadow: 0 0 2rem rgba(34, 197, 94, 0.45);
+        box-shadow: 0 0 2rem rgba(248, 116, 161, 0.45);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .ring {
         position: absolute;
         border-radius: 50%;
-        border: 3px solid rgba(34, 197, 94, 0.2);
+        border: 3px solid rgba(248, 116, 161, 0.2);
         animation: spin linear infinite;
       }
 
       .ring-1 {
         width: 100%;
         height: 100%;
-        border-top-color: var(--green);
+        border-top-color: var(--pink);
         animation-duration: 4s;
       }
 
       .ring-2 {
         width: 80%;
         height: 80%;
-        border-bottom-color: var(--gold);
+        border-bottom-color: var(--pink-bright);
         animation-duration: 6s;
         animation-direction: reverse;
       }
@@ -214,11 +213,11 @@ const fontHref = usesGoogleFonts
         0%,
         100% {
           transform: scale(1);
-          box-shadow: 0 0 2rem rgba(34, 197, 94, 0.45);
+          box-shadow: 0 0 2rem rgba(248, 116, 161, 0.45);
         }
         50% {
           transform: scale(1.15);
-          box-shadow: 0 0 3rem rgba(110, 231, 160, 0.55);
+          box-shadow: 0 0 3rem rgba(253, 180, 212, 0.55);
         }
       }
 
@@ -229,7 +228,7 @@ const fontHref = usesGoogleFonts
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text);
-        text-shadow: 0 1px 1px rgba(4, 20, 10, 0.6);
+        text-shadow: 0 1px 1px rgba(12, 10, 10, 0.6);
         margin: 0;
       }
       .status-text .p {
@@ -242,7 +241,7 @@ const fontHref = usesGoogleFonts
   </head>
   <body>
     <div class="premium-loading-container">
-      <div class="brand-identity">หวยพร้อม</div>
+      <div class="brand-identity">RUAYRUAY888</div>
 
       <div class="sophisticated-loader">
         <div class="orb"></div>
@@ -252,7 +251,7 @@ const fontHref = usesGoogleFonts
 
       <div class="status-text">
         <h1 class="h1">AUTHENTICATING SECURE ACCESS...</h1>
-        <p class="p">กำลังพาไปหน้าเข้าสู่ระบบ หวยพร้อม อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
+        <p class="p">กำลังพาไปหน้าเข้าสู่ระบบ RUAYRUAY888 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
       </div>
     </div>
 

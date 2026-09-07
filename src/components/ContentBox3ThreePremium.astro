@@ -9,15 +9,14 @@ export interface Props {
 const { title, as: HeadingTag = "h2", titleleft, titlecenter, titleright } = Astro.props;
 
 // The section heading arrives on `title` and is the only heading a docx section
-// normally needs here. The three column titles were <h3> until this rebrand;
-// they are prop-driven, so they are now <h2> like every other column title in
-// the family — a brief that is flat H1 + H2 simply leaves them unset and the
-// three columns carry the section's paragraph split across them.
+// normally needs here. The three column titles are prop-driven <h2>, so a brief
+// that is flat H1 + H2 simply leaves them unset and the three columns carry the
+// section's paragraph split across them — which is what RUAYRUAY888 does.
 //
-// VEGUS1: gold column labels and a gold marker dot on the deep maroon card,
-// crimson rules between the columns. The small bar at the top of each column is
-// decorative and always renders, so three untitled columns still read as three
-// parts of one section.
+// RUAYRUAY888: bright-pink column markers and rules on a rose-black card, with
+// the hot-pink wash behind the header. The small bar at the top of each column
+// is decorative and always renders, so three untitled columns still read as
+// three parts of one section.
 //
 // `isolate` on the card + `-z-10` on the wash is what lets the slot content
 // paint above the decoration without a wrapper <div>. Keep both.
@@ -25,25 +24,25 @@ const { title, as: HeadingTag = "h2", titleleft, titlecenter, titleright } = Ast
 
 <section class="mx-auto mb-8 w-full max-w-7xl px-4 font-sans">
   <div
-    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#d81f26]/30 bg-[#2b0808]/85 p-8 text-[#f7e3c8] shadow-[0_10px_30px_rgba(21,4,4,0.7)] backdrop-blur-xl transition-all duration-500 hover:border-[#f5c451]/60 hover:shadow-[0_15px_40px_rgba(216,31,38,0.35)] md:p-10">
-    <div aria-hidden="true" class="pointer-events-none absolute -top-24 left-1/2 -z-10 h-48 w-72 -translate-x-1/2 rounded-full bg-[#d81f26]/25 blur-[70px]"></div>
+    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#8f1140]/45 bg-[#1a1113]/90 p-8 text-[#f6dde8] shadow-[0_10px_30px_rgba(12,10,10,0.7)] backdrop-blur-xl transition-all duration-500 hover:border-[#f874a1]/60 hover:shadow-[0_15px_40px_rgba(248,116,161,0.32)] md:p-10">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-24 left-1/2 -z-10 h-48 w-72 -translate-x-1/2 rounded-full bg-[#f874a1]/25 blur-[70px]"></div>
 
     {
       title && (
-        <header class="mb-8 flex items-center gap-4 border-b border-[#d81f26]/30 pb-4">
-          <span aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffe08a] via-[#f5c451] to-[#d81f26] shadow-[0_0_10px_rgba(245,196,81,0.5)]" />
-          <HeadingTag class="bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#ff3a33] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
+        <header class="mb-8 flex items-center gap-4 border-b border-[#f874a1]/30 pb-4">
+          <span aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffffff] via-[#fdb4d4] to-[#8f1140] shadow-[0_0_10px_rgba(248,116,161,0.5)]" />
+          <HeadingTag class="bg-gradient-to-r from-[#ffffff] via-[#fdb4d4] to-[#f874a1] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
         </header>
       )
     }
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-      <article class="flex flex-col gap-3 border-b border-[#4a0a0d] pb-8 text-left text-base leading-relaxed text-[#f7e3c8] md:border-r md:border-b-0 md:pr-8 md:pb-0">
-        <span aria-hidden="true" class="h-[3px] w-12 shrink-0 rounded-full bg-gradient-to-r from-[#f5c451] to-transparent"></span>
+      <article class="flex flex-col gap-3 border-b border-[#8f1140]/50 pb-8 text-left text-base leading-relaxed text-[#f6dde8] md:border-r md:border-b-0 md:pr-8 md:pb-0">
+        <span aria-hidden="true" class="h-[3px] w-12 shrink-0 rounded-full bg-gradient-to-r from-[#fdb4d4] to-transparent"></span>
         {
           titleleft && (
-            <h2 class="flex items-center gap-2 text-lg leading-normal font-black tracking-widest text-[#f5c451] uppercase">
-              <span aria-hidden="true" class="h-1.5 w-1.5 shrink-0 rounded-full bg-[#f5c451] shadow-[0_0_8px_rgba(245,196,81,0.9)]" />
+            <h2 class="flex items-center gap-2 text-lg leading-normal font-black tracking-widest text-[#fdb4d4] uppercase">
+              <span aria-hidden="true" class="h-1.5 w-1.5 shrink-0 rounded-full bg-[#f874a1] shadow-[0_0_8px_rgba(248,116,161,0.9)]" />
               {titleleft}
             </h2>
           )
@@ -51,12 +50,12 @@ const { title, as: HeadingTag = "h2", titleleft, titlecenter, titleright } = Ast
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-3 border-b border-[#4a0a0d] pb-8 text-left text-base leading-relaxed text-[#f7e3c8] md:border-r md:border-b-0 md:px-4 md:pb-0">
-        <span aria-hidden="true" class="h-[3px] w-12 shrink-0 rounded-full bg-gradient-to-r from-[#ff3a33] to-transparent"></span>
+      <article class="flex flex-col gap-3 border-b border-[#8f1140]/50 pb-8 text-left text-base leading-relaxed text-[#f6dde8] md:border-r md:border-b-0 md:px-4 md:pb-0">
+        <span aria-hidden="true" class="h-[3px] w-12 shrink-0 rounded-full bg-gradient-to-r from-[#f874a1] to-transparent"></span>
         {
           titlecenter && (
-            <h2 class="flex items-center gap-2 text-lg leading-normal font-black tracking-widest text-[#f5c451] uppercase">
-              <span aria-hidden="true" class="h-1.5 w-1.5 shrink-0 rounded-full bg-[#f5c451] shadow-[0_0_8px_rgba(245,196,81,0.9)]" />
+            <h2 class="flex items-center gap-2 text-lg leading-normal font-black tracking-widest text-[#fdb4d4] uppercase">
+              <span aria-hidden="true" class="h-1.5 w-1.5 shrink-0 rounded-full bg-[#f874a1] shadow-[0_0_8px_rgba(248,116,161,0.9)]" />
               {titlecenter}
             </h2>
           )
@@ -64,12 +63,12 @@ const { title, as: HeadingTag = "h2", titleleft, titlecenter, titleright } = Ast
         <slot name="center" />
       </article>
 
-      <article class="flex flex-col gap-3 text-left text-base leading-relaxed text-[#f7e3c8] md:pl-8">
-        <span aria-hidden="true" class="h-[3px] w-12 shrink-0 rounded-full bg-gradient-to-r from-[#f5c451] to-transparent"></span>
+      <article class="flex flex-col gap-3 text-left text-base leading-relaxed text-[#f6dde8] md:pl-8">
+        <span aria-hidden="true" class="h-[3px] w-12 shrink-0 rounded-full bg-gradient-to-r from-[#fdb4d4] to-transparent"></span>
         {
           titleright && (
-            <h2 class="flex items-center gap-2 text-lg leading-normal font-black tracking-widest text-[#f5c451] uppercase">
-              <span aria-hidden="true" class="h-1.5 w-1.5 shrink-0 rounded-full bg-[#f5c451] shadow-[0_0_8px_rgba(245,196,81,0.9)]" />
+            <h2 class="flex items-center gap-2 text-lg leading-normal font-black tracking-widest text-[#fdb4d4] uppercase">
+              <span aria-hidden="true" class="h-1.5 w-1.5 shrink-0 rounded-full bg-[#f874a1] shadow-[0_0_8px_rgba(248,116,161,0.9)]" />
               {titleright}
             </h2>
           )

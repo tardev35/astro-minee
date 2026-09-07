@@ -2,31 +2,32 @@
 // The default is the CURRENT brand's copy on purpose: sub-pages call
 // <Announcement /> bare, so whatever sits here is what every page but the
 // homepage renders. Leaving a previous brand's slogan in this slot is the
-// classic way half a site keeps advertising the last client.
+// classic way half a site keeps advertising the last client. (This one still
+// read BMK289 when RUAYRUAY888 picked the variant up.)
 //
 // No leading emoji — the marquee renders `message` twice, so a decorative glyph
 // baked into the string is announced twice and cannot be marked aria-hidden.
 const {
-  message = "BMK289 เว็บสล็อตรวมเกมยอดนิยม ระบบออโต้ฝากง่าย ถอนไวตามเงื่อนไข รองรับทั้งมือถือและคอมพิวเตอร์ • โปรโมชั่นแต่ละรายการมีเงื่อนไขต่างกัน ควรอ่านรายละเอียดและข้อกำหนดการถอนก่อนรับสิทธิ์ทุกครั้ง • ก่อนยืนยันฝากถอนควรตรวจสอบชื่อบัญชีและจำนวนเงินให้ถูกต้อง หากรายการยังดำเนินการอยู่ควรรอผลจากระบบก่อนทำซ้ำ • คำว่าจ่ายจริงไม่ได้หมายถึงการรับประกันทุกกรณี ควรศึกษาความผันผวนและกำหนดงบประมาณก่อนเริ่มเล่น",
+  message = "RUAYRUAY888 รวมค่ายเกมพนันหลายรูปแบบไว้ในระบบเดียว รองรับฝากถอนผ่าน Wallet ทั้งบนมือถือและคอมพิวเตอร์ • โปรโมชั่นแต่ละรายการมีเงื่อนไขต่างกัน ควรตรวจยอดขั้นต่ำ เกมที่ร่วมรายการ และเงื่อนไขการถอนก่อนรับสิทธิ์ทุกครั้ง • ก่อนยืนยันฝากถอนควรตรวจข้อมูลกระเป๋าเงินและจำนวนเงินให้ตรงกัน หากรายการเดิมยังไม่อัปเดตสถานะควรรอผลจากระบบก่อนทำรายการใหม่ • คำว่าจ่ายดีไม่ได้หมายถึงการรับประกันกำไร ควรศึกษาอัตราจ่าย ความผันผวน และกำหนดงบประมาณก่อนเริ่มเล่น",
 } = Astro.props;
 ---
 
 <div class="mx-auto w-full max-w-7xl px-4 py-3 font-sans">
   <div
-    class="relative flex overflow-hidden border border-[#2b8cff]/50 bg-[#02081c]/90 shadow-[0_0_15px_rgba(43,140,255,0.3)] backdrop-blur-md"
+    class="relative flex overflow-hidden border border-[#f874a1]/50 bg-[#120c0e]/90 shadow-[0_0_15px_rgba(248,116,161,0.3)] backdrop-blur-md"
     style="clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);">
     <div
-      class="relative z-10 flex shrink-0 items-center justify-center bg-gradient-to-r from-[#02528c] to-[#2b8cff] px-6 py-2.5 font-black text-[#eaf4ff]"
+      class="relative z-10 flex shrink-0 items-center justify-center bg-gradient-to-r from-[#8f1140] to-[#f874a1] px-6 py-2.5 font-black text-[#fff0f6]"
       style="clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);">
       ประกาศ
     </div>
 
     <div class="marquee-container relative flex-1 overflow-hidden py-2.5 pr-6">
-      <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#02081c] to-transparent"></div>
+      <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#120c0e] to-transparent"></div>
 
-      <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-widest whitespace-nowrap text-[#dbe9fb]">
-        <span class="mr-8 inline-flex items-center gap-2"><span aria-hidden="true" class="h-2 w-2 bg-[#ffcc33] shadow-[0_0_8px_rgba(255,204,51,1)]"></span>{message}</span>
-        <span class="mr-8 inline-flex items-center gap-2"><span aria-hidden="true" class="h-2 w-2 bg-[#ffcc33] shadow-[0_0_8px_rgba(255,204,51,1)]"></span>{message}</span>
+      <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-widest whitespace-nowrap text-[#f6dde8]">
+        <span class="mr-8 inline-flex items-center gap-2"><span aria-hidden="true" class="h-2 w-2 bg-[#fdb4d4] shadow-[0_0_8px_rgba(253,180,212,1)]"></span>{message}</span>
+        <span class="mr-8 inline-flex items-center gap-2"><span aria-hidden="true" class="h-2 w-2 bg-[#fdb4d4] shadow-[0_0_8px_rgba(253,180,212,1)]"></span>{message}</span>
       </div>
     </div>
   </div>

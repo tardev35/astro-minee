@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarStyle6.astro";
-import Footer from "../components/FooterHuay.astro";
+import Navbar from "../components/NavbarCyber.astro";
+import Footer from "../components/FooterStyle2.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,16 +55,16 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "หวยพร้อม | เว็บแทงหวยออนไลน์จ่ายเยอะ ไม่อั้นเลข รวมครบจบในที่เดียว",
+  title = "RUAYRUAY888 | รวมค่ายเกมพนันจ่ายดี โปรแรง ฝากถอนวอลเลทสะดวก",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings. Count
   // CHARACTERS, not bytes — Thai is 3 bytes per character. This one is 154.
   //
-  // The home page passes the docx's own 113-character description instead and
+  // The home page passes the docx's own 120-character description instead and
   // that is correct: verify-build exempts the home page from the floor so the
   // brief's copy ships unpadded. This default is only a fallback.
-  description = "หวยพร้อม เว็บแทงหวยออนไลน์ที่รวมประเภทหวย ระบบกรอกโพย อัตราจ่าย และข้อมูลผลรางวัลไว้ในระบบเดียว รองรับมือถือ พร้อมให้ตรวจสถานะเลขและรายการย้อนหลังได้สะดวก",
+  description = "RUAYRUAY888 เว็บพนันออนไลน์ที่รวมเกมจากหลายค่ายไว้ในระบบเดียว รองรับ Wallet ผ่านมือถือ พร้อมโปรโมชั่นตามเงื่อนไข ระบบบัญชี และการตรวจสถานะรายการย้อนหลังได้สะดวก",
   robots = "index, follow",
 } = Astro.props;
 
@@ -229,7 +229,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #04140a;
+        background-color: #0c0a0a;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -282,7 +282,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ หวยพร้อม ในโทนเขียวนีออนสลับทอง กลางภาพด้านบนเป็นโลโก้ หวยพร้อม ตัวอักษรไทยสองบรรทัดพร้อมเครื่องหมายถูกสีแดง ถัดลงมาเป็นข้อความขนาดใหญ่สีขาวว่า เว็บหวยออนไลน์ และบรรทัดถัดมาเป็นตัวอักษรเขียวเรืองแสงว่า ครบจบในที่เดียว ใต้ลงมาเป็นบรรทัดสีขาวว่า ซื้อหวยง่าย ลุ้นไว ตรวจผลสะดวก ถัดลงมาเป็นแถวรายชื่อหวยคั่นด้วยจุดเขียนว่า หวยรัฐบาล หวยฮานอย หวยลาว และ หวยหุ้น ถัดลงมาเป็นแคปซูลขอบเขียวสามช่องเขียนว่า สมัครไว ไม่ยุ่งยาก พร้อมไอคอนสายฟ้า จ่ายจริง มั่นใจได้ 100% พร้อมไอคอนโล่ และ รองรับมือถือ เล่นได้ทุกที่ ทุกเวลา พร้อมไอคอนโทรศัพท์ ปิดท้ายด้วยปุ่มสีแดงขนาดใหญ่เขียนว่า แทงหวยเลย พร้อมลูกศร ด้านล่างเป็นแถบสามช่องเขียนว่า ปลอดภัย ข้อมูลไม่รั่วไหล บริการด้วยใจ ดูแลตลอด 24 ชม. และ หวยออนไลน์ เชื่อถือได้ มั่นคง ด้านซ้ายเป็นผู้หญิงผมยาวในชุดสีเขียวเข้มเมทัลลิก มือหนึ่งถือโทรศัพท์ที่มีโลโก้ หวยพร้อม อีกมือถือสลากกินแบ่งรัฐบาลคลี่เป็นพัด รอบภาพมีลูกบอลหวยสีเขียวและสีขาวพิมพ์เลข 6 2 9 5 และ 8 พร้อมเหรียญทองและใบสลากปลิวอยู่ มีข้อความลายมือกระจายอยู่ว่า ทุกเลข ทุกความหวัง อยู่ใกล้แค่ปลายนิ้ว ลุ้นวันนี้ ชีวิตดีขึ้นได้ จริงๆ เสี่ยงโชค สร้างโอกาส ให้ชีวิต และ เลขเล็กๆ อาจเปลี่ยนชีวิตได้ เริ่มเลขวันนี้ ฉากหลังเป็นเส้นขอบฟ้าเมืองสีเขียวเรืองแสงมีเงาพระปรางค์วัดอรุณ"
+          alt="แบนเนอร์ต้อนรับ RUAYRUAY888 ในโทนชมพูนีออนบนพื้นดำ ด้านซ้ายบนเป็นโลโก้เว็บไซต์แบบตัวอักษรพิกเซลสีขาวสลับชมพูบนป้ายสีดำ ใต้โลโก้เป็นชื่อเว็บไซต์ตัวหนาสีชมพู ถัดลงมาเป็นข้อความขนาดใหญ่สีขาวขอบชมพูว่า ศูนย์รวมเกมออนไลน์สุดมัน ใต้ลงมาเป็นแคปซูลขอบชมพูมีสัญลักษณ์โพดำสองข้างเขียนว่า รวมเกมฮิต ระบบลื่น สนุกได้ทุกเวลา ปิดท้ายด้วยปุ่มสีชมพูขนาดใหญ่เขียนว่า เข้าร่วมเลย พร้อมลูกศรในวงกลม มุมซ้ายสุดเป็นจอตั้งพื้นเขียนว่า PLAY BIG WIN BIGGER มุมขวาบนเป็นข้อความลายมือเรืองแสงว่า Good Games Better People ใต้ลงมาเป็นแถบเมนูหกรายการพร้อมไอคอนเขียนว่า SLOTS LIVE CASINO SPORTS PROMOTIONS และ 24/7 ด้านขวาเป็นผู้หญิงผมยาวสีน้ำตาลติดโบว์ชมพู สวมเสื้อสายเดี่ยวสีขาวชมพูที่มีโลโก้เว็บไซต์ กำลังยิ้มและเท้าคางพิงโต๊ะคาสิโน สวมต่างหูและสร้อยรูปหัวใจสีชมพู ฉากหลังเป็นห้องคาสิโนไฟนีออนชมพูมีวงแหวนเรืองแสงและมงกุฎทอง รอบภาพมีเหรียญทองลายมงกุฎ ชิปคาสิโนสีชมพูดำ และไพ่โพแดงวางอยู่บนโต๊ะที่พิมพ์ข้อความว่า MORE THAN A GAME"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

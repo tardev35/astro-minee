@@ -1,8 +1,9 @@
-# หวยพร้อมวีไอพี.com in punycode. A Worker name must be ASCII, and
-# verify-build.mjs derives the expected value from the FULL first label of an
-# IDN host (splitting on "-" would give every IDN brand the same slug "xn").
-name = "xn--v3caicgve0awc1gc6qnc"
-account_id = "d939ad68446c53a3e650fd35bbaf922a"
+# ruayruay888.app — the Worker name is the deployment identity. Reusing another
+# brand's name overwrites that brand's live Worker, so this must be unique per
+# brand and must match the parked Worker if the domain was already parked with
+# tools/domain-placeholder (confirm with `npx wrangler deployments list` first).
+name = "ruayruay888"
+account_id = "e370e84fc51dfed2001ce18200a7f00a"
 compatibility_date = "2026-07-27"
 
 # Worker ที่ทำ 301 www -> non-www ก่อนส่งต่อให้ไฟล์ static (ดู worker/index.js)

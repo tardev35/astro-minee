@@ -9,8 +9,17 @@ const isActive = (path: string) => isActivePath(currentPath, path);
 
 // One array, rendered twice (desktop bar + mobile drawer). The icon is a
 // sibling of the label so it never lands in the accessible name, and every
-// item carries one — picked for a slot brand, so ทดลองเล่น is a reel and not
-// the playing card the previous baccarat brand used.
+// item carries one — picked for a multi-provider casino brand, so ทดลองเล่น is
+// a reel rather than the lottery ball the previous brand used.
+//
+// This array shipped a SEVENTH entry that was a duplicate of เกี่ยวกับเรา with
+// no icon, so /about-us rendered twice in both the desktop bar and the drawer,
+// the second one label-only. Removed 2026-09-07.
+//
+// No /login or /register entries: the cta page toggles are off for this brand,
+// so those routes are the noindex interstitials and ทางเข้า is the menu item
+// that leads to them. No /ตรวจหวย or /แนวทาง either — RUAYRUAY888 is a casino
+// brand and both lottery pages are parked in src/pages-disabled.
 const links = [
   { name: "หน้าแรก", path: "/", icon: "🏠" },
   { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
@@ -18,29 +27,28 @@ const links = [
   { name: "ทางเข้า", path: "/ทางเข้า", icon: "🔑" },
   { name: "เกี่ยวกับเรา", path: "/about-us", icon: "🏢" },
   { name: "ติดต่อเรา", path: "/contact-us", icon: "💬" },
-  { name: "เกี่ยวกับเรา", path: "/about-us" },
 ];
 ---
 
 <header class="sticky top-0 z-[100] w-full font-sans">
   <nav
-    class="relative mx-auto flex h-[80px] w-full items-center justify-between border-b border-[#a80f16]/45 bg-[#100205]/95 px-4 shadow-[0_5px_25px_rgba(168,15,22,0.25)] backdrop-blur-xl xl:px-8"
+    class="relative mx-auto flex h-[80px] w-full items-center justify-between border-b border-[#8f1140]/45 bg-[#120c0e]/95 px-4 shadow-[0_5px_25px_rgba(143,17,64,0.3)] backdrop-blur-xl xl:px-8"
     style="clip-path: polygon(0 0, 100% 0, 100% 100%, 20px 100%, 0 calc(100% - 20px));">
     <a href="/" class="z-[110] flex-shrink-0 transition-transform hover:scale-105">
       {
         mainLogo ? (
           <Picture
             src={mainLogo}
-            alt="โลโก้ KIKI49 ตัวอักษร KIKI สีเงินคู่กับเลข 49 สีแดง บนโล่แดงหยัก พร้อมมาสคอตเพนกวินสวมหน้ากากดำและชุดพิมพ์ลายโครงกระดูก"
+            alt="โลโก้ RUAYRUAY888 ตัวอักษรและตัวเลข 888 แบบตัวหนาสีชมพูสดบนพื้นสีขาว"
             loading="eager"
             widths={[140, 280, 420]}
             sizes="140px"
-            class="h-[55px] w-auto drop-shadow-[0_0_12px_rgba(226,19,29,0.55)] xl:h-[70px]"
+            class="h-[55px] w-auto drop-shadow-[0_0_12px_rgba(248,116,161,0.6)] xl:h-[70px]"
             formats={["avif", "webp"]}
             fallbackFormat="webp"
           />
         ) : (
-          <span class="bg-gradient-to-r from-[#ff5a5f] to-[#a80f16] bg-clip-text text-3xl font-black tracking-wider text-transparent">KIKI49</span>
+          <span class="bg-gradient-to-r from-[#fdb4d4] to-[#d6377a] bg-clip-text text-3xl font-black tracking-wider text-transparent">RUAYRUAY888</span>
         )
       }
     </a>
@@ -50,11 +58,11 @@ const links = [
         links.map((item) => (
           <a
             href={item.path}
-            class={`group relative flex h-full items-center gap-2 px-2 text-sm font-bold tracking-widest uppercase transition-colors xl:text-base ${isActive(item.path) ? "text-[#ff5a5f] drop-shadow-[0_0_8px_rgba(226,19,29,0.8)]" : "text-[#f2e2e4]/70 hover:text-[#e2131d]"}`}>
+            class={`group relative flex h-full items-center gap-2 px-2 text-sm font-bold tracking-widest uppercase transition-colors xl:text-base ${isActive(item.path) ? "text-[#fdb4d4] drop-shadow-[0_0_8px_rgba(248,116,161,0.85)]" : "text-[#f6dde8]/70 hover:text-[#f874a1]"}`}>
             <span aria-hidden="true">{item.icon}</span>
             <span>{item.name}</span>
             <div
-              class={`absolute bottom-0 left-0 h-[4px] w-full bg-[#e2131d] shadow-[0_-2px_10px_rgba(226,19,29,0.9)] transition-transform duration-300 ${isActive(item.path) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+              class={`absolute bottom-0 left-0 h-[4px] w-full bg-[#f874a1] shadow-[0_-2px_10px_rgba(248,116,161,0.9)] transition-transform duration-300 ${isActive(item.path) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
             />
           </a>
         ))
@@ -64,38 +72,38 @@ const links = [
     <div class="z-[110] flex items-center gap-4">
       <a
         href="/login"
-        class="hidden items-center justify-center border border-[#e2131d]/70 bg-transparent px-6 py-2 text-sm font-bold text-[#e2131d] transition-all hover:bg-[#3a060b]/60 lg:flex"
+        class="hidden items-center justify-center border border-[#f874a1]/70 bg-transparent px-6 py-2 text-sm font-bold text-[#f874a1] transition-all hover:bg-[#3a1d24]/70 lg:flex"
         style="clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);">
         เข้าระบบ
       </a>
       <a
         href="/register"
-        class="hidden items-center justify-center bg-gradient-to-r from-[#ff5a5f] to-[#a80f16] px-6 py-2 text-sm font-black text-[#fff5f5] shadow-[0_0_15px_rgba(168,15,22,0.45)] transition-all hover:scale-105 lg:flex"
+        class="hidden items-center justify-center bg-gradient-to-r from-[#fdb4d4] to-[#d6377a] px-6 py-2 text-sm font-black text-[#2a0f1a] shadow-[0_0_15px_rgba(248,116,161,0.5)] transition-all hover:scale-105 lg:flex"
         style="clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);">
         สมัครสมาชิก
       </a>
 
       <button
         id="hamburger-btn"
-        class="relative flex h-[45px] w-[45px] flex-col items-center justify-center gap-[6px] border border-[#a80f16]/55 bg-[#1c0407] lg:hidden"
+        class="relative flex h-[45px] w-[45px] flex-col items-center justify-center gap-[6px] border border-[#8f1140]/55 bg-[#1a1113] lg:hidden"
         style="clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);"
         aria-label="Menu">
-        <span class="line-1 h-[2px] w-6 origin-center bg-[#ff5a5f] shadow-[0_0_5px_rgba(226,19,29,0.9)] transition-all duration-300"></span>
-        <span class="line-2 h-[2px] w-6 origin-center bg-[#ff5a5f] shadow-[0_0_5px_rgba(226,19,29,0.9)] transition-all duration-300"></span>
-        <span class="line-3 h-[2px] w-6 origin-center bg-[#ff5a5f] shadow-[0_0_5px_rgba(226,19,29,0.9)] transition-all duration-300"></span>
+        <span class="line-1 h-[2px] w-6 origin-center bg-[#fdb4d4] shadow-[0_0_5px_rgba(248,116,161,0.9)] transition-all duration-300"></span>
+        <span class="line-2 h-[2px] w-6 origin-center bg-[#fdb4d4] shadow-[0_0_5px_rgba(248,116,161,0.9)] transition-all duration-300"></span>
+        <span class="line-3 h-[2px] w-6 origin-center bg-[#fdb4d4] shadow-[0_0_5px_rgba(248,116,161,0.9)] transition-all duration-300"></span>
       </button>
     </div>
   </nav>
 
   <div
     id="mobile-menu"
-    class="pointer-events-none absolute top-[80px] left-0 w-full origin-top -translate-y-4 scale-y-95 flex-col border-b border-[#a80f16]/45 bg-[#100205]/98 px-6 pt-4 pb-8 opacity-0 shadow-2xl backdrop-blur-xl transition-all duration-300 lg:hidden">
+    class="pointer-events-none absolute top-[80px] left-0 w-full origin-top -translate-y-4 scale-y-95 flex-col border-b border-[#8f1140]/45 bg-[#120c0e]/98 px-6 pt-4 pb-8 opacity-0 shadow-2xl backdrop-blur-xl transition-all duration-300 lg:hidden">
     <div class="flex flex-col gap-2">
       {
         links.map((item) => (
           <a
             href={item.path}
-            class={`flex items-center gap-3 border-l-4 px-4 py-3 text-lg font-bold tracking-widest uppercase transition-colors ${isActive(item.path) ? "border-[#e2131d] bg-[#3a060b]/40 text-[#ff5a5f]" : "border-transparent text-[#f2e2e4]/70 hover:bg-white/5 hover:text-[#e2131d]"}`}>
+            class={`flex items-center gap-3 border-l-4 px-4 py-3 text-lg font-bold tracking-widest uppercase transition-colors ${isActive(item.path) ? "border-[#f874a1] bg-[#3a1d24]/50 text-[#fdb4d4]" : "border-transparent text-[#f6dde8]/70 hover:bg-white/5 hover:text-[#f874a1]"}`}>
             <span aria-hidden="true">{item.icon}</span>
             <span>{item.name}</span>
           </a>
@@ -105,13 +113,13 @@ const links = [
     <div class="mt-6 flex flex-col gap-4">
       <a
         href="/register"
-        class="flex w-full justify-center bg-gradient-to-r from-[#ff5a5f] to-[#a80f16] py-3.5 text-lg font-black text-[#fff5f5] shadow-[0_0_15px_rgba(168,15,22,0.45)]"
+        class="flex w-full justify-center bg-gradient-to-r from-[#fdb4d4] to-[#d6377a] py-3.5 text-lg font-black text-[#2a0f1a] shadow-[0_0_15px_rgba(248,116,161,0.5)]"
         style="clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);">
         สมัครสมาชิก
       </a>
       <a
         href="/login"
-        class="flex w-full justify-center border border-[#e2131d]/70 bg-transparent py-3.5 text-lg font-bold text-[#e2131d]"
+        class="flex w-full justify-center border border-[#f874a1]/70 bg-transparent py-3.5 text-lg font-bold text-[#f874a1]"
         style="clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);">
         เข้าระบบ
       </a>

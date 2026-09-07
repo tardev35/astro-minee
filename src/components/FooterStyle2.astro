@@ -7,36 +7,39 @@ const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png
 const imagePaths = Object.keys(images);
 const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 
-const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร 77Lotto สีขาวแบบลายมือ วางบนแถบโค้งสีแดงไล่เฉดจากแดงสดถึงแดงเลือดหมู ขอบแถบเป็นเส้นสีทอง`;
+const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษรและตัวเลข 888 แบบตัวหนาสีชมพูสดบนพื้นสีขาว`;
 
 // Every column heading here is a <p>, not a heading tag: the footer renders on
 // every page, so one <h2> in it is an <h2> sitewide that no docx section backs.
 // The <nav>/<section> aria-label carries the accessible name instead.
+//
+// No /ตรวจหวย or /แนวทาง: RUAYRUAY888 is a casino brand and both lottery pages
+// are parked in src/pages-disabled, so those links would 404. This variant
+// shipped both because the brand before it sold หวย.
 const mainLinks = [
   { name: "หน้าแรก", path: "/" },
   { name: "โปรโมชั่น", path: "/promotion" },
-  { name: "ตรวจหวย", path: "/ตรวจหวย" },
-  { name: "แนวทาง", path: "/แนวทาง" },
   { name: "ทางเข้า", path: "/ทางเข้า" },
   { name: "ทดลองเล่น", path: "/ทดลองเล่น" },
   { name: "เกี่ยวกับเรา", path: "/about-us" },
   { name: "ติดต่อเรา", path: "/contact-us" },
 ];
 
-// Lottery markets, not slot categories — this brand sells หวย. The เวลาปิดรับ
-// shown in LottoGrid is the detail; here it is only a category list.
-const markets = [
-  { name: "หวยรัฐบาลไทย", path: "/register" },
-  { name: "หวยลาวพัฒนา", path: "/register" },
-  { name: "หวยฮานอย", path: "/register" },
-  { name: "หวยยี่กี (รอบละ 15 นาที)", path: "/register" },
-  { name: "ทดลองใช้งานระบบก่อนซื้อจริง", path: "/ทดลองเล่น" },
+// Game categories, not lottery markets — this brand aggregates casino
+// providers. Kept to the four the docx actually names plus the demo route, so
+// the list does not claim a catalogue the brief never mentions.
+const categories = [
+  { name: "สล็อตออนไลน์", path: "/register" },
+  { name: "บาคาร่า", path: "/register" },
+  { name: "คาสิโนสด", path: "/register" },
+  { name: "เกมรูปแบบอื่นจากหลายค่าย", path: "/register" },
+  { name: "ทดลองใช้งานระบบก่อนเล่นจริง", path: "/ทดลองเล่น" },
 ];
 ---
 
-<footer class="relative w-full overflow-hidden border-t-[3px] border-[#f5c451] bg-[#150202] pt-16 pb-8 font-sans text-white shadow-[0_-10px_30px_rgba(245,196,81,0.18)]">
-  <div class="pointer-events-none absolute top-0 right-0 h-96 w-96 rounded-full bg-[#f5c451]/10 blur-[100px]"></div>
-  <div class="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full bg-[#d81220]/30 blur-[100px]"></div>
+<footer class="relative w-full overflow-hidden border-t-[3px] border-[#f874a1] bg-[#120c0e] pt-16 pb-8 font-sans text-white shadow-[0_-10px_30px_rgba(248,116,161,0.2)]">
+  <div class="pointer-events-none absolute top-0 right-0 h-96 w-96 rounded-full bg-[#f874a1]/10 blur-[100px]"></div>
+  <div class="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full bg-[#8f1140]/35 blur-[100px]"></div>
 
   <div class="relative z-10 mx-auto w-full max-w-[1200px] px-6">
     <div class="mb-12 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
@@ -44,36 +47,36 @@ const markets = [
         <a href="/" class="inline-block origin-left transition-transform hover:scale-105">
           {
             mainLogo ? (
-              <Picture src={mainLogo} alt={logoAlt} widths={[160, 320, 480]} sizes="160px" class="h-[50px] w-auto drop-shadow-[0_0_15px_rgba(245,196,81,0.45)]" formats={["avif", "webp"]} fallbackFormat="webp" />
+              <Picture src={mainLogo} alt={logoAlt} widths={[160, 320, 480]} sizes="160px" class="h-[50px] w-auto drop-shadow-[0_0_15px_rgba(248,116,161,0.5)]" formats={["avif", "webp"]} fallbackFormat="webp" />
             ) : (
-              <span class="bg-gradient-to-b from-[#ffe08a] to-[#b8860b] bg-clip-text text-4xl font-black text-transparent drop-shadow-[0_0_10px_rgba(245,196,81,0.4)]">{BRAND_NAME}</span>
+              <span class="bg-gradient-to-b from-[#fdb4d4] to-[#8f1140] bg-clip-text text-4xl font-black text-transparent drop-shadow-[0_0_10px_rgba(248,116,161,0.45)]">{BRAND_NAME}</span>
             )
           }
         </a>
-        <p class="text-base leading-relaxed text-[#c9a49c]">
-          {BRAND_NAME} เป็นแพลตฟอร์มหวยออนไลน์ที่รวมการเลือกประเภทหวย กรอกตัวเลข และตรวจสอบโพยไว้ในระบบเดียว รองรับทั้งมือถือและคอมพิวเตอร์
-          สมาชิกตรวจอัตราจ่าย เวลาเปิดปิดรับเดิมพัน สถานะรายการ และผลรางวัลได้จากบัญชีเดียวตามเงื่อนไขที่เว็บไซต์กำหนด
+        <p class="text-base leading-relaxed text-[#d8b9c6]">
+          {BRAND_NAME} เป็นแพลตฟอร์มพนันออนไลน์ที่รวบรวมเกมจากหลายค่ายไว้ในระบบเดียว รองรับทั้งมือถือและคอมพิวเตอร์
+          สมาชิกเลือกเกม ตรวจสอบโปรโมชั่น อัตราจ่าย ยอดคงเหลือ และสถานะรายการฝากถอนผ่าน Wallet ได้จากบัญชีเดียวตามเงื่อนไขที่เว็บไซต์กำหนด
         </p>
         <div class="mt-2 flex items-center gap-3">
-          <div class="flex items-center gap-1.5 rounded border border-[#f5c451]/50 bg-[#f5c451]/10 px-3 py-1.5 text-xs font-bold text-[#ffe08a] shadow-[0_0_10px_rgba(245,196,81,0.22)]">
+          <div class="flex items-center gap-1.5 rounded border border-[#f874a1]/50 bg-[#f874a1]/10 px-3 py-1.5 text-xs font-bold text-[#fdb4d4] shadow-[0_0_10px_rgba(248,116,161,0.25)]">
             <span aria-hidden="true" class="text-base">🛡️</span> SSL/TLS 256-BIT
           </div>
-          <div class="flex items-center gap-1.5 rounded border border-[#d81220]/60 bg-[#3f070a]/50 px-3 py-1.5 text-xs font-bold text-[#c9a49c]">
+          <div class="flex items-center gap-1.5 rounded border border-[#8f1140]/60 bg-[#3a1d24]/60 px-3 py-1.5 text-xs font-bold text-[#d8b9c6]">
             <span aria-hidden="true" class="text-base">⚡</span> AUTO 24H
           </div>
         </div>
       </div>
 
       <nav aria-label="เมนูหลัก" class="flex flex-col gap-4 lg:pl-8">
-        <p class="flex items-center gap-2 text-lg font-extrabold text-[#ffe08a]">
-          <span aria-hidden="true" class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#ffe08a] to-[#b8860b]"></span> เมนูหลัก
+        <p class="flex items-center gap-2 text-lg font-extrabold text-[#fdb4d4]">
+          <span aria-hidden="true" class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#fdb4d4] to-[#8f1140]"></span> เมนูหลัก
         </p>
         <ul class="flex flex-col gap-3 text-sm">
           {
             mainLinks.map((link) => (
               <li>
-                <a href={link.path} class="group flex items-center text-[#c9a49c] transition-all hover:text-[#ffe08a]">
-                  <span aria-hidden="true" class="mr-2 -ml-4 text-[#f5c451] opacity-0 transition-all group-hover:ml-0 group-hover:opacity-100">
+                <a href={link.path} class="group flex items-center text-[#d8b9c6] transition-all hover:text-[#fdb4d4]">
+                  <span aria-hidden="true" class="mr-2 -ml-4 text-[#f874a1] opacity-0 transition-all group-hover:ml-0 group-hover:opacity-100">
                     ➤
                   </span>
                   {link.name}
@@ -84,17 +87,17 @@ const markets = [
         </ul>
       </nav>
 
-      <nav aria-label="ประเภทหวยที่ระบบเปิดรับ" class="flex flex-col gap-4">
-        <p class="flex items-center gap-2 text-lg font-extrabold text-[#ffe08a]">
-          <span aria-hidden="true" class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#ffe08a] to-[#b8860b]"></span> ประเภทหวยที่เปิดรับ
+      <nav aria-label="ประเภทเกมที่ระบบรวมไว้" class="flex flex-col gap-4">
+        <p class="flex items-center gap-2 text-lg font-extrabold text-[#fdb4d4]">
+          <span aria-hidden="true" class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#fdb4d4] to-[#8f1140]"></span> ประเภทเกมที่รวมไว้
         </p>
         <ul class="flex flex-col gap-3 text-sm">
           {
-            markets.map((market) => (
+            categories.map((category) => (
               <li>
-                <a href={market.path} class="group flex items-center text-[#c9a49c] transition-all hover:text-[#ffe08a]">
-                  <span aria-hidden="true" class="mr-3 h-1.5 w-1.5 rounded-full bg-[#ff3d3d] transition-colors group-hover:bg-[#f5c451] group-hover:shadow-[0_0_8px_rgba(245,196,81,0.8)]" />
-                  {market.name}
+                <a href={category.path} class="group flex items-center text-[#d8b9c6] transition-all hover:text-[#fdb4d4]">
+                  <span aria-hidden="true" class="mr-3 h-1.5 w-1.5 rounded-full bg-[#d6377a] transition-colors group-hover:bg-[#f874a1] group-hover:shadow-[0_0_8px_rgba(248,116,161,0.85)]" />
+                  {category.name}
                 </a>
               </li>
             ))
@@ -103,8 +106,8 @@ const markets = [
       </nav>
 
       <div class="flex flex-col gap-5">
-        <p class="flex items-center gap-2 text-lg font-extrabold text-[#ffe08a]">
-          <span aria-hidden="true" class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#ffe08a] to-[#b8860b]"></span> บริการลูกค้า
+        <p class="flex items-center gap-2 text-lg font-extrabold text-[#fdb4d4]">
+          <span aria-hidden="true" class="h-6 w-1.5 rounded-full bg-gradient-to-b from-[#fdb4d4] to-[#8f1140]"></span> บริการลูกค้า
         </p>
 
         <a
@@ -134,25 +137,25 @@ const markets = [
         }
 
         <div class="mt-2">
-          <p class="mb-3 text-xs font-bold tracking-wider text-[#f5c451]/90 uppercase">รองรับทุกธนาคาร & True Wallet</p>
+          <p class="mb-3 text-xs font-bold tracking-wider text-[#f874a1]/90 uppercase">รองรับทุกธนาคาร & True Wallet</p>
           <BankStrip size={26} />
         </div>
       </div>
     </div>
 
-    <section aria-label="ตลาดหวยที่ระบบเปิดรับ" class="mb-6 flex flex-wrap justify-center gap-4 border-y border-[#f5c451]/25 py-6 opacity-60 grayscale transition-all duration-500 hover:opacity-100 hover:grayscale-0 md:gap-8">
-      <span class="text-lg font-black text-[#f3ded7] italic md:text-2xl">หวย<span class="text-[#f5c451]">รัฐบาล</span></span>
-      <span class="text-lg font-black text-[#f3ded7] italic md:text-2xl">หวย<span class="text-[#f5c451]">ลาว</span></span>
-      <span class="text-lg font-black text-[#f3ded7] italic md:text-2xl">หวย<span class="text-[#f5c451]">ฮานอย</span></span>
-      <span class="text-lg font-black text-[#f3ded7] italic md:text-2xl">หวย<span class="text-[#f5c451]">ยี่กี</span></span>
-      <span class="text-lg font-black text-[#f3ded7] italic md:text-2xl">หวย<span class="text-[#f5c451]">หุ้น</span></span>
+    <section aria-label="ประเภทเกมที่ระบบรวมไว้" class="mb-6 flex flex-wrap justify-center gap-4 border-y border-[#f874a1]/25 py-6 opacity-60 grayscale transition-all duration-500 hover:opacity-100 hover:grayscale-0 md:gap-8">
+      <span class="text-lg font-black text-[#f6dde8] italic md:text-2xl">สล็อต<span class="text-[#f874a1]">ออนไลน์</span></span>
+      <span class="text-lg font-black text-[#f6dde8] italic md:text-2xl">บา<span class="text-[#f874a1]">คาร่า</span></span>
+      <span class="text-lg font-black text-[#f6dde8] italic md:text-2xl">คาสิโน<span class="text-[#f874a1]">สด</span></span>
+      <span class="text-lg font-black text-[#f6dde8] italic md:text-2xl">โปร<span class="text-[#f874a1]">โมชั่น</span></span>
+      <span class="text-lg font-black text-[#f6dde8] italic md:text-2xl">ฝากถอน<span class="text-[#f874a1]">Wallet</span></span>
     </section>
 
-    <div class="flex flex-col items-center justify-between gap-4 text-xs text-[#c9a49c] md:flex-row">
-      <p>&copy; {new Date().getFullYear()} <span class="font-bold text-[#ffe08a]">{BRAND_NAME}</span>. All rights reserved. เว็บซื้อหวยออนไลน์ ตรวจโพยและผลรางวัลได้จากระบบ</p>
+    <div class="flex flex-col items-center justify-between gap-4 text-xs text-[#d8b9c6] md:flex-row">
+      <p>&copy; {new Date().getFullYear()} <span class="font-bold text-[#fdb4d4]">{BRAND_NAME}</span>. All rights reserved. เว็บพนันออนไลน์รวมค่ายเกม ตรวจโปรโมชั่นและสถานะรายการได้จากระบบ</p>
       <div class="flex gap-4">
-        <a href="/terms/" class="transition-colors hover:text-[#ffe08a]">เงื่อนไขการให้บริการ</a>
-        <a href="/privacy/" class="transition-colors hover:text-[#ffe08a]">นโยบายความเป็นส่วนตัว</a>
+        <a href="/terms/" class="transition-colors hover:text-[#fdb4d4]">เงื่อนไขการให้บริการ</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#fdb4d4]">นโยบายความเป็นส่วนตัว</a>
       </div>
     </div>
   </div>

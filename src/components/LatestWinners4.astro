@@ -5,7 +5,7 @@ import krungsriLogo from "../assets/banks/krungsri.png";
 import ktbLogo from "../assets/banks/ktb.png";
 import { brandPick, brandFlag } from "../lib/brandProfile";
 
-// Real bank brand colours — never rethemed to the CHICKYLUCKY palette.
+// Real bank brand colours — never rethemed to the RUAYRUAY888 palette.
 const bankPool = [
   { name: "KBank", color: "bg-[#1155cc]", icon: kbankLogo.src },
   { name: "SCB", color: "bg-[#4e1c80]", icon: scbLogo.src },
@@ -23,8 +23,8 @@ const flag = (salt: string) => brandFlag(Astro.site, salt);
 // data-pending-class / data-done-class, which is where src/lib/winnersFeed.ts
 // reads them from when it swaps a cloned row between states. Keeping the class
 // strings in this file is also what keeps Tailwind's scanner able to see them.
-const PENDING_CLASS = "border-[#ff5252]/45 text-[#ff5252]";
-const DONE_CLASS = "border-[#fde41a]/45 text-[#fde41a]";
+const PENDING_CLASS = "border-[#d8b9c6]/45 text-[#d8b9c6]";
+const DONE_CLASS = "border-[#fdb4d4]/45 text-[#fdb4d4]";
 
 const initialRows = Array.from({ length: 8 }, (_, i) => {
   const pending = flag(`pill-pending-${i}`);
@@ -40,11 +40,11 @@ const initialRows = Array.from({ length: 8 }, (_, i) => {
 
 <div class="mx-auto w-full max-w-[1000px] p-4 font-sans">
   <section
-    aria-label="รายการถอนเงินล่าสุดของสมาชิก CHICKYLUCKY"
-    class="relative overflow-hidden rounded-[30px] border-2 border-[#fde41a]/35 bg-[#3a0806]/90 px-4 py-8 shadow-[0_15px_40px_rgba(253,228,26,0.18)] backdrop-blur-md">
+    aria-label="ตัวอย่างรายการถอนเงินล่าสุดของสมาชิก RUAYRUAY888"
+    class="relative overflow-hidden rounded-[30px] border-2 border-[#f874a1]/40 bg-[#1a1113]/92 px-4 py-8 shadow-[0_15px_40px_rgba(248,116,161,0.2)] backdrop-blur-md">
     <div class="mb-6 text-center">
-      <p class="bg-gradient-to-b from-[#fff17a] to-[#e01b24] bg-clip-text text-xl font-black text-transparent md:text-2xl"><span aria-hidden="true">⚡</span> CHICKYLUCKY ถอนออโต้แบบเรียลไทม์</p>
-      <p class="mt-2 text-xs text-[#e0bfa8]">รายการที่แสดงเป็นตัวอย่างการทำงานของระบบ สมาชิกควรตรวจยอดคงเหลือและสถานะรายการของตนเองจากหน้าบัญชีเป็นหลัก</p>
+      <p class="bg-gradient-to-b from-[#ffffff] to-[#d6377a] bg-clip-text text-xl font-black text-transparent md:text-2xl"><span aria-hidden="true">⚡</span> RUAYRUAY888 ฝากถอนผ่าน Wallet แบบเรียลไทม์</p>
+      <p class="mt-2 text-xs text-[#d8b9c6]">รายการที่แสดงเป็นตัวอย่างการทำงานของระบบ สมาชิกควรตรวจยอดคงเหลือและสถานะรายการของตนเองจากหน้าบัญชีเป็นหลัก</p>
     </div>
 
     <div
@@ -60,23 +60,23 @@ const initialRows = Array.from({ length: 8 }, (_, i) => {
       {
         initialRows.map((row) => (
           <div data-winner-row class="winner-pill transition-all duration-500 ease-out">
-            <div class="flex items-center gap-3 rounded-full border border-[#e01b24]/30 bg-[#1c0100] py-1.5 pr-3 pl-1.5 shadow-[0_0_10px_rgba(224,27,36,0.2)] hover:border-[#fde41a]/60">
+            <div class="flex items-center gap-3 rounded-full border border-[#8f1140]/50 bg-[#0c0a0a] py-1.5 pr-3 pl-1.5 shadow-[0_0_10px_rgba(143,17,64,0.35)] hover:border-[#fdb4d4]/60">
               <div data-winner-bank class={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${row.bank.color}`}>
                 <img data-winner-icon src={row.bank.icon} alt="" width="16" height="16" loading="lazy" decoding="async" class="h-4 w-4 object-contain" />
               </div>
-              <div data-winner-user class="text-sm font-bold text-[#fdf3d8]">
+              <div data-winner-user class="text-sm font-bold text-[#f6dde8]">
                 {row.user}
               </div>
-              <div class="text-sm font-black text-[#fde41a] drop-shadow-sm">
+              <div class="text-sm font-black text-[#fdb4d4] drop-shadow-sm">
                 +<span data-winner-amount>{row.amount}</span> ฿
               </div>
               <span
                 data-winner-status
                 data-pending-text="กำลังโอน"
                 data-done-text="โอนสำเร็จ"
-                data-pending-class="border-[#ff5252]/45 text-[#ff5252]"
-                data-done-class="border-[#fde41a]/45 text-[#fde41a]"
-                class={`shrink-0 rounded-full border bg-[#3a0806] px-2 py-0.5 text-[10px] font-bold ${row.statusClass}`}>
+                data-pending-class="border-[#d8b9c6]/45 text-[#d8b9c6]"
+                data-done-class="border-[#fdb4d4]/45 text-[#fdb4d4]"
+                class={`shrink-0 rounded-full border bg-[#241b1d] px-2 py-0.5 text-[10px] font-bold ${row.statusClass}`}>
                 {row.statusText}
               </span>
             </div>

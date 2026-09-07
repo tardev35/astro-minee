@@ -42,7 +42,7 @@ export default defineConfig({
   // and the JSON-LD all end up printing — correct, and the only form a crawler
   // resolves. Written in Thai here because that is the domain the operator
   // registered; do not "fix" it to the xn-- form.
-  site: "https://หวยพร้อมวีไอพี.com",
+  site: "https://ruayruay888.app",
   integrations: [
     sitemap({
       // /login, /register and /line are forwarding pages that all ship
