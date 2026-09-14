@@ -42,7 +42,7 @@ export default defineConfig({
   // domain anywhere else. (If a brand ever launches on an IDN again, write it
   // in Thai here: Node normalises it to punycode at new URL(), which is the
   // only form a crawler resolves, so do not "fix" it to the xn-- form.)
-  site: "https://jaiideejing-play.com",
+  site: "https://pattaya168-slot.co",
   integrations: [
     sitemap({
       // /login, /register and /line are forwarding pages that all ship

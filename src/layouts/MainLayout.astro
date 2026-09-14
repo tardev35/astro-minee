@@ -5,8 +5,8 @@ import ogImage from "../assets/slide1.png";
 import "../styles/global.css";
 import { BRAND_NAME, BRAND_TEXT, brandProfile, fontStack, iconVersion } from "../lib/brandProfile";
 import { canonicalFor } from "../lib/schema";
-import Navbar from "../components/NavbarHuay.astro";
-import Footer from "../components/FooterHuay.astro";
+import Navbar from "../components/NavbarStyle7.astro";
+import Footer from "../components/FooterStyle3.astro";
 
 // Only banner1 is ever rendered, so only banner1 is imported.
 //
@@ -55,7 +55,7 @@ const mobileBannerImg = mobileBanner
   : null;
 
 const {
-  title = "JAIDEEJING | เว็บแทงหวยออนไลน์ครบวงจร สะดวกง่าย ปลอดภัยจ่ายไว",
+  title = "PATTAYA168 | มาตรฐานสล็อตลิขสิทธิ์แท้ ฝากถอน True Wallet จ่ายไว",
   // 150–160 CHARACTERS. verify-build.mjs errors outside that window, and a page
   // that forgets to pass its own description falls back to this one — so the
   // default has to be in-window too, not just the per-page strings. Count
@@ -64,7 +64,7 @@ const {
   // The home page passes the docx's own shorter description instead and that is
   // correct: verify-build exempts the home page from the floor so the brief's
   // copy ships unpadded. This default is only a fallback.
-  description = "JAIDEEJING เว็บแทงหวยออนไลน์ครบวงจร รวมหวยหลายประเภทไว้ในบัญชีเดียว พร้อมระบบจัดโพย ตรวจอัตราจ่าย ข้อมูลผลรางวัล และสถานะรายการ รองรับการใช้งานผ่านมือถือ",
+  description = "PATTAYA168 สล็อตลิขสิทธิ์แท้ รวมเกมจากผู้ให้บริการหลายรายไว้ในบัญชีเดียว รองรับ True Wallet พร้อมข้อมูลค่ายเกม RTP ตารางจ่าย โปรโมชั่น และสถานะธุรกรรมให้ตรวจสอบ",
   robots = "index, follow",
 } = Astro.props;
 
@@ -229,7 +229,7 @@ const profile = brandProfile(Astro.site);
         background-attachment: fixed;
         background-repeat: no-repeat;
         margin: 0;
-        background-color: #120403;
+        background-color: #021c22;
         font-weight: 400;
         font-family: var(--font-sans) !important;
       }
@@ -282,7 +282,7 @@ const profile = brandProfile(Astro.site);
         }
         <Image
           src={mainBanner}
-          alt="แบนเนอร์ต้อนรับ JAIDEEJING โทนแดงทอง ด้านซ้ายบนเป็นโลโก้เว็บไซต์รูปมังกรทองขดเป็นวงกลมล้อมรอบเหรียญสีแดงสามเหรียญที่มีสัญลักษณ์สกุลเงินสีทอง ใต้เหรียญเป็นตัวอักษรไทยสีทองเขียนว่า จ่ายดีจริง และตัวอักษรโรมันสีแดงเขียนว่า JAIIDEEJING ถัดลงมาเป็นข้อความขนาดใหญ่สีทองเขียนว่า หวยออนไลน์ และสีแดงเขียนว่า สายทำกำไร ใต้ลงมาเป็นแถบขอบทองเขียนว่า หวยรัฐบาล หวยลาว หวยฮานอย ปิดท้ายด้วยแถบปุ่มสามช่องพร้อมไอคอนเขียนว่า สมัครง่าย ซื้อไว และ รับผลไว ด้านซ้ายสุดเป็นป้ายผ้าสีแดงเขียนว่า ตัวเลขนำโชค เปลี่ยนชีวิตได้จริง ถัดลงมาเป็นแผ่นป้ายสามอันติดธงชาติไทย ลาว และเวียดนาม เขียนว่า หวยรัฐบาล หวยลาว และ หวยฮานอย มุมขวาบนเป็นข้อความลายมือสีทองว่า เล่นหวยให้เป็นรายได้ กับจ่ายดีจริง ใต้ลงมาเขียนว่า เลขเด็ด เลขดัง รวยได้ทุกงวด ล่างสุดเขียนว่า ทุกเลขมีโอกาส ทุกความฝันเริ่มได้ที่นี่ ด้านขวาเป็นผู้หญิงผมสั้นสวมสูทสีขาวปักเลื่อมทอง กำลังยิ้มและชี้มือไปที่โทรศัพท์ที่ถืออยู่ซึ่งแสดงโลโก้เว็บไซต์ ฉากหลังเป็นซุ้มเสาสีแดงทองมีผ้าไหมสีแดงพลิ้ว รอบภาพมีลูกบอลหวยสีทองพิมพ์เลข 6 9 8 และ 3 สลากกินแบ่งรัฐบาลหลายใบพิมพ์เลข 123456 วันที่ 1 เมษายน 2567 และกองเหรียญทองวางอยู่"
+          alt="แบนเนอร์ต้อนรับ PATTAYA168 โทนฟ้าเทอร์ควอยซ์กับทอง ฉากหลังเป็นอ่าวพัทยายามค่ำคืน มีเรือ ตึกสูงเปิดไฟ และต้นปาล์มขนาบสองข้าง ด้านซ้ายเป็นป้ายไม้ห้าแผ่นซ้อนกันเขียนว่า PLAY WIN RELAX PATTAYA และ REPEAT กลางภาพค่อนไปทางซ้ายเป็นโลโก้เว็บไซต์รูปวงกลมสีฟ้าไล่เฉด ข้างในเป็นต้นปาล์มสีขาวสะท้อนบนผิวน้ำที่มีระลอกคลื่น ใต้วงกลมเป็นตัวอักษรโรมันสีฟ้าเขียนว่า PATTAYA และลูกบอลสีส้มสามลูกพิมพ์เลข 1 6 และ 8 ถัดไปทางขวาเป็นป้ายไฟนีออนเขียนว่า PATTAYA คู่กับต้นปาล์มนีออน และข้อความลายมือนีออนว่า Good Games Better Days ใต้โลโก้เป็นข้อความขนาดใหญ่สีทองมีมงกุฎวางอยู่ด้านบนเขียนว่า PATTAYA168 ถัดลงมาเป็นตัวอักษรไทยสีทองเขียนว่า เว็บเกมครบวงจร และแถบด้านล่างเขียนว่า สนุกง่าย ฝากถอนออโต้ รวดเร็วทันใจ ล่างสุดเป็นแถบปุ่มสามช่องพร้อมไอคอนเขียนว่า คาสิโนสด สล็อต และ บริการ 24 ชม. ด้านขวาเป็นผู้หญิงผมยาวทัดดอกลีลาวดี สวมชุดว่ายน้ำสีขาวฟ้าที่มีโลโก้เว็บไซต์อยู่บนอก กำลังยิ้มขยิบตาและถือชิปคาสิโนสีฟ้าไว้ในมือ สวมสร้อยและกำไลทอง ขอบขวาสุดเป็นตู้สล็อตเปิดไฟเขียนว่า BIG WIN พร้อมวงล้อเลข 777 รอบภาพมีไพ่โพดำและโพแดง เหรียญทองมีมงกุฎ และชิปคาสิโนสีฟ้าทองกระจายอยู่"
           loading="eager"
           fetchpriority="high"
           widths={[412, 640, 828, 1024, 1280, 1600, 1900]}

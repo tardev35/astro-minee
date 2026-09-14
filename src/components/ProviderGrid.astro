@@ -4,32 +4,32 @@
 // the brief. The accessible name for the region lives on the section's
 // aria-label instead.
 //
-// Copy follows the RUAYRUAY888 brief, docx section "เปรียบเทียบค่ายเกมหลาย
-// รูปแบบได้บน RUAYRUAY888": ภายใน RUAYRUAY888 อาจมีทั้งสล็อต บาคาร่า คาสิโนสด
-// และเกมรูปแบบอื่นจากหลายผู้ให้บริการ ผู้เล่นควรเปรียบเทียบกติกา ฟีเจอร์ อัตราจ่าย
-// และวงเงินก่อนเลือก. The four game types are named because the brief names them,
-// each qualified with "อาจมีตามที่เว็บไซต์กำหนด" exactly as the brief qualifies
-// them; no game studio is named, because the brief never states which providers
-// are on the system and an invented list is a claim the site cannot back.
+// Copy follows the PATTAYA168 brief, docx section "ตรวจมาตรฐานค่ายเกมก่อนเลือก
+// เล่นบน PATTAYA168": ผู้เล่นควรพิจารณาชื่อผู้ให้บริการ รายละเอียดเกม ตารางจ่าย
+// และข้อมูลที่ระบบแสดงก่อนเลือกเล่น. Each tile is one of those things to look up,
+// qualified the way the brief qualifies them. NO game studio is named, because
+// the brief never states which providers are on the system and an invented list
+// is a claim the site cannot back — which is also the brief's own point about
+// not treating "ลิขสิทธิ์แท้" as evidence.
 const categories = [
-  { name: "สล็อต", desc: "หนึ่งในรูปแบบที่อาจมีในระบบ แต่ละเกมตั้งเงื่อนไขไว้ต่างกัน", tag: "ตามที่กำหนด", icon: "🎰" },
-  { name: "บาคาร่า", desc: "อีกรูปแบบที่อาจมีในระบบ ดูกติกาและวงเงินก่อนเริ่ม", tag: "ตามที่กำหนด", icon: "🃏" },
-  { name: "คาสิโนสด", desc: "รูปแบบที่ถ่ายทอดโต๊ะจริง ดูวิธีเล่นก่อนเลือก", tag: "ตามที่กำหนด", icon: "🎥" },
-  { name: "เกมรูปแบบอื่น", desc: "ยังมีเกมประเภทอื่นจากหลายผู้ให้บริการให้เทียบ", tag: "หลายค่าย", icon: "🕹️" },
-  { name: "กติกาและฟีเจอร์", desc: "แต่ละค่ายเขียนกติกาและฟีเจอร์ไว้ไม่เหมือนกัน", tag: "อ่านก่อนเลือก", icon: "📄" },
-  { name: "อัตราจ่าย", desc: "ระบุไว้ในหน้าเกม ใช้เทียบระหว่างเกมในหมวดเดียวกัน", tag: "ใช้เทียบเกม", icon: "📊" },
-  { name: "วงเงินต่อรอบ", desc: "แต่ละเกมกำหนดขั้นต่ำและขั้นสูงต่อรอบไว้ต่างกัน", tag: "เลือกตามงบ", icon: "🪙" },
+  { name: "ชื่อผู้ให้บริการ", desc: "ดูว่าเกมมาจากค่ายใด และระบบแสดงข้อมูลค่ายไว้ครบหรือไม่", tag: "ดูก่อนเลือก", icon: "🏷️" },
+  { name: "รายละเอียดเกม", desc: "วิธีเล่น เงื่อนไขรอบเกม และข้อมูลที่หน้าเกมระบุไว้", tag: "อ่านก่อนเล่น", icon: "📄" },
+  { name: "ตารางจ่าย", desc: "สัญลักษณ์ แนวการจ่าย และเงื่อนไขที่ตารางจ่ายกำหนด", tag: "ใช้เทียบเกม", icon: "📊" },
+  { name: "ข้อมูลที่ระบบแสดง", desc: "ยึดจากข้อมูลที่ระบบแสดงจริง ไม่ใช่จากคำโฆษณา", tag: "ตรวจในระบบ", icon: "🔎" },
+  { name: "สล็อตหลายรูปแบบ", desc: "แต่ละเกมตั้งกติกาและเงื่อนไขของตัวเองไว้ต่างกัน", tag: "ตามที่กำหนด", icon: "🎰" },
+  { name: "ฟีเจอร์โบนัส", desc: "ดูวิธีเข้าฟีเจอร์และเงื่อนไขที่ผูกไว้กับรอบโบนัส", tag: "อ่านเงื่อนไข", icon: "🎁" },
+  { name: "วงเงินต่อรอบ", desc: "แต่ละเกมกำหนดขั้นต่ำและขั้นสูงต่อรอบไว้ไม่เท่ากัน", tag: "เลือกตามงบ", icon: "🪙" },
 ];
 ---
 
 <section
-  aria-label="หมวดเกมที่อาจมีบน RUAYRUAY888 ทั้งสล็อต บาคาร่า คาสิโนสด และเกมรูปแบบอื่นจากหลายผู้ให้บริการ พร้อมกติกา ฟีเจอร์ อัตราจ่าย และวงเงินที่ควรเทียบก่อนเลือก"
+  aria-label="สิ่งที่ควรตรวจก่อนเลือกค่ายเกมบน PATTAYA168 ทั้งชื่อผู้ให้บริการ รายละเอียดเกม ตารางจ่าย ข้อมูลที่ระบบแสดง ฟีเจอร์โบนัส และวงเงินต่อรอบ"
   class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
-    <p class="bg-gradient-to-r from-[#ffffff] via-[#fdb4d4] to-[#8f1140] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
-      หมวดเกมและสิ่งที่ควรเทียบก่อนเลือกค่ายบน <span class="text-[#f874a1]">RUAYRUAY888</span>
+    <p class="bg-gradient-to-r from-[#8ff5ff] via-[#02c4e3] to-[#fdac13] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
+      สิ่งที่ควรตรวจก่อนเลือกค่ายเกมบน <span class="text-[#02c4e3]">PATTAYA168</span>
     </p>
-    <div aria-hidden="true" class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#f874a1] to-transparent"></div>
+    <div aria-hidden="true" class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#02c4e3] to-transparent"></div>
   </div>
 
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5 xl:grid-cols-7">
@@ -37,20 +37,20 @@ const categories = [
       categories.map((category) => (
         <a
           href="/register"
-          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#f874a1]/35 bg-[#1a1113]/92 p-5 shadow-[0_10px_30px_rgba(248,116,161,0.22)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#fdb4d4]/65 hover:bg-[#241b1d]/95 hover:shadow-[0_15px_40px_rgba(248,116,161,0.34)]">
-          <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[#8f1140]/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[#02c4e3]/35 bg-[#04222b]/92 p-5 shadow-[0_10px_30px_rgba(2,196,227,0.22)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-[#8ff5ff]/65 hover:bg-[#03303c]/95 hover:shadow-[0_15px_40px_rgba(2,196,227,0.34)]">
+          <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[#0c8ba4]/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#f874a1] to-[#8f1140] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#fff0f6] shadow-sm transition-transform duration-300 group-hover:scale-110">
+          <div class="absolute top-2 right-2 z-10 rounded-full bg-gradient-to-r from-[#02c4e3] to-[#0c8ba4] px-2 py-0.5 text-[9px] font-black tracking-wide whitespace-nowrap text-[#021c22] shadow-sm transition-transform duration-300 group-hover:scale-110">
             {category.tag}
           </div>
 
           <div aria-hidden="true" class="mb-3 text-4xl transition-transform duration-300 group-hover:scale-125 group-hover:rotate-3">
             {category.icon}
           </div>
-          <p class="text-center text-sm font-black text-[#f6dde8] transition-colors group-hover:text-[#fdb4d4]">{category.name}</p>
-          <p class="mt-1 text-center text-[10px] text-[#d8b9c6]">{category.desc}</p>
+          <p class="text-center text-sm font-black text-[#cfeef7] transition-colors group-hover:text-[#8ff5ff]">{category.name}</p>
+          <p class="mt-1 text-center text-[10px] text-[#9ec9d6]">{category.desc}</p>
 
-          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#f874a1]/40 bg-[#0c0a0a] py-1.5 text-center text-[11px] font-bold text-[#fdb4d4] shadow-inner transition-colors duration-300 group-hover:border-[#fdb4d4]/60 group-hover:bg-gradient-to-r group-hover:from-[#d6377a] group-hover:to-[#8f1140] group-hover:text-[#fff0f6]">
+          <span class="relative z-10 mt-4 block w-full rounded-full border border-[#02c4e3]/40 bg-[#021c22] py-1.5 text-center text-[11px] font-bold text-[#8ff5ff] shadow-inner transition-colors duration-300 group-hover:border-[#fdac13]/60 group-hover:bg-gradient-to-r group-hover:from-[#fdac13] group-hover:to-[#f0820c] group-hover:text-[#021c22]">
             เข้าดูรายละเอียด
           </span>
         </a>

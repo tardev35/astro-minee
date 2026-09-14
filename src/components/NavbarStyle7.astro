@@ -20,30 +20,35 @@ const isActive = (path: string) => isActivePath(currentPath, path);
 // pinned buttons and from /ทางเข้า, which keeps its place in the menu. That also
 // makes the สมัครสมาชิก/เข้าสู่ระบบ menu-order rule a no-op here.
 //
-// FINN20 is a baccarat brand, so there are no /ตรวจหวย or /แนวทาง entries —
-// both pages are parked in src/pages-disabled/ this round. The /แนวทาง link the
-// previous owner of this variant carried was removed with them; leaving it would
-// point at a route that does not exist, which verify-build.mjs treats as an error.
+// PATTAYA168 is a slot brand, so there are no /ตรวจหวย or /แนวทาง entries —
+// both pages are parked in src/pages-disabled/ this round (แนวทาง was still
+// routed under the previous lottery brand and was moved back). Leaving either
+// link would point at a route that does not exist, which verify-build.mjs
+// treats as an error.
+//
+// Icons match the genre: a beach/island brand leads with the shore, and the
+// game-demo and entrance entries take a slot reel and a door rather than the
+// lottery iconography the outgoing brand used.
 const links = [
-  { name: "หน้าแรก", path: "/", icon: "🏠" },
+  { name: "หน้าแรก", path: "/", icon: "🏝️" },
   { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
-  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🃏" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎰" },
   { name: "ทางเข้า", path: "/ทางเข้า", icon: "🚪" },
-  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "🏛️" },
+  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "🏖️" },
   { name: "ติดต่อเรา", path: "/contact-us", icon: "💬" },
 ];
 
-const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร FiNN สีทองไล่เฉดขอบเข้ม ต่อด้วยเลข 20 สีเงินเมทัลลิก มีสัญลักษณ์ไพ่โพดำซ้อนอยู่ท้ายเลข ใต้ตัวอักษรเป็นแถบสีดำโค้งเขียนว่า WWW.FINN20.COM`;
+const logoAlt = `โลโก้ ${BRAND_NAME} เป็นวงกลมไล่เฉดสีฟ้าเทอร์ควอยซ์ ข้างในเป็นรูปต้นปาล์มสีขาวสะท้อนบนผิวน้ำที่มีระลอกคลื่นเป็นเส้นโค้งซ้อนกัน ใต้วงกลมเป็นตัวอักษรโรมันสีฟ้าเขียนว่า PATTAYA และถัดลงมาเป็นลูกบอลสีส้มสามลูกพิมพ์เลข 1 6 และ 8`;
 ---
 
 <header class="sticky top-0 z-50 w-full font-sans">
-  <nav class="relative z-40 w-full border-b border-[#fdd323]/35 bg-[#14110a]/95 shadow-[0_5px_25px_rgba(253,211,35,0.2)] backdrop-blur-xl">
+  <nav class="relative z-40 w-full border-b border-[#02c4e3]/35 bg-[#021c22]/95 shadow-[0_5px_25px_rgba(2,196,227,0.2)] backdrop-blur-xl">
     <div class="mx-auto flex h-[70px] max-w-7xl items-center justify-between px-4 lg:h-[80px] xl:px-8">
       <div class="flex items-center gap-4">
         <button id="hamburger-btn" class="flex flex-col items-center justify-center space-y-1.5 p-2 lg:hidden" aria-label="Menu">
-          <span class="hamburger-line h-[2px] w-6 origin-center rounded-full bg-[#fdd323] shadow-[0_0_5px_rgba(253,211,35,0.5)] transition-all duration-300"></span>
-          <span class="hamburger-line h-[2px] w-6 rounded-full bg-[#fdd323] shadow-[0_0_5px_rgba(253,211,35,0.5)] transition-all duration-300"></span>
-          <span class="hamburger-line h-[2px] w-6 origin-center rounded-full bg-[#fdd323] shadow-[0_0_5px_rgba(253,211,35,0.5)] transition-all duration-300"></span>
+          <span class="hamburger-line h-[2px] w-6 origin-center rounded-full bg-[#02c4e3] shadow-[0_0_5px_rgba(2,196,227,0.5)] transition-all duration-300"></span>
+          <span class="hamburger-line h-[2px] w-6 rounded-full bg-[#02c4e3] shadow-[0_0_5px_rgba(2,196,227,0.5)] transition-all duration-300"></span>
+          <span class="hamburger-line h-[2px] w-6 origin-center rounded-full bg-[#02c4e3] shadow-[0_0_5px_rgba(2,196,227,0.5)] transition-all duration-300"></span>
         </button>
 
         <a href="/" class="flex-shrink-0 transition-transform hover:scale-105">
@@ -56,12 +61,12 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร FiNN ส
                 sizes="110px"
                 loading="eager"
                 fetchpriority="high"
-                class="h-[35px] w-auto drop-shadow-[0_0_10px_rgba(253,211,35,0.45)] lg:h-[50px]"
+                class="h-[35px] w-auto drop-shadow-[0_0_10px_rgba(2,196,227,0.45)] lg:h-[50px]"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
               />
             ) : (
-              <span class="bg-gradient-to-b from-[#ffe98a] to-[#e39d02] bg-clip-text text-2xl font-black text-transparent drop-shadow-[0_0_8px_rgba(253,211,35,0.5)] lg:text-3xl">{BRAND_NAME}</span>
+              <span class="bg-gradient-to-b from-[#8ff5ff] to-[#0c8ba4] bg-clip-text text-2xl font-black text-transparent drop-shadow-[0_0_8px_rgba(2,196,227,0.5)] lg:text-3xl">{BRAND_NAME}</span>
             )
           }
         </a>
@@ -75,11 +80,11 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร FiNN ส
                 <span aria-hidden="true" class="text-base leading-none">
                   {link.icon}
                 </span>
-                <span class={`transition-colors duration-300 ${isActive(link.path) ? "text-[#fdd323] drop-shadow-[0_0_8px_rgba(253,211,35,0.5)]" : "text-[#f3e7c8]/70 group-hover:text-[#ffe98a]"}`}>{link.name}</span>
+                <span class={`transition-colors duration-300 ${isActive(link.path) ? "text-[#02c4e3] drop-shadow-[0_0_8px_rgba(2,196,227,0.5)]" : "text-[#cfeef7]/70 group-hover:text-[#8ff5ff]"}`}>{link.name}</span>
               </span>
               <div
                 aria-hidden="true"
-                class={`absolute bottom-4 w-1.5 h-1.5 rounded-full bg-[#fdd323] transition-all duration-300 ${isActive(link.path) ? "opacity-100 scale-100 shadow-[0_0_10px_rgba(253,211,35,1)]" : "opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100"}`}
+                class={`absolute bottom-4 w-1.5 h-1.5 rounded-full bg-[#02c4e3] transition-all duration-300 ${isActive(link.path) ? "opacity-100 scale-100 shadow-[0_0_10px_rgba(2,196,227,1)]" : "opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100"}`}
               />
             </a>
           ))
@@ -89,13 +94,13 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร FiNN ส
       <div class="flex items-center gap-3">
         <a
           href="/login"
-          class="hidden items-center justify-center rounded-full border border-[#d7dbe1]/45 bg-[#1f1a10]/70 px-6 py-2.5 text-sm font-bold text-[#d7dbe1] transition-all hover:border-[#ffe98a]/70 hover:bg-[#2a2314] hover:text-[#ffe98a] md:flex">
+          class="hidden items-center justify-center rounded-full border border-[#cfeef7]/45 bg-[#04222b]/70 px-6 py-2.5 text-sm font-bold text-[#cfeef7] transition-all hover:border-[#8ff5ff]/70 hover:bg-[#03303c] hover:text-[#8ff5ff] md:flex">
           เข้าสู่ระบบ
         </a>
         <a
           href="/register"
-          style="background-image: linear-gradient(in oklab to right, #e39d02, #fdd323, #e39d02);"
-          class="flex items-center justify-center rounded-full px-5 py-2 text-xs font-extrabold text-[#14110a] shadow-[0_0_20px_rgba(253,211,35,0.3)] transition-all hover:shadow-[0_0_25px_rgba(253,211,35,0.55)] hover:brightness-110 lg:px-7 lg:py-2.5 lg:text-sm">
+          style="background-image: linear-gradient(in oklab to right, #f0820c, #fdac13, #f0820c);"
+          class="flex items-center justify-center rounded-full px-5 py-2 text-xs font-extrabold text-[#021c22] shadow-[0_0_20px_rgba(253,172,19,0.35)] transition-all hover:shadow-[0_0_25px_rgba(253,172,19,0.6)] hover:brightness-110 lg:px-7 lg:py-2.5 lg:text-sm">
           สมัครสมาชิก
         </a>
       </div>
@@ -106,9 +111,9 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร FiNN ส
 
   <div
     id="mobile-bottom-sheet"
-    class="pb-safe fixed bottom-0 left-0 z-[60] w-full translate-y-full transform rounded-t-3xl border-t border-[#fdd323]/35 bg-[#14110a] shadow-[0_-10px_40px_rgba(0,0,0,0.8)] transition-transform duration-400 ease-[cubic-bezier(0.3,1,0.3,1)] lg:hidden">
+    class="pb-safe fixed bottom-0 left-0 z-[60] w-full translate-y-full transform rounded-t-3xl border-t border-[#02c4e3]/35 bg-[#021c22] shadow-[0_-10px_40px_rgba(0,0,0,0.8)] transition-transform duration-400 ease-[cubic-bezier(0.3,1,0.3,1)] lg:hidden">
     <div class="flex w-full cursor-pointer justify-center pt-3 pb-2" id="close-sheet-btn">
-      <div class="h-1.5 w-12 rounded-full bg-[#fdd323]/40"></div>
+      <div class="h-1.5 w-12 rounded-full bg-[#02c4e3]/40"></div>
     </div>
 
     <div class="flex flex-col space-y-2 px-6 pt-2 pb-8">
@@ -116,24 +121,24 @@ const logoAlt = `โลโก้ ${BRAND_NAME} ตัวอักษร FiNN ส
         links.map((link) => (
           <a
             href={link.path}
-            class={`sheet-item flex items-center justify-between px-5 py-4 rounded-2xl transition-all ${isActive(link.path) ? "bg-gradient-to-r from-[#fdd323]/20 to-transparent border border-[#fdd323]/35 text-[#fdd323]" : "bg-white/5 border-transparent text-[#f3e7c8]/60"}`}>
+            class={`sheet-item flex items-center justify-between px-5 py-4 rounded-2xl transition-all ${isActive(link.path) ? "bg-gradient-to-r from-[#02c4e3]/20 to-transparent border border-[#02c4e3]/35 text-[#02c4e3]" : "bg-white/5 border-transparent text-[#cfeef7]/60"}`}>
             <span class="flex items-center gap-4">
               <span aria-hidden="true" class="text-2xl drop-shadow-lg">
                 {link.icon}
               </span>
               <span class="text-base font-bold tracking-wide">{link.name}</span>
             </span>
-            {isActive(link.path) && <span aria-hidden="true" class="h-2 w-2 rounded-full bg-[#fdd323] shadow-[0_0_8px_rgba(253,211,35,1)]" />}
+            {isActive(link.path) && <span aria-hidden="true" class="h-2 w-2 rounded-full bg-[#02c4e3] shadow-[0_0_8px_rgba(2,196,227,1)]" />}
           </a>
         ))
       }
 
       <div class="mt-2 grid grid-cols-2 gap-3 border-t border-white/5 pt-4">
-        <a href="/login" class="flex items-center justify-center rounded-xl border border-[#d7dbe1]/40 bg-[#d7dbe1]/10 py-3.5 text-sm font-bold text-[#d7dbe1]">เข้าสู่ระบบ</a>
+        <a href="/login" class="flex items-center justify-center rounded-xl border border-[#cfeef7]/40 bg-[#cfeef7]/10 py-3.5 text-sm font-bold text-[#cfeef7]">เข้าสู่ระบบ</a>
         <a
           href="/register"
-          style="background-image: linear-gradient(in oklab to right, #e39d02, #fdd323, #e39d02);"
-          class="flex items-center justify-center rounded-xl py-3.5 text-sm font-extrabold text-[#14110a] shadow-[0_0_15px_rgba(253,211,35,0.4)]">
+          style="background-image: linear-gradient(in oklab to right, #f0820c, #fdac13, #f0820c);"
+          class="flex items-center justify-center rounded-xl py-3.5 text-sm font-extrabold text-[#021c22] shadow-[0_0_15px_rgba(253,172,19,0.45)]">
           สมัครสมาชิก
         </a>
       </div>

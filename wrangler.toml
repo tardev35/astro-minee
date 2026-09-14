@@ -1,13 +1,13 @@
-# jaiideejing-play.com — the Worker name is the deployment identity. Reusing
+# pattaya168-slot.co — the Worker name is the deployment identity. Reusing
 # another brand's name overwrites that brand's live Worker, so this must be
 # unique per brand and must match the parked Worker if the domain was already
 # parked with tools/domain-placeholder (confirm with
-# `npx wrangler deployments list --name jaiideejing` BEFORE the first deploy —
+# `npx wrangler deployments list --name pattaya168` BEFORE the first deploy —
 # this run stopped at build+verify and never deployed).
 #
-# "jaiideejing", not "jaiideejing-play": verify-build derives the expected slug
+# "pattaya168", not "pattaya168-slot": verify-build derives the expected slug
 # as host.split(/[-.]/)[0], so the hyphenated form fails the build.
-name = "jaiideejing"
+name = "pattaya168"
 account_id = "b420b898a9ab26387a074a0d0ba88b42"
 compatibility_date = "2026-07-27"
 

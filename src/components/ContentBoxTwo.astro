@@ -18,41 +18,40 @@ const sectionLabel = label ?? titleleft ?? titleright ?? "ข้อมูลป�
 // with identical classes. `as` applies to BOTH columns, so a page using this for
 // a docx section passes only the one title the brief has a heading for.
 //
-// JAIDEEJING: the left tile takes the bright end of the ramp with maroon ink
-// lettering and the right tile the deep crimson end with pale-gold lettering,
-// which is the artwork's own pairing. The glyph colour is picked against the
-// middle of each fill — pale gold on the light gold would drop under 3:1, and
-// maroon ink on the deep crimson likewise.
+// PATTAYA168: the left tile takes the bright end of the ramp (pale seafoam ->
+// cyan) and the right tile the gold accent, which is the artwork's own pairing.
+// Both glyphs are the deep ocean ink because both fills are the light ends —
+// pale seafoam on the cyan, or gold on the gold, would drop under 3:1.
 ---
 
 <section aria-label={sectionLabel} class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
-    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f7e4c0]">
+    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#cfeef7]">
       {
         titleleft && (
-          <div class="flex items-center gap-3 border-b border-[#8f1a10]/55 pb-3">
+          <div class="flex items-center gap-3 border-b border-[#0c8ba4]/60 pb-3">
             <span
               aria-hidden="true"
-              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#ffe08a]/50 bg-gradient-to-br from-[#ffe08a] to-[#f5c451] text-sm text-[#2a0806] shadow-[0_5px_15px_rgba(245,196,81,0.32)]">
+              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#8ff5ff]/50 bg-gradient-to-br from-[#8ff5ff] to-[#02c4e3] text-sm text-[#021c22] shadow-[0_5px_15px_rgba(2,196,227,0.32)]">
               {iconleft}
             </span>
-            <TitleTag class="text-xl leading-normal font-black tracking-widest text-[#ffe08a] uppercase">{titleleft}</TitleTag>
+            <TitleTag class="text-xl leading-normal font-black tracking-widest text-[#8ff5ff] uppercase">{titleleft}</TitleTag>
           </div>
         )
       }
       <slot name="left" />
     </article>
 
-    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f7e4c0]">
+    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#cfeef7]">
       {
         titleright && (
-          <div class="flex items-center gap-3 border-b border-[#8f1a10]/55 pb-3">
+          <div class="flex items-center gap-3 border-b border-[#0c8ba4]/60 pb-3">
             <span
               aria-hidden="true"
-              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#f5c451]/50 bg-gradient-to-br from-[#d12027] to-[#8f1a10] text-sm text-[#ffe08a] shadow-[0_5px_15px_rgba(143,26,16,0.45)]">
+              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#fdac13]/55 bg-gradient-to-br from-[#fdac13] to-[#f0820c] text-sm text-[#021c22] shadow-[0_5px_15px_rgba(253,172,19,0.38)]">
               {iconright}
             </span>
-            <TitleTag class="text-xl leading-normal font-black tracking-widest text-[#ffe08a] uppercase">{titleright}</TitleTag>
+            <TitleTag class="text-xl leading-normal font-black tracking-widest text-[#8ff5ff] uppercase">{titleright}</TitleTag>
           </div>
         )
       }

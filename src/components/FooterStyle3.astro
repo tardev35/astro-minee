@@ -7,7 +7,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png
 const imagePaths = Object.keys(images);
 const mainLogo = imagePaths.length > 0 ? images[imagePaths[0]].default : null;
 
-// RENGER8888 is a casino brand: no /ตรวจหวย or /แนวทาง entries here. Both pages
+// PATTAYA168 is a slot brand: no /ตรวจหวย or /แนวทาง entries here. Both pages
 // are parked in src/pages-disabled/ this round, and a link to a route that does
 // not exist fails the build in tools/verify-build.mjs.
 const quickLinks = [
@@ -20,28 +20,26 @@ const quickLinks = [
   { name: "ติดต่อแอดมิน", path: "/contact-us" },
 ];
 
-// The wordmark on the artwork reads "RANGER 8888" — described as drawn, while
-// the brand string itself stays RENGER8888.
-const logoAlt = `โลโก้ ${BRAND_NAME} รูปอัศวินสวมเกราะเหล็กสีเงินกับหมวกยอดขนนกสีแดง กอดอกถือดาบด้ามทอง มีผ้าคลุมสีแดงและวงกลมเรืองแสงสีแดงล้อมรอบ ใต้ลงมาเป็นตัวอักษรบนภาพเขียนว่า RANGER สีขาวเงินนูนสามมิติ และเลข 8888 สีแดงเรืองแสง`;
+const logoAlt = `โลโก้ ${BRAND_NAME} เป็นวงกลมไล่เฉดสีฟ้าเทอร์ควอยซ์ ข้างในเป็นรูปต้นปาล์มสีขาวสะท้อนบนผิวน้ำที่มีระลอกคลื่นเป็นเส้นโค้งซ้อนกัน ใต้วงกลมเป็นตัวอักษรโรมันสีฟ้าเขียนว่า PATTAYA และถัดลงมาเป็นลูกบอลสีส้มสามลูกพิมพ์เลข 1 6 และ 8`;
 ---
 
-<footer class="relative mt-32 w-full border-t border-[#e8121f]/30 bg-[#080203] pt-64 pb-6 font-sans text-[#f0dcdc] shadow-[0_-10px_30px_rgba(232,18,31,0.15)] md:pt-40">
+<footer class="relative mt-32 w-full border-t border-[#02c4e3]/30 bg-[#01141a] pt-64 pb-6 font-sans text-[#cfeef7] shadow-[0_-10px_30px_rgba(2,196,227,0.15)] md:pt-40">
   <div
-    class="absolute -top-14 left-1/2 z-20 flex w-[92%] max-w-5xl -translate-x-1/2 flex-col items-center justify-between rounded-2xl border border-[#e8121f]/35 bg-gradient-to-r from-[#120304] via-[#28080b] to-[#080203] p-6 shadow-[0_15px_40px_rgba(143,12,20,0.35)] md:-top-16 md:flex-row md:p-8">
+    class="absolute -top-14 left-1/2 z-20 flex w-[92%] max-w-5xl -translate-x-1/2 flex-col items-center justify-between rounded-2xl border border-[#02c4e3]/35 bg-gradient-to-r from-[#021c22] via-[#04333f] to-[#01141a] p-6 shadow-[0_15px_40px_rgba(12,139,164,0.35)] md:-top-16 md:flex-row md:p-8">
     <div class="mb-5 flex flex-col text-center md:mb-0 md:text-left">
-      <p class="text-xl font-black tracking-wide text-[#ff2b38] uppercase italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] md:text-3xl">
-        <span aria-hidden="true">🛡️</span> พร้อมเริ่มกับ {BRAND_NAME} แล้วหรือยัง?
+      <p class="text-xl font-black tracking-wide text-[#02c4e3] uppercase italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] md:text-3xl">
+        <span aria-hidden="true">🏝️</span> พร้อมเริ่มกับ {BRAND_NAME} แล้วหรือยัง?
       </p>
-      <p class="mt-2 text-sm font-medium text-[#f0dcdc]/90 md:text-base">
-        สมัครสมาชิก {BRAND_NAME} แล้วเลือกเกมคาสิโนได้หลายประเภทจากบัญชีเดียว โปรโมชั่นแต่ละรายการมีเงื่อนไขและช่วงเวลาไม่เท่ากัน ควรอ่านรายละเอียดให้ครบก่อนกดรับสิทธิ์ทุกครั้ง
+      <p class="mt-2 text-sm font-medium text-[#cfeef7]/90 md:text-base">
+        สมัครสมาชิก {BRAND_NAME} แล้วเลือกเกมสล็อตจากผู้ให้บริการหลายรายได้จากบัญชีเดียว โปรโมชั่นแต่ละรายการมีเงื่อนไขและช่วงเวลาไม่เท่ากัน ควรอ่านรายละเอียดให้ครบก่อนกดรับสิทธิ์ทุกครั้ง
       </p>
     </div>
 
     <a
       href="/register"
-      class="group relative flex items-center justify-center overflow-hidden rounded-full border border-[#ff2b38] bg-gradient-to-b from-[#ff2b38] to-[#8f0c14] px-8 py-3.5 text-sm font-extrabold whitespace-nowrap text-[#f7e8e8] shadow-[0_0_15px_rgba(232,18,31,0.4)] transition-all hover:scale-105 md:text-base">
+      class="group relative flex items-center justify-center overflow-hidden rounded-full border border-[#fdac13] bg-gradient-to-b from-[#fdac13] to-[#f0820c] px-8 py-3.5 text-sm font-extrabold whitespace-nowrap text-[#021c22] shadow-[0_0_15px_rgba(253,172,19,0.4)] transition-all hover:scale-105 md:text-base">
       <span class="relative z-10">สมัครสมาชิกเลย <span aria-hidden="true">🚀</span></span>
-      <div aria-hidden="true" class="absolute inset-0 translate-y-full bg-[#8f0c14] transition-transform duration-300 group-hover:translate-y-0"></div>
+      <div aria-hidden="true" class="absolute inset-0 translate-y-full bg-[#f0820c] transition-transform duration-300 group-hover:translate-y-0"></div>
     </a>
   </div>
 
@@ -59,17 +57,17 @@ const logoAlt = `โลโก้ ${BRAND_NAME} รูปอัศวินสว
                 height={45}
                 loading="lazy"
                 decoding="async"
-                class="h-[45px] w-auto drop-shadow-[0_0_12px_rgba(232,18,31,0.6)]"
+                class="h-[45px] w-auto drop-shadow-[0_0_12px_rgba(2,196,227,0.6)]"
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
               />
             ) : (
-              <p class="bg-gradient-to-b from-[#ffffff] to-[#e8121f] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(232,18,31,0.5)]">{BRAND_NAME}</p>
+              <p class="bg-gradient-to-b from-[#ffffff] to-[#02c4e3] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_8px_rgba(2,196,227,0.5)]">{BRAND_NAME}</p>
             )
           }
         </a>
-        <p class="text-sm leading-relaxed text-[#c5a0a2]">
-          {BRAND_NAME} รวมเกมคาสิโนหลายประเภทไว้ในระบบเดียว เลือกดูตามหมวดเกม กติกา หรือระดับเดิมพันได้จากหน้าเดียว สมาชิกตรวจข้อมูลบัญชี สิทธิ์โปรโมชั่น และประวัติรายการย้อนหลังได้จากหน้าบัญชีของตนเอง
+        <p class="text-sm leading-relaxed text-[#8fc3d2]">
+          {BRAND_NAME} รวมเกมสล็อตจากผู้ให้บริการหลายรูปแบบไว้ในระบบเดียว เลือกดูตามค่ายเกม ฟีเจอร์ หรือระดับเดิมพันได้จากหน้าเดียว สมาชิกตรวจข้อมูลบัญชี สิทธิ์โปรโมชั่น และประวัติรายการย้อนหลังได้จากหน้าบัญชีของตนเอง
         </p>
 
         <div class="mt-2 flex flex-wrap gap-3">
@@ -93,7 +91,7 @@ const logoAlt = `โลโก้ ${BRAND_NAME} รูปอัศวินสว
               {BRAND_ADDRESS.email && (
                 <a href={`mailto:${BRAND_ADDRESS.email}`} class="mt-3 inline-flex items-center gap-2 font-bold underline decoration-current/40 underline-offset-4 opacity-90 transition-opacity hover:opacity-100">
                   <span aria-hidden="true" class="text-sm">✉️</span>
-                  {BRAND_ADDRESS.email}
+                  {BRAND_ADDRESS.emailDisplay}
                 </a>
               )}
             </address>
@@ -102,16 +100,16 @@ const logoAlt = `โลโก้ ${BRAND_NAME} รูปอัศวินสว
       </div>
 
       <div class="md:col-span-6 lg:col-span-5">
-        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#f0dcdc] uppercase">
+        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#cfeef7] uppercase">
           ลิงก์ด่วน (Quick Links)
-          <span aria-hidden="true" class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#8f0c14] to-[#ff2b38] shadow-[0_0_8px_rgba(232,18,31,0.6)]"></span>
+          <span aria-hidden="true" class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#0c8ba4] to-[#02c4e3] shadow-[0_0_8px_rgba(2,196,227,0.6)]"></span>
         </p>
 
         <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
           {
             quickLinks.map((link) => (
-              <a href={link.path} class="group flex items-center text-[#c5a0a2] transition-colors hover:text-[#ff2b38]">
-                <span aria-hidden="true" class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#e8121f] transition-transform group-hover:rotate-45" />
+              <a href={link.path} class="group flex items-center text-[#8fc3d2] transition-colors hover:text-[#02c4e3]">
+                <span aria-hidden="true" class="mr-2 h-1.5 w-1.5 rounded-sm bg-[#02c4e3] transition-transform group-hover:rotate-45" />
                 {link.name}
               </a>
             ))
@@ -120,38 +118,38 @@ const logoAlt = `โลโก้ ${BRAND_NAME} รูปอัศวินสว
       </div>
 
       <div class="md:col-span-6 lg:col-span-3">
-        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#f0dcdc] uppercase">
+        <p class="relative mb-5 inline-block text-lg font-bold tracking-wider text-[#cfeef7] uppercase">
           ระบบการเงิน
-          <span aria-hidden="true" class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#8f0c14] to-[#ff2b38] shadow-[0_0_8px_rgba(232,18,31,0.6)]"></span>
+          <span aria-hidden="true" class="absolute -bottom-2 left-0 h-1 w-1/2 rounded-full bg-gradient-to-r from-[#0c8ba4] to-[#02c4e3] shadow-[0_0_8px_rgba(2,196,227,0.6)]"></span>
         </p>
 
-        <p class="mb-4 text-xs text-[#c5a0a2]">รองรับการฝาก-ถอนผ่านช่องทางที่เว็บไซต์กำหนด โดยควรใช้บัญชีชื่อเดียวกับข้อมูลที่สมัครไว้</p>
+        <p class="mb-4 text-xs text-[#8fc3d2]">รองรับการฝาก-ถอนผ่านช่องทางที่เว็บไซต์กำหนด รวมถึง True Wallet ตามที่ระบบรองรับ โดยควรใช้บัญชีชื่อเดียวกับข้อมูลที่สมัครไว้</p>
 
         <BankStrip size={30} />
 
-        <div class="mt-3 flex h-10 items-center justify-center rounded border border-white/5 bg-[#28080b] transition-colors hover:border-[#e8121f]/50" title="ตรวจรายการย้อนหลัง">
-          <span class="flex items-center gap-1 text-xs font-bold text-[#f0dcdc]"><span aria-hidden="true" class="text-lg text-[#e8121f]">🧾</span> เก็บเลขรายการไว้ตรวจสอบได้</span>
+        <div class="mt-3 flex h-10 items-center justify-center rounded border border-white/5 bg-[#04222b] transition-colors hover:border-[#02c4e3]/50" title="ตรวจรายการย้อนหลัง">
+          <span class="flex items-center gap-1 text-xs font-bold text-[#cfeef7]"><span aria-hidden="true" class="text-lg text-[#02c4e3]">🧾</span> เก็บเลขรายการไว้ตรวจสอบได้</span>
         </div>
       </div>
     </div>
 
-    <hr class="mb-6 border-[#e8121f]/25" />
+    <hr class="mb-6 border-[#02c4e3]/25" />
 
-    <div class="mb-6 hidden text-justify text-[10px] leading-relaxed text-[#c5a0a2] md:block">
-      {BRAND_NAME} คาสิโนเว็บหลักรวมเกมหลายประเภทไว้ในบัญชีเดียว ทั้งบาคาร่า สล็อต และคาสิโนสดตามที่ระบบรองรับ จัดหมวดตามประเภทเกม กติกา และวงเงินขั้นต่ำ สมัครฟรีตามเงื่อนไขที่เว็บไซต์กำหนด
-      ระบบสมาชิกบัญชีเดียว ตรวจข้อมูลบัญชี สิทธิ์โปรโมชั่น และประวัติรายการได้จากหน้าบัญชี ทางเข้าเว็บหลักรองรับทั้งมือถือและคอมพิวเตอร์ สมัครสมาชิก {BRAND_NAME}
+    <div class="mb-6 hidden text-justify text-[10px] leading-relaxed text-[#8fc3d2] md:block">
+      {BRAND_NAME} รวมเกมสล็อตจากผู้ให้บริการหลายรายไว้ในบัญชีเดียว จัดหมวดตามค่ายเกม ฟีเจอร์โบนัส และวงเงินต่อรอบ พร้อมข้อมูล RTP ตารางจ่าย และความผันผวนให้เทียบก่อนเลือกเล่น สมัครฟรีตามเงื่อนไขที่เว็บไซต์กำหนด
+      ระบบสมาชิกบัญชีเดียว ตรวจข้อมูลบัญชี สิทธิ์โปรโมชั่น และประวัติฝากถอนได้จากหน้าบัญชี รองรับ True Wallet ตามช่องทางที่กำหนด ทางเข้าเว็บหลักรองรับทั้งมือถือและคอมพิวเตอร์ สมัครสมาชิก {BRAND_NAME}
     </div>
 
-    <div class="flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-[#c5a0a2] md:flex-row">
-      <p>&copy; {new Date().getFullYear()} <span class="font-bold tracking-wider text-[#ff2b38] uppercase">{BRAND_NAME}</span>. All Rights Reserved.</p>
+    <div class="flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-[#8fc3d2] md:flex-row">
+      <p>&copy; {new Date().getFullYear()} <span class="font-bold tracking-wider text-[#02c4e3] uppercase">{BRAND_NAME}</span>. All Rights Reserved.</p>
 
       <div class="flex items-center gap-6">
-        <a href="/terms/" class="transition-colors hover:text-[#f0dcdc]">เงื่อนไขและข้อตกลง</a>
-        <a href="/privacy/" class="transition-colors hover:text-[#f0dcdc]">นโยบายความเป็นส่วนตัว</a>
+        <a href="/terms/" class="transition-colors hover:text-[#cfeef7]">เงื่อนไขและข้อตกลง</a>
+        <a href="/privacy/" class="transition-colors hover:text-[#cfeef7]">นโยบายความเป็นส่วนตัว</a>
 
         <a
           href="#top"
-          class="flex h-8 w-8 items-center justify-center rounded border border-white/10 bg-white/5 text-[#f0dcdc] transition-all hover:border-[#ff2b38] hover:bg-[#28080b] hover:shadow-[0_0_15px_rgba(232,18,31,0.5)]"
+          class="flex h-8 w-8 items-center justify-center rounded border border-white/10 bg-white/5 text-[#cfeef7] transition-all hover:border-[#02c4e3] hover:bg-[#04222b] hover:shadow-[0_0_15px_rgba(2,196,227,0.5)]"
           aria-label="กลับขึ้นด้านบนสุดของหน้า">
           <span aria-hidden="true">↑</span>
         </a>

@@ -30,6 +30,12 @@ const bankPool = [
 //
 // The feed is chrome, so its label is a <p> and the region's accessible name
 // lives on the section's aria-label. Nothing here is a docx heading.
+//
+// PATTAYA168: the clipped panel runs on the primary cyan over deep ocean ink,
+// the amount is the gold accent so the one figure per row reads first, and the
+// two status colours stay in the stylesheet below so the feed module never has
+// to know this brand's palette. The verified state keeps the shared success
+// green — a rebrand repaints the accent, not the meaning of "done".
 const LETTERS = "abcdefghijklmnopqrstuvwxyz";
 const pickFrom = (chars: string, salt: string) => chars.charAt(brandPick(Astro.site, salt, chars.length));
 
@@ -43,15 +49,15 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
 
 <div class="mx-auto w-full max-w-[1300px] p-4">
   <section
-    aria-label="รายการฝาก-ถอนล่าสุดผ่านระบบออโต้ของ RENGER8888"
-    class="relative border-r-4 border-l-4 border-[#e8121f] bg-[#120304]/90 px-4 py-8 shadow-[0_0_30px_rgba(232,18,31,0.25)] md:p-10"
+    aria-label="รายการฝาก-ถอนล่าสุดผ่านระบบออโต้ของ PATTAYA168"
+    class="relative border-r-4 border-l-4 border-[#02c4e3] bg-[#021c22]/90 px-4 py-8 shadow-[0_0_30px_rgba(2,196,227,0.25)] md:p-10"
     style="clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px), 0 20px);">
-    <div aria-hidden="true" class="absolute top-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-[#e8121f] to-transparent"></div>
-    <div aria-hidden="true" class="absolute bottom-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-[#e6ecf2] to-transparent"></div>
+    <div aria-hidden="true" class="absolute top-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-[#02c4e3] to-transparent"></div>
+    <div aria-hidden="true" class="absolute bottom-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-[#fdac13] to-transparent"></div>
 
-    <div class="relative z-10 mb-8 flex items-center justify-between border-b border-[#e8121f]/30 pb-4">
-      <p class="text-xl font-black tracking-[0.2em] text-[#ff2b38] drop-shadow-[0_0_8px_rgba(232,18,31,0.8)]">/// RENGER8888_LIVE_TRANSACTIONS</p>
-      <span class="animate-pulse border border-[#e6ecf2]/60 px-2 py-1 text-xs font-bold tracking-widest text-[#e6ecf2]">ONLINE</span>
+    <div class="relative z-10 mb-8 flex items-center justify-between border-b border-[#02c4e3]/30 pb-4">
+      <p class="text-xl font-black tracking-[0.2em] text-[#5afef1] drop-shadow-[0_0_8px_rgba(2,196,227,0.8)]">/// PATTAYA168_LIVE_TRANSACTIONS</p>
+      <span class="animate-pulse border border-[#8ff5ff]/60 px-2 py-1 text-xs font-bold tracking-widest text-[#8ff5ff]">ONLINE</span>
     </div>
 
     <div
@@ -67,14 +73,14 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
       {
         initialRows.map((row) => (
           <div data-winner-row class="winner-row origin-left transform transition-all duration-500 ease-out">
-            <div class="flex items-center justify-between border-l-2 border-[#e8121f] bg-gradient-to-r from-[#4a060a]/60 to-transparent p-3 backdrop-blur-sm transition-colors hover:bg-[#8f0c14]/45">
+            <div class="flex items-center justify-between border-l-2 border-[#02c4e3] bg-gradient-to-r from-[#0c8ba4]/35 to-transparent p-3 backdrop-blur-sm transition-colors hover:bg-[#03303c]/70">
               <div class="flex items-center gap-4">
                 <div data-winner-bank class={`flex h-8 w-8 items-center justify-center border border-white/10 bg-black/50 mix-blend-screen ${row.bank.color}`}>
                   <img data-winner-icon src={row.bank.icon} alt="" width="20" height="20" loading="lazy" decoding="async" class="h-5 w-5 object-contain grayscale" />
                 </div>
-                <div class="font-mono text-sm text-[#f0dcdc]">
+                <div class="font-mono text-sm text-[#cfeef7]">
                   USR_ID:{" "}
-                  <span data-winner-user class="font-bold text-[#ffb0b4]">
+                  <span data-winner-user class="font-bold text-[#8ff5ff]">
                     {row.user}
                   </span>
                 </div>
@@ -87,8 +93,8 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
                   class={`winner-status font-mono text-[10px] tracking-widest ${row.pending ? "is-pending" : "is-verified"}`}>
                   {row.pending ? "[PROCESSING]" : "[VERIFIED]"}
                 </div>
-                <div class="font-mono text-xl font-black text-[#ff2b38] drop-shadow-[0_0_8px_rgba(255,43,56,0.5)]">
-                  <span data-winner-amount>{row.amount}</span> <span class="text-xs text-[#e6ecf2]">THB</span>
+                <div class="font-mono text-xl font-black text-[#fdac13] drop-shadow-[0_0_8px_rgba(253,172,19,0.5)]">
+                  <span data-winner-amount>{row.amount}</span> <span class="text-xs text-[#8ff5ff]">THB</span>
                 </div>
               </div>
             </div>
@@ -116,13 +122,9 @@ const initialRows = Array.from({ length: 5 }, (_, i) => ({
     font-family: monospace;
   }
 
-  /* The two status colours are classes rather than inline strings so the JS
-     never has to know what this brand's palette is. The verified state stays on
-     the shared success green — a rebrand repaints the accent, not the meaning
-     of "done". */
   .winner-status.is-pending {
-    color: #ffb0b4;
-    border-color: #e8121f;
+    color: #8ff5ff;
+    border-color: #02c4e3;
   }
   .winner-status.is-verified {
     color: oklch(79.2% 0.209 151.711);

@@ -10,11 +10,11 @@ export interface Props {
 const { title, as: HeadingTag = "h2", iconleft = "🎯", iconright = "🛡️" } = Astro.props;
 
 // Two halves of one docx section: the left card takes the bright end of the
-// RUAYRUAY888 ramp (white -> bright pink), the right card the deep end. Both
+// PATTAYA168 ramp (pale seafoam -> cyan), the right card the gold accent. Both
 // tiles use a two-stop fill, so their glyph colour is picked against the middle
-// of that fill (#0c0a0a on the light pink, #fdb4d4 on the deep pink) — getting
-// that backwards is the unreadable-button bug this template's spec calls out by
-// name.
+// of that fill (#021c22 ink on both, since the cyan and the gold are the light
+// ends) — getting that backwards is the unreadable-button bug this template's
+// spec calls out by name.
 //
 // Each <article> is a flex row: the icon box and the slot content are siblings,
 // so a consumer passes exactly ONE element per slot. Do not add a wrapper inside
@@ -23,37 +23,37 @@ const { title, as: HeadingTag = "h2", iconleft = "🎯", iconright = "🛡️" }
 
 <section class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div
-    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#f874a1]/30 bg-[#0c0a0a]/92 p-6 text-[#f6dde8] shadow-[0_10px_30px_rgba(248,116,161,0.2)] backdrop-blur-xl transition-all duration-500 hover:border-[#fdb4d4]/55 md:p-10">
+    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#02c4e3]/30 bg-[#021c22]/92 p-6 text-[#cfeef7] shadow-[0_10px_30px_rgba(2,196,227,0.18)] backdrop-blur-xl transition-all duration-500 hover:border-[#8ff5ff]/55 md:p-10">
     <div
       aria-hidden="true"
-      class="pointer-events-none absolute top-0 left-1/2 -z-10 h-[2px] w-1/2 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#f874a1] to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100">
+      class="pointer-events-none absolute top-0 left-1/2 -z-10 h-[2px] w-1/2 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#02c4e3] to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100">
     </div>
 
     {
       title && (
-        <header class="mb-8 flex items-center gap-4 border-b border-[#f874a1]/30 pb-4">
-          <div aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#fdb4d4] to-[#8f1140] shadow-[0_0_10px_rgba(248,116,161,0.5)]" />
-          <HeadingTag class="bg-gradient-to-r from-[#ffffff] via-[#fdb4d4] to-[#f874a1] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
+        <header class="mb-8 flex items-center gap-4 border-b border-[#02c4e3]/30 pb-4">
+          <div aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#8ff5ff] to-[#0c8ba4] shadow-[0_0_10px_rgba(2,196,227,0.5)]" />
+          <HeadingTag class="bg-gradient-to-r from-[#8ff5ff] via-[#02c4e3] to-[#fdac13] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
         </header>
       )
     }
 
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-10">
       <article
-        class="relative flex gap-4 rounded-2xl border border-[#f874a1]/30 bg-[#1a1113]/95 p-6 text-left text-base leading-relaxed text-[#f6dde8] transition-all duration-300 hover:-translate-y-2 hover:border-[#fdb4d4]/55 hover:bg-[#241b1d]/95 hover:shadow-[0_15px_40px_rgba(248,116,161,0.26)]">
+        class="relative flex gap-4 rounded-2xl border border-[#02c4e3]/30 bg-[#04222b]/95 p-6 text-left text-base leading-relaxed text-[#cfeef7] transition-all duration-300 hover:-translate-y-2 hover:border-[#8ff5ff]/55 hover:bg-[#03303c]/95 hover:shadow-[0_15px_40px_rgba(2,196,227,0.26)]">
         <div
           aria-hidden="true"
-          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#fdb4d4]/45 bg-gradient-to-br from-[#ffffff] via-[#fdb4d4] to-[#f874a1] text-2xl text-[#0c0a0a] shadow-[0_5px_15px_rgba(248,116,161,0.3)]">
+          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#8ff5ff]/45 bg-gradient-to-br from-[#8ff5ff] via-[#5afef1] to-[#02c4e3] text-2xl text-[#021c22] shadow-[0_5px_15px_rgba(2,196,227,0.3)]">
           {iconleft}
         </div>
         <slot name="left" />
       </article>
 
       <article
-        class="relative flex gap-4 rounded-2xl border border-[#8f1140]/60 bg-[#1a1113]/95 p-6 text-left text-base leading-relaxed text-[#f6dde8] transition-all duration-300 hover:-translate-y-2 hover:border-[#f874a1]/55 hover:bg-[#241b1d]/95 hover:shadow-[0_15px_40px_rgba(143,17,64,0.45)]">
+        class="relative flex gap-4 rounded-2xl border border-[#fdac13]/45 bg-[#04222b]/95 p-6 text-left text-base leading-relaxed text-[#cfeef7] transition-all duration-300 hover:-translate-y-2 hover:border-[#fdac13]/70 hover:bg-[#03303c]/95 hover:shadow-[0_15px_40px_rgba(253,172,19,0.26)]">
         <div
           aria-hidden="true"
-          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#f874a1]/40 bg-gradient-to-br from-[#d6377a] to-[#8f1140] text-2xl text-[#fdb4d4] shadow-[0_5px_15px_rgba(143,17,64,0.5)]">
+          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#fdac13]/50 bg-gradient-to-br from-[#fdac13] to-[#f0820c] text-2xl text-[#021c22] shadow-[0_5px_15px_rgba(253,172,19,0.35)]">
           {iconright}
         </div>
         <slot name="right" />
