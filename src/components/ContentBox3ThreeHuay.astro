@@ -1,39 +1,85 @@
 ---
-const { titleleft, titlecenter, titleright } = Astro.props;
+export interface Props {
+  title?: string;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  titleleft?: string;
+  titlecenter?: string;
+  titleright?: string;
+}
+const { title, as: HeadingTag = "h2", titleleft, titlecenter, titleright } = Astro.props;
+
+// The section heading arrives on `title` and is the only heading a docx section
+// normally needs here. The three column titles used to render as hardcoded-level
+// <h3>, which put an h3 on the page that traced back to no heading in the brief;
+// they now render at `as` like every other title in the library. A brief that is
+// flat H1 + H2 simply leaves them unset and the three columns carry the
+// section's paragraph split across them — which is what JAIDEEJING does, so this
+// section contributes exactly one <h2> and no <h3>.
+//
+// JAIDEEJING: gold column markers and crimson rules on a deep crimson card, warm
+// cream body copy. The small gold bar at the top of each column is decorative and
+// always renders, so three untitled columns still read as three parts of one
+// section.
+//
+// `isolate` on the card + `-z-10` on the wash is what lets the slot content paint
+// above the decoration without a wrapper <div>. Keep both.
 ---
 
 <section class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div
-    class="group relative isolate w-full overflow-hidden rounded-3xl border border-red-500/30 bg-[#5f0914]/60 p-8 text-white/90 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all duration-500 hover:border-yellow-400/40 hover:shadow-[0_15px_40px_rgba(250,204,21,0.15)] md:p-10">
+    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#8f1a10]/55 bg-[#5c1008]/60 p-8 text-[#f7e4c0] shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all duration-500 hover:border-[#f5c451]/60 hover:shadow-[0_15px_40px_rgba(245,196,81,0.2)] md:p-10">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-24 left-1/2 -z-10 h-48 w-72 -translate-x-1/2 rounded-full bg-[#f5c451]/18 blur-[70px]"></div>
+
+    {
+      title && (
+        <header class="mb-8 flex items-center gap-4 border-b border-[#f5c451]/30 pb-4">
+          <span aria-hidden="true" class="h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b from-[#ffe08a] via-[#f5c451] to-[#c8901a] shadow-[0_0_10px_rgba(245,196,81,0.5)]" />
+          <HeadingTag class="bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#c8901a] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase">{title}</HeadingTag>
+        </header>
+      )
+    }
+
     <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-      <article class="flex flex-col gap-3 border-b border-red-500/30 pb-8 text-left text-base leading-relaxed text-red-100/80 md:border-r md:border-b-0 md:pr-8 md:pb-0">
+      <article class="flex flex-col gap-3 border-b border-[#8f1a10]/55 pb-8 text-left text-base leading-relaxed text-[#f7e4c0] md:border-r md:border-b-0 md:pr-8 md:pb-0">
+        <span aria-hidden="true" class="h-[3px] w-12 shrink-0 rounded-full bg-gradient-to-r from-[#ffe08a] to-transparent"></span>
         {
           titleleft && (
-            <h3 class="flex items-center gap-2 text-lg leading-normal font-black tracking-widest text-yellow-400 uppercase">
-              <span aria-hidden="true" class="text-xl drop-shadow-[0_0_5px_rgba(250,204,21,0.8)]">💸</span> {titleleft}
-            </h3>
+            <HeadingTag class="flex items-center gap-2 text-lg leading-normal font-black tracking-widest text-[#ffe08a] uppercase">
+              <span aria-hidden="true" class="text-xl drop-shadow-[0_0_5px_rgba(245,196,81,0.8)]">
+                🎯
+              </span>
+              {titleleft}
+            </HeadingTag>
           )
         }
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-3 border-b border-red-500/30 pb-8 text-left text-base leading-relaxed text-red-100/80 md:border-r md:border-b-0 md:px-4 md:pb-0">
+      <article class="flex flex-col gap-3 border-b border-[#8f1a10]/55 pb-8 text-left text-base leading-relaxed text-[#f7e4c0] md:border-r md:border-b-0 md:px-4 md:pb-0">
+        <span aria-hidden="true" class="h-[3px] w-12 shrink-0 rounded-full bg-gradient-to-r from-[#f5c451] to-transparent"></span>
         {
           titlecenter && (
-            <h3 class="flex items-center gap-2 text-lg leading-normal font-black tracking-widest text-yellow-400 uppercase">
-              <span aria-hidden="true" class="text-xl drop-shadow-[0_0_5px_rgba(250,204,21,0.8)]">⚡</span> {titlecenter}
-            </h3>
+            <HeadingTag class="flex items-center gap-2 text-lg leading-normal font-black tracking-widest text-[#ffe08a] uppercase">
+              <span aria-hidden="true" class="text-xl drop-shadow-[0_0_5px_rgba(245,196,81,0.8)]">
+                🔢
+              </span>
+              {titlecenter}
+            </HeadingTag>
           )
         }
         <slot name="center" />
       </article>
 
-      <article class="flex flex-col gap-3 text-left text-base leading-relaxed text-red-100/80 md:pl-8">
+      <article class="flex flex-col gap-3 text-left text-base leading-relaxed text-[#f7e4c0] md:pl-8">
+        <span aria-hidden="true" class="h-[3px] w-12 shrink-0 rounded-full bg-gradient-to-r from-[#ffe08a] to-transparent"></span>
         {
           titleright && (
-            <h3 class="flex items-center gap-2 text-lg leading-normal font-black tracking-widest text-yellow-400 uppercase">
-              <span aria-hidden="true" class="text-xl drop-shadow-[0_0_5px_rgba(250,204,21,0.8)]">💎</span> {titleright}
-            </h3>
+            <HeadingTag class="flex items-center gap-2 text-lg leading-normal font-black tracking-widest text-[#ffe08a] uppercase">
+              <span aria-hidden="true" class="text-xl drop-shadow-[0_0_5px_rgba(245,196,81,0.8)]">
+                🧾
+              </span>
+              {titleright}
+            </HeadingTag>
           )
         }
         <slot name="right" />

@@ -1,39 +1,41 @@
 ---
-import { fontStack, usesGoogleFonts } from "../lib/brandProfile";
+import { fontStack } from "../lib/brandProfile";
 
 const targetUrl = "https://yoalink.com/q83b";
 
 // This page has its own <head> and does not import global.css, so it gets
-// neither the @theme fallback for --font-sans nor the self-hosted Kanit
-// @font-face. Both have to be supplied here or the page renders in the browser
-// default while the rest of the site does not — hence the @font-face rules in
-// the first <style> block below. Kanit stays declared on either brand font: it
-// is also the Thai fallback inside the Google Sans stack.
+// neither the @theme fallback for --font-sans nor the self-hosted brand font's
+// @font-face rules. Both have to be supplied here or the page renders in the
+// browser default while the rest of the site does not — hence the @font-face
+// block below, which declares BOTH faces the BRAND_FONT rotation can choose
+// from. Only the one named by `fontStack` is ever fetched: an @font-face whose
+// family nothing draws with is never downloaded, so carrying both costs zero
+// bytes and means the next rotation cannot silently break this page.
 //
-// This brand is on Kanit (BRAND_FONT rotated off google-sans), so
-// usesGoogleFonts is false and fontHref takes the SECOND branch, asking Google
-// for Oswald only. Oswald is the face that always needs a CDN: the Latin status
-// heading uses it and it is not self-hosted. Kanit comes from /fonts by the
-// @font-face rules below and never from the CDN.
+// This brand is on Google Sans (BRAND_FONT rotated off kanit), so `fontStack`
+// resolves to the Google Sans stack and the two google-sans-v70 subsets below
+// are the files this page actually uses. Both live in public/fonts — the brand
+// font is self-hosted on either setting and never comes from a CDN.
+//
+// Oswald is the one face that genuinely needs the CDN: the Latin status heading
+// draws with it and it is not self-hosted, which is all `fontHref` asks for.
+// It used to ask for the brand font as well — "Kanit:wght@300;400;600" on a
+// Kanit brand, "Google+Sans" on this one. Both were wrong: the Kanit weights are
+// self-hosted (and 300/600 are drawn zero times), and Google Sans is not
+// published on the Google Fonts API at all, so that request could only ever
+// fail. Do not put the brand font back into this URL.
+//
 // The brand wordmark needs no third typeface either — .brand-identity draws the
 // name in var(--font-sans), the same face the rest of the site uses, so the
 // wordmark here matches the navbar logotype on a screen that is on display for
 // 1.5 seconds.
-//
-// The kanit branch used to request "Kanit:wght@300;400;600" too, even though the
-// site self-hosts Kanit: a third-party request for weights nothing here draws
-// (300 and 600 are used zero times), and a query string byte-identical on every
-// Kanit brand in the portfolio — the shared signature BRAND_FONT exists to
-// break up. Do not put Kanit back into either branch.
-const fontHref = usesGoogleFonts
-  ? "https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Oswald:wght@700&display=swap"
-  : "https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap";
+const fontHref = "https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap";
 ---
 
 <html lang="th" style={`--font-sans: ${fontStack};`}>
   <head>
     <meta charset="utf-8" />
-    <title>RUAYRUAY888 | เข้าสู่ระบบเกมพนันออนไลน์ผ่านช่องทางหลัก</title>
+    <title>JAIDEEJING | เข้าสู่ระบบแทงหวยออนไลน์ผ่านช่องทางหลัก</title>
 
     {
       /* Title and description are the docx SUB-PAGES row for /login, both
@@ -44,7 +46,7 @@ const fontHref = usesGoogleFonts
         below).
         Count CHARACTERS, not bytes: Thai is 3 bytes per character. */
     }
-    <meta name="description" content="RUAYRUAY888 เข้าสู่ระบบผ่านช่องทางหลัก รองรับมือถือ พร้อมเลือกค่ายเกม ตรวจโปรโมชั่น บัญชี และสถานะรายการได้สะดวก" />
+    <meta name="description" content="JAIDEEJING เข้าสู่ระบบหวยออนไลน์ รองรับมือถือ พร้อมเลือกหวย กรอกเลข ตรวจโพย อัตราจ่าย และประวัติรายการได้จากระบบเดียว" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {
@@ -63,11 +65,28 @@ const fontHref = usesGoogleFonts
     <link href={fontHref} rel="stylesheet" />
 
     <style>
-      /* Self-hosted Kanit. This page has its own <head> and does not import
-         global.css, so the @font-face rules there never reach it — which is why
-         it used to pull Kanit from Google instead. Kanit is the Thai fallback
-         inside the Google Sans stack too, so these stay on either brand font.
-         Only the weights this page actually draws are declared. */
+      /* The self-hosted brand faces, copied from global.css because this page
+         has its own <head> and never imports it. Both BRAND_FONT options are
+         declared; the stack on <html> decides which one is drawn, and the other
+         is never fetched. The unicode-range split is load-bearing on Google
+         Sans: latin and thai are two separate files, and without it the browser
+         would try to render Thai from the latin subset. */
+      @font-face {
+        font-family: "Google Sans";
+        font-style: normal;
+        font-weight: 400 700;
+        font-display: swap;
+        src: url("/fonts/google-sans-v70-latin-wght.woff2") format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "Google Sans";
+        font-style: normal;
+        font-weight: 400 700;
+        font-display: swap;
+        src: url("/fonts/google-sans-v70-thai-wght.woff2") format("woff2");
+        unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC;
+      }
       @font-face {
         font-family: "Kanit";
         font-style: normal;
@@ -85,38 +104,38 @@ const fontHref = usesGoogleFonts
     </style>
 
     <style>
-      /* This brand is a neon hot-pink casino floor: the identity hue is the
-         pink of its own artwork — measured off the logo — and it runs the whole
-         ramp on its own, from a pale pink-white highlight down to a deep
-         magenta, over a rose-tinted near-black. White is the only second note,
-         used for contrast rather than as a hue. There is deliberately NO metal
-         accent on this screen: the outgoing brand paired its primary with gold,
-         and carrying a gold stop over would be the one leftover a pink page
-         cannot absorb. There is no button here either, so nothing needs a
-         separate call-to-action colour.
+      /* This brand is a Thai lottery house in gold on oxblood: the identity hue
+         is the gold of its own artwork — dragon, temple spires, lotto balls —
+         and it runs the top of the ramp, from a pale gold highlight down to a
+         burnished deep gold. Crimson is the genuine second hue, not a tint of
+         the first: it carries the silk the artwork sits on and the deep end of
+         every gradient, and it bottoms out in the near-black maroon the page
+         itself is painted on. There is no button on this screen, so nothing
+         needs a separate call-to-action colour.
          The .brand-identity gradient reads the wordmark's own bevel top to
-         bottom: white through pale pink into hot pink, then down into the
-         rose-black the page itself sits on.
+         bottom: white through pale gold into gold, then down through crimson
+         into that maroon.
          Naming a previous brand or quoting its hexes in this comment is what a
          dist/ grep for the old name would find, so the description stays
          generic on purpose.
          Every variable is NAMED FOR THE COLOUR IT HOLDS, which previous brands
          stopped doing: this block once declared `--brand-gold` on brands with no
          gold in them and `--brand-red` on a blue one, so the next editor reused
-         it by name and shipped the wrong hue. Hence `--pink*` for the primary
-         ramp and `--ink`/`--roseblack` for the two dark surfaces it ends on.
-         Rename with the value. */
+         it by name and shipped the wrong hue. Hence `--gold*` for the primary
+         ramp, `--crimson*` for the second, and `--ink`/`--maroon` for the two
+         dark surfaces it ends on. Rename with the value. */
       :root {
-        --ink: #0c0a0a;
-        --panel: rgba(26, 17, 19, 0.94);
-        --pink: #f874a1;
-        --pink-bright: #fdb4d4;
-        --pink-deep: #d6377a;
-        --pink-deeper: #8f1140;
-        --roseblack: #3a1d24;
+        --ink: #120403;
+        --panel: rgba(30, 7, 5, 0.94);
+        --gold: #f5c451;
+        --gold-light: #ffe08a;
+        --gold-deep: #c8901a;
+        --crimson: #d12027;
+        --crimson-deep: #8f1a10;
+        --maroon: #3a1008;
         --white: #ffffff;
-        --text: #f6dde8;
-        --text-dim: #d8b9c6;
+        --text: #f7e4c0;
+        --text-dim: #e0c79c;
       }
 
       body {
@@ -124,7 +143,7 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         color: var(--text);
 
-        background: radial-gradient(circle at 50% 10%, rgba(248, 116, 161, 0.16) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(143, 17, 64, 0.55) 0%, transparent 55%), var(--ink);
+        background: radial-gradient(circle at 50% 10%, rgba(245, 196, 81, 0.16) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(143, 26, 16, 0.55) 0%, transparent 55%), var(--ink);
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -138,11 +157,11 @@ const fontHref = usesGoogleFonts
         max-width: 450px;
         padding: 3.5rem;
         background: var(--panel);
-        border: 1px solid rgba(248, 116, 161, 0.45);
+        border: 1px solid rgba(245, 196, 81, 0.45);
         border-radius: 2rem;
         box-shadow:
-          0 1rem 3rem rgba(248, 116, 161, 0.24),
-          0 0 2rem rgba(143, 17, 64, 0.55);
+          0 1rem 3rem rgba(245, 196, 81, 0.24),
+          0 0 2rem rgba(143, 26, 16, 0.55);
         text-align: center;
         backdrop-filter: blur(10px);
       }
@@ -151,13 +170,13 @@ const fontHref = usesGoogleFonts
         font-family: var(--font-sans);
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(180deg, var(--white) 0%, var(--pink-bright) 22%, var(--pink) 48%, var(--pink-deep) 72%, var(--pink-deeper) 88%, var(--roseblack) 100%);
+        background: linear-gradient(180deg, var(--white) 0%, var(--gold-light) 22%, var(--gold) 48%, var(--gold-deep) 72%, var(--crimson-deep) 88%, var(--maroon) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         letter-spacing: 0.12em;
         margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 2px rgba(12, 10, 10, 0.6));
+        filter: drop-shadow(0 1px 2px rgba(18, 4, 3, 0.6));
       }
 
       .sophisticated-loader {
@@ -173,30 +192,30 @@ const fontHref = usesGoogleFonts
       .orb {
         width: 40px;
         height: 40px;
-        background: radial-gradient(circle, var(--pink-bright) 0%, var(--pink) 55%, var(--pink-deeper) 100%);
+        background: radial-gradient(circle, var(--gold-light) 0%, var(--gold) 55%, var(--crimson-deep) 100%);
         border-radius: 50%;
-        box-shadow: 0 0 2rem rgba(248, 116, 161, 0.45);
+        box-shadow: 0 0 2rem rgba(245, 196, 81, 0.45);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .ring {
         position: absolute;
         border-radius: 50%;
-        border: 3px solid rgba(248, 116, 161, 0.2);
+        border: 3px solid rgba(245, 196, 81, 0.2);
         animation: spin linear infinite;
       }
 
       .ring-1 {
         width: 100%;
         height: 100%;
-        border-top-color: var(--pink);
+        border-top-color: var(--gold);
         animation-duration: 4s;
       }
 
       .ring-2 {
         width: 80%;
         height: 80%;
-        border-bottom-color: var(--pink-bright);
+        border-bottom-color: var(--crimson);
         animation-duration: 6s;
         animation-direction: reverse;
       }
@@ -213,11 +232,11 @@ const fontHref = usesGoogleFonts
         0%,
         100% {
           transform: scale(1);
-          box-shadow: 0 0 2rem rgba(248, 116, 161, 0.45);
+          box-shadow: 0 0 2rem rgba(245, 196, 81, 0.45);
         }
         50% {
           transform: scale(1.15);
-          box-shadow: 0 0 3rem rgba(253, 180, 212, 0.55);
+          box-shadow: 0 0 3rem rgba(255, 224, 138, 0.55);
         }
       }
 
@@ -228,7 +247,7 @@ const fontHref = usesGoogleFonts
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text);
-        text-shadow: 0 1px 1px rgba(12, 10, 10, 0.6);
+        text-shadow: 0 1px 1px rgba(18, 4, 3, 0.6);
         margin: 0;
       }
       .status-text .p {
@@ -241,7 +260,7 @@ const fontHref = usesGoogleFonts
   </head>
   <body>
     <div class="premium-loading-container">
-      <div class="brand-identity">RUAYRUAY888</div>
+      <div class="brand-identity">JAIDEEJING</div>
 
       <div class="sophisticated-loader">
         <div class="orb"></div>
@@ -251,7 +270,7 @@ const fontHref = usesGoogleFonts
 
       <div class="status-text">
         <h1 class="h1">AUTHENTICATING SECURE ACCESS...</h1>
-        <p class="p">กำลังพาไปหน้าเข้าสู่ระบบ RUAYRUAY888 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
+        <p class="p">กำลังพาไปหน้าเข้าสู่ระบบ JAIDEEJING อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
       </div>
     </div>
 

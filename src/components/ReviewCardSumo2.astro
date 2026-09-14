@@ -8,71 +8,69 @@
 // sr-only line beside it: U+2605 counts as Extended_Pictographic, so a bare one
 // would be read out five times per card.
 //
-// Each card echoes one section of the RUAYRUAY888 brief — comparing กติกา
-// ฟีเจอร์ อัตราจ่าย และวงเงิน across ค่าย before choosing, reading a promotion's
-// ยอดขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา และเงื่อนไขการถอน instead of its headline
-// credit, checking กระเป๋าเงิน จำนวนเงิน และบัญชีสมาชิก before confirming a
-// Wallet transaction, reading "จ่ายดี" against the ตารางจ่าย and ความผันผวน of
-// each game, keeping เวลา จำนวนเงิน และเลขอ้างอิง of a slow transaction, and
-// setting a วงเงิน before starting rather than chasing losses — so nothing here
-// claims more than the brief.
+// Each card echoes one section of the JAIDEEJING brief — checking ชื่อหวย
+// วันที่ออกรางวัล และเวลาปิดรับ before filling numbers in, splitting a
+// multi-number โพย line by line before confirming, reading the อัตราจ่าย the
+// system shows for 2 ตัว 3 ตัว and วิ่ง, keeping everything in one account
+// instead of switching pages, looking after the account itself, and reading
+// "จ่ายไว" against the real status of a submitted โพย — so nothing here claims
+// more than the brief.
 //
-// RUAYRUAY888: rose-black cards with hot-pink rules and a bright-pink spine, and
-// the stars, tags and scores in the brand pink.
+// JAIDEEJING: oxblood cards with gold rules and a gold spine, and the stars,
+// tags and scores in the brand gold.
 const reviews = [
   {
-    name: "สมาชิกที่เทียบหลายค่ายก่อนเลือกเกม",
-    role: "ดูกติกา ฟีเจอร์ อัตราจ่าย และวงเงินของแต่ละค่าย",
+    name: "สมาชิกที่ตรวจงวดก่อนกรอกเลข",
+    role: "ดูชื่อหวย วันที่ออกรางวัล และเวลาปิดรับให้ครบ",
     stars: 5,
-    tag: "เทียบก่อนเลือก",
+    tag: "เลือกให้ตรงงวด",
     content:
-      "ในระบบมีทั้งสล็อต บาคาร่า คาสิโนสด และเกมรูปแบบอื่นจากหลายผู้ให้บริการ เลยไล่เทียบกติกา ฟีเจอร์ อัตราจ่าย และวงเงินก่อนเลือกทุกครั้ง เพราะค่ายที่คนพูดถึงเยอะไม่จำเป็นต้องเหมาะกับรูปแบบการเล่นของตัวเอง",
-    avatar: "🎮",
+      "เลือกประเภทหวยตามรายการและรอบออกรางวัลที่ระบบรองรับ ก่อนกรอกเลขก็ไล่ดูชื่อหวย วันที่ออกรางวัล และเวลาปิดรับให้ครบก่อนทุกครั้ง โดยเฉพาะวันที่ซื้อหลายงวด ถ้าตรงไหนไม่แน่ใจก็ทักทีมงานถามก่อนส่งโพย",
+    avatar: "🎫",
   },
   {
-    name: "สมาชิกที่อ่านเงื่อนไขโปรก่อนกดรับ",
-    role: "ดูยอดขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา และเงื่อนไขการถอน",
-    stars: 4,
-    tag: "ดูเงื่อนไขจริง",
-    content:
-      "โปรที่ดูแรงมีทั้งโบนัสสมาชิกใหม่ สิทธิ์ตามยอดฝาก และกิจกรรมเฉพาะช่วงเวลา เลยตรวจยอดขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา และเงื่อนไขการถอนให้ครบก่อน เพราะโปรที่เหมาะกับงบมักคุ้มกว่าข้อเสนอที่ให้เครดิตสูงแต่มีข้อจำกัดเยอะ",
-    avatar: "🎁",
-  },
-  {
-    name: "สมาชิกที่ตรวจข้อมูลก่อนยืนยัน Wallet",
-    role: "ดูกระเป๋าเงิน จำนวนเงิน และบัญชีสมาชิกให้ตรงกัน",
+    name: "สมาชิกที่แยกตรวจโพยทีละรายการ",
+    role: "ดูเลข ประเภทเดิมพัน และจำนวนเงินก่อนกดยืนยัน",
     stars: 5,
-    tag: "ก่อนกดยืนยัน",
+    tag: "ตรวจก่อนยืนยัน",
     content:
-      "การรองรับ Wallet ช่วยให้จัดการฝากถอนผ่านมือถือสะดวกขึ้นจริง แต่ก่อนยืนยันก็ยังตรวจข้อมูลกระเป๋าเงิน จำนวนเงิน และบัญชีสมาชิกให้ตรงกันก่อน แล้วรอให้รายการเดิมอัปเดตสถานะเรียบร้อยค่อยทำรายการใหม่",
-    avatar: "👛",
-  },
-  {
-    name: "สมาชิกที่อ่านคำว่าจ่ายดีจากตารางจ่าย",
-    role: "ดูอัตราจ่าย ความผันผวน และข้อมูลจากผู้ให้บริการ",
-    stars: 5,
-    tag: "ดูข้อมูลก่อน",
-    content:
-      "คำว่าจ่ายดีไม่ได้แปลว่าเกมจะให้ผลตอบแทนสูงทุกครั้ง เพราะแต่ละประเภทมีอัตราจ่าย ความผันผวน และเงื่อนไขต่างกัน เลยดูตารางจ่าย กติกา และข้อมูลจากผู้ให้บริการก่อนเริ่ม จะได้เลือกเกมจากข้อมูลมากกว่าคำโปรโมต",
-    avatar: "📊",
-  },
-  {
-    name: "สมาชิกที่เก็บเลขอ้างอิงของทุกรายการ",
-    role: "ตรวจโปรที่เปิดใช้งาน ยอดคงเหลือ และประวัติธุรกรรม",
-    stars: 5,
-    tag: "ตรวจย้อนหลังได้",
-    content:
-      "ก่อนฝากหรือถอนก็ตรวจโปรโมชั่นที่เปิดใช้งาน ยอดคงเหลือ และประวัติธุรกรรมก่อนทุกครั้ง ถ้าเจอรายการล่าช้าก็เก็บเวลา จำนวนเงิน และเลขอ้างอิงไว้จนกว่าระบบจะอัปเดตผล ทำให้ตรวจสอบย้อนหลังได้ง่ายขึ้นมาก",
+      "พอเลือกเลขหลายชุดก็แยกตรวจทีละรายการทั้งเลข ประเภทเดิมพัน และจำนวนเงินก่อนกดยืนยัน จัดโพยให้เป็นระเบียบแบบนี้ช่วยลดโอกาสกรอกเลขผิดหรือเลือกงวดไม่ตรงได้เยอะ แล้วเก็บเลขอ้างอิงไว้จนกว่าสถานะจะเสร็จสมบูรณ์",
     avatar: "🧾",
   },
   {
-    name: "สมาชิกที่กำหนดวงเงินไว้ก่อนเริ่มเล่น",
-    role: "เลือกเกมที่เข้าใจกติกาและโปรที่ไม่บังคับให้เพิ่มยอด",
+    name: "สมาชิกที่ดูอัตราจ่ายก่อนเลือกรูปแบบ",
+    role: "เทียบราคาของเลข 2 ตัว 3 ตัว และเลขวิ่ง",
     stars: 4,
-    tag: "วางแผนก่อนเล่น",
+    tag: "ดูราคาก่อน",
     content:
-      "เริ่มจากกำหนดวงเงินก่อน แล้วเลือกเกมที่เข้าใจกติกา กับโปรโมชั่นที่ไม่บังคับให้เพิ่มยอดเกินแผนที่วางไว้ และไม่เพิ่มเงินเพื่อตามคืนยอดเสีย เพราะเกมพนันมีความไม่แน่นอนและไม่มีอะไรรับประกันกำไรได้",
-    avatar: "🧭",
+      "อัตราจ่ายต่างกันตามประเภทหวย รูปแบบเดิมพัน และสถานะของเลข เลยดูราคาที่ระบบแสดงก่อนยืนยันทุกครั้ง เพราะเลข 2 ตัว 3 ตัว วิ่ง หรือรูปแบบอื่นมีเงื่อนไขไม่เหมือนกัน ดูล่วงหน้าไว้ทำให้เข้าใจยอดในโพยชัดขึ้น",
+    avatar: "💰",
+  },
+  {
+    name: "สมาชิกที่ใช้ระบบเดียวจบทุกขั้นตอน",
+    role: "ดูประเภทหวย โพย ผลรางวัล และประวัติรายการในที่เดียว",
+    stars: 5,
+    tag: "ไม่ต้องสลับหน้า",
+    content:
+      "รวมประเภทหวย โพย ผลรางวัล โปรโมชั่น และประวัติรายการไว้ในระบบเดียวทำให้ตรวจข้อมูลง่ายขึ้นจริง แต่ก็ยังอ่านกติกาของแต่ละรายการแยกกันอยู่ดี เพราะเวลาเปิดปิด อัตราจ่าย และข้อกำหนดอาจต่างกันในแต่ละงวด",
+    avatar: "🗂️",
+  },
+  {
+    name: "สมาชิกที่ดูแลบัญชีเป็นอันดับแรก",
+    role: "เข้าจากช่องทางหลักและไม่เปิดเผยรหัสยืนยัน",
+    stars: 5,
+    tag: "บัญชีปลอดภัย",
+    content: "เข้าใช้งานจากช่องทางหลัก ตั้งรหัสผ่านที่คาดเดายาก และไม่บอกรหัส OTP หรือรหัสยืนยันให้ใครเด็ดขาด ตรวจประวัติรายการเป็นระยะ แล้วก็เลี่ยงเครือข่ายสาธารณะตอนจัดการข้อมูลบัญชีหรือทำธุรกรรม",
+    avatar: "🔐",
+  },
+  {
+    name: "สมาชิกที่อ่านคำว่าจ่ายไวจากสถานะจริง",
+    role: "ตรวจโพยและยอดจากหน้าบัญชีหลังประกาศผล",
+    stars: 4,
+    tag: "ดูสถานะจริง",
+    content:
+      "คำว่าจ่ายไวดูจากสถานะรายการในระบบดีกว่า ไม่ตีความว่าเป็นการรับประกันทุกกรณี หลังประกาศผลก็ตรวจโพยกับยอดจากหน้าบัญชี ถ้าสถานะยังไม่อัปเดตก็เก็บเลขอ้างอิงไว้แล้วติดต่อทีมงานให้ช่วยตรวจสอบเพิ่ม",
+    avatar: "⏱️",
   },
 ];
 
@@ -80,64 +78,65 @@ const totalStars = reviews.reduce((sum, r) => sum + r.stars, 0);
 const average = (totalStars / reviews.length).toFixed(1);
 ---
 
-<section aria-label="เสียงจากสมาชิก RUAYRUAY888" class="relative z-10 mx-auto mb-12 w-full max-w-[1400px] px-4 font-sans">
+<section aria-label="เสียงจากสมาชิก JAIDEEJING" class="relative z-10 mx-auto mb-12 w-full max-w-[1400px] px-4 font-sans">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
-    <p class="bg-gradient-to-r from-[#ffffff] via-[#fdb4d4] to-[#8f1140] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
-      เสียงจากสมาชิก <span class="text-[#f874a1]">RUAYRUAY888</span>
+    <p class="bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#c8901a] bg-clip-text text-3xl font-black tracking-widest text-transparent uppercase">
+      เสียงจากสมาชิก <span class="text-[#f5c451]">JAIDEEJING</span>
     </p>
-    <div aria-hidden="true" class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#f874a1] to-transparent"></div>
+    <div aria-hidden="true" class="mt-2 h-[4px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#f5c451] to-transparent"></div>
   </div>
 
-  <div class="mx-auto mb-8 flex max-w-md items-center justify-center gap-5 rounded-2xl border border-[#f874a1]/40 bg-[#1a1113]/92 px-6 py-4 shadow-[0_10px_30px_rgba(248,116,161,0.22)] backdrop-blur-xl">
+  <div
+    class="mx-auto mb-8 flex max-w-md items-center justify-center gap-5 rounded-2xl border border-[#f5c451]/40 bg-[#1e0705]/92 px-6 py-4 shadow-[0_10px_30px_rgba(245,196,81,0.22)] backdrop-blur-xl">
     <div class="flex flex-col items-center">
-      <span class="bg-gradient-to-b from-[#ffffff] to-[#f874a1] bg-clip-text text-4xl leading-none font-black text-transparent">{average}</span>
-      <span class="mt-1 text-[10px] font-bold tracking-widest text-[#d8b9c6] uppercase">คะแนนเฉลี่ย</span>
+      <span class="bg-gradient-to-b from-[#ffe08a] to-[#c8901a] bg-clip-text text-4xl leading-none font-black text-transparent">{average}</span>
+      <span class="mt-1 text-[10px] font-bold tracking-widest text-[#e0c79c] uppercase">คะแนนเฉลี่ย</span>
     </div>
-    <div aria-hidden="true" class="h-12 w-px bg-[#8f1140]/60"></div>
+    <div aria-hidden="true" class="h-12 w-px bg-[#8f1a10]/70"></div>
     <div class="flex flex-col gap-1.5">
       <div aria-hidden="true" class="flex gap-1 text-lg">
-        {Array.from({ length: 5 }).map((_, i) => <span class={i < Math.round(Number(average)) ? "text-[#f874a1]" : "text-[#3a1d24]"}>★</span>)}
+        {Array.from({ length: 5 }).map((_, i) => <span class={i < Math.round(Number(average)) ? "text-[#f5c451]" : "text-[#3a1008]"}>★</span>)}
       </div>
-      <span class="text-xs font-bold text-[#d8b9c6]">คะแนนเฉลี่ย {average} จาก 5 ดาว จากการใช้งานจริงของสมาชิก {reviews.length} ด้าน</span>
+      <span class="text-xs font-bold text-[#e0c79c]">คะแนนเฉลี่ย {average} จาก 5 ดาว จากการใช้งานจริงของสมาชิก {reviews.length} ด้าน</span>
     </div>
   </div>
 
   <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
     {
       reviews.map((review) => (
-        <article class="group relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl border border-[#f874a1]/35 bg-[#1a1113]/92 p-6 text-left shadow-[0_10px_30px_rgba(248,116,161,0.2)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#fdb4d4]/70 hover:shadow-[0_15px_40px_rgba(248,116,161,0.3)]">
-          <span aria-hidden="true" class="absolute inset-y-0 left-0 -z-10 w-1 bg-gradient-to-b from-[#fdb4d4] to-[#8f1140] opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
+        <article class="group relative isolate flex flex-col gap-4 overflow-hidden rounded-2xl border border-[#f5c451]/35 bg-[#1e0705]/92 p-6 text-left shadow-[0_10px_30px_rgba(245,196,81,0.2)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#f5c451]/70 hover:shadow-[0_15px_40px_rgba(245,196,81,0.3)]">
+          <span aria-hidden="true" class="absolute inset-y-0 left-0 -z-10 w-1 bg-gradient-to-b from-[#ffe08a] to-[#c8901a] opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
           <span
             aria-hidden="true"
-            class="pointer-events-none absolute -top-14 -right-14 -z-10 h-32 w-32 rounded-full bg-[#8f1140]/60 blur-[50px] transition-all duration-300 group-hover:bg-[#f874a1]/35"
+            class="pointer-events-none absolute -top-14 -right-14 -z-10 h-32 w-32 rounded-full bg-[#8f1a10]/60 blur-[50px] transition-all duration-300 group-hover:bg-[#f5c451]/30"
           />
 
           <div class="flex items-center justify-between gap-3">
-            <span class="inline-flex items-center gap-1.5 rounded-full border border-[#f874a1]/45 bg-[#0c0a0a] px-3 py-1 text-[10px] font-bold tracking-widest text-[#fdb4d4] uppercase">
-              <span aria-hidden="true" class="h-1.5 w-1.5 animate-pulse rounded-full bg-[#f874a1]" />
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-[#f5c451]/45 bg-[#120403] px-3 py-1 text-[10px] font-bold tracking-widest text-[#ffe08a] uppercase">
+              <span aria-hidden="true" class="h-1.5 w-1.5 animate-pulse rounded-full bg-[#f5c451]" />
               {review.tag}
             </span>
             <span class="flex gap-0.5 text-sm">
               <span aria-hidden="true" class="flex gap-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <span class={i < review.stars ? "text-[#f874a1]" : "text-[#3a1d24]"}>★</span>
+                  <span class={i < review.stars ? "text-[#f5c451]" : "text-[#3a1008]"}>★</span>
                 ))}
               </span>
               <span class="sr-only">ให้คะแนน {review.stars} จาก 5 ดาว</span>
             </span>
           </div>
 
-          <p class="text-left text-base leading-relaxed text-[#f6dde8]">{review.content}</p>
+          <p class="text-left text-base leading-relaxed text-[#f7e4c0]">{review.content}</p>
 
-          <div class="mt-auto flex items-center gap-3 border-t border-[#8f1140]/55 pt-4">
+          <div class="mt-auto flex items-center gap-3 border-t border-[#8f1a10]/60 pt-4">
             <span
               aria-hidden="true"
-              class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#fdb4d4]/50 bg-gradient-to-br from-[#f874a1] to-[#8f1140] text-xl shadow-inner transition-transform duration-300 group-hover:scale-110">
+              class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#ffe08a]/50 bg-gradient-to-br from-[#d12027] to-[#8f1a10] text-xl shadow-inner transition-transform duration-300 group-hover:scale-110">
               {review.avatar}
             </span>
             <span class="flex flex-col">
-              <span class="text-sm font-black text-[#f6dde8] transition-colors group-hover:text-[#fdb4d4]">{review.name}</span>
-              <span class="text-[10px] font-bold tracking-wider text-[#d8b9c6] uppercase">{review.role}</span>
+              <span class="text-sm font-black text-[#f7e4c0] transition-colors group-hover:text-[#ffe08a]">{review.name}</span>
+              <span class="text-[10px] font-bold tracking-wider text-[#e0c79c] uppercase">{review.role}</span>
             </span>
           </div>
         </article>

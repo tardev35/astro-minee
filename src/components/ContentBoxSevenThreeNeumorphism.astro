@@ -8,12 +8,12 @@ export interface Props {
 const { title, titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
 const rightHeading = titleright ?? title;
 
-// หวยพร้อม neumorphic pair: the page ink (#04140a) casts the dark side of the
-// extrusion and the lifted surface (#10361c) the lit side, matching
-// ContentBoxNeumorphism and ContentBoxTwoNeumorphism so the three read as one
-// raised system on the near-black green page.
+// JAIDEEJING neumorphic pair: the page ink (#120403) casts the dark side of the
+// extrusion and the lifted maroon (#3a1008) the lit side, matching
+// ContentBoxNeumorphism so the two read as one raised system on the near-black
+// red page.
 //
-// Both column titles render at `as`, which defaults to "h2": the หวยพร้อม
+// Both column titles render at `as`, which defaults to "h2": the JAIDEEJING
 // docx is flat H1 + H2 with no nested sub-headings, and the page's heading
 // inventory is diffed against that brief. A column that carries no docx heading
 // simply omits its prop — index.astro passes only `title` here, so the image
@@ -22,15 +22,15 @@ const rightHeading = titleright ?? title;
 
 <section class="relative z-10 mx-auto mb-8 w-full max-w-[1400px] px-4 font-sans">
   <div
-    class="w-full rounded-[25px] border border-[#1e7a3a]/45 bg-[#0a2413] p-8 shadow-[10px_10px_20px_#04140a,-10px_-10px_20px_#10361c] transition-all duration-300 hover:shadow-[15px_15px_30px_#04140a,-15px_-15px_30px_#10361c]">
+    class="w-full rounded-[25px] border border-[#8f1a10]/55 bg-[#2e0b07] p-8 shadow-[10px_10px_20px_#120403,-10px_-10px_20px_#3a1008] transition-all duration-300 hover:shadow-[15px_15px_30px_#120403,-15px_-15px_30px_#3a1008]">
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#d8efdc]">
-        {titleleft && <HeadingTag class="text-2xl leading-normal font-black text-[#22c55e]">{titleleft}</HeadingTag>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f7e4c0]">
+        {titleleft && <HeadingTag class="text-2xl leading-normal font-black text-[#f5c451]">{titleleft}</HeadingTag>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#d8efdc] md:border-l md:border-[#1e7a3a]/45 md:pl-8">
-        {rightHeading && <HeadingTag class="text-2xl leading-normal font-black text-[#22c55e]">{rightHeading}</HeadingTag>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f7e4c0] md:border-l md:border-[#8f1a10]/55 md:pl-8">
+        {rightHeading && <HeadingTag class="text-2xl leading-normal font-black text-[#f5c451]">{rightHeading}</HeadingTag>}
         <slot name="right" />
       </article>
     </div>

@@ -1,9 +1,14 @@
-# ruayruay888.app — the Worker name is the deployment identity. Reusing another
-# brand's name overwrites that brand's live Worker, so this must be unique per
-# brand and must match the parked Worker if the domain was already parked with
-# tools/domain-placeholder (confirm with `npx wrangler deployments list` first).
-name = "ruayruay888"
-account_id = "e370e84fc51dfed2001ce18200a7f00a"
+# jaiideejing-play.com — the Worker name is the deployment identity. Reusing
+# another brand's name overwrites that brand's live Worker, so this must be
+# unique per brand and must match the parked Worker if the domain was already
+# parked with tools/domain-placeholder (confirm with
+# `npx wrangler deployments list --name jaiideejing` BEFORE the first deploy —
+# this run stopped at build+verify and never deployed).
+#
+# "jaiideejing", not "jaiideejing-play": verify-build derives the expected slug
+# as host.split(/[-.]/)[0], so the hyphenated form fails the build.
+name = "jaiideejing"
+account_id = "b420b898a9ab26387a074a0d0ba88b42"
 compatibility_date = "2026-07-27"
 
 # Worker ที่ทำ 301 www -> non-www ก่อนส่งต่อให้ไฟล์ static (ดู worker/index.js)

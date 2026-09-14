@@ -1,24 +1,44 @@
 ---
-const { titleleft, titleright } = Astro.props;
+export interface Props {
+  titleleft?: string;
+  titleright?: string;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+}
+const { titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
+
+// Both column titles render at `as`, which defaults to "h2": the JAIDEEJING
+// brief is flat H1 + H2 with no nested sub-headings, and the page's heading
+// inventory is diffed against that brief every rebrand. A column that carries no
+// docx heading simply omits its prop — index.astro passes only `titleright`
+// here, so the image column stays headingless and the section contributes
+// exactly one <h2>.
+//
+// JAIDEEJING: gold rim and gold rules over a deep crimson panel, warm cream body
+// copy. Gold (#f5c451) is the accent and carries every glow; crimson stays on
+// the surfaces and is never used for a border, which would read as a button.
+//
+// No slot wrapper — each <article> carries the body text classes itself and the
+// slot renders as its direct child. `leading-normal` on the headings neutralises
+// the `leading-relaxed` hoisted onto their flex parent.
 ---
 
 <section class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div
-    class="group relative isolate w-full overflow-hidden rounded-3xl border border-amber-500/30 bg-[#5f0914]/60 p-8 text-white/90 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all duration-500 hover:border-amber-400/50 hover:shadow-[0_15px_40px_rgba(251,191,36,0.18)] md:p-10">
+    class="group relative isolate w-full overflow-hidden rounded-3xl border border-[#f5c451]/35 bg-[#5c1008]/60 p-8 text-[#f7e4c0] shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all duration-500 hover:border-[#f5c451]/60 hover:shadow-[0_15px_40px_rgba(245,196,81,0.22)] md:p-10">
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-2 border-b border-amber-500/30 pb-6 text-left text-base leading-relaxed font-medium text-amber-100/80 md:border-r md:border-b-0 md:pr-6 md:pb-0">
+      <article class="flex flex-col gap-2 border-b border-[#f5c451]/30 pb-6 text-left text-base leading-relaxed font-medium text-[#f7e4c0] md:border-r md:border-b-0 md:pr-6 md:pb-0">
         {
           titleleft && (
-            <h2 class="bg-gradient-to-r from-amber-200 via-amber-300 to-amber-500 bg-clip-text text-center text-3xl leading-normal font-black tracking-wider text-transparent uppercase drop-shadow-sm md:text-left">
+            <HeadingTag class="bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#c8901a] bg-clip-text text-center text-3xl leading-normal font-black tracking-wider text-transparent uppercase drop-shadow-sm md:text-left">
               {titleleft}
-            </h2>
+            </HeadingTag>
           )
         }
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-3 text-left text-base leading-relaxed text-amber-50/85 md:pl-6">
-        {titleright && <h2 class="flex items-center gap-2 text-xl leading-normal font-black text-white drop-shadow-[0_0_5px_rgba(251,191,36,0.55)]">{titleright}</h2>}
+      <article class="flex flex-col gap-3 text-left text-base leading-relaxed text-[#f7e4c0] md:pl-6">
+        {titleright && <HeadingTag class="flex items-center gap-2 text-xl leading-normal font-black text-[#ffe08a] drop-shadow-[0_0_5px_rgba(245,196,81,0.55)]">{titleright}</HeadingTag>}
         <slot name="right" />
       </article>
     </div>

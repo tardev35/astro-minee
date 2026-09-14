@@ -37,12 +37,12 @@ export default defineConfig({
     "/line": "https://tinyurl.com/tog191",
   },
 
-  // IDN. Node normalises this to punycode (xn--v3caicgve0awc1gc6qnc.com) the
-  // moment it reaches new URL(), which is what canonical, sitemap, robots.txt
-  // and the JSON-LD all end up printing — correct, and the only form a crawler
-  // resolves. Written in Thai here because that is the domain the operator
-  // registered; do not "fix" it to the xn-- form.
-  site: "https://ruayruay888.app",
+  // The one place the domain is written. canonical, sitemap, robots.txt, the
+  // JSON-LD and the contact mailbox host all derive from it — never retype a
+  // domain anywhere else. (If a brand ever launches on an IDN again, write it
+  // in Thai here: Node normalises it to punycode at new URL(), which is the
+  // only form a crawler resolves, so do not "fix" it to the xn-- form.)
+  site: "https://jaiideejing-play.com",
   integrations: [
     sitemap({
       // /login, /register and /line are forwarding pages that all ship

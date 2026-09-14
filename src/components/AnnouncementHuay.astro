@@ -5,27 +5,29 @@
 // aria-hidden, so it would be read out on every repeat. The 📢 in the badge
 // beside the track is separate markup and is hidden properly.
 //
-// Every clause traces back to a docx paragraph — the งวด/เวลาปิดรับ check, the
-// 2 ตัว/3 ตัว/วิ่ง distinction, the "ไม่อั้นเลข" caveat, the "จ่ายเยอะ" caveat,
-// and the โพย review step. Nothing here promises a payout or a win rate.
+// Every clause traces back to a docx paragraph — the ชื่อหวย/วันที่ออกรางวัล/
+// เวลาปิดรับ check, the per-รายการ โพย review, the 2 ตัว/3 ตัว/วิ่ง distinction,
+// the "อ่านกติกาแต่ละรายการแยกกัน" caveat, the OTP/บัญชี safety line, and the
+// "จ่ายไว = ดูสถานะรายการจริง ไม่ใช่การรับประกัน" caveat. Nothing here promises a
+// payout, a win rate, or a settlement time.
 const {
-  message = "หวยพร้อม รวมประเภทหวย ระบบกรอกโพย อัตราจ่าย และข้อมูลผลรางวัลไว้ในระบบเดียว รองรับการใช้งานผ่านมือถือ • ก่อนเลือกเลขควรตรวจชื่อรายการ วันที่ออกรางวัล และเวลาปิดรับให้ถูกต้อง โดยเฉพาะผู้ที่ซื้อหวยหลายประเภทในวันเดียว • เลข 2 ตัว เลข 3 ตัว และเลขวิ่งมีวิธีคิดผลและอัตราจ่ายต่างกัน ควรตรวจว่าต้องการแทงตรงหรือโต๊ดก่อนกรอกจำนวนเงิน • คำว่าไม่อั้นเลขควรพิจารณาตามสถานะล่าสุดของแต่ละงวด เพราะบางเลขอาจถูกจำกัดยอด เปลี่ยนอัตราจ่าย หรือหยุดรับเมื่อถึงวงเงินที่กำหนด • อัตราจ่ายสูงไม่ได้หมายถึงโอกาสถูกรางวัลมากขึ้น ควรเทียบราคาที่ระบบแสดงจริงก่อนซื้อทุกครั้ง • เมื่อซื้อหลายเลขพร้อมกันควรไล่ดูเลข ประเภทเดิมพัน จำนวนเงิน และยอดรวมทีละรายการ พร้อมเก็บเลขอ้างอิงของโพยไว้ตรวจสอบย้อนหลัง",
+  message = "JAIDEEJING รวมประเภทหวย การกรอกเลข ระบบโพย อัตราจ่าย และข้อมูลผลรางวัลไว้ในบัญชีเดียว รองรับการใช้งานผ่านมือถือ • ก่อนกรอกเลขควรตรวจชื่อหวย วันที่ออกรางวัล และเวลาปิดรับให้ครบ โดยเฉพาะผู้ที่ซื้อหลายงวดในวันเดียว • เมื่อเลือกเลขหลายชุดควรแยกตรวจทีละรายการทั้งเลข ประเภทเดิมพัน และจำนวนเงินก่อนกดยืนยัน พร้อมเก็บเลขอ้างอิงไว้จนกว่าสถานะโพยจะเสร็จสมบูรณ์ • อัตราจ่ายอาจแตกต่างตามประเภทหวย รูปแบบเดิมพัน และสถานะของเลข เลข 2 ตัว 3 ตัว หรือวิ่งมีเงื่อนไขไม่เหมือนกัน ควรตรวจราคาที่ระบบแสดงก่อนยืนยันทุกครั้ง • ระบบที่รวมทุกอย่างไว้ที่เดียวช่วยลดการสลับหน้า แต่ควรอ่านกติกาของแต่ละรายการแยกกัน เพราะเวลาเปิดปิดและข้อกำหนดอาจต่างกันในแต่ละงวด • ควรเข้าใช้งานจากช่องทางหลัก ตั้งรหัสผ่านที่คาดเดายาก และไม่เปิดเผย OTP แก่บุคคลอื่น • คำว่าจ่ายไวควรพิจารณาจากสถานะรายการในระบบ ไม่ควรตีความว่าเป็นการรับประกันทุกกรณี",
 } = Astro.props;
 ---
 
 <div class="relative z-10 mx-auto w-full max-w-[1400px] px-4 py-3 font-sans">
-  <div class="relative flex overflow-hidden rounded-full border border-[#1e7a3a]/45 bg-[#04140a]/85 shadow-[0_5px_15px_rgba(0,0,0,0.5)] backdrop-blur-md">
+  <div class="relative flex overflow-hidden rounded-full border border-[#f5c451]/40 bg-[#1e0705]/85 shadow-[0_5px_15px_rgba(0,0,0,0.5)] backdrop-blur-md">
     <div
-      class="relative z-10 flex shrink-0 items-center justify-center bg-gradient-to-r from-[#f5c451] via-[#ffe08a] to-[#f5c451] px-6 py-2.5 font-black text-[#04140a] shadow-[4px_0_15px_rgba(0,0,0,0.5)]">
+      class="relative z-10 flex shrink-0 items-center justify-center bg-gradient-to-r from-[#c8901a] via-[#ffe08a] to-[#f5c451] px-6 py-2.5 font-black text-[#2a0806] shadow-[4px_0_15px_rgba(0,0,0,0.5)]">
       <span aria-hidden="true" class="mr-2 animate-pulse text-lg">📢</span> ประกาศ
     </div>
 
     <div class="marquee-container relative flex-1 overflow-hidden py-2.5 pr-6">
-      <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#04140a] to-transparent"></div>
+      <div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-[#1e0705] to-transparent"></div>
 
-      <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-widest whitespace-nowrap text-[#d8efdc]/90">
-        <span class="mr-8 inline-flex items-center gap-2"><span aria-hidden="true" class="h-2 w-2 rounded-full bg-[#22c55e] shadow-[0_0_8px_rgba(34,197,94,0.8)]"></span>{message}</span>
-        <span class="mr-8 inline-flex items-center gap-2"><span aria-hidden="true" class="h-2 w-2 rounded-full bg-[#22c55e] shadow-[0_0_8px_rgba(34,197,94,0.8)]"></span>{message}</span>
+      <div class="marquee-content inline-block pl-4 text-sm font-bold tracking-widest whitespace-nowrap text-[#f7e4c0]/90">
+        <span class="mr-8 inline-flex items-center gap-2"><span aria-hidden="true" class="h-2 w-2 rounded-full bg-[#d12027] shadow-[0_0_8px_rgba(209,32,39,0.85)]"></span>{message}</span>
+        <span class="mr-8 inline-flex items-center gap-2"><span aria-hidden="true" class="h-2 w-2 rounded-full bg-[#d12027] shadow-[0_0_8px_rgba(209,32,39,0.85)]"></span>{message}</span>
       </div>
     </div>
   </div>

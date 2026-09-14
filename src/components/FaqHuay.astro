@@ -8,17 +8,33 @@ export interface Props {
   faqs?: FAQ[];
 }
 
+// The `title` is the only heading this component emits: it is prop-driven and
+// carries a real docx heading. Each question used to render as an <h3>, which
+// put three headings on the page that traced back to nothing in the brief and
+// broke the h1/h2/h3 inventory diff on every page the accordion appears on. The
+// question is now a <span> with the same classes — <summary> already names the
+// disclosure for assistive tech, so nothing was lost but the tag. It is a span
+// rather than a <p> because <summary> takes phrasing or heading content only,
+// and a heading is exactly what this may not be.
+//
+// The defaults below are this brand's own Q&A, so a page that renders the
+// accordion bare still speaks for JAIDEEJING. index.astro passes the same array
+// explicitly, because the FAQ JSON-LD has to come out of the same source as the
+// markup.
 const {
-  title = "คำถามที่พบบ่อย (FAQ)",
+  title = "คำถามที่พบบ่อยเกี่ยวกับ JAIDEEJING",
   faqs = [
     {
-      q: "อัตราจ่ายของหวยแต่ละตลาดดูได้ที่ไหน",
-      a: "อัตราจ่ายของทุกประเภทการแทงจะแสดงอยู่ในหน้าของแต่ละตลาดหวย และระบบจะแสดงอัตราจ่ายจริงอีกครั้งบนหน้ายืนยันโพยก่อนกดส่งเสมอ",
+      q: "JAIDEEJING มีหวยหลายประเภทให้เลือกหรือไม่?",
+      a: "ระบบอาจรวมหวยหลายประเภทตามที่เว็บไซต์กำหนด ผู้สนใจสามารถสมัครสมาชิกเพื่อดูรายการล่าสุด พร้อมตรวจเวลาเปิดปิด อัตราจ่าย และรูปแบบเดิมพันก่อนส่งโพย",
     },
-    { q: "แทงหวยขั้นต่ำกี่บาท", a: "ระบบรองรับการส่งโพยตั้งแต่จำนวนเงินขั้นต่ำที่กำหนดไว้ในแต่ละตลาด สมาชิกสามารถตรวจสอบจำนวนเงินขั้นต่ำและสูงสุดได้จากหน้ารายละเอียดของตลาดนั้นก่อนส่งโพย" },
     {
-      q: "มีเลขอั้นหรือเลขเต็มหรือไม่",
-      a: "มีตามรอบที่ยอดแทงเข้ามามาก เลขอั้นจะถูกปรับลดอัตราจ่ายลง ส่วนเลขเต็มจะปิดรับในรอบนั้น ทั้งสองรายการแสดงอยู่ในหน้าตลาดหวยและระบบจะแจ้งให้ทราบก่อนยืนยันโพย",
+      q: "JAIDEEJING ตรวจโพยและผลรางวัลได้อย่างไร?",
+      a: "สมาชิกควรตรวจจากหน้าประวัติรายการและข้อมูลผลรางวัลที่ระบบแสดง พร้อมเก็บเลขอ้างอิงของโพยไว้จนกว่าสถานะจะเสร็จสมบูรณ์",
+    },
+    {
+      q: "คำว่าปลอดภัยจ่ายไวของ JAIDEEJING รับประกันทุกกรณีหรือไม่?",
+      a: "ไม่ควรตีความว่าเป็นการรับประกัน เพราะสถานะรายการอาจขึ้นอยู่กับบัญชี ประเภทหวย และขั้นตอนตรวจสอบ ควรดูข้อมูลจริงจากระบบและติดต่อทีมงานหากพบความผิดปกติ",
     },
   ],
 } = Astro.props;
@@ -26,7 +42,7 @@ const {
 
 <section class="mx-auto mb-12 w-full max-w-4xl px-4 font-sans">
   <div class="mb-6 text-center">
-    <h2 class="bg-gradient-to-r from-amber-200 via-amber-300 to-amber-500 bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase drop-shadow-sm">{title}</h2>
+    <h2 class="bg-gradient-to-r from-[#ffe08a] via-[#f5c451] to-[#c8901a] bg-clip-text text-2xl leading-normal font-black tracking-widest text-transparent uppercase drop-shadow-sm">{title}</h2>
   </div>
 
   <div class="flex flex-col gap-3">
@@ -34,16 +50,16 @@ const {
       faqs.map((faq) => (
         <details
           name="faq-huay"
-          class="faq-item group overflow-hidden rounded-xl border border-amber-500/25 bg-[#1a0409]/85 backdrop-blur-md transition-all duration-300 hover:border-amber-400/60 hover:shadow-[0_10px_25px_rgba(251,191,36,0.15)]">
+          class="faq-item group overflow-hidden rounded-xl border border-[#f5c451]/25 bg-[#1e0705]/85 backdrop-blur-md transition-all duration-300 hover:border-[#f5c451]/60 hover:shadow-[0_10px_25px_rgba(245,196,81,0.15)]">
           <summary class="flex w-full cursor-pointer items-center justify-between gap-4 p-5 text-left">
-            <h3 class="text-base leading-normal font-bold text-white transition-colors group-hover:text-amber-300">{faq.q}</h3>
+            <span class="text-base leading-normal font-bold text-[#f7e4c0] transition-colors group-hover:text-[#ffe08a]">{faq.q}</span>
             <span
               aria-hidden="true"
-              class="faq-icon flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-amber-500/40 bg-[#5f0914] text-sm font-bold text-amber-200 transition-all duration-300 group-hover:bg-[#fbbf24] group-hover:text-[#1a0409]">
+              class="faq-icon flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-[#f5c451]/40 bg-[#5c1008] text-sm font-bold text-[#ffe08a] transition-all duration-300 group-hover:bg-[#f5c451] group-hover:text-[#2a0806]">
               +
             </span>
           </summary>
-          <p class="faq-answer border-t border-amber-500/20 bg-[#0f0206]/70 p-5 text-left text-base leading-relaxed text-amber-50/85">{faq.a}</p>
+          <p class="faq-answer border-t border-[#f5c451]/20 bg-[#120403]/70 p-5 text-left text-base leading-relaxed text-[#f7e4c0]">{faq.a}</p>
         </details>
       ))
     }
@@ -63,12 +79,12 @@ const {
     display: none;
   }
   .faq-item[open] {
-    border-color: rgba(251, 191, 36, 0.6);
+    border-color: rgba(245, 196, 81, 0.6);
   }
   .faq-item[open] .faq-icon {
     transform: rotate(45deg);
-    background-color: #fbbf24;
-    color: #1a0409;
+    background-color: #f5c451;
+    color: #2a0806;
   }
   .faq-item[open] .faq-answer {
     animation: faq-reveal 0.25s ease-out;

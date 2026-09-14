@@ -1,28 +1,63 @@
 ---
-const { titleleft, titleright } = Astro.props;
+export interface Props {
+  titleleft?: string;
+  titleright?: string;
+  iconleft?: string;
+  iconright?: string;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+}
+const { titleleft, titleright, iconleft = "🧾", iconright = "🏆", as: HeadingTag = "h2" } = Astro.props;
+
+// Two equal halves for one docx section. `as` defaults to "h2" because the
+// JAIDEEJING brief is flat H1 + H2; a half that carries no docx heading omits
+// its title prop, so a section split across both columns still contributes
+// exactly one <h2> — index.astro passes only `titleleft`.
+//
+// JAIDEEJING: gold column titles over crimson rules, warm cream body copy. The
+// glyph sits on a gold gradient, so its ink is the darkest maroon (#2a0806) to
+// stay above 3:1 against the middle of the fill.
+//
+// The glyphs are decorative and live in their own aria-hidden span, never inside
+// the label text — a bare one is announced by its CLDR name in front of the
+// heading.
+//
+// The span is also a SIBLING of the heading, inside a <header>, not a child of
+// it. aria-hidden keeps it out of the accessible name either way, but a glyph
+// nested in the tag still lands in the heading's text content — the Phase 5
+// inventory printed "⏱️ จ่ายไวบน JAIDEEJING …", which no longer matches the docx
+// heading it is supposed to be. The flex/border/padding therefore live on the
+// <header> and only the typography stays on the heading.
 ---
 
 <section class="relative z-10 mx-auto mb-10 w-full max-w-[1400px] px-4 font-sans">
   <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-white/90">
+    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f7e4c0]">
       {
         titleleft && (
-          <h2 class="flex items-center gap-3 border-b border-red-500/30 pb-3 text-xl leading-normal font-black tracking-widest text-yellow-400 uppercase drop-shadow-md">
-            <span aria-hidden="true" class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-yellow-500 text-sm text-[#5f0914] shadow-[0_0_10px_rgba(250,204,21,0.5)]">🔐</span>
-            {titleleft}
-          </h2>
+          <header class="flex items-center gap-3 border-b border-[#8f1a10]/55 pb-3">
+            <span
+              aria-hidden="true"
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#ffe08a] to-[#c8901a] text-sm text-[#2a0806] shadow-[0_0_10px_rgba(245,196,81,0.5)]">
+              {iconleft}
+            </span>
+            <HeadingTag class="text-xl leading-normal font-black tracking-widest text-[#ffe08a] uppercase drop-shadow-md">{titleleft}</HeadingTag>
+          </header>
         )
       }
       <slot name="left" />
     </article>
 
-    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-white/90">
+    <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f7e4c0]">
       {
         titleright && (
-          <h2 class="flex items-center gap-3 border-b border-red-500/30 pb-3 text-xl leading-normal font-black tracking-widest text-yellow-400 uppercase drop-shadow-md">
-            <span aria-hidden="true" class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-yellow-500 text-sm text-[#5f0914] shadow-[0_0_10px_rgba(250,204,21,0.5)]">🏆</span>
-            {titleright}
-          </h2>
+          <header class="flex items-center gap-3 border-b border-[#8f1a10]/55 pb-3">
+            <span
+              aria-hidden="true"
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#ffe08a] to-[#c8901a] text-sm text-[#2a0806] shadow-[0_0_10px_rgba(245,196,81,0.5)]">
+              {iconright}
+            </span>
+            <HeadingTag class="text-xl leading-normal font-black tracking-widest text-[#ffe08a] uppercase drop-shadow-md">{titleright}</HeadingTag>
+          </header>
         )
       }
       <slot name="right" />

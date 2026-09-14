@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/AnnouncementCyber.astro";
+import Announcement from "../components/AnnouncementHuay.astro";
 import { pageGraph } from "../lib/schema";
 
 // Button page, not an article: the whole body is the <h1> plus the two-button
@@ -11,19 +11,19 @@ import { pageGraph } from "../lib/schema";
 // checklist, not a PIN/OTP notice. The h1 names what the page IS rather than
 // previewing a section that does not exist. Rendered inventory: h1x1, h2x0,
 // h3x0.
-const pageTitle = "ทางเข้า RUAYRUAY888 เว็บหลัก";
+const pageTitle = "ทางเข้า JAIDEEJING เว็บหลัก";
 
-// <Announcement /> is called bare on purpose — AnnouncementCyber's default
+// <Announcement /> is called bare on purpose — AnnouncementHuay's default
 // message is this brand's copy, set once in the component so every sub-page
 // ticker and index.astro's explicit prop can never drift apart. Rotated off
-// AnnouncementHuay, the outgoing brand's pick, per the brand spec.
+// AnnouncementCyber, the outgoing brand's pick, per the brand spec.
 
 // Title and description are the docx SUB-PAGES row for /ทางเข้า, both shipped
 // VERBATIM at their own length. The description is shorter than the DESC_MIN=150
 // floor and that is correct: the brief's own sentence is the brand's copy, not a
 // draft to top up. verify-build.mjs exempts any description that appears
 // literally in src/assets/content.txt for exactly this reason. Do not pad it.
-const pageDescription = "RUAYRUAY888 ทางเข้าเว็บพนันออนไลน์ รวมค่ายเกมหลายรูปแบบ รองรับ Wallet พร้อมโปรโมชั่น ระบบสมาชิก และข้อมูลธุรกรรมในที่เดียว";
+const pageDescription = "JAIDEEJING ทางเข้าแทงหวยออนไลน์ รวมหวยหลายประเภท ระบบโพย โปรโมชั่น ผลรางวัล และข้อมูลสมาชิกให้ตรวจสอบได้สะดวกในที่เดียว";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -35,7 +35,7 @@ const graph = pageGraph(Astro, {
 });
 ---
 
-<MainLayout title="RUAYRUAY888 | ทางเข้าเว็บพนันออนไลน์รองรับ Wallet" description={pageDescription}>
+<MainLayout title="JAIDEEJING | ทางเข้าเว็บแทงหวยออนไลน์ครบวงจร" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
@@ -45,12 +45,12 @@ const graph = pageGraph(Astro, {
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/login"
-          aria-label="เข้าสู่ระบบ RUAYRUAY888"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#8f1140]/70 bg-[#1a1113] px-6 py-4 shadow-[0_10px_30px_rgba(248,116,161,0.28)] transition-all duration-300 hover:scale-105 hover:border-[#fdb4d4] hover:bg-[#3a1d24] hover:shadow-[0_15px_40px_rgba(248,116,161,0.36)]">
-          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#f874a1]/22 to-transparent"></div>
+          aria-label="เข้าสู่ระบบ JAIDEEJING"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#8f1a10]/70 bg-[#1e0705] px-6 py-4 shadow-[0_10px_30px_rgba(245,196,81,0.28)] transition-all duration-300 hover:scale-105 hover:border-[#f5c451] hover:bg-[#3a1008] hover:shadow-[0_15px_40px_rgba(245,196,81,0.36)]">
+          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#f5c451]/22 to-transparent"></div>
 
           <svg
-            class="relative z-10 h-9 w-9 text-[#fdb4d4]"
+            class="relative z-10 h-9 w-9 text-[#ffe08a]"
             aria-hidden="true"
             focusable="false"
             fill="none"
@@ -61,16 +61,16 @@ const graph = pageGraph(Astro, {
             <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
           </svg>
 
-          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#fdb4d4]">เข้าสู่ระบบ</span>
+          <span class="relative z-10 text-3xl font-bold tracking-wide text-[#ffe08a]">เข้าสู่ระบบ</span>
         </a>
       </div>
 
       <div class="flex flex-col items-center justify-center gap-4">
         <a
           href="/register"
-          aria-label="สมัครสมาชิก RUAYRUAY888"
-          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#f874a1]/60 bg-gradient-to-b from-[#f874a1] via-[#d6377a] to-[#8f1140] px-6 py-4 shadow-[0_10px_30px_rgba(214,55,122,0.34)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(248,116,161,0.45)]">
-          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#fdb4d4]/28 to-transparent"></div>
+          aria-label="สมัครสมาชิก JAIDEEJING"
+          class="group relative mx-auto flex w-full max-w-[320px] items-center justify-center gap-3 overflow-hidden rounded-xl border border-[#f5c451]/60 bg-gradient-to-b from-[#f0434a] via-[#d12027] to-[#8f1a10] px-6 py-4 shadow-[0_10px_30px_rgba(209,32,39,0.34)] transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_40px_rgba(245,196,81,0.45)]">
+          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#ffe08a]/28 to-transparent"></div>
 
           <svg
             class="relative z-10 h-9 w-9 text-white"

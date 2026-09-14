@@ -12,64 +12,69 @@ const mainLogo = targetPath ? images[targetPath].default : null;
 // so one <h2> in it would be an <h2> sitewide and the homepage heading inventory
 // is diffed against the docx.
 //
-// หวยพร้อม is a lottery brand, so /แนวทาง is in the directory. /ตรวจหวย is NOT —
-// the operator left it parked in src/pages-disabled/ this round, and a link to a
-// route that does not exist fails the build.
+// JAIDEEJING is a lottery brand, so /แนวทาง is in the directory. /ตรวจหวย is NOT
+// — the operator left it parked in src/pages-disabled/ this round, and a link to
+// a route that does not exist fails the build. /บทความ was never toggled on.
 //
 // The <address> block below is pasted verbatim from the playbook and carries NO
 // brand colour on purpose: border-white/15, bg-black/20 and opacity over the
 // footer's inherited text colour land correctly on every footer variant in the
 // library, which are all dark. Retyping it in this brand's palette is what
 // leaves the previous brand's hex behind next time.
+const logoAlt = `โลโก้ ${BRAND_NAME} รูปมังกรทองขดเป็นวงกลมล้อมรอบเหรียญสีแดงสามเหรียญที่มีสัญลักษณ์สกุลเงินสีทอง ใต้เหรียญเป็นตัวอักษรไทยสีทองเขียนว่า จ่ายดีจริง และตัวอักษรโรมันสีแดงเขียนว่า JAIIDEEJING`;
+
+const shortcuts = [
+  { name: "หน้าหลัก", path: "/" },
+  { name: "ทางเข้าเว็บไซต์", path: "/ทางเข้า" },
+  { name: "โปรโมชั่น", path: "/promotion" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น" },
+  { name: "แนวทางหวย", path: "/แนวทาง" },
+  { name: "เกี่ยวกับเรา", path: "/about-us" },
+  { name: "ติดต่อเรา", path: "/contact-us" },
+];
 ---
 
-<footer class="relative mt-12 w-full overflow-hidden rounded-t-[3rem] border-t border-[#1e7a3a]/45 bg-[#04140a] pt-16 pb-8 font-sans text-white shadow-[0_-10px_30px_rgba(0,0,0,0.55)]">
-  <div class="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-[200px] w-full max-w-4xl rounded-full bg-[#22c55e]/12 blur-[80px]"></div>
+<footer class="relative mt-12 w-full overflow-hidden rounded-t-[3rem] border-t border-[#f5c451]/35 bg-[#2a0806] pt-16 pb-8 font-sans text-white shadow-[0_-10px_30px_rgba(0,0,0,0.55)]">
+  <div class="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-[200px] w-full max-w-4xl rounded-full bg-[#f5c451]/12 blur-[80px]"></div>
 
   <div class="relative z-10 mx-auto w-full max-w-[1400px] px-6">
     <div class="mb-12 grid grid-cols-1 gap-12 md:grid-cols-12">
       <div class="flex flex-col gap-4 md:col-span-5">
-        <a href="/" class="inline-block max-w-max rounded-xl border border-[#22c55e]/20 bg-[#22c55e]/5 p-2 transition-transform duration-300 hover:scale-105">
+        <a href="/" class="inline-block max-w-max rounded-xl border border-[#f5c451]/20 bg-[#f5c451]/5 p-2 transition-transform duration-300 hover:scale-105">
           {
             mainLogo ? (
-              <Picture
-                src={mainLogo}
-                alt={`โลโก้ ${BRAND_NAME} ตัวอักษรไทยหนาสองบรรทัด บรรทัดบนเขียนว่า หวย บรรทัดล่างเขียนว่า พร้อม มีเครื่องหมายถูกสีแดงพาดเฉียงขึ้นทางขวาคร่อมตัวอักษร`}
-                class="h-[50px] w-auto drop-shadow-md"
-                widths={[120, 240, 360]}
-                sizes="120px"
-                formats={["avif", "webp"]}
-                fallbackFormat="webp"
-              />
+              <Picture src={mainLogo} alt={logoAlt} class="h-[50px] w-auto drop-shadow-md" widths={[120, 240, 360]} sizes="120px" formats={["avif", "webp"]} fallbackFormat="webp" />
             ) : (
               <p class="text-2xl font-black tracking-widest text-white italic">
-                <span class="rounded-md bg-gradient-to-r from-[#ffe08a] to-[#f5c451] px-2 text-[#04140a]">หวย</span>พร้อม
+                <span class="rounded-md bg-gradient-to-r from-[#ffe08a] to-[#f5c451] px-2 text-[#2a0806]">JAIDEE</span>JING
               </p>
             )
           }
         </a>
-        <p class="mt-2 border-l-2 border-[#22c55e]/50 pl-4 text-sm leading-relaxed text-[#d8efdc]/75">
-          {BRAND_NAME} เว็บแทงหวยออนไลน์ที่รวมประเภทหวย ระบบกรอกโพย อัตราจ่าย และข้อมูลผลรางวัลไว้ในระบบเดียว รองรับการใช้งานผ่านมือถือ ก่อนยืนยันโพยควรตรวจประเภทเดิมพัน จำนวนเงิน และเงื่อนไขของเลขที่เลือกทุกครั้ง
+        <p class="mt-2 border-l-2 border-[#f5c451]/50 pl-4 text-sm leading-relaxed text-[#f7e4c0]/75">
+          {BRAND_NAME} เว็บแทงหวยออนไลน์ที่รวมประเภทหวย การกรอกเลข ระบบโพย อัตราจ่าย และข้อมูลผลรางวัลไว้ในบัญชีเดียว รองรับการใช้งานผ่านมือถือ ก่อนยืนยันโพยควรตรวจชื่อหวย วันที่ออกรางวัล เวลาปิดรับ ประเภทเดิมพัน และจำนวนเงินให้ครบทุกครั้ง
         </p>
         <div class="mt-2 flex flex-wrap gap-3">
-          <span class="rounded-full border border-[#22c55e]/35 bg-[#0a2413] px-4 py-1 text-xs font-bold text-[#6ee7a0] shadow-sm">รวมหวยหลายประเภท</span>
-          <span class="rounded-full border border-[#f5c451]/35 bg-[#f5c451]/15 px-4 py-1 text-xs font-bold text-[#ffe08a] shadow-sm">ตรวจโพยก่อนยืนยัน</span>
+          <span class="rounded-full border border-[#f5c451]/35 bg-[#3a1008] px-4 py-1 text-xs font-bold text-[#ffe08a] shadow-sm">รวมหวยหลายประเภท</span>
+          <span class="rounded-full border border-[#d12027]/45 bg-[#d12027]/15 px-4 py-1 text-xs font-bold text-[#f7e4c0] shadow-sm">ตรวจโพยก่อนยืนยัน</span>
         </div>
       </div>
 
       <nav class="flex flex-col gap-4 md:col-span-3 lg:pl-12">
-        <p class="border-b border-[#1e7a3a]/40 pb-2 text-lg font-black tracking-widest text-white uppercase">ทางลัดหน้าเว็บ</p>
-        <ul class="flex flex-col gap-3 text-sm font-medium text-[#d8efdc]/75">
-          <li><a href="/" class="transition-colors hover:text-[#6ee7a0]">หน้าหลัก</a></li>
-          <li><a href="/ทางเข้า" class="transition-colors hover:text-[#6ee7a0]">ทางเข้าเว็บไซต์</a></li>
-          <li><a href="/promotion" class="transition-colors hover:text-[#6ee7a0]">โปรโมชั่น</a></li>
-          <li><a href="/แนวทาง" class="transition-colors hover:text-[#6ee7a0]">แนวทางหวย</a></li>
-          <li><a href="/contact-us" class="transition-colors hover:text-[#6ee7a0]">ติดต่อเรา</a></li>
+        <p class="border-b border-[#f5c451]/30 pb-2 text-lg font-black tracking-widest text-white uppercase">ทางลัดหน้าเว็บ</p>
+        <ul class="flex flex-col gap-3 text-sm font-medium text-[#f7e4c0]/75">
+          {shortcuts.map((item) => (
+            <li>
+              <a href={item.path} class="transition-colors hover:text-[#ffe08a]">
+                {item.name}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
 
       <div class="flex flex-col gap-4 md:col-span-4">
-        <p class="border-b border-[#1e7a3a]/40 pb-2 text-lg font-black tracking-widest text-white uppercase">บริการลูกค้า</p>
+        <p class="border-b border-[#f5c451]/30 pb-2 text-lg font-black tracking-widest text-white uppercase">บริการลูกค้า</p>
 
         <a
           href="/line"
@@ -101,12 +106,12 @@ const mainLogo = targetPath ? images[targetPath].default : null;
           )
         }
 
-        <div class="mt-2 text-xs font-medium text-[#9fc8ab]/70">ช่องทางฝาก-ถอนที่รองรับ:</div>
+        <div class="mt-2 text-xs font-medium text-[#e0c79c]/70">ช่องทางฝาก-ถอนที่รองรับ:</div>
         <BankStrip size={30} />
       </div>
     </div>
 
-    <div class="flex flex-col items-center justify-between border-t border-[#1e7a3a]/40 pt-8 text-xs font-medium text-[#9fc8ab]/70 md:flex-row">
+    <div class="flex flex-col items-center justify-between border-t border-[#f5c451]/30 pt-8 text-xs font-medium text-[#e0c79c]/70 md:flex-row">
       <p>COPYRIGHT &copy; {new Date().getFullYear()} {BRAND_NAME} ALL RIGHTS RESERVED.</p>
       <div class="mt-4 flex gap-4 md:mt-0">
         <a href="/terms/" class="transition-colors hover:text-white">เงื่อนไขและข้อตกลง</a>
