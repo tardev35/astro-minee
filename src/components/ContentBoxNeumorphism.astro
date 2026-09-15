@@ -18,24 +18,25 @@ const headingSize = HeadingTag === "h1" ? "text-3xl" : "text-2xl";
 // No slot wrapper — the card carries the body text classes itself and the slot
 // renders as its direct child. Do not re-add a `relative z-10` div.
 //
-// JAIDEEJING neumorphic pair: the page ink (#120403) casts the dark side of the
-// extrusion and the lifted maroon (#3a1008) the lit side, so the card reads as
-// raised off the near-black red page. Matches ContentBoxSevenThreeNeumorphism so
-// the two read as one raised system.
+// TT1BET neumorphic pair: the page ink (#0b0805) casts the dark side of the
+// extrusion and the raised warm surface (#241a0d) the lit side, so the card
+// reads as lifted off the warm near-black page. Matches
+// ContentBoxSevenThreeNeumorphism and ContentBoxTwoNeumorphism so all three read
+// as one raised system.
 //
-// Crimson carries every surface (border, rule, extrusion) and the warm cream
-// body copy sits on the card. The heading ramp runs cream → gold → deep gold,
-// the artwork's own ramp. The bright red (#d12027) stays out of here: it is
-// reserved for calls to action.
+// Bronze deep carries every surface rule and the ivory body copy sits on the
+// card. The heading ramp runs gold pale -> primary gold -> bronze, the artwork's
+// own ramp off the brushed-silver-and-gold wordmark. The crimson (#9e1b13) stays
+// out of here: it is the rare second accent, not a section colour.
 ---
 
 <section class="relative z-10 my-6 flex w-full justify-center px-4 font-sans">
   <div
-    class="w-full max-w-[1400px] rounded-[25px] border border-[#8f1a10]/55 bg-[#2e0b07] p-8 text-left text-base leading-relaxed text-[#f7e4c0] shadow-[10px_10px_20px_#120403,-10px_-10px_20px_#3a1008]">
+    class="w-full max-w-[1400px] rounded-[25px] border border-[#6d4a13]/55 bg-[#171008] p-8 text-left text-base leading-relaxed text-[#f2e7cd] shadow-[10px_10px_20px_#0b0805,-10px_-10px_20px_#241a0d]">
     {
       title && (
-        <header class="mb-8 border-b border-[#8f1a10]/55 pb-4 text-center">
-          <HeadingTag class={`bg-gradient-to-r from-[#f7e4c0] via-[#f5c451] to-[#c8901a] bg-clip-text ${headingSize} leading-normal font-black tracking-wide text-transparent`}>{title}</HeadingTag>
+        <header class="mb-8 border-b border-[#6d4a13]/55 pb-4 text-center">
+          <HeadingTag class={`bg-gradient-to-r from-[#fff8d6] via-[#e9c341] to-[#b8862a] bg-clip-text ${headingSize} leading-normal font-black tracking-wide text-transparent`}>{title}</HeadingTag>
         </header>
       )
     }

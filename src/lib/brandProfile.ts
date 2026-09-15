@@ -66,7 +66,7 @@ export interface BrandProfile {
 // ทั้งสองตัว self-host ทั้งคู่ตั้งแต่ 2026-08-25 — ไม่มี request ออกนอกโดเมนแล้ว
 export type BrandFont = "kanit" | "google-sans";
 
-export const BRAND_FONT: BrandFont = "kanit";
+export const BRAND_FONT: BrandFont = "google-sans";
 
 // ── ชื่อแบรนด์ ─────────────────────────────────────────────────────────────
 // สลับบรรทัดเดียวนี้ตอนรีแบรนด์ เหมือน BRAND_FONT ด้านบน (ดู SKILL.md)
@@ -75,7 +75,7 @@ export const BRAND_FONT: BrandFont = "kanit";
 // terms/privacy หรือ schema helper อยู่นอกสโคปที่รีแบรนด์แตะ ถ้ามันพิมพ์ชื่อ
 // แบรนด์ไว้ตรงๆ มันจะกลายเป็นชื่อของแบรนด์ก่อนหน้าแบบเงียบๆ ภายในไม่กี่ชั่วโมง
 // และไม่มีอะไรในบิลด์จับได้ เพราะเว็บยัง build ผ่านทั้งสองแบบ
-export const BRAND_NAME = "PATTAYA168";
+export const BRAND_NAME = "TT1BET";
 
 // ── สีตัวอักษรเริ่มต้นของทั้งเว็บ ──────────────────────────────────────────
 // สลับบรรทัดเดียวนี้ตอนรีแบรนด์ เหมือนสองตัวข้างบน ใส่สีเนื้อความหลักของแบรนด์
@@ -91,7 +91,7 @@ export const BRAND_NAME = "PATTAYA168";
 // MainLayout เอาค่านี้ไปใส่เป็น inline style บน <html> ให้ทุกอย่าง inherit
 // ต่อกันลงมา — คลาส text-[#...] ที่ component เขียนเองยังชนะเสมอ เพราะการ
 // ประกาศตรงตัวชนะการ inherit อยู่แล้ว ค่านี้จึงเป็น "พื้น" ไม่ใช่การบังคับ
-export const BRAND_TEXT = "#cfeef7";
+export const BRAND_TEXT = "#f2e7cd";
 
 // ── ที่อยู่ + อีเมลติดต่อ (หน้า /contact-us และ footer) ────────────────────
 // ปกติไม่ต้องแก้อะไรตรงนี้ — ทั้งที่อยู่และอีเมลมาจาก BRAND_NAME กับ site:

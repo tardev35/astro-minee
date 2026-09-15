@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/AnnouncementCyber.astro";
+import Announcement from "../components/AnnouncementPremium.astro";
 
 import { Picture } from "astro:assets";
 
@@ -12,44 +12,50 @@ import pro3 from "../assets/slide3.png";
 import pro4 from "../assets/slide4.png";
 import { pageGraph } from "../lib/schema";
 
-// IMAGE PAGE, not an article: the whole body is the h1, one short intro
-// paragraph, the four promo images and one CTA. Zero section headings and no
-// second paragraph — the slides already print their own offer in large type, so
-// prose underneath only re-types what the visitor can already read. The docx
-// gives this route a Title and a Meta and never a body, so any heading or extra
-// paragraph found here was invented by an earlier rebrand and gets deleted, not
-// translated. Rendered inventory: h1x1, h2x0, h3x0.
+// IMAGE PAGE, not an article: the whole body is the h1, ONE short intro
+// paragraph of about four lines, the four promo images and one CTA. Zero section
+// headings and no second paragraph — the slides already print their own offer in
+// large type, so prose underneath only re-types what the visitor can already
+// read in bigger letters. The docx gives this route a Title and a Meta and never
+// a body, so any heading or extra paragraph found here was invented by an
+// earlier rebrand and gets deleted, not translated. Rendered inventory:
+// h1x1, h2x0, h3x0.
+//
+// What was cut this round: the inherited intro was two long sentences running
+// past the four-line budget, and it re-listed the offers the artwork already
+// states. It is one sentence group now — what the page holds, and that the
+// conditions differ per promotion. No section heading was present to remove.
 //
 // The alt text below is the Thai printed on each slide plus the scene it draws —
-// the offer, the sub-line, the badge and the artwork. All four strings were
+// the offer, the sub-line, the badge row and the artwork. All four strings were
 // rewritten from scratch against the images in this drop (read with the Read
-// tool): the artwork moved from red-and-gold Thai lottery to turquoise Pattaya
-// beach neon, so the outgoing brand's descriptions could not be renamed, only
-// replaced. Slide order on disk is slide1 สมาชิกใหม่รับโบนัส 88, slide2 ชวนเพื่อน
-// รับเพิ่ม 300, slide3 ภารกิจรายวัน ทำครบรับของรางวัล, slide4 นาทีทอง เติมครบ 500
-// รับเพิ่ม 20%. All four are .png in this drop (2026-09-14) and all four belong
-// here; banner2.png is dated 2026-08-13, predates the drop, and is deliberately
-// NOT imported anywhere.
+// tool): the artwork moved from the outgoing brand's turquoise beach neon to
+// gold-on-black casino luxury, so its descriptions could not be renamed, only
+// replaced. Slide order on disk is slide1 นาทีทองคืนนี้ รับเพิ่ม 30%, slide2
+// ภารกิจรายสัปดาห์ สะสมครบ รับเครดิตฟรี 388, slide3 ชวนเพื่อนร่วมสนุก รับโบนัส 300,
+// slide4 คืนยอดเสียทุกวัน รับเพิ่ม 8%. All four are .png in this drop
+// (2026-09-15) and all four belong here; banner2.png is dated 2026-08-13,
+// predates the drop, and is deliberately NOT imported anywhere.
 //
-// The wordmark drawn into these pixels matches this brand's own name, so the alt
-// may say it; what no alt carries is a domain string — verify-build.mjs fails the
-// build on a host found inside an attribute. The English script lines painted in
-// the corners of slides 2 to 4 are decorative and are described rather than
-// transcribed one by one.
+// The wordmark drawn into these pixels is described as "โลโก้เว็บไซต์" and never
+// transcribed, per the brand spec's alt-text rule. No alt carries a domain
+// string either — verify-build.mjs fails the build on a host found inside an
+// attribute. The decorative English script lines painted along the edges of every
+// slide are described as a group rather than transcribed one by one.
 //
-// <Announcement /> is bare on purpose: AnnouncementCyber's default message
+// <Announcement /> is bare on purpose: AnnouncementPremium's default message
 // already carries this brand's copy, so the ticker matches index.astro with no
-// second string to keep in sync here. The variant rotated off AnnouncementHuay,
+// second string to keep in sync here. The variant rotated off AnnouncementCyber,
 // the outgoing brand's pick, per the brand spec.
-const pageTitle = "โปรโมชั่น PATTAYA168 รวมสิทธิพิเศษสล็อตสำหรับสมาชิก";
+const pageTitle = "โปรโมชั่น TT1BET รวมโบนัสและสิทธิพิเศษสำหรับสมาชิก";
 
 // Title and description are the docx SUB-PAGES row for /promotion, both shipped
-// VERBATIM. The description is shorter than the DESC_MIN=150 floor (134
-// characters), and that is correct: the brief's own sentence is the brand's
-// copy, not a draft to top up. verify-build.mjs exempts any description that
-// appears literally in src/assets/content.txt for exactly this reason. Do not
-// pad it.
-const pageDescription = "PATTAYA168 รวมโปรโมชั่นสล็อต โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมข้อมูลช่วยเลือกโปรให้เหมาะกับงบ สมัครสมาชิกเพื่อดูสิทธิ์ล่าสุดได้ง่าย";
+// VERBATIM. The description is shorter than the DESC_MIN=150 floor (130
+// characters), and that is correct: the brief's own sentence is the brand's copy,
+// not a draft to top up. verify-build.mjs exempts any description that appears
+// literally in src/assets/content.txt for exactly this reason. Do not pad it —
+// a re-word loses the exemption as well as the brief's wording.
+const pageDescription = "TT1BET รวมโปรโมชั่นคาสิโน สล็อต โบนัส และสิทธิพิเศษตามเงื่อนไข พร้อมข้อมูลช่วยเลือกโปรให้เหมาะกับงบ สมัครสมาชิกเพื่อดูสิทธิ์ล่าสุด";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -61,33 +67,34 @@ const graph = pageGraph(Astro, {
   primaryImagePath: pro1.src,
 });
 
-// Deep cyan carries the card edge at rest and the primary turquoise carries the
-// glow — the two hues of the artwork, which is a turquoise Pattaya bay at night
-// with gold coins over it. The slides are themselves mostly turquoise and gold,
-// so the frame stays on the deep end (#0c8ba4) at rest and only lifts to the
-// bright cyan (#02c4e3) on hover; a bright rim at rest would blur into the
-// picture it is supposed to contain. No red and no gold rim — that pair was the
-// outgoing brand's hue and none of this artwork leads with it.
+// Bronze deep carries the card edge at rest and primary gold carries the glow —
+// the two tones of the artwork, which is gold type and gold chips over warm
+// near-black. The slides are themselves mostly gold, so the frame stays on the
+// deep end (#6d4a13) at rest and only lifts to primary gold (#e9c341) on hover;
+// a bright rim at rest would blur into the picture it is supposed to contain. No
+// cyan and no turquoise anywhere — that pair was the outgoing brand's hue and
+// none of this artwork carries it.
 const promoCardClass =
-  "mx-auto h-auto w-full rounded-xl border border-[#0c8ba4]/55 object-contain shadow-[0_10px_30px_rgba(2,196,227,0.22)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#02c4e3]/70 hover:shadow-[0_15px_40px_rgba(2,196,227,0.32)]";
+  "mx-auto h-auto w-full rounded-xl border border-[#6d4a13]/55 object-contain shadow-[0_10px_30px_rgba(233,195,65,0.22)] transition-transform duration-300 hover:-translate-y-1 hover:border-[#e9c341]/70 hover:shadow-[0_15px_40px_rgba(233,195,65,0.32)]";
 ---
 
-<MainLayout title="PATTAYA168 | โปรโมชั่นสล็อตลิขสิทธิ์และสิทธิพิเศษสมาชิก" description={pageDescription}>
+<MainLayout title="TT1BET | โปรโมชั่นคาสิโนสล็อตและโบนัสสำหรับสมาชิก" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <p class="mb-8 text-left text-base leading-relaxed">
-        หน้านี้รวมโปรโมชั่นสล็อตที่ <strong class="text-[#8ff5ff]">PATTAYA168</strong> เปิดให้สมาชิกไว้ในที่เดียว ทั้งโบนัสสมาชิกใหม่ สิทธิ์จากการชวนเพื่อน ภารกิจรายวัน และกิจกรรมเฉพาะช่วงเวลา รายละเอียดหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว
-        ก่อนกดรับสิทธิ์ควรตรวจยอดขั้นต่ำ เกมและค่ายที่ร่วมรายการ ระยะเวลา และเงื่อนไขการถอนของรายการนั้นอีกครั้ง เพราะแต่ละโปรกำหนดเงื่อนไขไว้ไม่เท่ากันและปรับเปลี่ยนได้ตามช่วงกิจกรรม
+      <p class="mb-8 text-left text-base leading-relaxed text-[#f2e7cd]">
+        หน้านี้รวมโปรโมชั่นคาสิโนและสล็อตที่ <strong class="text-[#fcf1b0]">TT1BET</strong> เปิดให้สมาชิกไว้ในที่เดียว รายละเอียดหลักของแต่ละรายการพิมพ์อยู่บนภาพด้านล่างแล้ว
+        ก่อนกดรับสิทธิ์ควรตรวจชื่อโปรโมชั่น จำนวนเครดิต ยอดฝากขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา และเงื่อนไขการถอนของรายการนั้นอีกครั้ง และหากถือหลายโปรพร้อมกันควรดูว่าใช้ร่วมกันได้หรือไม่
+        เพราะแต่ละรายการกำหนดเงื่อนไขไว้ไม่เท่ากันและปรับเปลี่ยนได้ตามช่วงกิจกรรม
       </p>
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
         <Picture
           src={pro1}
-          alt="แบนเนอร์โปรโมชั่นโทนฟ้าเทอร์ควอยซ์-ทอง กลางด้านบนเป็นโลโก้เว็บไซต์รูปวงกลมสีฟ้าที่มีต้นปาล์มสีขาวอยู่เหนือคลื่นน้ำ ใต้ลงมาเป็นตัวอักษร PATTAYA และลูกบอลสีส้มสามลูกเรียงเป็นเลข 168 กลางภาพเป็นพาดหัวตัวใหญ่ว่า สมาชิกใหม่รับโบนัส พร้อมเลข 88 ตัวทองขนาดใหญ่ ถัดลงมาเขียนว่า เปิดยูสวันนี้ รับสิทธิ์ทันที และป้ายมงกุฎสองข้างเขียนว่า เฉพาะสมาชิกใหม่ แถบล่างสุดมีไอคอนกำกับสามช่องว่า สมัครฟรี รับไว และ ใช้งานง่าย ด้านซ้ายเป็นผู้หญิงในชุดสีส้มสลับเทอร์ควอยซ์ ขยิบตาและชี้นิ้วมาข้างหน้า ฉากหลังเป็นเส้นขอบฟ้าเมืองพัทยายามค่ำคืน มีเหรียญทอง ชิปคาสิโนสีฟ้า และไพ่โพดำกระจายอยู่รอบภาพ"
+          alt="แบนเนอร์โปรโมชั่นโทนทองบนดำ กลางด้านบนเป็นโลโก้เว็บไซต์ตัวอักษรหนาสีเงินสลับทอง กลางภาพเป็นพาดหัวตัวใหญ่ว่า นาทีทองคืนนี้ ใต้ลงมาเป็นแถบเขียนว่า รับเพิ่ม พร้อมเลข 30 เปอร์เซ็นต์ ตัวทองขนาดใหญ่ ถัดลงมาเป็นป้ายมีไอคอนนาฬิกาเขียนว่า เวลา 20:00 - 22:00 เท่านั้น และปุ่มทองเขียนว่า รับสิทธิ์เลย แถบล่างสุดมีไอคอนกำกับสี่ช่องว่า มั่นคงปลอดภัย ฝาก-ถอนรวดเร็ว ครบทุกเกมคาสิโนสล็อตกีฬา และ เล่นได้ทุกที่ตลอด 24 ชั่วโมง ด้านซ้ายเป็นผู้หญิงในชุดราตรีเลื่อมสีแดงเกล้าผม หันมามองข้ามไหล่และถือชิปคาสิโนไว้ในมือ ด้านหลังเป็นวงล้อรูเล็ตกับกองชิปทองดำ แก้วแชมเปญ และโคมระย้าในโถงคาสิโน มีตัวอักษรภาษาอังกฤษลายมือประดับอยู่ตามขอบภาพ"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -101,7 +108,7 @@ const promoCardClass =
 
         <Picture
           src={pro2}
-          alt="แบนเนอร์โปรโมชั่นชวนเพื่อนโทนฟ้าเทอร์ควอยซ์-ทอง กลางด้านบนเป็นโลโก้เว็บไซต์รูปวงกลมสีฟ้าที่มีต้นปาล์มสีขาวเหนือคลื่นน้ำ ตัวอักษร PATTAYA และลูกบอลสีส้มสามลูกเรียงเป็นเลข 168 กลางภาพเป็นพาดหัวตัวใหญ่ว่า ชวนเพื่อน ใต้ลงมาเป็นแถบทองเขียนว่า รับเพิ่ม พร้อมเลข 300 ตัวทองขนาดใหญ่ และบรรทัดล่างว่า เพื่อนสมัครสำเร็จ รับโบนัสทันที ถัดลงมาเป็นสามขั้นตอนมีเลขกำกับและลูกศรคั่นว่า แชร์ลิงก์ เพื่อนสมัคร และ รับโบนัส ด้านซ้ายเป็นผู้หญิงในเสื้อคลุมสีเทอร์ควอยซ์ ขยิบตาและชี้นิ้วมาข้างหน้า มืออีกข้างถือโทรศัพท์ที่หน้าจอมีโลโก้เว็บไซต์ ไอคอนแชร์ และข้อความว่า แชร์ให้เพื่อน รับโบนัสด้วยกัน ริมซ้ายมีข้อความลายมือว่า ยิ่งชวน ยิ่งรวย ไปด้วยกัน มุมซ้ายล่างเป็นแผ่นป้ายทองและชิปคาสิโนสีฟ้า ฉากหลังเป็นอ่าวพัทยายามค่ำคืน ตึกสูง ต้นปาล์ม และเหรียญทองปลิวอยู่รอบภาพ"
+          alt="แบนเนอร์โปรโมชั่นภารกิจโทนทองบนดำ กลางด้านบนเป็นโลโก้เว็บไซต์ตัวอักษรหนาสีเงินสลับทอง ใต้ลงมาเป็นมงกุฎทองวางบนพาดหัวตัวใหญ่ว่า ภารกิจรายสัปดาห์ ถัดลงมาเป็นแผ่นป้ายขอบทองเขียนว่า สะสมครบ รับเครดิตฟรี พร้อมเลข 388 ตัวขนาดใหญ่ที่มีไอคอนกล่องของขวัญขนาบสองข้าง และปุ่มทองเขียนว่า เริ่มภารกิจ ด้านซ้ายเป็นผู้หญิงในชุดเลื่อมสีน้ำเงินสองชิ้น ขยิบตาและชี้นิ้วมาข้างหน้า ด้านขวาเป็นวงล้อรางวัลทองที่แบ่งช่องเป็นรูปของขวัญ เหรียญ เปอร์เซ็นต์ และมงกุฎ โดยมีโลโก้เว็บไซต์อยู่กลางวง รอบภาพมีเหรียญทอง ลูกเต๋าดำทอง เสาทอง และโคมระย้า พร้อมตัวอักษรภาษาอังกฤษประดับอยู่ริมซ้ายและริมขวา"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -115,7 +122,7 @@ const promoCardClass =
 
         <Picture
           src={pro3}
-          alt="แบนเนอร์โปรโมชั่นภารกิจรายวันโทนฟ้าเทอร์ควอยซ์-ทอง กลางด้านบนเป็นโลโก้เว็บไซต์รูปวงกลมสีฟ้าที่มีต้นปาล์มสีขาวเหนือคลื่นน้ำ ตัวอักษร PATTAYA และลูกบอลสีส้มสามลูกเรียงเป็นเลข 168 กลางภาพเป็นพาดหัวตัวใหญ่มีมงกุฎทองวางอยู่ด้านบนว่า ภารกิจรายวัน ใต้ลงมาว่า ทำครบรับของรางวัล และบรรทัดเล็กว่า สะสมแต้ม แลกรับสิทธิ์สุดคุ้ม ถัดลงมาเป็นสามขั้นตอนมีไอคอนและลูกศรคั่นว่า เช็กอิน ทำภารกิจ และ รับรางวัล ด้านซ้ายเป็นผู้หญิงในชุดกีฬาสีเทอร์ควอยซ์ที่มีโลโก้เว็บไซต์อยู่บนเสื้อ ขยิบตาและชี้นิ้วมาข้างหน้า ริมซ้ายเป็นแผ่นป้ายมังกรทองเขียนว่า SLOT ริมขวาเป็นป้ายไพ่เขียนว่า CASINO และป้ายลูกฟุตบอลเขียนว่า SPORTS มุมขวาบนเป็นป้ายไม้เขียนว่า PATTAYA 168 แถวล่างเป็นกล่องของขวัญสีเทอร์ควอยซ์ผูกโบว์ทอง เหรียญทอง และชิปคาสิโนที่มีชื่อ PATTAYA168 ฉากหลังเป็นต้นปาล์มและท้องฟ้ายามค่ำคืน"
+          alt="แบนเนอร์โปรโมชั่นชวนเพื่อนโทนทองบนดำ กลางด้านบนเป็นโลโก้เว็บไซต์ตัวอักษรหนาสีเงินสลับทอง ใต้ลงมาเป็นไอคอนคนสองคนพร้อมเครื่องหมายบวกวางบนพาดหัวตัวใหญ่ว่า ชวนเพื่อนร่วมสนุก ถัดลงมาเป็นแถบเขียนว่า รับโบนัส พร้อมเลข 300 ตัวทองขนาดใหญ่ บรรทัดล่างว่า เมื่อเพื่อนสมัครและเล่นครบเงื่อนไข และปุ่มทองเขียนว่า ชวนเพื่อนเลย ด้านซ้ายเป็นผู้หญิงในชุดราตรีเลื่อมสีน้ำเงินเข้ม เท้าคางอยู่ที่โต๊ะไพ่ บนโต๊ะมีกองชิปทองดำที่มีโลโก้เว็บไซต์และไพ่สองใบวางคว่ำอยู่ ฉากหลังเป็นห้องเล่นไพ่ที่มีโคมระย้า โคมไฟตั้งโต๊ะ และแสงตึกสูงยามค่ำคืนนอกหน้าต่าง มีแผ่นป้ายตัวอักษรภาษาอังกฤษประดับอยู่ริมซ้ายและมุมขวา"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -129,7 +136,7 @@ const promoCardClass =
 
         <Picture
           src={pro4}
-          alt="แบนเนอร์โปรโมชั่นนาทีทองโทนทอง-ฟ้าเทอร์ควอยซ์ กลางด้านบนเป็นโลโก้เว็บไซต์รูปวงกลมสีฟ้าที่มีต้นปาล์มสีขาวเหนือคลื่นน้ำ ตัวอักษร PATTAYA และลูกบอลสีส้มสามลูกเรียงเป็นเลข 168 มุมขวาบนเป็นหน้าปัดนาฬิกาทองเลขโรมันขนาดใหญ่ที่มีคำว่า GOLDEN HOUR อยู่บนหน้าปัด กลางซ้ายเป็นพาดหัวตัวทองขนาดใหญ่มีมงกุฎวางอยู่ด้านบนว่า นาทีทอง ใต้ลงมาเป็นแถบเขียนว่า เติมครบ 500 และ รับเพิ่ม 20 เปอร์เซ็นต์ ถัดลงมาเป็นสองบรรทัดที่มีไอคอนกำกับว่า เฉพาะช่วงกิจกรรม และ ลุ้นสนุกได้ทุกวัน ด้านขวาเป็นผู้หญิงในชุดราตรีเลื่อมทองเปิดหลัง เกล้าผมและหันมามองข้ามไหล่ มุมซ้ายล่างเป็นวงล้อสล็อตที่ขึ้นเลข 777 ฉากหลังด้านซ้ายเป็นต้นปาล์มกับอ่าวพัทยายามค่ำคืน มีเหรียญทองและชิปคาสิโนสีฟ้ากระจายอยู่รอบภาพ"
+          alt="แบนเนอร์โปรโมชั่นคืนยอดเสียโทนทองบนดำ กลางด้านบนเป็นโลโก้เว็บไซต์ตัวอักษรหนาสีเงินสลับทอง กลางขวาเป็นพาดหัวตัวใหญ่ว่า คืนยอดเสียทุกวัน ใต้ลงมาเป็นแถบเขียนว่า รับเพิ่ม พร้อมเลข 8 เปอร์เซ็นต์ ตัวทองขนาดใหญ่ ถัดลงมาเป็นป้ายมีมงกุฎขนาบสองข้างเขียนว่า VIP รับไวทุกวันตามเงื่อนไข แล้วเป็นไอคอนกำกับสี่ช่องว่า สิทธิพิเศษระดับ VIP รับคืนทุกวันไม่มีสะสม เล่นได้ทุกรูปแบบมั่นคงปลอดภัย และ ดูแลต่อเนื่องระยะยาว ปิดท้ายด้วยปุ่มทองเขียนว่า รับโปรวันนี้ ด้านซ้ายเป็นผู้หญิงในชุดราตรีเลื่อมสีดำ ยกมือแตะคางและมองมาข้างหน้า ถัดไปเป็นเก้าอี้หนังดำติดป้าย VIP กับมงกุฎทอง มุมซ้ายล่างเป็นวงล้อรูเล็ตและกองชิปทองดำที่มีโลโก้เว็บไซต์ ฉากหลังเป็นแสงตึกสูงยามค่ำคืน พร้อมตัวอักษรภาษาอังกฤษประดับอยู่มุมซ้ายบนและมุมขวาล่าง"
           loading="lazy"
           fetchpriority="low"
           widths={[300, 450, 600]}
@@ -145,8 +152,8 @@ const promoCardClass =
       <div class="mt-12 flex justify-center pb-4">
         <a
           href="/register"
-          class="flex items-center justify-center rounded-lg border border-[#fdac13]/60 bg-gradient-to-r from-[#5afef1] via-[#02c4e3] to-[#0c8ba4] px-10 py-3.5 text-lg font-black text-[#021c22] shadow-[0_10px_30px_rgba(2,196,227,0.34)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(253,172,19,0.45)]">
-          สมัครสมาชิก PATTAYA168
+          class="flex items-center justify-center rounded-lg border border-[#b8862a]/60 bg-gradient-to-r from-[#fff8d6] via-[#e9c341] to-[#b8862a] px-10 py-3.5 text-lg font-black text-[#0b0805] shadow-[0_10px_30px_rgba(233,195,65,0.34)] transition-transform hover:scale-105 hover:shadow-[0_15px_40px_rgba(184,134,42,0.45)]">
+          สมัครสมาชิก TT1BET
         </a>
       </div>
     </div>

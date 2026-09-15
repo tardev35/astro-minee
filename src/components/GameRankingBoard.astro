@@ -7,16 +7,16 @@ import img4 from "../assets/providers/game4.avif";
 import img5 from "../assets/providers/game5.avif";
 import img6 from "../assets/providers/game6.avif";
 
-// Chrome for the PATTAYA168 section "เลือกเกมสล็อตจาก RTP และความผันผวนให้เหมาะ
-// กับงบ": the board exists to show that a ranking is a marketing signal, not a
-// promise, so every row names what to read first (RTP / ความผันผวน / ตารางจ่าย /
-// ฟีเจอร์โบนัส) rather than a payout. No row states an RTP figure — the brief
-// gives none and the number belongs to the provider's own game page.
+// Chrome for the TT1BET section "เลือกเกมบน TT1BET จากข้อมูลจริงมากกว่าคำโปรโมต":
+// the board exists to show that a ranking is a marketing signal, not a promise,
+// so every row names what to read first (RTP / ความผันผวน / ตารางจ่าย / กติกา)
+// rather than a payout. No row states an RTP figure — the brief gives none and
+// the number belongs to the provider's own game page.
 const games = [
   { rank: 1, name: "สล็อตฟีเจอร์ฟรีสปิน", type: "เกมสล็อตออนไลน์ • รอบโบนัสหลายชั้น ควรอ่านเงื่อนไขการเข้าฟีเจอร์และ RTP ที่ค่ายระบุก่อน", menus: ["ยอดนิยม", "เล่นล่าสุด"], players: 5124, img: img6 },
-  { rank: 2, name: "บาคาร่าห้องสด", type: "บาคาร่าออนไลน์ • กติกาชัดเจน มีตัวเลือกการเดิมพันหลายแบบให้พิจารณาก่อนตั้งวงเงิน", menus: ["ยอดนิยม", "รายการโปรด"], players: 3842, img: img3 },
+  { rank: 2, name: "บาคาร่าห้องสด", type: "คาสิโนสดออนไลน์ • กติกาชัดเจน มีตัวเลือกการเดิมพันหลายแบบให้พิจารณาก่อนตั้งวงเงิน", menus: ["ยอดนิยม", "รายการโปรด"], players: 3842, img: img3 },
   { rank: 3, name: "สล็อตแจ็กพอตสะสม", type: "เกมสล็อตออนไลน์ • รางวัลสะสมจากผู้เล่นหลายคน ความผันผวนสูง ควรกำหนดงบไว้ก่อน", menus: ["ยอดนิยม", "รายการโปรด"], players: 3517, img: img1 },
-  { rank: 4, name: "บาคาร่าวงเงินต่อตาต่ำ", type: "บาคาร่าออนไลน์ • เดิมพันต่อตาไม่สูง เหมาะกับการกำหนดงบไว้ล่วงหน้า", menus: ["เกมใหม่", "เล่นล่าสุด"], players: 2905, img: img2 },
+  { rank: 4, name: "บาคาร่าวงเงินต่อตาต่ำ", type: "คาสิโนสดออนไลน์ • เดิมพันต่อตาไม่สูง เหมาะกับการกำหนดงบไว้ล่วงหน้า", menus: ["เกมใหม่", "เล่นล่าสุด"], players: 2905, img: img2 },
   { rank: 5, name: "สล็อตวงล้อคลาสสิก", type: "เกมสล็อตออนไลน์ • ตารางจ่ายอ่านง่าย ความผันผวนต่ำกว่า เหมาะกับการเริ่มต้น", menus: ["เกมใหม่", "รายการโปรด"], players: 2431, img: img4 },
   { rank: 6, name: "สล็อตซื้อฟีเจอร์โบนัส", type: "เกมสล็อตออนไลน์ • มีเงื่อนไขราคาซื้อฟีเจอร์ ควรกำหนดวงเงินต่อรอบก่อนเข้าเล่น", menus: ["เกมใหม่", "เล่นล่าสุด"], players: 2108, img: img5 },
 ];
@@ -27,15 +27,15 @@ const games = [
 const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : null);
 ---
 
-<section aria-label="อันดับเกมสล็อตและบาคาร่ายอดนิยมบน PATTAYA168" class="mx-auto w-full max-w-[1300px] px-4 py-8 font-sans">
+<section aria-label="อันดับเกมสล็อตและคาสิโนยอดนิยมบน TT1BET" class="mx-auto w-full max-w-[1300px] px-4 py-8 font-sans">
   <div class="mb-8 flex w-full flex-col items-center justify-center gap-2 text-center">
     <span aria-hidden="true" class="text-2xl">🏆</span>
-    <p class="bg-gradient-to-r from-[#8ff5ff] via-[#02c4e3] to-[#fdac13] bg-clip-text text-2xl font-black tracking-widest text-transparent uppercase">อันดับเกมสล็อตและบาคาร่ายอดนิยมบน PATTAYA168</p>
-    <p class="max-w-3xl text-base leading-relaxed text-[#9ec9d6]">
+    <p class="bg-gradient-to-r from-[#fff8d6] via-[#e9c341] to-[#b8862a] bg-clip-text text-2xl font-black tracking-widest text-transparent uppercase">อันดับเกมสล็อตและคาสิโนยอดนิยมบน TT1BET</p>
+    <p class="max-w-3xl text-base leading-relaxed text-[#d8c39a]">
       รายชื่อด้านล่างใช้เพื่ออ้างอิงความนิยมเท่านั้น คำว่าอันดับ 1 เป็นถ้อยคำทางการตลาด ไม่ได้ยืนยันว่าเกมจะให้ผลลัพธ์ที่ดีกว่าสำหรับทุกคน ก่อนเลือกควรพิจารณา RTP ที่ผู้ให้บริการระบุ ความผันผวน
-      ตารางจ่าย ฟีเจอร์โบนัส และงบประมาณของตนเองร่วมกัน เพราะรายชื่อในแต่ละหมวดเปลี่ยนแปลงได้ตามช่วงเวลา
+      ตารางจ่าย กติกาของเกม และงบประมาณของตนเองร่วมกัน เพราะรายชื่อในแต่ละหมวดเปลี่ยนแปลงได้ตามช่วงเวลา
     </p>
-    <div class="mt-2 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#02c4e3] to-transparent"></div>
+    <div class="mt-2 h-[3px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#e9c341] to-transparent"></div>
   </div>
 
   <div class="flex flex-col gap-3">
@@ -46,10 +46,10 @@ const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : ran
           <article
             class={`group relative flex items-center gap-3 overflow-hidden rounded-2xl border p-3 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 sm:gap-5 sm:p-4 ${
               top
-                ? "border-[#02c4e3]/60 bg-gradient-to-r from-[#03303c]/95 via-[#04222b]/92 to-[#04222b]/92 shadow-[0_15px_40px_rgba(2,196,227,0.28)]"
-                : "border-[#0c8ba4]/30 bg-[#04222b]/92 shadow-[0_10px_30px_rgba(2,196,227,0.16)] hover:border-[#02c4e3]/60 hover:shadow-[0_15px_40px_rgba(2,196,227,0.26)]"
+                ? "border-[#e9c341]/60 bg-gradient-to-r from-[#241a0d]/95 via-[#171008]/92 to-[#171008]/92 shadow-[0_15px_40px_rgba(233,195,65,0.28)]"
+                : "border-[#6d4a13]/55 bg-[#171008]/92 shadow-[0_10px_30px_rgba(233,195,65,0.16)] hover:border-[#e9c341]/60 hover:shadow-[0_15px_40px_rgba(233,195,65,0.26)]"
             }`}>
-            <div class="pointer-events-none absolute top-1/2 -left-10 h-24 w-24 -translate-y-1/2 rounded-full bg-[#0c8ba4]/35 blur-[40px] transition-all duration-500 group-hover:bg-[#02c4e3]/30" />
+            <div class="pointer-events-none absolute top-1/2 -left-10 h-24 w-24 -translate-y-1/2 rounded-full bg-[#b8862a]/35 blur-[40px] transition-all duration-500 group-hover:bg-[#e9c341]/30" />
 
             <div class="relative z-10 flex w-8 shrink-0 flex-col items-center justify-center sm:w-12">
               {medal(g.rank) ? (
@@ -58,14 +58,14 @@ const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : ran
                   <span class="sr-only">อันดับ {g.rank}</span>
                 </span>
               ) : (
-                <span class="text-xl font-black text-[#fdac13] sm:text-2xl">#{g.rank}</span>
+                <span class="text-xl font-black text-[#b8862a] sm:text-2xl">#{g.rank}</span>
               )}
             </div>
 
-            <div class={`relative z-10 h-14 w-14 shrink-0 overflow-hidden rounded-xl border sm:h-16 sm:w-16 ${top ? "border-[#02c4e3]/60" : "border-[#0c8ba4]/30"}`}>
+            <div class={`relative z-10 h-14 w-14 shrink-0 overflow-hidden rounded-xl border sm:h-16 sm:w-16 ${top ? "border-[#e9c341]/60" : "border-[#6d4a13]/55"}`}>
               <Picture
                 src={g.img}
-                alt={`ภาพหน้าปกเกม ${g.name} ในอันดับเกมยอดนิยมของ PATTAYA168`}
+                alt={`ภาพหน้าปกเกม ${g.name} ในอันดับเกมยอดนิยมของ TT1BET`}
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
                 loading="lazy"
@@ -79,22 +79,22 @@ const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : ran
 
             <div class="relative z-10 min-w-0 flex-1">
               <div class="flex items-center gap-2">
-                <p class="truncate text-base font-black text-[#cfeef7] sm:text-lg">{g.name}</p>
+                <p class="truncate text-base font-black text-[#f2e7cd] sm:text-lg">{g.name}</p>
                 {top && (
-                  <span class="hidden shrink-0 rounded-full border border-[#fdac13]/70 bg-[#021c22] px-2 py-0.5 text-[9px] font-black tracking-wider text-[#fdac13] sm:inline">ยอดนิยมสูงสุด</span>
+                  <span class="hidden shrink-0 rounded-full border border-[#e9c341]/70 bg-[#0b0805] px-2 py-0.5 text-[9px] font-black tracking-wider text-[#fcf1b0] sm:inline">ยอดนิยมสูงสุด</span>
                 )}
               </div>
-              <p class="truncate text-[11px] text-[#9ec9d6] sm:text-xs">{g.type}</p>
+              <p class="truncate text-[11px] text-[#d8c39a] sm:text-xs">{g.type}</p>
 
               <div class="mt-2 flex flex-wrap items-center gap-1.5">
                 {g.menus.map((m) => (
-                  <span class="rounded-full border border-[#0c8ba4]/35 bg-[#021c22] px-2.5 py-0.5 text-[10px] font-bold text-[#8ff5ff]">{m}</span>
+                  <span class="rounded-full border border-[#6d4a13]/55 bg-[#0b0805] px-2.5 py-0.5 text-[10px] font-bold text-[#fcf1b0]">{m}</span>
                 ))}
               </div>
             </div>
 
             <div class="relative z-10 hidden shrink-0 flex-col items-end gap-1 sm:flex">
-              <span class="flex items-center gap-1.5 text-[11px] text-[#9ec9d6]">
+              <span class="flex items-center gap-1.5 text-[11px] text-[#d8c39a]">
                 <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500 shadow-[0_0_6px_rgba(34,197,94,0.6)]" />
                 <span class="tabular-nums" data-players data-base={g.players}>
                   {g.players.toLocaleString("en-US")}
@@ -105,8 +105,8 @@ const medal = (rank: number) => (rank === 1 ? "🥇" : rank === 2 ? "🥈" : ran
                 href="/register"
                 class={`rounded-full px-4 py-1.5 text-xs font-black transition-transform hover:scale-105 ${
                   top
-                    ? "bg-gradient-to-r from-[#fdac13] via-[#f0820c] to-[#a35a06] text-[#021c22] shadow-[0_10px_30px_rgba(253,172,19,0.28)]"
-                    : "border border-[#0c8ba4]/60 bg-[#021c22] text-[#8ff5ff] hover:border-[#fdac13] hover:bg-[#03303c]"
+                    ? "bg-gradient-to-r from-[#fff8d6] via-[#e9c341] to-[#b8862a] text-[#0b0805] shadow-[0_10px_30px_rgba(233,195,65,0.28)]"
+                    : "border border-[#6d4a13]/70 bg-[#0b0805] text-[#fcf1b0] hover:border-[#e9c341] hover:bg-[#241a0d]"
                 }`}>
                 เข้าดูเกม
               </a>

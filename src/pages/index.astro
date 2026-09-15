@@ -1,16 +1,17 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Announcement from "../components/AnnouncementCyber.astro";
-import ContentBoxPremium from "../components/ContentBoxPremium.astro";
-import ContentBoxCyberCut from "../components/ContentBoxCyberCut.astro";
-import ContentBoxSpecial from "../components/ContentBoxSpecial.astro";
-import ContentBoxSevenThreePremium from "../components/ContentBoxSevenThreePremium.astro";
-import ContentBoxTwoPremium from "../components/ContentBoxTwoPremium.astro";
+import Announcement from "../components/AnnouncementPremium.astro";
+import ContentBoxNeumorphism from "../components/ContentBoxNeumorphism.astro";
+import ContentBoxFloatingBadge from "../components/ContentBoxFloatingBadge.astro";
+import ContentBoxSevenThreeNeumorphism from "../components/ContentBoxSevenThreeNeumorphism.astro";
+import ContentBoxSevenThreeCyberCut from "../components/ContentBoxSevenThreeCyberCut.astro";
+import ContentBoxTwoFloatingBadge from "../components/ContentBoxTwoFloatingBadge.astro";
 import ContentBox from "../components/ContentBox.astro";
-import Faq3 from "../components/Faq3.astro";
-import ProviderGrid from "../components/ProviderGrid.astro";
+import ContentBoxTwoNeumorphism from "../components/ContentBoxTwoNeumorphism.astro";
+import Faq4 from "../components/Faq4.astro";
+import ProviderGridPremium from "../components/ProviderGridPremium.astro";
 import GameRankingBoard from "../components/GameRankingBoard.astro";
-import LatestWinnersCyber from "../components/LatestWinnersCyber.astro";
+import LatestWinnersPremium from "../components/LatestWinnersPremium.astro";
 import LoginRtpSection from "../components/LoginRtpSection.astro";
 import SmoothCarousel from "../components/SmoothCarousel.astro";
 import ReviewCardSumo2 from "../components/ReviewCardSumo2.astro";
@@ -22,55 +23,57 @@ import { pageGraph } from "../lib/schema";
 // Slides live only inside a ContentBoxSevenThree* block and there are at most
 // two of those per rebrand — both are spent here.
 //
-// slide4 is the "นาทีทอง" top-up window, a wallet/transaction offer, which is
-// the picture docx H2-3 (True Wallet) is talking about.
-// slide1 is the new-member bonus, i.e. the thing docx H2-6 asks the reader to
-// สมัครสมาชิก in order to see.
-// slide2 (ชวนเพื่อน) and slide3 (ภารกิจรายวัน) stay unused here and keep
+// slide4 is the daily cashback offer, whose whole value depends on the terms
+// rather than the headline percentage, which is what docx H2-2 argues about a
+// bonus.
+// slide1 is the golden-hour top-up: the same offer is only live between 20:00
+// and 22:00, i.e. the eligibility docx H2-3 asks the reader to check before
+// claiming anything.
+// slide2 (ภารกิจรายสัปดาห์) and slide3 (ชวนเพื่อน) stay unused here and keep
 // rendering in SmoothCarousel and on /promotion.
 //
 // banner2.png is NOT imported anywhere: it predates this asset drop.
 // banner1/banner1-mobile/og.png are the hero and the share card and belong to
 // MainLayout alone.
-import imgGoldenHour from "../assets/slide4.png";
-import imgNewMember from "../assets/slide1.png";
+import imgCashback from "../assets/slide4.png";
+import imgGoldenHour from "../assets/slide1.png";
 
 // The docx "Main SEO" Title and H1, verbatim. They are the brand's own copy,
 // not a draft to tidy.
-const pageTitle = "PATTAYA168 | มาตรฐานสล็อตลิขสิทธิ์แท้ ฝากถอน True Wallet จ่ายไว";
-const pageHeading = "PATTAYA168 มาตรฐานสล็อตลิขสิทธิ์แท้ ฝากถอน True Wallet จ่ายไว";
+const pageTitle = "TT1BET | คาสิโนและสล็อตรวมค่ายดัง ลุ้นรับโบนัสสุดคุ้ม ฝากง่ายจ่ายไว";
+const pageHeading = "TT1BET คาสิโนและสล็อตรวมค่ายดัง ลุ้นรับโบนัสสุดคุ้ม ฝากง่ายจ่ายไว";
 
 // The docx Main SEO Meta Description, verbatim at the length it was written.
 // DESC_MIN does not apply to the home page — verify-build.mjs exempts any
 // description that appears literally in src/assets/content.txt, precisely so the
 // brand's own copy ships unpadded. Do not top it up.
-const pageDescription = "PATTAYA168 สล็อต มาตรฐานลิขสิทธิ์แท้ รองรับ True Wallet พร้อมข้อมูลค่ายเกม ระบบบัญชี โปรโมชั่น และสถานะธุรกรรมให้ตรวจสอบได้สะดวก";
+const pageDescription = "TT1BET คาสิโนและสล็อตรวมค่ายดัง พร้อมลุ้นรับโบนัสตามเงื่อนไข ฝากง่าย พร้อมระบบบัญชี โปรโมชั่น และสถานะธุรกรรมให้ตรวจสอบได้สะดวก";
 
 // Each alt is the Thai promotional text actually printed on that slide plus the
 // scene around it, read off the artwork itself. The wordmark baked into these
 // files is written as "โลโก้เว็บไซต์" rather than transcribed — alt text
 // describes the picture, it does not repeat a logotype.
-const altGoldenHour =
-  "แบนเนอร์โปรโมชั่นโทนทองกับฟ้าเทอร์ควอยซ์ ด้านบนกลางภาพเป็นโลโก้เว็บไซต์รูปวงกลมสีฟ้าไล่เฉด ข้างในเป็นต้นปาล์มสีขาวสะท้อนบนผิวน้ำที่มีระลอกคลื่น ใต้วงกลมเป็นตัวอักษรโรมันเขียนว่า PATTAYA และลูกบอลสีส้มสามลูกพิมพ์เลข 1 6 และ 8 มุมบนขวาเป็นหน้าปัดนาฬิกาทองเลขโรมันขนาดใหญ่ที่พิมพ์คำว่า GOLDEN HOUR ไว้บนหน้าปัด กลางภาพเป็นหัวข้อตัวใหญ่สีทองเขียนว่า นาทีทอง ใต้หัวข้อเป็นสองบรรทัดเขียนว่า เติมครบ 500 และ รับเพิ่ม 20 เปอร์เซ็นต์ ถัดลงมาเป็นสองแถบพร้อมไอคอนนาฬิกาและกล่องของขวัญเขียนว่า เฉพาะช่วงกิจกรรม และ ลุ้นสนุกได้ทุกวัน ด้านขวาเป็นผู้หญิงสวมชุดราตรีเลื่อมสีทองหันหลังแล้วเหลียวมองมาทางกล้อง มุมล่างซ้ายเป็นวงล้อสล็อตขึ้นเลข 777 รอบภาพมีเหรียญทองกระจายอยู่ ฉากหลังเป็นอ่าวพัทยายามค่ำคืนที่มีต้นปาล์มและตึกสูงเปิดไฟ";
+const altCashback =
+  "แบนเนอร์โปรโมชั่นโทนทองบนพื้นดำ ด้านบนกลางภาพเป็นโลโก้เว็บไซต์ตัวอักษรโรมันหนา มุมบนซ้ายเขียนว่า MORE THAN A GAME กลางภาพเป็นหัวข้อตัวใหญ่สีทองเขียนว่า คืนยอดเสียทุกวัน ถัดลงมาเขียนว่า รับเพิ่ม 8 เปอร์เซ็นต์ ใต้หัวข้อเป็นแถบที่มีมงกุฎขนาบสองข้างเขียนว่า VIP รับไวทุกวันตามเงื่อนไข ถัดลงมาเป็นสี่ช่องพร้อมไอคอนเขียนว่า สิทธิพิเศษระดับ VIP รับคืนทุกวันไม่มีสะสม เล่นได้ทุกรูปแบบ มั่นคง ปลอดภัย และ ดูแลต่อเนื่องระยะยาว ใต้ลงมาเป็นปุ่มสีทองเขียนว่า รับโปรวันนี้ ด้านซ้ายเป็นผู้หญิงสวมชุดราตรีเลื่อมสีดำนั่งบนเก้าอี้หนังที่มีป้ายเขียนว่า VIP มุมล่างซ้ายเป็นวงล้อรูเล็ต ด้านล่างเป็นกองชิปคาสิโนสีดำทองที่พิมพ์ชื่อเว็บไซต์ไว้และป้ายสีดำขอบทองเขียนว่า PLAY WIN BELONG ฉากหลังเป็นห้องคาสิโนสีทองที่มีโคมไฟระย้าและแสงประกายทอง";
 
-const altNewMember =
-  "แบนเนอร์โปรโมชั่นโทนฟ้าเทอร์ควอยซ์กับทอง ด้านบนกลางภาพเป็นโลโก้เว็บไซต์รูปวงกลมสีฟ้าไล่เฉด ข้างในเป็นต้นปาล์มสีขาวสะท้อนบนผิวน้ำที่มีระลอกคลื่น ใต้วงกลมเป็นตัวอักษรโรมันเขียนว่า PATTAYA และลูกบอลสีส้มสามลูกพิมพ์เลข 1 6 และ 8 กลางภาพเป็นข้อความสีขาวขอบทองเขียนว่า สมาชิกใหม่รับโบนัส ใต้ข้อความเป็นเลข 88 ตัวใหญ่สีทอง ถัดลงมาเขียนว่า เปิดยูสวันนี้ รับสิทธิ์ทันที และกรอบมีมงกุฎขนาบสองข้างเขียนว่า เฉพาะสมาชิกใหม่ แถบล่างสุดมีสามช่องพร้อมไอคอนเขียนว่า สมัครฟรี รับไว และ ใช้งานง่าย ด้านซ้ายเป็นผู้หญิงสวมชุดสีส้มสลับฟ้ายิ้มขยิบตาและชี้มือมาข้างหน้า รอบภาพมีเหรียญทอง ไพ่โพดำ และชิปคาสิโนสีฟ้าทอง ฉากหลังเป็นอ่าวพัทยายามค่ำคืนที่มีตึกสูงเปิดไฟ";
+const altGoldenHour =
+  "แบนเนอร์โปรโมชั่นโทนทองบนพื้นดำ ด้านบนกลางภาพเป็นโลโก้เว็บไซต์ตัวอักษรโรมันหนา ใต้โลโก้เป็นบรรทัดเล็กเขียนว่า PLAY BIGGER WIN BRIGHTER มุมบนซ้ายเป็นข้อความลายมือสีทองเขียนว่า Good Luck Tonight มุมบนขวาเขียนว่า MORE THAN A GAME กลางภาพเป็นหัวข้อตัวใหญ่สีทองเขียนว่า นาทีทองคืนนี้ ถัดลงมาเขียนว่า รับเพิ่ม 30 เปอร์เซ็นต์ ใต้หัวข้อเป็นแถบพร้อมไอคอนนาฬิกาเขียนว่า เวลา 20:00 ถึง 22:00 เท่านั้น และปุ่มสีทองเขียนว่า รับสิทธิ์เลย ด้านซ้ายเป็นผู้หญิงสวมชุดราตรีเลื่อมสีแดงหันหลังแล้วเหลียวมองมาทางกล้อง มือถือชิปคาสิโนสีดำแดงไว้ ด้านขวาเป็นวงล้อรูเล็ตและกองชิปคาสิโนสีดำทองที่พิมพ์ชื่อเว็บไซต์ไว้ ฉากหลังเป็นห้องคาสิโนสีทองที่มีโคมไฟระย้า แสงประกายทอง และป้ายเขียนว่า CASINO LIVE BIGGER แถบล่างสุดมีสี่ช่องพร้อมไอคอนเขียนว่า มั่นคงปลอดภัย ฝาก-ถอนรวดเร็ว ครบทุกเกม คาสิโน สล็อต กีฬา และ เล่นได้ทุกที่ ตลอด 24 ชั่วโมง ล่างสุดเขียนว่า YOUR LUCKY HOUR STARTS HERE";
 
 // The docx Q&A block, verbatim. Passed as an explicit prop rather than left to
-// Faq3's own default, so the rendered markup and the FAQ JSON-LD below come out
+// Faq4's own default, so the rendered markup and the FAQ JSON-LD below come out
 // of the same array.
 const faqs = [
   {
-    q: "PATTAYA168 รองรับ True Wallet หรือไม่?",
-    a: "ระบบถูกนำเสนอว่ารองรับ True Wallet ตามช่องทางที่กำหนด สมาชิกควรตรวจข้อมูลบัญชี จำนวนเงิน และสถานะรายการก่อนและหลังทำธุรกรรมทุกครั้ง",
+    q: "TT1BET มีทั้งคาสิโนและสล็อตออนไลน์หรือไม่?",
+    a: "ระบบอาจรวมทั้งเกมสล็อต บาคาร่า คาสิโนสด และเกมประเภทอื่นจากหลายผู้ให้บริการ ผู้สนใจสามารถสมัครสมาชิกเพื่อดูรายการเกมล่าสุดก่อนเลือกเล่น",
   },
   {
-    q: "เกมลิขสิทธิ์แท้ของ PATTAYA168 ตรวจสอบอย่างไร?",
-    a: "ควรดูชื่อผู้ให้บริการ รายละเอียดเกม กติกา และข้อมูลที่ระบบแสดง ไม่ควรใช้คำว่าลิขสิทธิ์แท้เพียงอย่างเดียวเป็นหลักในการประเมินความน่าเชื่อถือ",
+    q: "โบนัสของ TT1BET ควรดูอะไรบ้างก่อนรับ?",
+    a: "ควรดูจำนวนโบนัส ยอดขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา และข้อกำหนดการถอนร่วมกัน หากไม่แน่ใจสามารถติดต่อทีมงานเพื่อสอบถามรายละเอียดก่อนรับสิทธิ์",
   },
   {
-    q: "คำว่าจ่ายไวของ PATTAYA168 รับประกันทุกธุรกรรมหรือไม่?",
-    a: "ไม่ควรตีความว่าเป็นการรับประกันทุกกรณี เพราะระยะเวลาอาจขึ้นอยู่กับสถานะบัญชี ช่องทางการเงิน และขั้นตอนตรวจสอบของระบบ",
+    q: "คำว่าฝากง่ายจ่ายไวของ TT1BET รับประกันทุกธุรกรรมหรือไม่?",
+    a: "ไม่ควรตีความว่าเป็นการรับประกันทุกกรณี เพราะระยะเวลาอาจขึ้นอยู่กับสถานะบัญชี ช่องทางธุรกรรม โปรโมชั่น และขั้นตอนตรวจสอบของระบบ",
   },
 ];
 
@@ -89,30 +92,44 @@ const graph = pageGraph(Astro, {
 
   <SmoothCarousel />
 
-  <ContentBoxPremium as="h1" title={pageHeading}>
-    <p class="text-left text-base leading-relaxed text-[#cfeef7]">
-      <strong class="text-[#8ff5ff]">PATTAYA168</strong> เป็นแพลตฟอร์มสล็อตออนไลน์ที่เน้นการรวมเกมจากผู้ให้บริการหลายรูปแบบ พร้อมรองรับ True Wallet ตามช่องทางที่กำหนด สมาชิกสามารถเลือกเกม ตรวจโปรโมชั่น
-      และติดตามสถานะธุรกรรมได้จากระบบเดียว ผู้ที่สนใจสามารถสมัครสมาชิกเพื่อดูรายชื่อค่ายและสิทธิพิเศษ พร้อมตรวจเงื่อนไขก่อนเริ่มใช้งานจริง
+  <ContentBoxNeumorphism as="h1" title={pageHeading}>
+    <p class="text-left text-base leading-relaxed text-[#f2e7cd]">
+      <strong class="text-[#fcf1b0]">TT1BET</strong> เป็นแพลตฟอร์มคาสิโนและสล็อตออนไลน์ที่รวบรวมเกมจากหลายค่ายไว้ในระบบเดียว สมาชิกสามารถเลือกเกม ตรวจโปรโมชั่น ดูโบนัส และติดตามสถานะธุรกรรมได้สะดวก
+      พร้อมระบบบัญชีที่ช่วยลดขั้นตอนในการใช้งาน ผู้ที่สนใจสามารถสมัครสมาชิกเพื่อดูค่ายเกมและสิทธิพิเศษล่าสุดก่อนเริ่มใช้งานจริง
     </p>
-  </ContentBoxPremium>
+  </ContentBoxNeumorphism>
 
-  <ContentBoxCyberCut as="h2" title="ตรวจมาตรฐานค่ายเกมก่อนเลือกเล่นบน PATTAYA168">
-    <p class="text-left text-base leading-relaxed text-[#cfeef7]">
-      ภายใน PATTAYA168 ผู้เล่นควรพิจารณาชื่อผู้ให้บริการ รายละเอียดเกม ตารางจ่าย และข้อมูลที่ระบบแสดงก่อนเลือกเล่น การมีข้อมูลค่ายที่ชัดเจนช่วยให้เปรียบเทียบเกมได้ง่ายขึ้น และช่วยลดการตัดสินใจจากคำว่า
-      “ลิขสิทธิ์แท้” เพียงอย่างเดียว
+  <ContentBoxFloatingBadge as="h2" title="เปรียบเทียบค่ายคาสิโนและสล็อตได้ง่ายบน TT1BET">
+    <p class="text-left text-base leading-relaxed text-[#f2e7cd]">
+      ภายใน TT1BET ผู้เล่นสามารถเลือกทั้งเกมสล็อต บาคาร่า คาสิโนสด และเกมประเภทอื่นตามที่ระบบรองรับ แต่ละค่ายอาจมีฟีเจอร์ อัตราจ่าย และวงเงินต่างกัน
+      การเปรียบเทียบข้อมูลก่อนเลือกช่วยให้หาเกมที่ตรงกับงบและสไตล์ของตนเองได้มากขึ้น
     </p>
-  </ContentBoxCyberCut>
+  </ContentBoxFloatingBadge>
 
-  <ProviderGrid />
+  <ProviderGridPremium />
 
-  <ContentBoxSpecial as="h2" title="เกมลิขสิทธิ์แท้ควรมีข้อมูลให้ตรวจสอบได้" iconleft="🔎" iconright="📋">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#cfeef7]">
-      คำว่าลิขสิทธิ์แท้ควรพิจารณาจากข้อมูลผู้ให้บริการและรายละเอียดเกมที่แสดงในระบบ ผู้เล่นไม่ควรใช้คำโฆษณาเป็นหลักฐานเพียงอย่างเดียว
+  <ContentBoxSevenThreeNeumorphism title="โบนัสสุดคุ้มควรดูมากกว่าจำนวนเครดิต">
+    <Picture
+      slot="left"
+      src={imgCashback}
+      loading="lazy"
+      fetchpriority="low"
+      widths={[300, 450, 600]}
+      sizes="(max-width: 768px) calc(100vw - 6rem), 340px"
+      decoding="async"
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      quality={80}
+      alt={altCashback}
+      class="mx-auto h-auto w-full rounded-2xl border border-[#e9c341]/55 shadow-[0_10px_30px_rgba(233,195,65,0.28)]"
+    />
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f2e7cd]">
+      โปรโมชั่นที่ดูคุ้มไม่ควรพิจารณาเฉพาะจำนวนโบนัส ผู้เล่นควรดูยอดฝากขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา และเงื่อนไขการถอนร่วมกัน
+      โปรที่เหมาะกับงบและประเภทเกมที่เล่นอาจให้ประโยชน์มากกว่าข้อเสนอที่ให้เครดิตสูงแต่มีข้อจำกัดมาก
     </p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#cfeef7]">ควรดูชื่อค่าย ฟีเจอร์ กติกา และข้อมูลทางเทคนิคประกอบ เพื่อช่วยประเมินความน่าเชื่อถือได้รอบด้านมากขึ้น</p>
-  </ContentBoxSpecial>
+  </ContentBoxSevenThreeNeumorphism>
 
-  <ContentBoxSevenThreePremium titleright="ฝากถอนผ่าน True Wallet บน PATTAYA168 ได้สะดวกบนมือถือ">
+  <ContentBoxSevenThreeCyberCut titleright="ตรวจสิทธิ์โปรโมชั่นบน TT1BET ก่อนรับโบนัส">
     <Picture
       slot="left"
       src={imgGoldenHour}
@@ -125,67 +142,55 @@ const graph = pageGraph(Astro, {
       fallbackFormat="webp"
       quality={80}
       alt={altGoldenHour}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#02c4e3]/55 shadow-[0_10px_30px_rgba(2,196,227,0.28)]"
+      class="mx-auto h-auto w-full border border-[#b8862a]/55 shadow-[0_10px_30px_rgba(184,134,42,0.26)]"
     />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#cfeef7]">
-      การรองรับ True Wallet ของ PATTAYA168 ช่วยให้สมาชิกจัดการธุรกรรมผ่านมือถือได้คล่องตัวขึ้น ก่อนยืนยันควรตรวจข้อมูล Wallet จำนวนเงิน และชื่อบัญชีให้ตรงกัน
-      พร้อมรอให้สถานะรายการเดิมอัปเดตก่อนทำรายการใหม่ หากไม่แน่ใจสามารถติดต่อทีมงานเพื่อสอบถามช่องทางที่รองรับได้
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f2e7cd]">
+      สมาชิก TT1BET ควรตรวจชื่อโปรโมชั่น จำนวนเครดิต เงื่อนไขรับสิทธิ์ และเกมที่รองรับก่อนกดยืนยัน หากมีหลายโปรโมชั่นพร้อมกันควรดูว่าสามารถใช้ร่วมกันได้หรือไม่
+      ผู้ที่สนใจสามารถสมัครสมาชิกเพื่อดูโปรล่าสุดหรือติดต่อทีมงานเพื่อสอบถามรายละเอียดเพิ่มเติม
     </p>
-  </ContentBoxSevenThreePremium>
+  </ContentBoxSevenThreeCyberCut>
 
-  <ContentBoxTwoPremium as="h2" title="เลือกเกมสล็อตจาก RTP และความผันผวนให้เหมาะกับงบ">
-    <p slot="left" class="text-left text-base leading-relaxed text-[#cfeef7]">
-      แทนที่จะเลือกเกมจากชื่อค่ายหรือคำว่าแตกง่ายเพียงอย่างเดียว ผู้เล่นควรดู RTP ที่ผู้ให้บริการระบุ ความผันผวน ตารางจ่าย และฟีเจอร์โบนัสร่วมกัน
+  <ContentBoxTwoFloatingBadge as="h2" title="ฝากง่ายควรมาพร้อมข้อมูลรายการที่ตรวจสอบได้">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f2e7cd]">ขั้นตอนฝากที่สะดวกควรช่วยให้ผู้ใช้ตรวจชื่อบัญชี จำนวนเงิน และสถานะรายการได้ชัดเจน</p>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f2e7cd]">
+      ก่อนยืนยันควรเช็กข้อมูลทุกครั้ง และหากรายการเดิมยังดำเนินการอยู่ควรรอระบบอัปเดตก่อนทำรายการใหม่ เพื่อลดโอกาสเกิดรายการซ้ำหรือยอดคลาดเคลื่อน
     </p>
-    <p slot="right" class="text-left text-base leading-relaxed text-[#cfeef7]">ข้อมูลเหล่านี้ช่วยให้เข้าใจลักษณะของเกมและกำหนดวงเงินต่อรอบได้เหมาะกับงบมากขึ้น</p>
-  </ContentBoxTwoPremium>
+  </ContentBoxTwoFloatingBadge>
 
-  <GameRankingBoard />
-
-  <ContentBox as="h2" title="ตรวจสถานะจ่ายไวผ่านบัญชี PATTAYA168">
-    <p class="text-left text-base leading-relaxed text-[#cfeef7]">
-      สมาชิก PATTAYA168 ควรตรวจยอดคงเหลือ ประวัติฝากถอน และสถานะธุรกรรมผ่านหน้าบัญชี หากรายการยังอยู่ระหว่างดำเนินการควรเก็บเวลา จำนวนเงิน และเลขอ้างอิงไว้ก่อน
-      หากสถานะไม่อัปเดตสามารถติดต่อทีมงานพร้อมข้อมูลรายการเพื่อขอตรวจสอบเพิ่มเติม
+  <ContentBox as="h2" title="ตรวจสถานะจ่ายไวผ่านระบบของ TT1BET">
+    <p class="text-left text-base leading-relaxed text-[#f2e7cd]">
+      สมาชิก TT1BET ควรตรวจยอดคงเหลือ ประวัติถอน และสถานะธุรกรรมผ่านหน้าบัญชีเป็นหลัก หากรายการยังไม่สำเร็จควรเก็บเวลา จำนวนเงิน และเลขอ้างอิงไว้ก่อน
+      หากสถานะไม่อัปเดตตามปกติสามารถติดต่อทีมงานพร้อมข้อมูลรายการเพื่อขอตรวจสอบได้
     </p>
   </ContentBox>
 
-  <ContentBoxSevenThreePremium titleright="สมัคร PATTAYA168 เพื่อดูค่ายเกมและโปรโมชั่นล่าสุด">
-    <Picture
-      slot="left"
-      src={imgNewMember}
-      loading="lazy"
-      fetchpriority="low"
-      widths={[300, 450, 600]}
-      sizes="(max-width: 768px) calc(100vw - 6rem), 340px"
-      decoding="async"
-      formats={["avif", "webp"]}
-      fallbackFormat="webp"
-      quality={80}
-      alt={altNewMember}
-      class="mx-auto h-auto w-full rounded-2xl border border-[#fdac13]/55 shadow-[0_10px_30px_rgba(253,172,19,0.26)]"
-    />
-    <p slot="right" class="text-left text-base leading-relaxed text-[#cfeef7]">
-      ผู้ที่ต้องการดูรายชื่อค่าย โปรโมชั่น หรือข้อมูลบัญชีเพิ่มเติม สามารถ สมัครสมาชิก PATTAYA168 ผ่านช่องทางหลัก แล้วตรวจรายละเอียดล่าสุดจากระบบ ก่อนรับสิทธิ์ควรอ่านยอดขั้นต่ำ เกมที่ร่วมรายการ
-      และเงื่อนไขการถอนให้ครบ หากมีข้อสงสัยสามารถติดต่อทีมงานก่อนยืนยันรายการได้
+  <ContentBoxTwoNeumorphism titleleft="เลือกเกมบน TT1BET จากข้อมูลจริงมากกว่าคำโปรโมต">
+    <p slot="left" class="text-left text-base leading-relaxed text-[#f2e7cd]">
+      ผู้ใช้ TT1BET ควรดู RTP ความผันผวน ตารางจ่าย หรือกติกาของเกมตามประเภทที่เลือก เพราะเกมแต่ละค่ายมีโครงสร้างความเสี่ยงต่างกัน
     </p>
-  </ContentBoxSevenThreePremium>
+    <p slot="right" class="text-left text-base leading-relaxed text-[#f2e7cd]">
+      การเข้าใจข้อมูลเหล่านี้ช่วยให้กำหนดวงเงินและเลือกเกมได้เหมาะสมกว่าการตัดสินจากคำว่าเกมดังหรือแตกง่ายเพียงอย่างเดียว
+    </p>
+  </ContentBoxTwoNeumorphism>
 
-  <Faq3 title="คำถามที่พบบ่อยเกี่ยวกับ PATTAYA168" faqs={faqs} />
+  <GameRankingBoard />
 
-  <LatestWinnersCyber />
+  <Faq4 title="คำถามที่พบบ่อยเกี่ยวกับ TT1BET" faqs={faqs} />
+
+  <LatestWinnersPremium />
 
   <LoginRtpSection />
 
   <div class="relative z-10 mx-auto mb-10 flex flex-nowrap justify-center gap-3 px-4 sm:gap-6">
     <a
       href="/login"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#02c4e3]/60 bg-[#04222b]/90 px-4 py-3 text-sm font-black whitespace-nowrap text-[#cfeef7] shadow-[0_10px_30px_rgba(2,196,227,0.22)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#8ff5ff] hover:text-[#8ff5ff] hover:shadow-[0_15px_40px_rgba(2,196,227,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#e9c341]/60 bg-[#171008]/90 px-4 py-3 text-sm font-black whitespace-nowrap text-[#f2e7cd] shadow-[0_10px_30px_rgba(233,195,65,0.22)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#fcf1b0] hover:text-[#fcf1b0] hover:shadow-[0_15px_40px_rgba(233,195,65,0.4)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       เข้าสู่ระบบ
     </a>
 
     <a
       href="/register"
-      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#8ff5ff]/70 bg-gradient-to-r from-[#02c4e3] to-[#0c8ba4] px-4 py-3 text-sm font-black whitespace-nowrap text-[#021c22] shadow-[0_10px_30px_rgba(2,196,227,0.34)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#fdac13] hover:from-[#5afef1] hover:to-[#02c4e3] hover:shadow-[0_15px_40px_rgba(2,196,227,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
+      class="group relative flex flex-1 items-center justify-center rounded-full border-2 border-[#fcf1b0]/70 bg-gradient-to-r from-[#e9c341] to-[#b8862a] px-4 py-3 text-sm font-black whitespace-nowrap text-[#0b0805] shadow-[0_10px_30px_rgba(233,195,65,0.34)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[#fff8d6] hover:from-[#fff8d6] hover:to-[#e9c341] hover:shadow-[0_15px_40px_rgba(233,195,65,0.5)] sm:flex-none sm:px-10 sm:py-3.5 sm:text-base">
       สมัครสมาชิก
     </a>
   </div>

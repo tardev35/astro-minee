@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentBox from "../components/ContentBox.astro";
 import Navfoot from "../components/Navfoot.astro";
-import Announcement from "../components/AnnouncementCyber.astro";
+import Announcement from "../components/AnnouncementPremium.astro";
 import { pageGraph } from "../lib/schema";
 
 // This page imports NO image, and that is a decision rather than an omission.
@@ -14,70 +14,74 @@ import { pageGraph } from "../lib/schema";
 // stay in src/assets as inventory. DO NOT import them: an imported image is an
 // emitted image, and verify-build.mjs fails the build on an image that ships
 // unrendered. Because nothing is imported, the stale-asset sweep has nothing to
-// check here either.
+// check here either — and banner2.png (2026-08-13, predates this drop) stays out
+// of every page for the same reason.
 //
 // What carries the page instead is the four-step walkthrough below — no images,
-// plain markup, and each step's label is a <p>/<span> with an aria-label on the
-// region, because only the article body may produce a heading. It is NOT an
-// h3-bearing icon-card block: the sanctioned source of an h3 is
-// FeatureHighlights.astro, and that file still carries a previous brand's
-// palette, so wiring it in here would ship off-brand colour.
+// plain markup, and each step's label is a <p> with an aria-label on the region,
+// because only the article body may produce a heading. It is NOT an h3-bearing
+// icon-card block: the sanctioned source of an h3 is FeatureHighlights.astro,
+// and that file still carries a previous brand's palette, so wiring it in here
+// would ship off-brand colour.
 //
-// <Announcement /> is bare: AnnouncementCyber's default message is this brand's
-// copy, so the ticker matches index.astro without a second string here. The
-// variant rotated off AnnouncementHuay, the outgoing brand's pick, per the
+// <Announcement /> is bare: AnnouncementPremium's default message is this
+// brand's copy, so the ticker matches index.astro without a second string here.
+// The variant rotated off AnnouncementCyber, the outgoing brand's pick, per the
 // brand spec.
 //
-// PATTAYA168's brief frames the site as a slot platform that gathers เกมจากผู้ให้
-// บริการหลายรูปแบบ into one system and รองรับ True Wallet ตามช่องทางที่กำหนด. Its
-// standing advice: judge a game from ชื่อผู้ให้บริการ รายละเอียดเกม ตารางจ่าย and
-// ข้อมูลที่ระบบแสดง rather than from the words ลิขสิทธิ์แท้ or แตกง่าย; read RTP,
-// ความผันผวน, ตารางจ่าย and ฟีเจอร์โบนัส together before setting a per-spin stake;
-// check ยอดขั้นต่ำ เกมที่ร่วมรายการ and เงื่อนไขการถอน before claiming a promotion;
-// match ข้อมูล Wallet จำนวนเงิน and ชื่อบัญชี before confirming a transaction and
-// wait for an existing row to update before starting another; and keep เวลา
-// จำนวนเงิน and เลขอ้างอิง of a pending row. Its standing caveat is that จ่ายไว is
-// read off the real status of a row and is not a guarantee. No bank is named in
-// the brief, so none is named here, and True Wallet appears only as the channel
-// the brief itself states. This page promises no payout and never that a demo
-// round predicts a real one.
+// TT1BET's brief frames the site as a คาสิโนและสล็อต platform that gathers เกมจาก
+// หลายค่าย into one system, where a member can เลือกเกม ตรวจโปรโมชั่น ดูโบนัส and
+// ติดตามสถานะธุรกรรม from one account. Its standing advice: each ค่าย may differ in
+// ฟีเจอร์ อัตราจ่าย and วงเงิน, so compare before choosing; read RTP ความผันผวน
+// ตารางจ่าย and กติกา together rather than judging by เกมดัง or แตกง่าย; weigh a
+// bonus by ยอดฝากขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา and เงื่อนไขการถอน, not by credit
+// alone; check ชื่อโปรโมชั่น จำนวนเครดิต เงื่อนไขรับสิทธิ์ and เกมที่รองรับ before
+// confirming, and whether two promotions may be used together; check ชื่อบัญชี
+// จำนวนเงิน and สถานะรายการ before confirming a transaction and wait for an
+// existing row to update; and keep เวลา จำนวนเงิน and เลขอ้างอิง of a pending row.
+// Its standing caveat is that ฝากง่ายจ่ายไว is not a guarantee on every
+// transaction — the time depends on สถานะบัญชี ช่องทางธุรกรรม โปรโมชั่น and the
+// system's ขั้นตอนตรวจสอบ. No bank and no e-wallet product is named in the brief,
+// so none is named here. This page promises no payout, quotes no RTP figure, no
+// processing time, and never says a demo round predicts a real one.
 const trySteps = [
   {
     icon: "🎰",
-    label: "เลือกเกมจากค่ายที่ตรวจข้อมูลได้ ไม่ใช่จากคำว่าแตกง่าย",
+    label: "เลือกเกมจากค่ายที่ตรวจข้อมูลได้ ไม่ใช่จากคำว่าเกมดังหรือแตกง่าย",
     detail:
-      "หน้ารวมเกมแยกไว้ตามผู้ให้บริการและประเภทของเกมตามที่ระบบรองรับ ช่วงทดลองคือเวลาที่ควรไล่ดูว่าเกมที่สนใจมาจากค่ายไหน หน้าข้อมูลของเกมนั้นแสดงอะไรไว้บ้าง และคำว่าลิขสิทธิ์แท้ที่เห็นบนหน้าเว็บมีรายละเอียดผู้ให้บริการรองรับอยู่จริงหรือไม่ การเริ่มจากข้อมูลที่ตรวจสอบได้ช่วยลดการเลือกเกมจากคำโฆษณาเพียงอย่างเดียว",
+      "หน้ารวมเกมแยกไว้ตามผู้ให้บริการและประเภทของเกมตามที่ระบบรองรับ ทั้งสล็อต บาคาร่า คาสิโนสด และเกมประเภทอื่น ช่วงทดลองคือเวลาที่ควรไล่ดูว่าเกมที่สนใจมาจากค่ายไหน หน้าข้อมูลของเกมนั้นแสดงอะไรไว้บ้าง และค่ายนั้นวางฟีเจอร์ อัตราจ่าย และวงเงินต่อรอบไว้แบบใด การเริ่มจากข้อมูลที่ตรวจสอบได้ช่วยลดการเลือกเกมจากคำโปรโมตเพียงอย่างเดียว",
   },
   {
     icon: "📊",
     label: "อ่าน RTP ความผันผวน และตารางจ่ายของเกมนั้นคู่กัน",
     detail:
-      "ผู้ให้บริการระบุ RTP ความผันผวน ตารางจ่าย และเงื่อนไขของฟีเจอร์โบนัสไว้ในหน้าข้อมูลของแต่ละเกม ค่าเหล่านี้เป็นค่าเฉพาะของเกมนั้น ไม่ใช่ค่ากลางที่ทุกเกมของค่ายเดียวกันใช้ร่วมกัน ควรอ่านทั้งสี่อย่างพร้อมกันก่อนตั้งวงเงินต่อรอบ เพราะเกม RTP ใกล้เคียงกันแต่ความผันผวนต่างกันจะให้จังหวะการจ่ายคนละแบบ และกินงบคนละอัตรา",
+      "ผู้ให้บริการระบุ RTP ความผันผวน ตารางจ่าย และเงื่อนไขของฟีเจอร์โบนัสไว้ในหน้าข้อมูลของแต่ละเกม ค่าเหล่านี้เป็นค่าเฉพาะของเกมนั้น ไม่ใช่ค่ากลางที่ทุกเกมของค่ายเดียวกันใช้ร่วมกัน ควรอ่านทั้งสี่อย่างพร้อมกันก่อนตั้งวงเงินต่อรอบ เพราะเกมที่ RTP ใกล้เคียงกันแต่ความผันผวนต่างกันจะให้จังหวะการจ่ายคนละแบบ และกินงบคนละอัตรา",
   },
   {
     icon: "🎁",
     label: "ตรวจเงื่อนไขโปรโมชั่นและเกมที่ร่วมรายการก่อนกดรับสิทธิ์",
     detail:
-      "โปรโมชั่นแต่ละรายการต่างกันทั้งยอดโบนัส ยอดขั้นต่ำ เกมและค่ายที่ร่วมรายการ ระยะเวลา และเงื่อนไขการถอน ช่วงทดลองจึงเป็นเวลาที่ควรฝึกดูว่าระบบแสดงค่าเหล่านี้ไว้ตรงไหนของหน้าโปรโมชั่น แล้วยึดเงื่อนไขที่ขึ้นกับรายการนั้นจริงในขณะกดรับ ไม่ใช่เงื่อนไขที่จำมาจากรอบก่อนหรือจากโปรรายการอื่นที่หน้าตาคล้ายกัน",
+      "โปรโมชั่นแต่ละรายการต่างกันทั้งจำนวนเครดิต ยอดฝากขั้นต่ำ เกมและค่ายที่ร่วมรายการ ระยะเวลา และเงื่อนไขการถอน ช่วงทดลองจึงเป็นเวลาที่ควรฝึกดูว่าระบบแสดงค่าเหล่านี้ไว้ตรงไหนของหน้าโปรโมชั่น หากถือหลายโปรพร้อมกันควรดูว่าใช้ร่วมกันได้หรือไม่ แล้วยึดเงื่อนไขที่ขึ้นกับรายการนั้นจริงในขณะกดรับ ไม่ใช่เงื่อนไขที่จำมาจากรอบก่อนหรือจากโปรรายการอื่นที่หน้าตาคล้ายกัน",
   },
   {
     icon: "💳",
     label: "ไล่ดูหน้าบัญชีและสถานะธุรกรรมให้ครบก่อนกดยืนยัน",
     detail:
-      "ระบบรวมยอดคงเหลือ ประวัติฝากถอน สิทธิ์โปรโมชั่นที่เปิดใช้งาน และสถานะธุรกรรมไว้ที่หน้าบัญชี ก่อนยืนยันรายการที่รองรับ True Wallet ตามช่องทางที่กำหนด ควรตรวจข้อมูล Wallet จำนวนเงิน และชื่อบัญชีให้ตรงกันก่อนทุกครั้ง หากรายการเดิมยังอยู่ระหว่างดำเนินการ ให้เก็บเวลา จำนวนเงิน และเลขอ้างอิงไว้ แล้วรอให้สถานะอัปเดตก่อนทำรายการใหม่",
+      "ระบบรวมยอดคงเหลือ ประวัติฝากถอน สิทธิ์โปรโมชั่นที่เปิดใช้งาน และสถานะธุรกรรมไว้ที่หน้าบัญชี ก่อนยืนยันรายการควรตรวจชื่อบัญชี จำนวนเงิน และสถานะรายการให้ตรงกันทุกครั้ง หากรายการเดิมยังอยู่ระหว่างดำเนินการ ให้เก็บเวลา จำนวนเงิน และเลขอ้างอิงไว้ แล้วรอให้สถานะอัปเดตก่อนทำรายการใหม่ เพื่อลดโอกาสเกิดรายการซ้ำหรือยอดคลาดเคลื่อน",
   },
 ];
 
-const pageTitle = "ทดลองเล่นสล็อตบน PATTAYA168 และตรวจข้อมูลเกมก่อนเล่นจริง";
+const pageTitle = "ทดลองเล่นคาสิโนและสล็อตบน TT1BET ก่อนเลือกเกมและวงเงินจริง";
 
 // Title and description are the docx SUB-PAGES row "ทดลองเล่น" and ship
 // VERBATIM at their own length. The brand spec is explicit that the
 // docx-supplied rows are not to be padded to the 150-character floor
 // tools/verify-build.mjs enforces — it exempts any description that appears
-// literally in src/assets/content.txt for exactly this reason. Counted in
-// CHARACTERS (Thai is 3 bytes per character, so a byte count reads ~3x too
-// long). Do not re-word it: an edit here loses the exemption as well.
-const pageDescription = "PATTAYA168 ทดลองเล่นสล็อตเพื่อศึกษากติกา RTP ตารางจ่าย และความผันผวน ช่วยให้เปรียบเทียบเกมและเลือกวงเงินได้เหมาะกับงบ";
+// literally in src/assets/content.txt for exactly this reason. This one is 111
+// characters, counted in CHARACTERS (Thai is 3 bytes per character, so a byte
+// count reads ~3x too long). Do not re-word it: an edit here loses the exemption
+// as well.
+const pageDescription = "TT1BET ทดลองเกมเพื่อศึกษากติกา อัตราจ่าย ฟีเจอร์ RTP และความผันผวน ช่วยให้เลือกเกมและวงเงินได้เหมาะกับงบมากขึ้น";
 
 const graph = pageGraph(Astro, {
   name: pageTitle,
@@ -88,82 +92,81 @@ const graph = pageGraph(Astro, {
   ],
 });
 
-// h2 inside the card: white → primary turquoise → deep cyan, i.e. the brand's
-// identity hue read downward, where ContentBox's own h1 gradient opens on pale
-// seafoam and runs seafoam → turquoise → gold. The two levels stay visually
-// distinct without either repeating the other's opening stop, and the gold end
-// stays on the h1 — a second gold-tipped heading on this deep ocean card is
-// where the hierarchy would collapse. No red and no crimson: that was the
-// outgoing brand's hue.
-const sectionHeadingClass = "bg-gradient-to-r from-[#ffffff] via-[#02c4e3] to-[#0c8ba4] bg-clip-text text-2xl leading-normal font-bold text-transparent";
+// h2 inside the card: white → primary gold → bronze deep, where ContentBox's own
+// h1 gradient opens on pale gold and runs pale gold → gold → bronze. The two
+// levels stay visually distinct without either repeating the other's opening
+// stop, and the pale-gold opening stays on the h1 — a second pale-gold-led
+// heading on this warm-ink card is where the hierarchy would collapse. No cyan
+// and no turquoise: that was the outgoing brand's hue.
+const sectionHeadingClass = "bg-gradient-to-r from-[#ffffff] via-[#e9c341] to-[#6d4a13] bg-clip-text text-2xl leading-normal font-bold text-transparent";
 ---
 
-<MainLayout title="PATTAYA168 | ทดลองเล่นสล็อตและตรวจข้อมูลเกมก่อนเล่นจริง" description={pageDescription}>
+<MainLayout title="TT1BET | ทดลองคาสิโนสล็อตและเปรียบเทียบเกมก่อนเล่นจริง" description={pageDescription}>
   <script type="application/ld+json" set:html={graph} />
 
   <Announcement />
 
   <ContentBox title={pageTitle} as="h1">
     <div>
-      <h2 class={`mb-6 ${sectionHeadingClass}`}>ทดลองเล่นสล็อตบน PATTAYA168 คือการไล่ดูอะไรบ้างก่อนลงเงินจริง</h2>
+      <h2 class={`mb-6 ${sectionHeadingClass}`}>ทดลองเล่นบน TT1BET คือการไล่ดูอะไรบ้างก่อนลงเงินจริง</h2>
 
-      <p class="mb-8 text-left text-base leading-relaxed text-[#cfeef7]">
-        การทดลองเล่นบน PATTAYA168 คือการเปิดหน้าจอชุดเดียวกับที่จะใช้จริงขึ้นมาไล่ดูให้ครบก่อนหมุนด้วยเงินของตัวเอง ตั้งแต่หน้ารวมเกมที่แยกตามผู้ให้บริการและประเภทของเกมตามที่ระบบรองรับ
-        หน้าข้อมูลของเกมที่ระบุ RTP ความผันผวน ตารางจ่าย และเงื่อนไขของฟีเจอร์โบนัส หน้าโปรโมชั่นที่บอกยอดขั้นต่ำ เกมและค่ายที่ร่วมรายการ ระยะเวลา และเงื่อนไขการถอน ไปจนถึงหน้าบัญชีที่รวมยอดคงเหลือ
+      <p class="mb-8 text-left text-base leading-relaxed text-[#f2e7cd]">
+        การทดลองเล่นบน <strong class="text-[#fcf1b0]">TT1BET</strong> คือการเปิดหน้าจอชุดเดียวกับที่จะใช้จริงขึ้นมาไล่ดูให้ครบก่อนลงเงินของตัวเอง ตั้งแต่หน้ารวมเกมที่แยกตามผู้ให้บริการและประเภทของเกมตามที่ระบบรองรับ
+        หน้าข้อมูลของเกมที่ระบุ RTP ความผันผวน ตารางจ่าย และเงื่อนไขของฟีเจอร์โบนัส หน้าโปรโมชั่นที่บอกจำนวนเครดิต ยอดฝากขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา และเงื่อนไขการถอน ไปจนถึงหน้าบัญชีที่รวมยอดคงเหลือ
         ประวัติฝากถอน และสถานะธุรกรรมไว้ตรวจย้อนหลัง เพราะสิ่งที่ทำให้ผู้เล่นใหม่เสียเงินโดยไม่จำเป็นมักไม่ใช่ดวง แต่เป็นการกดยืนยันโดยยังไม่รู้ว่ารายการตรงหน้าคิดผลจากอะไร เช่น
-        เชื่อคำว่าลิขสิทธิ์แท้หรือแตกง่ายโดยยังไม่ได้เปิดดูชื่อค่ายและตารางจ่ายของเกมนั้น ตั้งวงเงินต่อรอบจากตัวเลขรางวัลสูงสุดที่เห็นบนหน้าจอแทนที่จะตั้งจากงบที่วางไว้
+        เชื่อคำว่าเกมดังหรือแตกง่ายโดยยังไม่ได้เปิดดูชื่อค่ายและตารางจ่ายของเกมนั้น ตั้งวงเงินต่อรอบจากตัวเลขรางวัลสูงสุดที่เห็นบนหน้าจอแทนที่จะตั้งจากงบที่วางไว้
         กดรับโปรโมชั่นทั้งที่เกมที่จะเล่นไม่ได้ร่วมรายการ หรือกดยืนยันฝากถอนซ้ำเพราะไม่ได้รอให้ระบบแสดงสถานะของรายการเดิมก่อน ความเข้าใจคลาดเคลื่อนเหล่านี้แก้ทีหลังได้ยากเมื่อรายการเข้าสู่ระบบไปแล้ว
         แต่ป้องกันได้เกือบทั้งหมดด้วยการเปิดดูหนึ่งรอบก่อน สี่ขั้นด้านล่างคือสิ่งที่ควรไล่ดูให้ครบ และเป็นลำดับเดียวกับที่ใช้จริงเมื่อเล่นด้วยเงินของตัวเอง
       </p>
 
-      <div class="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2" role="list" aria-label="สี่ขั้นตอนที่ควรศึกษาก่อนเล่นสล็อตด้วยเงินจริงบน PATTAYA168">
+      <div class="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2" role="list" aria-label="สี่ขั้นตอนที่ควรศึกษาก่อนเล่นคาสิโนและสล็อตด้วยเงินจริงบน TT1BET">
         {
           trySteps.map((step) => (
-            <div role="listitem" class="rounded-2xl border border-[#0c8ba4]/40 bg-[#03303c]/70 p-5 transition-colors duration-300 hover:border-[#02c4e3]/60">
-              <p class="mb-2 flex items-center gap-3 text-base font-bold text-[#8ff5ff]">
+            <div role="listitem" class="rounded-2xl border border-[#6d4a13]/40 bg-[#241a0d]/70 p-5 transition-colors duration-300 hover:border-[#e9c341]/60">
+              <p class="mb-2 flex items-center gap-3 text-base font-bold text-[#fcf1b0]">
                 <span aria-hidden="true" class="text-2xl">
                   {step.icon}
                 </span>
                 {step.label}
               </p>
-              <p class="text-left text-base leading-relaxed text-[#cfeef7]">{step.detail}</p>
+              <p class="text-left text-base leading-relaxed text-[#f2e7cd]">{step.detail}</p>
             </div>
           ))
         }
       </div>
 
-      <h2 class={`mt-8 mb-6 ${sectionHeadingClass}`}>สามชั้นข้อมูลที่ควรอ่านให้จบในช่วงทดลองก่อนหมุนรอบแรกด้วยเงินจริง</h2>
+      <h2 class={`mt-8 mb-6 ${sectionHeadingClass}`}>สามชั้นข้อมูลที่ควรอ่านให้จบในช่วงทดลองก่อนเล่นรอบแรกด้วยเงินจริง</h2>
 
-      <p class="mb-4 text-left text-base leading-relaxed text-[#cfeef7]">
-        เกมสล็อตแต่ละตัววางกติกากันคนละแบบ บางเกมจ่ายจากเส้นที่กำหนดไว้ตายตัว บางเกมนับผลจากสัญลักษณ์ที่ติดกันเป็นกลุ่ม และฟีเจอร์โบนัสก็เข้าเงื่อนไขคนละอย่าง
-        เมื่อระบบรวมเกมจากผู้ให้บริการหลายรายไว้ด้วยกัน เกมสองตัวที่วางอยู่ติดกันบนหน้าจอจึงอาจใช้ RTP ความผันผวน ตารางจ่าย และวงเงินขั้นต่ำคนละชุด
-        สิ่งที่ควรได้จากการทดลองจึงเป็นความเข้าใจว่าเกมตรงหน้าคิดผลจากอะไร ไม่ใช่การจำว่าปุ่มหมุนอยู่ตรงไหน เรื่องที่ควรอ่านให้จบมีสามชั้น ชั้นแรกคือตัวเกม ทั้งชื่อผู้ให้บริการ รายละเอียดเกม
-        และตารางจ่าย ซึ่งเป็นชั้นที่ตอบว่าสัญลักษณ์ชุดไหนจ่ายเท่าไรและฟีเจอร์โบนัสเข้าเงื่อนไขเมื่อใด และเป็นข้อมูลที่ควรใช้แทนคำว่าลิขสิทธิ์แท้ในการประเมินความน่าเชื่อถือ ชั้นที่สองคือ RTP
-        กับความผันผวนที่ต้องอ่านคู่กันเสมอ RTP เป็นค่าที่ผู้ให้บริการระบุไว้ในระยะยาว ไม่ใช่สิ่งที่รับประกันผลของรอบใดรอบหนึ่ง ส่วนความผันผวนบอกจังหวะการจ่ายว่าถี่และน้อย หรือห่างและก้อนใหญ่
-        ค่าสูงในช่องใดช่องหนึ่งจึงไม่ได้แปลว่าเกมนั้นได้เปรียบกว่า ชั้นที่สามคือขอบเขตของโปรโมชั่นและของบัญชี ทั้งยอดขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา เงื่อนไขการถอน และวงเงินของแต่ละรายการ
-        ค่าเหล่านี้เป็นค่าเฉพาะของรายการนั้นและเปลี่ยนได้ระหว่างช่วงกิจกรรม จึงต้องอ่านจากหน้าที่ระบบแสดงจริง ไม่ใช่จากที่จำมาจากรอบก่อน เรื่องสุดท้ายในขั้นนี้คือการอ่านยอดให้ถูกช่อง
-        เงินเดิมพันต่อหนึ่งรอบกับยอดที่ใช้ไปทั้งเซสชันเป็นคนละยอด และเมื่อหมุนต่อเนื่องหลายรอบ ยอดรวมจะโตเร็วกว่าที่คาดไว้เสมอ การตั้งวงเงินต่อรอบให้ต่ำไว้ตอนเริ่มจึงช่วยได้จริง
+      <p class="mb-4 text-left text-base leading-relaxed text-[#f2e7cd]">
+        เกมแต่ละประเภทวางกติกากันคนละแบบ สล็อตบางเกมจ่ายจากเส้นที่กำหนดไว้ตายตัว บางเกมนับผลจากสัญลักษณ์ที่ติดกันเป็นกลุ่ม ส่วนบาคาร่าและคาสิโนสดนับผลจากกติกาของโต๊ะและอัตราจ่ายของแต่ละฝั่งเดิมพัน
+        เมื่อระบบรวมเกมจากหลายค่ายไว้ด้วยกัน เกมสองตัวที่วางอยู่ติดกันบนหน้าจอจึงอาจใช้ฟีเจอร์ อัตราจ่าย ความผันผวน และวงเงินคนละชุด สิ่งที่ควรได้จากการทดลองจึงเป็นความเข้าใจว่าเกมตรงหน้าคิดผลจากอะไร
+        ไม่ใช่การจำว่าปุ่มยืนยันอยู่ตรงไหน เรื่องที่ควรอ่านให้จบมีสามชั้น ชั้นแรกคือตัวเกม ทั้งชื่อผู้ให้บริการ รายละเอียดเกม กติกา และตารางจ่าย ซึ่งเป็นชั้นที่ตอบว่าผลแบบไหนจ่ายเท่าไรและฟีเจอร์โบนัสเข้าเงื่อนไขเมื่อใด
+        และเป็นข้อมูลที่ควรใช้แทนคำว่าเกมดังในการประเมิน ชั้นที่สองคือ RTP กับความผันผวนที่ต้องอ่านคู่กันเสมอ RTP เป็นค่าที่ผู้ให้บริการระบุไว้ในระยะยาว ไม่ใช่สิ่งที่รับประกันผลของรอบใดรอบหนึ่ง
+        ส่วนความผันผวนบอกจังหวะการจ่ายว่าถี่และน้อย หรือห่างและก้อนใหญ่ ค่าสูงในช่องใดช่องหนึ่งจึงไม่ได้แปลว่าเกมนั้นได้เปรียบกว่า เพราะเกมแต่ละค่ายมีโครงสร้างความเสี่ยงต่างกัน
+        ชั้นที่สามคือขอบเขตของโปรโมชั่นและของบัญชี ทั้งจำนวนเครดิต ยอดฝากขั้นต่ำ เกมที่ร่วมรายการ ระยะเวลา เงื่อนไขการถอน และวงเงินของแต่ละรายการ ค่าเหล่านี้เป็นค่าเฉพาะของรายการนั้นและเปลี่ยนได้ระหว่างช่วงกิจกรรม
+        จึงต้องอ่านจากหน้าที่ระบบแสดงจริง ไม่ใช่จากที่จำมาจากรอบก่อน เรื่องสุดท้ายในขั้นนี้คือการอ่านยอดให้ถูกช่อง เงินเดิมพันต่อหนึ่งรอบกับยอดที่ใช้ไปทั้งเซสชันเป็นคนละยอด
+        และเมื่อเล่นต่อเนื่องหลายรอบ ยอดรวมจะโตเร็วกว่าที่คาดไว้เสมอ การตั้งวงเงินต่อรอบให้ต่ำไว้ตอนเริ่มจึงช่วยได้จริง
       </p>
 
       <h2 class={`mt-8 mb-6 ${sectionHeadingClass}`}>สิ่งที่การทดลองเล่นบอกได้ และสิ่งที่บอกไม่ได้</h2>
 
-      <p class="mb-4 text-left text-base leading-relaxed text-[#cfeef7]">
-        สิ่งที่การทดลองบอกได้คือกลไกและขั้นตอน ได้แก่ วิธีหาเกมจากค่ายที่ต้องการ ตำแหน่งที่ระบบแสดง RTP ความผันผวน และตารางจ่าย ความต่างระหว่างเกมที่จ่ายจากเส้นกับเกมที่นับสัญลักษณ์เป็นกลุ่ม
-        เงื่อนไขที่ทำให้ฟีเจอร์โบนัสทำงาน ลำดับหน้าจอตั้งแต่เลือกเกมจนถึงหน้ายืนยันธุรกรรม จุดที่ระบบแสดงเงื่อนไขของโปรโมชั่น และจุดที่เก็บประวัติฝากถอนกับเลขอ้างอิงไว้ตรวจย้อนหลัง
-        เมื่อรู้สิ่งเหล่านี้แล้ว การเล่นจริงจะเหลือแค่การตัดสินใจเรื่องเกมและงบ ไม่ต้องเสียสมาธิไปกับการหาปุ่มหรือเดาว่ารายการที่ยืนยันไปนั้นผูกกับอะไร สิ่งที่การทดลองบอกไม่ได้เลยคือผลของรอบถัดไป
-        ผลของรอบหนึ่งไม่ได้ถูกกำหนดจากรอบก่อนหน้า และเครดิตที่ใช้ในช่วงทดลองไม่ใช่เงินจริง ถอนไม่ได้ และไม่มีผลต่อยอดในบัญชีจริง ตัวเลขที่เห็นระหว่างทดลองจึงไม่ใช่ตัวแทนของผลจริงหรือของ RTP
-        ที่จะได้รับในระยะสั้น ช่วงที่ฟีเจอร์โบนัสเข้าถี่ผิดปกติหรือไม่เข้าเลยหลายสิบรอบก็เป็นเรื่องของความผันผวนในระยะสั้น ไม่ใช่สัญญาณว่ารอบถัดไปจะออกทางใด
-        และการนับสถิติจากรอบที่ผ่านมาก็ไม่ได้ทำให้คาดเดารอบหน้าได้แม่นขึ้น คำว่าลิขสิทธิ์แท้และจ่ายไวก็เป็นถ้อยคำที่ใช้สื่อถึงข้อมูลผู้ให้บริการและสถานะรายการที่ระบบแสดงเท่านั้น
-        ไม่ใช่การรับประกันผลตอบแทนหรือรับประกันว่าทุกธุรกรรมจะเสร็จในเวลาเท่ากัน เพราะระยะเวลาอาจขึ้นอยู่กับสถานะบัญชี ช่องทางการเงิน และขั้นตอนตรวจสอบของระบบ
-        ทุกอย่างจึงควรตรวจจากข้อมูลและเงื่อนไขที่ระบบแสดงจริงในขณะนั้น ไม่ใช่จากคำโฆษณา
+      <p class="mb-4 text-left text-base leading-relaxed text-[#f2e7cd]">
+        สิ่งที่การทดลองบอกได้คือกลไกและขั้นตอน ได้แก่ วิธีหาเกมจากค่ายที่ต้องการ ตำแหน่งที่ระบบแสดง RTP ความผันผวน และตารางจ่าย ความต่างระหว่างสล็อตที่จ่ายจากเส้นกับเกมที่นับสัญลักษณ์เป็นกลุ่ม
+        กติกาและอัตราจ่ายของโต๊ะบาคาร่าและคาสิโนสด เงื่อนไขที่ทำให้ฟีเจอร์โบนัสทำงาน ลำดับหน้าจอตั้งแต่เลือกเกมจนถึงหน้ายืนยันธุรกรรม จุดที่ระบบแสดงเงื่อนไขของโปรโมชั่น
+        และจุดที่เก็บประวัติฝากถอนกับเลขอ้างอิงไว้ตรวจย้อนหลัง เมื่อรู้สิ่งเหล่านี้แล้ว การเล่นจริงจะเหลือแค่การตัดสินใจเรื่องเกมและงบ ไม่ต้องเสียสมาธิไปกับการหาปุ่มหรือเดาว่ารายการที่ยืนยันไปนั้นผูกกับอะไร
+        สิ่งที่การทดลองบอกไม่ได้เลยคือผลของรอบถัดไป ผลของรอบหนึ่งไม่ได้ถูกกำหนดจากรอบก่อนหน้า และเครดิตที่ใช้ในช่วงทดลองไม่ใช่เงินจริง ถอนไม่ได้ และไม่มีผลต่อยอดในบัญชีจริง
+        ตัวเลขที่เห็นระหว่างทดลองจึงไม่ใช่ตัวแทนของผลจริงหรือของ RTP ที่จะได้รับในระยะสั้น ช่วงที่ฟีเจอร์โบนัสเข้าถี่ผิดปกติหรือไม่เข้าเลยหลายสิบรอบก็เป็นเรื่องของความผันผวนในระยะสั้น
+        ไม่ใช่สัญญาณว่ารอบถัดไปจะออกทางใด และการนับสถิติจากรอบที่ผ่านมาก็ไม่ได้ทำให้คาดเดารอบหน้าได้แม่นขึ้น คำว่าเกมดัง แตกง่าย และฝากง่ายจ่ายไวเป็นถ้อยคำที่ใช้สื่อถึงข้อมูลผู้ให้บริการและสถานะรายการที่ระบบแสดงเท่านั้น
+        ไม่ใช่การรับประกันผลตอบแทนหรือรับประกันว่าทุกธุรกรรมจะเสร็จในเวลาเท่ากัน เพราะระยะเวลาอาจขึ้นอยู่กับสถานะบัญชี ช่องทางธุรกรรม โปรโมชั่น และขั้นตอนตรวจสอบของระบบ
+        ทุกอย่างจึงควรตรวจจากข้อมูลและเงื่อนไขที่ระบบแสดงจริงในขณะนั้น ไม่ใช่จากคำโปรโมต
       </p>
 
-      <p class="mb-2 text-left text-base leading-relaxed text-[#cfeef7]">
+      <p class="mb-2 text-left text-base leading-relaxed text-[#f2e7cd]">
         เมื่อพร้อมจะขยับไปเล่นจริง สิ่งที่ควรจัดให้เรียบร้อยก่อนมีสามอย่าง อย่างแรกคือบัญชี ควรใช้ข้อมูลที่ตรงกับตอนสมัคร ตั้งรหัสผ่านที่คาดเดายากและไม่ซ้ำกับบริการอื่น
         และเข้าใช้งานผ่านช่องทางหลักที่เว็บไซต์กำหนดเท่านั้น โดยตรวจชื่อเว็บไซต์และการเชื่อมต่อแบบ HTTPS ทุกครั้งก่อนกรอกข้อมูล และหลีกเลี่ยงเครือข่ายสาธารณะเมื่อต้องจัดการข้อมูลบัญชี
         อย่างที่สองคืองบประมาณ ควรกำหนดวงเงินต่อวันไว้ล่วงหน้า ใช้เฉพาะเงินที่ไม่กระทบค่าใช้จ่ายจำเป็น หยุดเมื่อถึงวงเงินที่ตั้งไว้ และไม่เพิ่มยอดต่อรอบเพื่อตามคืนสิ่งที่เสียไปก่อนหน้า
-        อย่างที่สามคือการติดตามรายการ หลังฝากถอนหรือรับสิทธิ์โปรโมชั่นแล้วให้ยึดสถานะและยอดคงเหลือจากหน้าบัญชีเป็นหลัก หลีกเลี่ยงการส่งคำขอซ้ำขณะที่รายการเดิมยังดำเนินการอยู่ และหากพบรายการที่ผิดปกติ
-        ให้เตรียมเวลา จำนวนเงิน และเลขอ้างอิงไว้แจ้งทีมงานตั้งแต่ข้อความแรก โดยไม่เปิดเผยรหัสผ่านหรือรหัส OTP แก่ผู้ใด
+        อย่างที่สามคือการติดตามรายการ หลังฝากถอนหรือรับสิทธิ์โปรโมชั่นแล้วให้ยึดสถานะและยอดคงเหลือจากหน้าบัญชีเป็นหลัก หลีกเลี่ยงการส่งคำขอซ้ำขณะที่รายการเดิมยังดำเนินการอยู่
+        และหากสถานะไม่อัปเดตตามปกติ ให้เตรียมเวลา จำนวนเงิน และเลขอ้างอิงไว้แจ้งทีมงานตั้งแต่ข้อความแรก โดยไม่เปิดเผยรหัสผ่านหรือรหัส OTP แก่ผู้ใด
       </p>
     </div>
   </ContentBox>

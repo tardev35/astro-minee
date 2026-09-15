@@ -8,29 +8,29 @@ export interface Props {
 const { title, titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
 const rightHeading = titleright ?? title;
 
-// JAIDEEJING neumorphic pair: the page ink (#120403) casts the dark side of the
-// extrusion and the lifted maroon (#3a1008) the lit side, matching
-// ContentBoxNeumorphism so the two read as one raised system on the near-black
-// red page.
+// TT1BET neumorphic pair: the page ink (#0b0805) casts the dark side of the
+// extrusion and the raised warm surface (#241a0d) the lit side, matching
+// ContentBoxNeumorphism and ContentBoxTwoNeumorphism so all three read as one
+// raised system on the warm near-black page.
 //
-// Both column titles render at `as`, which defaults to "h2": the JAIDEEJING
-// docx is flat H1 + H2 with no nested sub-headings, and the page's heading
-// inventory is diffed against that brief. A column that carries no docx heading
-// simply omits its prop — index.astro passes only `title` here, so the image
-// column stays headingless and the section contributes exactly one <h2>.
+// Both column titles render at `as`, which defaults to "h2": the TT1BET docx is
+// flat H1 + H2 with no nested sub-headings, and the page's heading inventory is
+// diffed against that brief. A column that carries no docx heading simply omits
+// its prop — index.astro passes only `title` here, so the image column stays
+// headingless and the section contributes exactly one <h2>.
 ---
 
 <section class="relative z-10 mx-auto mb-8 w-full max-w-[1400px] px-4 font-sans">
   <div
-    class="w-full rounded-[25px] border border-[#8f1a10]/55 bg-[#2e0b07] p-8 shadow-[10px_10px_20px_#120403,-10px_-10px_20px_#3a1008] transition-all duration-300 hover:shadow-[15px_15px_30px_#120403,-15px_-15px_30px_#3a1008]">
+    class="w-full rounded-[25px] border border-[#6d4a13]/55 bg-[#171008] p-8 shadow-[10px_10px_20px_#0b0805,-10px_-10px_20px_#241a0d] transition-all duration-300 hover:shadow-[15px_15px_30px_#0b0805,-15px_-15px_30px_#241a0d]">
     <div class="grid grid-cols-1 gap-8 md:grid-cols-[3fr_7fr] md:items-center">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f7e4c0]">
-        {titleleft && <HeadingTag class="text-2xl leading-normal font-black text-[#f5c451]">{titleleft}</HeadingTag>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f2e7cd]">
+        {titleleft && <HeadingTag class="text-2xl leading-normal font-black text-[#e9c341]">{titleleft}</HeadingTag>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f7e4c0] md:border-l md:border-[#8f1a10]/55 md:pl-8">
-        {rightHeading && <HeadingTag class="text-2xl leading-normal font-black text-[#f5c451]">{rightHeading}</HeadingTag>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f2e7cd] md:border-l md:border-[#6d4a13]/55 md:pl-8">
+        {rightHeading && <HeadingTag class="text-2xl leading-normal font-black text-[#e9c341]">{rightHeading}</HeadingTag>}
         <slot name="right" />
       </article>
     </div>

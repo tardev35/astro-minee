@@ -12,10 +12,10 @@ const targetUrl = "https://tinyurl.com/2ac7ys5h";
 // family nothing draws with is never downloaded, so carrying both costs zero
 // bytes and means the next rotation cannot silently break this page.
 //
-// This brand is on Kanit (BRAND_FONT rotated off google-sans), so `fontStack`
-// resolves to the Kanit stack and the two kanit-v17 weights below are the files
-// this page actually uses. All four live in public/fonts — the brand font is
-// self-hosted on either setting and never comes from a CDN.
+// This brand is on Google Sans (BRAND_FONT rotated off kanit), so `fontStack`
+// resolves to the Google Sans stack and the two google-sans-v70 subsets below
+// are the files this page actually uses. All six live in public/fonts — the
+// brand font is self-hosted on either setting and never comes from a CDN.
 //
 // Oswald is the one face that genuinely needs the CDN: the Latin status heading
 // draws with it and it is not self-hosted, which is all `fontHref` asks for.
@@ -35,7 +35,7 @@ const fontHref = "https://fonts.googleapis.com/css2?family=Oswald:wght@700&displ
 <html lang="th" style={`--font-sans: ${fontStack};`}>
   <head>
     <meta charset="utf-8" />
-    <title>PATTAYA168 | สมัครสมาชิกสล็อตลิขสิทธิ์ผ่านช่องทางหลัก</title>
+    <title>TT1BET | สมัครสมาชิกคาสิโนสล็อตผ่านช่องทางหลัก</title>
 
     {
       /* The docx has no SUB-PAGES row for สมัครสมาชิก, so this pair is written
@@ -43,13 +43,13 @@ const fontHref = "https://fonts.googleapis.com/css2?family=Oswald:wght@700&displ
         verb, so it says what THIS page is — registering. An earlier brand opened
         this sentence with "ทางเข้าเล่นและสมัครสมาชิก", which described /ทางเข้า
         instead and gave two routes the same promise.
-        Written to the site-wide 150–160 window (153) even though this stub is
+        Written to the site-wide 150–160 window (156) even though this stub is
         noindex and verify-build.mjs puts that gate after
         `if (!indexable) continue;` — the window is what keeps an invented
         description from growing a clause per rebrand.
         Count CHARACTERS, not bytes: Thai is 3 bytes per character. */
     }
-    <meta name="description" content="PATTAYA168 สมัครสมาชิกสล็อตลิขสิทธิ์ผ่านช่องทางหลัก รองรับมือถือ พร้อมเลือกค่ายเกม ตรวจ RTP ตารางจ่าย โปรโมชั่น บัญชี และสถานะธุรกรรมได้สะดวกจากระบบเดียว" />
+    <meta name="description" content="TT1BET สมัครสมาชิกคาสิโนสล็อตผ่านช่องทางหลัก รองรับมือถือ พร้อมเลือกค่ายเกมหลายรูปแบบ ตรวจโปรโมชั่น โบนัส ระบบบัญชี และสถานะธุรกรรมให้ตรวจสอบได้จากระบบเดียว" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {
@@ -107,39 +107,40 @@ const fontHref = "https://fonts.googleapis.com/css2?family=Oswald:wght@700&displ
     </style>
 
     <style>
-      /* This brand is a Thai slot house painted as a tropical bay after dark:
-         the identity hue is the turquoise of its own artwork — the logo disc,
-         the palm over water ripples, the lit bay behind it — and it runs the top
-         of the ramp, from a pale seafoam highlight down to a deep lagoon teal.
-         Gold is the genuine second hue, not a tint of the first: it carries the
-         sunset and the numbered balls in the mark, and it warms the middle of
-         every gradient before the ramp bottoms out in the near-black ocean ink
-         the page itself is painted on. There is no button on this screen, so
-         nothing needs a separate call-to-action colour.
+      /* This brand is a Thai casino house painted as a gold-lit floor after
+         dark: the identity hue is the gold of its own artwork — the chandeliers,
+         the stacked chips, the rim of the roulette wheel — and it runs the top
+         of the ramp, from a pale champagne highlight down through bronze into a
+         deep bronze shadow. Crimson is the genuine second hue, not a tint of the
+         first: it is the red of the wheel's pockets and the gown in the artwork,
+         and it appears once, on the outer ring, so it reads as an accent rather
+         than a rival. Everything bottoms out in the warm near-black the page
+         itself is painted on. There is no button on this screen, so nothing
+         needs a separate call-to-action colour.
          The .brand-identity gradient reads the wordmark top to bottom the way
-         the artwork reads: white foam through seafoam into turquoise, then down
-         through the gold of the sunset into that deep teal.
+         the artwork reads: brushed silver-white through champagne into gold,
+         then down through bronze into that deep bronze shadow.
          Naming a previous brand or quoting its hexes in this comment is what a
          dist/ grep for the old name would find, so the description stays
          generic on purpose.
          Every variable is NAMED FOR THE COLOUR IT HOLDS, which previous brands
          stopped doing: this block once declared `--brand-gold` on brands with no
          gold in them and `--brand-red` on a blue one, so the next editor reused
-         it by name and shipped the wrong hue. Hence `--cyan*` for the primary
-         ramp, `--gold*` for the second, and `--ink`/`--teal-deep` for the two
-         dark surfaces it ends on. Rename with the value. */
+         it by name and shipped the wrong hue. Hence `--gold*` for the primary
+         ramp, `--bronze*` for its deep end, `--crimson` for the second hue, and
+         `--ink`/`--panel` for the two dark surfaces. Rename with the value. */
       :root {
-        --ink: #021c22;
-        --panel: rgba(4, 34, 43, 0.94);
-        --cyan: #02c4e3;
-        --cyan-light: #8ff5ff;
-        --cyan-deep: #0c8ba4;
-        --gold: #fdac13;
-        --gold-deep: #f0820c;
-        --teal-deep: #03303c;
+        --ink: #0b0805;
+        --panel: rgba(23, 16, 8, 0.94);
+        --gold: #e9c341;
+        --gold-light: #fcf1b0;
+        --gold-pale: #fff8d6;
+        --bronze: #b8862a;
+        --bronze-deep: #6d4a13;
+        --crimson: #9e1b13;
         --white: #ffffff;
-        --text: #cfeef7;
-        --text-dim: #9ac6d6;
+        --text: #f2e7cd;
+        --text-dim: #c2ad85;
       }
 
       body {
@@ -147,7 +148,7 @@ const fontHref = "https://fonts.googleapis.com/css2?family=Oswald:wght@700&displ
         font-family: var(--font-sans);
         color: var(--text);
 
-        background: radial-gradient(circle at 50% 10%, rgba(2, 196, 227, 0.16) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(12, 139, 164, 0.55) 0%, transparent 55%), var(--ink);
+        background: radial-gradient(circle at 50% 10%, rgba(233, 195, 65, 0.16) 0%, transparent 55%), radial-gradient(circle at 50% 92%, rgba(184, 134, 42, 0.55) 0%, transparent 55%), var(--ink);
         display: flex;
         min-height: 100vh;
         flex-direction: column;
@@ -161,11 +162,11 @@ const fontHref = "https://fonts.googleapis.com/css2?family=Oswald:wght@700&displ
         max-width: 450px;
         padding: 3.5rem;
         background: var(--panel);
-        border: 1px solid rgba(2, 196, 227, 0.45);
+        border: 1px solid rgba(233, 195, 65, 0.45);
         border-radius: 2rem;
         box-shadow:
-          0 1rem 3rem rgba(2, 196, 227, 0.24),
-          0 0 2rem rgba(12, 139, 164, 0.55);
+          0 1rem 3rem rgba(233, 195, 65, 0.24),
+          0 0 2rem rgba(184, 134, 42, 0.55);
         text-align: center;
         backdrop-filter: blur(10px);
       }
@@ -174,13 +175,13 @@ const fontHref = "https://fonts.googleapis.com/css2?family=Oswald:wght@700&displ
         font-family: var(--font-sans);
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(180deg, var(--white) 0%, var(--cyan-light) 20%, var(--cyan) 44%, var(--gold) 64%, var(--gold-deep) 80%, var(--teal-deep) 100%);
+        background: linear-gradient(180deg, var(--white) 0%, var(--gold-pale) 20%, var(--gold-light) 40%, var(--gold) 62%, var(--bronze) 80%, var(--bronze-deep) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         letter-spacing: 0.12em;
         margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 2px rgba(2, 28, 34, 0.6));
+        filter: drop-shadow(0 1px 2px rgba(11, 8, 5, 0.6));
       }
 
       .sophisticated-loader {
@@ -196,30 +197,30 @@ const fontHref = "https://fonts.googleapis.com/css2?family=Oswald:wght@700&displ
       .orb {
         width: 40px;
         height: 40px;
-        background: radial-gradient(circle, var(--cyan-light) 0%, var(--cyan) 55%, var(--gold-deep) 100%);
+        background: radial-gradient(circle, var(--gold-pale) 0%, var(--gold) 55%, var(--bronze-deep) 100%);
         border-radius: 50%;
-        box-shadow: 0 0 2rem rgba(2, 196, 227, 0.45);
+        box-shadow: 0 0 2rem rgba(233, 195, 65, 0.45);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .ring {
         position: absolute;
         border-radius: 50%;
-        border: 3px solid rgba(2, 196, 227, 0.2);
+        border: 3px solid rgba(233, 195, 65, 0.2);
         animation: spin linear infinite;
       }
 
       .ring-1 {
         width: 100%;
         height: 100%;
-        border-top-color: var(--cyan);
+        border-top-color: var(--gold);
         animation-duration: 4s;
       }
 
       .ring-2 {
         width: 80%;
         height: 80%;
-        border-bottom-color: var(--gold);
+        border-bottom-color: var(--crimson);
         animation-duration: 6s;
         animation-direction: reverse;
       }
@@ -236,11 +237,11 @@ const fontHref = "https://fonts.googleapis.com/css2?family=Oswald:wght@700&displ
         0%,
         100% {
           transform: scale(1);
-          box-shadow: 0 0 2rem rgba(2, 196, 227, 0.45);
+          box-shadow: 0 0 2rem rgba(233, 195, 65, 0.45);
         }
         50% {
           transform: scale(1.15);
-          box-shadow: 0 0 3rem rgba(143, 245, 255, 0.55);
+          box-shadow: 0 0 3rem rgba(252, 241, 176, 0.55);
         }
       }
 
@@ -251,7 +252,7 @@ const fontHref = "https://fonts.googleapis.com/css2?family=Oswald:wght@700&displ
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text);
-        text-shadow: 0 1px 1px rgba(2, 28, 34, 0.6);
+        text-shadow: 0 1px 1px rgba(11, 8, 5, 0.6);
         margin: 0;
       }
       .status-text .p {
@@ -264,7 +265,7 @@ const fontHref = "https://fonts.googleapis.com/css2?family=Oswald:wght@700&displ
   </head>
   <body>
     <div class="premium-loading-container">
-      <div class="brand-identity">PATTAYA168</div>
+      <div class="brand-identity">TT1BET</div>
 
       <div class="sophisticated-loader">
         <div class="orb"></div>
@@ -274,7 +275,7 @@ const fontHref = "https://fonts.googleapis.com/css2?family=Oswald:wght@700&displ
 
       <div class="status-text">
         <h1 class="h1">CREATING SECURE ACCOUNT SESSION...</h1>
-        <p class="p">กำลังพาไปหน้าสมัครสมาชิก PATTAYA168 อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
+        <p class="p">กำลังพาไปหน้าสมัครสมาชิก TT1BET อย่างปลอดภัย <span aria-hidden="true">🔒</span></p>
       </div>
     </div>
 

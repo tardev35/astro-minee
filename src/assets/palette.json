@@ -3,138 +3,138 @@
     "logo.webp": {
       "dominant": [
         {
-          "hex": "#02c4e3",
-          "share": 0.031
+          "hex": "#040605",
+          "share": 0.11
         },
         {
-          "hex": "#01d5ea",
-          "share": 0.027
+          "hex": "#050807",
+          "share": 0.09
         },
         {
-          "hex": "#d1d4d3",
-          "share": 0.023
+          "hex": "#f4f4f4",
+          "share": 0.061
         },
         {
-          "hex": "#5afef1",
-          "share": 0.022
+          "hex": "#0a0a09",
+          "share": 0.036
         },
         {
-          "hex": "#01dbee",
-          "share": 0.022
+          "hex": "#ebeceb",
+          "share": 0.03
         }
       ],
       "vivid": [
         {
-          "hex": "#02c4e3",
-          "share": 0.031
+          "hex": "#eadd65",
+          "share": 0.023
         },
         {
-          "hex": "#01d5ea",
-          "share": 0.027
+          "hex": "#fcf6ab",
+          "share": 0.013
         },
         {
-          "hex": "#01dbee",
-          "share": 0.022
+          "hex": "#f9e25c",
+          "share": 0.01
         },
         {
-          "hex": "#5afef1",
-          "share": 0.022
+          "hex": "#f5dc59",
+          "share": 0.01
         },
         {
-          "hex": "#04fbfb",
-          "share": 0.022
+          "hex": "#c48226",
+          "share": 0.013
         }
       ]
     },
     "banner1.png": {
       "dominant": [
         {
-          "hex": "#d39374",
-          "share": 0.006
+          "hex": "#020201",
+          "share": 0.065
         },
         {
-          "hex": "#321d14",
-          "share": 0.005
+          "hex": "#1b140b",
+          "share": 0.026
         },
         {
-          "hex": "#e9b59a",
-          "share": 0.005
+          "hex": "#130c04",
+          "share": 0.025
         },
         {
-          "hex": "#e5b29a",
-          "share": 0.004
+          "hex": "#0a0501",
+          "share": 0.023
         },
         {
-          "hex": "#ecbba3",
-          "share": 0.004
+          "hex": "#0d0905",
+          "share": 0.017
         }
       ],
       "vivid": [
         {
-          "hex": "#e9b59a",
-          "share": 0.005
+          "hex": "#332313",
+          "share": 0.013
         },
         {
-          "hex": "#d39374",
+          "hex": "#3a240c",
+          "share": 0.008
+        },
+        {
+          "hex": "#3c2a15",
+          "share": 0.01
+        },
+        {
+          "hex": "#422c12",
+          "share": 0.007
+        },
+        {
+          "hex": "#5c3b14",
           "share": 0.006
-        },
-        {
-          "hex": "#ecbba3",
-          "share": 0.004
-        },
-        {
-          "hex": "#0c8ba4",
-          "share": 0.003
-        },
-        {
-          "hex": "#e5b29a",
-          "share": 0.004
         }
       ]
     },
     "slide1.png": {
       "dominant": [
         {
-          "hex": "#021c22",
-          "share": 0.006
+          "hex": "#030101",
+          "share": 0.08
         },
         {
-          "hex": "#1b0b04",
-          "share": 0.005
+          "hex": "#0b0401",
+          "share": 0.035
         },
         {
-          "hex": "#02242a",
-          "share": 0.005
+          "hex": "#140b03",
+          "share": 0.026
         },
         {
-          "hex": "#f5ccbc",
-          "share": 0.004
+          "hex": "#1b0c02",
+          "share": 0.022
         },
         {
-          "hex": "#022a33",
-          "share": 0.004
+          "hex": "#231304",
+          "share": 0.014
         }
       ],
       "vivid": [
         {
-          "hex": "#f5ccbc",
-          "share": 0.004
+          "hex": "#4c0503",
+          "share": 0.008
         },
         {
-          "hex": "#fdac13",
-          "share": 0.003
+          "hex": "#430402",
+          "share": 0.006
         },
         {
-          "hex": "#03344b",
-          "share": 0.003
+          "hex": "#3b230b",
+          "share": 0.008
         },
         {
-          "hex": "#fcd4c3",
-          "share": 0.003
+          "hex": "#331d0b",
+          "share": 0.008
         },
         {
-          "hex": "#032c3c",
-          "share": 0.003
+          "hex": "#ecb59a",
+          "share": 0.007
         }
       ]
     }

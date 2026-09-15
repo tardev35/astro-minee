@@ -1,6 +1,7 @@
 ---
 import { isActivePath } from "../lib/nav";
 import { Picture } from "astro:assets";
+import { BRAND_NAME } from "../lib/brandProfile";
 const images = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
 
 const imagePaths = Object.keys(images);
@@ -18,37 +19,48 @@ const isActive = (path: string) => isActivePath(currentPath, path);
 //
 // /login and /register are noindex forwarding stubs on this brand, so they get
 // no menu entries — which also makes the "สมัครสมาชิก/เข้าสู่ระบบ sit right
-// after โปรโมชั่น" ordering rule a no-op here.
+// after โปรโมชั่น" ordering rule a no-op here, and keeps /ทางเข้า in the menu
+// as the one place a visitor reaches both actions.
+//
+// TT1BET is a casino/slot brand, so there are no /ตรวจหวย or /แนวทาง entries —
+// both pages are parked in src/pages-disabled/ this round. Linking either would
+// point at a route that does not exist, which verify-build.mjs treats as an
+// error.
+//
+// Icons match the genre: a gold-luxury casino house leads with the chip and the
+// card table rather than the beach iconography the outgoing brand used.
 const links = [
   { name: "หน้าแรก", path: "/", icon: "🏠" },
   { name: "โปรโมชั่น", path: "/promotion", icon: "🎁" },
-  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🃏" },
-  { name: "ทางเข้า", path: "/ทางเข้า", icon: "🌐" },
-  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "💎" },
+  { name: "ทดลองเล่น", path: "/ทดลองเล่น", icon: "🎲" },
+  { name: "ทางเข้า", path: "/ทางเข้า", icon: "🚪" },
+  { name: "เกี่ยวกับเรา", path: "/about-us", icon: "👑" },
   { name: "ติดต่อเรา", path: "/contact-us", icon: "📞" },
 ];
+
+const logoAlt = `โลโก้ ${BRAND_NAME} เป็นตัวพิมพ์ใหญ่หนาขอบมน ครึ่งซ้ายเขียนว่า TT1 เป็นสีขาวเงินไล่เฉด ครึ่งขวาเขียนว่า BET เป็นสีทองไล่เฉด ทั้งคำมีเส้นขอบสีดำและเงาตกกระทบด้านล่าง`;
 ---
 
-<nav class="sticky top-0 z-50 w-full border-b border-[#ef2b09]/50 bg-[#0d0402] shadow-[0_0_20px_rgba(239,43,9,0.28)]">
+<nav class="sticky top-0 z-50 w-full border-b border-[#e9c341]/50 bg-[#0b0805] shadow-[0_0_20px_rgba(233,195,65,0.28)]">
   <div class="flex h-[75px] w-full items-center justify-between px-4 xl:px-8">
     <div class="z-50 flex items-center">
       <a href="/" class="group relative flex items-center">
-        <div aria-hidden="true" class="absolute inset-0 scale-0 rounded-full bg-[#ef2b09]/25 blur-xl transition-transform duration-500 group-hover:scale-150"></div>
+        <div aria-hidden="true" class="absolute inset-0 scale-0 rounded-full bg-[#e9c341]/25 blur-xl transition-transform duration-500 group-hover:scale-150"></div>
         {
           mainLogo ? (
             <Picture
               src={mainLogo}
-              alt="โลโก้ HOT189 ตัวอักษร HOT สีทองลายไฟลุกบนขอบแดง ต่อด้วยเลข 189 มีไพ่เอซสามใบติดไฟอยู่ด้านบน และข้อความ SPORT BETTING AND CASINO ONLINE อยู่ด้านล่าง"
+              alt={logoAlt}
               loading="eager"
               fetchpriority="high"
               widths={[110, 220, 330]}
               sizes="110px"
-              class="relative h-[40px] w-auto drop-shadow-[0_0_10px_rgba(255,122,24,0.4)] transition-transform group-hover:scale-105 xl:h-[45px]"
+              class="relative h-[40px] w-auto drop-shadow-[0_0_10px_rgba(233,195,65,0.4)] transition-transform group-hover:scale-105 xl:h-[45px]"
               formats={["avif", "webp"]}
               fallbackFormat="webp"
             />
           ) : (
-            <span class="relative bg-gradient-to-b from-[#ffe86b] to-[#ef2b09] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_10px_rgba(252,211,4,0.45)]">HOT189</span>
+            <span class="relative bg-gradient-to-b from-[#fff8d6] to-[#b8862a] bg-clip-text text-3xl font-black text-transparent drop-shadow-[0_0_10px_rgba(233,195,65,0.45)]">{BRAND_NAME}</span>
           )
         }
       </a>
@@ -59,12 +71,12 @@ const links = [
         links.map((link) => (
           <a
             href={link.path}
-            class={`group relative px-5 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive(link.path) ? "bg-[#ef2b09]/20 border-[#fcd304] shadow-[0_0_15px_rgba(239,43,9,0.45)]" : "bg-white/5 border-white/10 hover:border-[#ff7a18]/60"}`}>
+            class={`group relative px-5 py-2.5 skew-x-[-15deg] overflow-hidden border transition-all duration-300 ${isActive(link.path) ? "bg-[#e9c341]/20 border-[#fff8d6] shadow-[0_0_15px_rgba(233,195,65,0.45)]" : "bg-white/5 border-white/10 hover:border-[#b8862a]/60"}`}>
             <div
               aria-hidden="true"
-              class={`absolute inset-0 bg-gradient-to-r from-[#8f1505] to-[#ef2b09] translate-y-full transition-transform duration-300 ${isActive(link.path) ? "translate-y-0 opacity-25" : "group-hover:translate-y-0 opacity-40"}`}
+              class={`absolute inset-0 bg-gradient-to-r from-[#6d4a13] to-[#e9c341] translate-y-full transition-transform duration-300 ${isActive(link.path) ? "translate-y-0 opacity-25" : "group-hover:translate-y-0 opacity-40"}`}
             />
-            <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive(link.path) ? "text-[#fcd304]" : "text-[#d9ac86] group-hover:text-white"}`}>
+            <span class={`block skew-x-[15deg] relative z-10 font-bold tracking-wide transition-colors ${isActive(link.path) ? "text-[#fff8d6]" : "text-[#d8c39a] group-hover:text-white"}`}>
               <span aria-hidden="true" class="mr-1">
                 {link.icon}
               </span>
@@ -78,7 +90,7 @@ const links = [
     <div class="z-50 flex items-center gap-2">
       <button
         id="hamburger-btn"
-        class="relative flex h-[45px] w-[45px] flex-col items-center justify-center space-y-1.5 rounded-md border border-[#ef2b09]/40 bg-[#8f1505]/25 p-2 transition-all hover:bg-[#8f1505]/45 xl:hidden"
+        class="relative flex h-[45px] w-[45px] flex-col items-center justify-center space-y-1.5 rounded-md border border-[#e9c341]/40 bg-[#6d4a13]/25 p-2 transition-all hover:bg-[#6d4a13]/45 xl:hidden"
         aria-label="Toggle menu">
         <span class="hamburger-line h-[2px] w-6 origin-center bg-white transition-all duration-300"></span>
         <span class="hamburger-line h-[2px] w-6 bg-white transition-all duration-300"></span>
@@ -91,13 +103,13 @@ const links = [
 
   <div
     id="mobile-sidebar"
-    class="fixed top-0 right-0 z-40 h-screen w-[280px] translate-x-full transform overflow-y-auto border-l border-[#ef2b09]/50 bg-[#0d0402] shadow-[-10px_0_30px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out xl:hidden">
+    class="fixed top-0 right-0 z-40 h-screen w-[280px] translate-x-full transform overflow-y-auto border-l border-[#e9c341]/50 bg-[#0b0805] shadow-[-10px_0_30px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out xl:hidden">
     <div class="flex flex-col space-y-3 px-6 pt-24 pb-10">
       {
         links.map((link) => (
           <a
             href={link.path}
-            class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive(link.path) ? "bg-[#ef2b09]/20 border-[#fcd304] text-[#fcd304] shadow-[inset_4px_0_0_rgba(239,43,9,1)]" : "bg-white/5 border-transparent text-[#d9ac86] hover:bg-white/10 hover:text-white"}`}>
+            class={`sidebar-item flex items-center px-4 py-3.5 rounded-lg border transition-all ${isActive(link.path) ? "bg-[#e9c341]/20 border-[#fff8d6] text-[#fff8d6] shadow-[inset_4px_0_0_rgba(233,195,65,1)]" : "bg-white/5 border-transparent text-[#d8c39a] hover:bg-white/10 hover:text-white"}`}>
             <span aria-hidden="true" class="mr-3 text-xl">
               {link.icon}
             </span>

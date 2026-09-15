@@ -12,38 +12,42 @@ const { title, titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
 // sentence has to wrap rather than blow past the viewport, and the wrapped badge
 // has to clear the grid below it.
 //
-// Re-measured against FINN20's H2-7 title, the one this brand feeds it
-// ("จ่ายไวบน FINN20 ควรตรวจจากสถานะรายการจริง", 40 chars). Mobile at a 375px
+// Re-measured against TT1BET's H2-4 title, the one this brand feeds it
+// ("ฝากง่ายควรมาพร้อมข้อมูลรายการที่ตรวจสอบได้", 42 chars). Mobile at a 375px
 // viewport: the card is 343px inside the section's px-4, the badge is w-[92%] =
 // 315px, and after px-4 (32px), border-2 (4px), the two ✦ spans (~28px) and
 // their gap-2 pair (16px) about 235px is left for text. text-lg at
 // leading-normal = 27px a line wraps that title to 3 lines at worst → 3×27 + 20
 // (py-2.5) + 4 (border-2) = 105px tall, bottom edge at 105 − 24 = 81px into the
-// card, inside pt-32 (128px). Desktop: text-2xl at 36px a line over ~548px
+// card, inside pt-32 (128px). Desktop: md:text-2xl at 36px a line over ~548px
 // wraps to 2 lines → 96px tall, bottom edge at 72px, inside md:pt-28 (112px).
 // pt-16/pt-18 are the documented floor; these sit well above it and are kept in
 // sync with the other two *FloatingBadge files.
 //
 // titleleft/titleright are <p>, not headings: this box's column labels are
 // supporting-panel chrome. The one docx heading it carries is `title`.
+//
+// TT1BET: bronze deep frames the card, primary gold takes the badge border and
+// the first glow on warm near-black, bronze the second glow, and gold light the
+// two ✦ marks. The heading ramp runs gold pale -> primary gold -> bronze.
 ---
 
 <section class="my-10 flex w-full justify-center px-4 font-sans">
   <div
-    class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#fdd323]/35 bg-gradient-to-b from-[#14110a]/95 to-[#080705]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(253,211,35,0.2)] md:pt-28">
-    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#fdd323]/28 blur-[60px]"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#d7dbe1]/18 blur-[60px]"></div>
+    class="relative isolate w-full max-w-7xl rounded-2xl border-2 border-[#6d4a13]/55 bg-gradient-to-b from-[#171008]/95 to-[#0b0805]/95 p-8 pt-32 shadow-[0_10px_30px_rgba(233,195,65,0.2)] md:pt-28">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-16 -right-10 -z-10 h-40 w-40 rounded-full bg-[#e9c341]/22 blur-[60px]"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 -z-10 h-40 w-40 rounded-full bg-[#b8862a]/28 blur-[60px]"></div>
 
     {
       title && (
-        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#fdd323]/45 bg-[#1f1a10] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(253,211,35,0.2)] sm:px-8">
-          <span aria-hidden="true" class="shrink-0 text-[#d7dbe1]">
+        <div class="absolute -top-6 left-1/2 flex w-[92%] max-w-2xl -translate-x-1/2 items-center justify-center gap-2 rounded-lg border-2 border-[#e9c341]/45 bg-[#241a0d] px-4 py-2.5 text-center shadow-[0_10px_30px_rgba(233,195,65,0.28)] sm:px-8">
+          <span aria-hidden="true" class="shrink-0 text-[#fcf1b0]">
             ✦
           </span>
-          <HeadingTag class="min-w-0 bg-gradient-to-r from-[#ffe98a] via-[#fdd323] to-[#e39d02] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
+          <HeadingTag class="min-w-0 bg-gradient-to-r from-[#fff8d6] via-[#e9c341] to-[#b8862a] bg-clip-text text-lg leading-normal font-black tracking-tight text-transparent uppercase sm:text-xl md:text-2xl">
             {title}
           </HeadingTag>
-          <span aria-hidden="true" class="shrink-0 text-[#d7dbe1]">
+          <span aria-hidden="true" class="shrink-0 text-[#fcf1b0]">
             ✦
           </span>
         </div>
@@ -51,13 +55,13 @@ const { title, titleleft, titleright, as: HeadingTag = "h2" } = Astro.props;
     }
 
     <div class="grid grid-cols-1 gap-10 md:grid-cols-2">
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f3e7c8]">
-        {titleleft && <p class="text-2xl leading-normal font-bold text-[#fdd323]">{titleleft}</p>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f2e7cd]">
+        {titleleft && <p class="text-2xl leading-normal font-bold text-[#e9c341]">{titleleft}</p>}
         <slot name="left" />
       </article>
 
-      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f3e7c8] md:border-l md:border-[#fdd323]/30 md:pl-10">
-        {titleright && <p class="text-2xl leading-normal font-bold text-[#fdd323]">{titleright}</p>}
+      <article class="flex flex-col gap-4 text-left text-base leading-relaxed text-[#f2e7cd] md:border-l md:border-[#6d4a13]/55 md:pl-10">
+        {titleright && <p class="text-2xl leading-normal font-bold text-[#e9c341]">{titleright}</p>}
         <slot name="right" />
       </article>
     </div>
